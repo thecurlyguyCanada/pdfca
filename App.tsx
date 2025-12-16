@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
 import { PricingPage, PrivacyPage, TermsPage, SorryPolicyPage, HowToPage, SupportLocalPage, MakePdfFillablePage } from './components/StaticPages';
+import { HeicToPdfBlog } from './components/HeicToPdfBlog';
 import { PdfPageThumbnail } from './components/PdfPageThumbnail';
 import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, initPdfWorker, extractTextWithOcr, makeSearchablePdf } from './utils/pdfUtils';
 
@@ -20,7 +21,7 @@ enum AppState {
   ERROR
 }
 
-type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE';
+type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'HEIC_TO_PDF_BLOG' | 'TOOL_PAGE';
 
 enum ToolType {
   DELETE = 'DELETE',
@@ -86,6 +87,7 @@ function App() {
     else if (path === '/howto') setView('HOW_TO');
     else if (path === '/support') setView('SUPPORT');
     else if (path === '/how-to-make-a-pdf-fillable') setView('MAKE_FILLABLE_INFO');
+    else if (path === '/blog/how-to-convert-heic-to-pdf') setView('HEIC_TO_PDF_BLOG');
     else if (path === '/sorry') setView('SORRY');
     else {
       // Default to Home if root or unknown
@@ -132,6 +134,7 @@ function App() {
         case 'HOW_TO': path = '/howto'; break;
         case 'SUPPORT': path = '/support'; break;
         case 'MAKE_FILLABLE_INFO': path = '/how-to-make-a-pdf-fillable'; break;
+        case 'HEIC_TO_PDF_BLOG': path = '/blog/how-to-convert-heic-to-pdf'; break;
         case 'SORRY': path = '/sorry'; break;
         // Tools usually come with an explicit path or are handled below
       }
@@ -883,6 +886,17 @@ function App() {
         {view === 'HOW_TO' && <HowToPage lang={lang} />}
         {view === 'SUPPORT' && <SupportLocalPage lang={lang} />}
         {view === 'MAKE_FILLABLE_INFO' && <MakePdfFillablePage lang={lang} />}
+        {view === 'HEIC_TO_PDF_BLOG' && (
+          <>
+            <SEO
+              title="How to Convert HEIC to PDF: Complete Guide 2025 | pdfcanada.ca"
+              description="Learn how to convert HEIC to PDF with our comprehensive guide. Free online converter, step-by-step tutorials for iPhone, Mac, Windows, and more. No signup required!"
+              lang={lang}
+              canonicalPath="/blog/how-to-convert-heic-to-pdf"
+            />
+            <HeicToPdfBlog lang={lang} onNavigate={handleNavigation} />
+          </>
+        )}
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />
