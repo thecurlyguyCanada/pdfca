@@ -40,12 +40,12 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
     <>
       <SEO title={t.seo.pricingTitle} description={t.seo.pricingDesc} canonicalPath="/pricing" ogType="product" schema={pricingSchema} />
       <div className="max-w-5xl mx-auto px-6 py-12">
-         <div className="text-center mb-12">
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">{t.pricingTitle}</h1>
           <p className="text-xl text-gray-500">{t.pricingSubtitle}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {/* Free Tier */}
           <div className="bg-white rounded-3xl p-8 shadow-lg border-2 border-gray-100 hover:border-canada-red/30 transition-all">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.freePlan}</h3>
@@ -137,11 +137,11 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
           <p className="mb-6">{t.privacyText1}</p>
           <p className="mb-6">{t.privacyText2}</p>
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 flex gap-4 items-start">
-             <Shield className="text-blue-600 shrink-0 mt-1" />
-             <div>
-               <h4 className="font-bold text-blue-900 mb-1">Local Processing Guarantee</h4>
-               <p className="text-sm text-blue-800">We do not operate backend servers for file processing. Everything happens right here in your browser using WebAssembly.</p>
-             </div>
+            <Shield className="text-blue-600 shrink-0 mt-1" />
+            <div>
+              <h4 className="font-bold text-blue-900 mb-1">Local Processing Guarantee</h4>
+              <p className="text-sm text-blue-800">We do not operate backend servers for file processing. Everything happens right here in your browser using WebAssembly.</p>
+            </div>
           </div>
         </div>
       </PageLayout>
@@ -198,7 +198,7 @@ export const SorryPolicyPage: React.FC<PageProps> = ({ lang }) => {
             </ul>
           </div>
           <div className="pt-8 border-t border-gray-100">
-             <p className="text-sm text-gray-400">Signed, The Management</p>
+            <p className="text-sm text-gray-400">Signed, The Management</p>
           </div>
         </div>
       </PageLayout>
@@ -280,9 +280,9 @@ export const MakePdfFillablePage: React.FC<PageProps> = ({ lang }) => {
           </div>
 
           <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
-             <h4 className="font-bold text-blue-900 mb-2">{t.fillableWhy}</h4>
-             <p className="text-blue-800">{t.fillableWhyText}</p>
-             <p className="text-blue-800 mt-2 font-semibold">{t.fillableProTip}</p>
+            <h4 className="font-bold text-blue-900 mb-2">{t.fillableWhy}</h4>
+            <p className="text-blue-800">{t.fillableWhyText}</p>
+            <p className="text-blue-800 mt-2 font-semibold">{t.fillableProTip}</p>
           </div>
         </div>
       </PageLayout>
@@ -291,6 +291,7 @@ export const MakePdfFillablePage: React.FC<PageProps> = ({ lang }) => {
 };
 
 export const SupportLocalPage: React.FC<PageProps> = ({ lang }) => {
+  const t = translations[lang];
   const supportSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -307,19 +308,19 @@ export const SupportLocalPage: React.FC<PageProps> = ({ lang }) => {
     <>
       <SEO title={translations[lang].seo.supportTitle} description={translations[lang].seo.supportDesc} canonicalPath="/support" schema={supportSchema} />
       <PageLayout title={translations[lang].navSupport} icon={<Coffee size={32} />}>
-          <div className="text-center text-gray-600 space-y-6">
-              <p className="text-lg">
-                  We are a small team based in Toronto. We built this tool because we were tired of uploading our personal documents to servers halfway across the world just to rotate a page.
-              </p>
-              <p>
-                  If you like what we do, tell a friend. That's the Canadian way.
-              </p>
-              <div className="pt-8">
-                  <button className="bg-canada-red text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-canada-darkRed transition-colors">
-                      Buy us a Double Double ☕
-                  </button>
-              </div>
+        <div className="text-center text-gray-600 space-y-6">
+          <p className="text-lg">
+            We are a small team based in Toronto. We built this tool because we were tired of uploading our personal documents to servers halfway across the world just to rotate a page.
+          </p>
+          <p>
+            If you like what we do, tell a friend. That's the Canadian way.
+          </p>
+          <div className="pt-8">
+            <a href="https://buy.stripe.com/8x228t4yIdCx2mE2ic6Zy04" target="_blank" rel="noopener noreferrer" className="inline-block bg-canada-red text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-canada-darkRed transition-colors">
+              {t.timbitsButton} ☕
+            </a>
           </div>
+        </div>
       </PageLayout>
     </>
   );
