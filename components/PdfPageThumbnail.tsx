@@ -154,14 +154,14 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
 
       {/* Loading State */}
       {loading && !error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-800 z-10">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-800 z-10 pointer-events-none">
           <div className="w-6 h-6 border-2 border-canada-red border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
       {/* Error / Fallback State */}
       {error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800 text-gray-400 p-2 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800 text-gray-400 p-2 text-center pointer-events-none">
           <div className="w-12 h-12 mb-2 text-gray-300 dark:text-gray-600">
             <FileText className="w-full h-full" />
           </div>
@@ -170,7 +170,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
       )}
 
       {!error && (
-        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded shadow-sm z-20">
+        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded shadow-sm z-20 pointer-events-none">
           Page {pageIndex + 1}
         </div>
       )}
@@ -194,7 +194,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
 
       {/* Rotation Indicator Badge */}
       {rotation > 0 && mode === 'rotate' && (
-        <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm z-20 flex items-center gap-1">
+        <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm z-20 flex items-center gap-1 pointer-events-none">
           <RotateCw size={10} /> {rotation}°
         </div>
       )}
