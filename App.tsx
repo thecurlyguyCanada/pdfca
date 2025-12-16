@@ -58,6 +58,9 @@ function App() {
   const [ocrText, setOcrText] = useState<string>('');
   const [ocrZoom, setOcrZoom] = useState<number>(1);
 
+  // General Preview Zoom (Delete, Rotate, Fillable)
+  const [previewZoom, setPreviewZoom] = useState<number>(1);
+
   // Tool Specific State
   const [selectedPages, setSelectedPages] = useState<Set<number>>(new Set());
   const [rotations, setRotations] = useState<Record<number, number>>({});
@@ -618,33 +621,57 @@ function App() {
                     <button onClick={resetRotations} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 transition-all text-sm font-medium text-gray-500">
                       <RefreshCcw size={16} /> {t.resetRotations}
                     </button>
+
+                    <div className="w-px h-6 bg-gray-300 mx-1"></div>
+
+                    <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-600" title="Zoom Out">
+                      <ZoomOut size={16} />
+                    </button>
+                    <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-600" title="Zoom In">
+                      <ZoomIn size={16} />
+                    </button>
                   </div>
                 ) : (
                   // Standard Header for Delete/Fillable
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm font-medium text-gray-600">
-                      {headerText}
-                    </p>
-                    {(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
-                      <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
-                        {selectedPages.size} {t.selected}
-                      </span>
-                    )}
+                  <div className="flex justify-between items-center bg-white p-2 rounded-xl shadow-sm border border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <p className="text-sm font-medium text-gray-600">
+                        {headerText}
+                      </p>
+                      {(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
+                        <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
+                          {selectedPages.size} {t.selected}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Zoom Controls Shared */}
+                    <div className="flex items-center gap-1 bg-gray-50 rounded-lg border border-gray-200 p-1">
+                      <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-1 hover:bg-white rounded transition-colors text-gray-500">
+                        <ZoomOut size={14} />
+                      </button>
+                      <span className="text-xs font-mono w-8 text-center text-gray-400">{Math.round(previewZoom * 100)}%</span>
+                      <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-1 hover:bg-white rounded transition-colors text-gray-500">
+                        <ZoomIn size={14} />
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+              <div className="flex flex-wrap justify-center gap-4 w-full">
                 {pageIndices.map((idx) => (
-                  <PdfPageThumbnail
-                    key={idx}
-                    pdfJsDoc={pdfJsDoc}
-                    pageIndex={idx}
-                    isSelected={selectedPages.has(idx)}
-                    rotation={rotations[idx] || 0}
-                    mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR ? 'delete' : 'rotate'}
-                    onClick={(e) => togglePageSelection(e, idx)}
-                  />
+                  <div key={idx} style={{ width: 'fit-content' }}>
+                    <PdfPageThumbnail
+                      pdfJsDoc={pdfJsDoc}
+                      pageIndex={idx}
+                      isSelected={selectedPages.has(idx)}
+                      rotation={rotations[idx] || 0}
+                      mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR ? 'delete' : 'rotate'}
+                      onClick={(e) => togglePageSelection(e, idx)}
+                      width={200 * previewZoom}
+                    />
+                  </div>
                 ))}
               </div>
             </>
