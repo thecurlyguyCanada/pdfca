@@ -745,7 +745,7 @@ function App() {
     else if (currentTool === ToolType.ORGANIZE) headerText = "Drag pages to reorder";
 
     return (
-      <div className="flex flex-col h-[600px]">
+      <div className="flex flex-col h-[500px] sm:h-[600px] md:h-[700px]">
         {/* Header */}
         <div className="p-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-900 z-10 shadow-sm">
           <div className="flex items-center gap-3">
@@ -788,10 +788,10 @@ function App() {
                       </>
                     )}
 
-                    <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400" title="Zoom Out">
+                    <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red focus:ring-offset-1" title="Zoom Out" aria-label="Zoom Out">
                       <ZoomOut size={16} />
                     </button>
-                    <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400" title="Zoom In">
+                    <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red focus:ring-offset-1" title="Zoom In" aria-label="Zoom In">
                       <ZoomIn size={16} />
                     </button>
                   </div>
@@ -811,11 +811,11 @@ function App() {
 
                     {/* Zoom Controls Shared */}
                     <div className="flex items-center gap-1 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-1">
-                      <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded transition-colors text-gray-500 dark:text-gray-400">
+                      <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded transition-colors text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red" aria-label="Zoom Out">
                         <ZoomOut size={14} />
                       </button>
                       <span className="text-xs font-mono w-8 text-center text-gray-400">{Math.round(previewZoom * 100)}%</span>
-                      <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded transition-colors text-gray-500 dark:text-gray-400">
+                      <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded transition-colors text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red" aria-label="Zoom In">
                         <ZoomIn size={14} />
                       </button>
                     </div>
@@ -826,12 +826,10 @@ function App() {
               <div className="flex flex-wrap justify-center gap-4 w-full">
                 {currentTool === ToolType.ORGANIZE ? (
                   <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                    <SortableContext items={items} strategy={rectSortingStrategy}>
+                    <SortableContext items={items.map(String)} strategy={rectSortingStrategy}>
                       {items.map((pageIndex) => (
                         <SortablePdfPageThumbnail
-                          key={pageIndex} // Key must comprise actual page index if we want items to track correctly, but arrayMove expects IDs to be consistent. 
-                          // Actually dnd-kit normally wants stable IDs. 
-                          // 'items' has the current order. The values in 'items' are the original page indices.
+                          key={`page-${pageIndex}`}
                           id={pageIndex.toString()}
                           pdfJsDoc={pdfJsDoc}
                           pageIndex={pageIndex}
@@ -1227,16 +1225,16 @@ function App() {
             <div className="flex items-center gap-1 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-1">
               <button
                 onClick={() => setOcrZoom(z => Math.max(0.5, z - 0.25))}
-                className="p-1 text-gray-500 dark:text-gray-400 hover:text-canada-red hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors"
-                title="Zoom Out"
+                className="p-1 text-gray-500 dark:text-gray-400 hover:text-canada-red hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-canada-red"
+                aria-label="Zoom Out"
               >
                 <ZoomOut size={16} />
               </button>
               <span className="text-xs font-mono w-8 text-center text-gray-600 dark:text-gray-400">{Math.round(ocrZoom * 100)}%</span>
               <button
                 onClick={() => setOcrZoom(z => Math.min(3, z + 0.25))}
-                className="p-1 text-gray-500 dark:text-gray-400 hover:text-canada-red hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors"
-                title="Zoom In"
+                className="p-1 text-gray-500 dark:text-gray-400 hover:text-canada-red hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-canada-red"
+                aria-label="Zoom In"
               >
                 <ZoomIn size={16} />
               </button>
@@ -1451,11 +1449,11 @@ function App() {
             <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2"></div>
 
             <div className="flex items-center gap-2">
-              <button onClick={() => setFormZoom(z => Math.max(0.5, z - 0.25))} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400" title="Zoom Out">
+              <button onClick={() => setFormZoom(z => Math.max(0.5, z - 0.25))} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red" aria-label="Zoom Out">
                 <ZoomOut size={18} />
               </button>
               <span className="text-sm font-medium text-gray-500 dark:text-gray-400 w-12 text-center">{Math.round(formZoom * 100)}%</span>
-              <button onClick={() => setFormZoom(z => Math.min(2.0, z + 0.25))} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400" title="Zoom In">
+              <button onClick={() => setFormZoom(z => Math.min(2.0, z + 0.25))} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-canada-red" aria-label="Zoom In">
                 <ZoomIn size={18} />
               </button>
             </div>
@@ -1521,8 +1519,8 @@ function App() {
                     >
                       <div
                         onClick={(e) => { e.stopPropagation(); setSelectedFieldId(field.id); }}
-                        className={`w-full h-full border-2 flex items-center justify-center relative group transition-colors 
-                           ${isSelected ? 'border-blue-500 bg-blue-50/40' : 'border-canada-red bg-red-50/20 hover:border-blue-300'}`}
+                        className={`w-full h-full border-2 flex items-center justify-center relative group transition-colors
+                           ${isSelected ? 'border-canada-red bg-red-50/40 ring-2 ring-canada-red/20' : 'border-canada-red/50 bg-red-50/20 hover:border-canada-red'}`}
                       >
                         {field.type === 'text' && <div className="text-[10px] font-bold text-canada-red opacity-50 px-1 truncate w-full text-center">{field.name || "Text"}</div>}
                         {field.type === 'checkbox' && <CheckCircle2 size={12} className="text-canada-red opacity-50" />}
@@ -1533,20 +1531,22 @@ function App() {
                             <div className="absolute -top-8 right-0 flex gap-1 animate-in fade-in zoom-in duration-200">
                               <button
                                 onClick={(e) => { e.stopPropagation(); duplicateField(field.id); }}
-                                className="bg-white border border-gray-200 text-gray-600 hover:text-blue-600 rounded shadow-sm p-1.5"
+                                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-canada-red hover:border-canada-red rounded shadow-sm p-1.5 focus:outline-none focus:ring-2 focus:ring-canada-red"
                                 title="Duplicate"
+                                aria-label="Duplicate field"
                               >
                                 <Copy size={12} />
                               </button>
                               <button
                                 onClick={(e) => { e.stopPropagation(); removeField(field.id); }}
-                                className="bg-white border border-gray-200 text-gray-600 hover:text-red-600 rounded shadow-sm p-1.5"
+                                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-canada-red hover:border-canada-red rounded shadow-sm p-1.5 focus:outline-none focus:ring-2 focus:ring-canada-red"
                                 title="Remove"
+                                aria-label="Remove field"
                               >
                                 <Trash2 size={12} />
                               </button>
                             </div>
-                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-500 rounded-full cursor-se-resize"></div>
+                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-canada-red rounded-full cursor-se-resize"></div>
                           </>
                         )}
                       </div>
