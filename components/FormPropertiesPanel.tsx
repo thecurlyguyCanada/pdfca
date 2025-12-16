@@ -18,7 +18,7 @@ export const FormPropertiesPanel: React.FC<FormPropertiesPanelProps> = ({ field,
                     {field.type === 'signature' && <PenTool size={16} />}
                     Properties
                 </h3>
-                <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-canada-red rounded" aria-label="Close properties panel">
                     <X size={18} />
                 </button>
             </div>
@@ -26,10 +26,11 @@ export const FormPropertiesPanel: React.FC<FormPropertiesPanelProps> = ({ field,
             <div className="p-4 space-y-6 overflow-y-auto flex-grow">
                 {/* Field Name */}
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                    <label htmlFor={`field-name-${field.id}`} className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-1">
                         Field Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                        id={`field-name-${field.id}`}
                         type="text"
                         value={field.name || field.id}
                         onChange={(e) => onUpdate(field.id, { name: e.target.value })}
@@ -41,10 +42,11 @@ export const FormPropertiesPanel: React.FC<FormPropertiesPanelProps> = ({ field,
 
                 {/* Label / Tooltip */}
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                    <label htmlFor={`field-label-${field.id}`} className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-1">
                         <HelpCircle size={10} /> Tooltip / Label
                     </label>
                     <input
+                        id={`field-label-${field.id}`}
                         type="text"
                         value={field.label || ''}
                         onChange={(e) => onUpdate(field.id, { label: e.target.value })}
@@ -66,7 +68,7 @@ export const FormPropertiesPanel: React.FC<FormPropertiesPanelProps> = ({ field,
                                 onChange={(e) => onUpdate(field.id, { required: e.target.checked })}
                                 className="sr-only peer"
                             />
-                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-canada-red"></div>
+                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-canada-red peer-focus:ring-offset-2 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-canada-red"></div>
                         </div>
                     </label>
 
@@ -81,7 +83,7 @@ export const FormPropertiesPanel: React.FC<FormPropertiesPanelProps> = ({ field,
                                 onChange={(e) => onUpdate(field.id, { readOnly: e.target.checked })}
                                 className="sr-only peer"
                             />
-                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-canada-red"></div>
+                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-canada-red peer-focus:ring-offset-2 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-canada-red"></div>
                         </div>
                     </label>
                 </div>
