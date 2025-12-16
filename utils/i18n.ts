@@ -11,7 +11,7 @@ export const translations = {
     noSignup: "No Signup Required",
     secure: "Secure & Private",
     guarantee: "Sorry-free Guarantee",
-    
+
     // SEO General
     seo: {
       homeTitle: "pdfcanada.ca | Free PDF Tools | Proudly Canadian 🇨🇦",
@@ -39,42 +39,73 @@ export const translations = {
         desc: "Remove pages from your PDF securely and for free. Processed locally in Canada. No file uploads required.",
         h1: "Delete PDF Pages",
         subtitle: "The polite way to remove unwanted pages.",
-        content: "Need to remove a page from your document? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and delete specific pages from your PDF file. It happens instantly in your browser."
+        content: "Need to remove a page from your document? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and delete specific pages from your PDF file. It happens instantly in your browser.",
+        steps: [
+          "Click the 'Select File' button to choose your PDF document.",
+          "You will see thumbnails of all your pages. Simply click on the pages you wish to remove. They will be marked with a trash icon.",
+          "Click 'Remove Pages' to instantly download your clean, updated PDF."
+        ]
       },
       rotate: {
         title: "Rotate PDF Pages Permanently | Free Tool | pdfcanada.ca",
         desc: "Rotate PDF pages left or right and save them permanently. Fix upside-down documents instantly.",
         h1: "Rotate PDF Pages",
         subtitle: "Fix those upside-down scans, eh?",
-        content: "Scanned a document the wrong way? We've all been there. Use this tool to rotate individual pages or the whole document left or right. We'll save a new copy that's oriented correctly."
+        content: "Scanned a document the wrong way? We've all been there. Use this tool to rotate individual pages or the whole document left or right. We'll save a new copy that's oriented correctly.",
+        steps: [
+          "Upload your PDF file using the file selector.",
+          "Click the rotate button on individual pages to turn them 90 degrees, or use the 'Rotate All' buttons at the top.",
+          "When it looks right, click 'Apply Rotation' to save your new PDF."
+        ]
       },
       heic: {
         title: "HEIC to PDF Converter | Convert iPhone Photos | pdfcanada.ca",
         desc: "Convert HEIC photos from iPhone to PDF format. Free, fast, and secure local conversion.",
         h1: "Convert HEIC to PDF",
         subtitle: "Make iPhone photos compatible with everything.",
-        content: "Apple devices use HEIC files for photos, but sometimes you need a PDF. Upload your HEIC images here, and we'll convert them to a standard PDF document you can use anywhere."
+        content: "Apple devices use HEIC files for photos, but sometimes you need a PDF. Upload your HEIC images here, and we'll convert them to a standard PDF document you can use anywhere.",
+        steps: [
+          "Select your .HEIC image file from your computer or phone.",
+          "Our tool automatically processes the image locally in your browser to convert it.",
+          "Click 'Download' to save your new PDF file."
+        ]
       },
       epubToPdf: {
         title: "EPUB to PDF Converter | Ebook to PDF | pdfcanada.ca",
         desc: "Convert EPUB ebooks to PDF documents online. Keep your formatting and read anywhere.",
         h1: "Convert EPUB to PDF",
         subtitle: "Read your ebooks on any device.",
-        content: "Have an ebook but need to print it or read it on a device that doesn't support EPUB? Our local converter changes your ebook into a friendly PDF file without uploading your book to a server."
+        content: "Have an ebook but need to print it or read it on a device that doesn't support EPUB? Our local converter changes your ebook into a friendly PDF file without uploading your book to a server.",
+        steps: [
+          "Upload your .epub file.",
+          "Wait a moment while we reformat the book into pages.",
+          "Download your new PDF ready for printing or sharing."
+        ]
       },
       pdfToEpub: {
         title: "PDF to EPUB Converter | Create Ebooks | pdfcanada.ca",
         desc: "Convert PDF documents to EPUB format for e-readers. Free online converter.",
         h1: "Convert PDF to EPUB",
         subtitle: "Make your documents e-reader friendly.",
-        content: "Reading PDFs on a Kobo or Kindle can be tough. Convert your PDF documents into flowable EPUB format for a better reading experience on your favorite e-reader."
+        content: "Reading PDFs on a Kobo or Kindle can be tough. Convert your PDF documents into flowable EPUB format for a better reading experience on your favorite e-reader.",
+        steps: [
+          "Select the PDF you want to read on your e-reader.",
+          "Our tool extracts the text and attempts to create a flowable ebook structure.",
+          "Download the .epub file and transfer it to your device."
+        ]
       },
       fillable: {
         title: "Make PDF Fillable Online | Free Form Creator | pdfcanada.ca",
         desc: "Add fillable text fields to any PDF. Create interactive forms for free securely.",
         h1: "Make PDF Fillable",
         subtitle: "Auto-detects lines and checkboxes.",
-        content: "Turn a flat document into an interactive form. We automatically detect underscores (____) and checkboxes ([ ]) on your selected pages and turn them into real, fillable fields."
+        content: "Turn a flat document into an interactive form. We automatically detect underscores (____) and checkboxes ([ ]) on your selected pages and turn them into real, fillable fields.",
+        steps: [
+          "Upload a PDF form that has static lines or checkboxes.",
+          "Select the pages you want us to scan.",
+          "Click 'Auto-Detect & Fill'. We will calculate where the fields should be.",
+          "Download your interactive PDF form."
+        ]
       }
     },
 
@@ -100,7 +131,7 @@ export const translations = {
     terms: "By uploading, you agree to our polite Terms of Service.",
     pages: "pages",
     local: "Local",
-    
+
     // Selection View
     selectPagesHeader: "Select pages:",
     selected: "selected",
@@ -110,13 +141,13 @@ export const translations = {
     rotateAllRight: "Rotate All Right",
     resetRotations: "Reset",
     selectPagesToFill: "Select pages to scan for fields:",
-    
+
     // Buttons
     btnRemove: "Remove Pages",
     btnRotate: "Apply Rotation",
     btnConvert: "Convert File",
     btnMakeFillable: "Auto-Detect & Fill",
-    
+
     working: "Working on it...",
     workingDesc: "Scanning for fields and fixing that up for you, eh.",
     doneTitle: "Beauty! It's done.",
@@ -124,7 +155,7 @@ export const translations = {
     download: "Download",
     doAnother: "Do another one",
     backToHome: "Back to Tools",
-    
+
     // Errors
     errorTitle: "Oh snap!",
     genericError: "Something went wrong. Sorry!",
@@ -134,14 +165,14 @@ export const translations = {
     corruptPdfErr: "The PDF file appears to be corrupt or invalid.",
     conversionErr: "Failed to convert the file. It might be too complex or damaged.",
     emptyEpubErr: "Could not extract text from this EPUB.",
-    
+
     // Nav
     navHowTo: "How to use",
     navSupport: "Support Local",
     navPricing: "Pricing",
     login: "Log in",
     signup: "Sign up",
-    
+
     // Footer
     footerBuilt: "Proudly built in the True North Strong and Free.",
     footerMade: "Made with",
@@ -172,7 +203,7 @@ export const translations = {
     privacyTitle: "Privacy Policy",
     privacyText1: "At pdfcanada.ca, we believe that your business is your business. Because we process files locally on your device using WebAssembly technology, your documents never actually upload to our servers.",
     privacyText2: "We don't use cookies to track you across the web. We don't sell your data. We don't even ask for your email. It's just you and your PDF.",
-    
+
     termsTitle: "Terms of Service",
     termsText1: "By using this service, you agree to be nice.",
     termsText2: "Please don't use our tools for illegal stuff. That's not cool.",
@@ -183,7 +214,7 @@ export const translations = {
     sorryList1: "1. We will apologize immediately.",
     sorryList2: "2. We will try to fix it.",
     sorryList3: "3. We will apologize again, just to be safe.",
-    
+
     howtoTitle: "How to use",
     howtoStep1: "Select a tool from the main dashboard.",
     howtoStep2: "Choose your file (PDF, HEIC, or EPUB).",
@@ -211,7 +242,7 @@ export const translations = {
     noSignup: "Aucune inscription",
     secure: "Sécurisé et privé",
     guarantee: "Garantie sans excuses",
-    
+
     seo: {
       homeTitle: "pdfcanada.ca | Outils PDF Gratuits | Fièrement Canadien 🇨🇦",
       homeDesc: "Fièrement Canadien. Les outils PDF les plus polis au Canada. Traitement local sécurisé pour supprimer des pages, faire pivoter des PDF et convertir HEIC/EPUB.",
@@ -237,42 +268,73 @@ export const translations = {
         desc: "Supprimez des pages de vos PDF gratuitement et en toute sécurité. Traitement local au Canada.",
         h1: "Supprimer des pages PDF",
         subtitle: "La façon polie de faire le ménage.",
-        content: "Besoin de retirer une page de votre document ? Notre outil vous permet de sélectionner et supprimer des pages spécifiques instantanément."
+        content: "Besoin de retirer une page de votre document ? Notre outil vous permet de sélectionner et supprimer des pages spécifiques instantanément.",
+        steps: [
+          "Cliquez sur le bouton 'Choisir un fichier' pour sélectionner votre document PDF.",
+          "Vous verrez les miniatures de toutes vos pages. Cliquez simplement sur les pages que vous souhaitez supprimer. Elles seront marquées d'une icône de corbeille.",
+          "Cliquez sur 'Supprimer' pour télécharger instantanément votre PDF mis à jour."
+        ]
       },
       rotate: {
         title: "Pivoter PDF Gratuit | Rotation Permanente | pdfcanada.ca",
         desc: "Pivotez des pages PDF à gauche ou à droite. Corrigez les documents à l'envers.",
         h1: "Pivoter des pages PDF",
         subtitle: "Remettez vos documents à l'endroit.",
-        content: "Vous avez numérisé une page à l'envers ? Ça arrive. Utilisez cet outil pour pivoter les pages individuellement ou tout le document."
+        content: "Vous avez numérisé une page à l'envers ? Ça arrive. Utilisez cet outil pour pivoter les pages individuellement ou tout le document.",
+        steps: [
+          "Téléversez votre fichier PDF.",
+          "Cliquez sur le bouton de rotation des pages individuelles pour les faire tourner de 90 degrés, ou utilisez les boutons 'Tout Pivoter' en haut.",
+          "Quand tout semble correct, cliquez sur 'Appliquer' pour sauvegarder votre nouveau PDF."
+        ]
       },
       heic: {
         title: "Convertir HEIC en PDF | Photos iPhone | pdfcanada.ca",
         desc: "Convertissez des photos HEIC (iPhone) en PDF. Rapide, gratuit et sécurisé.",
         h1: "Convertir HEIC en PDF",
         subtitle: "Pour vos photos iPhone.",
-        content: "Les appareils Apple utilisent le format HEIC. Parfois, on a besoin d'un PDF. Convertissez vos images ici."
+        content: "Les appareils Apple utilisent le format HEIC. Parfois, on a besoin d'un PDF. Convertissez vos images ici.",
+        steps: [
+          "Sélectionnez votre fichier image .HEIC depuis votre ordinateur ou téléphone.",
+          "Notre outil convertit automatiquement l'image localement dans votre navigateur.",
+          "Cliquez sur 'Télécharger' pour sauvegarder votre nouveau fichier PDF."
+        ]
       },
       epubToPdf: {
         title: "Convertir EPUB en PDF | Ebooks | pdfcanada.ca",
         desc: "Convertissez des livres EPUB en PDF en ligne. Gardez votre mise en page.",
         h1: "Convertir EPUB en PDF",
         subtitle: "Lisez vos ebooks partout.",
-        content: "Imprimez ou lisez vos ebooks sur n'importe quel appareil en les convertissant en PDF."
+        content: "Imprimez ou lisez vos ebooks sur n'importe quel appareil en les convertissant en PDF.",
+        steps: [
+          "Téléversez votre fichier .epub.",
+          "Attendez un instant pendant que nous formatons le livre en pages.",
+          "Téléchargez votre nouveau PDF prêt à être imprimé ou partagé."
+        ]
       },
       pdfToEpub: {
         title: "Convertir PDF en EPUB | Pour Liseuses | pdfcanada.ca",
         desc: "Convertissez des PDF en format EPUB pour liseuses Kobo ou Kindle.",
         h1: "Convertir PDF en EPUB",
         subtitle: "Pour une meilleure lecture.",
-        content: "Transformez vos documents PDF en format EPUB fluide pour votre liseuse préférée."
+        content: "Transformez vos documents PDF en format EPUB fluide pour votre liseuse préférée.",
+        steps: [
+          "Sélectionnez le PDF que vous voulez lire sur votre liseuse.",
+          "Notre outil extrait le texte et tente de créer une structure d'ebook fluide.",
+          "Téléchargez le fichier .epub et transférez-le sur votre appareil."
+        ]
       },
       fillable: {
         title: "Rendre PDF Remplissable | Formulaire Gratuit | pdfcanada.ca",
         desc: "Ajoutez des champs de texte remplissables à n'importe quel PDF.",
         h1: "Rendre un PDF Remplissable",
         subtitle: "Détection automatique des lignes et cases.",
-        content: "Transformez un document plat en formulaire interactif. Nous détectons automatiquement les lignes (____) et les cases ([ ]) et les rendons remplissables."
+        content: "Transformez un document plat en formulaire interactif. Nous détectons automatiquement les lignes (____) et les cases ([ ]) et les rendons remplissables.",
+        steps: [
+          "Téléversez un formulaire PDF qui contient des lignes statiques ou des cases à cocher.",
+          "Sélectionnez les pages que vous voulez scanner.",
+          "Cliquez sur 'Détecter et Remplir'. Nous calculerons où les champs devraient être.",
+          "Téléchargez votre formulaire PDF interactif."
+        ]
       }
     },
 
@@ -296,7 +358,7 @@ export const translations = {
     terms: "En téléversant, vous acceptez nos conditions polies.",
     pages: "pages",
     local: "Local",
-    
+
     selectPagesHeader: "Sélectionnez les pages :",
     selected: "sélectionnées",
     rotateLeft: "Gauche",
@@ -305,12 +367,12 @@ export const translations = {
     rotateAllRight: "Tout Pivoter Droite",
     resetRotations: "Réinitialiser",
     selectPagesToFill: "Sélectionnez les pages à scanner :",
-    
+
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
     btnConvert: "Convertir",
     btnMakeFillable: "Détecter et Remplir",
-    
+
     working: "On y travaille...",
     workingDesc: "On scanne pour les champs et on arrange ça.",
     doneTitle: "C'est tiguidou !",
@@ -318,7 +380,7 @@ export const translations = {
     download: "Télécharger",
     doAnother: "En faire un autre",
     backToHome: "Retour aux outils",
-    
+
     errorTitle: "Ah zut !",
     genericError: "Quelque chose a mal tourné. Désolé !",
     fileTypeErr: "Désolé, mais on n'accepte pas ce type de fichier.",
@@ -327,13 +389,13 @@ export const translations = {
     corruptPdfErr: "Le fichier PDF semble corrompu ou invalide.",
     conversionErr: "Échec de la conversion du fichier. Il est peut-être trop complexe ou endommagé.",
     emptyEpubErr: "Impossible d'extraire le texte de cet EPUB.",
-    
+
     navHowTo: "Aide",
     navSupport: "Soutenir local",
     navPricing: "Tarifs",
     login: "Connexion",
     signup: "S'inscrire",
-    
+
     footerBuilt: "Fièrement bâti dans le Nord fort et libre.",
     footerMade: "Fait avec",
     footerLocation: "et du sirop d'érable à Toronto, ON.",
@@ -379,7 +441,7 @@ export const translations = {
     howtoStep2: "Sélectionnez votre fichier (PDF, HEIC, ou EPUB).",
     howtoStep3: "Suivez les instructions polies à l'écran.",
     howtoStep4: "Téléchargez votre nouveau fichier. Facile.",
-    
+
     fillablePageTitle: "Comment rendre un PDF remplissable",
     fillablePageSubtitle: "Le guide poli pour créer des formulaires.",
     fillableIntro: "Vous voulez que les gens puissent écrire dans votre document ?",

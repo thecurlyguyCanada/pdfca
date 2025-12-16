@@ -17,13 +17,13 @@ export const initPdfWorker = () => {
   }
 };
 
-export const getPdfJsDocument = async (file: File) => {
+export const getPdfJsDocument = async (source: File | ArrayBuffer) => {
   try {
     initPdfWorker();
-    const arrayBuffer = await file.arrayBuffer();
+    const data = source instanceof File ? await source.arrayBuffer() : source;
 
     const loadingTask = pdfjsLib.getDocument({
-      data: new Uint8Array(arrayBuffer),
+      data: new Uint8Array(data),
       cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
       cMapPacked: true,
       standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
@@ -83,11 +83,7 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
   const form = doc.getForm();
 
   // Load PDF.js document for text analysis
-  const pdfJsDoc = await pdfjsLib.getDocument({
-    data: new Uint8Array(arrayBuffer),
-    cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
-    cMapPacked: true,
-  }).promise;
+  const pdfJsDoc = await getPdfJsDocument(arrayBuffer);
 
   let fieldCount = 0;
   const timestamp = Date.now();
@@ -209,9 +205,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
 };
 
 export const convertPdfToEpub = async (file: File): Promise<Blob> => {
-  initPdfWorker();
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await getPdfJsDocument(file);
 
   let fullText = "";
   for (let i = 1; i <= pdf.numPages; i++) {
@@ -283,8 +277,8 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
     }
   });
 
-  // Sort vaguely to try and keep order (imperfect without parsing OPF properly, but "simple")
-  htmlFiles.sort();
+  // Sort using natural sort order (handles page1, page2, page10 correctly)
+  htmlFiles.sort(new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare);
 
   for (const path of htmlFiles) {
     const html = await content.file(path)?.async("string");

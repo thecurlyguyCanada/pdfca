@@ -65,33 +65,15 @@ function App() {
   const syncStateFromUrl = () => {
     const path = window.location.pathname;
 
-    // Map paths to tools
-    if (path === '/delete-pdf-pages') {
-      setCurrentTool(ToolType.DELETE);
-      setView('TOOL_PAGE');
-      // If we are deep-linked, we might be in selecting mode, but if no file, stay selecting
-      setAppState(AppState.SELECTING);
-    } else if (path === '/rotate-pdf') {
-      setCurrentTool(ToolType.ROTATE);
+    const tool = getToolFromPath(path);
+    if (tool) {
+      setCurrentTool(tool);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
-    } else if (path === '/heic-to-pdf') {
-      setCurrentTool(ToolType.HEIC_TO_PDF);
-      setView('TOOL_PAGE');
-      setAppState(AppState.SELECTING);
-    } else if (path === '/epub-to-pdf') {
-      setCurrentTool(ToolType.EPUB_TO_PDF);
-      setView('TOOL_PAGE');
-      setAppState(AppState.SELECTING);
-    } else if (path === '/pdf-to-epub') {
-      setCurrentTool(ToolType.PDF_TO_EPUB);
-      setView('TOOL_PAGE');
-      setAppState(AppState.SELECTING);
-    } else if (path === '/make-pdf-fillable') {
-      setCurrentTool(ToolType.MAKE_FILLABLE);
-      setView('TOOL_PAGE');
-      setAppState(AppState.SELECTING);
-    } else if (path === '/pricing') setView('PRICING');
+      return;
+    }
+
+    if (path === '/pricing') setView('PRICING');
     else if (path === '/privacy') setView('PRIVACY');
     else if (path === '/terms') setView('TERMS');
     else if (path === '/howto') setView('HOW_TO');
@@ -119,15 +101,54 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const handleNavigation = (newView: CurrentView, path?: string) => {
-    setView(newView);
-    if (newView === 'HOME') {
-      setAppState(AppState.HOME);
-      setCurrentTool(null);
-      safePushState({}, '', '/');
-    } else if (path) {
+  const getToolFromPath = (path: string): ToolType | null => {
+    if (path === '/delete-pdf-pages') return ToolType.DELETE;
+    if (path === '/rotate-pdf') return ToolType.ROTATE;
+    if (path === '/heic-to-pdf') return ToolType.HEIC_TO_PDF;
+    if (path === '/epub-to-pdf') return ToolType.EPUB_TO_PDF;
+    if (path === '/pdf-to-epub') return ToolType.PDF_TO_EPUB;
+    if (path === '/make-pdf-fillable') return ToolType.MAKE_FILLABLE;
+    return null;
+  };
+
+  const handleNavigation = (newView: CurrentView, pathOverride?: string) => {
+    let path = pathOverride;
+
+    // Auto-resolve path if not provided
+    if (!path) {
+      switch (newView) {
+        case 'HOME': path = '/'; break;
+        case 'PRICING': path = '/pricing'; break;
+        case 'PRIVACY': path = '/privacy'; break;
+        case 'TERMS': path = '/terms'; break;
+        case 'HOW_TO': path = '/howto'; break;
+        case 'SUPPORT': path = '/support'; break;
+        case 'MAKE_FILLABLE_INFO': path = '/how-to-make-a-pdf-fillable'; break;
+        case 'SORRY': path = '/sorry'; break;
+        // Tools usually come with an explicit path or are handled below
+      }
+    }
+
+    if (path) {
       safePushState({}, '', path);
     }
+
+    // Check if the path corresponds to a tool
+    const tool = path ? getToolFromPath(path) : null;
+
+    if (tool) {
+      setCurrentTool(tool);
+      setAppState(AppState.SELECTING);
+      setView('TOOL_PAGE');
+      setFile(null);
+    } else {
+      setCurrentTool(null);
+      if (newView === 'HOME') {
+        setAppState(AppState.HOME);
+      }
+      setView(newView);
+    }
+
     window.scrollTo(0, 0);
   };
 
@@ -229,15 +250,15 @@ function App() {
       switch (currentTool) {
         case ToolType.DELETE:
           resultBlob = await deletePagesFromPdf(file, Array.from(selectedPages));
-          outName = file.name.replace('.pdf', '_cleaned_eh.pdf');
+          outName = file.name.replace(/\.pdf$/i, '_cleaned_eh.pdf');
           break;
         case ToolType.ROTATE:
           resultBlob = await rotatePdfPages(file, rotations);
-          outName = file.name.replace('.pdf', '_rotated_eh.pdf');
+          outName = file.name.replace(/\.pdf$/i, '_rotated_eh.pdf');
           break;
         case ToolType.MAKE_FILLABLE:
           resultBlob = await makePdfFillable(file, Array.from(selectedPages));
-          outName = file.name.replace('.pdf', '_fillable_eh.pdf');
+          outName = file.name.replace(/\.pdf$/i, '_fillable_eh.pdf');
           break;
         case ToolType.HEIC_TO_PDF:
           resultBlob = await convertHeicToPdf(file);
@@ -249,7 +270,7 @@ function App() {
           break;
         case ToolType.PDF_TO_EPUB:
           resultBlob = await convertPdfToEpub(file);
-          outName = file.name.replace('.pdf', '_converted_eh.epub');
+          outName = file.name.replace(/\.[^/.]+$/, "") + '_converted_eh.epub';
           break;
       }
 
@@ -347,6 +368,7 @@ function App() {
   const handleSoftReset = () => {
     setFile(null);
     setAppState(AppState.SELECTING);
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
     setDownloadUrl(null);
     lastSelectedPageRef.current = null;
   };
@@ -715,6 +737,20 @@ function App() {
 
           <div className="prose prose-lg text-gray-600 mx-auto md:mx-0">
             <p>{content.content}</p>
+
+            {(content as any).steps && (
+              <div className="mt-8">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{t.navHowTo}</h3>
+                <div className="space-y-4">
+                  {(content as any).steps.map((step: string, i: number) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-red-100 text-canada-red flex items-center justify-center font-bold shrink-0">{i + 1}</div>
+                      <p className="pt-1">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
