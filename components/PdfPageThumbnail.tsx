@@ -2,18 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Trash2, FileText, RotateCw } from 'lucide-react';
 
 interface PdfPageThumbnailProps {
-  pdfJsDoc: any; 
-  pageIndex: number; 
+  pdfJsDoc: any;
+  pageIndex: number;
   isSelected: boolean;
   rotation?: number; // degrees
   onClick: (event: React.MouseEvent) => void;
   mode?: 'delete' | 'rotate';
 }
 
-export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({ 
-  pdfJsDoc, 
-  pageIndex, 
-  isSelected, 
+export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
+  pdfJsDoc,
+  pageIndex,
+  isSelected,
   rotation = 0,
   onClick,
   mode = 'delete'
@@ -34,7 +34,7 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
             setIsVisible(true);
             // Stop observing once visible to render and keep rendered
             if (node) {
-                observer.unobserve(node);
+              observer.unobserve(node);
             }
           }
         });
@@ -64,26 +64,29 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
     let renderTask: any = null;
 
     const renderPage = async () => {
+      // Reset states at the start of each render attempt
+      if (mounted) {
+        setError(false);
+        setLoading(true);
+      }
+
       if (!pdfJsDoc) {
-        if (mounted) {
-           setError(true);
-           setLoading(false);
-        }
+        // If no document, just stay in loading state - it might arrive later
+        // Don't set error here as the doc might be loading
         return;
       }
-      
+
       if (!canvasRef.current) return;
 
       try {
-        setLoading(true);
         const page = await pdfJsDoc.getPage(pageIndex + 1);
-        
+
         if (!mounted) return;
 
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
-        
-        const desiredWidth = 300; 
+
+        const desiredWidth = 300;
         const viewport = page.getViewport({ scale: 1 });
         const scale = desiredWidth / viewport.width;
         const scaledViewport = page.getViewport({ scale });
@@ -98,7 +101,7 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
           });
           await renderTask.promise;
         }
-        
+
         if (mounted) setLoading(false);
       } catch (err) {
         console.error(`Error rendering page ${pageIndex + 1}:`, err);
@@ -120,13 +123,13 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
   }, [pdfJsDoc, pageIndex, isVisible]); // Depend on isVisible
 
   return (
-    <div 
+    <div
       ref={containerRef}
       onClick={onClick}
       className={`
         relative aspect-[3/4] rounded-lg border-2 cursor-pointer overflow-hidden transition-all duration-200 group bg-white
         ${isSelected && mode === 'delete'
-          ? 'border-canada-red shadow-lg ring-2 ring-canada-red/20 transform scale-[0.98]' 
+          ? 'border-canada-red shadow-lg ring-2 ring-canada-red/20 transform scale-[0.98]'
           : 'border-gray-200 hover:border-canada-red/50 hover:shadow-md'}
         ${mode === 'rotate' ? 'hover:bg-gray-50' : ''}
       `}
@@ -135,12 +138,12 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
       aria-pressed={isSelected}
     >
       {/* Canvas for PDF Page - Wrapped for Rotation */}
-      <div 
+      <div
         className="w-full h-full flex items-center justify-center transition-transform duration-300 ease-out"
         style={{ transform: `rotate(${rotation}deg)` }}
       >
-        <canvas 
-          ref={canvasRef} 
+        <canvas
+          ref={canvasRef}
           className={`object-contain max-w-full max-h-full ${error ? 'hidden' : ''}`}
         />
       </div>
@@ -156,7 +159,7 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
       {error && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 text-gray-400 p-2 text-center">
           <div className="w-12 h-12 mb-2 text-gray-300">
-             <FileText className="w-full h-full" />
+            <FileText className="w-full h-full" />
           </div>
           <span className="text-xs font-medium">Page {pageIndex + 1}</span>
         </div>
@@ -179,12 +182,12 @@ export const PdfPageThumbnail: React.FC<PdfPageThumbnailProps> = ({
           </div>
         )}
         {mode === 'rotate' && (
-           <div className="bg-white text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-             <RotateCw size={24} />
-           </div>
+          <div className="bg-white text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+            <RotateCw size={24} />
+          </div>
         )}
       </div>
-      
+
       {/* Rotation Indicator Badge */}
       {rotation > 0 && mode === 'rotate' && (
         <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm z-20 flex items-center gap-1">

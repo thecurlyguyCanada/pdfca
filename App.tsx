@@ -5,7 +5,10 @@ import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
 import { PricingPage, PrivacyPage, TermsPage, SorryPolicyPage, HowToPage, SupportLocalPage, MakePdfFillablePage } from './components/StaticPages';
 import { PdfPageThumbnail } from './components/PdfPageThumbnail';
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, initPdfWorker } from './utils/pdfUtils';
+
+// Initialize PDF.js worker early to ensure thumbnails can render
+initPdfWorker();
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 
