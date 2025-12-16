@@ -16,16 +16,16 @@ export const translations = {
     seo: {
       homeTitle: "pdfcanada.ca | Free PDF Tools | Proudly Canadian 🇨🇦",
       homeDesc: "Proudly Canadian. The most polite PDF tools in Canada. Secure local processing for deleting pages, rotating PDFs, and converting HEIC/EPUB.",
-      pricingTitle: "Pricing - pdfcanada.ca | Free Forever",
-      pricingDesc: "Our pricing is simple: $0 CAD for everyone. Unlimited PDF conversions and local processing.",
+      pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
+      pricingDesc: "Unbelievably free PDF tools. $0 CAD for unlimited file conversions, merges, and edits. No hidden fees, no subscriptions, just polite Canadian service.",
       privacyTitle: "Privacy Policy - pdfcanada.ca | Secure & Local",
       privacyDesc: "We respect your data. All PDF processing happens locally in your browser via WebAssembly. No file uploads.",
       termsTitle: "Terms of Service - pdfcanada.ca",
       termsDesc: "Our polite terms of service. Be nice, use the tools freely.",
       howtoTitle: "How to Use pdfcanada.ca | PDF Tutorials",
       howtoDesc: "Easy instructions on how to delete PDF pages, rotate documents, and convert files using pdfcanada.ca.",
-      supportTitle: "Support Local - pdfcanada.ca",
-      supportDesc: "Support the Canadian team building free privacy-focused PDF tools.",
+      supportTitle: "Support Local Canadian Developers | Donate | pdfcanada.ca",
+      supportDesc: "Support the Canadian team building free, privacy-focused PDF tools. Buy us a coffee or a timbit to keep the servers running.",
       sorryTitle: "Sorry Policy - pdfcanada.ca",
       sorryDesc: "Our guarantee to apologize if anything goes wrong. The most Canadian policy on the web.",
       fillableTitle: "How to make a PDF fillable | pdfcanada.ca",
@@ -33,6 +33,56 @@ export const translations = {
     },
 
     // Feature Pages SEO & Content
+    pricingPage: {
+      content: "At pdfcanada.ca, we believe that essential document tools should be free, accessible, and private. That's why we've committed to a $0 price tag for all our core features. Whether you need to delete pages, rotate a PDF, or convert formats, you'll never hit a paywall here. We rely on the generosity of our users (and our love for the game) to keep things running. If you're looking for free pdf tools Canada, you've found the best spot on the web.",
+      faq: [
+        {
+          question: "Is pdfcanada.ca really free?",
+          answer: "You betcha! Every tool on our site is completely free to use. we don't watermark your files or limit how many you can process."
+        },
+        {
+          question: "Do I need a credit card for the free plan?",
+          answer: "No way, eh. No credit card, no signup, no hassle. Just upload your file and get to work."
+        },
+        {
+          question: "Why is it free? What's the catch?",
+          answer: "No catch. We run lean using local processing technology (your browser does the work), so our server costs are low. We accept optional donations (Timbits!) to cover the basics."
+        },
+        {
+          question: "Can I use this for my business?",
+          answer: "Absolutely. Our free PDF tools are perfect for small businesses, freelancers, and anyone who wants to save money on expensive software."
+        },
+        {
+          question: "How does the 'Timbits' support work?",
+          answer: "It's an optional $1 tip. If you love our service and want to say thanks, you can 'buy us a Timbit'. It helps us keep the lights on and the code flowing."
+        }
+      ]
+    },
+    supportPage: {
+      content: "We're a small team of developers based in Toronto, Ontario, dedicated to building the most polite and private PDF tools on the internet. Unlike big corporations that harvest your data, we built pdfcanada.ca to process everything locally on your device. Your files never leave your computer. By supporting us, you're backing indie Canadian software and helping us maintain a free utility for everyone.",
+      faq: [
+        {
+          question: "How can I support pdfcanada.ca?",
+          answer: "The best way is to share our tools with your friends! If you have a loonie to spare, you can also use our 'Drop a Loonie' button to send a small tip."
+        },
+        {
+          question: "Where does my donation go?",
+          answer: "Every dollar acts as a vote of confidence. It goes towards server costs (hosting), domain fees, and maybe a double-double for the dev team during late-night coding sessions."
+        },
+        {
+          question: "Is my payment secure?",
+          answer: "Yes. We use Stripe for all transactions. We never see or store your credit card information."
+        },
+        {
+          question: "Why should I support local software?",
+          answer: "Supporting local means you're helping build a tech ecosystem that respects privacy and values users over profit. Plus, it's the Canadian thing to do, eh?"
+        },
+        {
+          question: "Do you offer refunds on tips?",
+          answer: "Since it's a small donation, we generally don't, but if you made a mistake, just reach out. We'll apologize and sort it out."
+        }
+      ]
+    },
     features: {
       delete: {
         title: "Delete PDF Pages Free | Remove Pages Online | pdfcanada.ca",
@@ -578,6 +628,56 @@ export const translations = {
     fillableStep4: "Téléchargez et partagez.",
     fillableProTip: "Conseil de pro : Idéal pour les formulaires.",
     fillableWhy: "Pourquoi nous utiliser ?",
-    fillableWhyText: "C'est gratuit et canadien."
+    fillableWhyText: "C'est gratuit et canadien.",
+    pricingPage: {
+      content: "Chez pdfcanada.ca, nous croyons que les outils essentiels doivent être gratuits. C'est pourquoi nos fonctionnalités de base sont à 0 $. Pas de frais cachés. Si vous cherchez des outils PDF gratuits au Canada, vous êtes au bon endroit.",
+      faq: [
+        {
+          question: "Est-ce vraiment gratuit ?",
+          answer: "Oui, absolument ! Tous nos outils sont gratuits."
+        },
+        {
+          question: "Ai-je besoin d'une carte de crédit ?",
+          answer: "Non, aucune carte ni inscription requise."
+        },
+        {
+          question: "Pourquoi est-ce gratuit ?",
+          answer: "Grâce au traitement local, nos coûts sont faibles. Nous acceptons les dons optionnels."
+        },
+        {
+          question: "Puis-je l'utiliser pour mon entreprise ?",
+          answer: "Bien sûr. C'est parfait pour les PME et les pigistes."
+        },
+        {
+          question: "C'est quoi le pourboire Timbits ?",
+          answer: "C'est un don optionnel de 1 $ pour nous dire merci."
+        }
+      ]
+    },
+    supportPage: {
+      content: "Nous sommes une petite équipe à Toronto. Contrairement aux grandes entreprises, nous traitons tout localement sur votre appareil. En nous soutenant, vous aidez le logiciel canadien indépendant.",
+      faq: [
+        {
+          question: "Comment soutenir pdfcanada.ca ?",
+          answer: "Partagez l'outil ou donnez un huard via notre bouton de don."
+        },
+        {
+          question: "Où va mon don ?",
+          answer: "Il paie l'hébergement et le café des développeurs."
+        },
+        {
+          question: "Est-ce sécurisé ?",
+          answer: "Oui, nous utilisons Stripe. Nous ne voyons jamais vos infos bancaires."
+        },
+        {
+          question: "Pourquoi soutenir le local ?",
+          answer: "C'est important pour l'écosystème techno canadien."
+        },
+        {
+          question: "Offrez-vous des remboursements ?",
+          answer: "Pour les petits dons, généralement non, mais contactez-nous en cas d'erreur."
+        }
+      ]
+    }
   }
 };

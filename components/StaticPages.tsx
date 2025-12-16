@@ -36,13 +36,29 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
       "availability": "https://schema.org/InStock"
     }
   };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": t.pricingPage.faq.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
   return (
     <>
-      <SEO title={t.seo.pricingTitle} description={t.seo.pricingDesc} canonicalPath="/pricing" ogType="product" schema={pricingSchema} />
+      <SEO title={t.seo.pricingTitle} description={t.seo.pricingDesc} canonicalPath="/pricing" ogType="product" schema={[pricingSchema, faqSchema]} />
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">{t.pricingTitle}</h1>
-          <p className="text-xl text-gray-500">{t.pricingSubtitle}</p>
+          <p className="text-xl text-gray-500 mb-8">{t.pricingSubtitle}</p>
+          <div className="max-w-3xl mx-auto text-gray-600 prose">
+            <p>{t.pricingPage.content}</p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -112,6 +128,19 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
             <button className="w-full mt-8 bg-canada-red text-white py-3 rounded-xl font-bold hover:bg-canada-darkRed transition-colors">
               Contact Sales (Jk it's free)
             </button>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-20 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">Common Questions</h2>
+          <div className="space-y-6">
+            {t.pricingPage.faq.map((item, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-lg text-gray-900 mb-2">{item.question}</h3>
+                <p className="text-gray-600">{item.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -302,15 +331,23 @@ export const SupportLocalPage: React.FC<PageProps> = ({ lang }) => {
       "@type": "PostalAddress",
       "addressLocality": "Toronto",
       "addressCountry": "CA"
-    }
+    },
+    "mainEntity": t.supportPage.faq.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
   };
   return (
     <>
       <SEO title={translations[lang].seo.supportTitle} description={translations[lang].seo.supportDesc} canonicalPath="/support" schema={supportSchema} />
       <PageLayout title={translations[lang].navSupport} icon={<Coffee size={32} />}>
-        <div className="text-center text-gray-600 space-y-6">
-          <p className="text-lg">
-            We are a small team based in Toronto. We built this tool because we were tired of uploading our personal documents to servers halfway across the world just to rotate a page.
+        <div className="text-center text-gray-600 space-y-8">
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto">
+            {t.supportPage.content}
           </p>
           <p>
             If you like what we do, tell a friend. That's the Canadian way.
@@ -319,6 +356,19 @@ export const SupportLocalPage: React.FC<PageProps> = ({ lang }) => {
             <a href="https://buy.stripe.com/8x228t4yIdCx2mE2ic6Zy04" target="_blank" rel="noopener noreferrer" className="inline-block bg-canada-red text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-canada-darkRed transition-colors">
               {t.timbitsButton} ☕
             </a>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16 text-left max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {t.supportPage.faq.map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <h3 className="font-bold text-lg text-gray-900 mb-2">{item.question}</h3>
+                <p className="text-gray-600">{item.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </PageLayout>
