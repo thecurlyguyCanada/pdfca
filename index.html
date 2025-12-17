@@ -8,13 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-NC2HT1LLZK');
   </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#FF0000" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <!-- Favicon and Icons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -23,57 +23,59 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- hreflang for multilingual support -->
+  <!-- hreflang for multilingual support - Path-based URLs -->
   <link rel="alternate" hreflang="en" href="https://pdfcanada.ca/" />
-  <link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/?lang=fr" />
+  <link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://pdfcanada.ca/" />
 
   <!-- Primary Meta Tags -->
-  <title>pdfcanada.ca - Free PDF Tools | Proudly Canadian 🇨🇦</title>
-  <meta name="title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian 🇨🇦">
+  <title>pdfcanada.ca - Free PDF Tools | Proudly Canadian</title>
+  <meta name="title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian">
   <meta name="description"
-    content="Proudly Canadian. The polite PDF editor that processes files locally on your device. Secure, free, and no signup required.">
+    content="Free Canadian PDF tools: delete pages, rotate PDF, convert HEIC to PDF, OCR, and more. 100% secure - files never leave your device. No signup required.">
   <meta name="keywords"
-    content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing">
+    content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing, pdf canada">
   <meta name="author" content="pdfcanada.ca">
   <meta name="google-site-verification" content="Mmf_ESMps2bHKyOi4S1bwLCSE43b2ly2F3NC-uOt3KM" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdfcanada.ca/">
-  <meta property="og:title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian 🇨🇦">
+  <meta property="og:title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian">
   <meta property="og:description"
-    content="Proudly Canadian. The polite PDF editor that processes files locally on your device. Secure, free, and no signup required.">
+    content="Free Canadian PDF tools: delete pages, rotate PDF, convert HEIC to PDF, OCR, and more. 100% secure - files never leave your device.">
   <meta property="og:image" content="https://pdfcanada.ca/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
   <meta property="og:site_name" content="pdfcanada.ca">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:locale:alternate" content="fr_CA">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@pdfcanada">
   <meta name="twitter:url" content="https://pdfcanada.ca/">
-  <meta name="twitter:title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian 🇨🇦">
+  <meta name="twitter:title" content="pdfcanada.ca - Free PDF Tools | Proudly Canadian">
   <meta name="twitter:description"
-    content="Proudly Canadian. The polite PDF editor that processes files locally on your device. Secure, free, and no signup required.">
+    content="Free Canadian PDF tools: delete pages, rotate PDF, convert HEIC to PDF, OCR, and more. 100% secure.">
   <meta name="twitter:image" content="https://pdfcanada.ca/og-image.png">
   <meta name="twitter:image:alt" content="pdfcanada.ca - Free Canadian PDF Tools">
 
-  <!-- Performance & CDNs -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <!-- Performance optimizations -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-  <!-- Preload critical fonts for better LCP -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
-
-  <!-- Tailwind CDN (Kept for simplicity) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Critical fonts with display swap -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Static Structured Data for SEO (visible without JavaScript) -->
   <script type="application/ld+json">
@@ -86,7 +88,10 @@
     "inLanguage": ["en-CA", "fr-CA"],
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://pdfcanada.ca/?q={search_term_string}",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pdfcanada.ca/?q={search_term_string}"
+      },
       "query-input": "required name=search_term_string"
     }
   }
@@ -97,7 +102,12 @@
     "@type": "Organization",
     "name": "pdfcanada.ca",
     "url": "https://pdfcanada.ca",
-    "logo": "https://pdfcanada.ca/android-chrome-512x512.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pdfcanada.ca/android-chrome-512x512.png",
+      "width": 512,
+      "height": 512
+    },
     "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.",
     "address": {
       "@type": "PostalAddress",
@@ -105,7 +115,12 @@
       "addressRegion": "Ontario",
       "addressCountry": "CA"
     },
-    "sameAs": ["https://twitter.com/pdfcanada"]
+    "sameAs": ["https://twitter.com/pdfcanada"],
+    "foundingDate": "2024",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada"
+    }
   }
   </script>
   <script type="application/ld+json">
@@ -114,129 +129,203 @@
     "@type": "SoftwareApplication",
     "name": "pdfcanada.ca - Free PDF Tools",
     "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "PDF Editor",
     "operatingSystem": "Web Browser",
+    "browserRequirements": "Requires JavaScript",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "CAD"
     },
     "description": "Free PDF tools including delete pages, rotate PDF, HEIC to PDF converter, EPUB converter, OCR, and more. 100% local processing.",
-    "featureList": "Delete PDF Pages, Rotate PDF, Make PDF Fillable, Organize PDF, OCR PDF, HEIC to PDF, EPUB to PDF, PDF to EPUB"
+    "featureList": ["Delete PDF Pages", "Rotate PDF", "Make PDF Fillable", "Organize PDF", "OCR PDF", "HEIC to PDF", "EPUB to PDF", "PDF to EPUB"],
+    "screenshot": "https://pdfcanada.ca/og-image.png",
+    "softwareHelp": {
+      "@type": "CreativeWork",
+      "url": "https://pdfcanada.ca/howto"
+    }
   }
   </script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            canada: {
-              red: '#FF0000',
-              darkRed: '#C40000',
-              leaf: '#D80000'
-            }
-          }
-        }
-      }
+  <!-- Speakable Schema for Voice Search / AI -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "pdfcanada.ca - Free PDF Tools",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".speakable-intro", "main h2"]
+    },
+    "mainEntity": {
+      "@type": "SoftwareApplication",
+      "name": "pdfcanada.ca PDF Tools"
     }
+  }
   </script>
-  <style>
-    /* Custom scrollbar for page grid */
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #aaa;
-    }
-
-    /* Dark mode scrollbar */
-    .dark .custom-scrollbar::-webkit-scrollbar-track {
-      background: #1f2937;
-    }
-
-    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #4b5563;
-    }
-
-    .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #6b7280;
-    }
-  </style>
+  <!-- ItemList for Tools -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Free PDF Tools",
+    "description": "Collection of free PDF editing tools available at pdfcanada.ca",
+    "numberOfItems": 8,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Delete PDF Pages", "url": "https://pdfcanada.ca/delete-pdf-pages"},
+      {"@type": "ListItem", "position": 2, "name": "Rotate PDF", "url": "https://pdfcanada.ca/rotate-pdf"},
+      {"@type": "ListItem", "position": 3, "name": "Organize PDF", "url": "https://pdfcanada.ca/organize-pdf"},
+      {"@type": "ListItem", "position": 4, "name": "Make PDF Fillable", "url": "https://pdfcanada.ca/make-pdf-fillable"},
+      {"@type": "ListItem", "position": 5, "name": "OCR PDF", "url": "https://pdfcanada.ca/ocr-pdf"},
+      {"@type": "ListItem", "position": 6, "name": "HEIC to PDF", "url": "https://pdfcanada.ca/heic-to-pdf"},
+      {"@type": "ListItem", "position": 7, "name": "EPUB to PDF", "url": "https://pdfcanada.ca/epub-to-pdf"},
+      {"@type": "ListItem", "position": 8, "name": "PDF to EPUB", "url": "https://pdfcanada.ca/pdf-to-epub"}
+    ]
+  }
+  </script>
 
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
   <div id="root"></div>
 
-  <!-- SEO Fallback for non-JS crawlers and users -->
+  <!-- SEO Fallback for non-JS crawlers and users - CRITICAL FOR INDEXING -->
   <noscript>
-    <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: Inter, sans-serif;">
-      <header style="text-align: center; margin-bottom: 40px;">
-        <h1 style="font-size: 2.5rem; font-weight: bold; color: #1a1a1a;">pdfcanada.ca - Free PDF Tools</h1>
-        <p style="font-size: 1.25rem; color: #666; margin-top: 10px;">Proudly Canadian. The polite PDF editor that processes files locally on your device.</p>
+    <style>
+      body { font-family: Inter, system-ui, sans-serif; margin: 0; padding: 0; background: #f9fafb; color: #111827; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+      h1 { font-size: 2.5rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
+      h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin: 2rem 0 1rem; }
+      .subtitle { font-size: 1.25rem; color: #6b7280; }
+      .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+      .tool-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; }
+      .tool-card h3 { color: #FF0000; font-size: 1.125rem; font-weight: 600; margin: 0 0 0.5rem; }
+      .tool-card p { color: #6b7280; font-size: 0.875rem; margin: 0; }
+      .tool-card a { color: #FF0000; text-decoration: none; }
+      .tool-card a:hover { text-decoration: underline; }
+      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+      .feature { display: flex; align-items: flex-start; gap: 0.75rem; }
+      .feature-icon { color: #10b981; font-weight: bold; }
+      footer { border-top: 1px solid #e5e7eb; margin-top: 3rem; padding-top: 2rem; text-align: center; color: #6b7280; }
+      footer a { color: #6b7280; margin: 0 1rem; }
+    </style>
+    <div class="container">
+      <header style="text-align: center; margin-bottom: 3rem;">
+        <h1>pdfcanada.ca - Free PDF Tools</h1>
+        <p class="subtitle speakable-intro">Proudly Canadian. The polite PDF editor that processes files locally on your device. 100% secure, free, and no signup required.</p>
       </header>
 
       <main>
-        <section style="margin-bottom: 40px;">
-          <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px;">Our Free PDF Tools</h2>
-          <nav>
-            <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-              <li><a href="/delete-pdf-pages" style="color: #FF0000; text-decoration: none;">Delete PDF Pages</a> - Remove unwanted pages from PDF documents</li>
-              <li><a href="/rotate-pdf" style="color: #FF0000; text-decoration: none;">Rotate PDF</a> - Rotate PDF pages and save permanently</li>
-              <li><a href="/organize-pdf" style="color: #FF0000; text-decoration: none;">Organize PDF</a> - Reorder and rearrange PDF pages</li>
-              <li><a href="/make-pdf-fillable" style="color: #FF0000; text-decoration: none;">Make PDF Fillable</a> - Add form fields to any PDF</li>
-              <li><a href="/ocr-pdf" style="color: #FF0000; text-decoration: none;">OCR PDF</a> - Extract text from scanned documents</li>
-              <li><a href="/heic-to-pdf" style="color: #FF0000; text-decoration: none;">HEIC to PDF</a> - Convert iPhone photos to PDF</li>
-              <li><a href="/epub-to-pdf" style="color: #FF0000; text-decoration: none;">EPUB to PDF</a> - Convert ebooks to PDF format</li>
-              <li><a href="/pdf-to-epub" style="color: #FF0000; text-decoration: none;">PDF to EPUB</a> - Convert PDFs to ebook format</li>
-            </ul>
-          </nav>
+        <section>
+          <h2>Our Free PDF Tools</h2>
+          <div class="tools-grid">
+            <article class="tool-card">
+              <h3><a href="/delete-pdf-pages">Delete PDF Pages</a></h3>
+              <p>Remove unwanted pages from any PDF document. Fast, free, and secure.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/rotate-pdf">Rotate PDF</a></h3>
+              <p>Rotate PDF pages 90° or 180° and save permanently. Fix upside-down scans.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/organize-pdf">Organize PDF</a></h3>
+              <p>Reorder, rearrange, and reorganize pages in your PDF documents.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/make-pdf-fillable">Make PDF Fillable</a></h3>
+              <p>Add text fields, checkboxes, and form fields to any PDF document.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/ocr-pdf">OCR PDF</a></h3>
+              <p>Extract text from scanned documents. Make PDFs searchable and copyable.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/heic-to-pdf">HEIC to PDF</a></h3>
+              <p>Convert iPhone HEIC photos to PDF format. Batch conversion supported.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/epub-to-pdf">EPUB to PDF</a></h3>
+              <p>Convert ebooks from EPUB format to PDF for printing or sharing.</p>
+            </article>
+            <article class="tool-card">
+              <h3><a href="/pdf-to-epub">PDF to EPUB</a></h3>
+              <p>Convert PDF documents to EPUB format for e-readers like Kindle and Kobo.</p>
+            </article>
+          </div>
         </section>
 
-        <section style="margin-bottom: 40px;">
-          <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 15px;">Why Choose pdfcanada.ca?</h2>
-          <ul style="line-height: 1.8;">
-            <li><strong>100% Secure:</strong> Your files never leave your device. All processing happens locally in your browser.</li>
-            <li><strong>Completely Free:</strong> No hidden fees, no signup required, unlimited usage.</li>
-            <li><strong>Privacy First:</strong> We don't upload, store, or access your files. Ever.</li>
-            <li><strong>Works Everywhere:</strong> Compatible with Windows, Mac, Linux, iPhone, iPad, and Android.</li>
-          </ul>
+        <section>
+          <h2>Why Choose pdfcanada.ca?</h2>
+          <div class="features">
+            <div class="feature">
+              <span class="feature-icon">✓</span>
+              <div>
+                <strong>100% Secure & Private</strong>
+                <p>Your files never leave your device. All processing happens locally in your browser using WebAssembly technology.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">✓</span>
+              <div>
+                <strong>Completely Free</strong>
+                <p>No hidden fees, no signup required, no limits. Use all tools unlimited times.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">✓</span>
+              <div>
+                <strong>Works Everywhere</strong>
+                <p>Compatible with Windows, Mac, Linux, iPhone, iPad, Android, and Chromebook.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">✓</span>
+              <div>
+                <strong>No Installation Needed</strong>
+                <p>Works directly in your web browser. No software downloads required.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section style="margin-bottom: 40px;">
-          <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 15px;">Guides & How-To</h2>
-          <ul style="line-height: 1.8;">
-            <li><a href="/guides/delete-pdf-pages" style="color: #FF0000;">How to Delete Pages from PDF</a></li>
+        <section>
+          <h2>PDF Guides & Tutorials</h2>
+          <ul style="line-height: 2;">
+            <li><a href="/guides/delete-pdf-pages" style="color: #FF0000;">How to Delete Pages from PDF - Complete Guide</a></li>
             <li><a href="/guides/rotate-pdf" style="color: #FF0000;">How to Rotate PDF and Save Permanently</a></li>
-            <li><a href="/guides/convertir-epub-en-pdf" style="color: #FF0000;">Convert EPUB to PDF Guide</a></li>
-            <li><a href="/guides/convertir-pdf-en-epub" style="color: #FF0000;">Convert PDF to EPUB Guide</a></li>
+            <li><a href="/guides/convertir-epub-en-pdf" style="color: #FF0000;">Convert EPUB to PDF - Step by Step Guide</a></li>
+            <li><a href="/guides/convertir-pdf-en-epub" style="color: #FF0000;">Convert PDF to EPUB for E-Readers</a></li>
             <li><a href="/how-to-make-a-pdf-fillable" style="color: #FF0000;">How to Make a PDF Fillable</a></li>
           </ul>
         </section>
+
+        <section>
+          <h2>Frequently Asked Questions</h2>
+          <dl>
+            <dt><strong>Is pdfcanada.ca really free?</strong></dt>
+            <dd>Yes, all our PDF tools are 100% free with no hidden costs, no signup, and no limits.</dd>
+
+            <dt><strong>Is it safe to edit PDFs online?</strong></dt>
+            <dd>With pdfcanada.ca, yes. Unlike other services, we process your files entirely in your browser. Your documents never upload to our servers.</dd>
+
+            <dt><strong>What PDF tools do you offer?</strong></dt>
+            <dd>We offer: Delete PDF Pages, Rotate PDF, Organize PDF, Make PDF Fillable, OCR PDF, HEIC to PDF, EPUB to PDF, and PDF to EPUB converters.</dd>
+
+            <dt><strong>Do I need to create an account?</strong></dt>
+            <dd>No. All tools work instantly without any registration or login required.</dd>
+          </dl>
+        </section>
       </main>
 
-      <footer style="text-align: center; padding-top: 30px; border-top: 1px solid #eee; color: #666;">
-        <p>pdfcanada.ca - Made with love in Toronto, Canada</p>
-        <nav style="margin-top: 15px;">
-          <a href="/privacy" style="color: #666; margin: 0 10px;">Privacy Policy</a>
-          <a href="/terms" style="color: #666; margin: 0 10px;">Terms of Service</a>
-          <a href="/support" style="color: #666; margin: 0 10px;">Support</a>
-          <a href="/pricing" style="color: #666; margin: 0 10px;">Pricing</a>
+      <footer>
+        <p><strong>pdfcanada.ca</strong> - Made with love in Toronto, Canada</p>
+        <nav style="margin-top: 1rem;">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/support">Support</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/howto">How To</a>
         </nav>
+        <p style="margin-top: 1rem; font-size: 0.875rem;">© 2024 pdfcanada.ca. All rights reserved.</p>
       </footer>
     </div>
   </noscript>
