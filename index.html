@@ -15,11 +15,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#FF0000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PDF Canada" />
+  <meta name="application-name" content="PDF Canada" />
+  <meta name="msapplication-TileColor" content="#FF0000" />
+  <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
 
   <!-- Favicon and Icons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="shortcut icon" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -37,8 +46,12 @@
   <meta name="description"
     content="Proudly Canadian. The polite PDF editor that processes files locally on your device. Secure, free, and no signup required.">
   <meta name="keywords"
-    content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing">
+    content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing, organize pdf, make pdf fillable, ocr pdf, pdf canada">
   <meta name="author" content="pdfcanada.ca">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="language" content="English, French" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="rating" content="general" />
   <meta name="google-site-verification" content="Mmf_ESMps2bHKyOi4S1bwLCSE43b2ly2F3NC-uOt3KM" />
 
   <!-- Open Graph / Facebook -->
@@ -51,6 +64,9 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="pdfcanada.ca - Free PDF Tools">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:locale:alternate" content="fr_CA">
   <meta property="og:site_name" content="pdfcanada.ca">
 
   <!-- Twitter -->
@@ -62,6 +78,35 @@
     content="Proudly Canadian. The polite PDF editor that processes files locally on your device. Secure, free, and no signup required.">
   <meta name="twitter:image" content="https://pdfcanada.ca/og-image.png">
   <meta name="twitter:image:alt" content="pdfcanada.ca - Free Canadian PDF Tools">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "pdfcanada.ca",
+    "url": "https://pdfcanada.ca",
+    "logo": "https://pdfcanada.ca/android-chrome-512x512.png",
+    "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CA"
+    },
+    "sameAs": [
+      "https://twitter.com/pdfcanada"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "pdfcanada.ca",
+    "url": "https://pdfcanada.ca",
+    "description": "Free PDF Tools - Delete pages, rotate PDFs, convert HEIC/EPUB files. Proudly Canadian.",
+    "inLanguage": ["en-CA", "fr-CA"]
+  }
+  </script>
 
   <!-- Performance & CDNs -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
