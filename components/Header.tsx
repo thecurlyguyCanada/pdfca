@@ -1,6 +1,5 @@
 import React from 'react';
 import { translations, Language } from '../utils/i18n';
-import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   lang: Language;
@@ -25,7 +24,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) =
         <button onClick={() => onNavigate('PRICING')} className="hover:text-canada-red dark:hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline focus:underline-offset-4">{t.navPricing}</button>
       </nav>
       <div className="flex items-center gap-3">
-        <ThemeToggle />
         <button
           onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
           className="text-xs font-bold bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-canada-red/30 hover:text-canada-red dark:hover:text-canada-red text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded transition-all focus:outline-none focus:ring-2 focus:ring-canada-red focus:ring-offset-1"
