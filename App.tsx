@@ -20,6 +20,7 @@ import { PdfPageThumbnail } from './components/PdfPageThumbnail';
 import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, initPdfWorker, extractTextWithOcr, makeSearchablePdf, reorderPdfPages, saveFormFieldsToPdf, FormField } from './utils/pdfUtils';
 import { saveSession, loadSession, clearSession, AppSessionState } from './utils/storageUtils';
 import { FormPropertiesPanel } from './components/FormPropertiesPanel';
+import { useSystemTheme } from './hooks/useSystemTheme';
 
 // Initialize PDF.js worker early to ensure thumbnails can render
 initPdfWorker();
@@ -61,6 +62,9 @@ const safePushState = (data: any, unused: string, url?: string | URL | null) => 
 };
 
 function App() {
+  // Apply system theme preference automatically
+  useSystemTheme();
+
   const [lang, setLang] = useState<Language>('en');
   const [view, setView] = useState<CurrentView>('HOME');
   const [appState, setAppState] = useState<AppState>(AppState.HOME);
