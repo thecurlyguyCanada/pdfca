@@ -228,10 +228,14 @@ function App() {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (active.id !== over?.id) {
+    if (!over) {
+      return;
+    }
+
+    if (active.id !== over.id) {
       setItems((items) => {
         const oldIndex = items.indexOf(Number(active.id));
-        const newIndex = items.indexOf(Number(over!.id));
+        const newIndex = items.indexOf(Number(over.id));
         return arrayMove(items, oldIndex, newIndex);
       });
     }
