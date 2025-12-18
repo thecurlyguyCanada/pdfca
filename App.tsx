@@ -75,7 +75,17 @@ function App() {
 
   // Routing Logic
   const syncStateFromUrl = () => {
-    const path = window.location.pathname;
+    let path = window.location.pathname;
+
+    // Detect language prefix
+    let currentLang: Language = 'en';
+    if (path.startsWith('/fr/') || path === '/fr') {
+      currentLang = 'fr';
+      path = path.replace(/^\/fr/, '') || '/';
+    } else {
+      currentLang = 'en';
+    }
+    setLang(currentLang);
 
     // Map paths to tools
     if (path === '/delete-pdf-pages') {
@@ -119,8 +129,13 @@ function App() {
     else if (path === '/guides/pdf-to-epub') setView('GUIDE_PDF_TO_EPUB');
     else if (path === '/guides/organize-pdf') setView('GUIDE_ORGANIZE');
     else if (path === '/guides/make-pdf-fillable') setView('GUIDE_FILLABLE');
-    else {
-      // Default to Home if root or unknown
+    else if (path !== '/') {
+      // If unknown path, redirect to home but keep language
+      safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
+      setView('HOME');
+      setAppState(AppState.HOME);
+    } else {
+      // Default to Home if root
       setView('HOME');
       setAppState(AppState.HOME);
       setCurrentTool(null);
@@ -142,12 +157,16 @@ function App() {
 
   const handleNavigation = (newView: CurrentView, path?: string) => {
     setView(newView);
+    const prefix = lang === 'fr' ? '/fr' : '';
+
     if (newView === 'HOME') {
       setAppState(AppState.HOME);
       setCurrentTool(null);
-      safePushState({}, '', '/');
+      safePushState({}, '', `${prefix}/`);
     } else if (path) {
-      safePushState({}, '', path);
+      // Ensure path doesn't already start with prefix if we're adding it
+      const finalPath = path.startsWith('/') ? path : `/${path}`;
+      safePushState({}, '', `${prefix}${finalPath}`);
     }
     window.scrollTo(0, 0);
   };

@@ -113,13 +113,27 @@ export const SEO: React.FC<SEOProps> = ({
     setMeta('name', 'twitter:creator', '@pdfcanada');
 
     // 6. Update Canonical Link
+    // Ensure canonical path reflects the current language
+    let finalCanonicalPath = canonicalPath;
+    if (lang === 'fr' && !canonicalPath.startsWith('/fr') && canonicalPath !== '/') {
+      finalCanonicalPath = `/fr${canonicalPath.startsWith('/') ? '' : '/'}${canonicalPath}`;
+    } else if (lang === 'fr' && canonicalPath === '/') {
+      finalCanonicalPath = '/fr/';
+    }
+
+    // Determine English and French paths for hreflang
+    // We assume the input canonicalPath is the "base" (English) path usually
+    const basePath = canonicalPath.replace(/^\/fr/, '') || '/';
+    const enPath = basePath === '/' ? '/' : basePath.startsWith('/') ? basePath : `/${basePath}`;
+    const frPath = enPath === '/' ? '/fr/' : `/fr${enPath}`;
+
     let link = document.querySelector('link[rel="canonical"]');
     if (link) {
-      link.setAttribute('href', `https://pdfcanada.ca${canonicalPath}`);
+      link.setAttribute('href', `https://pdfcanada.ca${finalCanonicalPath}`);
     } else {
       link = document.createElement('link');
       link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', `https://pdfcanada.ca${canonicalPath}`);
+      link.setAttribute('href', `https://pdfcanada.ca${finalCanonicalPath}`);
       document.head.appendChild(link);
     }
 
@@ -137,11 +151,6 @@ export const SEO: React.FC<SEOProps> = ({
       }
     };
 
-    // Determine English and French paths
-    const basePath = canonicalPath.startsWith('/fr/') ? canonicalPath.slice(3) : canonicalPath;
-    const enPath = basePath === '' ? '/' : basePath;
-    const frPath = basePath === '/' ? '/fr/' : `/fr${basePath}`;
-
     updateHreflang('en', `https://pdfcanada.ca${enPath}`);
     updateHreflang('fr', `https://pdfcanada.ca${frPath}`);
     updateHreflang('x-default', `https://pdfcanada.ca${enPath}`);
@@ -158,6 +167,27 @@ export const SEO: React.FC<SEOProps> = ({
       allSchemas.push(organizationSchema);
       allSchemas.push(websiteSchema);
     }
+
+    // SiteNavigationElement Schema
+    const siteNavSchema = {
+      "@context": "https://schema.org",
+      "@type": "SiteNavigationElement",
+      "name": [
+        "Delete PDF Pages",
+        "Rotate PDF",
+        "Merge PDF",
+        "Compress PDF",
+        "Ultiimate Guide"
+      ],
+      "url": [
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/delete-pdf-pages`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/rotate-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-fillable`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/heic-to-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
+      ]
+    };
+    allSchemas.push(siteNavSchema);
 
     // Add Breadcrumbs schema
     if (breadcrumbs && breadcrumbs.length > 0) {
