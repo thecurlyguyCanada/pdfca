@@ -8,3 +8,5 @@ export { EpubToPdfGuide } from './pages/guides/EpubToPdfGuide';
 export { PdfToEpubGuide } from './pages/guides/PdfToEpubGuide';
 export { OrganizePdfGuide } from './pages/guides/OrganizePdfGuide';
 export { MakeFillableGuide } from './pages/guides/MakeFillableGuide';
+export { EmailToPdfGuide } from './pages/guides/EmailToPdfGuide';
+export { CbrToPdfGuide } from './pages/guides/CbrToPdfGuide';

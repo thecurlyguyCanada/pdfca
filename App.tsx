@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
 import { PricingPage, PrivacyPage, TermsPage, SorryPolicyPage, HowToPage, SupportLocalPage, MakePdfFillablePage } from './components/StaticPages';
 import { PdfPageThumbnail } from './components/PdfPageThumbnail';
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import {
@@ -17,7 +17,9 @@ import {
   EpubToPdfGuide,
   PdfToEpubGuide,
   OrganizePdfGuide,
-  MakeFillableGuide
+  MakeFillableGuide,
+  EmailToPdfGuide,
+  CbrToPdfGuide
 } from './components/Guides';
 
 enum AppState {
@@ -29,7 +31,7 @@ enum AppState {
 }
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
-  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE';
+  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF';
 
 enum ToolType {
   DELETE = 'DELETE',
@@ -37,7 +39,8 @@ enum ToolType {
   HEIC_TO_PDF = 'HEIC_TO_PDF',
   EPUB_TO_PDF = 'EPUB_TO_PDF',
   PDF_TO_EPUB = 'PDF_TO_EPUB',
-  MAKE_FILLABLE = 'MAKE_FILLABLE'
+  MAKE_FILLABLE = 'MAKE_FILLABLE',
+  CBR_TO_PDF = 'CBR_TO_PDF'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -66,6 +69,13 @@ function App() {
   const [rotations, setRotations] = useState<Record<number, number>>({});
   const lastSelectedPageRef = useRef<number | null>(null);
 
+  // New state for manual page range input
+  const [pageRangeInput, setPageRangeInput] = useState<string>('');
+  const pageRangeInputRef = useRef<HTMLInputElement>(null);
+
+  // Zoom Level: Granular (0.5 to 3.0)
+  const [previewZoom, setPreviewZoom] = useState<number>(1.0);
+
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [downloadName, setDownloadName] = useState<string>('');
   const [errorKey, setErrorKey] = useState<keyof typeof translations['en'] | null>(null);
@@ -91,7 +101,6 @@ function App() {
     if (path === '/delete-pdf-pages') {
       setCurrentTool(ToolType.DELETE);
       setView('TOOL_PAGE');
-      // If we are deep-linked, we might be in selecting mode, but if no file, stay selecting
       setAppState(AppState.SELECTING);
     } else if (path === '/rotate-pdf') {
       setCurrentTool(ToolType.ROTATE);
@@ -113,6 +122,10 @@ function App() {
       setCurrentTool(ToolType.MAKE_FILLABLE);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
+    } else if (path === '/cbr-to-pdf') {
+      setCurrentTool(ToolType.CBR_TO_PDF);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
     else if (path === '/privacy') setView('PRIVACY');
     else if (path === '/terms') setView('TERMS');
@@ -129,13 +142,13 @@ function App() {
     else if (path === '/guides/pdf-to-epub') setView('GUIDE_PDF_TO_EPUB');
     else if (path === '/guides/organize-pdf') setView('GUIDE_ORGANIZE');
     else if (path === '/guides/make-pdf-fillable') setView('GUIDE_FILLABLE');
+    else if (path === '/guides/email-to-pdf') setView('GUIDE_EMAIL_TO_PDF');
+    else if (path === '/guides/cbr-to-pdf') setView('GUIDE_CBR_TO_PDF');
     else if (path !== '/') {
-      // If unknown path, redirect to home but keep language
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
       setAppState(AppState.HOME);
     } else {
-      // Default to Home if root
       setView('HOME');
       setAppState(AppState.HOME);
       setCurrentTool(null);
@@ -143,17 +156,109 @@ function App() {
   };
 
   useEffect(() => {
-    // Initial sync
     syncStateFromUrl();
-
-    // Listen for back/forward
     const handlePopState = () => {
       syncStateFromUrl();
     };
 
+    // Zoom Handlers
+    const handleWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        const delta = e.deltaY;
+        const zoomStep = 0.1;
+        if (delta > 0) {
+          setPreviewZoom(z => Math.max(0.5, z - zoomStep));
+        } else {
+          setPreviewZoom(z => Math.min(5.0, z + zoomStep));
+        }
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === '=' || e.key === '+') {
+          e.preventDefault();
+          setPreviewZoom(z => Math.min(5.0, z + 0.1));
+        } else if (e.key === '-' || e.key === '_') {
+          e.preventDefault();
+          setPreviewZoom(z => Math.max(0.5, z - 0.1));
+        } else if (e.key === '0') {
+          e.preventDefault();
+          setPreviewZoom(1.0);
+        }
+      }
+    };
+
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
+
+  // Sync selectedPages -> Input (only if input is not focused)
+  useEffect(() => {
+    if (document.activeElement === pageRangeInputRef.current) return;
+
+    if (selectedPages.size === 0) {
+      setPageRangeInput('');
+      return;
+    }
+
+    const pages = Array.from(selectedPages).sort((a, b) => a - b);
+    let rangeStr = '';
+    let start = pages[0];
+    let prev = pages[0];
+
+    for (let i = 1; i < pages.length; i++) {
+      if (pages[i] === prev + 1) {
+        prev = pages[i];
+      } else {
+        rangeStr += (start === prev) ? `${start + 1}, ` : `${start + 1}-${prev + 1}, `;
+        start = pages[i];
+        prev = pages[i];
+      }
+    }
+    rangeStr += (start === prev) ? `${start + 1}` : `${start + 1}-${prev + 1}`;
+    setPageRangeInput(rangeStr);
+  }, [selectedPages]);
+
+  const handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setPageRangeInput(val);
+
+    const newSelection = new Set<number>();
+    if (!/^[0-9\s,-]*$/.test(val)) return;
+
+    const parts = val.split(',');
+    parts.forEach(part => {
+      const range = part.trim();
+      if (!range) return;
+
+      if (range.includes('-')) {
+        const [s, e] = range.split('-').map(str => parseInt(str.trim()));
+        if (!isNaN(s) && !isNaN(e)) {
+          const min = Math.min(s, e);
+          const max = Math.max(s, e);
+          for (let i = min; i <= max; i++) {
+            if (i > 0 && i <= pageCount) newSelection.add(i - 1);
+          }
+        }
+      } else {
+        const num = parseInt(range);
+        if (!isNaN(num) && num > 0 && num <= pageCount) {
+          newSelection.add(num - 1);
+        }
+      }
+    });
+
+    setSelectedPages(newSelection);
+  };
 
   const handleNavigation = (newView: CurrentView, path?: string) => {
     setView(newView);
@@ -164,7 +269,6 @@ function App() {
       setCurrentTool(null);
       safePushState({}, '', `${prefix}/`);
     } else if (path) {
-      // Ensure path doesn't already start with prefix if we're adding it
       const finalPath = path.startsWith('/') ? path : `/${path}`;
       safePushState({}, '', `${prefix}${finalPath}`);
     }
@@ -178,6 +282,7 @@ function App() {
     { id: ToolType.HEIC_TO_PDF, icon: Image, title: t.toolHeic, desc: t.toolHeicDesc, accept: '.heic', path: '/heic-to-pdf' },
     { id: ToolType.EPUB_TO_PDF, icon: BookOpen, title: t.toolEpubToPdf, desc: t.toolEpubToPdfDesc, accept: '.epub', path: '/epub-to-pdf' },
     { id: ToolType.PDF_TO_EPUB, icon: FileText, title: t.toolPdfToEpub, desc: t.toolPdfToEpubDesc, accept: '.pdf', path: '/pdf-to-epub' },
+    { id: ToolType.CBR_TO_PDF, icon: BookOpen, title: "CBR to PDF", desc: "Convert Comic Book archives (CBR, CBZ) to PDF.", accept: '.cbr,.cbz', path: '/cbr-to-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -218,14 +323,21 @@ function App() {
 
       if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE) {
         try {
-          const { pageCount } = await loadPdfDocument(uploadedFile);
-          setPageCount(pageCount);
+          const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
+            loadPdfDocument(uploadedFile),
+            getPdfJsDocument(uploadedFile)
+          ]);
 
-          try {
-            const jsDoc = await getPdfJsDocument(uploadedFile);
-            setPdfJsDoc(jsDoc);
-          } catch (e) {
-            console.warn("Preview failed (PDF.js)", e);
+          if (pdfLibResult.status === 'fulfilled') {
+            setPageCount(pdfLibResult.value.pageCount);
+          } else {
+            throw pdfLibResult.reason;
+          }
+
+          if (pdfJsResult.status === 'fulfilled') {
+            setPdfJsDoc(pdfJsResult.value);
+          } else {
+            console.warn("Preview failed (PDF.js)", pdfJsResult.reason);
             setPdfJsDoc(null);
           }
 
@@ -235,7 +347,6 @@ function App() {
           setAppState(AppState.SELECTING);
         } catch (e: any) {
           console.error("Failed to load PDF structure:", e);
-          // Handle specific PDF Load errors
           if (e?.message?.toLowerCase().includes('password') || e?.name === 'PasswordException' || e?.message?.includes('encrypted')) {
             setErrorKey('passwordErr');
           } else if (e?.message?.includes('Invalid PDF structure') || e?.message?.includes('No PDF header found')) {
@@ -248,7 +359,6 @@ function App() {
       } else {
         setAppState(AppState.SELECTING);
       }
-
     } catch (error: any) {
       console.error("General file processing error:", error);
       setErrorKey('readErr');
@@ -261,7 +371,6 @@ function App() {
 
     try {
       setAppState(AppState.PROCESSING);
-      await new Promise(resolve => setTimeout(resolve, 800));
 
       let resultBlob: Blob | Uint8Array | null = null;
       let outName = file.name;
@@ -276,7 +385,7 @@ function App() {
           outName = file.name.replace('.pdf', '_rotated_eh.pdf');
           break;
         case ToolType.MAKE_FILLABLE:
-          resultBlob = await makePdfFillable(file, Array.from(selectedPages));
+          resultBlob = await makePdfFillable(file, Array.from(selectedPages), pdfJsDoc);
           outName = file.name.replace('.pdf', '_fillable_eh.pdf');
           break;
         case ToolType.HEIC_TO_PDF:
@@ -290,6 +399,10 @@ function App() {
         case ToolType.PDF_TO_EPUB:
           resultBlob = await convertPdfToEpub(file);
           outName = file.name.replace('.pdf', '_converted_eh.epub');
+          break;
+        case ToolType.CBR_TO_PDF:
+          resultBlob = await convertCbrToPdf(file);
+          outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
           break;
       }
 
@@ -308,7 +421,6 @@ function App() {
       } else if (error?.name === 'PasswordException' || error?.message?.toLowerCase().includes('password')) {
         setErrorKey('passwordErr');
       } else {
-        // Fallback for conversion errors (HEIC/EPUB complex failures)
         if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF) {
           setErrorKey('conversionErr');
         } else {
@@ -320,28 +432,29 @@ function App() {
   };
 
   const togglePageSelection = (e: React.MouseEvent, pageIndex: number) => {
+    e.preventDefault();
+    const isRange = e.shiftKey;
+
     if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) {
-      const newSelection = new Set(selectedPages);
-      const isRange = e.shiftKey;
+      setSelectedPages(prev => {
+        const newSelection = new Set(prev);
 
-      if (isRange && lastSelectedPageRef.current !== null) {
-        const start = Math.min(lastSelectedPageRef.current, pageIndex);
-        const end = Math.max(lastSelectedPageRef.current, pageIndex);
-
-        // Ensure range selection adds to existing selection rather than replacing
-        for (let i = start; i <= end; i++) {
-          newSelection.add(i);
-        }
-      } else {
-        // Default to Toggle behavior (Additive)
-        if (newSelection.has(pageIndex)) {
-          newSelection.delete(pageIndex);
+        if (isRange && lastSelectedPageRef.current !== null) {
+          const start = Math.min(lastSelectedPageRef.current, pageIndex);
+          const end = Math.max(lastSelectedPageRef.current, pageIndex);
+          for (let i = start; i <= end; i++) {
+            newSelection.add(i);
+          }
         } else {
-          newSelection.add(pageIndex);
+          if (newSelection.has(pageIndex)) {
+            newSelection.delete(pageIndex);
+          } else {
+            newSelection.add(pageIndex);
+          }
+          lastSelectedPageRef.current = pageIndex;
         }
-        lastSelectedPageRef.current = pageIndex;
-      }
-      setSelectedPages(newSelection);
+        return newSelection;
+      });
     } else if (currentTool === ToolType.ROTATE) {
       setRotations(prev => ({
         ...prev,
@@ -365,15 +478,15 @@ function App() {
   };
 
   const handleReset = () => {
-    // Return to landing page state for the tool, not home
     if (currentTool) {
       setFile(null);
-      setAppState(AppState.SELECTING); // Logic to show tool interface with no file
+      setAppState(AppState.SELECTING);
       setPageCount(0);
       setPdfJsDoc(null);
       setSelectedPages(new Set());
       setRotations({});
       lastSelectedPageRef.current = null;
+      setPageRangeInput('');
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
       setDownloadUrl(null);
       setErrorKey(null);
@@ -389,9 +502,9 @@ function App() {
     setAppState(AppState.SELECTING);
     setDownloadUrl(null);
     lastSelectedPageRef.current = null;
+    setPageRangeInput('');
   };
 
-  // Structured Data for Home Page
   const softwareAppSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -421,7 +534,8 @@ function App() {
       case ToolType.EPUB_TO_PDF: return t.features.epubToPdf;
       case ToolType.PDF_TO_EPUB: return t.features.pdfToEpub;
       case ToolType.MAKE_FILLABLE: return t.features.fillable;
-      default: return t.features.delete; // Fallback
+      case ToolType.CBR_TO_PDF: return t.features.cbrToPdf;
+      default: return t.features.delete;
     }
   };
 
@@ -468,7 +582,7 @@ function App() {
 
     let headerText = '';
     if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
-    else if (currentTool === ToolType.ROTATE) headerText = ''; // Render custom toolbar instead
+    else if (currentTool === ToolType.ROTATE) headerText = '';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
 
     return (
@@ -492,14 +606,47 @@ function App() {
         </div>
 
         {/* Content */}
-        <div className="flex-grow overflow-y-auto p-4 md:p-6 bg-gray-50 custom-scrollbar flex flex-col items-center">
+        <div className="flex-grow overflow-auto p-4 md:p-6 bg-gray-50 custom-scrollbar flex flex-col items-start w-full">
 
           {isVisualTool ? (
             <>
-              <div className="w-full mb-4 sticky top-0 bg-gray-50/95 backdrop-blur-sm z-10 py-2">
-                {currentTool === ToolType.ROTATE ? (
-                  // Custom Toolbar for Rotate - Horizontal scroll on mobile
-                  <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
+              <div className="w-full mb-4 z-10 py-2">
+                {currentTool === ToolType.DELETE && (
+                  <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
+                    <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
+                      <Info size={18} className="mt-0.5 shrink-0" />
+                      <p>{t.deletePagesInfo}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between mb-2 px-1">
+                      <span className="font-medium text-gray-700">{t.totalPages}: {pageCount}</span>
+                      {selectedPages.size > 0 && (
+                        <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
+                          {selectedPages.size} {t.selected}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-bold text-gray-700 px-1">{t.pagesToRemove}:</label>
+                      <input
+                        ref={pageRangeInputRef}
+                        type="text"
+                        inputMode="text"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        spellCheck="false"
+                        value={pageRangeInput}
+                        onChange={handleRangeInputChange}
+                        className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-canada-red focus:border-transparent outline-none transition-all shadow-sm text-base text-gray-800 placeholder-gray-400"
+                        placeholder="e.g. 3-5, 8-9"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {currentTool === ToolType.ROTATE && (
+                  <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 backdrop-blur-sm pt-2">
                     <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                       <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
                     </button>
@@ -510,22 +657,57 @@ function App() {
                       <RefreshCcw size={16} /> <span className="hidden sm:inline">{t.resetRotations}</span><span className="sm:hidden">Reset</span>
                     </button>
                   </div>
-                ) : (
-                  // Standard Header for Delete/Fillable
-                  <div className="flex justify-between items-center">
+                )}
+
+                {currentTool === ToolType.MAKE_FILLABLE && (
+                  <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 backdrop-blur-sm py-2">
                     <p className="text-sm font-medium text-gray-600">
                       {headerText}
                     </p>
-                    {(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && (
-                      <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
-                        {selectedPages.size} {t.selected}
-                      </span>
-                    )}
+                    <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
+                      {selectedPages.size} {t.selected}
+                    </span>
                   </div>
                 )}
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-4 w-full">
+              {/* Global Utilities (Zoom) */}
+              <div className="w-full flex justify-end px-2 mb-2">
+                <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-1">
+                  <button
+                    onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.1))}
+                    disabled={previewZoom <= 0.5}
+                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                    title="Zoom Out (Ctrl + -)"
+                  >
+                    <ZoomOut size={16} />
+                  </button>
+                  <span className="text-xs font-mono w-10 text-center text-gray-500">{Math.round(previewZoom * 100)}%</span>
+                  <button
+                    onClick={() => setPreviewZoom(z => Math.min(5.0, z + 0.1))}
+                    disabled={previewZoom >= 5.0}
+                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                    title="Zoom In (Ctrl + +)"
+                  >
+                    <ZoomIn size={16} />
+                  </button>
+                  <div className="w-px h-4 bg-gray-200 mx-1"></div>
+                  <button
+                    onClick={() => setPreviewZoom(1.0)}
+                    className="text-[10px] font-bold px-2 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600"
+                    title="Reset Zoom (Ctrl + 0)"
+                  >
+                    100%
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="grid gap-4 transition-all duration-300"
+                style={{
+                  gridTemplateColumns: `repeat(auto-fill, minmax(${200 * previewZoom}px, 1fr))`
+                }}
+              >
                 {Array.from({ length: pageCount }).map((_, idx) => (
                   <PdfPageThumbnail
                     key={idx}
@@ -535,6 +717,7 @@ function App() {
                     rotation={rotations[idx] || 0}
                     mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE ? 'delete' : 'rotate'}
                     onClick={(e) => togglePageSelection(e, idx)}
+                    width={200 * previewZoom}
                   />
                 ))}
               </div>
@@ -545,6 +728,7 @@ function App() {
                 {currentTool === ToolType.HEIC_TO_PDF && <Image size={32} />}
                 {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                 {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
+                {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
               <p className="text-gray-500 mb-6">
@@ -582,7 +766,7 @@ function App() {
               </>
             )}
             {currentTool === ToolType.ROTATE && <><RotateCw size={20} /> {t.btnRotate}</>}
-            {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB) && (
+            {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && (
               <>{t.btnConvert}</>
             )}
           </button>
@@ -768,18 +952,25 @@ function App() {
               renderToolInterface()
             )}
 
-            {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8">
-                <div className="animate-spin text-canada-red mb-4">
-                  <MapleLeaf className="w-12 h-12" />
+            {/* ERROR State in Tool Page */}
+            {appState === AppState.ERROR && (
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
+                <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
+                  <AlertCircle size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
-                <p className="text-gray-500 mt-2">{t.workingDesc}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
+                <p className="text-gray-500 mb-8">
+                  {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
+                </p>
+                <button onClick={handleReset} className="bg-gray-800 hover:bg-black text-white px-8 py-3 rounded-full font-bold transition-all">
+                  {t.backToHome}
+                </button>
               </div>
             )}
 
+            {/* DONE State in Tool Page */}
             {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                   <CheckCircle2 size={40} />
                 </div>
@@ -793,24 +984,6 @@ function App() {
                     {t.doAnother}
                   </button>
                 </div>
-              </div>
-            )}
-
-            {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative">
-                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                  <X size={24} />
-                </button>
-                <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
-                  <AlertCircle size={32} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
-                <p className="text-gray-500 mb-8">
-                  {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
-                </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black text-white px-8 py-3 rounded-full font-bold transition-all">
-                  {t.backToHome}
-                </button>
               </div>
             )}
           </div>
@@ -854,6 +1027,8 @@ function App() {
         {view === 'GUIDE_PDF_TO_EPUB' && <PdfToEpubGuide lang={lang} onNavigate={handleNavigation} />}
         {view === 'GUIDE_ORGANIZE' && <OrganizePdfGuide lang={lang} onNavigate={handleNavigation} />}
         {view === 'GUIDE_FILLABLE' && <MakeFillableGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_EMAIL_TO_PDF' && <EmailToPdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_CBR_TO_PDF' && <CbrToPdfGuide lang={lang} onNavigate={handleNavigation} />}
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />

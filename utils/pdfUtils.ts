@@ -27,7 +27,7 @@ export interface FormField {
 export const initPdfWorker = () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     if (pdfjsLib.GlobalWorkerOptions) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
       workerInitialized = true;
     }
   }
@@ -40,9 +40,9 @@ export const getPdfJsDocument = async (file: File) => {
 
     const loadingTask = pdfjsLib.getDocument({
       data: new Uint8Array(arrayBuffer),
-      cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+      cMapUrl: '/cmaps/',
       cMapPacked: true,
-      standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
+      standardFontDataUrl: '/standard_fonts/',
     });
 
     return loadingTask.promise;
@@ -90,7 +90,7 @@ export const rotatePdfPages = async (originalFile: File, rotations: Record<numbe
   return await doc.save();
 };
 
-export const makePdfFillable = async (originalFile: File, pageIndicesToFill: number[]): Promise<Uint8Array> => {
+export const makePdfFillable = async (originalFile: File, pageIndicesToFill: number[], existingPdfJsDoc?: any): Promise<Uint8Array> => {
   // Initialize worker for text analysis
   initPdfWorker();
 
@@ -98,10 +98,10 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
   const doc = await PDFDocument.load(arrayBuffer);
   const form = doc.getForm();
 
-  // Load PDF.js document for text analysis
-  const pdfJsDoc = await pdfjsLib.getDocument({
+  // Load PDF.js document for text analysis if not provided
+  const pdfJsDoc = existingPdfJsDoc || await pdfjsLib.getDocument({
     data: new Uint8Array(arrayBuffer),
-    cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+    cMapUrl: '/cmaps/',
     cMapPacked: true,
   }).promise;
 
@@ -396,6 +396,86 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
       }
       page.drawText(currentLine.trim(), { x: margin, y, size: fontSize, font });
       y -= (fontSize + 4);
+    }
+  }
+
+  return await doc.save();
+};
+
+export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
+  const fileName = file.name.toLowerCase();
+  const isZip = fileName.endsWith('.cbz') || fileName.endsWith('.zip');
+  const arrayBuffer = await file.arrayBuffer();
+
+  const doc = await PDFDocument.create();
+  const images: { data: Uint8Array, name: string }[] = [];
+
+  if (isZip) {
+    const zip = new JSZip();
+    const content = await zip.loadAsync(file);
+    const fileNames: string[] = [];
+    content.forEach((path) => {
+      if (/\.(jpg|jpeg|png|webp)$/i.test(path)) {
+        fileNames.push(path);
+      }
+    });
+    fileNames.sort();
+
+    for (const name of fileNames) {
+      const data = await content.file(name)?.async("uint8array");
+      if (data) images.push({ data, name });
+    }
+  } else {
+    // For CBR (RAR), we use unrar-js
+    // We need to import it dynamically or ensure it's available
+    try {
+      // @ts-ignore
+      const { createExtractorFromData } = await import('unrar-js');
+      const extractor = await createExtractorFromData(new Uint8Array(arrayBuffer));
+      const list = extractor.getFileList();
+      const fileHeaders = [...list.fileHeaders].filter(h => /\.(jpg|jpeg|png|webp)$/i.test(h.name));
+      fileHeaders.sort((a, b) => a.name.localeCompare(b.name));
+
+      const extracted = extractor.extract({ files: fileHeaders.map(h => h.name) });
+      for (const item of extracted.files) {
+        if (item.extraction) {
+          images.push({ data: item.extraction, name: item.fileHeader.name });
+        }
+      }
+    } catch (e) {
+      console.error("CBR extraction failed", e);
+      throw new Error("Could not extract images from CBR/RAR file. Make sure it is a valid archive.");
+    }
+  }
+
+  if (images.length === 0) {
+    throw new Error("No images found in the archive.");
+  }
+
+  for (const img of images) {
+    try {
+      let embeddedImg;
+      if (/\.(jpg|jpeg)$/i.test(img.name)) {
+        embeddedImg = await doc.embedJpg(img.data);
+      } else if (/\.png$/i.test(img.name)) {
+        embeddedImg = await doc.embedPng(img.data);
+      } else {
+        // For webp or others, pdf-lib doesn't support directly easily without canvas conversion
+        // But many CBRs are jpg/png. We'll skip unsupported for now or try to catch
+        continue;
+      }
+
+      if (embeddedImg) {
+        const page = doc.addPage([embeddedImg.width, embeddedImg.height]);
+        page.drawImage(embeddedImg, {
+          x: 0,
+          y: 0,
+          width: embeddedImg.width,
+          height: embeddedImg.height,
+        });
+      }
+    } catch (e) {
+      console.warn(`Failed to embed image ${img.name}`, e);
     }
   }
 

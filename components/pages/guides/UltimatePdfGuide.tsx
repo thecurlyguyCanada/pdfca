@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool } from 'lucide-react';
+import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -394,7 +394,9 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                                 { name: 'HEIC to PDF Transfer', path: '/guides/heic-to-pdf', icon: Image, view: 'GUIDE_HEIC_TO_PDF' },
                                 { name: 'OCR & Text Extraction', path: '/guides/ocr-pdf', icon: Search, view: 'GUIDE_OCR' },
                                 { name: 'Fillable Form Creation', path: '/guides/make-pdf-fillable', icon: PenTool, view: 'GUIDE_FILLABLE' },
-                                { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' }
+                                { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
+                                { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },
+                                { name: 'Convert Comics to PDF', path: '/guides/cbr-to-pdf', icon: BookOpen, view: 'GUIDE_CBR_TO_PDF' }
                             ].map((guide: any, i: number) => (
                                 <button
                                     key={i}

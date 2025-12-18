@@ -58,6 +58,20 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
     };
   }, []);
 
+  // Detect mobile/screen size for optimal rendering width - Cap at 3000px for memory efficiency
+  const baseWidth = Math.min(3000, width || (typeof window !== 'undefined' ? (window.innerWidth < 640 ? 150 : 300) : 300));
+
+  // Use a "stepped" width for the actual PDF rendering to prevent constant re-renders during smooth zoom
+  // We round to the nearest 100px
+  const [renderWidth, setRenderWidth] = useState(Math.round(baseWidth / 100) * 100);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRenderWidth(Math.round(baseWidth / 100) * 100);
+    }, 300); // 300ms debounce
+    return () => clearTimeout(timer);
+  }, [baseWidth]);
+
   // PDF Rendering Logic
   useEffect(() => {
     if (!isVisible) return; // Only render if visible
@@ -73,8 +87,6 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
       }
 
       if (!pdfJsDoc) {
-        // If no document, just stay in loading state - it might arrive later
-        // Don't set error here as the doc might be loading
         return;
       }
 
@@ -88,13 +100,20 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
 
-        const desiredWidth = width;
+        // Logic to optimize resolution vs quality
         const viewport = page.getViewport({ scale: 1 });
-        const scale = desiredWidth / viewport.width;
-        const scaledViewport = page.getViewport({ scale });
+        const scale = renderWidth / viewport.width;
+
+        // Cap pixel ratio to 2x max to prevent memory crashes on high DPI mobile screens (e.g. iPhone)
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const scaledViewport = page.getViewport({ scale: scale * pixelRatio });
 
         canvas.height = scaledViewport.height;
         canvas.width = scaledViewport.width;
+
+        // Scale down with CSS to fit container
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
 
         if (context) {
           renderTask = page.render({
@@ -122,14 +141,14 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
         renderTask.cancel();
       }
     };
-  }, [pdfJsDoc, pageIndex, isVisible, width]); // Depend on isVisible and width for zoom
+  }, [pdfJsDoc, pageIndex, isVisible, renderWidth]); // Depend on renderWidth
 
   return (
     <div
       ref={containerRef}
       onClick={onClick}
       className={`
-        relative aspect-[3/4] rounded-lg border-2 cursor-pointer overflow-hidden transition-all duration-200 group bg-white dark:bg-gray-800
+        relative aspect-[3/4] rounded-xl border-2 cursor-pointer overflow-hidden transition-all duration-200 group bg-white dark:bg-gray-800 touch-manipulation
         ${isSelected && mode === 'delete'
           ? 'border-canada-red shadow-lg ring-2 ring-canada-red/20 transform scale-[0.98]'
           : 'border-gray-200 dark:border-gray-700 hover:border-canada-red/50 hover:shadow-md'}
@@ -141,7 +160,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
     >
       {/* Canvas for PDF Page - Wrapped for Rotation */}
       <div
-        className="w-full h-full flex items-center justify-center transition-transform duration-300 ease-out"
+        className="w-full h-full flex items-center justify-center transition-transform duration-300 ease-out p-1"
         style={{ transform: `rotate(${rotation}deg)` }}
       >
         <canvas

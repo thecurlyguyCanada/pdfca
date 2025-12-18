@@ -33,7 +33,7 @@ export const translations = {
         },
         {
           q: "What tools do you offer?",
-          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, HEIC to PDF, EPUB to PDF, OCR (Make PDF Searchable), and a PDF Form Filler."
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, OCR (Make PDF Searchable), and a PDF Form Filler."
         }
       ],
       pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
@@ -264,10 +264,40 @@ export const translations = {
         h1: "Organize PDF Pages",
         subtitle: "Get your pages in order, eh?",
         content: "Need to fix the page order of your PDF? Our Organize PDF tool lets you drag and drop pages to rearrange them exactly how you want.",
-        steps: ["Upload your valid PDF file.", "Drag and drop the page thumbnails to reorder them.", "Click 'Save Organized PDF' to download."],
+        steps: [
+          "Upload your valid PDF file.",
+          "Drag and drop the page thumbnails to reorder them.",
+          "Click 'Save Organized PDF' to download."
+        ],
         faq: [
           { q: "Can I move pages between PDFs?", a: "Not yet! Currently you can only reorder pages within a single file." },
           { q: "Is my original file changed?", a: "No way! We create a new copy with the new order." }
+        ]
+      },
+      cbrToPdf: {
+        title: "CBR to PDF Converter | Convert Comic Books Online | pdfcanada.ca",
+        desc: "Convert CBR and CBZ files to PDF instantly for free. Secure, local comic book conversion in your browser. No uploads, proudly Canadian.",
+        h1: "Convert CBR to PDF | Online Comic Converter",
+        subtitle: "Read your comics on any device, eh?",
+        content: "Got a collection of digital comics in CBR or CBZ format? While these are great for specialized readers, sometimes you just want a PDF to read on your tablet or share with a friend. Our CBR to PDF converter makes it easy to change comic book archives into standard PDF documents. We support both CBR (RAR-based) and CBZ (ZIP-based) files. \n\nMost online converters make you upload your comics to their servers. But digital comics can be large, and your privacy matters. That's why pdfcanada.ca processes your comics right in your browser. No uploading, no waiting for a queue, just fast and secure conversion. Whether you're looking for how to convert cbr to pdf for free or need a bulk cbr to pdf tool, we've got you covered with our Canadian-made tool.",
+        steps: [
+          "Select your .CBR or .CBZ file from your device.",
+          "Our system extracts the images and compiles them into a single PDF document.",
+          "Once the conversion is complete, click 'Download' to save your new PDF comic."
+        ],
+        faq: [
+          {
+            question: "What is the difference between CBR and CBZ?",
+            answer: "CBR files are RAR archives renamed, while CBZ files are ZIP archives renamed. Both contain images (usually JPG or PNG) of comic book pages. Our tool supports both!"
+          },
+          {
+            question: "Can I convert large CBR files to PDF?",
+            answer: "Yes! Since the conversion happens on your device, the only limit is your browser's memory. We don't have the file size limits that cloud-based converters do."
+          },
+          {
+            question: "Is this comic converter safe?",
+            answer: "Absolutely hoser! Your files are never uploaded to our servers. All extraction and PDF creation happens locally on your computer."
+          }
         ]
       }
     },
@@ -287,6 +317,8 @@ export const translations = {
     toolMakeFillableDesc: "Auto-add fields to pages.",
     toolOcr: "OCR PDF",
     toolOcrDesc: "Extract text from scans.",
+    toolCbrToPdf: "CBR to PDF",
+    toolCbrToPdfDesc: "Convert comics to PDF.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -308,6 +340,11 @@ export const translations = {
     selectPagesToFill: "Select pages to scan for fields:",
     selectPagesForOcr: "Select pages to extract text from:",
     ocrProgress: "Recognizing text...",
+
+    // Tool Specific Inputs
+    deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
+    totalPages: "Total pages",
+    pagesToRemove: "Pages to remove",
 
     // Form Builder
     fbTitle: "Form Builder",
@@ -560,9 +597,38 @@ export const translations = {
         h1: "Organiser les pages PDF",
         subtitle: "Mettez de l'ordre, hein ?",
         content: "Besoin de changer l'ordre des pages ? Notre outil vous permet de glisser-déposer les pages pour les réorganiser exactement comme vous le souhaitez.",
-        steps: ["Téléchargez votre fichier PDF.", "Glissez-déposez les vignettes pour les réorganiser.", "Cliquez sur 'Enregistrer' pour télécharger."],
+        steps: [
+          "Téléchargez votre fichier PDF.",
+          "Glissez-déposez les vignettes pour les réorganiser.",
+          "Cliquez sur 'Enregistrer' pour télécharger."
+        ],
         faq: [
-          { q: "Puis-je déplacer des pages entre PDF ?", a: "Pas encore ! Pour l'instant, uniquement au sein d'un même fichier." }
+          {
+            q: "Puis-je déplacer des pages entre PDF ?",
+            a: "Pas encore ! Pour l'instant, uniquement au sein d'un même fichier."
+          }
+        ]
+      },
+      cbrToPdf: {
+        title: "Convertir CBR en PDF | Bandes Dessinées en Ligne | pdfcanada.ca",
+        desc: "Convertissez des fichiers CBR et CBZ en PDF instantanément et gratuitement. Conversion locale sécurisée au Canada. Pas de téléchargement.",
+        h1: "Convertir CBR en PDF | Convertisseur de Comics",
+        subtitle: "Lisez vos BD sur n'importe quel appareil.",
+        content: "Vous avez une collection de bandes dessinées numériques au format CBR ou CBZ ? Bien que ces formats soient excellents pour les lecteurs spécialisés, vous voudrez parfois un PDF pour lire sur votre tablette ou partager avec un ami. Notre convertisseur CBR en PDF facilite la transformation des archives de bandes dessinées en documents PDF standards. Nous supportons les fichiers CBR (basés sur RAR) et CBZ (basés sur ZIP).\n\nLa plupart des convertisseurs en ligne vous obligent à télécharger vos BD sur leurs serveurs. Mais les bandes dessinées peuvent être volumineuses et votre vie privée est importante. C'est pourquoi pdfcanada.ca traite vos BD directement dans votre navigateur. Pas de téléchargement, pas d'attente, juste une conversion rapide et sécurisée.",
+        steps: [
+          "Sélectionnez votre fichier .CBR ou .CBZ.",
+          "Notre système extrait les images et les compile dans un seul document PDF.",
+          "Une fois la conversion terminée, cliquez sur 'Télécharger' pour sauvegarder votre nouveau PDF."
+        ],
+        faq: [
+          {
+            question: "Quelle est la différence entre CBR et CBZ ?",
+            answer: "Les fichiers CBR sont des archives RAR renommées, tandis que les fichiers CBZ sont des archives ZIP renommées. Les deux contiennent des images de pages de bandes dessinées."
+          },
+          {
+            question: "Puis-je convertir de gros fichiers CBR ?",
+            answer: "Oui ! Comme la conversion se fait sur votre appareil, la seule limite est la mémoire de votre navigateur."
+          }
         ]
       }
     },
@@ -581,6 +647,8 @@ export const translations = {
     toolMakeFillableDesc: "Ajouter des zones de texte auto.",
     toolOcr: "OCR PDF",
     toolOcrDesc: "Extraire texte des scans.",
+    toolCbrToPdf: "CBR en PDF",
+    toolCbrToPdfDesc: "Convertir BD en PDF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -600,6 +668,11 @@ export const translations = {
     selectPagesToFill: "Sélectionnez les pages à scanner :",
     selectPagesForOcr: "Sélectionnez les pages pour l'OCR :",
     ocrProgress: "Reconnaissance du texte...",
+
+    // Tool Specific Inputs
+    deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
+    totalPages: "Nombre de pages",
+    pagesToRemove: "Pages à supprimer",
 
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
