@@ -9,7 +9,7 @@ interface GuideProps {
     onNavigate: (view: any, path?: string) => void;
 }
 
-const guideContent = {
+const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Convertir PDF en EPUB Gratuit | pdf a epub | pdfcanada.ca",
@@ -17,7 +17,11 @@ const guideContent = {
         },
         h1: "Convertir PDF en EPUB",
         subtitle: "Transformez vos PDF en ebooks pour liseuses",
-        intro: "Vous souhaitez lire vos documents PDF sur votre liseuse Kindle ou Kobo? Notre convertisseur gratuit transforme vos fichiers PDF en format EPUB, le standard des livres numériques. Profitez d'une meilleure expérience de lecture avec un texte qui s'adapte automatiquement à la taille de votre écran.",
+        intro: (
+            <>
+                Vous souhaitez lire vos documents PDF sur votre liseuse Kindle ou Kobo? Notre convertisseur gratuit transforme vos fichiers PDF en format EPUB, le standard des livres numériques. Profitez d'une meilleure expérience de lecture avec un texte qui s'adapte automatiquement à la taille de votre écran.
+            </>
+        ),
         whyTitle: "Pourquoi convertir PDF en EPUB?",
         whyReasons: [
             "Lecture confortable sur liseuses (Kindle, Kobo, etc.)",
@@ -30,21 +34,41 @@ const guideContent = {
         steps: [
             {
                 title: "Choisissez votre fichier PDF",
-                desc: "Sélectionnez le document PDF que vous souhaitez transformer en ebook. Notre outil accepte tous les types de PDF textuels."
+                desc: (
+                    <>
+                        Sélectionnez le document PDF que vous souhaitez transformer en ebook. Notre outil accepte tous les types de PDF textuels.
+                    </>
+                )
             },
             {
                 title: "Analyse intelligente du contenu",
-                desc: "Notre système analyse la structure de votre document: paragraphes, titres, images. La conversion se fait entièrement dans votre navigateur."
+                desc: (
+                    <>
+                        Notre système analyse la structure de votre document: paragraphes, titres, images. La conversion se fait entièrement dans votre navigateur.
+                    </>
+                )
             },
             {
                 title: "Obtenez votre EPUB",
-                desc: "Téléchargez votre fichier EPUB et transférez-le sur votre liseuse via USB ou par courriel. Bonne lecture!"
+                desc: (
+                    <>
+                        Téléchargez votre fichier EPUB et transférez-le sur votre liseuse via USB ou par courriel. Bonne lecture!
+                    </>
+                )
             }
         ],
         securityTitle: "Vos documents restent privés",
-        securityText: "La confidentialité de vos documents est notre priorité. Tout le traitement s'effectue localement sur votre appareil. Aucun fichier n'est envoyé sur nos serveurs. Vos PDF personnels, professionnels ou confidentiels restent entre vos mains.",
+        securityText: (
+            <>
+                La confidentialité de vos documents est notre priorité. Tout le traitement s'effectue localement sur votre appareil. Aucun fichier n'est envoyé sur nos serveurs. Vos PDF personnels, professionnels ou confidentiels restent entre vos mains.
+            </>
+        ),
         compatTitle: "Compatible avec toutes les liseuses",
-        compatText: "Le format EPUB est le standard universel des ebooks. Votre fichier converti fonctionnera sur:",
+        compatText: (
+            <>
+                Le format EPUB est le standard universel des ebooks. Votre fichier converti fonctionnera sur:
+            </>
+        ),
         compatList: ["Amazon Kindle (avec conversion Calibre)", "Kobo", "Apple Books", "Google Play Books", "Tablettes Android", "Tous les lecteurs EPUB"],
         faq: [
             {
@@ -95,7 +119,11 @@ const guideContent = {
         },
         h1: "Convert PDF to EPUB",
         subtitle: "Transform your PDFs into ebooks for e-readers",
-        intro: "Want to read your PDF documents on your Kindle or Kobo e-reader? Our free converter transforms your PDF files into EPUB format, the standard for digital books. Enjoy a better reading experience with text that automatically adapts to your screen size.",
+        intro: (
+            <>
+                Want to read your PDF documents on your Kindle or Kobo e-reader? Our free converter transforms your PDF files into EPUB format, the standard for digital books. Enjoy a better reading experience with text that automatically adapts to your screen size.
+            </>
+        ),
         whyTitle: "Why convert PDF to EPUB?",
         whyReasons: [
             "Comfortable reading on e-readers (Kindle, Kobo, etc.)",
@@ -108,21 +136,41 @@ const guideContent = {
         steps: [
             {
                 title: "Choose your PDF file",
-                desc: "Select the PDF document you want to transform into an ebook. Our tool accepts all types of text-based PDFs."
+                desc: (
+                    <>
+                        Select the PDF document you want to transform into an ebook. Our tool accepts all types of text-based PDFs.
+                    </>
+                )
             },
             {
                 title: "Intelligent content analysis",
-                desc: "Our system analyzes your document's structure: paragraphs, headings, images. Conversion happens entirely in your browser."
+                desc: (
+                    <>
+                        Our system analyzes your document's structure: paragraphs, headings, images. Conversion happens entirely in your browser.
+                    </>
+                )
             },
             {
                 title: "Get your EPUB",
-                desc: "Download your EPUB file and transfer it to your e-reader via USB or email. Happy reading!"
+                desc: (
+                    <>
+                        Download your EPUB file and transfer it to your e-reader via USB or email. Happy reading!
+                    </>
+                )
             }
         ],
         securityTitle: "Your documents stay private",
-        securityText: "The privacy of your documents is our priority. All processing happens locally on your device. No files are sent to our servers. Your personal, professional, or confidential PDFs stay in your hands.",
+        securityText: (
+            <>
+                The privacy of your documents is our priority. All processing happens locally on your device. No files are sent to our servers. Your personal, professional, or confidential PDFs stay in your hands.
+            </>
+        ),
         compatTitle: "Compatible with all e-readers",
-        compatText: "EPUB format is the universal ebook standard. Your converted file will work on:",
+        compatText: (
+            <>
+                EPUB format is the universal ebook standard. Your converted file will work on:
+            </>
+        ),
         compatList: ["Amazon Kindle (with Calibre conversion)", "Kobo", "Apple Books", "Google Play Books", "Android tablets", "All EPUB readers"],
         faq: [
             {
@@ -166,9 +214,10 @@ const guideContent = {
             { name: "Organize PDF", desc: "Rearrange pages", path: "/organize-pdf" }
         ]
     }
-};
+});
 
 export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
+    const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang];
 
     const schema = [

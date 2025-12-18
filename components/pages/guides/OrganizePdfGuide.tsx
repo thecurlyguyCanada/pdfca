@@ -9,7 +9,7 @@ interface GuideProps {
     onNavigate: (view: any, path?: string) => void;
 }
 
-const guideContent = {
+const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "Organize PDF Pages Online | Reorder PDF Pages Free | pdfcanada.ca",
@@ -18,18 +18,27 @@ const guideContent = {
         h1: "How to Organize and Reorder PDF Pages",
         subtitle: "The easiest way to shuffle, flip, and move pages in your PDF document with drag-and-drop simplicity.",
 
-        intro: "Got a document that's all out of order? Scanned pages in the wrong sequence? Knowing how to **organize PDF pages online** is essential for creating professional documents. Our **free PDF page organizer** allows you to visually **reorder PDF pages** using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it.",
+        intro: (
+            <>
+                Got a document that's all out of order? Scanned pages in the wrong sequence? Knowing how to <strong>organize PDF pages online</strong> is essential for creating professional documents. Our <strong>free PDF page organizer</strong> allows you to visually <strong>reorder PDF pages</strong> using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it.
+            </>
+        ),
 
         sections: [
             {
                 id: "how-to",
                 title: "Steps to Reorder Your PDF",
-                content: `Using our **reorder PDF pages free** tool is intuitive:
-1. **Upload**: Select your file. Each page will appear as a movable thumbnail.
-2. **Drag and Drop**: Simply click and hold a page thumbnail, then move it to its new position.
-3. **Save**: Click 'Organize PDF' and your new, perfectly ordered file is ready.
-
-This works perfectly on both desktop and mobile devices.`
+                content: (
+                    <>
+                        <p className="mb-4">Using our <strong>reorder PDF pages free</strong> tool is intuitive:</p>
+                        <ol className="list-decimal pl-5 space-y-2 mb-4">
+                            <li><strong>Upload</strong>: Select your file. Each page will appear as a movable thumbnail.</li>
+                            <li><strong>Drag and Drop</strong>: Simply click and hold a page thumbnail, then move it to its new position.</li>
+                            <li><strong>Save</strong>: Click 'Organize PDF' and your new, perfectly ordered file is ready.</li>
+                        </ol>
+                        <p>This works perfectly on both desktop and mobile devices.</p>
+                    </>
+                )
             }
         ],
 
@@ -52,13 +61,21 @@ This works perfectly on both desktop and mobile devices.`
         h1: "Comment Organiser et Réorganiser les Pages PDF",
         subtitle: "La façon la plus simple de mélanger et déplacer les pages de votre document PDF par simple glisser-déposer.",
 
-        intro: "Votre document n'est pas dans le bon ordre? Utilisez notre outil **gratuit d'organisation de PDF** pour réorganiser vos pages visuellement.",
+        intro: (
+            <>
+                Votre document n'est pas dans le bon ordre? Utilisez notre outil <strong>gratuit d'organisation de PDF</strong> pour réorganiser vos pages visuellement.
+            </>
+        ),
 
         sections: [
             {
                 id: "how-to",
                 title: "Étapes pour réorganiser votre PDF",
-                content: `L'utilisation de notre outil pour **réorganiser les pages PDF gratuitement** est intuitive.`
+                content: (
+                    <>
+                        <p>L'utilisation de notre outil pour <strong>réorganiser les pages PDF gratuitement</strong> est intuitive.</p>
+                    </>
+                )
             }
         ],
 
@@ -73,9 +90,10 @@ This works perfectly on both desktop and mobile devices.`
         ctaButton: "Organiser PDF",
         ctaSubtext: "Rapide, gratuit et sans téléversement."
     }
-};
+});
 
 export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
+    const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
     return (

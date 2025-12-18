@@ -9,7 +9,7 @@ interface GuideProps {
     onNavigate: (view: any, path?: string) => void;
 }
 
-const guideContent = {
+const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Convertir EPUB en PDF Gratuit | epub en pdf | pdfcanada.ca",
@@ -17,7 +17,11 @@ const guideContent = {
         },
         h1: "Convertir EPUB en PDF",
         subtitle: "Le guide complet pour transformer vos ebooks en PDF",
-        intro: "Vous cherchez comment convertir un fichier EPUB en PDF? Notre outil gratuit vous permet de transformer vos livres numériques en format PDF universel en quelques clics. Que vous souhaitiez imprimer un ebook ou le partager avec quelqu'un qui n'a pas de liseuse, nous avons la solution.",
+        intro: (
+            <>
+                Vous cherchez comment convertir un fichier EPUB en PDF? Notre outil gratuit vous permet de transformer vos livres numériques en format PDF universel en quelques clics. Que vous souhaitiez imprimer un ebook ou le partager avec quelqu'un qui n'a pas de liseuse, nous avons la solution.
+            </>
+        ),
         whyTitle: "Pourquoi convertir EPUB en PDF?",
         whyReasons: [
             "Compatibilité universelle avec tous les appareils",
@@ -30,19 +34,35 @@ const guideContent = {
         steps: [
             {
                 title: "Sélectionnez votre fichier EPUB",
-                desc: "Cliquez sur le bouton 'Choisir un fichier' ou glissez-déposez votre fichier .epub directement sur la zone de téléversement."
+                desc: (
+                    <>
+                        Cliquez sur le bouton 'Choisir un fichier' ou glissez-déposez votre fichier .epub directement sur la zone de téléversement.
+                    </>
+                )
             },
             {
                 title: "Conversion automatique",
-                desc: "Notre outil analyse votre ebook et convertit chaque chapitre en pages PDF bien formatées. Tout se passe localement dans votre navigateur."
+                desc: (
+                    <>
+                        Notre outil analyse votre ebook et convertit chaque chapitre en pages PDF bien formatées. Tout se passe localement dans votre navigateur.
+                    </>
+                )
             },
             {
                 title: "Téléchargez votre PDF",
-                desc: "Une fois la conversion terminée, téléchargez votre nouveau fichier PDF prêt à être imprimé ou partagé."
+                desc: (
+                    <>
+                        Une fois la conversion terminée, téléchargez votre nouveau fichier PDF prêt à être imprimé ou partagé.
+                    </>
+                )
             }
         ],
         securityTitle: "Sécurité et confidentialité",
-        securityText: "Contrairement à d'autres services en ligne, vos fichiers ne quittent jamais votre ordinateur. Tout le traitement se fait localement dans votre navigateur grâce à notre technologie WebAssembly. Aucun téléversement sur nos serveurs.",
+        securityText: (
+            <>
+                Contrairement à d'autres services en ligne, vos fichiers ne quittent jamais votre ordinateur. Tout le traitement se fait localement dans votre navigateur grâce à notre technologie WebAssembly. Aucun téléversement sur nos serveurs.
+            </>
+        ),
         faq: [
             {
                 q: "Comment convertir un fichier EPUB en PDF gratuitement?",
@@ -80,7 +100,11 @@ const guideContent = {
         },
         h1: "Convert EPUB to PDF",
         subtitle: "The complete guide to transform your ebooks to PDF",
-        intro: "Looking to convert an EPUB file to PDF? Our free tool lets you transform your digital books to universal PDF format in just a few clicks. Whether you want to print an ebook or share it with someone who doesn't have an e-reader, we have the solution.",
+        intro: (
+            <>
+                Looking to convert an EPUB file to PDF? Our free tool lets you transform your digital books to universal PDF format in just a few clicks. Whether you want to print an ebook or share it with someone who doesn't have an e-reader, we have the solution.
+            </>
+        ),
         whyTitle: "Why convert EPUB to PDF?",
         whyReasons: [
             "Universal compatibility with all devices",
@@ -93,19 +117,35 @@ const guideContent = {
         steps: [
             {
                 title: "Select your EPUB file",
-                desc: "Click the 'Select File' button or drag and drop your .epub file directly onto the upload area."
+                desc: (
+                    <>
+                        Click the 'Select File' button or drag and drop your .epub file directly onto the upload area.
+                    </>
+                )
             },
             {
                 title: "Automatic conversion",
-                desc: "Our tool analyzes your ebook and converts each chapter into well-formatted PDF pages. Everything happens locally in your browser."
+                desc: (
+                    <>
+                        Our tool analyzes your ebook and converts each chapter into well-formatted PDF pages. Everything happens locally in your browser.
+                    </>
+                )
             },
             {
                 title: "Download your PDF",
-                desc: "Once conversion is complete, download your new PDF file ready to print or share."
+                desc: (
+                    <>
+                        Once conversion is complete, download your new PDF file ready to print or share.
+                    </>
+                )
             }
         ],
         securityTitle: "Security and Privacy",
-        securityText: "Unlike other online services, your files never leave your computer. All processing happens locally in your browser using our WebAssembly technology. No uploads to our servers.",
+        securityText: (
+            <>
+                Unlike other online services, your files never leave your computer. All processing happens locally in your browser using our WebAssembly technology. No uploads to our servers.
+            </>
+        ),
         faq: [
             {
                 q: "How to convert EPUB to PDF for free?",
@@ -136,9 +176,10 @@ const guideContent = {
             { name: "OCR PDF", desc: "Extract text from your scans", path: "/ocr-pdf" }
         ]
     }
-};
+});
 
 export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
+    const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang];
 
     const schema = [

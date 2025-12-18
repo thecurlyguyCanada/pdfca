@@ -9,7 +9,7 @@ interface GuideProps {
     onNavigate: (view: any, path?: string) => void;
 }
 
-const guideContent = {
+const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "Make PDF Fillable Online Free | Create PDF Forms Without Acrobat | pdfcanada.ca",
@@ -18,35 +18,63 @@ const guideContent = {
         h1: "How to Make a PDF Fillable Online for Free",
         subtitle: "The definitive guide to transforming flat documents into interactive, professional PDF forms.",
 
-        intro: "Tired of asking clients to print, hand-sign, and scan documents back to you? You need to **make your PDF fillable**. Whether you're a small business owner in Toronto or a student in Vancouver, creating **interactive PDF forms** is essential for a modern workflow. Our **free PDF form creator** allows you to add text fields, checkboxes, and signature placeholders to any document without needing expensive software like Adobe Acrobat.",
+        intro: (
+            <>
+                Tired of asking clients to print, hand-sign, and scan documents back to you? You need to <strong>make your PDF fillable</strong>. Whether you're a small business owner in Toronto or a student in Vancouver, creating <strong>interactive PDF forms</strong> is essential for a modern workflow. Our <strong>free PDF form creator</strong> allows you to add text fields, checkboxes, and signature placeholders to any document without needing expensive software like Adobe Acrobat.
+            </>
+        ),
 
         sections: [
             {
                 id: "what-is-fillable",
                 title: "What is a Fillable PDF?",
-                content: `A fillable PDF (also known as an interactive PDF form) contains fields that users can interact with directly. Instead of being a static image of a document, it includes:
-- **Text Input Fields**: For names, dates, and detailed responses.
-- **Checkboxes**: For multi-choice selections.
-- **Digital Signature Fields**: For capturing authorization.
-
-Using a **fillable PDF creator online** ensures that your documents are easy to complete and look professional on any device.`
+                content: (
+                    <>
+                        <p className="mb-4">
+                            A fillable PDF (also known as an interactive PDF form) contains fields that users can interact with directly. Instead of being a static image of a document, it includes:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Text Input Fields</strong>: For names, dates, and detailed responses.</li>
+                            <li><strong>Checkboxes</strong>: For multi-choice selections.</li>
+                            <li><strong>Digital Signature Fields</strong>: For capturing authorization.</li>
+                        </ul>
+                        <p>
+                            Using a <strong>fillable PDF creator online</strong> ensures that your documents are easy to complete and look professional on any device.
+                        </p>
+                    </>
+                )
             },
             {
                 id: "how-to",
                 title: "3 Steps to Create Fillable PDF Forms",
-                content: `1. **Upload Your File**: Select the PDF you want to make interactive.
-2. **Add Fields**: Drag and drop text fields and checkboxes onto the document. Our tool is optimized for **Canadian government forms** and business contracts.
-3. **Save and Share**: Click 'Process PDF' to download your new, interactive version.
-
-This is the most **secure way to make a PDF fillable** because we process all edits locally in your browser.`
+                content: (
+                    <>
+                        <ol className="list-decimal pl-5 space-y-4 mb-4">
+                            <li><strong>Upload Your File</strong>: Select the PDF you want to make interactive using our local-first uploader.</li>
+                            <li><strong>Add Fields</strong>: Drag and drop text fields and checkboxes onto the document. Our tool is optimized for <strong>Canadian government forms</strong> and business contracts.</li>
+                            <li><strong>Save and Share</strong>: Click 'Process PDF' to download your new, interactive version.</li>
+                        </ol>
+                        <p>
+                            This is the most <strong>secure way to make a PDF fillable</strong> because we process all edits locally in your browser.
+                        </p>
+                    </>
+                )
             },
             {
                 id: "benefits",
                 title: "Why Use Our Free PDF Form Filler?",
-                content: `Most "free" tools online either watermark your files or force you to sign up for a subscription. At pdfcanada.ca, we offer a truly **free PDF editor for forms** with:
-- **Privacy Focus**: Your sensitive business data stays on your machine.
-- **No Account Needed**: Start editing instantly.
-- **Mobile Friendly**: Create or fill out forms on your phone or tablet.`
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Most "free" tools online either watermark your files or force you to sign up for a subscription. At pdfcanada.ca, we offer a truly <strong>free PDF editor for forms</strong> with:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Privacy Focus</strong>: Your sensitive business data stays on your machine.</li>
+                            <li><strong>No Account Needed</strong>: Start editing instantly.</li>
+                            <li><strong>Mobile Friendly</strong>: Create or fill out forms on your phone or tablet.</li>
+                        </ul>
+                    </>
+                )
             }
         ],
 
@@ -77,20 +105,32 @@ This is the most **secure way to make a PDF fillable** because we process all ed
         h1: "Comment Rendre un PDF Remplissable en Ligne Gratuitement",
         subtitle: "Le guide définitif pour transformer vos documents statiques en formulaires PDF interactifs et professionnels.",
 
-        intro: "Vous en avez assez de demander à vos clients d'imprimer et de numériser des documents ? Vous devez **rendre votre PDF remplissable**. Notre outil gratuit vous permet d'ajouter des champs de texte et des cases à cocher en toute sécurité.",
+        intro: (
+            <>
+                Vous en avez assez de demander à vos clients d'imprimer et de numériser des documents ? Vous devez <strong>rendre votre PDF remplissable</strong>. Notre outil gratuit vous permet d'ajouter des champs de texte et des cases à cocher en toute sécurité.
+            </>
+        ),
 
         sections: [
             {
                 id: "how-to",
                 title: "3 étapes pour créer des formulaires PDF remplissables",
-                content: `1. **Téléversez votre fichier**\n2. **Ajoutez des champs**\n3. **Enregistrez**`
+                content: (
+                    <>
+                        <ol className="list-decimal pl-5 space-y-4 mb-4">
+                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre outil sécurisé.</li>
+                            <li><strong>Ajoutez des champs</strong> : Glissez-déposez des champs de texte et des cases à cocher.</li>
+                            <li><strong>Enregistrez</strong> : Téléchargez votre version interactive instantanément.</li>
+                        </ol>
+                    </>
+                )
             }
         ],
 
         faq: [
             {
                 q: "Est-ce gratuit ?",
-                a: "Oui, totalement gratuit et sécurisé."
+                a: "Oui, totalement gratuit et sans frais cachés."
             }
         ],
 
@@ -98,9 +138,10 @@ This is the most **secure way to make a PDF fillable** because we process all ed
         ctaButton: "Rendre le PDF remplissable",
         ctaSubtext: "Gratuit pour toujours. Sécurisé et local."
     }
-};
+});
 
 export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
+    const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
     return (

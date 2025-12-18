@@ -9,6 +9,21 @@ import heic2any from 'heic2any';
 
 let workerInitialized = false;
 
+export interface FormField {
+  id: string;
+  type: 'text' | 'checkbox' | 'signature';
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  page: number;
+  name?: string;
+  label?: string;
+  required?: boolean;
+  readOnly?: boolean;
+  value?: string | boolean;
+}
+
 export const initPdfWorker = () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     if (pdfjsLib.GlobalWorkerOptions) {
