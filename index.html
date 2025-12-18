@@ -39,6 +39,24 @@
   <meta name="keywords"
     content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing, pdf canada">
   <meta name="author" content="pdfcanada.ca">
+  <meta name="publisher" content="pdfcanada.ca">
+  <meta name="copyright" content="2024 pdfcanada.ca">
+  <meta name="language" content="en-CA">
+  <meta name="revisit-after" content="7 days">
+  <meta name="rating" content="general">
+  <meta name="distribution" content="global">
+  <meta name="geo.region" content="CA-ON">
+  <meta name="geo.placename" content="Toronto">
+  <meta name="geo.position" content="43.6532;-79.3832">
+  <meta name="ICBM" content="43.6532, -79.3832">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="pdfcanada.ca">
+  <meta name="application-name" content="pdfcanada.ca">
+  <meta name="msapplication-TileColor" content="#FF0000">
+  <meta name="msapplication-config" content="/browserconfig.xml">
   <meta name="google-site-verification" content="Mmf_ESMps2bHKyOi4S1bwLCSE43b2ly2F3NC-uOt3KM" />
 
   <!-- Open Graph / Facebook -->
@@ -65,10 +83,21 @@
   <meta name="twitter:image" content="https://pdfcanada.ca/og-image.png">
   <meta name="twitter:image:alt" content="pdfcanada.ca - Free Canadian PDF Tools">
 
-  <!-- Performance optimizations -->
+  <!-- Performance optimizations - Core Web Vitals -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- Preload critical resources for LCP optimization -->
+  <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="/og-image.png" as="image" type="image/png" fetchpriority="low">
+
+  <!-- Modulepreload for faster JS execution -->
+  <link rel="modulepreload" href="/index.tsx">
 
   <!-- Critical fonts with display swap -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
@@ -137,26 +166,124 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://pdfcanada.ca/#organization",
     "name": "pdfcanada.ca",
     "url": "https://pdfcanada.ca",
     "logo": {
       "@type": "ImageObject",
+      "@id": "https://pdfcanada.ca/#logo",
       "url": "https://pdfcanada.ca/android-chrome-512x512.png",
       "width": 512,
-      "height": 512
+      "height": 512,
+      "caption": "pdfcanada.ca - Free Canadian PDF Tools"
     },
+    "image": "https://pdfcanada.ca/og-image.png",
     "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toronto",
+      "addressRegion": "Ontario",
+      "postalCode": "M5V",
+      "addressCountry": "CA"
+    },
+    "sameAs": [
+      "https://twitter.com/pdfcanada"
+    ],
+    "foundingDate": "2024",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada",
+      "sameAs": "https://en.wikipedia.org/wiki/Canada"
+    },
+    "slogan": "The most polite PDF tools in Canada",
+    "knowsAbout": ["PDF editing", "PDF conversion", "OCR", "Document processing", "HEIC conversion", "EPUB conversion"],
+    "knowsLanguage": ["en-CA", "fr-CA"]
+  }
+  </script>
+  <!-- LocalBusiness Schema for Canadian Focus -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://pdfcanada.ca/#localbusiness",
+    "name": "pdfcanada.ca",
+    "description": "Free online PDF tools serving Canadians. Delete pages, rotate PDFs, convert HEIC to PDF, and more.",
+    "url": "https://pdfcanada.ca",
+    "logo": "https://pdfcanada.ca/android-chrome-512x512.png",
+    "image": "https://pdfcanada.ca/og-image.png",
+    "telephone": "",
+    "priceRange": "Free",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Toronto",
       "addressRegion": "Ontario",
       "addressCountry": "CA"
     },
-    "sameAs": ["https://twitter.com/pdfcanada"],
-    "foundingDate": "2024",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Canada"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "43.6532",
+      "longitude": "-79.3832"
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Canada"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Ontario"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Quebec"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "British Columbia"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Alberta"
+      }
+    ],
+    "serviceType": ["PDF Editing", "Document Conversion", "OCR Services"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "PDF Tools",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Delete PDF Pages",
+            "description": "Remove unwanted pages from any PDF document"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Rotate PDF",
+            "description": "Rotate PDF pages 90 or 180 degrees"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "OCR PDF",
+            "description": "Extract text from scanned documents"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "HEIC to PDF",
+            "description": "Convert iPhone HEIC photos to PDF"
+          }
+        }
+      ]
     }
   }
   </script>
