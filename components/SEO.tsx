@@ -121,6 +121,29 @@ export const SEO: React.FC<SEOProps> = ({
       document.head.appendChild(link);
     }
 
+    // 6b. Update hreflang links dynamically
+    const updateHreflang = (hreflang: string, href: string) => {
+      let hreflangLink = document.querySelector(`link[hreflang="${hreflang}"]`);
+      if (hreflangLink) {
+        hreflangLink.setAttribute('href', href);
+      } else {
+        hreflangLink = document.createElement('link');
+        hreflangLink.setAttribute('rel', 'alternate');
+        hreflangLink.setAttribute('hreflang', hreflang);
+        hreflangLink.setAttribute('href', href);
+        document.head.appendChild(hreflangLink);
+      }
+    };
+
+    // Determine English and French paths
+    const basePath = canonicalPath.startsWith('/fr/') ? canonicalPath.slice(3) : canonicalPath;
+    const enPath = basePath === '' ? '/' : basePath;
+    const frPath = basePath === '/' ? '/fr/' : `/fr${basePath}`;
+
+    updateHreflang('en', `https://pdfcanada.ca${enPath}`);
+    updateHreflang('fr', `https://pdfcanada.ca${frPath}`);
+    updateHreflang('x-default', `https://pdfcanada.ca${enPath}`);
+
     // 7. Dynamic JSON-LD Structured Data
     // Remove existing dynamic schemas
     document.querySelectorAll('script[data-dynamic-schema]').forEach(el => el.remove());
