@@ -1,17 +1,14 @@
 import { PDFDocument, degrees, StandardFonts, rgb } from 'pdf-lib';
-import * as pdfjsLibModule from 'pdfjs-dist';
+import { getDocument, GlobalWorkerOptions, type PDFDocumentProxy } from 'pdfjs-dist';
 import JSZip from 'jszip';
 import heic2any from 'heic2any';
-
-// Robustly resolve the library object
-const pdfjsLib = (pdfjsLibModule as any).default || pdfjsLibModule;
 
 let workerInitialized = false;
 
 export const initPdfWorker = () => {
   if (!workerInitialized && typeof window !== 'undefined') {
-    if (pdfjsLib.GlobalWorkerOptions) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    if (GlobalWorkerOptions) {
+      GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
       workerInitialized = true;
     }
   }
@@ -22,7 +19,7 @@ export const getPdfJsDocument = async (file: File) => {
     initPdfWorker();
     const arrayBuffer = await file.arrayBuffer();
 
-    const loadingTask = pdfjsLib.getDocument({
+    const loadingTask = getDocument({
       data: new Uint8Array(arrayBuffer),
       cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
       cMapPacked: true,
@@ -83,7 +80,7 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
   const form = doc.getForm();
 
   // Load PDF.js document for text analysis
-  const pdfJsDoc = await pdfjsLib.getDocument({
+  const pdfJsDoc = await getDocument({
     data: new Uint8Array(arrayBuffer),
     cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
     cMapPacked: true,
@@ -211,7 +208,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
 export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   initPdfWorker();
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
   const escapeHtml = (unsafe: string) => {
     return unsafe
