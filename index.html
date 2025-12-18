@@ -399,7 +399,79 @@
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
-  <div id="root"></div>
+  <div id="root">
+    <!-- Critical Loading Skeleton - Shows immediately before React hydrates -->
+    <!-- This is REQUIRED for First Contentful Paint (FCP) metrics -->
+    <div id="loading-skeleton" style="min-height: 100vh; display: flex; flex-direction: column;">
+      <!-- Header skeleton -->
+      <header style="background: white; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 32px; height: 32px; background: #FF0000; border-radius: 6px;"></div>
+          <span style="font-weight: 700; font-size: 18px; color: #111827;">pdfcanada.ca</span>
+        </div>
+        <nav style="display: flex; gap: 24px;">
+          <div style="width: 60px; height: 20px; background: #e5e7eb; border-radius: 4px;"></div>
+          <div style="width: 60px; height: 20px; background: #e5e7eb; border-radius: 4px;"></div>
+          <div style="width: 80px; height: 20px; background: #e5e7eb; border-radius: 4px;"></div>
+        </nav>
+      </header>
+
+      <!-- Hero skeleton -->
+      <main style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; text-align: center;">
+        <div style="width: 48px; height: 48px; margin-bottom: 24px;">
+          <!-- Maple leaf icon -->
+          <svg viewBox="0 0 24 24" fill="#FF0000" style="width: 100%; height: 100%;">
+            <path d="M12 2L9.5 8.5L3 9L7 14L5.5 21L12 17L18.5 21L17 14L21 9L14.5 8.5L12 2Z"/>
+          </svg>
+        </div>
+        <h1 style="font-size: 2.5rem; font-weight: 700; color: #111827; margin: 0 0 8px 0;">Free PDF Tools</h1>
+        <p style="font-size: 1.125rem; color: #6b7280; margin: 0 0 32px 0;">Proudly Canadian. 100% secure & private.</p>
+
+        <!-- Tools grid skeleton -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; width: 100%; max-width: 900px;">
+          <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; height: 120px;">
+            <div style="width: 40px; height: 40px; background: #fee2e2; border-radius: 8px; margin-bottom: 12px;"></div>
+            <div style="width: 80%; height: 16px; background: #e5e7eb; border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="width: 60%; height: 12px; background: #f3f4f6; border-radius: 4px;"></div>
+          </div>
+          <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; height: 120px;">
+            <div style="width: 40px; height: 40px; background: #fee2e2; border-radius: 8px; margin-bottom: 12px;"></div>
+            <div style="width: 70%; height: 16px; background: #e5e7eb; border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="width: 50%; height: 12px; background: #f3f4f6; border-radius: 4px;"></div>
+          </div>
+          <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; height: 120px;">
+            <div style="width: 40px; height: 40px; background: #fee2e2; border-radius: 8px; margin-bottom: 12px;"></div>
+            <div style="width: 75%; height: 16px; background: #e5e7eb; border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="width: 55%; height: 12px; background: #f3f4f6; border-radius: 4px;"></div>
+          </div>
+          <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; height: 120px;">
+            <div style="width: 40px; height: 40px; background: #fee2e2; border-radius: 8px; margin-bottom: 12px;"></div>
+            <div style="width: 65%; height: 16px; background: #e5e7eb; border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="width: 45%; height: 12px; background: #f3f4f6; border-radius: 4px;"></div>
+          </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div style="margin-top: 32px; display: flex; align-items: center; gap: 8px; color: #6b7280;">
+          <svg style="width: 20px; height: 20px; animation: spin 1s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"></path>
+          </svg>
+          <span style="font-size: 14px;">Loading PDF tools...</span>
+        </div>
+      </main>
+    </div>
+    <style>
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @media (prefers-color-scheme: dark) {
+        #loading-skeleton { background: #030712; }
+        #loading-skeleton header { background: #111827; border-color: #1f2937; }
+        #loading-skeleton h1 { color: #f9fafb; }
+        #loading-skeleton p { color: #9ca3af; }
+        #loading-skeleton .tool-card, #loading-skeleton > main > div:nth-child(4) > div { background: #111827; border-color: #1f2937; }
+      }
+    </style>
+  </div>
 
   <!-- SEO Fallback for non-JS crawlers and users - CRITICAL FOR INDEXING -->
   <noscript>
