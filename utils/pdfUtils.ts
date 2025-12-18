@@ -63,7 +63,7 @@ export const rotatePdfPages = async (originalFile: File, rotations: Record<numbe
   const doc = await PDFDocument.load(arrayBuffer);
   const pages = doc.getPages();
 
-  pages.forEach((page, index) => {
+  pages.forEach((page: any, index: number) => {
     const rotationToAdd = rotations[index] || 0;
     if (rotationToAdd !== 0) {
       const currentRotation = page.getRotation().angle;
@@ -213,16 +213,29 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
+  const escapeHtml = (unsafe: string) => {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+
   let fullText = "";
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
-    const strings = content.items.map((item: any) => item.str);
+    const strings = content.items
+      .filter((item: any) => typeof item.str === 'string')
+      .map((item: any) => escapeHtml(item.str));
     fullText += `<h2>Page ${i}</h2><p>${strings.join(' ')}</p><hr/>`;
   }
 
   const zip = new JSZip();
+  // EPUB requirement: mimetype must be first and uncompressed
   zip.file("mimetype", "application/epub+zip", { compression: "STORE" });
+
   zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
   <rootfiles>
@@ -272,53 +285,102 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   const zip = new JSZip();
   const content = await zip.loadAsync(file);
 
-  // Very basic text extraction strategy for "Simple" conversion
   let textContent = "";
 
-  // Try to find HTML/XHTML files
   const htmlFiles: string[] = [];
-  content.forEach((relativePath) => {
+  content.forEach((relativePath: string) => {
     if (relativePath.endsWith(".html") || relativePath.endsWith(".xhtml")) {
       htmlFiles.push(relativePath);
     }
   });
 
-  // Sort vaguely to try and keep order (imperfect without parsing OPF properly, but "simple")
   htmlFiles.sort();
 
   for (const path of htmlFiles) {
     const html = await content.file(path)?.async("string");
     if (html) {
-      // Strip tags
-      const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      // Robust tag stripping: Remove script, style, and head content entirely
+      let cleanHtml = html
+        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "")
+        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gim, "")
+        .replace(/<head\b[^>]*>([\s\S]*?)<\/head>/gim, "");
+
+      // Strip remaining tags but preserve basic breaks
+      const text = cleanHtml
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/<\/p>/gi, "\n\n")
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/[ \t]+/g, ' ')
+        .trim();
       textContent += text + "\n\n";
     }
   }
 
-  if (!textContent) {
+  if (!textContent.trim()) {
     throw new Error("Could not extract text from EPUB");
   }
 
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
 
-  const fontSize = 12;
+  const fontSize = 11;
   const margin = 50;
+  const charsPerLine = 85;
 
-  // Basic pagination
   let page = doc.addPage();
-  const { height } = page.getSize();
-  let y = height - margin;
+  const { width: pageWidth, height: pageHeight } = page.getSize();
+  let y = pageHeight - margin;
 
-  const lines = textContent.match(/.{1,90}(\s|$)/g) || [];
+  // Process by paragraph to preserve structure
+  const paragraphs = textContent.split('\n');
 
-  for (const line of lines) {
-    if (y < margin + fontSize) {
-      page = doc.addPage();
-      y = height - margin;
+  for (const paragraph of paragraphs) {
+    const trimmedPara = paragraph.trim();
+    if (!trimmedPara) {
+      y -= (fontSize + 2); // Small gap for "empty" lines
+      continue;
     }
-    page.drawText(line.trim(), { x: margin, y, size: fontSize, font });
-    y -= (fontSize + 4);
+
+    const words = trimmedPara.split(/\s+/);
+    let currentLine = "";
+
+    for (const word of words) {
+      if ((currentLine + " " + word).length > charsPerLine) {
+        if (y < margin + fontSize) {
+          page = doc.addPage();
+          y = pageHeight - margin;
+        }
+        page.drawText(currentLine.trim(), { x: margin, y, size: fontSize, font });
+        y -= (fontSize + 4);
+
+        if (word.length > charsPerLine) {
+          let remaining = word;
+          while (remaining.length > charsPerLine) {
+            if (y < margin + fontSize) {
+              page = doc.addPage();
+              y = pageHeight - margin;
+            }
+            page.drawText(remaining.substring(0, charsPerLine), { x: margin, y, size: fontSize, font });
+            y -= (fontSize + 4);
+            remaining = remaining.substring(charsPerLine);
+          }
+          currentLine = remaining;
+        } else {
+          currentLine = word;
+        }
+      } else {
+        currentLine += (currentLine === "" ? "" : " ") + word;
+      }
+    }
+
+    if (currentLine.trim()) {
+      if (y < margin + fontSize) {
+        page = doc.addPage();
+        y = pageHeight - margin;
+      }
+      page.drawText(currentLine.trim(), { x: margin, y, size: fontSize, font });
+      y -= (fontSize + 4);
+    }
   }
 
   return await doc.save();

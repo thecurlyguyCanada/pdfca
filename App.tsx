@@ -390,7 +390,7 @@ function App() {
       const tool = tools.find(t => t.id === currentTool);
       return (
         <div
-          className="flex-grow flex flex-col items-center justify-center p-10 text-center cursor-pointer hover:bg-gray-50 transition-colors group border-2 border-dashed border-transparent hover:border-canada-red/20 m-4 rounded-3xl"
+          className="flex-grow flex flex-col items-center justify-center p-6 md:p-10 text-center cursor-pointer hover:bg-gray-50 transition-colors group border-2 border-dashed border-transparent hover:border-canada-red/20 m-2 md:m-4 rounded-2xl md:rounded-3xl active:scale-[0.99]"
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {
             e.preventDefault();
@@ -400,17 +400,17 @@ function App() {
           }}
           onClick={() => fileInputRef.current?.click()}
         >
-          <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
-            {tool && <tool.icon size={32} />}
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+            {tool && <tool.icon size={28} className="md:w-8 md:h-8" />}
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">{tool?.title}</h3>
-          <p className="text-gray-500 mb-2">{t.uploadDesc} ({tool?.accept})</p>
+          <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">{tool?.title}</h3>
+          <p className="text-sm md:text-base text-gray-500 mb-2">{t.uploadDesc} ({tool?.accept})</p>
 
-          <div className="inline-flex items-center gap-1.5 bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-500 mb-8">
+          <div className="inline-flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 rounded-full text-xs font-medium text-gray-500 mb-6 md:mb-8">
             <Shield size={12} /> {t.processedLocally}
           </div>
 
-          <button className="bg-canada-red hover:bg-canada-darkRed text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
+          <button className="w-full max-w-xs bg-canada-red hover:bg-canada-darkRed text-white px-6 md:px-8 py-4 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 text-base min-h-[56px]">
             {t.selectFile}
           </button>
           <input
@@ -432,42 +432,42 @@ function App() {
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
 
     return (
-      <div className="flex flex-col h-[600px]">
+      <div className="flex flex-col h-[calc(100vh-120px)] md:h-auto md:min-h-[500px]">
         {/* Header */}
-        <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
-              <FileText size={20} />
+        <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
+          <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+            <div className="w-10 h-10 md:w-10 md:h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
+              <FileText size={18} className="md:w-5 md:h-5" />
             </div>
-            <div className="min-w-0">
-              <h3 className="font-bold text-gray-800 truncate max-w-[200px]">{file.name}</h3>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[180px] md:max-w-[200px]">{file.name}</h3>
               <p className="text-xs text-gray-500 flex items-center gap-2">
                 <span>{file ? formatFileSize(file.size) : ''}</span>
               </p>
             </div>
           </div>
-          <button onClick={handleSoftReset} className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full transition-colors">
+          <button onClick={handleSoftReset} className="text-gray-400 hover:text-gray-600 p-3 hover:bg-gray-100 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0">
             <X size={20} />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-grow overflow-y-auto p-6 bg-gray-50 custom-scrollbar flex flex-col items-center">
+        <div className="flex-grow overflow-y-auto p-4 md:p-6 bg-gray-50 custom-scrollbar flex flex-col items-center">
 
           {isVisualTool ? (
             <>
               <div className="w-full mb-4 sticky top-0 bg-gray-50/95 backdrop-blur-sm z-10 py-2">
                 {currentTool === ToolType.ROTATE ? (
-                  // Custom Toolbar for Rotate
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    <button onClick={() => rotateAll('left')} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red transition-all text-sm font-medium text-gray-700">
-                      <RotateCcw size={16} /> {t.rotateAllLeft}
+                  // Custom Toolbar for Rotate - Horizontal scroll on mobile
+                  <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
+                    <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                      <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
                     </button>
-                    <button onClick={() => rotateAll('right')} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red transition-all text-sm font-medium text-gray-700">
-                      <RotateCw size={16} /> {t.rotateAllRight}
+                    <button onClick={() => rotateAll('right')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                      <RotateCw size={16} /> <span className="hidden sm:inline">{t.rotateAllRight}</span><span className="sm:hidden">Right</span>
                     </button>
-                    <button onClick={resetRotations} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 transition-all text-sm font-medium text-gray-500">
-                      <RefreshCcw size={16} /> {t.resetRotations}
+                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-500 whitespace-nowrap min-h-[44px]">
+                      <RefreshCcw size={16} /> <span className="hidden sm:inline">{t.resetRotations}</span><span className="sm:hidden">Reset</span>
                     </button>
                   </div>
                 ) : (
@@ -485,7 +485,7 @@ function App() {
                 )}
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-4 w-full">
                 {Array.from({ length: pageCount }).map((_, idx) => (
                   <PdfPageThumbnail
                     key={idx}
@@ -515,15 +515,18 @@ function App() {
         </div>
 
         {/* Footer Action */}
-        <div className="p-4 border-t border-gray-100 bg-white">
+        <div
+          className="p-3 md:p-4 border-t border-gray-100 bg-white"
+          style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
+        >
           <button
             onClick={handleAction}
             disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
             className={`
-              w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2
+              w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
               ${((currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0)
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-canada-red hover:bg-canada-darkRed text-white shadow-red-500/30 hover:-translate-y-0.5'}
+                : 'bg-canada-red hover:bg-canada-darkRed text-white shadow-red-500/30 hover:-translate-y-0.5 animate-pulse-subtle'}
             `}
           >
             {currentTool === ToolType.DELETE && (
@@ -552,19 +555,19 @@ function App() {
     <div className="w-full max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-16">
 
       {/* Hero Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-12">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
         {/* Left Side: Copy */}
-        <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
+        <div className="w-full md:w-1/2 space-y-6 md:space-y-8 text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 border border-red-200 text-canada-red text-xs font-bold uppercase tracking-wider shadow-sm">
             <MapleLeaf className="w-4 h-4" />
             {t.builtIn}
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 drop-shadow-sm">
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 drop-shadow-sm">
             {t.title} <span className="text-canada-red">{t.subtitle}</span>
           </h1>
 
-          <p className="text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
+          <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
             {t.description}
           </p>
 
@@ -591,18 +594,18 @@ function App() {
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                   Select a Tool <span className="text-lg font-normal text-gray-400">eh?</span>
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
                   {tools.map(tool => (
                     <button
                       key={tool.id}
                       onClick={() => selectTool(tool.id)}
-                      className="flex flex-col items-start p-5 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 hover:-translate-y-1 transition-all text-left group"
+                      className="flex flex-col items-center md:items-start p-4 md:p-5 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 transition-all text-center md:text-left group"
                     >
-                      <div className="p-3 bg-red-50 text-canada-red rounded-xl mb-3 group-hover:bg-canada-red group-hover:text-white transition-colors">
-                        <tool.icon size={24} />
+                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-xl mb-2 md:mb-3 group-hover:bg-canada-red group-hover:text-white transition-colors">
+                        <tool.icon size={20} className="md:w-6 md:h-6" />
                       </div>
-                      <h3 className="font-bold text-gray-800">{tool.title}</h3>
-                      <p className="text-xs text-gray-500 mt-1">{tool.desc}</p>
+                      <h3 className="font-bold text-gray-800 text-sm md:text-base leading-tight">{tool.title}</h3>
+                      <p className="text-[10px] md:text-xs text-gray-500 mt-1 hidden md:block">{tool.desc}</p>
                     </button>
                   ))}
                 </div>
@@ -625,7 +628,7 @@ function App() {
 
             {/* --- PROCESSING --- */}
             {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8">
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
                 <div className="animate-spin text-canada-red mb-4">
                   <MapleLeaf className="w-12 h-12" />
                 </div>
@@ -636,7 +639,7 @@ function App() {
 
             {/* --- DONE --- */}
             {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                   <CheckCircle2 size={40} />
                 </div>
@@ -654,7 +657,7 @@ function App() {
             )}
 
             {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
                 <button onClick={handleReset} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                   <X size={24} />
                 </button>
