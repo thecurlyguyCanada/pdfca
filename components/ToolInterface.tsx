@@ -1,44 +1,31 @@
 import React, { useRef } from 'react';
-import { Trash2, PenTool, ScanLine, Move, RotateCw, RotateCcw, RefreshCcw, ZoomOut, ZoomIn, Image, BookOpen, FileText } from 'lucide-react';
-import { DndContext, closestCenter } from '@dnd-kit/core';
-import { SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
-
-import { ToolType } from '../utils/types';
-import { translations } from '../utils/i18n';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut } from 'lucide-react';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
-import { SortablePdfPageThumbnail } from './SortablePdfPageThumbnail';
-import { FileProcessor } from './FileProcessor';
+import { formatFileSize } from '../utils/pdfUtils';
+import { ToolType } from '../App';
 
-// We need to define the tool interface prop structure clearly
 interface ToolInterfaceProps {
     file: File | null;
     currentTool: ToolType;
-    t: typeof translations['en'];
-
-    // State
+    t: any;
     pageCount: number;
     pdfJsDoc: any;
-    items: number[];
+    tools: any[];
     selectedPages: Set<number>;
-    rotations: Record<number, number>;
+    rotations: { [key: number]: number };
     previewZoom: number;
-
-    // Actions
-    onFileSelect: (file: File) => void;
+    onFileSelect: () => void;
     onAction: () => void;
-    onSoftReset: () => void; // "X" button
-
-    togglePageSelection: (e: React.MouseEvent, pageIndex: number) => void;
+    onSoftReset: () => void;
+    togglePageSelection: (e: any, idx: number) => void;
     rotateAll: (direction: 'left' | 'right') => void;
     resetRotations: () => void;
-    setPreviewZoom: (zoom: number | ((prev: number) => number)) => void;
-
-    // DND
-    sensors: any;
-    handleDragEnd: (event: any) => void;
-
-    // Tool Config (from App usually)
-    tools: { id: ToolType; icon: any; title: string; desc: string; accept: string; }[];
+    setPreviewZoom: React.Dispatch<React.SetStateAction<number>>;
+    processFile: (file: File) => void;
+    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    pageRangeInput: string;
+    setPageRangeInput: (val: string) => void;
+    handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ToolInterface: React.FC<ToolInterfaceProps> = ({
@@ -47,7 +34,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     t,
     pageCount,
     pdfJsDoc,
-    items,
+    tools,
     selectedPages,
     rotations,
     previewZoom,
@@ -58,145 +45,195 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     rotateAll,
     resetRotations,
     setPreviewZoom,
-    sensors,
-    handleDragEnd,
-    tools
+    processFile,
+    handleFileChange,
+    pageRangeInput,
+    setPageRangeInput,
+    handleRangeInputChange
 }) => {
-    const currentToolConfig = tools.find(t => t.id === currentTool);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
-    // If no file, show the Upload Processor
     if (!file) {
+        const tool = tools.find(t => t.id === currentTool);
         return (
-            <FileProcessor
-                tool={currentToolConfig}
-                t={t}
-                onFileSelect={onFileSelect}
-            />
+            <div
+                className="flex-grow flex flex-col items-center justify-center p-6 md:p-10 text-center cursor-pointer hover:bg-gray-50 transition-colors group border-2 border-dashed border-transparent hover:border-canada-red/20 m-2 md:m-4 rounded-2xl md:rounded-3xl active:scale-[0.99]"
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                    e.preventDefault();
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                        processFile(e.dataTransfer.files[0]);
+                    }
+                }}
+                onClick={() => fileInputRef.current?.click()}
+            >
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                    {tool && <tool.icon size={28} className="md:w-8 md:h-8" />}
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">{tool?.title}</h3>
+                <p className="text-sm md:text-base text-gray-500 mb-2">{t.uploadDesc} ({tool?.accept})</p>
+
+                <div className="inline-flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 rounded-full text-xs font-medium text-gray-500 mb-6 md:mb-8">
+                    <Shield size={12} /> {t.processedLocally}
+                </div>
+
+                <button className="w-full max-w-xs bg-canada-red hover:bg-canada-darkRed text-white px-6 md:px-8 py-4 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 text-base min-h-[56px]">
+                    {t.selectFile}
+                </button>
+                <input
+                    type="file"
+                    accept={tool?.accept}
+                    className="hidden"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                />
+            </div>
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.ORGANIZE;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
 
-    // Determine Header Text
     let headerText = '';
     if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
-    else if (currentTool === ToolType.ROTATE) headerText = ''; // Custom toolbar
+    else if (currentTool === ToolType.ROTATE) headerText = '';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
-    else if (currentTool === ToolType.OCR) headerText = t.selectPagesForOcr;
-    else if (currentTool === ToolType.ORGANIZE) headerText = "Drag pages to reorder";
-
-    // Action Button Logic
-    const isActionDisabled = (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && selectedPages.size === 0;
 
     return (
-        <div className="flex flex-col h-[600px]">
+        <div className="flex flex-col h-[calc(100vh-120px)] md:h-auto md:min-h-[500px]">
             {/* Header */}
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
-                <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
-                        <FileText size={20} />
+            <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
+                <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+                    <div className="w-10 h-10 md:w-10 md:h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
+                        <FileText size={18} className="md:w-5 md:h-5" />
                     </div>
-                    <div className="min-w-0">
-                        <h3 className="font-bold text-gray-800 truncate max-w-[200px]">{file.name}</h3>
+                    <div className="min-w-0 flex-1">
+                        <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[180px] md:max-w-[200px]">{file.name}</h3>
                         <p className="text-xs text-gray-500 flex items-center gap-2">
-                            <span>{Math.round(file.size / 1024)} KB</span>
+                            <span>{file ? formatFileSize(file.size) : ''}</span>
                         </p>
                     </div>
                 </div>
-                <button onClick={onSoftReset} className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full transition-colors">
-                    <Trash2 size={20} /> {/* Using Trash/X as 'Remove File' icon */}
+                <button onClick={onSoftReset} className="text-gray-400 hover:text-gray-600 p-3 hover:bg-gray-100 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0">
+                    <X size={20} />
                 </button>
             </div>
 
             {/* Content */}
-            <div className="flex-grow overflow-y-auto p-6 bg-gray-50 custom-scrollbar flex flex-col items-center">
+            <div className="flex-grow overflow-auto p-4 md:p-6 bg-gray-50 custom-scrollbar flex flex-col items-start w-full">
 
                 {isVisualTool ? (
                     <>
-                        <div className="w-full mb-4 sticky top-0 bg-gray-50/95 backdrop-blur-sm z-10 py-2">
-                            {currentTool === ToolType.ROTATE || currentTool === ToolType.ORGANIZE ? (
-                                // Custom Toolbar for Rotate OR ORGANIZE
-                                <div className="flex flex-wrap items-center justify-center gap-3">
-                                    {currentTool === ToolType.ROTATE && (
-                                        <>
-                                            <button onClick={() => rotateAll('left')} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red transition-all text-sm font-medium text-gray-700">
-                                                <RotateCcw size={16} /> {t.rotateAllLeft}
-                                            </button>
-                                            <button onClick={() => rotateAll('right')} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red transition-all text-sm font-medium text-gray-700">
-                                                <RotateCw size={16} /> {t.rotateAllRight}
-                                            </button>
-                                            <button onClick={resetRotations} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 transition-all text-sm font-medium text-gray-500">
-                                                <RefreshCcw size={16} /> {t.resetRotations}
-                                            </button>
-                                            <div className="w-px h-6 bg-gray-300 mx-1"></div>
-                                        </>
-                                    )}
+                        <div className="w-full mb-4 z-10 py-2">
+                            {currentTool === ToolType.DELETE && (
+                                <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
+                                    <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
+                                        <Info size={18} className="mt-0.5 shrink-0" />
+                                        <p>{t.deletePagesInfo}</p>
+                                    </div>
 
-                                    <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-600" title="Zoom Out">
-                                        <ZoomOut size={16} />
-                                    </button>
-                                    <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-600" title="Zoom In">
-                                        <ZoomIn size={16} />
-                                    </button>
-                                </div>
-                            ) : (
-                                // Standard Header for Delete/Fillable/OCR
-                                <div className="flex justify-between items-center bg-white p-2 rounded-xl shadow-sm border border-gray-100">
-                                    <div className="flex items-center gap-3">
-                                        <p className="text-sm font-medium text-gray-600">
-                                            {headerText}
-                                        </p>
-                                        {(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
+                                    <div className="flex items-center justify-between mb-2 px-1">
+                                        <span className="font-medium text-gray-700">{t.totalPages}: {pageCount}</span>
+                                        {selectedPages.size > 0 && (
                                             <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
                                                 {selectedPages.size} {t.selected}
                                             </span>
                                         )}
                                     </div>
 
-                                    {/* Zoom Controls Shared */}
-                                    <div className="flex items-center gap-1 bg-gray-50 rounded-lg border border-gray-200 p-1">
-                                        <button onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.25))} className="p-1 hover:bg-white rounded transition-colors text-gray-500">
-                                            <ZoomOut size={14} />
-                                        </button>
-                                        <span className="text-xs font-mono w-8 text-center text-gray-400">{Math.round(previewZoom * 100)}%</span>
-                                        <button onClick={() => setPreviewZoom(z => Math.min(3, z + 0.25))} className="p-1 hover:bg-white rounded transition-colors text-gray-500">
-                                            <ZoomIn size={14} />
-                                        </button>
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-sm font-bold text-gray-700 px-1">{t.pagesToRemove}:</label>
+                                        <input
+                                            ref={pageRangeInputRef}
+                                            type="text"
+                                            inputMode="text"
+                                            autoComplete="off"
+                                            autoCorrect="off"
+                                            spellCheck="false"
+                                            value={pageRangeInput}
+                                            onChange={handleRangeInputChange}
+                                            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-canada-red focus:border-transparent outline-none transition-all shadow-sm text-base text-gray-800 placeholder-gray-400"
+                                            placeholder="e.g. 3-5, 8-9"
+                                        />
                                     </div>
+                                </div>
+                            )}
+
+                            {currentTool === ToolType.ROTATE && (
+                                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 backdrop-blur-sm pt-2">
+                                    <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                                        <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
+                                    </button>
+                                    <button onClick={() => rotateAll('right')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                                        <RotateCw size={16} /> <span className="hidden sm:inline">{t.rotateAllRight}</span><span className="sm:hidden">Right</span>
+                                    </button>
+                                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-500 whitespace-nowrap min-h-[44px]">
+                                        <RefreshCcw size={16} /> <span className="hidden sm:inline">{t.resetRotations}</span><span className="sm:hidden">Reset</span>
+                                    </button>
+                                </div>
+                            )}
+
+                            {currentTool === ToolType.MAKE_FILLABLE && (
+                                <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 backdrop-blur-sm py-2">
+                                    <p className="text-sm font-medium text-gray-600">
+                                        {headerText}
+                                    </p>
+                                    <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
+                                        {selectedPages.size} {t.selected}
+                                    </span>
                                 </div>
                             )}
                         </div>
 
-                        <div className="flex flex-wrap justify-center gap-4 w-full">
-                            {currentTool === ToolType.ORGANIZE ? (
-                                <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                                    <SortableContext items={items} strategy={rectSortingStrategy}>
-                                        {items.map((pageIndex) => (
-                                            <SortablePdfPageThumbnail
-                                                key={pageIndex}
-                                                id={pageIndex.toString()}
-                                                pdfJsDoc={pdfJsDoc}
-                                                pageIndex={pageIndex}
-                                                width={200 * previewZoom}
-                                            />
-                                        ))}
-                                    </SortableContext>
-                                </DndContext>
-                            ) : (
-                                Array.from({ length: pageCount }).map((_, idx) => (
-                                    <div key={idx} style={{ width: 'fit-content' }}>
-                                        <PdfPageThumbnail
-                                            pdfJsDoc={pdfJsDoc}
-                                            pageIndex={idx}
-                                            isSelected={selectedPages.has(idx)}
-                                            rotation={rotations[idx] || 0}
-                                            mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR ? 'delete' : 'rotate'} // 'delete' mode enables selection styling
-                                            onClick={(e) => togglePageSelection(e, idx)}
-                                            width={200 * previewZoom}
-                                        />
-                                    </div>
-                                ))
-                            )}
+                        {/* Global Utilities (Zoom) */}
+                        <div className="w-full flex justify-end px-2 mb-2">
+                            <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-1">
+                                <button
+                                    onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.1))}
+                                    disabled={previewZoom <= 0.5}
+                                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                    title="Zoom Out (Ctrl + -)"
+                                >
+                                    <ZoomOut size={16} />
+                                </button>
+                                <span className="text-xs font-mono w-10 text-center text-gray-500">{Math.round(previewZoom * 100)}%</span>
+                                <button
+                                    onClick={() => setPreviewZoom(z => Math.min(5.0, z + 0.1))}
+                                    disabled={previewZoom >= 5.0}
+                                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                    title="Zoom In (Ctrl + +)"
+                                >
+                                    <ZoomIn size={16} />
+                                </button>
+                                <div className="w-px h-4 bg-gray-200 mx-1"></div>
+                                <button
+                                    onClick={() => setPreviewZoom(1.0)}
+                                    className="text-[10px] font-bold px-2 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600"
+                                    title="Reset Zoom (Ctrl + 0)"
+                                >
+                                    100%
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            className="grid gap-4 transition-all duration-300"
+                            style={{
+                                gridTemplateColumns: `repeat(auto-fill, minmax(${200 * previewZoom}px, 1fr))`
+                            }}
+                        >
+                            {Array.from({ length: pageCount }).map((_, idx) => (
+                                <PdfPageThumbnail
+                                    key={idx}
+                                    pdfJsDoc={pdfJsDoc}
+                                    pageIndex={idx}
+                                    isSelected={selectedPages.has(idx)}
+                                    rotation={rotations[idx] || 0}
+                                    mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE ? 'delete' : 'rotate'}
+                                    onClick={(e) => togglePageSelection(e, idx)}
+                                    width={200 * previewZoom}
+                                />
+                            ))}
                         </div>
                     </>
                 ) : (
@@ -205,6 +242,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.HEIC_TO_PDF && <Image size={32} />}
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
+                            {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">
@@ -215,45 +253,22 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action */}
-            <div className="p-4 border-t border-gray-100 bg-white">
+            <div
+                className="p-3 md:p-4 border-t border-gray-100 bg-white"
+                style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
+            >
                 <button
                     onClick={onAction}
-                    disabled={isActionDisabled}
+                    disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
                     className={`
-            w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2
-            ${isActionDisabled
-                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                            : 'bg-canada-red hover:bg-canada-darkRed text-white shadow-red-500/30 hover:-translate-y-0.5'}
+            w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
+            ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
+                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
+                            : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30'
+                        }
           `}
                 >
-                    {currentTool === ToolType.DELETE && (
-                        <>
-                            <Trash2 size={20} />
-                            {selectedPages.size === 0 ? t.selectPagesHeader : `${t.btnRemove} ${selectedPages.size}`}
-                        </>
-                    )}
-                    {currentTool === ToolType.MAKE_FILLABLE && (
-                        <>
-                            <PenTool size={20} />
-                            {selectedPages.size === 0 ? t.selectPagesToFill : `${t.btnMakeFillable}`}
-                        </>
-                    )}
-                    {currentTool === ToolType.OCR && (
-                        <>
-                            <ScanLine size={20} />
-                            {selectedPages.size === 0 ? t.selectPagesForOcr : `${t.btnSearchablePdf}`}
-                        </>
-                    )}
-                    {currentTool === ToolType.ORGANIZE && (
-                        <>
-                            <Move size={20} />
-                            Save Organized PDF
-                        </>
-                    )}
-                    {currentTool === ToolType.ROTATE && <><RotateCw size={20} /> {t.btnRotate}</>}
-                    {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB) && (
-                        <>{t.btnConvert}</>
-                    )}
+                    {t.btnAction}
                 </button>
             </div>
         </div>
