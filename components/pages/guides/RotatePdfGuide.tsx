@@ -94,14 +94,16 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Pivoter un PDF en Ligne Gratuit | Redresser l'Orientation PDF | pdfcanada.ca",
-            desc: "Faites pivoter les pages PDF en ligne gratuitement. Apprenez à faire pivoter et à enregistrer l'orientation PDF de manière permanente."
+            desc: "Faites pivoter les pages PDF en ligne gratuitement. Apprenez à faire pivoter et à enregistrer l'orientation PDF de manière permanente sans perte de qualité."
         },
         h1: "Comment faire pivoter et enregistrer l'orientation d'un PDF en ligne gratuitement",
         subtitle: "Le guide simple pour redresser vos documents mal orientés de façon permanente.",
 
         intro: (
             <>
-                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Si vous cherchez à <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</button>, vous êtes au bon endroit.
+                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Ou pire, tout le document est à l'envers. Si vous cherchez à <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</button>, vous êtes au bon endroit.
+                <br /><br />
+                Contrairement à une visionneuse PDF standard où la rotation n'est que temporaire (elle se réinitialise à la fermeture du fichier), notre outil met à jour la structure du fichier afin que l'orientation soit fixée <strong>définitivement</strong> pour tous ceux qui l'ouvrent.
             </>
         ),
 
@@ -111,9 +113,45 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "3 étapes faciles pour redresser un PDF",
                 content: (
                     <>
-                        1. <strong>Sélectionnez</strong><br />
-                        2. <strong>Pivotez</strong><br />
-                        3. <strong>Enregistrez</strong>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Sélectionnez votre PDF</strong> : Téléchargez le fichier qui doit être corrigé. Notre <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</button> le traite instantanément.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Pivotez des pages individuelles</strong> : Cliquez sur les boutons de rotation des pages spécifiques, ou utilisez "Tout faire pivoter" si tout le document est de côté.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Enregistrez les modifications</strong> : Cliquez sur 'Traiter le PDF' et téléchargez votre document parfaitement aligné.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "why-rotate",
+                title: "Pourquoi la rotation est importante",
+                content: (
+                    <>
+                        Une orientation incorrecte n'est pas seulement un désagrément mineur ; cela peut être un handicap professionnel.
+                        <br /><br />
+                        <strong>Lisibilité</strong> : Les documents de côté sont impossibles à lire sur les appareils mobiles sans zoom constant.
+                        <br />
+                        <strong>Professionnalisme</strong> : Envoyer un contrat de côté à un client montre un manque d'attention aux détails.
+                    </>
+                )
+            },
+            {
+                id: "scenarios",
+                title: "Scénarios de rotation courants",
+                content: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-2 mt-4">
+                            <li><strong>Le scan mixte</strong> : Vous avez scanné une pile de papiers, mais un graphique en paysage a été scanné en portrait. Vous pouvez faire pivoter uniquement cette page.</li>
+                            <li><strong>Le mauvais sens</strong> : Vous avez chargé le papier dans le chargeur à l'envers. Utilisez "Tout faire pivoter 180°" pour corriger tout le lot en un clic.</li>
+                        </ul>
+                        <p className="mt-4">
+                            <em>Note : Si la page est floue ou illisible même après rotation, vous voudrez peut-être simplement <button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="text-canada-red hover:underline font-medium">la supprimer entièrement</button>.</em>
+                        </p>
                     </>
                 )
             }
@@ -121,14 +159,18 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         faq: [
             {
-                q: "Est-ce que ça réduit la qualité ?",
-                a: "Non, la qualité reste identique."
+                q: "Est-ce que cela réduit la qualité ?",
+                a: "Non. Notre outil met uniquement à jour les métadonnées d'orientation dans le PDF. La qualité de votre texte et de vos images reste identique."
+            },
+            {
+                q: "Puis-je faire pivoter une seule page ?",
+                a: "Oui ! Vous pouvez sélectionner des pages spécifiques à faire pivoter de 90°, 180° ou 270° sans affecter le reste du fichier."
             }
         ],
 
         ctaTitle: "Prêt à redresser votre PDF ?",
         ctaButton: "Pivoter le PDF",
-        ctaSubtext: "100% Gratuit."
+        ctaSubtext: "100% Gratuit. Pas de filigrane."
     }
 });
 

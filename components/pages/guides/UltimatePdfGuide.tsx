@@ -147,7 +147,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Guide Ultime 2025 des Outils PDF Gratuits | Édition Sécurisée | pdfcanada.ca",
-            desc: "Le guide définitif pour gérer vos PDF en ligne en 2025. Apprenez à supprimer des pages, pivoter, convertir HEIC et utiliser l'OCR gratuitement."
+            desc: "Le guide définitif pour gérer vos PDF en ligne en 2025. Apprenez à supprimer des pages, pivoter, convertir HEIC et utiliser l'OCR gratuitement sans logiciel."
         },
         h1: "Le Guide Ultime de la Gestion Moderne des PDF (Édition 2025)",
         subtitle: "Un plongeon complet dans l'édition, la conversion et la sécurisation de vos documents PDF sans logiciel coûteux.",
@@ -158,7 +158,105 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Introduction : Pourquoi le PDF domine toujours le monde",
                 content: (
                     <>
-                        Dans le paysage numérique d'aujourd'hui, le format PDF reste une pierre angulaire.
+                        Dans le paysage numérique d'aujourd'hui, le format PDF reste une pierre angulaire inébranlable. Créé par Adobe au début des années 90, le PDF a été conçu pour résoudre un problème critique : comment partager des documents qui apparaissent exactement de la même manière sur n'importe quel appareil.
+                        <br /><br />
+                        Aujourd'hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="text-canada-red hover:underline decoration-dashed">supprimer des pages</button>, signer des contrats et convertir des formats.
+                        <br /><br />
+                        Ce guide sert de phare à quiconque cherche à naviguer dans ces tâches sans tomber dans le "piège de l'abonnement". Nous explorerons comment la technologie moderne permet des <strong>outils PDF gratuits en ligne</strong> qui sont plus rapides et plus sécurisés que leurs ancêtres de bureau.
+                    </>
+                )
+            },
+            {
+                id: "privacy-revolution",
+                title: "La Révolution de la Confidentialité : Traitement Local",
+                content: (
+                    <>
+                        Pendant des années, utiliser un "éditeur PDF en ligne" signifiait télécharger vos fichiers privés sur le serveur d'un inconnu. Cela créait une vulnérabilité massive pour des documents sensibles comme les déclarations fiscales ou les dossiers médicaux.
+                        <br /><br />
+                        <strong>pdfcanada.ca</strong> est construit sur une philosophie "Local-First". Nous utilisons WebAssembly pour faire tourner le moteur PDF <em>à l'intérieur de votre navigateur</em>.
+                        <ul className="list-disc pl-5 mt-4 space-y-2">
+                            <li><strong>Zéro Téléchargement</strong> : Votre document ne quitte jamais votre RAM.</li>
+                            <li><strong>Isolation Physique</strong> : Même si nos serveurs disparaissaient, l'outil fonctionnerait toujours sur votre page chargée.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "deleting-pages",
+                title: "Efficacité 101 : Supprimer et Réorganiser des Pages",
+                content: (
+                    <>
+                        Que ce soit un rapport de 200 pages dont vous n'avez besoin que du résumé, ou un contrat scanné avec des pages fantômes, savoir comment <strong>supprimer des pages PDF</strong> est un gain de temps énorme.
+                        <br /><br />
+                        Notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</button> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
+                    </>
+                )
+            },
+            {
+                id: "rotation-fix",
+                title: "La Lutte du Scan : Maîtriser la Rotation PDF",
+                content: (
+                    <>
+                        Nous y avons tous été confrontés : vous ouvrez un PDF et il est de côté. Les visionneuses standard peuvent vous laisser faire pivoter la <em>vue</em>, mais elles vous laissent rarement enregistrer le changement.
+                        <br /><br />
+                        Utiliser un <button onClick={() => onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf')} className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</button> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
+                    </>
+                )
+            },
+            {
+                id: "conversion-magic",
+                title: "Magie de Conversion : HEIC, EPUB et Au-delà",
+                content: (
+                    <>
+                        Le monde des formats numériques est désordonné. Les iPhones utilisent HEIC, les Kindles veulent des EPUB, et les entreprises exigent des PDF.
+                        <br /><br />
+                        <strong>HEIC vers PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf')} className="text-canada-red hover:underline font-bold">Convertisseur HEIC</button> comble cette lacune en toute sécurité.
+                        <br /><br />
+                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-epub')} className="text-canada-red hover:underline">PDF en EPUB</button> permet au texte de se redistribuer confortablement sur votre liseuse.
+                    </>
+                )
+            },
+            {
+                id: "ocr-search",
+                title: "Débloquer le Texte : La Puissance de l'OCR",
+                content: (
+                    <>
+                        Un PDF scanné est souvent juste un "conteneur d'images". L'ordinateur voit des pixels, pas des mots.
+                        <br /><br />
+                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="text-canada-red hover:underline font-bold">Outil OCR PDF</button>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
+                    </>
+                )
+            },
+            {
+                id: "interactive-pdfs",
+                title: "Documents Interactifs : Formulaires Remplissables",
+                content: (
+                    <>
+                        Les documents statiques sont une relique. Si vous avez besoin qu'un client fournisse des infos, ne les faites pas imprimer et scanner.
+                        <br /><br />
+                        Apprendre à <button onClick={() => onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable')} className="text-canada-red hover:underline font-bold">créer des PDF remplissables</button> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
+                    </>
+                )
+            },
+            {
+                id: "canadian-identity",
+                title: "La Philosophie du 'Canadien Poli'",
+                content: (
+                    <>
+                        Pourquoi "pdfcanada.ca" ? Dans un monde de géants technologiques mondiaux, il y a de la valeur dans les services locaux de niche.
+                        <br /><br />
+                        Nous privilégions <strong>l'Utilité sur le Profit</strong> et la <strong>Confidentialité comme un Droit</strong>. En fournissant des outils PDF canadiens gratuits, nous visons à soutenir les étudiants et les petites entreprises qui veulent juste accomplir leurs tâches en toute sécurité.
+                    </>
+                )
+            },
+            {
+                id: "conclusion",
+                title: "Conclusion : Autonomiser Votre Espace de Travail Numérique",
+                content: (
+                    <>
+                        Maîtriser le PDF consiste à choisir des outils qui respectent votre temps et vos données.
+                        <br /><br />
+                        La puissance qui nécessitait auparavant une licence de 500 $ est maintenant disponible gratuitement dans votre navigateur. La prochaine fois que vous devez éditer un doc, rappelez-vous que la méthode sécurisée est juste ici, traitée localement sur votre propre machine.
                     </>
                 )
             }
@@ -167,8 +265,12 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faqTitle: "Questions Fréquentes sur les Outils PDF",
         faqs: [
             {
-                q: "Pourquoi choisir pdfcanada.ca ?",
-                a: "Parce que nous privilégions votre vie privée avec le traitement local."
+                q: "Qu'est-ce qui rend pdfcanada.ca différent ?",
+                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur."
+            },
+            {
+                q: "Y a-t-il une limite de taille de fichier ?",
+                a: "Puisque le traitement est effectué sur votre matériel, nous n'imposons pas de limites arbitraires de serveur. Vous pouvez traiter des fichiers plus volumineux que la plupart des outils cloud ne le permettent."
             }
         ],
 

@@ -155,17 +155,19 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Supprimer des Pages PDF Gratuit (Privé & Sécurisé) | pdfcanada.ca",
-            desc: "Le guide 2025 pour supprimer des pages de PDF. Apprenez à nettoyer vos documents en toute sécurité sur n'importe quel appareil."
+            title: "Supprimer des Pages PDF (Privé & Sécurisé) | pdfcanada.ca",
+            desc: "Le guide définitif 2025 pour supprimer des pages de PDF. Apprenez à nettoyer vos documents en toute sécurité sur n'importe quel appareil sans téléchargement."
         },
         h1: "Comment Supprimer des Pages d'un PDF : Le Guide Complet",
         subtitle: "La méthode simple pour retirer les pages indésirables, vierges ou sensibles de vos documents.",
 
         intro: (
             <>
-                Nous avons tous connu cette situation : vous scannez un contrat et réalisez que <strong>la page 3 est à l'envers</strong>. Ou peut-être avez-vous téléchargé un rapport de 50 pages, mais vous n'avez besoin que du résumé.
+                Nous avons tous connu cette situation : vous scannez un contrat et réalisez que <strong>la page 3 est à l'envers</strong>. Ou peut-être avez-vous téléchargé un rapport de 50 pages, mais vous n'avez besoin que du résumé exécutif pour votre équipe.
                 <br /><br />
-                Ce guide vous montrera exactement comment nettoyer vos documents en utilisant des <button onClick={() => onNavigate('HOME')} className="text-canada-red hover:underline font-medium">outils modernes et locaux</button> qui gardent vos données en sécurité.
+                Par le passé, résoudre ce problème nécessitait des logiciels coûteux comme Adobe Acrobat ou des outils en ligne risqués qui vous obligeaient à télécharger vos données privées sur un serveur distant. <strong>Cela change aujourd'hui.</strong>
+                <br /><br />
+                Ce guide vous montrera exactement comment nettoyer vos documents en utilisant des <button onClick={() => onNavigate('HOME')} className="text-canada-red hover:underline font-medium">outils modernes et locaux</button> qui gardent vos données en sécurité sur votre propre appareil.
             </>
         ),
 
@@ -176,19 +178,66 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Notre outil fonctionne comme une table lumineuse virtuelle.
+                            Supprimer des pages ne devrait pas être compliqué. Notre <strong>Outil de Suppression de Pages</strong> est conçu pour être intuitif, fonctionnant comme une table lumineuse où vous voyez tout d'un coup.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Sélectionnez votre fichier</strong> : Glissez votre PDF directement sur la fenêtre.
+                                <strong>Sélectionnez votre fichier</strong> : Glissez votre PDF directement sur la fenêtre. Grâce à notre <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</button>, le fichier s'ouvre instantanément.
                             </li>
                             <li className="pl-2">
-                                <strong>Identifiez les pages</strong> : Cliquez sur les miniatures des pages à supprimer. Elles deviendront rouges.
+                                <strong>Identifiez les coupables</strong> : Cliquez sur les miniatures des pages à supprimer. Elles deviendront rouges, indiquant qu'elles sont marquées pour la suppression.
                             </li>
                             <li className="pl-2">
-                                <strong>Téléchargez</strong> : Cliquez sur le bouton pour obtenir votre nouveau PDF propre.
+                                <strong>Téléchargez</strong> : Cliquez sur le bouton <strong>"Supprimer les pages sélectionnées"</strong> pour obtenir votre nouveau PDF propre immédiatement.
                             </li>
                         </ol>
+                        <p>
+                            <em><strong>Astuce Pro :</strong> Si vous sélectionnez accidentellement la mauvaise page, cliquez simplement dessus à nouveau pour la désélectionner.</em>
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "privacy-matters",
+                title: "Pourquoi le 'Sans Téléchargement' est Crucial",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Lorsque vous cherchez "supprimer pages pdf en ligne", la plupart des résultats exigent que vous téléchargiez votre document sur un serveur cloud. Pour un menu de cafétéria, c'est bien. Mais pour un <strong>contrat légal, une déclaration fiscale ou un dossier médical</strong> ? C'est un risque énorme.
+                        </p>
+                        <p className="mb-4">
+                            <strong>pdfcanada.ca</strong> est différent. Nous faisons tourner le moteur PDF <em>à l'intérieur de votre navigateur web</em>. Cela signifie :
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                            <li>Votre fichier <strong>ne quitte jamais votre ordinateur</strong>.</li>
+                            <li>Aucune copie temporaire n'est créée sur nos serveurs.</li>
+                            <li>Vous pouvez même couper votre Wi-Fi après le chargement de la page, et l'outil fonctionnera toujours parfaitement.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "scenarios",
+                title: "Scénarios Réels : Quand Supprimer ?",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Supprimer des pages n'est pas seulement pour corriger des erreurs. Voici des scénarios courants où cet outil excelle :
+                        </p>
+                        <div className="grid gap-4 mt-6">
+                            <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border-l-4 border-blue-500 shadow-sm">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Le "Scan Propre"</h4>
+                                <p className="text-sm">
+                                    Les scanneurs avalent souvent deux pages à la fois. Utilisez l'outil pour retirer chirurgicalement ces erreurs sans tout rescaner.
+                                </p>
+                            </div>
+                            <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border-l-4 border-green-500 shadow-sm">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Le Rapport Client</h4>
+                                <p className="text-sm">
+                                    Vous avez un document interne de 50 pages avec des données budgétaires. Supprimez les pages confidentielles avant de l'envoyer au client.
+                                </p>
+                            </div>
+                        </div>
                     </>
                 )
             },
@@ -201,7 +250,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                             L'édition de PDF sur mobile nécessitait auparavant des applications coûteuses. Avec notre outil web réactif, vous n'avez besoin de rien installer.
                         </p>
                         <p className="mb-4">
-                            Ouvrez simplement cette page sur Chrome ou Safari. L'interface s'adapte au tactile, vous permettant de <strong>toucher pour supprimer</strong> n'importe quelle page.
+                            Ouvrez simplement cette page sur Chrome ou Safari. L'interface s'adapte au tactile, vous permettant de <strong>toucher pour supprimer</strong> n'importe quelle page indésirable.
                         </p>
                     </>
                 )
@@ -211,13 +260,17 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faq: [
             {
                 q: "Est-ce que cela supprime définitivement les pages ?",
-                a: "Oui. Le nouveau fichier que vous téléchargez ne contient plus les données des pages supprimées. Cependant, votre fichier original reste intact sur votre ordinateur."
+                a: "Oui et non. Le nouveau fichier que vous téléchargez a les pages complètement retirées. Cependant, votre fichier original sur votre ordinateur reste intact. Nous créons toujours une nouvelle copie."
+            },
+            {
+                q: "Puis-je annuler une suppression ?",
+                a: "Comme l'outil fonctionne localement, rafraîchissez simplement la page pour recommencer avec votre fichier original."
             },
             {
                 q: "Je dois réorganiser les pages, pas seulement les supprimer.",
                 a: (
                     <>
-                        Pour réorganiser l'ordre des pages, utilisez notre <button onClick={() => onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf')} className="text-canada-red hover:underline font-bold">Outil Organiser PDF</button>.
+                        Pour réorganiser l'ordre des pages (comme déplacer une annexe au début), utilisez notre <button onClick={() => onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf')} className="text-canada-red hover:underline font-bold">Outil Organiser PDF</button>.
                     </>
                 )
             }
@@ -230,7 +283,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         supportingSections: [
             {
                 title: "Une note sur les numéros de page",
-                content: "Rappelez-vous : quand vous supprimez des pages, le nombre total change, mais les numéros imprimés (comme 'Page 5 sur 10') resteront les mêmes."
+                content: "Rappelez-vous : quand vous supprimez des pages, le nombre total change, mais les numéros imprimés (comme 'Page 5 sur 10') resteront les mêmes sur le papier."
             }
         ]
     }
