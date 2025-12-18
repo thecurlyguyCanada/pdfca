@@ -9,7 +9,7 @@ interface GuideProps {
     onNavigate: (view: any, path?: string) => void;
 }
 
-const guideContent = {
+const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "Rotate PDF Online Free | Flip & Save PDF Orientation Permanently | pdfcanada.ca",
@@ -18,27 +18,61 @@ const guideContent = {
         h1: "How to Rotate and Save PDF Orientation Online for Free",
         subtitle: "The simple guide to fixing incorrectly oriented documents permanently.",
 
-        intro: "We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to **rotate PDF online free**, you've come to the right place. Unlike a standard PDF viewer where rotation is only temporary, our tool updates the file structure so the orientation is fixed permanently for everyone who opens it.",
+        intro: (
+            <>
+                We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">rotate PDF online free</button>, you've come to the right place.
+                <br /><br />
+                Unlike a standard PDF viewer where rotation is only temporary (it resets when you close the file), our tool updates the file structure so the orientation is fixed <strong>permanently</strong> for everyone who opens it.
+            </>
+        ),
 
         sections: [
             {
-                id: "why-rotate",
-                title: "Why Rotation Matters",
-                content: `Incorrect orientation isn't just a minor annoyance; it can be a professional liability. 
-- **Readability**: Sideways documents are impossible to read on mobile devices without constant zooming and panning.
-- **Professionalism**: Sending a sideways contract to a client shows a lack of attention to detail.
-- **Printing**: Saves paper and ink by ensuring the document matches the printer's output settings.
-
-Using a **permanent PDF rotation tool** ensures your document looks exactly as intended, every time.`
-            },
-            {
                 id: "how-to",
                 title: "3 Easy Steps to Fix PDF Orientation",
-                content: `1. **Select Your PDF**: Upload the file that needs fixing.
-2. **Rotate Individual Pages**: Click the 'Rotate' button on specific pages or use 'Rotate All' to fix the whole document.
-3. **Save Changes**: Click 'Process PDF' and download your perfectly aligned document.
-
-This is the most **secure PDF rotator** because the processing happens entirely on your machine.`
+                content: (
+                    <>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Select Your PDF</strong>: Upload the file that needs fixing. Our <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</button> processes it instantly.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Rotate Individual Pages</strong>: Click the rotate buttons on specific pages, or use "Rotate All" if the whole document is sideways.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Save Changes</strong>: Click 'Process PDF' and download your perfectly aligned document.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "why-rotate",
+                title: "Why Rotation Matters",
+                content: (
+                    <>
+                        Incorrect orientation isn't just a minor annoyance; it can be a professional liability.
+                        <br /><br />
+                        <strong>Readability</strong>: Sideways documents are impossible to read on mobile devices without constant zooming.
+                        <br />
+                        <strong>Professionalism</strong>: Sending a sideways contract to a client shows a lack of attention to detail.
+                    </>
+                )
+            },
+            {
+                id: "scenarios",
+                title: "Common Rotation Scenarios",
+                content: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-2 mt-4">
+                            <li><strong>The Mixed Scan</strong>: You scanned a stack of papers, but one landscape chart got scanned as portrait. You can rotate just that single page.</li>
+                            <li><strong>The Wrong Way Up</strong>: You loaded the paper into the feeder upside down. Use "Rotate All 180°" to fix the entire batch in one click.</li>
+                        </ul>
+                        <p className="mt-4">
+                            <em>Note: If the page is blurry or unreadable even after rotation, you might just want to <button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="text-canada-red hover:underline font-medium">delete it entirely</button>.</em>
+                        </p>
+                    </>
+                )
             }
         ],
 
@@ -65,13 +99,23 @@ This is the most **secure PDF rotator** because the processing happens entirely 
         h1: "Comment faire pivoter et enregistrer l'orientation d'un PDF en ligne gratuitement",
         subtitle: "Le guide simple pour redresser vos documents mal orientés de façon permanente.",
 
-        intro: "Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Si vous cherchez à **pivoter un PDF en ligne**, vous êtes au bon endroit.",
+        intro: (
+            <>
+                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Si vous cherchez à <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</button>, vous êtes au bon endroit.
+            </>
+        ),
 
         sections: [
             {
                 id: "how-to",
                 title: "3 étapes faciles pour redresser un PDF",
-                content: `1. **Sélectionnez**\n2. **Pivotez**\n3. **Enregistrez**`
+                content: (
+                    <>
+                        1. <strong>Sélectionnez</strong><br />
+                        2. <strong>Pivotez</strong><br />
+                        3. <strong>Enregistrez</strong>
+                    </>
+                )
             }
         ],
 
@@ -86,9 +130,10 @@ This is the most **secure PDF rotator** because the processing happens entirely 
         ctaButton: "Pivoter le PDF",
         ctaSubtext: "100% Gratuit."
     }
-};
+});
 
 export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
+    const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
     return (
@@ -119,10 +164,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         {t.intro}
                     </p>
 
-                    {t.sections && t.sections.map((section) => (
+                    {t.sections && t.sections.map((section: any) => (
                         <section key={section.id}>
                             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{section.title}</h2>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 whitespace-pre-line">
+                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                                 {section.content}
                             </div>
                         </section>
