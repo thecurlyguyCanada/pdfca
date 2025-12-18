@@ -48,16 +48,16 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                <div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-4">Resources</h4>
                   <ul className="space-y-1 text-sm">
-                     <li><button onClick={() => onNavigate('GUIDE_ULTIMATE')} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_DELETE_PAGES')} className="hover:text-canada-red transition-colors focus:outline-none">Delete Pages Guide</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_ROTATE')} className="hover:text-canada-red transition-colors focus:outline-none">Rotate PDF Guide</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_FILLABLE')} className="hover:text-canada-red transition-colors focus:outline-none">Fillable Forms Guide</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF')} className="hover:text-canada-red transition-colors focus:outline-none">HEIC to PDF Guide</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_OCR')} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
-                     <li><button onClick={() => onNavigate('GUIDE_ORGANIZE')} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
-                     <li><button onClick={() => onNavigate('HOW_TO')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
-                     <li><button onClick={() => onNavigate('SUPPORT')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</button></li>
-                     <li><button onClick={() => onNavigate('SORRY')} className="hover:text-canada-red transition-colors focus:outline-none">{t.sorryPolicy}</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="hover:text-canada-red transition-colors focus:outline-none">Delete Pages Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Rotate PDF Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable')} className="hover:text-canada-red transition-colors focus:outline-none">Fillable Forms Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">HEIC to PDF Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
+                     <li><button onClick={() => onNavigate('HOW_TO', '/howto')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
+                     <li><button onClick={() => onNavigate('SUPPORT', '/support')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</button></li>
+                     <li><button onClick={() => onNavigate('SORRY', '/sorry')} className="hover:text-canada-red transition-colors focus:outline-none">{t.sorryPolicy}</button></li>
                   </ul>
                </div>
 

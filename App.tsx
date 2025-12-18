@@ -8,6 +8,17 @@ import { PdfPageThumbnail } from './components/PdfPageThumbnail';
 import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
+import {
+  UltimatePdfGuide,
+  DeletePdfPagesGuide,
+  RotatePdfGuide,
+  OcrPdfGuide,
+  HeicToPdfGuide,
+  EpubToPdfGuide,
+  PdfToEpubGuide,
+  OrganizePdfGuide,
+  MakeFillableGuide
+} from './components/Guides';
 
 enum AppState {
   HOME,
@@ -17,7 +28,8 @@ enum AppState {
   ERROR
 }
 
-type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE';
+type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
+  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE';
 
 enum ToolType {
   DELETE = 'DELETE',
@@ -98,6 +110,15 @@ function App() {
     else if (path === '/support') setView('SUPPORT');
     else if (path === '/how-to-make-a-pdf-fillable') setView('MAKE_FILLABLE_INFO');
     else if (path === '/sorry') setView('SORRY');
+    else if (path === '/guides/ultimate-pdf-guide') setView('GUIDE_ULTIMATE');
+    else if (path === '/guides/delete-pdf-pages') setView('GUIDE_DELETE_PAGES');
+    else if (path === '/guides/rotate-pdf') setView('GUIDE_ROTATE');
+    else if (path === '/guides/ocr-pdf') setView('GUIDE_OCR');
+    else if (path === '/guides/heic-to-pdf') setView('GUIDE_HEIC_TO_PDF');
+    else if (path === '/guides/epub-to-pdf') setView('GUIDE_EPUB_TO_PDF');
+    else if (path === '/guides/pdf-to-epub') setView('GUIDE_PDF_TO_EPUB');
+    else if (path === '/guides/organize-pdf') setView('GUIDE_ORGANIZE');
+    else if (path === '/guides/make-pdf-fillable') setView('GUIDE_FILLABLE');
     else {
       // Default to Home if root or unknown
       setView('HOME');
@@ -803,6 +824,17 @@ function App() {
         {view === 'HOW_TO' && <HowToPage lang={lang} />}
         {view === 'SUPPORT' && <SupportLocalPage lang={lang} />}
         {view === 'MAKE_FILLABLE_INFO' && <MakePdfFillablePage lang={lang} />}
+
+        {/* Guides */}
+        {view === 'GUIDE_ULTIMATE' && <UltimatePdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_DELETE_PAGES' && <DeletePdfPagesGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_ROTATE' && <RotatePdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_OCR' && <OcrPdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_HEIC_TO_PDF' && <HeicToPdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_EPUB_TO_PDF' && <EpubToPdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_PDF_TO_EPUB' && <PdfToEpubGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_ORGANIZE' && <OrganizePdfGuide lang={lang} onNavigate={handleNavigation} />}
+        {view === 'GUIDE_FILLABLE' && <MakeFillableGuide lang={lang} onNavigate={handleNavigation} />}
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />
