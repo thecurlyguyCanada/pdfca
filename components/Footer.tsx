@@ -33,7 +33,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
                {/* Column 2: Tools */}
                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-4">Tools</h4>
+                  <p className="font-bold text-gray-900 dark:text-white mb-4">Tools</p>
                   <ul className="space-y-2 text-sm">
                      <li><button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolDelete}</button></li>
                      <li><button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolRotate}</button></li>
@@ -47,7 +47,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
                {/* Column 3: Company */}
                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-4">Resources</h4>
+                  <p className="font-bold text-gray-900 dark:text-white mb-4">Resources</p>
                   <ul className="space-y-1 text-sm">
                      <li><button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="hover:text-canada-red transition-colors focus:outline-none">Delete Pages Guide</button></li>

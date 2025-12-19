@@ -1,12 +1,7 @@
-import { PDFDocument, degrees, StandardFonts, rgb } from 'pdf-lib';
-import * as _pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
-// @ts-ignore
-const pdfjsLib = (typeof window !== 'undefined' && window.pdfjsLib) || _pdfjsLib.default || _pdfjsLib;
-// @ts-ignore
-import type { PDFDocumentProxy } from 'pdfjs-dist';
-import JSZip from 'jszip';
-import heic2any from 'heic2any';
+// Dynamic imports for heavy libraries - only loaded when needed
+// This prevents loading ~2MB of JS on the landing page
 
+let pdfjsLib: any = null;
 let workerInitialized = false;
 
 export interface FormField {
@@ -24,10 +19,38 @@ export interface FormField {
   value?: string | boolean;
 }
 
-export const initPdfWorker = () => {
+// Lazy load PDF.js
+const getPdfJs = async () => {
+  if (!pdfjsLib) {
+    const pdfjs = await import('pdfjs-dist/legacy/build/pdf');
+    pdfjsLib = pdfjs.default || pdfjs;
+  }
+  return pdfjsLib;
+};
+
+// Lazy load pdf-lib
+const getPdfLib = async () => {
+  const pdfLib = await import('pdf-lib');
+  return pdfLib;
+};
+
+// Lazy load JSZip
+const getJSZip = async () => {
+  const JSZip = await import('jszip');
+  return JSZip.default;
+};
+
+// Lazy load heic2any
+const getHeic2Any = async () => {
+  const heic2any = await import('heic2any');
+  return heic2any.default;
+};
+
+export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
-    if (pdfjsLib.GlobalWorkerOptions) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+    const pdfjs = await getPdfJs();
+    if (pdfjs.GlobalWorkerOptions) {
+      pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
       workerInitialized = true;
     }
   }
@@ -35,10 +58,11 @@ export const initPdfWorker = () => {
 
 export const getPdfJsDocument = async (file: File) => {
   try {
-    initPdfWorker();
+    await initPdfWorker();
+    const pdfjs = await getPdfJs();
     const arrayBuffer = await file.arrayBuffer();
 
-    const loadingTask = pdfjsLib.getDocument({
+    const loadingTask = pdfjs.getDocument({
       data: new Uint8Array(arrayBuffer),
       cMapUrl: '/cmaps/',
       cMapPacked: true,
@@ -47,19 +71,19 @@ export const getPdfJsDocument = async (file: File) => {
 
     return loadingTask.promise;
   } catch (error) {
-    // Re-throw raw error for App.tsx to analyze (e.g. PasswordException)
     throw error;
   }
 };
 
-export const loadPdfDocument = async (file: File): Promise<{ doc: PDFDocument; pageCount: number }> => {
+export const loadPdfDocument = async (file: File): Promise<{ doc: any; pageCount: number }> => {
+  const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await file.arrayBuffer();
-  // PDFDocument.load will throw if encrypted or corrupt
   const doc = await PDFDocument.load(arrayBuffer);
   return { doc, pageCount: doc.getPageCount() };
 };
 
 export const deletePagesFromPdf = async (originalFile: File, pageIndicesToDelete: number[]): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
 
@@ -75,6 +99,7 @@ export const deletePagesFromPdf = async (originalFile: File, pageIndicesToDelete
 };
 
 export const rotatePdfPages = async (originalFile: File, rotations: Record<number, number>): Promise<Uint8Array> => {
+  const { PDFDocument, degrees } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
   const pages = doc.getPages();
@@ -91,15 +116,15 @@ export const rotatePdfPages = async (originalFile: File, rotations: Record<numbe
 };
 
 export const makePdfFillable = async (originalFile: File, pageIndicesToFill: number[], existingPdfJsDoc?: any): Promise<Uint8Array> => {
-  // Initialize worker for text analysis
-  initPdfWorker();
+  await initPdfWorker();
+  const { PDFDocument, rgb } = await getPdfLib();
+  const pdfjs = await getPdfJs();
 
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
   const form = doc.getForm();
 
-  // Load PDF.js document for text analysis if not provided
-  const pdfJsDoc = existingPdfJsDoc || await pdfjsLib.getDocument({
+  const pdfJsDoc = existingPdfJsDoc || await pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
     cMapUrl: '/cmaps/',
     cMapPacked: true,
@@ -114,43 +139,37 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
     const pdfLibPage = doc.getPage(pageIndex);
     const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
 
-    // Analyze page text to find underscores ____ or brackets [ ]
     let pageHasFields = false;
 
     try {
-      const pdfJsPage = await pdfJsDoc.getPage(pageIndex + 1); // PDF.js is 1-based
+      const pdfJsPage = await pdfJsDoc.getPage(pageIndex + 1);
       const textContent = await pdfJsPage.getTextContent();
 
       for (const item of textContent.items as any[]) {
         const str = item?.str || '';
         if (!str) continue;
 
-        // Heuristic 1: Lines/Underscores (_____)
-        // Looks for 3 or more underscores
         if (/__{3,}/.test(str)) {
           if (!item.transform) continue;
           const tx = item.transform[4];
           const ty = item.transform[5];
           const w = item.width || 0;
-          // Use transform[3] (scaleY) as proxy for font height if height is missing
           const h = item.height || item.transform[3] || 12;
 
           const fieldName = `txt_${pageIndex}_${fieldCount++}`;
           const textField = form.createTextField(fieldName);
 
-          // Align the text field over the underscores
           textField.addToPage(pdfLibPage, {
             x: tx,
-            y: ty - 2, // Slight adjustment to cover baseline
+            y: ty - 2,
             width: w,
-            height: h + 4, // Slightly taller for comfort
+            height: h + 4,
             borderColor: rgb(0.9, 0.9, 0.9),
-            borderWidth: 0, // No border, just fill over
+            borderWidth: 0,
           });
 
           pageHasFields = true;
         }
-        // Heuristic 2: Checkboxes ([ ] or [x] or similar)
         else if (/\[\s*\]/.test(str) || /☐/.test(str)) {
           if (!item.transform) continue;
           const tx = item.transform[4];
@@ -174,7 +193,6 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
       console.warn(`Smart detection failed for page ${pageIndex}, falling back to manual mode.`, e);
     }
 
-    // Fallback: If no smart fields detected on this page, add the "General Notes" field
     if (!pageHasFields) {
       const margin = 50;
       const textField = form.createTextField(`notes_${pageIndex}_${timestamp}`);
@@ -185,11 +203,10 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
         width: pageWidth - (margin * 2),
         height: pageHeight - (margin * 2),
         borderWidth: 1,
-        borderColor: rgb(0.8, 0.8, 0.8), // Light gray border
+        borderColor: rgb(0.8, 0.8, 0.8),
       });
 
       textField.enableMultiline();
-      // Polite placeholder
       textField.setText("Enter your notes here...");
     }
   }
@@ -198,7 +215,9 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
 };
 
 export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
-  // Convert HEIC to JPEG blob
+  const { PDFDocument } = await getPdfLib();
+  const heic2any = await getHeic2Any();
+
   const convertedBlobOrBlobs = await heic2any({
     blob: file,
     toType: "image/jpeg",
@@ -225,9 +244,12 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
 };
 
 export const convertPdfToEpub = async (file: File): Promise<Blob> => {
-  initPdfWorker();
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const JSZip = await getJSZip();
+
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
   const escapeHtml = (unsafe: string) => {
     return unsafe
@@ -249,7 +271,6 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   }
 
   const zip = new JSZip();
-  // EPUB requirement: mimetype must be first and uncompressed
   zip.file("mimetype", "application/epub+zip", { compression: "STORE" });
 
   zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?>
@@ -298,6 +319,9 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
 };
 
 export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument, StandardFonts } = await getPdfLib();
+  const JSZip = await getJSZip();
+
   const zip = new JSZip();
   const content = await zip.loadAsync(file);
 
@@ -315,13 +339,11 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   for (const path of htmlFiles) {
     const html = await content.file(path)?.async("string");
     if (html) {
-      // Robust tag stripping: Remove script, style, and head content entirely
       let cleanHtml = html
         .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "")
         .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gim, "")
         .replace(/<head\b[^>]*>([\s\S]*?)<\/head>/gim, "");
 
-      // Strip remaining tags but preserve basic breaks
       const text = cleanHtml
         .replace(/<br\s*\/?>/gi, "\n")
         .replace(/<\/p>/gi, "\n\n")
@@ -347,13 +369,12 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   const { width: pageWidth, height: pageHeight } = page.getSize();
   let y = pageHeight - margin;
 
-  // Process by paragraph to preserve structure
   const paragraphs = textContent.split('\n');
 
   for (const paragraph of paragraphs) {
     const trimmedPara = paragraph.trim();
     if (!trimmedPara) {
-      y -= (fontSize + 2); // Small gap for "empty" lines
+      y -= (fontSize + 2);
       continue;
     }
 
@@ -403,6 +424,9 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
 };
 
 export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+  const JSZip = await getJSZip();
+
   const fileName = file.name.toLowerCase();
   const isZip = fileName.endsWith('.cbz') || fileName.endsWith('.zip');
   const arrayBuffer = await file.arrayBuffer();
@@ -426,8 +450,6 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
       if (data) images.push({ data, name });
     }
   } else {
-    // For CBR (RAR), we use unrar-js
-    // We need to import it dynamically or ensure it's available
     try {
       // @ts-ignore
       const { createExtractorFromData } = await import('unrar-js');
@@ -460,8 +482,6 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
       } else if (/\.png$/i.test(img.name)) {
         embeddedImg = await doc.embedPng(img.data);
       } else {
-        // For webp or others, pdf-lib doesn't support directly easily without canvas conversion
-        // But many CBRs are jpg/png. We'll skip unsupported for now or try to catch
         continue;
       }
 
@@ -482,10 +502,5 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
   return await doc.save();
 };
 
-export const formatFileSize = (bytes: number): string => {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-};
+// Re-export formatFileSize from lightweight utils for backward compatibility
+export { formatFileSize } from './formatUtils';
