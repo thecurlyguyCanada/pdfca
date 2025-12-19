@@ -36,6 +36,9 @@ export default defineConfig({
     target: 'esnext',
     // Generate source maps for error tracking but don't expose them publicly
     sourcemap: 'hidden',
+    // Disable modulepreload - Chrome downloads preloaded JS before CSS, delaying first paint
+    // Since we have critical CSS inline, this helps prioritize visual content
+    modulePreload: false,
     // Improve minification
     minify: 'terser',
     terserOptions: {

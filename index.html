@@ -161,12 +161,38 @@
       padding: 1rem;
       box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
     }
+
+    /* Static shell - provides instant FCP, hidden when React mounts */
+    .static-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .static-shell-content {
+      max-width: 42rem;
+    }
   </style>
 
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static HTML shell for instant FCP - React replaces this on mount -->
+    <div class="static-shell">
+      <div class="static-shell-content">
+        <div class="hero-badge" style="margin-bottom:1.5rem">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z"/></svg>
+          BUILT IN CANADA
+        </div>
+        <h1 class="hero-title">The Polite PDF Tools <span class="hero-title-accent">Free, Secure, Canadian.</span></h1>
+        <p class="hero-desc" style="margin-top:1.5rem">We help you manage your documents without the fuss. Select a tool below, eh?</p>
+      </div>
+    </div>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
