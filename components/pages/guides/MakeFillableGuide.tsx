@@ -144,6 +144,41 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
+    const schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": t.h1,
+            "description": t.seo.desc,
+            "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Upload File", "text": "Select the PDF you want to make interactive." },
+                { "@type": "HowToStep", "position": 2, "name": "Add Fields", "text": "Drag and drop text fields and checkboxes onto the document." },
+                { "@type": "HowToStep", "position": 3, "name": "Save and Share", "text": "Click Process PDF to download your interactive version." }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-05-15",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
+        }
+    ];
+
     return (
         <>
             <SEO
@@ -151,6 +186,7 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
                 description={t.seo.desc}
                 canonicalPath="/guides/make-pdf-fillable"
                 lang={lang}
+                schema={schema}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },

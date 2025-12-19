@@ -294,6 +294,27 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                     "text": item.a
                 }
             }))
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-06-01",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
         }
     ];
 

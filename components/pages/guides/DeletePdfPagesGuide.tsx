@@ -304,6 +304,27 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                 { "@type": "HowToStep", "position": 2, "name": "Select Pages", "text": "Identify and click the pages you want to remove." },
                 { "@type": "HowToStep", "position": 3, "name": "Remove and Download", "text": "Finalize the deletion and download the new file." }
             ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-02-01",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
         }
     ];
 

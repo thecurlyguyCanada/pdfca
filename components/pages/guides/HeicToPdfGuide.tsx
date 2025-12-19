@@ -132,6 +132,41 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
+    const schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": t.h1,
+            "description": t.seo.desc,
+            "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Select Photos", "text": "Choose your HEIC images from your device." },
+                { "@type": "HowToStep", "position": 2, "name": "Arrange Order", "text": "Optionally arrange the order of multiple images." },
+                { "@type": "HowToStep", "position": 3, "name": "Convert and Save", "text": "Click Convert to PDF and download your file." }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-03-01",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
+        }
+    ];
+
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
@@ -139,6 +174,7 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 description={t.seo.desc}
                 canonicalPath="/guides/heic-to-pdf"
                 lang={lang}
+                schema={schema}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
