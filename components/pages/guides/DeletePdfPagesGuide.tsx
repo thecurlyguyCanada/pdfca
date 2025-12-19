@@ -68,7 +68,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
                             <li>Your file <strong>never leaves your computer</strong>.</li>
                             <li>No temporary copies are created on our servers.</li>
-                            <li>You can even turn off your Wi-Fi after the page loads, and the tool will still work perfecty.</li>
+                            <li>You can even turn off your Wi-Fi after the page loads, and the tool will still work perfectly.</li>
                         </ul>
                         <p>
                             This is the gold standard for <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline font-medium">secure document management</button> in 2025.

@@ -57,6 +57,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><button onClick={() => onNavigate('GUIDE_EPUB_TO_PDF', '/guides/epub-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">EPUB to PDF Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_PDF_TO_EPUB', '/guides/pdf-to-epub')} className="hover:text-canada-red transition-colors focus:outline-none">PDF to EPUB Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_CBR_TO_PDF', '/guides/cbr-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">CBR to PDF Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_EMAIL_TO_PDF', '/guides/email-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Email to PDF Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
                      <li><button onClick={() => onNavigate('HOW_TO', '/howto')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
