@@ -277,6 +277,19 @@ function App() {
       setAppState(AppState.HOME);
       setCurrentTool(null);
       safePushState({}, '', `${prefix}/`);
+    } else if (newView === 'TOOL_PAGE' && path) {
+      // Handle tool page navigation - need to set currentTool and appState
+      const toolPath = path.startsWith('/') ? path : `/${path}`;
+      const tool = tools.find(t => t.path === toolPath);
+      if (tool) {
+        setCurrentTool(tool.id);
+        setFile(null);
+        setAppState(AppState.SELECTING);
+        setSelectedPages(new Set());
+        setRotations({});
+        setPageRangeInput('');
+      }
+      safePushState({}, '', `${prefix}${toolPath}`);
     } else if (path) {
       const finalPath = path.startsWith('/') ? path : `/${path}`;
       safePushState({}, '', `${prefix}${finalPath}`);

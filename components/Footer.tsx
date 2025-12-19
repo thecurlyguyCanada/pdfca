@@ -41,6 +41,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><button onClick={() => onNavigate('TOOL_PAGE', '/heic-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolHeic}</button></li>
                      <li><button onClick={() => onNavigate('TOOL_PAGE', '/epub-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolEpubToPdf}</button></li>
                      <li><button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-epub')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfToEpub}</button></li>
+                     <li><button onClick={() => onNavigate('TOOL_PAGE', '/cbr-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">CBR to PDF</button></li>
                   </ul>
                </div>
 
@@ -53,6 +54,9 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><button onClick={() => onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Rotate PDF Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable')} className="hover:text-canada-red transition-colors focus:outline-none">Fillable Forms Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">HEIC to PDF Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_EPUB_TO_PDF', '/guides/epub-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">EPUB to PDF Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_PDF_TO_EPUB', '/guides/pdf-to-epub')} className="hover:text-canada-red transition-colors focus:outline-none">PDF to EPUB Guide</button></li>
+                     <li><button onClick={() => onNavigate('GUIDE_CBR_TO_PDF', '/guides/cbr-to-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">CBR to PDF Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
                      <li><button onClick={() => onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf')} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
                      <li><button onClick={() => onNavigate('HOW_TO', '/howto')} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
