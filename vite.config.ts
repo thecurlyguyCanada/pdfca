@@ -11,12 +11,12 @@ function asyncCssPlugin(): Plugin {
     name: 'async-css',
     enforce: 'post',
     transformIndexHtml(html) {
-      // Transform CSS link tags to load asynchronously
-      // Pattern: <link rel="stylesheet" href="...">
+      // Only transform Vite-generated CSS links (in /assets/)
+      // Don't touch external CSS or links inside noscript tags
       return html.replace(
-        /<link rel="stylesheet"([^>]*) href="([^"]+)"([^>]*)>/gi,
+        /<link rel="stylesheet"([^>]*) href="(\/assets\/[^"]+\.css)"([^>]*)>/gi,
         (match, before, href, after) => {
-          // Skip if already has media attribute or is a preload
+          // Skip if already has media attribute
           if (before.includes('media=') || after.includes('media=')) {
             return match;
           }
