@@ -177,7 +177,7 @@ export const SEO: React.FC<SEOProps> = ({
         "Rotate PDF",
         "Merge PDF",
         "Compress PDF",
-        "Ultiimate Guide"
+        "Ultimate Guide"
       ],
       "url": [
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/delete-pdf-pages`,

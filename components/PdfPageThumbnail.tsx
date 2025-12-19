@@ -229,5 +229,6 @@ export const PdfPageThumbnail = React.memo(PdfPageThumbnailComponent, (prevProps
     prevProps.rotation === nextProps.rotation &&
     prevProps.pdfJsDoc === nextProps.pdfJsDoc &&
     prevProps.mode === nextProps.mode &&
-    prevProps.width === nextProps.width;
+    prevProps.width === nextProps.width &&
+    prevProps.onClick === nextProps.onClick;
 });

@@ -210,6 +210,15 @@ function App() {
     };
   }, []);
 
+  // Cleanup ObjectURL on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (downloadUrl) {
+        URL.revokeObjectURL(downloadUrl);
+      }
+    };
+  }, [downloadUrl]);
+
   // Sync selectedPages -> Input (only if input is not focused)
   useEffect(() => {
     if (document.activeElement === pageRangeInputRef.current) return;
