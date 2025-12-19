@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/:path((?!.well-known).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "pdfcanada.ca"
+        }
+      ],
+      "destination": "https://www.pdfcanada.ca/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/fr/:path*",
