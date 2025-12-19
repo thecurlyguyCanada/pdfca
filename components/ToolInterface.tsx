@@ -3,6 +3,8 @@ import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, Rotat
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { formatFileSize } from '../utils/pdfUtils';
 import { ToolType } from '../App';
+import { SignPdfTool } from './SignPdfTool';
+import { signPdf, SignatureEntry } from '../utils/pdfUtils';
 
 interface ToolInterfaceProps {
     file: File | null;
@@ -92,7 +94,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
+    const isSignTool = currentTool === ToolType.SIGN;
 
     let headerText = '';
     if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
@@ -119,11 +123,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 </button>
             </div>
 
-            {/* Content */}
-            <div className="flex-grow overflow-auto p-4 md:p-6 bg-gray-50 custom-scrollbar flex flex-col items-start w-full">
-
-                {isVisualTool ? (
-                    <>
+            {/* Content Area */}
+            <div className="flex-grow overflow-auto bg-gray-50 custom-scrollbar flex flex-col items-start w-full relative">
+                {isPageSelectionTool ? (
+                    <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
                             {currentTool === ToolType.DELETE && (
                                 <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
@@ -238,9 +241,26 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 />
                             ))}
                         </div>
-                    </>
+                    </div>
+                ) : isSignTool ? (
+                    <SignPdfTool
+                        pdfJsDoc={pdfJsDoc}
+                        pageCount={pageCount}
+                        t={t}
+                        previewZoom={previewZoom}
+                        setPreviewZoom={setPreviewZoom}
+                        onSign={async (entries) => {
+                            if (!file) return;
+                            try {
+                                const signedPdf = await signPdf(file, entries);
+                                (onAction as any)(signedPdf);
+                            } catch (e) {
+                                console.error("Signing failed", e);
+                            }
+                        }}
+                    />
                 ) : (
-                    <div className="flex flex-col items-center justify-center h-full text-center max-w-sm">
+                    <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
                             {currentTool === ToolType.HEIC_TO_PDF && <Image size={32} />}
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
@@ -255,28 +275,30 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 )}
             </div>
 
-            {/* Footer Action */}
-            <div
-                className="p-3 md:p-4 border-t border-gray-100 bg-white"
-                style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
-            >
-                <button
-                    onClick={onAction}
-                    disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
-                    className={`
-            w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
-            ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
-                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
-                            : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
-                        }
-          `}
+            {/* Footer Action (Hidden for SIGN as it has its own in the toolbar) */}
+            {!isSignTool && (
+                <div
+                    className="p-3 md:p-4 border-t border-gray-100 bg-white"
+                    style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
                 >
-                    {currentTool === ToolType.DELETE && t.btnRemove}
-                    {currentTool === ToolType.ROTATE && t.btnRotate}
-                    {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
-                    {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && t.btnConvert}
-                </button>
-            </div>
+                    <button
+                        onClick={onAction}
+                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
+                        className={`
+                            w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
+                            ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
+                                : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
+                            }
+                        `}
+                    >
+                        {currentTool === ToolType.DELETE && t.btnRemove}
+                        {currentTool === ToolType.ROTATE && t.btnRotate}
+                        {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
+                        {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && t.btnConvert}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

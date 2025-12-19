@@ -299,6 +299,20 @@ export const translations = {
             answer: "Absolutely hoser! Your files are never uploaded to our servers. All extraction and PDF creation happens locally on your computer."
           }
         ]
+      },
+      sign: {
+        title: "E-sign PDF Online | Sign Documents Securely | pdfcanada.ca",
+        desc: "Sign PDF documents online for free. Add signatures, initials, dates, and text locally in your browser. No uploads required.",
+        h1: "E-sign PDF Documents",
+        subtitle: "The most secure way to sign, eh?",
+        content: "Need to sign a contract, lease, or form? Our e-sign tool lets you add professional signatures, initials, and dates to any PDF. Everything happens locally on your device, so your sensitive documents and signatures never leave your browser.",
+        steps: [
+          "Upload the PDF document you need to sign.",
+          "Choose to either draw, type, or upload your signature.",
+          "Place your signature, initials, or the current date anywhere on the document.",
+          "Resize and move elements until they look just right.",
+          "Click 'Sign PDF' to download your securely signed document."
+        ]
       }
     },
 
@@ -319,6 +333,8 @@ export const translations = {
     toolOcrDesc: "Extract text from scans.",
     toolCbrToPdf: "CBR to PDF",
     toolCbrToPdfDesc: "Convert comics to PDF.",
+    toolSign: "Sign PDF",
+    toolSignDesc: "E-sign documents securely.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -345,6 +361,16 @@ export const translations = {
     deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
     totalPages: "Total pages",
     pagesToRemove: "Pages to remove",
+    signPagesInfo: "Place your signature or initials on the document.",
+    addSignature: "Add Signature",
+    addInitials: "Add Initials",
+    drawTitle: "Draw",
+    typeTitle: "Type",
+    signUpload: "Upload",
+    select: "Select",
+    pan: "Pan",
+    newSignature: "New signature",
+    newInitials: "New initials",
 
     // Form Builder
     fbTitle: "Form Builder",
@@ -361,6 +387,7 @@ export const translations = {
     btnMakeFillable: "Auto-Detect & Fill",
     btnExtractText: "Extract Text",
     btnSearchablePdf: "Make Searchable PDF",
+    btnSign: "Sign PDF",
 
     working: "Working on it...",
     workingDesc: "Scanning for fields and fixing that up for you, eh.",
@@ -630,6 +657,20 @@ export const translations = {
             answer: "Oui ! Comme la conversion se fait sur votre appareil, la seule limite est la mémoire de votre navigateur."
           }
         ]
+      },
+      sign: {
+        title: "Signer PDF en Ligne | Signer SÉCURISÉMENT | pdfcanada.ca",
+        desc: "Signez des documents PDF en ligne gratuitement. Ajoutez des signatures, initiales, dates et texte localement dans votre navigateur.",
+        h1: "Signer des documents PDF",
+        subtitle: "La façon la plus sécurisée de signer, hein ?",
+        content: "Besoin de signer un contrat, un bail ou un formulaire ? Notre outil de signature électronique vous permet d'ajouter des signatures professionnelles, des initiales et des dates à n'importe quel PDF.",
+        steps: [
+          "Téléversez le document PDF que vous devez signer.",
+          "Choisissez de dessiner, taper ou téléverser votre signature.",
+          "Placez votre signature, vos initiales ou la date du jour n'importe où sur le document.",
+          "Redimensionnez et déplacez les éléments jusqu'à ce qu'ils soient parfaits.",
+          "Cliquez sur 'Signer le PDF' pour télécharger votre document signé en toute sécurité."
+        ]
       }
     },
 
@@ -649,6 +690,8 @@ export const translations = {
     toolOcrDesc: "Extraire texte des scans.",
     toolCbrToPdf: "CBR en PDF",
     toolCbrToPdfDesc: "Convertir BD en PDF.",
+    toolSign: "Signer le PDF",
+    toolSignDesc: "Signer des documents en toute sécurité.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -673,6 +716,16 @@ export const translations = {
     deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
     totalPages: "Nombre de pages",
     pagesToRemove: "Pages à supprimer",
+    signPagesInfo: "Placez votre signature ou vos initiales sur le document.",
+    addSignature: "Ajouter Signature",
+    addInitials: "Ajouter Initiales",
+    drawTitle: "Dessiner",
+    typeTitle: "Taper",
+    signUpload: "Téléverser",
+    select: "Sélectionner",
+    pan: "Panoramique",
+    newSignature: "Nouvelle signature",
+    newInitials: "Nouvelles initiales",
 
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
@@ -680,6 +733,7 @@ export const translations = {
     btnMakeFillable: "Détecter et Remplir",
     btnExtractText: "Extraire le Texte",
     btnSearchablePdf: "Créer PDF Recherchable",
+    btnSign: "Signer le PDF",
 
     working: "On y travaille...",
     workingDesc: "On scanne pour les champs et on arrange ça.",

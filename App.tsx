@@ -48,7 +48,8 @@ export enum ToolType {
   EPUB_TO_PDF = 'EPUB_TO_PDF',
   PDF_TO_EPUB = 'PDF_TO_EPUB',
   MAKE_FILLABLE = 'MAKE_FILLABLE',
-  CBR_TO_PDF = 'CBR_TO_PDF'
+  CBR_TO_PDF = 'CBR_TO_PDF',
+  SIGN = 'SIGN'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -132,6 +133,10 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/cbr-to-pdf') {
       setCurrentTool(ToolType.CBR_TO_PDF);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/sign-pdf') {
+      setCurrentTool(ToolType.SIGN);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
@@ -313,6 +318,7 @@ function App() {
     { id: ToolType.EPUB_TO_PDF, icon: BookOpen, title: t.toolEpubToPdf, desc: t.toolEpubToPdfDesc, accept: '.epub', path: '/epub-to-pdf' },
     { id: ToolType.PDF_TO_EPUB, icon: FileText, title: t.toolPdfToEpub, desc: t.toolPdfToEpubDesc, accept: '.pdf', path: '/pdf-to-epub' },
     { id: ToolType.CBR_TO_PDF, icon: BookOpen, title: "CBR to PDF", desc: "Convert Comic Book archives (CBR, CBZ) to PDF.", accept: '.cbr,.cbz', path: '/cbr-to-pdf' },
+    { id: ToolType.SIGN, icon: PenTool, title: t.toolSign, desc: t.toolSignDesc, accept: '.pdf', path: '/sign-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -350,8 +356,9 @@ function App() {
       setAppState(AppState.PROCESSING);
       setErrorKey(null);
       setFile(uploadedFile);
+      setAppState(AppState.PROCESSING);
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN) {
         try {
           const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
             loadPdfDocument(uploadedFile),
@@ -396,44 +403,51 @@ function App() {
     }
   };
 
-  const handleAction = async () => {
+  const handleAction = async (processedBlob?: any) => {
     if (!file) return;
 
     try {
       setAppState(AppState.PROCESSING);
 
-      let resultBlob: Blob | Uint8Array | null = null;
+      let resultBlob: Blob | Uint8Array | null = processedBlob || null;
       let outName = file.name;
 
-      switch (currentTool) {
-        case ToolType.DELETE:
-          resultBlob = await deletePagesFromPdf(file, Array.from(selectedPages));
-          outName = file.name.replace('.pdf', '_cleaned_eh.pdf');
-          break;
-        case ToolType.ROTATE:
-          resultBlob = await rotatePdfPages(file, rotations);
-          outName = file.name.replace('.pdf', '_rotated_eh.pdf');
-          break;
-        case ToolType.MAKE_FILLABLE:
-          resultBlob = await makePdfFillable(file, Array.from(selectedPages), pdfJsDoc);
-          outName = file.name.replace('.pdf', '_fillable_eh.pdf');
-          break;
-        case ToolType.HEIC_TO_PDF:
-          resultBlob = await convertHeicToPdf(file);
-          outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
-          break;
-        case ToolType.EPUB_TO_PDF:
-          resultBlob = await convertEpubToPdf(file);
-          outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
-          break;
-        case ToolType.PDF_TO_EPUB:
-          resultBlob = await convertPdfToEpub(file);
-          outName = file.name.replace('.pdf', '_converted_eh.epub');
-          break;
-        case ToolType.CBR_TO_PDF:
-          resultBlob = await convertCbrToPdf(file);
-          outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
-          break;
+      if (!resultBlob) {
+        switch (currentTool) {
+          case ToolType.DELETE:
+            resultBlob = await deletePagesFromPdf(file, Array.from(selectedPages));
+            outName = file.name.replace('.pdf', '_cleaned_eh.pdf');
+            break;
+          case ToolType.ROTATE:
+            resultBlob = await rotatePdfPages(file, rotations);
+            outName = file.name.replace('.pdf', '_rotated_eh.pdf');
+            break;
+          case ToolType.MAKE_FILLABLE:
+            resultBlob = await makePdfFillable(file, Array.from(selectedPages), pdfJsDoc);
+            outName = file.name.replace('.pdf', '_fillable_eh.pdf');
+            break;
+          case ToolType.HEIC_TO_PDF:
+            resultBlob = await convertHeicToPdf(file);
+            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            break;
+          case ToolType.EPUB_TO_PDF:
+            resultBlob = await convertEpubToPdf(file);
+            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            break;
+          case ToolType.PDF_TO_EPUB:
+            resultBlob = await convertPdfToEpub(file);
+            outName = file.name.replace('.pdf', '_converted_eh.epub');
+            break;
+          case ToolType.CBR_TO_PDF:
+            resultBlob = await convertCbrToPdf(file);
+            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            break;
+          case ToolType.SIGN:
+            // Signing is typically handled by components/SignPdfTool calling onAction with processedBlob
+            break;
+        }
+      } else if (currentTool === ToolType.SIGN) {
+        outName = file.name.replace('.pdf', '_signed_eh.pdf');
       }
 
       if (resultBlob) {
@@ -565,6 +579,7 @@ function App() {
       case ToolType.PDF_TO_EPUB: return t.features.pdfToEpub;
       case ToolType.MAKE_FILLABLE: return t.features.fillable;
       case ToolType.CBR_TO_PDF: return t.features.cbrToPdf;
+      case ToolType.SIGN: return t.features.sign;
       default: return t.features.delete;
     }
   };

@@ -214,6 +214,76 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
   return await doc.save();
 };
 
+export interface SignatureEntry {
+  id: string;
+  pageIndex: number;
+  x: number; // 0 to 1 (percentage of page width)
+  y: number; // 0 to 1 (percentage of page height, from TOP)
+  width: number; // percentage of page width
+  height: number; // percentage of page height
+  dataUrl?: string; // For images (signatures/initials)
+  type: 'signature' | 'initials' | 'text' | 'date';
+  text?: string; // For text/date
+}
+
+export const signPdf = async (originalFile: File, signatureEntries: SignatureEntry[]): Promise<Uint8Array> => {
+  const { PDFDocument, rgb, StandardFonts } = await getPdfLib();
+  const arrayBuffer = await originalFile.arrayBuffer();
+  const doc = await PDFDocument.load(arrayBuffer);
+  const pages = doc.getPages();
+  const helveticaFont = await doc.embedFont(StandardFonts.Helvetica);
+
+  for (const entry of signatureEntries) {
+    if (entry.pageIndex < 0 || entry.pageIndex >= pages.length) continue;
+
+    const page = pages[entry.pageIndex];
+    const { width: pageWidth, height: pageHeight } = page.getSize();
+
+    // Convert percentage to actual PDF points
+    const x = entry.x * pageWidth;
+    const y = (1 - entry.y - entry.height) * pageHeight; // Flip Y for PDF-lib (0,0 is bottom-left)
+    const width = entry.width * pageWidth;
+    const height = entry.height * pageHeight;
+
+    if (entry.type === 'signature' || entry.type === 'initials' || (entry.type === 'text' && !entry.text && entry.dataUrl)) {
+      if (!entry.dataUrl) continue;
+
+      try {
+        const imageBytes = await fetch(entry.dataUrl).then(res => res.arrayBuffer());
+        let image;
+        if (entry.dataUrl.includes('image/png')) {
+          image = await doc.embedPng(imageBytes);
+        } else {
+          image = await doc.embedJpg(imageBytes);
+        }
+
+        page.drawImage(image, {
+          x,
+          y,
+          width,
+          height,
+        });
+      } catch (e) {
+        console.error("Failed to embed signature image", e);
+      }
+    } else if (entry.type === 'text' || entry.type === 'date') {
+      const text = entry.text || '';
+      // Approximate font size to fit height
+      const fontSize = height * 0.8;
+
+      page.drawText(text, {
+        x,
+        y: y + (height * 0.2), // Adjust for baseline
+        size: fontSize,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+  }
+
+  return await doc.save();
+};
+
 export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
   const { PDFDocument } = await getPdfLib();
   const heic2any = await getHeic2Any();
