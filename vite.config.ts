@@ -1,8 +1,36 @@
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
+/**
+ * Vite plugin to make CSS non-render-blocking
+ * Uses the media="print" technique recommended by Filament Group
+ * @see https://www.filamentgroup.com/lab/load-css-simpler/
+ */
+function asyncCssPlugin(): Plugin {
+  return {
+    name: 'async-css',
+    enforce: 'post',
+    transformIndexHtml(html) {
+      // Transform CSS link tags to load asynchronously
+      // Pattern: <link rel="stylesheet" href="...">
+      return html.replace(
+        /<link rel="stylesheet"([^>]*) href="([^"]+)"([^>]*)>/gi,
+        (match, before, href, after) => {
+          // Skip if already has media attribute or is a preload
+          if (before.includes('media=') || after.includes('media=')) {
+            return match;
+          }
+          // Create async loading link with noscript fallback
+          return `<link rel="stylesheet"${before} href="${href}"${after} media="print" onload="this.media='all';this.onload=null;">
+<noscript><link rel="stylesheet" href="${href}"></noscript>`;
+        }
+      );
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), asyncCssPlugin()],
   build: {
     outDir: 'dist',
     target: 'esnext',
