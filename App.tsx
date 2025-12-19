@@ -633,9 +633,9 @@ function App() {
                     <button
                       key={tool.id}
                       onClick={() => selectTool(tool.id)}
-                      className="flex flex-col items-center md:items-start p-4 md:p-5 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 transition-all text-center md:text-left group"
+                      className="flex flex-col items-center md:items-start p-4 md:p-5 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 active:border-canada-red active:shadow-lg active:shadow-red-500/10 transition-all text-center md:text-left group"
                     >
-                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-xl mb-2 md:mb-3 group-hover:bg-canada-red group-hover:text-white transition-colors">
+                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-xl mb-2 md:mb-3 group-hover:bg-canada-red group-hover:text-white group-active:bg-canada-red group-active:text-white transition-colors">
                         <tool.icon size={20} className="md:w-6 md:h-6" />
                       </div>
                       <h3 className="font-bold text-gray-800 text-sm md:text-base leading-tight">{tool.title}</h3>
@@ -651,7 +651,7 @@ function App() {
               <>
                 <div className="absolute top-4 left-4 z-20">
                   {!file && (
-                    <button onClick={handleReset} className="flex items-center gap-1 text-gray-500 hover:text-gray-800 text-sm font-medium bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm hover:shadow border border-transparent hover:border-gray-200 transition-all">
+                    <button onClick={handleReset} className="flex items-center gap-1 text-gray-500 hover:text-gray-800 active:text-canada-red text-sm font-medium bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm hover:shadow active:shadow-md border border-transparent hover:border-gray-200 active:border-canada-red/30 transition-all active:scale-95">
                       <ArrowLeft size={16} /> {t.backToHome}
                     </button>
                   )}
@@ -680,10 +680,10 @@ function App() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
                 <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
                 <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
                     <Download size={20} /> {t.download}
                   </a>
-                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors">
+                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
                     {t.doAnother}
                   </button>
                 </div>
@@ -692,7 +692,7 @@ function App() {
 
             {appState === AppState.ERROR && (
               <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
-                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 active:text-canada-red p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full active:bg-gray-100 transition-colors">
                   <X size={24} />
                 </button>
                 <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
@@ -702,7 +702,7 @@ function App() {
                 <p className="text-gray-500 mb-8">
                   {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
                 </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black text-white px-8 py-3 rounded-full font-bold transition-all">
+                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
                   {t.backToHome}
                 </button>
               </div>
@@ -736,7 +736,7 @@ function App() {
         <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
           <button
             onClick={() => handleNavigation('HOME')}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red transition-all"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 transition-all min-h-[44px]"
           >
             <ArrowLeft size={12} />
             {t.backToHome}
@@ -772,7 +772,7 @@ function App() {
                 <p className="text-gray-500 mb-8">
                   {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
                 </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black text-white px-8 py-3 rounded-full font-bold transition-all">
+                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
                   {t.backToHome}
                 </button>
               </div>
@@ -787,10 +787,10 @@ function App() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
                 <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
                 <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
                     <Download size={20} /> {t.download}
                   </a>
-                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors">
+                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
                     {t.doAnother}
                   </button>
                 </div>
