@@ -139,8 +139,8 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-            <div className="bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-scale-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 md:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+            <div className="bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-scale-in flex flex-col max-h-[95vh] md:max-h-[90vh]">
                 <div className="flex items-center justify-between p-6 border-b border-gray-100">
                     <h3 className="text-xl font-extrabold text-gray-900">{title}</h3>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
@@ -169,13 +169,14 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
                     </button>
                 </div>
 
-                <div className="p-8">
+                <div className="p-4 md:p-8 overflow-y-auto flex-grow">
                     {activeTab === 'draw' && (
                         <div className="space-y-4">
                             <div className="relative border-2 border-dashed border-gray-200 rounded-2xl overflow-hidden bg-gray-50 h-64 touch-none">
                                 <canvas
                                     ref={canvasRef}
                                     className="w-full h-full cursor-crosshair"
+                                    style={{ touchAction: 'none' }}
                                     onMouseDown={startDrawing}
                                     onMouseMove={draw}
                                     onMouseUp={stopDrawing}
@@ -266,7 +267,7 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
                         disabled={(activeTab === 'type' && !typedText.trim()) || (activeTab === 'upload' && !uploadedImage)}
                         className="flex-1 py-4 bg-canada-red text-white rounded-2xl font-bold shadow-lg shadow-red-500/20 hover:bg-canada-darkRed transition-all active:scale-95 disabled:bg-gray-300 disabled:shadow-none disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                        <Check size={20} /> Create
+                        <Check size={20} /> {t.btnCreate || 'Create'}
                     </button>
                 </div>
             </div>

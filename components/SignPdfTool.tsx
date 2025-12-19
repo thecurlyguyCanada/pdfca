@@ -48,7 +48,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const [history, setHistory] = useState<SignatureEntry[][]>([[]]);
     const [historyStep, setHistoryStep] = useState(0);
 
+    const [visiblePages, setVisiblePages] = useState<Set<number>>(new Set());
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const reportVisibility = (idx: number, isVisible: boolean) => {
+        setVisiblePages(prev => {
+            const next = new Set(prev);
+            if (isVisible) next.add(idx);
+            else next.delete(idx);
+            return next;
+        });
+    };
 
     const addToHistory = (newEntries: SignatureEntry[]) => {
         const newHistory = history.slice(0, historyStep + 1);
@@ -76,11 +86,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
     const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string) => {
         const id = `entry_${Date.now()}`;
-        // Defaults: center of the current visible page or just page 0 for now
-        // In a real app we'd find the visible page
+
+        // Find the "current" page (the first visible one)
+        const currentPage = visiblePages.size > 0 ? Math.min(...Array.from(visiblePages)) : 0;
+
         const newEntry: SignatureEntry = {
             id,
-            pageIndex: 0,
+            pageIndex: currentPage,
             x: 0.1,
             y: 0.1,
             width: type === 'signature' || type === 'initials' ? 0.2 : 0.15,
@@ -115,8 +127,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     return (
         <div className="flex flex-col h-full bg-gray-100 flex-grow w-full relative">
             {/* Toolbar */}
-            <div className="sticky top-0 z-50 bg-white border-b border-gray-200 p-2 md:p-3 shadow-md flex flex-wrap items-center justify-between gap-2 md:gap-4 overflow-x-auto">
-                <div className="flex items-center gap-1 md:gap-2">
+            <div className="sticky top-0 z-50 bg-white border-b border-gray-200 p-2 md:p-3 shadow-md flex items-center justify-between gap-2 overflow-x-visible">
+                <div className="flex items-center gap-1 md:gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
                     {/* Tool Selector */}
                     <div className="flex bg-gray-100 p-1 rounded-xl">
                         <button
@@ -246,15 +258,14 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         </button>
                     </div>
 
-                    {/* Zoom */}
-                    <div className="flex items-center bg-gray-100 rounded-xl p-1">
+                    <div className="flex items-center bg-gray-100 rounded-xl p-1 shrink-0">
                         <button
                             onClick={() => setPreviewZoom(Math.max(0.5, previewZoom - 0.2))}
-                            className="p-2 text-gray-600 hover:text-gray-900"
+                            className="p-1.5 md:p-2 text-gray-600 hover:text-gray-900"
                         >
                             <ZoomOut size={16} />
                         </button>
-                        <span className="text-xs font-bold w-12 text-center text-gray-700 hidden xs:block">{Math.round(previewZoom * 100)}%</span>
+                        <span className="text-[10px] md:text-sm font-bold w-10 md:w-12 text-center text-gray-700">{Math.round(previewZoom * 100)}%</span>
                         <button
                             onClick={() => setPreviewZoom(Math.min(3.0, previewZoom + 0.2))}
                             className="p-2 text-gray-600 hover:text-gray-900"
@@ -265,7 +276,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
                     <button
                         onClick={() => onSign(entries)}
-                        className="bg-canada-red text-white px-4 md:px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-canada-darkRed transition-all active:scale-95 text-sm"
+                        className="bg-canada-red text-white px-3 md:px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-canada-darkRed transition-all active:scale-95 text-xs md:text-sm whitespace-nowrap"
                     >
                         {t.btnSign}
                     </button>
@@ -287,6 +298,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         onEntryUpdate={updateEntry}
                         onEntryDelete={removeEntry}
                         activeTool={activeTool}
+                        onVisibilityChange={(v) => reportVisibility(idx, v)}
                     />
                 ))}
             </div>
@@ -310,6 +322,7 @@ interface PageRendererProps {
     onEntryUpdate: (id: string, updates: Partial<SignatureEntry>) => void;
     onEntryDelete: (id: string) => void;
     activeTool: 'pan' | 'select';
+    onVisibilityChange: (isVisible: boolean) => void;
 }
 
 const PageRenderer: React.FC<PageRendererProps> = ({
@@ -319,7 +332,8 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     entries,
     onEntryUpdate,
     onEntryDelete,
-    activeTool
+    activeTool,
+    onVisibilityChange
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
@@ -328,11 +342,16 @@ const PageRenderer: React.FC<PageRendererProps> = ({
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) setIsVisible(true);
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                onVisibilityChange(true);
+            } else {
+                onVisibilityChange(false);
+            }
         }, { threshold: 0.1 });
         if (containerRef.current) observer.observe(containerRef.current);
         return () => observer.disconnect();
-    }, []);
+    }, [onVisibilityChange]);
 
     useEffect(() => {
         if (!isVisible || !pdfJsDoc) return;
@@ -397,7 +416,10 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                         lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
                         className="group"
                     >
-                        <div className="w-full h-full relative cursor-move border-2 border-transparent hover:border-blue-400 p-1 flex items-center justify-center">
+                        <div
+                            className="w-full h-full relative cursor-move border-2 border-transparent hover:border-blue-400 p-1 flex items-center justify-center"
+                            style={{ touchAction: 'none' }}
+                        >
                             {entry.dataUrl ? (
                                 <img src={entry.dataUrl} className="max-w-full max-h-full object-contain pointer-events-none" />
                             ) : (

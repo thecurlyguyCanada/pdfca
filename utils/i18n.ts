@@ -388,6 +388,9 @@ export const translations = {
     btnExtractText: "Extract Text",
     btnSearchablePdf: "Make Searchable PDF",
     btnSign: "Sign PDF",
+    btnCreate: "Create",
+    btnCancel: "Cancel",
+    btnSave: "Save",
 
     working: "Working on it...",
     workingDesc: "Scanning for fields and fixing that up for you, eh.",
@@ -731,9 +734,12 @@ export const translations = {
     btnRotate: "Appliquer",
     btnConvert: "Convertir",
     btnMakeFillable: "Détecter et Remplir",
+    btnSign: "Signer le PDF",
+    btnCreate: "Créer",
+    btnCancel: "Annuler",
     btnExtractText: "Extraire le Texte",
     btnSearchablePdf: "Créer PDF Recherchable",
-    btnSign: "Signer le PDF",
+    btnSave: "Enregistrer",
 
     working: "On y travaille...",
     workingDesc: "On scanne pour les champs et on arrange ça.",
