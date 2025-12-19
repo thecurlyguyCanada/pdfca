@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         style={{ paddingTop: 'max(12px, var(--safe-area-inset-top))' }}
       >
         <div
-          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity active:scale-95"
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 active:opacity-60 transition-opacity active:scale-95"
           onClick={() => handleNavigate('HOME')}
         >
           <span className="text-lg md:text-xl font-bold text-gray-800 tracking-tight">pdfcanada<span className="text-canada-red">.ca</span></span>
@@ -32,16 +32,16 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-600">
-          <button onClick={() => handleNavigate('HOW_TO')} className="hover:text-canada-red transition-colors py-2">{t.navHowTo}</button>
-          <button onClick={() => handleNavigate('SUPPORT')} className="hover:text-canada-red transition-colors py-2">{t.navSupport}</button>
-          <button onClick={() => handleNavigate('PRICING')} className="hover:text-canada-red transition-colors py-2">{t.navPricing}</button>
+          <button onClick={() => handleNavigate('HOW_TO')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navHowTo}</button>
+          <button onClick={() => handleNavigate('SUPPORT')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navSupport}</button>
+          <button onClick={() => handleNavigate('PRICING')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navPricing}</button>
         </nav>
 
         <div className="flex items-center gap-2">
           {/* Language Toggle - Larger touch target */}
           <button
             onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
-            className="text-xs font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-xs font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {lang === 'en' ? 'FR' : 'EN'}
           </button>
@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -63,19 +63,19 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
           <nav className="flex flex-col p-4 gap-1">
             <button
               onClick={() => handleNavigate('HOW_TO')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors"
+              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
             >
               {t.navHowTo}
             </button>
             <button
               onClick={() => handleNavigate('SUPPORT')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors"
+              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
             >
               {t.navSupport}
             </button>
             <button
               onClick={() => handleNavigate('PRICING')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors"
+              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
             >
               {t.navPricing}
             </button>

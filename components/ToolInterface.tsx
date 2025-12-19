@@ -78,7 +78,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     <Shield size={12} /> {t.processedLocally}
                 </div>
 
-                <button className="w-full max-w-xs bg-canada-red hover:bg-canada-darkRed text-white px-6 md:px-8 py-4 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 text-base min-h-[56px]">
+                <button className="w-full max-w-xs bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 md:px-8 py-4 rounded-full font-bold shadow-lg shadow-red-500/30 hover:shadow-red-500/40 active:shadow-red-500/50 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 text-base min-h-[56px]">
                     {t.selectFile}
                 </button>
                 <input
@@ -114,7 +114,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </p>
                     </div>
                 </div>
-                <button onClick={onSoftReset} className="text-gray-400 hover:text-gray-600 p-3 hover:bg-gray-100 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0">
+                <button onClick={onSoftReset} className="text-gray-400 hover:text-gray-600 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0">
                     <X size={20} />
                 </button>
             </div>
@@ -161,13 +161,13 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                             {currentTool === ToolType.ROTATE && (
                                 <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 backdrop-blur-sm pt-2">
-                                    <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                                    <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 active:border-canada-red active:text-canada-red active:bg-red-50 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                                         <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
                                     </button>
-                                    <button onClick={() => rotateAll('right')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
+                                    <button onClick={() => rotateAll('right')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 active:border-canada-red active:text-canada-red active:bg-red-50 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                                         <RotateCw size={16} /> <span className="hidden sm:inline">{t.rotateAllRight}</span><span className="sm:hidden">Right</span>
                                     </button>
-                                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 transition-all text-xs md:text-sm font-medium text-gray-500 whitespace-nowrap min-h-[44px]">
+                                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 active:border-gray-400 active:text-gray-900 active:bg-gray-50 transition-all text-xs md:text-sm font-medium text-gray-500 whitespace-nowrap min-h-[44px]">
                                         <RefreshCcw size={16} /> <span className="hidden sm:inline">{t.resetRotations}</span><span className="sm:hidden">Reset</span>
                                     </button>
                                 </div>
@@ -187,28 +187,28 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                         {/* Global Utilities (Zoom) */}
                         <div className="w-full flex justify-end px-2 mb-2">
-                            <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-1">
+                            <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-0.5">
                                 <button
                                     onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.1))}
                                     disabled={previewZoom <= 0.5}
-                                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom Out (Ctrl + -)"
                                 >
-                                    <ZoomOut size={16} />
+                                    <ZoomOut size={18} />
                                 </button>
-                                <span className="text-xs font-mono w-10 text-center text-gray-500">{Math.round(previewZoom * 100)}%</span>
+                                <span className="text-xs font-mono w-12 text-center text-gray-500 font-medium">{Math.round(previewZoom * 100)}%</span>
                                 <button
                                     onClick={() => setPreviewZoom(z => Math.min(5.0, z + 0.1))}
                                     disabled={previewZoom >= 5.0}
-                                    className="p-1.5 text-gray-500 hover:text-gray-900 active:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom In (Ctrl + +)"
                                 >
-                                    <ZoomIn size={16} />
+                                    <ZoomIn size={18} />
                                 </button>
-                                <div className="w-px h-4 bg-gray-200 mx-1"></div>
+                                <div className="w-px h-6 bg-gray-200 mx-1"></div>
                                 <button
                                     onClick={() => setPreviewZoom(1.0)}
-                                    className="text-[10px] font-bold px-2 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600"
+                                    className="text-xs font-bold px-3 py-2 min-h-[44px] flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 rounded-lg text-gray-400 hover:text-gray-600 active:text-gray-900 transition-colors"
                                     title="Reset Zoom (Ctrl + 0)"
                                 >
                                     100%
@@ -217,9 +217,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </div>
 
                         <div
-                            className="grid gap-4 transition-all duration-300"
+                            className="grid gap-3 md:gap-4 transition-all duration-300 w-full"
                             style={{
-                                gridTemplateColumns: `repeat(auto-fill, minmax(${200 * previewZoom}px, 1fr))`
+                                gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(120, 200 * previewZoom)}px, 1fr))`
                             }}
                         >
                             {Array.from({ length: pageCount }).map((_, idx) => (
@@ -264,7 +264,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
             ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
-                            : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30'
+                            : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
                         }
           `}
                 >
