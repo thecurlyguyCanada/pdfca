@@ -613,7 +613,7 @@ function App() {
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
         {/* Left Side: Copy */}
         <div className="w-full md:w-1/2 space-y-6 md:space-y-8 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 border border-red-200 text-canada-red text-xs font-bold uppercase tracking-wider shadow-sm">
+          <div className="hero-badge">
             <MapleLeaf className="w-4 h-4" />
             {t.builtIn}
           </div>

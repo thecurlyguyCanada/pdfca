@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#FF0000" />
+  <meta name="theme-color" content="#dc2626" />
 
   <!-- Primary Meta Tags -->
   <title>pdfcanada.ca - Free PDF Tools | Proudly Canadian 🇨🇦</title>
@@ -49,7 +49,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"></noscript>
 
   <!-- Critical CSS: Only what's needed for first paint (above the fold) -->
-  <style>
+  <style id="critical-css">
     /* Font fallback while loading */
     :root {
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
@@ -83,6 +83,22 @@
       .hero-title { font-size: 3.75rem; }
     }
     .hero-title-accent { color: #dc2626; } /* WCAG-safe red */
+
+    /* Hero badge - WCAG AA compliant: white text on red bg (contrast 4.63:1) */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background-color: #dc2626;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    }
 
     /* Hero description - also critical for perceived load */
     .hero-desc {
@@ -124,6 +140,27 @@
       50% { box-shadow: 0 10px 30px -3px rgba(220, 38, 38, 0.5); }
     }
     .animate-pulse-subtle { animation: pulse-subtle 2s ease-in-out infinite; }
+
+    /* Hero container - critical for layout stability */
+    .hero-container {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-container { padding: 5rem 1.5rem; }
+    }
+
+    /* Feature card base styling */
+    .feature-card {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    }
   </style>
 
 </head>
