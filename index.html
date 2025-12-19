@@ -161,12 +161,237 @@
       padding: 1rem;
       box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
     }
+
+    /* Static hero layout */
+    .static-hero-wrapper {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+    @media (min-width: 768px) {
+      .static-hero-wrapper { padding: 5rem 1.5rem; }
+    }
+    .static-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .static-hero { flex-direction: row; gap: 3rem; }
+    }
+    .static-hero-left {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .static-hero-left { width: 50%; text-align: left; gap: 2rem; }
+    }
+    .static-hero-right {
+      width: 100%;
+      max-width: 36rem;
+    }
+    @media (min-width: 768px) {
+      .static-hero-right { width: 50%; }
+    }
+
+    /* Tool dashboard */
+    .static-dashboard {
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+      border: 1px solid #f3f4f6;
+      overflow: hidden;
+      min-height: 500px;
+    }
+    .static-dashboard-inner {
+      padding: 2rem;
+      background: rgba(249,250,251,0.3);
+    }
+    .static-dashboard-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 1.5rem;
+    }
+    .static-dashboard-title span {
+      font-weight: 400;
+      color: #4b5563;
+      font-size: 1.125rem;
+    }
+
+    /* Tool cards grid */
+    .static-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    @media (min-width: 768px) {
+      .static-tools-grid { gap: 1rem; }
+    }
+    .static-tool-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    @media (min-width: 768px) {
+      .static-tool-card { align-items: flex-start; padding: 1.25rem; text-align: left; }
+    }
+    .static-tool-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: #fef2f2;
+      color: #dc2626;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+    @media (min-width: 768px) {
+      .static-tool-icon { width: 3rem; height: 3rem; margin-bottom: 0.75rem; }
+    }
+    .static-tool-name {
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 0.875rem;
+      line-height: 1.25;
+    }
+    @media (min-width: 768px) {
+      .static-tool-name { font-size: 1rem; }
+    }
+    .static-tool-desc {
+      font-size: 0.625rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .static-tool-desc { display: block; font-size: 0.75rem; }
+    }
+
+    /* Security badge */
+    .static-security {
+      display: flex;
+      max-width: 28rem;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      gap: 0.75rem;
+      text-align: left;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    @media (min-width: 768px) {
+      .static-security { margin: 0; }
+    }
+    .static-security-icon {
+      color: #dc2626;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .static-security-title {
+      font-weight: 700;
+      color: #111827;
+      font-size: 0.875rem;
+    }
+    .static-security-desc {
+      color: #4b5563;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Hide static content once React takes over */
+    #root:not(:empty) .static-hero-wrapper { display: none; }
   </style>
 
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static HTML shell for instant FCP/LCP - React hydrates over this -->
+    <div class="static-hero-wrapper">
+      <div class="static-hero">
+        <!-- Left: Copy -->
+        <div class="static-hero-left">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z"/></svg>
+            BUILT IN CANADA
+          </div>
+          <h1 class="hero-title">The Polite PDF Tools <span class="hero-title-accent">Free, Secure, Canadian.</span></h1>
+          <p class="hero-desc" style="max-width:32rem;margin:0 auto;">We help you manage your documents without the fuss. Select a tool below, eh?</p>
+          <div class="static-security">
+            <svg class="static-security-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div>
+              <p class="static-security-title">100% Local Processing</p>
+              <p class="static-security-desc">Your files never leave your browser. All processing happens on your device.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Dashboard -->
+        <div class="static-hero-right">
+          <div class="static-dashboard">
+            <div class="static-dashboard-inner">
+              <h2 class="static-dashboard-title">Select a Tool <span>eh?</span></h2>
+              <div class="static-tools-grid">
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+                  <h3 class="static-tool-name">Delete Pages</h3>
+                  <p class="static-tool-desc">Remove unwanted pages</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
+                  <h3 class="static-tool-name">Rotate PDF</h3>
+                  <p class="static-tool-desc">Rotate pages any angle</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                  <h3 class="static-tool-name">Make Fillable</h3>
+                  <p class="static-tool-desc">Add form fields</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <h3 class="static-tool-name">HEIC to PDF</h3>
+                  <p class="static-tool-desc">Convert iPhone photos</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+                  <h3 class="static-tool-name">EPUB to PDF</h3>
+                  <p class="static-tool-desc">Convert ebooks</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+                  <h3 class="static-tool-name">PDF to EPUB</h3>
+                  <p class="static-tool-desc">Create ebooks</p>
+                </div>
+                <div class="static-tool-card">
+                  <div class="static-tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+                  <h3 class="static-tool-name">CBR to PDF</h3>
+                  <p class="static-tool-desc">Convert comics</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
