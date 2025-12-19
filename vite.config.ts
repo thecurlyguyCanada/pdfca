@@ -30,9 +30,7 @@ function asyncCssPlugin(): Plugin {
 }
 
 export default defineConfig({
-  // asyncCssPlugin disabled - testing if render-blocking CSS is actually faster
-  // with our inline critical CSS already in place
-  plugins: [react()],
+  plugins: [react(), asyncCssPlugin()],
   build: {
     outDir: 'dist',
     target: 'esnext',
