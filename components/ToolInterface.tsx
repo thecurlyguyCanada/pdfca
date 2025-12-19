@@ -124,7 +124,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Content Area */}
-            <div className="flex-grow overflow-auto bg-gray-50 custom-scrollbar flex flex-col items-start w-full relative">
+            <div className={`flex-grow ${isSignTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-start w-full relative`}>
                 {isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">

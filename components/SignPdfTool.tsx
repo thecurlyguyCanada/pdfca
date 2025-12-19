@@ -43,6 +43,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const [savedSignatures, setSavedSignatures] = useState<string[]>([]);
     const [savedInitials, setSavedInitials] = useState<string[]>([]);
     const [showSignaturesDropdown, setShowSignaturesDropdown] = useState(false);
+    const [selectedEntryId, setSelectedEntryId] = useState<string | null>(null);
 
     // History for Undo/Redo
     const [history, setHistory] = useState<SignatureEntry[][]>([[]]);
@@ -91,17 +92,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     }, []);
 
-    const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string) => {
+    const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string, x?: number, y?: number, page?: number) => {
         const id = `entry_${Date.now()}`;
 
         // Find the "current" page (the first visible one)
-        const currentPage = visiblePages.size > 0 ? Math.min(...Array.from(visiblePages)) : 0;
+        const currentPage = page !== undefined ? page : (visiblePages.size > 0 ? Math.min(...Array.from(visiblePages)) : 0);
 
         const newEntry: SignatureEntry = {
             id,
             pageIndex: currentPage,
-            x: 0.1,
-            y: 0.1,
+            x: x !== undefined ? x : 0.1,
+            y: y !== undefined ? y : 0.1,
             width: type === 'signature' || type === 'initials' ? 0.2 : 0.15,
             height: type === 'signature' || type === 'initials' ? 0.1 : 0.05,
             type,
@@ -109,6 +110,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             text: text || (type === 'date' ? new Date().toLocaleDateString() : '')
         };
         addToHistory([...entries, newEntry]);
+        setSelectedEntryId(id);
     };
 
     const updateEntry = (id: string, updates: Partial<SignatureEntry>) => {
@@ -132,7 +134,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     };
 
     return (
-        <div className="flex flex-col h-full bg-gray-50 flex-grow w-full relative overflow-hidden">
+        <div className="flex flex-col flex-1 bg-gray-50 w-full relative overflow-hidden" style={{ touchAction: 'pan-y' }}>
             {/* Toolbar - More robust for both mobile and desktop */}
             <div className="sticky top-0 z-[60] bg-white/90 backdrop-blur-md border-b border-gray-200 p-2 md:p-3 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3 overflow-visible">
                 {/* Tools Group */}
@@ -322,6 +324,14 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         onEntryDelete={removeEntry}
                         activeTool={activeTool}
                         onVisibilityChange={(v) => reportVisibility(idx, v)}
+                        selectedEntryId={selectedEntryId}
+                        onSelectEntry={setSelectedEntryId}
+                        onPageClick={(x, y) => {
+                            // If we have a pending tool, add it. 
+                            // For now, let's just make it easier to move existing selection?
+                            // Actually, let's just support deselection on page click.
+                            setSelectedEntryId(null);
+                        }}
                     />
                 ))}
                 {/* Large space at bottom to ensure no overlap by floating UI */}
@@ -348,6 +358,9 @@ interface PageRendererProps {
     onEntryDelete: (id: string) => void;
     activeTool: 'pan' | 'select';
     onVisibilityChange: (isVisible: boolean) => void;
+    selectedEntryId: string | null;
+    onSelectEntry: (id: string | null) => void;
+    onPageClick?: (x: number, y: number) => void;
 }
 
 const PageRenderer: React.FC<PageRendererProps> = ({
@@ -358,7 +371,10 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     onEntryUpdate,
     onEntryDelete,
     activeTool,
-    onVisibilityChange
+    onVisibilityChange,
+    selectedEntryId,
+    onSelectEntry,
+    onPageClick
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
@@ -402,13 +418,22 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     return (
         <div
             ref={containerRef}
-            className="relative shadow-2xl bg-white border border-gray-200"
+            className={`relative shadow-2xl bg-white border border-gray-200 ${activeTool === 'select' ? 'cursor-crosshair' : ''}`}
             style={{
                 width: pageSize.width || 600 * zoom,
                 height: pageSize.height || 800 * zoom,
             }}
+            onClick={(e) => {
+                if (activeTool === 'select') {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width;
+                    const y = (e.clientY - rect.top) / rect.height;
+                    onPageClick?.(x, y);
+                    onSelectEntry(null);
+                }
+            }}
         >
-            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
             {/* Interaction Overlay */}
             <div className={`absolute inset-0 ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}>
@@ -439,17 +464,23 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                         }}
                         bounds="parent"
                         lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
-                        className="group"
-                        resizeHandleComponent={{
-                            bottomRight: <div className="w-6 h-6 -mr-3 -mb-3 md:w-4 md:h-4 md:-mr-2 md:-mb-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
-                            bottomLeft: <div className="w-6 h-6 -ml-3 -mb-3 md:w-4 md:h-4 md:-ml-2 md:-mb-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
-                            topRight: <div className="w-6 h-6 -mr-3 -mt-3 md:w-4 md:h-4 md:-mr-2 md:-mt-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
-                            topLeft: <div className="w-6 h-6 -ml-3 -mt-3 md:w-4 md:h-4 md:-ml-2 md:-mt-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />
-                        }}
+                        className={`group ${selectedEntryId === entry.id ? 'z-30' : 'z-20'}`}
+                        onDragStart={() => onSelectEntry(entry.id)}
+                        disableDragging={activeTool === 'pan'}
+                        resizeHandleComponent={selectedEntryId === entry.id ? {
+                            bottomRight: <div className="w-8 h-8 -mr-4 -mb-4 md:w-5 md:h-5 md:-mr-2.5 md:-mb-2.5 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125 flex items-center justify-center"><div className="w-2 h-2 bg-canada-red rounded-full" /></div>,
+                            bottomLeft: <div className="w-8 h-8 -ml-4 -mb-4 md:w-5 md:h-5 md:-ml-2.5 md:-mb-2.5 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125 flex items-center justify-center"><div className="w-2 h-2 bg-canada-red rounded-full" /></div>,
+                            topRight: <div className="w-8 h-8 -mr-4 -mt-4 md:w-5 md:h-5 md:-mr-2.5 md:-mt-2.5 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125 flex items-center justify-center"><div className="w-2 h-2 bg-canada-red rounded-full" /></div>,
+                            topLeft: <div className="w-8 h-8 -ml-4 -mt-4 md:w-5 md:h-5 md:-ml-2.5 md:-mt-2.5 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125 flex items-center justify-center"><div className="w-2 h-2 bg-canada-red rounded-full" /></div>
+                        } : {}}
                     >
                         <div
-                            className="w-full h-full relative cursor-move border-2 border-transparent group-hover:border-blue-400 p-1 flex items-center justify-center transition-colors"
+                            className={`w-full h-full relative cursor-move border-2 ${selectedEntryId === entry.id ? 'border-blue-500 shadow-xl scale-[1.02]' : 'border-transparent hover:border-blue-400'} p-1 flex items-center justify-center transition-all`}
                             style={{ touchAction: 'none' }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectEntry(entry.id);
+                            }}
                         >
                             {entry.dataUrl ? (
                                 <img src={entry.dataUrl} className="max-w-full max-h-full object-contain pointer-events-none" />
@@ -467,13 +498,15 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                                 </div>
                             )}
 
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                className="absolute -top-10 left-1/2 -translate-x-1/2 p-2 bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-canada-red shadow-xl opacity-0 group-hover:opacity-100 transition-all z-20 active:scale-95"
-                                title="Delete"
-                            >
-                                <Trash2 size={16} />
-                            </button>
+                            {selectedEntryId === entry.id && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); onSelectEntry(null); }}
+                                    className="absolute -top-12 left-1/2 -translate-x-1/2 p-2.5 bg-red-600 text-white border border-red-700 rounded-xl shadow-2xl transition-all z-20 active:scale-90 flex items-center gap-2 font-bold text-xs"
+                                    title="Delete"
+                                >
+                                    <Trash2 size={16} /> Delete
+                                </button>
+                            )}
                         </div>
                     </Rnd>
                 ))}
