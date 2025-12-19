@@ -271,7 +271,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         }
           `}
                 >
-                    {t.btnAction}
+                    {currentTool === ToolType.DELETE && t.btnRemove}
+                    {currentTool === ToolType.ROTATE && t.btnRotate}
+                    {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
+                    {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && t.btnConvert}
                 </button>
             </div>
         </div>
