@@ -84,6 +84,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     };
 
+    useEffect(() => {
+        // Auto-fit zoom on mobile
+        if (typeof window !== 'undefined' && window.innerWidth < 768 && previewZoom === 1.0) {
+            setPreviewZoom(0.65);
+        }
+    }, []);
+
     const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string) => {
         const id = `entry_${Date.now()}`;
 
@@ -317,6 +324,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         onVisibilityChange={(v) => reportVisibility(idx, v)}
                     />
                 ))}
+                {/* Large space at bottom to ensure no overlap by floating UI */}
+                <div className="h-64 md:h-32 shrink-0" />
             </div>
 
             <SignatureModal
@@ -326,7 +335,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 t={t}
                 title={modalType === 'signature' ? t.addSignature : t.addInitials}
             />
-        </div>
+        </div >
     );
 };
 
@@ -431,9 +440,15 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                         bounds="parent"
                         lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
                         className="group"
+                        resizeHandleComponent={{
+                            bottomRight: <div className="w-6 h-6 -mr-3 -mb-3 md:w-4 md:h-4 md:-mr-2 md:-mb-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
+                            bottomLeft: <div className="w-6 h-6 -ml-3 -mb-3 md:w-4 md:h-4 md:-ml-2 md:-mb-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
+                            topRight: <div className="w-6 h-6 -mr-3 -mt-3 md:w-4 md:h-4 md:-mr-2 md:-mt-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />,
+                            topLeft: <div className="w-6 h-6 -ml-3 -mt-3 md:w-4 md:h-4 md:-ml-2 md:-mt-2 bg-white border-2 border-canada-red rounded-full shadow-lg transition-transform active:scale-125" />
+                        }}
                     >
                         <div
-                            className="w-full h-full relative cursor-move border-2 border-transparent hover:border-blue-400 p-1 flex items-center justify-center"
+                            className="w-full h-full relative cursor-move border-2 border-transparent group-hover:border-blue-400 p-1 flex items-center justify-center transition-colors"
                             style={{ touchAction: 'none' }}
                         >
                             {entry.dataUrl ? (
@@ -453,10 +468,11 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                             )}
 
                             <button
-                                onClick={() => onEntryDelete(entry.id)}
-                                className="absolute -top-3 -right-3 w-6 h-6 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all shadow-md z-10"
+                                onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
+                                className="absolute -top-10 left-1/2 -translate-x-1/2 p-2 bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-canada-red shadow-xl opacity-0 group-hover:opacity-100 transition-all z-20 active:scale-95"
+                                title="Delete"
                             >
-                                <Trash2 size={12} />
+                                <Trash2 size={16} />
                             </button>
                         </div>
                     </Rnd>
