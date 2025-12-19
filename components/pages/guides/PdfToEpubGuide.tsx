@@ -247,11 +247,24 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         },
         {
             "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://pdfcanada.ca/" },
-                { "@type": "ListItem", "position": 2, "name": t.h1, "item": "https://pdfcanada.ca/guides/convertir-pdf-en-epub" }
-            ]
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-04-15",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
         }
     ];
 

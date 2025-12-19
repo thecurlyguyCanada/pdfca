@@ -178,6 +178,41 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
+    const schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": t.h1,
+            "description": t.seo.desc,
+            "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Select PDF", "text": "Upload the PDF that needs rotation." },
+                { "@type": "HowToStep", "position": 2, "name": "Rotate Pages", "text": "Click rotate buttons on specific pages or use Rotate All." },
+                { "@type": "HowToStep", "position": 3, "name": "Save Changes", "text": "Process and download your corrected PDF." }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-02-15",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
+            }
+        }
+    ];
+
     return (
         <>
             <SEO
@@ -185,6 +220,7 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 description={t.seo.desc}
                 canonicalPath="/guides/rotate-pdf"
                 lang={lang}
+                schema={schema}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },

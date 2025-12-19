@@ -249,26 +249,40 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
-    const schema = {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": t.h1,
-        "description": t.seo.desc,
-        "step": t.sections.find((s: any) => s.id === "how-to")?.content ? [
-            {
-                "@type": "HowToStep",
-                "text": "Select your CBR or CBZ file."
+    const schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": t.h1,
+            "description": t.seo.desc,
+            "step": [
+                { "@type": "HowToStep", "position": 1, "name": "Select Comic", "text": "Select your CBR or CBZ file." },
+                { "@type": "HowToStep", "position": 2, "name": "Wait for Extraction", "text": "Wait for image extraction in browser memory." },
+                { "@type": "HowToStep", "position": 3, "name": "Download PDF", "text": "Download your compiled PDF." }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": t.h1,
+            "description": t.seo.desc,
+            "datePublished": "2024-06-15",
+            "dateModified": "2025-01-10",
+            "author": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "url": "https://pdfcanada.ca"
             },
-            {
-                "@type": "HowToStep",
-                "text": "Wait for image extraction in browser memory."
-            },
-            {
-                "@type": "HowToStep",
-                "text": "Download your compiled PDF."
+            "publisher": {
+                "@type": "Organization",
+                "name": "pdfcanada.ca",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                }
             }
-        ] : []
-    };
+        }
+    ];
 
     return (
         <div className="bg-white dark:bg-black">
