@@ -125,12 +125,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     };
 
     return (
-        <div className="flex flex-col h-full bg-gray-100 flex-grow w-full relative">
-            {/* Toolbar */}
-            <div className="sticky top-0 z-50 bg-white border-b border-gray-200 p-2 md:p-3 shadow-md flex items-center justify-between gap-2 overflow-x-visible">
-                <div className="flex items-center gap-1 md:gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
+        <div className="flex flex-col h-full bg-gray-50 flex-grow w-full relative overflow-hidden">
+            {/* Toolbar - More robust for both mobile and desktop */}
+            <div className="sticky top-0 z-[60] bg-white/90 backdrop-blur-md border-b border-gray-200 p-2 md:p-3 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3 overflow-visible">
+                {/* Tools Group */}
+                <div className="flex items-center gap-1.5 md:gap-3 w-full md:w-auto overflow-x-auto no-scrollbar pb-1 md:pb-0 px-1">
                     {/* Tool Selector */}
-                    <div className="flex bg-gray-100 p-1 rounded-xl">
+                    <div className="flex bg-gray-100 p-1 rounded-xl shrink-0">
                         <button
                             onClick={() => setActiveTool('pan')}
                             className={`p-2 rounded-lg transition-all ${activeTool === 'pan' ? 'bg-white text-canada-red shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
@@ -147,30 +148,30 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         </button>
                     </div>
 
-                    <div className="w-px h-8 bg-gray-200 mx-1"></div>
+                    <div className="w-px h-6 md:h-8 bg-gray-200 mx-0.5 shrink-0"></div>
 
-                    {/* Add Elements */}
-                    <div className="relative">
+                    {/* Add Signature/Initials Dropdown */}
+                    <div className="relative shrink-0">
                         <button
                             onClick={() => setShowSignaturesDropdown(!showSignaturesDropdown)}
-                            className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-sm text-gray-700"
+                            className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-xs md:text-sm text-gray-700 shadow-sm"
                         >
-                            <PenTool size={18} className="text-canada-red" />
-                            <span className="hidden sm:inline">Signatures</span>
-                            <ChevronDown size={14} />
+                            <PenTool size={20} className="text-canada-red" />
+                            <span className="whitespace-nowrap">Sign</span>
+                            <ChevronDown size={12} />
                         </button>
 
                         {showSignaturesDropdown && (
-                            <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-[60] animate-scale-in">
+                            <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-[70] animate-scale-in">
                                 <div className="space-y-4">
                                     <div>
-                                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Signatures</h4>
-                                        <div className="space-y-2">
+                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Signatures</h4>
+                                        <div className="space-y-2 max-h-40 overflow-y-auto custom-scrollbar pr-1">
                                             {savedSignatures.map((sig, i) => (
                                                 <button
                                                     key={i}
                                                     onClick={() => { addEntry('signature', sig); setShowSignaturesDropdown(false); }}
-                                                    className="w-full h-12 border border-gray-100 rounded-lg hover:border-canada-red p-1 bg-gray-50 flex items-center justify-center transition-all"
+                                                    className="w-full h-12 border border-gray-100 rounded-lg hover:border-canada-red p-1 bg-gray-50 flex items-center justify-center transition-all overflow-hidden"
                                                 >
                                                     <img src={sig} alt="Signature" className="max-w-full max-h-full object-contain" />
                                                 </button>
@@ -185,13 +186,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                     </div>
 
                                     <div className="pt-2 border-t border-gray-50">
-                                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Initials</h4>
-                                        <div className="space-y-2">
+                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Initials</h4>
+                                        <div className="space-y-2 max-h-40 overflow-y-auto custom-scrollbar pr-1">
                                             {savedInitials.map((sig, i) => (
                                                 <button
                                                     key={i}
                                                     onClick={() => { addEntry('initials', sig); setShowSignaturesDropdown(false); }}
-                                                    className="w-full h-12 border border-gray-100 rounded-lg hover:border-canada-red p-1 bg-gray-50 flex items-center justify-center transition-all"
+                                                    className="w-full h-12 border border-gray-100 rounded-lg hover:border-canada-red p-1 bg-gray-50 flex items-center justify-center transition-all overflow-hidden"
                                                 >
                                                     <img src={sig} alt="Initials" className="max-w-full max-h-full object-contain" />
                                                 </button>
@@ -209,75 +210,90 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         )}
                     </div>
 
-                    <button
-                        onClick={() => addEntry('date')}
-                        className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-sm text-gray-700"
-                        title="Add Date"
-                    >
-                        <Calendar size={18} className="text-blue-600" />
-                        <span className="hidden sm:inline">Date</span>
-                    </button>
+                    {/* Quick Elements */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                            onClick={() => addEntry('date')}
+                            className="p-2 md:px-3 md:py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-xs text-gray-700 shadow-sm flex items-center gap-1.5"
+                            title="Add Date"
+                        >
+                            <Calendar size={20} className="text-blue-600" />
+                            <span className="hidden sm:inline">Date</span>
+                        </button>
 
-                    <button
-                        onClick={() => addEntry('text', undefined, 'Text')}
-                        className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-sm text-gray-700"
-                        title="Add Text"
-                    >
-                        <Type size={18} className="text-green-600" />
-                        <span className="hidden sm:inline">Text</span>
-                    </button>
+                        <button
+                            onClick={() => addEntry('text', undefined, 'Text')}
+                            className="p-2 md:px-3 md:py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-xs text-gray-700 shadow-sm flex items-center gap-1.5"
+                            title="Add Text"
+                        >
+                            <Type size={20} className="text-green-600" />
+                            <span className="hidden sm:inline">Text</span>
+                        </button>
 
-                    <button
-                        onClick={() => addEntry('text', undefined, '✓')}
-                        className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-sm text-gray-700"
-                        title="Add Checkmark"
-                    >
-                        <CheckIcon size={18} className="text-purple-600" />
-                        <span className="hidden sm:inline">Check</span>
-                    </button>
+                        <button
+                            onClick={() => addEntry('text', undefined, '✓')}
+                            className="p-2 md:px-3 md:py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-xs text-gray-700 shadow-sm flex items-center gap-1.5"
+                            title="Add Checkmark"
+                        >
+                            <CheckIcon size={20} className="text-purple-600" />
+                            <span className="hidden sm:inline">Check</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div className="flex items-center gap-1 md:gap-2">
-                    {/* History */}
-                    <div className="flex items-center gap-1 mr-2 invisible sm:visible">
-                        <button
-                            onClick={undo}
-                            disabled={historyStep === 0}
-                            className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed"
-                            title="Undo"
-                        >
-                            <Undo2 size={20} />
-                        </button>
-                        <button
-                            onClick={redo}
-                            disabled={historyStep === history.length - 1}
-                            className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed"
-                            title="Redo"
-                        >
-                            <Redo2 size={20} />
-                        </button>
+                {/* Controls Group */}
+                <div className="flex items-center justify-between md:justify-end gap-2 md:gap-4 w-full md:w-auto mt-1 md:mt-0">
+                    {/* Zoom & History Combined on mobile */}
+                    <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1 invisible md:visible w-0 md:w-auto overflow-hidden transition-all duration-300">
+                            <button
+                                onClick={undo}
+                                disabled={historyStep === 0}
+                                className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed"
+                                title="Undo"
+                            >
+                                <Undo2 size={20} />
+                            </button>
+                            <button
+                                onClick={redo}
+                                disabled={historyStep === history.length - 1}
+                                className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed"
+                                title="Redo"
+                            >
+                                <Redo2 size={20} />
+                            </button>
+                        </div>
+
+                        <div className="flex items-center bg-gray-100 rounded-xl p-1 shrink-0">
+                            <button
+                                onClick={() => setPreviewZoom(Math.max(0.5, previewZoom - 0.2))}
+                                className="p-1.5 text-gray-600 hover:text-canada-red transition-colors"
+                            >
+                                <ZoomOut size={16} />
+                            </button>
+                            <span className="text-[10px] md:text-xs font-bold w-10 md:w-12 text-center text-gray-700">{Math.round(previewZoom * 100)}%</span>
+                            <button
+                                onClick={() => setPreviewZoom(Math.min(3.0, previewZoom + 0.2))}
+                                className="p-1.5 text-gray-600 hover:text-canada-red transition-colors"
+                            >
+                                <ZoomIn size={16} />
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="flex items-center bg-gray-100 rounded-xl p-1 shrink-0">
-                        <button
-                            onClick={() => setPreviewZoom(Math.max(0.5, previewZoom - 0.2))}
-                            className="p-1.5 md:p-2 text-gray-600 hover:text-gray-900"
-                        >
-                            <ZoomOut size={16} />
-                        </button>
-                        <span className="text-[10px] md:text-sm font-bold w-10 md:w-12 text-center text-gray-700">{Math.round(previewZoom * 100)}%</span>
-                        <button
-                            onClick={() => setPreviewZoom(Math.min(3.0, previewZoom + 0.2))}
-                            className="p-2 text-gray-600 hover:text-gray-900"
-                        >
-                            <ZoomIn size={16} />
-                        </button>
-                    </div>
+                    {/* Hidden Sign Button (triggered by ToolInterface footer) */}
+                    <button
+                        id="footer-sign-trigger"
+                        onClick={() => onSign(entries)}
+                        className="hidden"
+                    />
 
+                    {/* Visible Sign Button (only on desktop toolbar for quick access) */}
                     <button
                         onClick={() => onSign(entries)}
-                        className="bg-canada-red text-white px-3 md:px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-canada-darkRed transition-all active:scale-95 text-xs md:text-sm whitespace-nowrap"
+                        className="hidden md:flex bg-canada-red text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-canada-darkRed transition-all active:scale-95 text-sm whitespace-nowrap items-center gap-2"
                     >
+                        <PenTool size={16} />
                         {t.btnSign}
                     </button>
                 </div>
@@ -286,7 +302,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             {/* PDF View Area */}
             <div
                 ref={containerRef}
-                className={`flex-grow overflow-auto p-4 md:p-12 flex flex-col items-center gap-8 ${activeTool === 'pan' ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
+                className={`flex-grow overflow-auto p-4 md:p-8 lg:p-12 flex flex-col items-center gap-8 ${activeTool === 'pan' ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'} custom-scrollbar`}
             >
                 {Array.from({ length: pageCount }).map((_, idx) => (
                     <PageRenderer
