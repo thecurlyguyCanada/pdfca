@@ -618,11 +618,11 @@ function App() {
             {t.builtIn}
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 drop-shadow-sm">
-            {t.title} <span className="text-canada-red">{t.subtitle}</span>
+          <h1 className="hero-title">
+            {t.title} <span className="hero-title-accent">{t.subtitle}</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
+          <p className="hero-desc max-w-lg mx-auto md:mx-0">
             {t.description}
           </p>
 

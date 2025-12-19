@@ -62,12 +62,38 @@
     html { scroll-behavior: smooth; }
     body {
       background-color: #f8f9fa;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
     }
 
     /* Critical loading state styles */
     #root { min-height: 100vh; }
+
+    /* CRITICAL: Hero title styles - inline to eliminate CSS resolution delay for LCP */
+    .hero-title {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #111827;
+      font-size: 2.25rem;
+      margin: 0;
+    }
+    @media (min-width: 768px) {
+      .hero-title { font-size: 3.75rem; }
+    }
+    .hero-title-accent { color: #dc2626; } /* WCAG-safe red */
+
+    /* Hero description - also critical for perceived load */
+    .hero-desc {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: #4b5563;
+      font-weight: 500;
+    }
+    @media (min-width: 768px) {
+      .hero-desc { font-size: 1.25rem; }
+    }
 
     /* Fade-in animation for content */
     @keyframes fadeIn {
@@ -94,8 +120,8 @@
 
     /* Pulse animation for CTA buttons */
     @keyframes pulse-subtle {
-      0%, 100% { box-shadow: 0 10px 25px -3px rgba(255, 0, 0, 0.3); }
-      50% { box-shadow: 0 10px 30px -3px rgba(255, 0, 0, 0.5); }
+      0%, 100% { box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.3); }
+      50% { box-shadow: 0 10px 30px -3px rgba(220, 38, 38, 0.5); }
     }
     .animate-pulse-subtle { animation: pulse-subtle 2s ease-in-out infinite; }
   </style>

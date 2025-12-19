@@ -14,9 +14,10 @@ export default {
       },
       colors: {
         canada: {
-          red: '#FF0000',
-          darkRed: '#C40000',
-          leaf: '#D80000'
+          // WCAG AA compliant colors (4.5:1 contrast ratio on white)
+          red: '#dc2626',      // Previously #FF0000 - now passes WCAG AA
+          darkRed: '#b91c1c',  // Darker for hover states
+          leaf: '#dc2626'      // Matching brand red
         }
       },
       animation: {
