@@ -77,7 +77,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                         {t.footerPrivacyNotice}
                      </p>
                   </div>
-                  <p className="text-xs text-gray-400 italic">
+                  <p className="text-xs text-gray-600 italic">
                      "{t.footerTagline}"
                   </p>
                </div>

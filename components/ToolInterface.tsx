@@ -114,7 +114,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </p>
                     </div>
                 </div>
-                <button onClick={onSoftReset} className="text-gray-400 hover:text-gray-600 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0">
+                <button onClick={onSoftReset} className="text-gray-600 hover:text-gray-800 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" aria-label="Remove file">
                     <X size={20} />
                 </button>
             </div>
@@ -167,7 +167,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     <button onClick={() => rotateAll('right')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 active:border-canada-red active:text-canada-red active:bg-red-50 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                                         <RotateCw size={16} /> <span className="hidden sm:inline">{t.rotateAllRight}</span><span className="sm:hidden">Right</span>
                                     </button>
-                                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 active:border-gray-400 active:text-gray-900 active:bg-gray-50 transition-all text-xs md:text-sm font-medium text-gray-500 whitespace-nowrap min-h-[44px]">
+                                    <button onClick={resetRotations} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 hover:text-gray-900 active:scale-95 active:border-gray-400 active:text-gray-900 active:bg-gray-50 transition-all text-xs md:text-sm font-medium text-gray-600 whitespace-nowrap min-h-[44px]">
                                         <RefreshCcw size={16} /> <span className="hidden sm:inline">{t.resetRotations}</span><span className="sm:hidden">Reset</span>
                                     </button>
                                 </div>
@@ -187,29 +187,32 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                         {/* Global Utilities (Zoom) */}
                         <div className="w-full flex justify-end px-2 mb-2">
-                            <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-0.5">
+                            <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-0.5" role="group" aria-label="Zoom controls">
                                 <button
                                     onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.1))}
                                     disabled={previewZoom <= 0.5}
-                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom Out (Ctrl + -)"
+                                    aria-label="Zoom out"
                                 >
                                     <ZoomOut size={18} />
                                 </button>
-                                <span className="text-xs font-mono w-12 text-center text-gray-500 font-medium">{Math.round(previewZoom * 100)}%</span>
+                                <span className="text-xs font-mono w-12 text-center text-gray-700 font-medium" aria-live="polite">{Math.round(previewZoom * 100)}%</span>
                                 <button
                                     onClick={() => setPreviewZoom(z => Math.min(5.0, z + 0.1))}
                                     disabled={previewZoom >= 5.0}
-                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom In (Ctrl + +)"
+                                    aria-label="Zoom in"
                                 >
                                     <ZoomIn size={18} />
                                 </button>
-                                <div className="w-px h-6 bg-gray-200 mx-1"></div>
+                                <div className="w-px h-6 bg-gray-200 mx-1" aria-hidden="true"></div>
                                 <button
                                     onClick={() => setPreviewZoom(1.0)}
-                                    className="text-xs font-bold px-3 py-2 min-h-[44px] flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 rounded-lg text-gray-400 hover:text-gray-600 active:text-gray-900 transition-colors"
+                                    className="text-xs font-bold px-3 py-2 min-h-[44px] flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 rounded-lg text-gray-600 hover:text-gray-800 active:text-gray-900 transition-colors"
                                     title="Reset Zoom (Ctrl + 0)"
+                                    aria-label="Reset zoom to 100%"
                                 >
                                     100%
                                 </button>
