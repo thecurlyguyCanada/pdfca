@@ -17,19 +17,18 @@ const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').
 import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
-import {
-  UltimatePdfGuide,
-  DeletePdfPagesGuide,
-  RotatePdfGuide,
-  OcrPdfGuide,
-  HeicToPdfGuide,
-  EpubToPdfGuide,
-  PdfToEpubGuide,
-  OrganizePdfGuide,
-  MakeFillableGuide,
-  EmailToPdfGuide,
-  CbrToPdfGuide
-} from './components/Guides';
+// Lazy load all guide components individually for proper code splitting
+const UltimatePdfGuide = React.lazy(() => import('./components/pages/guides/UltimatePdfGuide').then(m => ({ default: m.UltimatePdfGuide })));
+const DeletePdfPagesGuide = React.lazy(() => import('./components/pages/guides/DeletePdfPagesGuide').then(m => ({ default: m.DeletePdfPagesGuide })));
+const RotatePdfGuide = React.lazy(() => import('./components/pages/guides/RotatePdfGuide').then(m => ({ default: m.RotatePdfGuide })));
+const OcrPdfGuide = React.lazy(() => import('./components/pages/guides/OcrPdfGuide').then(m => ({ default: m.OcrPdfGuide })));
+const HeicToPdfGuide = React.lazy(() => import('./components/pages/guides/HeicToPdfGuide').then(m => ({ default: m.HeicToPdfGuide })));
+const EpubToPdfGuide = React.lazy(() => import('./components/pages/guides/EpubToPdfGuide').then(m => ({ default: m.EpubToPdfGuide })));
+const PdfToEpubGuide = React.lazy(() => import('./components/pages/guides/PdfToEpubGuide').then(m => ({ default: m.PdfToEpubGuide })));
+const OrganizePdfGuide = React.lazy(() => import('./components/pages/guides/OrganizePdfGuide').then(m => ({ default: m.OrganizePdfGuide })));
+const MakeFillableGuide = React.lazy(() => import('./components/pages/guides/MakeFillableGuide').then(m => ({ default: m.MakeFillableGuide })));
+const EmailToPdfGuide = React.lazy(() => import('./components/pages/guides/EmailToPdfGuide').then(m => ({ default: m.EmailToPdfGuide })));
+const CbrToPdfGuide = React.lazy(() => import('./components/pages/guides/CbrToPdfGuide').then(m => ({ default: m.CbrToPdfGuide })));
 
 enum AppState {
   HOME,
@@ -629,9 +628,9 @@ function App() {
 
           <div className="flex flex-col gap-4 max-w-md mx-auto md:mx-0">
             <div className="bg-white/80 backdrop-blur border border-gray-200 rounded-lg p-4 flex items-start gap-3 text-left shadow-sm">
-              <Shield className="w-5 h-5 text-canada-red mt-1 flex-shrink-0" />
+              <Shield className="w-5 h-5 text-canada-red mt-1 flex-shrink-0" aria-hidden="true" />
               <div>
-                <h4 className="font-bold text-gray-900 text-sm">{t.localProcessing}</h4>
+                <p className="font-bold text-gray-900 text-sm">{t.localProcessing}</p>
                 <p className="text-gray-600 text-xs mt-1">
                   {t.localProcessingDesc}
                 </p>
@@ -648,7 +647,7 @@ function App() {
             {appState === AppState.HOME && (
               <div className="p-8 h-full bg-gray-50/30 overflow-y-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                  Select a Tool <span className="text-lg font-normal text-gray-400">eh?</span>
+                  Select a Tool <span className="text-lg font-normal text-gray-600">eh?</span>
                 </h2>
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
                   {tools.map(tool => (
@@ -714,7 +713,7 @@ function App() {
 
             {appState === AppState.ERROR && (
               <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
-                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 active:text-canada-red p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full active:bg-gray-100 transition-colors">
+                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 active:text-canada-red p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full active:bg-gray-100 transition-colors" aria-label="Close error">
                   <X size={24} />
                 </button>
                 <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">

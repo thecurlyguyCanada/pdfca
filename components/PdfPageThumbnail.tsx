@@ -180,8 +180,8 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
 
       {/* Error / Fallback State */}
       {error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800 text-gray-400 p-2 text-center pointer-events-none">
-          <div className="w-12 h-12 mb-2 text-gray-300 dark:text-gray-600">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 p-2 text-center pointer-events-none">
+          <div className="w-12 h-12 mb-2 text-gray-500 dark:text-gray-500" aria-hidden="true">
             <FileText className="w-full h-full" />
           </div>
           <span className="text-xs font-medium">Page {pageIndex + 1}</span>

@@ -37,56 +37,20 @@
   <link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/">
   <link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/">
 
-  <!-- Performance & CDNs -->
-
+  <!-- Performance: Preconnect to external origins early -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Preload critical font file for faster text rendering -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Non-render-blocking font loading: loads async, switches when ready -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"></noscript>
+
+  <!-- Critical CSS: Only what's needed for first paint (above the fold) -->
   <style>
-    body {
-      background-color: #f8f9fa;
-    }
-
-    /* Custom scrollbar for page grid */
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #aaa;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in {
-      animation: fadeIn 0.3s ease-out forwards;
-    }
-
-    /* Safe Area Support */
+    /* Font fallback while loading */
     :root {
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -94,35 +58,46 @@
       --safe-area-inset-right: env(safe-area-inset-right, 0px);
     }
 
-    /* Pulse animation for active buttons */
-    @keyframes pulse-subtle {
-
-      0%,
-      100% {
-        box-shadow: 0 10px 25px -3px rgba(255, 0, 0, 0.3);
-      }
-
-      50% {
-        box-shadow: 0 10px 30px -3px rgba(255, 0, 0, 0.5);
-      }
+    /* Immediate background to prevent flash */
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #f8f9fa;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      margin: 0;
     }
 
-    .animate-pulse-subtle {
-      animation: pulse-subtle 2s ease-in-out infinite;
-    }
+    /* Critical loading state styles */
+    #root { min-height: 100vh; }
 
-    /* Better touch handling */
-    button,
-    a {
+    /* Fade-in animation for content */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+
+    /* Touch optimization - prevents delays on mobile */
+    button, a {
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
-
-    /* Prevent text selection on buttons */
     button {
       user-select: none;
       -webkit-user-select: none;
     }
+
+    /* Loading spinner animation */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin { animation: spin 1s linear infinite; }
+
+    /* Pulse animation for CTA buttons */
+    @keyframes pulse-subtle {
+      0%, 100% { box-shadow: 0 10px 25px -3px rgba(255, 0, 0, 0.3); }
+      50% { box-shadow: 0 10px 30px -3px rgba(255, 0, 0, 0.5); }
+    }
+    .animate-pulse-subtle { animation: pulse-subtle 2s ease-in-out infinite; }
   </style>
 
 </head>
