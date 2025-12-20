@@ -258,6 +258,7 @@ const ThumbnailItemBase: React.FC<ThumbnailItemProps> = ({ idx, activePage, scro
             isSelected={activePage === idx}
             onClick={() => scrollToPage(idx)}
             width={160}
+            mode="none"
         />
         <div className="text-center text-[10px] mt-1 font-medium">Page {idx + 1}</div>
     </div>
