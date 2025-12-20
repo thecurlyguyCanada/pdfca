@@ -184,10 +184,14 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, top: isMobile ? -16 : -6, left: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
-                        topRight: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, top: isMobile ? -16 : -6, right: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
-                        bottomLeft: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, bottom: isMobile ? -16 : -6, left: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
-                        bottomRight: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, bottom: isMobile ? -16 : -6, right: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
+                        topLeft: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, top: isMobile ? -20 : -6, left: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        topRight: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, top: isMobile ? -20 : -6, right: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomLeft: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, bottom: isMobile ? -20 : -6, left: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomRight: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, bottom: isMobile ? -20 : -6, right: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        top: isMobile ? { display: 'none' } : undefined,
+                        right: isMobile ? { display: 'none' } : undefined,
+                        bottom: isMobile ? { display: 'none' } : undefined,
+                        left: isMobile ? { display: 'none' } : undefined,
                     }}
                 >
                     <div
@@ -760,7 +764,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
                         scrollBehavior: isPinching ? 'auto' : 'smooth',
                         WebkitOverflowScrolling: 'touch',
-                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'none'
+                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'manipulation'
                     }}
                 >
                     <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6 mobile-content-inner">
