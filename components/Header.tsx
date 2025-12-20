@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
+import { triggerHaptic } from '../utils/haptics';
 
 interface HeaderProps {
   lang: Language;
@@ -13,6 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavigate = (view: string) => {
+    triggerHaptic('light');
     onNavigate(view);
     setMobileMenuOpen(false);
   };
@@ -40,7 +42,10 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         <div className="flex items-center gap-2">
           {/* Language Toggle - Larger touch target */}
           <button
-            onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
+            onClick={() => {
+              triggerHaptic('light');
+              setLang(lang === 'en' ? 'fr' : 'en');
+            }}
             className="text-xs font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {lang === 'en' ? 'FR' : 'EN'}
@@ -48,7 +53,10 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              triggerHaptic('light');
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
             className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Toggle menu"
           >

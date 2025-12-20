@@ -46,6 +46,12 @@ const getHeic2Any = async () => {
   return heic2any.default;
 };
 
+// Lazy load Tesseract.js for OCR
+const getTesseract = async () => {
+  const Tesseract = await import('tesseract.js');
+  return Tesseract;
+};
+
 export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     const pdfjs = await getPdfJs();
@@ -113,6 +119,23 @@ export const rotatePdfPages = async (originalFile: File, rotations: Record<numbe
   });
 
   return await doc.save();
+};
+
+export const reorderPdfPages = async (originalFile: File, newOrder: number[]): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+  const arrayBuffer = await originalFile.arrayBuffer();
+  const sourceDoc = await PDFDocument.load(arrayBuffer);
+  const newDoc = await PDFDocument.create();
+
+  // Copy pages in the new order
+  for (const pageIndex of newOrder) {
+    if (pageIndex >= 0 && pageIndex < sourceDoc.getPageCount()) {
+      const [copiedPage] = await newDoc.copyPages(sourceDoc, [pageIndex]);
+      newDoc.addPage(copiedPage);
+    }
+  }
+
+  return await newDoc.save();
 };
 
 export const makePdfFillable = async (originalFile: File, pageIndicesToFill: number[], existingPdfJsDoc?: any): Promise<Uint8Array> => {
@@ -568,6 +591,161 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
       console.warn(`Failed to embed image ${img.name}`, e);
     }
   }
+
+  return await doc.save();
+};
+
+// OCR: Extract text from PDF pages
+export interface OcrProgress {
+  page: number;
+  totalPages: number;
+  status: string;
+  progress: number;
+}
+
+export const extractTextWithOcr = async (
+  file: File,
+  pageIndices: number[],
+  languages: string[] = ['eng'],
+  onProgress?: (progress: OcrProgress) => void
+): Promise<string> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const Tesseract = await getTesseract();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  let fullText = '';
+  const langString = languages.join('+');
+
+  for (let i = 0; i < pageIndices.length; i++) {
+    const pageIndex = pageIndices[i];
+    if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+
+    onProgress?.({
+      page: i + 1,
+      totalPages: pageIndices.length,
+      status: `Processing page ${i + 1} of ${pageIndices.length}...`,
+      progress: (i / pageIndices.length) * 100
+    });
+
+    const page = await pdf.getPage(pageIndex + 1);
+    const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+
+    // Render page to canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) continue;
+
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    // Run OCR
+    const result = await Tesseract.recognize(canvas, langString, {
+      logger: (m: any) => {
+        if (m.status === 'recognizing text' && m.progress !== undefined) {
+          onProgress?.({
+            page: i + 1,
+            totalPages: pageIndices.length,
+            status: `Recognizing text on page ${i + 1}...`,
+            progress: ((i + m.progress) / pageIndices.length) * 100
+          });
+        }
+      }
+    });
+
+    fullText += `--- Page ${pageIndex + 1} ---\n${result.data.text}\n\n`;
+  }
+
+  onProgress?.({
+    page: pageIndices.length,
+    totalPages: pageIndices.length,
+    status: 'Complete!',
+    progress: 100
+  });
+
+  return fullText;
+};
+
+// OCR: Create searchable PDF with invisible text layer
+export const makeSearchablePdf = async (
+  file: File,
+  pageIndices: number[],
+  languages: string[] = ['eng'],
+  onProgress?: (progress: OcrProgress) => void
+): Promise<Uint8Array> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const { PDFDocument, rgb } = await getPdfLib();
+  const Tesseract = await getTesseract();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const doc = await PDFDocument.load(arrayBuffer);
+  const langString = languages.join('+');
+
+  for (let i = 0; i < pageIndices.length; i++) {
+    const pageIndex = pageIndices[i];
+    if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+
+    onProgress?.({
+      page: i + 1,
+      totalPages: pageIndices.length,
+      status: `OCR processing page ${i + 1}...`,
+      progress: (i / pageIndices.length) * 100
+    });
+
+    const pdfJsPage = await pdf.getPage(pageIndex + 1);
+    const viewport = pdfJsPage.getViewport({ scale: 2.0 });
+
+    // Render to canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) continue;
+
+    await pdfJsPage.render({ canvasContext: ctx, viewport }).promise;
+
+    // OCR the page
+    const result = await Tesseract.recognize(canvas, langString);
+
+    // Get the pdf-lib page
+    const pdfLibPage = doc.getPage(pageIndex);
+    const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
+    const scaleX = pageWidth / viewport.width;
+    const scaleY = pageHeight / viewport.height;
+
+    // Add invisible text layer
+    const words = (result.data as any).words as any[];
+    for (const word of words) {
+      if (!word.text.trim()) continue;
+
+      const bbox = word.bbox;
+      const x = bbox.x0 * scaleX;
+      // PDF y-axis is from bottom, canvas is from top
+      const y = pageHeight - (bbox.y1 * scaleY);
+      const fontSize = Math.max(8, (bbox.y1 - bbox.y0) * scaleY * 0.8);
+
+      // Draw invisible text (fully transparent)
+      pdfLibPage.drawText(word.text, {
+        x,
+        y,
+        size: fontSize,
+        color: rgb(0, 0, 0),
+        opacity: 0, // Invisible but searchable
+      });
+    }
+  }
+
+  onProgress?.({
+    page: pageIndices.length,
+    totalPages: pageIndices.length,
+    status: 'Complete!',
+    progress: 100
+  });
 
   return await doc.save();
 };

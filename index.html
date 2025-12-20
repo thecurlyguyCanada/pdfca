@@ -336,6 +336,13 @@
       border-radius: 1rem;
       text-align: center;
       cursor: pointer;
+      transition: transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .static-tool-card:active {
+      transform: scale(0.96);
+      background-color: #f9fafb;
     }
 
     @media (min-width: 768px) {

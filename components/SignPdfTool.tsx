@@ -27,6 +27,8 @@ import {
 import { SignatureModal } from './SignatureModal';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { SignatureEntry, formatFileSize } from '../utils/pdfUtils';
+import { triggerHaptic } from '../utils/haptics';
+import { useSwipe } from '../hooks/useSwipe';
 
 // ===== PAGE RENDERER =====
 
@@ -337,10 +339,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     }, [previewZoom]);
 
     const vibrate = useCallback((ms: number = 10) => {
-        if (typeof navigator !== 'undefined' && navigator.vibrate) {
-            navigator.vibrate(ms);
-        }
+        if (ms > 40) triggerHaptic('success');
+        else if (ms > 15) triggerHaptic('medium');
+        else triggerHaptic('light');
     }, []);
+
+    const swipeHandlers = useSwipe({
+        onSwipeDown: () => {
+            triggerHaptic('medium');
+            onClose();
+        }
+    });
 
     // Auto-deselect when switching to pan mode
     const handleToolChange = useCallback((tool: 'pan' | 'select') => {
@@ -804,14 +813,23 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             {/* ======================= MOBILE LAYOUT OVERRIDES ========================= */}
             {/* ========================================================================= */}
 
+
+
             {/* Mobile Header */}
-            <div className="flex md:hidden items-center justify-between w-full px-3 py-2.5 bg-white/95 backdrop-blur-sm border-b border-gray-100 shrink-0 fixed top-0 left-0 right-0 z-50" style={{ paddingTop: 'max(10px, env(safe-area-inset-top))' }}>
-                <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 active:bg-gray-100">
+            <div
+                className="flex md:hidden items-center justify-between w-full px-3 py-2.5 bg-white/95 backdrop-blur-sm border-b border-gray-100 shrink-0 fixed top-0 left-0 right-0 z-50 touch-none"
+                style={{ paddingTop: 'max(10px, env(safe-area-inset-top))' }}
+                {...swipeHandlers}
+            >
+                <button
+                    onClick={() => { triggerHaptic('medium'); onClose(); }}
+                    className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 active:bg-gray-100"
+                >
                     <X size={24} />
                 </button>
                 <div className="flex items-center gap-2">
                     <button
-                        onClick={() => scrollToPage(Math.max(0, activePage - 1))}
+                        onClick={() => { triggerHaptic('light'); scrollToPage(Math.max(0, activePage - 1)); }}
                         disabled={activePage === 0}
                         className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
                     >
@@ -822,14 +840,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         <span className="text-[10px] text-gray-400">of {pageCount}</span>
                     </div>
                     <button
-                        onClick={() => scrollToPage(Math.min(pageCount - 1, activePage + 1))}
+                        onClick={() => { triggerHaptic('light'); scrollToPage(Math.min(pageCount - 1, activePage + 1)); }}
                         disabled={activePage === pageCount - 1}
                         className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
                     >
                         <ChevronRight size={20} />
                     </button>
                 </div>
-                <button onClick={() => onSign(entries)} className="text-canada-red font-bold text-sm px-4 py-2 rounded-xl active:bg-red-50">
+                <button
+                    onClick={() => { triggerHaptic('success'); onSign(entries); }}
+                    className="text-canada-red font-bold text-sm px-4 py-2 rounded-xl active:bg-red-50"
+                >
                     Done
                 </button>
             </div>

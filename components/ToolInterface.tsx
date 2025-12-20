@@ -1,12 +1,18 @@
 import React, { useRef } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical } from 'lucide-react';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { formatFileSize } from '../utils/pdfUtils';
 import { ToolType } from '../App';
 import { SignPdfTool } from './SignPdfTool';
 import { signPdf, SignatureEntry } from '../utils/pdfUtils';
+import { triggerHaptic } from '../utils/haptics';
+import { useSwipe } from '../hooks/useSwipe';
 
 interface ToolInterfaceProps {
+    // ... existing props
     file: File | null;
     currentTool: ToolType;
     t: any;
@@ -17,6 +23,8 @@ interface ToolInterfaceProps {
     rotations: { [key: number]: number };
     previewZoom: number;
     isDesktop: boolean;
+    pageOrder: number[];
+    setPageOrder: React.Dispatch<React.SetStateAction<number[]>>;
     onFileSelect: () => void;
     onAction: (processedBlob?: Blob | Uint8Array) => void;
     onSoftReset: () => void;
@@ -31,6 +39,44 @@ interface ToolInterfaceProps {
     handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// ... SortableThumbnail component ...
+const SortableThumbnail: React.FC<{
+    id: string;
+    pageIndex: number;
+    pdfJsDoc: any;
+    width: number;
+    position: number;
+}> = ({ id, pageIndex, pdfJsDoc, width, position }) => {
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        zIndex: isDragging ? 50 : 1,
+        opacity: isDragging ? 0.8 : 1,
+    };
+
+    return (
+        <div ref={setNodeRef} style={style} {...attributes} {...listeners}
+            className={`relative cursor-grab active:cursor-grabbing touch-none ${isDragging ? 'scale-105 shadow-2xl' : ''}`}
+        >
+            <div className="absolute -top-2 -left-2 z-10 w-7 h-7 bg-canada-red text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
+                {position}
+            </div>
+            <div className="absolute top-1 right-1 z-10 p-1.5 bg-white/80 rounded-lg shadow-sm">
+                <GripVertical size={16} className="text-gray-400" />
+            </div>
+            <PdfPageThumbnail
+                pdfJsDoc={pdfJsDoc}
+                pageIndex={pageIndex}
+                isSelected={false}
+                onClick={() => { }}
+                mode="none"
+                width={width}
+            />
+        </div>
+    );
+};
+
 export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     file,
     currentTool,
@@ -42,6 +88,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     rotations,
     previewZoom,
     isDesktop,
+    pageOrder,
+    setPageOrder,
     onFileSelect,
     onAction,
     onSoftReset,
@@ -55,6 +103,31 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     setPageRangeInput,
     handleRangeInputChange
 }) => {
+    // dnd-kit sensors for drag and drop
+    const sensors = useSensors(
+        useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+        useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    );
+
+    // Swipe handler for closing the tool
+    const swipeHandlers = useSwipe({
+        onSwipeDown: () => {
+            // Only trigger if we are at the very top of the page/container to avoid conflicting with scrolling
+            if (window.scrollY < 10) {
+                triggerHaptic('medium');
+                onSoftReset();
+            }
+        }
+    });
+
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+        if (over && active.id !== over.id) {
+            const oldIndex = pageOrder.findIndex((p) => `page-${p}` === active.id);
+            const newIndex = pageOrder.findIndex((p) => `page-${p}` === over.id);
+            setPageOrder(arrayMove(pageOrder, oldIndex, newIndex));
+        }
+    };
     // Desktop mode: use larger base thumbnail size for better visibility
     const baseThumbnailWidth = isDesktop ? 280 : 200;
     const minThumbnailWidth = isDesktop ? 180 : 120;
@@ -99,9 +172,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE;
     const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
     const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
+    const isOrganizeTool = currentTool === ToolType.ORGANIZE;
 
     let headerText = '';
     if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
@@ -112,7 +186,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
             {!isSignTool && (
-                <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
+                <div
+                    className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
+                    {...swipeHandlers} // Attach swipe to header specifically
+                >
                     <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
                         <div className="w-10 h-10 md:w-10 md:h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
                             <FileText size={18} className="md:w-5 md:h-5" />
@@ -268,6 +345,34 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             }
                         }}
                     />
+                ) : isOrganizeTool ? (
+                    <div className="p-4 md:p-6 w-full">
+                        <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
+                            <GripVertical size={18} className="mt-0.5 shrink-0" />
+                            <p>{t.dragToReorder || 'Drag pages to reorder them. Click & hold, then drag to a new position.'}</p>
+                        </div>
+                        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                            <SortableContext items={pageOrder.map(p => `page-${p}`)} strategy={rectSortingStrategy}>
+                                <div
+                                    className={`grid gap-4 md:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : ''}`}
+                                    style={{
+                                        gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom)}px, 1fr))`
+                                    }}
+                                >
+                                    {pageOrder.map((pageIdx, position) => (
+                                        <SortableThumbnail
+                                            key={`page-${pageIdx}`}
+                                            id={`page-${pageIdx}`}
+                                            pageIndex={pageIdx}
+                                            pdfJsDoc={pdfJsDoc}
+                                            width={baseThumbnailWidth * previewZoom}
+                                            position={position + 1}
+                                        />
+                                    ))}
+                                </div>
+                            </SortableContext>
+                        </DndContext>
+                    </div>
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
@@ -297,21 +402,23 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const btn = document.getElementById('footer-sign-trigger');
                                 if (btn) btn.click();
                             } else {
+                                triggerHaptic('medium'); // Haptic for primary action
                                 onAction();
                             }
                         }}
                         disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
                         className={`
-                        w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
-                        ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
+                  w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
+                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
                                 : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
                             }
-                    `}
+              `}
                     >
                         {currentTool === ToolType.DELETE && t.btnRemove}
                         {currentTool === ToolType.ROTATE && t.btnRotate}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
+                        {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF) && t.btnConvert}
                     </button>
                 </div>

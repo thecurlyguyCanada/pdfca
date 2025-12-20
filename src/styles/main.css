@@ -47,6 +47,18 @@ img {
   height: auto;
 }
 
+/* Mobile Touch Optimizations */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent iOS zoom on focus by ensuring font size is adequate */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
 /* Accessibility improvements */
 :focus-visible {
   outline: 2px solid #FF0000;

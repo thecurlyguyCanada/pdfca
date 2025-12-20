@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Trash2, FileText, RotateCw } from 'lucide-react';
+import { triggerHaptic } from '../utils/haptics';
 
 interface PdfPageThumbnailProps {
   pdfJsDoc: any;
@@ -20,6 +21,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
   mode = 'delete',
   width = 300
 }) => {
+  // ... (keeping existing refs and state) ...
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
@@ -146,7 +148,11 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
   return (
     <div
       ref={containerRef}
-      onClick={onClick}
+      onClick={(e) => {
+        // Trigger haptic if not already handled by parent (though parent often handles logic, this ensures immediate feedback)
+        triggerHaptic('light');
+        onClick(e);
+      }}
       className={`
         relative aspect-[3/4] rounded-xl border-2 cursor-pointer overflow-hidden transition-all duration-200 group bg-white dark:bg-gray-800 touch-manipulation
         ${isSelected && mode === 'delete'

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
@@ -14,9 +14,10 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
+import { triggerHaptic } from './utils/haptics';
 // Lazy load all guide components individually for proper code splitting
 const UltimatePdfGuide = React.lazy(() => import('./components/pages/guides/UltimatePdfGuide').then(m => ({ default: m.UltimatePdfGuide })));
 const DeletePdfPagesGuide = React.lazy(() => import('./components/pages/guides/DeletePdfPagesGuide').then(m => ({ default: m.DeletePdfPagesGuide })));
@@ -49,7 +50,9 @@ export enum ToolType {
   PDF_TO_EPUB = 'PDF_TO_EPUB',
   MAKE_FILLABLE = 'MAKE_FILLABLE',
   CBR_TO_PDF = 'CBR_TO_PDF',
-  SIGN = 'SIGN'
+  SIGN = 'SIGN',
+  ORGANIZE = 'ORGANIZE',
+  OCR = 'OCR'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -76,6 +79,7 @@ function App() {
   // Tool Specific State
   const [selectedPages, setSelectedPages] = useState<Set<number>>(new Set());
   const [rotations, setRotations] = useState<Record<number, number>>({});
+  const [pageOrder, setPageOrder] = useState<number[]>([]);
   const lastSelectedPageRef = useRef<number | null>(null);
 
   // New state for manual page range input
@@ -149,6 +153,14 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/sign-pdf') {
       setCurrentTool(ToolType.SIGN);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/organize-pdf') {
+      setCurrentTool(ToolType.ORGANIZE);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/ocr-pdf') {
+      setCurrentTool(ToolType.OCR);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
@@ -325,6 +337,7 @@ function App() {
   const tools = [
     { id: ToolType.DELETE, icon: Trash2, title: t.toolDelete, desc: t.toolDeleteDesc, accept: '.pdf', path: '/delete-pdf-pages' },
     { id: ToolType.ROTATE, icon: RotateCw, title: t.toolRotate, desc: t.toolRotateDesc, accept: '.pdf', path: '/rotate-pdf' },
+    { id: ToolType.ORGANIZE, icon: GripVertical, title: t.organizePdf, desc: t.organizePdfDesc, accept: '.pdf', path: '/organize-pdf' },
     { id: ToolType.MAKE_FILLABLE, icon: PenTool, title: t.toolMakeFillable, desc: t.toolMakeFillableDesc, accept: '.pdf', path: '/make-pdf-fillable' },
     { id: ToolType.HEIC_TO_PDF, icon: Image, title: t.toolHeic, desc: t.toolHeicDesc, accept: '.heic', path: '/heic-to-pdf' },
     { id: ToolType.EPUB_TO_PDF, icon: BookOpen, title: t.toolEpubToPdf, desc: t.toolEpubToPdfDesc, accept: '.epub', path: '/epub-to-pdf' },
@@ -346,11 +359,13 @@ function App() {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
+      triggerHaptic('light'); // Feedback for file selection
       processFile(e.target.files[0]);
     }
   };
 
   const processFile = async (uploadedFile: File) => {
+    // ... existing logic ...
     const fileName = uploadedFile.name.toLowerCase();
     const tool = tools.find(x => x.id === currentTool);
 
@@ -358,6 +373,7 @@ function App() {
       const validExtensions = tool.accept.split(',').map(ext => ext.trim().toLowerCase());
       const isValid = validExtensions.some(ext => fileName.endsWith(ext));
       if (!isValid) {
+        triggerHaptic('error'); // Error feedback
         setErrorKey('fileTypeErr');
         setAppState(AppState.ERROR);
         return;
@@ -370,7 +386,7 @@ function App() {
       setFile(uploadedFile);
       setAppState(AppState.PROCESSING);
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE) {
         try {
           const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
             loadPdfDocument(uploadedFile),
@@ -392,10 +408,15 @@ function App() {
 
           setSelectedPages(new Set());
           setRotations({});
+          // Initialize page order for Organize tool
+          if (pdfLibResult.status === 'fulfilled') {
+            setPageOrder(Array.from({ length: pdfLibResult.value.pageCount }, (_, i) => i));
+          }
           lastSelectedPageRef.current = null;
           setAppState(AppState.SELECTING);
         } catch (e: any) {
           console.error("Failed to load PDF structure:", e);
+          triggerHaptic('error'); // Error feedback
           if (e?.message?.toLowerCase().includes('password') || e?.name === 'PasswordException' || e?.message?.includes('encrypted')) {
             setErrorKey('passwordErr');
           } else if (e?.message?.includes('Invalid PDF structure') || e?.message?.includes('No PDF header found')) {
@@ -410,6 +431,7 @@ function App() {
       }
     } catch (error: any) {
       console.error("General file processing error:", error);
+      triggerHaptic('error');
       setErrorKey('readErr');
       setAppState(AppState.ERROR);
     }
@@ -457,6 +479,10 @@ function App() {
           case ToolType.SIGN:
             // Signing is typically handled by components/SignPdfTool calling onAction with processedBlob
             break;
+          case ToolType.ORGANIZE:
+            resultBlob = await reorderPdfPages(file, pageOrder);
+            outName = file.name.replace('.pdf', '_organized_eh.pdf');
+            break;
         }
       } else if (currentTool === ToolType.SIGN) {
         outName = file.name.replace('.pdf', '_signed_eh.pdf');
@@ -468,9 +494,11 @@ function App() {
         setDownloadUrl(url);
         setDownloadName(outName);
         setAppState(AppState.DONE);
+        triggerHaptic('success'); // Success feedback
       }
     } catch (error: any) {
       console.error("Action execution failed:", error);
+      triggerHaptic('error'); // Error feedback
 
       if (error?.message === "Could not extract text from EPUB") {
         setErrorKey('emptyEpubErr');
@@ -489,6 +517,7 @@ function App() {
 
   const togglePageSelection = (e: React.MouseEvent, pageIndex: number) => {
     e.preventDefault();
+    triggerHaptic('light'); // Selection feedback
     const isRange = e.shiftKey;
 
     if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) {
@@ -541,6 +570,7 @@ function App() {
       setPdfJsDoc(null);
       setSelectedPages(new Set());
       setRotations({});
+      setPageOrder([]);
       lastSelectedPageRef.current = null;
       setPageRangeInput('');
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
@@ -592,6 +622,7 @@ function App() {
       case ToolType.MAKE_FILLABLE: return t.features.fillable;
       case ToolType.CBR_TO_PDF: return t.features.cbrToPdf;
       case ToolType.SIGN: return t.features.sign;
+      case ToolType.ORGANIZE: return t.features.organizePdf;
       default: return t.features.delete;
     }
   };
@@ -615,7 +646,9 @@ function App() {
           rotations={rotations}
           previewZoom={previewZoom}
           isDesktop={isDesktop}
-          onFileSelect={() => { }} // Not used?
+          pageOrder={pageOrder}
+          setPageOrder={setPageOrder}
+          onFileSelect={() => { }}
           onAction={handleAction}
           onSoftReset={handleSoftReset}
           togglePageSelection={togglePageSelection}
