@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
@@ -14,7 +14,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -32,8 +32,9 @@ const EmailToPdfGuide = React.lazy(() => import('./components/pages/guides/Email
 const CbrToPdfGuide = React.lazy(() => import('./components/pages/guides/CbrToPdfGuide').then(m => ({ default: m.CbrToPdfGuide })));
 const PdfToWordGuide = React.lazy(() => import('./components/pages/guides/PdfToWordGuide').then(m => ({ default: m.PdfToWordGuide })));
 const WordToPdfGuide = React.lazy(() => import('./components/pages/guides/WordToPdfGuide').then(m => ({ default: m.WordToPdfGuide })));
-const PdfPageRemoverGuide = React.lazy(() => import('./components/pages/guides/PdfPageRemoverGuide'));
-const FlattenPdfGuide = React.lazy(() => import('./components/pages/guides/FlattenPdfGuide'));
+const PdfPageRemoverGuide = React.lazy(() => import('./components/pages/guides/PdfPageRemoverGuide').then(module => ({ default: module.PdfPageRemoverGuide })));
+const FlattenPdfGuide = React.lazy(() => import('./components/pages/guides/FlattenPdfGuide').then(module => ({ default: module.FlattenPdfGuide })));
+const CropPdfGuide = React.lazy(() => import('./components/pages/guides/CropPdfGuide').then(module => ({ default: module.CropPdfGuide })));
 
 enum AppState {
   HOME,
@@ -45,7 +46,7 @@ enum AppState {
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN';
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -61,7 +62,8 @@ export enum ToolType {
   PDF_TO_WORD = 'PDF_TO_WORD',
   WORD_TO_PDF = 'WORD_TO_PDF',
   PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
-  FLATTEN = 'FLATTEN'
+  FLATTEN = 'FLATTEN',
+  CROP = 'CROP'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -188,6 +190,10 @@ function App() {
       setCurrentTool(ToolType.FLATTEN);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
+    } else if (path === '/crop-pdf') {
+      setCurrentTool(ToolType.CROP);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
     else if (path === '/privacy') setView('PRIVACY');
     else if (path === '/terms') setView('TERMS');
@@ -210,6 +216,7 @@ function App() {
     else if (path === '/guides/word-to-pdf') setView('GUIDE_WORD_TO_PDF');
     else if (path === '/guides/pdf-page-remover') setView('GUIDE_PDF_PAGE_REMOVER');
     else if (path === '/guides/make-pdf-non-editable') setView('GUIDE_FLATTEN');
+    else if (path === '/guides/crop-pdf') setView('GUIDE_CROP');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
@@ -368,6 +375,7 @@ function App() {
     { id: ToolType.PDF_PAGE_REMOVER, icon: Trash2, title: t.toolPdfPageRemover, desc: t.toolPdfPageRemoverDesc, accept: '.pdf', path: '/pdf-page-remover' },
     { id: ToolType.ROTATE, icon: RotateCw, title: t.toolRotate, desc: t.toolRotateDesc, accept: '.pdf', path: '/rotate-pdf' },
     { id: ToolType.FLATTEN, icon: Lock, title: t.toolFlatten, desc: t.toolFlattenDesc, accept: '.pdf', path: '/make-pdf-non-editable' },
+    { id: ToolType.CROP, icon: Scissors, title: t.toolCrop, desc: t.toolCropDesc, accept: '.pdf', path: '/crop-pdf' },
     { id: ToolType.ORGANIZE, icon: GripVertical, title: t.organizePdf, desc: t.organizePdfDesc, accept: '.pdf', path: '/organize-pdf' },
     { id: ToolType.MAKE_FILLABLE, icon: PenTool, title: t.toolMakeFillable, desc: t.toolMakeFillableDesc, accept: '.pdf', path: '/make-pdf-fillable' },
     { id: ToolType.HEIC_TO_PDF, icon: Image, title: t.toolHeic, desc: t.toolHeicDesc, accept: '.heic', path: '/heic-to-pdf' },
@@ -419,7 +427,7 @@ function App() {
       setFile(uploadedFile);
       setAppState(AppState.PROCESSING);
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP) {
         try {
           const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
             loadPdfDocument(uploadedFile),
@@ -528,6 +536,12 @@ function App() {
           case ToolType.FLATTEN:
             resultBlob = await flattenPdf(file);
             outName = file.name.replace('.pdf', '_flat.pdf');
+            break;
+          case ToolType.CROP:
+            // Placeholder: currently crops 72 points (1 inch) from each side
+            // In a future update, we can add a visual selector.
+            resultBlob = await cropPdfPages(file, { x: 72, y: 72, width: 450, height: 650 });
+            outName = file.name.replace('.pdf', '_cropped.pdf');
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
@@ -666,6 +680,8 @@ function App() {
         return t.features.pdfPageRemover;
       case ToolType.FLATTEN:
         return t.features.flatten;
+      case ToolType.CROP:
+        return t.features.crop;
       case ToolType.ROTATE:
         return t.features.rotate;
       case ToolType.HEIC_TO_PDF: return t.features.heic;
@@ -868,7 +884,7 @@ function App() {
       currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
       currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF ||
       currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF ||
-      currentTool === ToolType.FLATTEN;
+      currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP;
 
     // Check if we are in "Active Workspace" mode (file loaded)
     // Sign tool handles its own full-screen overlay, so we exclude it here if file is present
@@ -1024,6 +1040,7 @@ function App() {
           {view === 'GUIDE_WORD_TO_PDF' && <WordToPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_PDF_PAGE_REMOVER' && <PdfPageRemoverGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_FLATTEN' && <FlattenPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_CROP' && <CropPdfGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>
 

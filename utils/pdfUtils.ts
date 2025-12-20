@@ -881,3 +881,19 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
   return await newPdfDoc.save();
 };
 
+export const cropPdfPages = async (originalFile: File, cropBox: { x: number, y: number, width: number, height: number }): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+  const arrayBuffer = await originalFile.arrayBuffer();
+  const doc = await PDFDocument.load(arrayBuffer);
+  const pages = doc.getPages();
+
+  pages.forEach(page => {
+    const { width, height } = page.getSize();
+    // pdf-lib setCropBox(x, y, width, height) where (0,0) is bottom-left
+    page.setCropBox(cropBox.x, cropBox.y, cropBox.width, cropBox.height);
+  });
+
+  return await doc.save();
+};
+
+

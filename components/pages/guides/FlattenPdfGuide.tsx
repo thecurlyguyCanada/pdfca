@@ -87,7 +87,9 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         ctaTitle: "Ready to Protect Your PDF?",
         ctaButton: "Make PDF Non-Editable",
-        ctaSubtext: "Free, Secure, and Canadian."
+        ctaSubtext: "Free, Secure, and Canadian.",
+        whyTitle: "Why Rasterization?",
+        whyDesc: "Converting pages to images is the ultimate way to lock your content. Unlike passwords, this cannot be reversed by hackers."
     },
     fr: {
         seo: {
@@ -128,7 +130,9 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         ctaTitle: "Prêt à protéger votre PDF ?",
         ctaButton: "Rendre non modifiable",
-        ctaSubtext: "Gratuit, sécurisé et canadien."
+        ctaSubtext: "Gratuit, sécurisé et canadien.",
+        whyTitle: "Pourquoi l'aplatissement ?",
+        whyDesc: "Convertir les pages en images est le moyen ultime de verrouiller votre contenu."
     }
 });
 
@@ -146,37 +150,79 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Lock size={32} />}>
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
-                    <div className="prose prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-6 py-2 text-gray-600 dark:text-gray-400">
-                        {t.intro}
-                    </div>
+                    {/* Introduction */}
+                    <section className="animate-fade-in">
+                        <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-4 border-canada-red pl-6 py-2">
+                            {t.intro}
+                        </div>
+                    </section>
 
+                    {/* How to Guide Sections */}
                     {t.sections.map((section: any, idx: number) => (
-                        <section key={section.id} id={section.id} className="scroll-mt-24">
-                            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-4">
-                                <span className="text-canada-red opacity-20 text-5xl font-black">0{idx + 1}</span>
-                                {section.title}
-                            </h2>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                        <section key={section.id} id={section.id} className="scroll-mt-24 animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
+                            <div className="flex items-center gap-4 mb-6">
+                                <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-canada-red/10 text-canada-red font-black text-2xl">
+                                    {idx + 1}
+                                </span>
+                                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
+                            </div>
+                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 shadow-sm">
                                 {section.content}
                             </div>
                         </section>
                     ))}
 
-                    <section className="bg-canada-red rounded-3xl p-12 text-center text-white shadow-xl">
-                        <Lock className="mx-auto mb-6 opacity-50" size={48} />
-                        <h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2>
-                        <p className="text-white/80 mb-8 font-medium">{t.ctaSubtext}</p>
-                        <button
-                            onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')}
-                            className="bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-lg"
-                        >
-                            {t.ctaButton}
-                        </button>
+                    {/* Rasterization Explanation */}
+                    <section className="bg-gray-900 text-white rounded-[3rem] p-12 relative overflow-hidden shadow-2xl animate-fade-in shadow-gray-400">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-canada-red opacity-10 blur-[80px] -mr-32 -mt-32 rounded-full"></div>
+                        <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
+                                    <Shield className="text-canada-red" size={32} />
+                                    {t.whyTitle}
+                                </h2>
+                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                    {t.whyDesc}
+                                </p>
+                            </div>
+                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                                <ul className="space-y-4">
+                                    <li className="flex items-start gap-3">
+                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                        <span>No text selection allowed</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                        <span>Annotation tools won't work</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                        <span>Highest privacy via local processing</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </section>
 
-                    <section>
-                        <div className="flex items-center gap-3 mb-8">
-                            <HelpCircle className="text-canada-red" size={32} />
+                    {/* CTA Section */}
+                    <section className="text-center py-12 animate-fade-in">
+                        <h2 className="text-3xl font-black mb-6 text-gray-900 dark:text-white">{t.ctaTitle}</h2>
+                        <button
+                            onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')}
+                            className="inline-flex items-center gap-3 bg-canada-red hover:bg-canada-darkRed text-white px-10 py-4 rounded-full font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
+                        >
+                            <Lock size={24} />
+                            {t.ctaButton}
+                        </button>
+                        <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
+                    </section>
+
+                    {/* FAQ Section */}
+                    <section className="scroll-mt-24 animate-fade-in">
+                        <div className="flex items-center gap-4 mb-10">
+                            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-2xl text-blue-600 dark:text-blue-400">
+                                <HelpCircle size={32} />
+                            </div>
                             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">F.A.Q.</h2>
                         </div>
                         <div className="grid gap-6">
@@ -193,5 +239,3 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
-
-export default FlattenPdfGuide;

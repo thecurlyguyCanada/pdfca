@@ -16,10 +16,10 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
    return (
       <footer className="mt-auto bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400 border-t-4 border-canada-red transition-colors duration-200">
          <div className="max-w-7xl mx-auto px-6 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-12">
 
                {/* Column 1: Brand */}
-               <div className="space-y-4">
+               <div className="space-y-4 lg:col-span-1">
                   <div className="flex items-center gap-2 text-gray-900 dark:text-white cursor-pointer" onClick={() => onNavigate('HOME')}>
                      <span className="text-lg font-bold">pdfcanada.ca</span>
                   </div>
@@ -32,54 +32,50 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   </div>
                </div>
 
-               {/* Column 2: Tools */}
+               {/* Column 2: Edit & Optimize */}
                <div>
-                  <p className="font-bold text-gray-900 dark:text-white mb-4">Tools</p>
+                  <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerEditGroup}</p>
                   <ul className="space-y-3 text-sm">
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolDelete}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolRotate}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-fillable'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolMakeFillable}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolHeic}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolEpubToPdf}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfToEpub}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfToWord}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolWordToPdf}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-page-remover'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfPageRemover}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-non-editable'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolFlatten}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolDelete}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolRotate}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/organize-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolOrganize}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-page-remover'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfPageRemover}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-fillable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolMakeFillable}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-non-editable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolFlatten}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/crop-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCrop}</button></li>
                   </ul>
                </div>
 
-               {/* Column 3: Company */}
+               {/* Column 3: Convert PDF */}
                <div>
-                  <p className="font-bold text-gray-900 dark:text-white mb-4">Resources</p>
+                  <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerConvertGroup}</p>
+                  <ul className="space-y-3 text-sm">
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolWordToPdf}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToWord}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolHeic}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolEpubToPdf}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToEpub}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCbrToPdf}</button></li>
+                  </ul>
+               </div>
+
+               {/* Column 4: Resources */}
+               <div>
+                  <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerGuidesGroup}</p>
                   <ul className="space-y-3 text-sm">
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages'); }} className="hover:text-canada-red transition-colors focus:outline-none">Delete Pages Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Rotate PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable'); }} className="hover:text-canada-red transition-colors focus:outline-none">Fillable Forms Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">HEIC to PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_EPUB_TO_PDF', '/guides/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">EPUB to PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_PDF_TO_EPUB', '/guides/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">PDF to EPUB Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_CBR_TO_PDF', '/guides/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">CBR to PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_EMAIL_TO_PDF', '/guides/email-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Email to PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_PDF_TO_WORD', '/guides/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none">PDF to Word Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_WORD_TO_PDF', '/guides/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Word to PDF Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_OCR', '/guides/ocr-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_PDF_PAGE_REMOVER', '/guides/pdf-page-remover'); }} className="hover:text-canada-red transition-colors focus:outline-none">PDF Page Remover Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_FLATTEN', '/guides/make-pdf-non-editable'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">Make PDF Non-Editable Guide</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.navHowTo}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('SUPPORT', '/support'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('SORRY', '/sorry'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.sorryPolicy}</button></li>
                   </ul>
                </div>
 
-               {/* Column 4: Badge */}
+               {/* Column 5: Safety & Tagline */}
                <div className="flex flex-col items-start gap-4">
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700 w-full shadow-sm">
                      <div className="flex items-center gap-3 mb-2">
                         <ShieldCheck className="text-green-600" size={20} />
-                        <span className="font-bold text-gray-900 dark:text-white text-sm">{t.secure}</span>
+                        <span className="font-bold text-gray-900 dark:text-white text-sm">{t.secure || 'Secure Processing'}</span>
                      </div>
                      <p className="text-xs text-gray-500 dark:text-gray-400">
                         {t.footerPrivacyNotice}

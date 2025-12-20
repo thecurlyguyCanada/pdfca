@@ -367,6 +367,18 @@ export const translations = {
           "We process the document and generate a professional PDF.",
           "Download your new PDF file."
         ]
+      },
+      crop: {
+        title: "Crop PDF Pages Online Free | Adjust PDF Margins | pdfcanada.ca",
+        desc: "Crop your PDF pages instantly. Resize and trim PDF pages securely in your browser without uploading files. 100% private and free.",
+        h1: "Crop PDF Pages",
+        subtitle: "Trim those margins and focus on what matters, eh?",
+        content: "Need to remove white space or focus on a specific area of your document? Our crop tool lets you adjust the margins of your PDF pages effortlessly. It's fast, free, and happens entirely on your device.",
+        steps: [
+          "Upload your PDF document.",
+          "Use the selector to define your crop area.",
+          "Apply the crop and download your updated PDF."
+        ]
       }
     },
 
@@ -397,6 +409,10 @@ export const translations = {
     toolPdfToWordDesc: "Convert PDF to editable Docx.",
     toolWordToPdf: "Word to PDF",
     toolWordToPdfDesc: "Convert Word docx to PDF.",
+    toolCrop: "Crop PDF",
+    toolCropDesc: "Adjust page margins.",
+    toolOrganize: "Organize PDF",
+    toolOrganizeDesc: "Reorder or remove pages.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -444,6 +460,7 @@ export const translations = {
     btnRemove: "Remove Pages",
     btnRotate: "Apply Rotation",
     btnFlatten: "Make Non-Editable",
+    btnCrop: "Crop PDF",
     btnConvert: "Convert File",
     btnMakeFillable: "Auto-Detect & Fill",
     btnExtractText: "Extract Text",
@@ -473,6 +490,9 @@ export const translations = {
     navHowTo: "How to use",
     navSupport: "Support Local",
     navPricing: "Pricing",
+    footerEditGroup: "Edit & Optimize",
+    footerConvertGroup: "Convert PDF",
+    footerGuidesGroup: "Guides & Help",
     login: "Log in",
     signup: "Sign up",
 
@@ -787,6 +807,18 @@ export const translations = {
           "Nous traitons le document et générons un PDF professionnel.",
           "Téléchargez votre nouveau fichier PDF."
         ]
+      },
+      crop: {
+        title: "Recadrer des Pages PDF Gratuit | Ajuster les Marges | pdfcanada.ca",
+        desc: "Recadrez vos pages PDF instantanément. Redimensionnez et ajustez vos pages PDF en toute sécurité dans votre navigateur sans téléverser de fichiers.",
+        h1: "Recadrer des Pages PDF",
+        subtitle: "Ajustez les marges et concentrez-vous sur l'essentiel, eh?",
+        content: "Besoin de supprimer des espaces blancs ou de vous concentrer sur une zone spécifique de votre document ? Notre outil de recadrage vous permet d'ajuster les marges de vos pages PDF sans effort.",
+        steps: [
+          "Téléversez votre document PDF.",
+          "Utilisez le sélecteur pour définir votre zone de recadrage.",
+          "Appliquez le recadrage et téléchargez votre PDF mis à jour."
+        ]
       }
     },
 
@@ -816,6 +848,10 @@ export const translations = {
     toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
     toolWordToPdf: "Word en PDF",
     toolWordToPdfDesc: "Convertir Word docx en PDF.",
+    toolCrop: "Recadrer PDF",
+    toolCropDesc: "Ajuster les marges.",
+    toolOrganize: "Organiser PDF",
+    toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -852,6 +888,7 @@ export const translations = {
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
     btnFlatten: "Rendre non modifiable",
+    btnCrop: "Recadrer PDF",
     btnConvert: "Convertir le fichier",
     btnMakeFillable: "Détecter et Remplir",
     btnCancel: "Annuler",
@@ -879,6 +916,9 @@ export const translations = {
     navHowTo: "Aide",
     navSupport: "Soutenir local",
     navPricing: "Tarifs",
+    footerEditGroup: "Modifier & Optimiser",
+    footerConvertGroup: "Convertir PDF",
+    footerGuidesGroup: "Guides & Aide",
     login: "Connexion",
     signup: "S'inscrire",
 
