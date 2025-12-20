@@ -807,13 +807,83 @@ function App() {
     const content = getToolContent(currentTool);
     const tool = tools.find(t => t.id === currentTool);
 
-    // High priority: Sign, Organize, Make Fillable
-    // Medium priority: Delete, Rotate
-    const isVisualTool = currentTool === ToolType.SIGN || currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
-    const shouldExpandLayout = isDesktop && isVisualTool;
+    // List of tools that should use the full workspace layout when a file is currently active
+    const isVisualTool = currentTool === ToolType.DELETE ||
+      currentTool === ToolType.ROTATE ||
+      currentTool === ToolType.MAKE_FILLABLE ||
+      currentTool === ToolType.ORGANIZE ||
+      currentTool === ToolType.OCR ||
+      currentTool === ToolType.HEIC_TO_PDF ||
+      currentTool === ToolType.EPUB_TO_PDF ||
+      currentTool === ToolType.PDF_TO_EPUB ||
+      currentTool === ToolType.CBR_TO_PDF;
 
+    // Check if we are in "Active Workspace" mode (file loaded)
+    // Sign tool handles its own full-screen overlay, so we exclude it here if file is present
+    const isActiveWorkspace = file && isVisualTool && currentTool !== ToolType.SIGN;
+
+    if (isActiveWorkspace) {
+      return (
+        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 animate-fade-in min-h-[calc(100vh-80px)] flex flex-col">
+          <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden flex-1 flex flex-col relative min-h-[600px]">
+            {/* Render Tool Interface directly here, full size */}
+            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
+              renderToolInterface()
+            )}
+
+            {/* Processing Overlay within Workspace */}
+            {appState === AppState.PROCESSING && (
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-8 animate-fade-in">
+                <div className="animate-spin text-canada-red mb-4">
+                  <MapleLeaf className="w-12 h-12" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
+                <p className="text-gray-500 mt-2">{t.workingDesc}</p>
+              </div>
+            )}
+
+            {/* Error State within Workspace */}
+            {appState === AppState.ERROR && (
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in z-50 bg-white">
+                <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
+                  <AlertCircle size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
+                <p className="text-gray-500 mb-8 max-w-lg">
+                  {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
+                </p>
+                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
+                  {t.backToHome}
+                </button>
+              </div>
+            )}
+
+            {/* Done State within Workspace */}
+            {appState === AppState.DONE && downloadUrl && (
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in z-50">
+                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
+                  <CheckCircle2 size={40} />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
+                <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
+                <div className="space-y-3 w-full max-w-xs">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
+                    <Download size={20} /> {t.download}
+                  </a>
+                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
+                    {t.doAnother}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // Default "Landing" Layout (Split View) for when no file is selected
     return (
-      <div className={`flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 ${shouldExpandLayout ? 'max-w-[1920px]' : 'max-w-7xl'}`}>
+      <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl animate-fade-in">
         <SEO
           title={content.title}
           description={content.desc}
@@ -843,59 +913,17 @@ function App() {
           </div>
         </div>
 
-        <div className={`w-full ${shouldExpandLayout ? 'md:w-3/4 max-w-none' : 'md:w-1/2 max-w-xl'}`}>
+        <div className="w-full md:w-1/2 max-w-xl">
           <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
 
-            {/* Dashboard or Tool Selection */}
-            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && !(currentTool === ToolType.SIGN && file) && (
+            {/* Tool Upload Interface */}
+            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
               renderToolInterface()
             )}
 
-            {/* PROCESSING State in Tool Page */}
-            {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
-                <div className="animate-spin text-canada-red mb-4">
-                  <MapleLeaf className="w-12 h-12" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
-                <p className="text-gray-500 mt-2">{t.workingDesc}</p>
-              </div>
-            )}
-
-            {/* ERROR State in Tool Page */}
-            {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
-                <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
-                  <AlertCircle size={32} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
-                <p className="text-gray-500 mb-8">
-                  {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
-                </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
-                  {t.backToHome}
-                </button>
-              </div>
-            )}
-
-            {/* DONE State in Tool Page */}
-            {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in">
-                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
-                  <CheckCircle2 size={40} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
-                <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
-                <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
-                    <Download size={20} /> {t.download}
-                  </a>
-                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
-                    {t.doAnother}
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* We don't generally expect PROCESSING/ERROR/DONE here because file selection
+                usually triggers the switch to 'isActiveWorkspace' layout, but if something fails
+                immediately or we want to show it here, we keep basic fallbacks. */}
           </div>
         </div>
       </div>
