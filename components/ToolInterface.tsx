@@ -280,36 +280,38 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action */}
-            <div
-                className="p-3 md:p-4 border-t border-gray-100 bg-white"
-                style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
-            >
-                <button
-                    onClick={() => {
-                        if (isSignTool) {
-                            // Find the sign button inside SignPdfTool or trigger its save
-                            const btn = document.getElementById('footer-sign-trigger');
-                            if (btn) btn.click();
-                        } else {
-                            onAction();
-                        }
-                    }}
-                    disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
-                    className={`
+            {!isSignTool && (
+                <div
+                    className="p-3 md:p-4 border-t border-gray-100 bg-white"
+                    style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
+                >
+                    <button
+                        onClick={() => {
+                            if (isSignTool) {
+                                // Find the sign button inside SignPdfTool or trigger its save
+                                const btn = document.getElementById('footer-sign-trigger');
+                                if (btn) btn.click();
+                            } else {
+                                onAction();
+                            }
+                        }}
+                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
+                        className={`
                         w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
                         ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
-                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
-                            : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
-                        }
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
+                                : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
+                            }
                     `}
-                >
-                    {currentTool === ToolType.DELETE && t.btnRemove}
-                    {currentTool === ToolType.ROTATE && t.btnRotate}
-                    {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
-                    {currentTool === ToolType.SIGN && t.btnSign}
-                    {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && t.btnConvert}
-                </button>
-            </div>
+                    >
+                        {currentTool === ToolType.DELETE && t.btnRemove}
+                        {currentTool === ToolType.ROTATE && t.btnRotate}
+                        {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
+                        {currentTool === ToolType.SIGN && t.btnSign}
+                        {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF || currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF) && t.btnConvert}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

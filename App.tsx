@@ -692,7 +692,8 @@ function App() {
                     </button>
                   )}
                 </div>
-                {renderToolInterface()}
+                {/* Only render inline if not in full-screen mode */}
+                {!(currentTool === ToolType.SIGN && file) && renderToolInterface()}
               </>
             )}
 
@@ -760,15 +761,6 @@ function App() {
     const content = getToolContent(currentTool);
     const tool = tools.find(t => t.id === currentTool);
 
-    // Special Case: Sign PDF Tool goes Full Screen when file is loaded
-    if (currentTool === ToolType.SIGN && file) {
-      return (
-        <div className="fixed inset-0 z-[100] bg-white w-screen h-[100dvh] overflow-hidden">
-          {renderToolInterface()}
-        </div>
-      );
-    }
-
     return (
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl mx-auto px-6 py-12 md:py-20 gap-12">
         <SEO
@@ -803,15 +795,20 @@ function App() {
         <div className="w-full md:w-1/2 max-w-xl">
           <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
 
-            {/* Special Case: Sign PDF Tool goes Full Screen when file is loaded */}
-            {currentTool === ToolType.SIGN && file ? (
-              // Render nothing here, handled by a Portal-like absolute overlay outside the layout?
-              // Actually, returning early from renderFeaturePage is better.
-              null
-            ) : (
-              (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
-                renderToolInterface()
-              )
+            {/* Dashboard or Tool Selection */}
+            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && !(currentTool === ToolType.SIGN && file) && (
+              renderToolInterface()
+            )}
+
+            {/* PROCESSING State in Tool Page */}
+            {appState === AppState.PROCESSING && (
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
+                <div className="animate-spin text-canada-red mb-4">
+                  <MapleLeaf className="w-12 h-12" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
+                <p className="text-gray-500 mt-2">{t.workingDesc}</p>
+              </div>
             )}
 
             {/* ERROR State in Tool Page */}
@@ -896,6 +893,24 @@ function App() {
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />
+
+      {/* Global Full-Screen Tool Overlay (e.g. Sign Tool) */}
+      {currentTool === ToolType.SIGN && file && (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
+        <div className="fixed inset-0 z-[100] bg-white w-screen h-[100dvh] overflow-hidden overscroll-none">
+          {renderToolInterface()}
+
+          {/* PROCESSING State in Full-Screen overlay */}
+          {appState === AppState.PROCESSING && (
+            <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-[110] flex flex-col items-center justify-center p-8 animate-fade-in">
+              <div className="animate-spin text-canada-red mb-4">
+                <MapleLeaf className="w-12 h-12" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
+              <p className="text-gray-500 mt-2">{t.workingDesc}</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
