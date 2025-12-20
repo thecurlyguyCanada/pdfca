@@ -896,7 +896,7 @@ function App() {
 
       {/* Global Full-Screen Tool Overlay (e.g. Sign Tool) */}
       {currentTool === ToolType.SIGN && file && (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
-        <div className="fixed inset-0 z-[100] bg-white w-screen h-[100dvh] overflow-hidden overscroll-none">
+        <div className="fixed inset-0 z-[100] bg-white w-full h-[100dvh] overflow-hidden overscroll-none flex flex-col items-stretch">
           {renderToolInterface()}
 
           {/* PROCESSING State in Full-Screen overlay */}

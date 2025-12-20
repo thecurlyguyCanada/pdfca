@@ -25,6 +25,7 @@ import {
     Download
 } from 'lucide-react';
 import { SignatureModal } from './SignatureModal';
+import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { SignatureEntry, formatFileSize } from '../utils/pdfUtils';
 
 interface SignPdfToolProps {
@@ -269,7 +270,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     // === RENDER HELPERS ===
 
     const renderThumbnailSidebar = () => (
-        <div className={`hidden md:flex flex-col border-r border-gray-200 bg-gray-50/50 transition-all duration-300 ${showThumbnails ? 'w-48' : 'w-0 overflow-hidden'}`}>
+        <div className={`hidden md:flex flex-col flex-shrink-0 border-r border-gray-200 bg-gray-50/50 transition-all duration-300 ${showThumbnails ? 'w-48' : 'w-0 overflow-hidden'}`}>
             <div className="p-3 font-semibold text-xs text-gray-500 uppercase tracking-wider border-b border-gray-100 flex justify-between items-center">
                 <span>Pages ({pageCount})</span>
             </div>
@@ -278,16 +279,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <div
                         key={idx}
                         onClick={() => scrollToPage(idx)}
-                        className={`relative cursor-pointer group rounded-lg transition-all ${activePage === idx ? 'ring-2 ring-canada-red bg-white shadow-md' : 'hover:bg-gray-100 border border-transparent hover:border-gray-200'}`}
+                        className={`relative cursor-pointer group rounded-lg transition-all ${activePage === idx ? 'ring-2 ring-canada-red bg-white shadow-md font-bold text-canada-red' : 'hover:bg-gray-100 border border-transparent hover:border-gray-200'}`}
                     >
-                        <div className="aspect-[3/4] bg-white rounded-md overflow-hidden relative">
-                            {/* Uses a mini render or placeholder. For performance, we just show a box with page number */}
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-300 font-bold text-2xl group-hover:text-gray-400">
-                                {idx + 1}
-                            </div>
-                            {/* In a real production app, we would render a canvas thumbnail here */}
-                        </div>
-                        <div className="text-center text-[10px] text-gray-500 mt-1 font-medium">Page {idx + 1}</div>
+                        <PdfPageThumbnail
+                            pdfJsDoc={pdfJsDoc}
+                            pageIndex={idx}
+                            isSelected={activePage === idx}
+                            onClick={() => scrollToPage(idx)}
+                            width={160}
+                        />
+                        <div className="text-center text-[10px] mt-1 font-medium">Page {idx + 1}</div>
                     </div>
                 ))}
             </div>
@@ -295,7 +296,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     );
 
     const renderToolsSidebar = () => (
-        <div className={`hidden md:flex flex-col border-l border-gray-200 bg-white transition-all duration-300 ${showToolsSidebar ? 'w-72' : 'w-0 overflow-hidden'}`}>
+        <div className={`hidden md:flex flex-col flex-shrink-0 border-l border-gray-200 bg-white transition-all duration-300 ${showToolsSidebar ? 'w-72' : 'w-0 overflow-hidden'}`}>
             <div className="p-4 border-b border-gray-100">
                 <h3 className="font-bold text-gray-800">Tools</h3>
             </div>
@@ -385,7 +386,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
 
     return (
-        <div className="flex flex-col h-full bg-gray-100 relative overflow-hidden">
+        <div className="flex flex-col h-full w-full bg-gray-100 relative overflow-hidden">
 
             {/* ===== DESKTOP HEADER (Top Bar) ===== */}
             <div className={`hidden md:flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 shadow-sm z-20 shrink-0 h-14`}>

@@ -96,7 +96,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
     const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN;
     const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
-    const isSignTool = currentTool === ToolType.SIGN;
+    const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
 
     let headerText = '';
     if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
@@ -126,7 +126,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-start w-full relative`}>
+            <div className={`flex-grow ${isSignTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
                 {isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
@@ -279,8 +279,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 )}
             </div>
 
-            {/* Footer Action */}
-            {!isSignTool && (
+            {/* Footer Action - Hidden for Sign Tool as it has its own sidebar/modal actions */}
+            {isSignTool ? null : (
                 <div
                     className="p-3 md:p-4 border-t border-gray-100 bg-white"
                     style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
