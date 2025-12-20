@@ -76,9 +76,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const thumbnailContainerRef = useRef<HTMLDivElement>(null);
 
-    // Zoom Refs
     const touchStartDist = useRef<number>(0);
     const startZoom = useRef<number>(1);
+    const [debouncedZoom, setDebouncedZoom] = useState(previewZoom);
+
+    // Debounce zoom updates for PDF rendering to prevent glitching/lag
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedZoom(previewZoom);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [previewZoom]);
 
     const vibrate = (ms: number = 10) => {
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
@@ -466,11 +474,11 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     className="flex-1 bg-gray-200/50 overflow-auto flex flex-col items-center relative mobile-canvas-container"
                     style={{
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
-                        scrollBehavior: 'smooth',
+                        scrollBehavior: isPinching ? 'auto' : 'smooth',
                         WebkitOverflowScrolling: 'touch'
                     }}
                 >
-                    <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6">
+                    <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6 mobile-content-inner">
                         {Array.from({ length: pageCount }).map((_, idx) => (
                             <div key={idx} id={`pdf-page-${idx}`} className="relative group/page">
                                 {/* Page Number Tag (Desktop) */}
@@ -480,7 +488,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                 <PageRenderer
                                     pageIndex={idx}
                                     pdfJsDoc={pdfJsDoc}
-                                    zoom={previewZoom}
+                                    zoom={debouncedZoom}
+                                    displayZoom={previewZoom}
                                     entries={entries.filter(e => e.pageIndex === idx)}
                                     onEntryUpdate={updateEntry}
                                     onEntryDelete={removeEntry}
@@ -522,10 +531,9 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             {/* Mobile Scroll Padding Overrides */}
             <style>{`
                 @media (max-width: 768px) {
-                    .mobile-canvas-container {
-                        padding-top: 70px !important;
+                    .mobile-content-inner {
+                        padding-top: 80px !important;
                         padding-bottom: 140px !important;
-                        background-color: #f3f4f6 !important;
                     }
                     /* Ensure handles are touch-friendly */
                     .react-draggable-transparent-selection {
@@ -619,6 +627,7 @@ interface PageRendererProps {
     pageIndex: number;
     pdfJsDoc: any;
     zoom: number;
+    displayZoom: number;
     entries: SignatureEntry[];
     onEntryUpdate: (id: string, updates: Partial<SignatureEntry>) => void;
     onEntryDelete: (id: string) => void;
@@ -634,6 +643,7 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     pageIndex,
     pdfJsDoc,
     zoom,
+    displayZoom,
     entries,
     onEntryUpdate,
     onEntryDelete,
@@ -645,9 +655,29 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     onPageClick
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
+    const [baseSize, setBaseSize] = useState({ width: 612, height: 792 });
     const [isVisible, setIsVisible] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    // Get actual page dimensions once
+    useEffect(() => {
+        if (!pdfJsDoc) return;
+        const getBaseSize = async () => {
+            try {
+                const page = await pdfJsDoc.getPage(pageIndex + 1);
+                const viewport = page.getViewport({ scale: 1.0 });
+                setBaseSize({ width: viewport.width, height: viewport.height });
+            } catch (e) {
+                console.error("Failed to get page size", e);
+            }
+        };
+        getBaseSize();
+    }, [pdfJsDoc, pageIndex]);
+
+    const pageSize = {
+        width: baseSize.width * displayZoom,
+        height: baseSize.height * displayZoom
+    };
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
@@ -665,8 +695,8 @@ const PageRenderer: React.FC<PageRendererProps> = ({
         const renderPage = async () => {
             try {
                 const page = await pdfJsDoc.getPage(pageIndex + 1);
+                // Render at the debounced zoom level
                 const viewport = page.getViewport({ scale: zoom });
-                setPageSize({ width: viewport.width, height: viewport.height });
 
                 const canvas = canvasRef.current;
                 if (canvas) {
@@ -694,12 +724,12 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     return (
         <div
             ref={containerRef}
-            className="relative bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-sm ring-1 ring-black/5 transition-all duration-300"
+            className="relative bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-sm ring-1 ring-black/5"
             style={{
-                width: pageSize.width || 612 * zoom,
-                height: pageSize.height || 792 * zoom,
-                minWidth: pageSize.width || 612 * zoom,
-                minHeight: pageSize.height || 792 * zoom
+                width: pageSize.width,
+                height: pageSize.height,
+                minWidth: pageSize.width,
+                minHeight: pageSize.height
             }}
             onClick={handleContainerClick}
         >
