@@ -85,6 +85,18 @@ function App() {
   // Zoom Level: Granular (0.5 to 3.0)
   const [previewZoom, setPreviewZoom] = useState<number>(1.0);
 
+  // Desktop mode detection
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [downloadName, setDownloadName] = useState<string>('');
   const [errorKey, setErrorKey] = useState<keyof typeof translations['en'] | null>(null);
@@ -602,6 +614,7 @@ function App() {
           selectedPages={selectedPages}
           rotations={rotations}
           previewZoom={previewZoom}
+          isDesktop={isDesktop}
           onFileSelect={() => { }} // Not used?
           onAction={handleAction}
           onSoftReset={handleSoftReset}
@@ -761,8 +774,13 @@ function App() {
     const content = getToolContent(currentTool);
     const tool = tools.find(t => t.id === currentTool);
 
+    // High priority: Sign, Organize, Make Fillable
+    // Medium priority: Delete, Rotate
+    const isVisualTool = currentTool === ToolType.SIGN || currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
+    const shouldExpandLayout = isDesktop && isVisualTool;
+
     return (
-      <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl mx-auto px-6 py-12 md:py-20 gap-12">
+      <div className={`flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 ${shouldExpandLayout ? 'max-w-[1920px]' : 'max-w-7xl'}`}>
         <SEO
           title={content.title}
           description={content.desc}
@@ -792,7 +810,7 @@ function App() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 max-w-xl">
+        <div className={`w-full ${shouldExpandLayout ? 'md:w-3/4 max-w-none' : 'md:w-1/2 max-w-xl'}`}>
           <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
 
             {/* Dashboard or Tool Selection */}

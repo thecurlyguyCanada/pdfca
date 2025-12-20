@@ -16,8 +16,9 @@ interface ToolInterfaceProps {
     selectedPages: Set<number>;
     rotations: { [key: number]: number };
     previewZoom: number;
+    isDesktop: boolean;
     onFileSelect: () => void;
-    onAction: () => void;
+    onAction: (processedBlob?: Blob | Uint8Array) => void;
     onSoftReset: () => void;
     togglePageSelection: (e: any, idx: number) => void;
     rotateAll: (direction: 'left' | 'right') => void;
@@ -40,6 +41,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     selectedPages,
     rotations,
     previewZoom,
+    isDesktop,
     onFileSelect,
     onAction,
     onSoftReset,
@@ -53,6 +55,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     setPageRangeInput,
     handleRangeInputChange
 }) => {
+    // Desktop mode: use larger base thumbnail size for better visibility
+    const baseThumbnailWidth = isDesktop ? 280 : 200;
+    const minThumbnailWidth = isDesktop ? 180 : 120;
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
@@ -225,9 +230,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </div>
 
                         <div
-                            className="grid gap-3 md:gap-4 transition-all duration-300 w-full"
+                            className={`grid gap-3 md:gap-4 lg:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : ''}`}
                             style={{
-                                gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(120, 200 * previewZoom)}px, 1fr))`
+                                gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom)}px, 1fr))`
                             }}
                         >
                             {Array.from({ length: pageCount }).map((_, idx) => (
@@ -239,7 +244,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     rotation={rotations[idx] || 0}
                                     mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE ? 'delete' : 'rotate'}
                                     onClick={(e) => togglePageSelection(e, idx)}
-                                    width={200 * previewZoom}
+                                    width={baseThumbnailWidth * previewZoom}
                                 />
                             ))}
                         </div>
@@ -257,7 +262,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             if (!file) return;
                             try {
                                 const signedPdf = await signPdf(file, entries);
-                                (onAction as any)(signedPdf);
+                                onAction(signedPdf);
                             } catch (e) {
                                 console.error("Signing failed", e);
                             }
