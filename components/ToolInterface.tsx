@@ -104,7 +104,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
 
     return (
-        <div className="flex flex-col h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px] overflow-hidden">
+        <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
             {!isSignTool && (
                 <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">

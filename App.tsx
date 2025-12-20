@@ -760,6 +760,15 @@ function App() {
     const content = getToolContent(currentTool);
     const tool = tools.find(t => t.id === currentTool);
 
+    // Special Case: Sign PDF Tool goes Full Screen when file is loaded
+    if (currentTool === ToolType.SIGN && file) {
+      return (
+        <div className="fixed inset-0 z-[100] bg-white w-screen h-[100dvh] overflow-hidden">
+          {renderToolInterface()}
+        </div>
+      );
+    }
+
     return (
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl mx-auto px-6 py-12 md:py-20 gap-12">
         <SEO
@@ -794,8 +803,15 @@ function App() {
         <div className="w-full md:w-1/2 max-w-xl">
           <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
 
-            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
-              renderToolInterface()
+            {/* Special Case: Sign PDF Tool goes Full Screen when file is loaded */}
+            {currentTool === ToolType.SIGN && file ? (
+              // Render nothing here, handled by a Portal-like absolute overlay outside the layout?
+              // Actually, returning early from renderFeaturePage is better.
+              null
+            ) : (
+              (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
+                renderToolInterface()
+              )
             )}
 
             {/* ERROR State in Tool Page */}
