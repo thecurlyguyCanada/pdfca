@@ -184,14 +184,14 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        topRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        bottomLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        bottomRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        topLeft: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, top: isMobile ? -16 : -6, left: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
+                        topRight: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, top: isMobile ? -16 : -6, right: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
+                        bottomLeft: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, bottom: isMobile ? -16 : -6, left: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
+                        bottomRight: { width: isMobile ? 32 : 12, height: isMobile ? 32 : 12, bottom: isMobile ? -16 : -6, right: isMobile ? -16 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', zIndex: 50 },
                     }}
                 >
                     <div
-                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
+                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-lg' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150`}
                         style={{ touchAction: 'none' }}
                         onTouchStart={(e) => {
                             if (activeTool !== 'select') return;
@@ -225,11 +225,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
 
                         {selectedEntryId === entry.id && (
                             <button
-                                onTouchStart={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
                                 onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-2 bg-red-600 text-white rounded-lg shadow-lg flex items-center gap-1.5 text-xs font-bold active:scale-95 transition-transform z-50"
+                                className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2.5 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-transform z-50"
                             >
-                                <Trash2 size={14} /> Delete
+                                <Trash2 size={16} /> Delete
                             </button>
                         )}
                     </div>
@@ -294,6 +293,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 }) => {
     const [entries, setEntries] = useState<SignatureEntry[]>([]);
     const [activeTool, setActiveTool] = useState<'pan' | 'select'>('select');
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState<'signature' | 'initials'>('signature');
     const [savedSignatures, setSavedSignatures] = useState<string[]>([]);
@@ -337,6 +337,15 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     }, []);
 
+    // Auto-deselect when switching to pan mode
+    const handleToolChange = useCallback((tool: 'pan' | 'select') => {
+        if (tool === 'pan') {
+            setSelectedEntryId(null);
+        }
+        setActiveTool(tool);
+        vibrate(10);
+    }, [vibrate]);
+
     const activePageRef = useRef(0);
     const visibilityTimerRef = useRef<any>(null);
 
@@ -348,8 +357,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             return next;
         });
 
-        // Only update activePage if it's a "clean" scroll and value actually changed
-        if (isVisible && !isMobile && activePageRef.current !== idx) {
+        // Update activePage for both mobile and desktop
+        if (isVisible && activePageRef.current !== idx) {
             activePageRef.current = idx;
 
             if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
@@ -360,7 +369,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 }
             }, 150);
         }
-    }, [isMobile]);
+    }, []);
 
     const addToHistory = (newEntries: SignatureEntry[]) => {
         const newHistory = history.slice(0, historyStep + 1);
@@ -405,14 +414,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Initial Zoom Fit for Desktop
+    // Initial Zoom Fit
     useEffect(() => {
-        if (!isMobile && scrollContainerRef.current) {
-            const availableWidth = scrollContainerRef.current.clientWidth - 80;
-            const newZoom = Math.min(1.2, Math.max(0.6, availableWidth / 612));
+        if (scrollContainerRef.current) {
+            const containerWidth = scrollContainerRef.current.clientWidth;
+            const padding = isMobile ? 32 : 80;
+            const availableWidth = containerWidth - padding;
+            const newZoom = Math.min(isMobile ? 1.0 : 1.2, Math.max(0.5, availableWidth / 612));
             setPreviewZoom(newZoom);
         }
-    }, [isMobile]);
+    }, [isMobile, setPreviewZoom]);
 
     useEffect(() => {
         const container = scrollContainerRef.current;
@@ -499,21 +510,29 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     }, []);
 
     // Helper to commit current state to history (call on mouseUp/resizeStop)
-    const commitToHistory = useCallback((newEntries: SignatureEntry[]) => {
-        const newHistory = history.slice(0, historyStep + 1);
-        newHistory.push(newEntries);
-        setHistory(newHistory);
-        setHistoryStep(newHistory.length - 1);
-    }, [history, historyStep]);
+    const commitToHistory = useCallback(() => {
+        setHistory(prevHistory => {
+            setHistoryStep(prevStep => {
+                const newHistory = prevHistory.slice(0, prevStep + 1);
+                // Get current entries at time of commit
+                setEntries(currentEntries => {
+                    const limitedHistory = [...newHistory, currentEntries].slice(-50); // Limit to 50 steps
+                    setHistory(limitedHistory);
+                    setHistoryStep(limitedHistory.length - 1);
+                    return currentEntries;
+                });
+                return prevStep;
+            });
+            return prevHistory;
+        });
+    }, []);
 
     const removeEntry = useCallback((id: string) => {
         vibrate(10);
-        setEntries(prev => {
-            const next = prev.filter(e => e.id !== id);
-            commitToHistory(next);
-            return next;
-        });
+        setEntries(prev => prev.filter(e => e.id !== id));
         setSelectedEntryId(null);
+        // Commit after state update
+        setTimeout(() => commitToHistory(), 0);
     }, [vibrate, commitToHistory]);
 
     const handleSignatureSave = (dataUrl: string) => {
@@ -739,7 +758,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     style={{
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
                         scrollBehavior: isPinching ? 'auto' : 'smooth',
-                        WebkitOverflowScrolling: 'touch'
+                        WebkitOverflowScrolling: 'touch',
+                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'none'
                     }}
                 >
                     <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6 mobile-content-inner">
@@ -757,7 +777,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                     entries={entries.filter(e => e.pageIndex === idx)}
                                     onEntryUpdate={updateEntry}
                                     onEntryDelete={removeEntry}
-                                    onHistoryCommit={() => commitToHistory(entries)}
+                                    onHistoryCommit={commitToHistory}
                                     activeTool={activeTool}
                                     onVisibilityChange={(isVisible: boolean) => reportVisibility(idx, isVisible)}
                                     selectedEntryId={selectedEntryId}
@@ -780,15 +800,31 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             {/* ========================================================================= */}
 
             {/* Mobile Header */}
-            <div className="flex md:hidden items-center justify-between w-full px-3 py-2.5 bg-white border-b border-gray-100 shrink-0 absolute top-0 left-0 right-0 z-50">
-                <button onClick={onClose} className="w-9 h-9 flex items-center justify-center rounded-full text-gray-500 active:bg-gray-100">
-                    <X size={22} />
+            <div className="flex md:hidden items-center justify-between w-full px-3 py-2.5 bg-white/95 backdrop-blur-sm border-b border-gray-100 shrink-0 fixed top-0 left-0 right-0 z-50" style={{ paddingTop: 'max(10px, env(safe-area-inset-top))' }}>
+                <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 active:bg-gray-100">
+                    <X size={24} />
                 </button>
-                <div className="flex flex-col items-center">
-                    <span className="font-bold text-gray-800 text-sm">Sign PDF</span>
-                    <span className="text-[10px] text-gray-400">{activePage + 1} / {pageCount}</span>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => scrollToPage(Math.max(0, activePage - 1))}
+                        disabled={activePage === 0}
+                        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
+                    >
+                        <ChevronLeft size={20} />
+                    </button>
+                    <div className="flex flex-col items-center min-w-[60px]">
+                        <span className="font-bold text-gray-800 text-sm">Page {activePage + 1}</span>
+                        <span className="text-[10px] text-gray-400">of {pageCount}</span>
+                    </div>
+                    <button
+                        onClick={() => scrollToPage(Math.min(pageCount - 1, activePage + 1))}
+                        disabled={activePage === pageCount - 1}
+                        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
+                    >
+                        <ChevronRight size={20} />
+                    </button>
                 </div>
-                <button onClick={() => onSign(entries)} className="text-canada-red font-bold text-sm px-3 py-1.5 active:opacity-70">
+                <button onClick={() => onSign(entries)} className="text-canada-red font-bold text-sm px-4 py-2 rounded-xl active:bg-red-50">
                     Done
                 </button>
             </div>
@@ -798,36 +834,35 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 @media (max-width: 768px) {
                     .mobile-content-inner {
                         padding-top: 70px !important;
-                        padding-bottom: 100px !important;
+                        padding-bottom: 140px !important;
                     }
                 }
             `}</style>
 
-            {/* Mobile Bottom Bar (Floating) */}
             <div
-                className={`md:hidden fixed left-3 right-3 bg-white rounded-2xl shadow-xl border border-gray-100 z-[80] flex items-center justify-around py-2 transition-all duration-300 ${showBottomSheet ? 'translate-y-[150%]' : 'translate-y-0'}`}
+                className={`md:hidden fixed left-3 right-3 bg-white rounded-2xl shadow-xl border border-gray-100 z-[80] flex items-center justify-around py-3 transition-all duration-300 ${showBottomSheet ? 'translate-y-[150%]' : 'translate-y-0'}`}
                 style={{ bottom: 'max(12px, env(safe-area-inset-bottom))' }}
             >
-                <button onClick={() => { vibrate(); setActiveTool('pan'); }} className={`flex flex-col items-center gap-0.5 px-4 py-1 ${activeTool === 'pan' ? 'text-canada-red' : 'text-gray-400'}`}>
-                    <Hand size={20} strokeWidth={activeTool === 'pan' ? 2.5 : 2} />
-                    <span className="text-[9px] font-semibold">Pan</span>
+                <button onClick={() => handleToolChange('pan')} className={`flex flex-col items-center gap-1 px-5 py-2 rounded-xl transition-colors ${activeTool === 'pan' ? 'text-canada-red bg-red-50' : 'text-gray-400 active:bg-gray-100'}`}>
+                    <Hand size={22} strokeWidth={activeTool === 'pan' ? 2.5 : 2} />
+                    <span className="text-[10px] font-bold">Pan</span>
                 </button>
-                <button onClick={() => { vibrate(); setActiveTool('select'); }} className={`flex flex-col items-center gap-0.5 px-4 py-1 ${activeTool === 'select' ? 'text-canada-red' : 'text-gray-400'}`}>
-                    <MousePointer2 size={20} strokeWidth={activeTool === 'select' ? 2.5 : 2} />
-                    <span className="text-[9px] font-semibold">Edit</span>
+                <button onClick={() => handleToolChange('select')} className={`flex flex-col items-center gap-1 px-5 py-2 rounded-xl transition-colors ${activeTool === 'select' ? 'text-canada-red bg-red-50' : 'text-gray-400 active:bg-gray-100'}`}>
+                    <MousePointer2 size={22} strokeWidth={activeTool === 'select' ? 2.5 : 2} />
+                    <span className="text-[10px] font-bold">Edit</span>
                 </button>
-                <div className="relative -top-5">
-                    <button onClick={toggleSignMenu} className="bg-canada-red text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 active:scale-95 border-4 border-gray-100">
-                        <Plus size={28} />
+                <div className="relative -top-6">
+                    <button onClick={toggleSignMenu} className="bg-canada-red text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 active:scale-95 border-4 border-white">
+                        <Plus size={30} />
                     </button>
                 </div>
-                <button onClick={undo} disabled={historyStep === 0} className="flex flex-col items-center gap-0.5 px-4 py-1 text-gray-400 disabled:opacity-30">
-                    <Undo2 size={20} />
-                    <span className="text-[9px] font-semibold">Undo</span>
+                <button onClick={undo} disabled={historyStep === 0} className="flex flex-col items-center gap-1 px-5 py-2 rounded-xl text-gray-400 disabled:opacity-30 active:bg-gray-100">
+                    <Undo2 size={22} />
+                    <span className="text-[10px] font-bold">Undo</span>
                 </button>
-                <button onClick={redo} disabled={historyStep === history.length - 1} className="flex flex-col items-center gap-0.5 px-4 py-1 text-gray-400 disabled:opacity-30">
-                    <Redo2 size={20} />
-                    <span className="text-[9px] font-semibold">Redo</span>
+                <button onClick={redo} disabled={historyStep === history.length - 1} className="flex flex-col items-center gap-1 px-5 py-2 rounded-xl text-gray-400 disabled:opacity-30 active:bg-gray-100">
+                    <Redo2 size={22} />
+                    <span className="text-[10px] font-bold">Redo</span>
                 </button>
             </div>
 
