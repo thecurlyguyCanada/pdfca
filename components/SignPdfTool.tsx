@@ -28,6 +28,242 @@ import { SignatureModal } from './SignatureModal';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { SignatureEntry, formatFileSize } from '../utils/pdfUtils';
 
+// ===== PAGE RENDERER =====
+
+interface PageRendererProps {
+    pageIndex: number;
+    pdfJsDoc: any;
+    zoom: number;
+    displayZoom: number;
+    entries: SignatureEntry[];
+    onEntryUpdate: (id: string, updates: Partial<SignatureEntry>) => void;
+    onEntryDelete: (id: string) => void;
+    onHistoryCommit: () => void;
+    activeTool: 'pan' | 'select';
+    onVisibilityChange: (isVisible: boolean) => void;
+    selectedEntryId: string | null;
+    onSelectEntry: (id: string | null) => void;
+    isMobile: boolean;
+    onPageClick?: () => void;
+}
+
+const PageRendererBase: React.FC<PageRendererProps> = ({
+    pageIndex,
+    pdfJsDoc,
+    zoom,
+    displayZoom,
+    entries,
+    onEntryUpdate,
+    onEntryDelete,
+    onHistoryCommit,
+    activeTool,
+    onVisibilityChange,
+    selectedEntryId,
+    onSelectEntry,
+    isMobile,
+    onPageClick
+}) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [baseSize, setBaseSize] = useState({ width: 612, height: 792 });
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Get actual page dimensions once
+    useEffect(() => {
+        if (!pdfJsDoc) return;
+        const getBaseSize = async () => {
+            try {
+                const page = await pdfJsDoc.getPage(pageIndex + 1);
+                const viewport = page.getViewport({ scale: 1.0 });
+                setBaseSize({ width: viewport.width, height: viewport.height });
+            } catch (e) {
+                console.error("Failed to get page size", e);
+            }
+        };
+        getBaseSize();
+    }, [pdfJsDoc, pageIndex]);
+
+    const pageSize = {
+        width: baseSize.width * displayZoom,
+        height: baseSize.height * displayZoom
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            const visible = entry.isIntersecting;
+            setIsVisible(visible);
+            onVisibilityChange(visible);
+        }, { threshold: 0.05, rootMargin: '200px' });
+        if (containerRef.current) observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, [onVisibilityChange]);
+
+    useEffect(() => {
+        if (!isVisible || !pdfJsDoc) return;
+
+        const renderPage = async () => {
+            try {
+                const page = await pdfJsDoc.getPage(pageIndex + 1);
+                const viewport = page.getViewport({ scale: zoom });
+                const canvas = canvasRef.current;
+                if (canvas) {
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    const context = canvas.getContext('2d');
+                    if (context) {
+                        await page.render({ canvasContext: context, viewport }).promise;
+                    }
+                }
+            } catch (err) {
+                console.error("Error rendering page", pageIndex, err);
+            }
+        };
+        renderPage();
+    }, [pdfJsDoc, pageIndex, zoom, isVisible]);
+
+    const handleContainerClick = (e: React.MouseEvent) => {
+        onPageClick?.();
+        if (activeTool === 'select') {
+            onSelectEntry(null);
+        }
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className="relative bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-sm ring-1 ring-black/5"
+            style={{
+                width: pageSize.width,
+                height: pageSize.height,
+                minWidth: pageSize.width,
+                minHeight: pageSize.height
+            }}
+            onClick={handleContainerClick}
+        >
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+
+            {/* Entries - only interactive in select mode */}
+            {pageSize.width > 0 && entries.map(entry => (
+                <Rnd
+                    key={entry.id}
+                    size={{
+                        width: entry.width * pageSize.width,
+                        height: entry.height * pageSize.height
+                    }}
+                    position={{
+                        x: entry.x * pageSize.width,
+                        y: entry.y * pageSize.height
+                    }}
+                    onDragStart={(e) => {
+                        if (activeTool !== 'select') return;
+                        e.stopPropagation();
+                        onSelectEntry(entry.id);
+                        onPageClick?.();
+                    }}
+                    onDragStop={(_, d) => {
+                        const x = Math.max(0, Math.min(d.x, pageSize.width - entry.width * pageSize.width));
+                        const y = Math.max(0, Math.min(d.y, pageSize.height - entry.height * pageSize.height));
+                        onEntryUpdate(entry.id, { x: x / pageSize.width, y: y / pageSize.height });
+                        onHistoryCommit();
+                    }}
+                    onResizeStop={(_, __, ref, ___, position) => {
+                        onEntryUpdate(entry.id, {
+                            width: ref.offsetWidth / pageSize.width,
+                            height: ref.offsetHeight / pageSize.height,
+                            x: position.x / pageSize.width,
+                            y: position.y / pageSize.height
+                        });
+                        onHistoryCommit();
+                    }}
+                    bounds="parent"
+                    lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
+                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}
+                    disableDragging={activeTool !== 'select' || (isMobile && selectedEntryId !== entry.id)}
+                    enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
+                        top: true, right: true, bottom: true, left: true,
+                        topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
+                    } : false}
+                    resizeHandleStyles={{
+                        topLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        topRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        bottomLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        bottomRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                    }}
+                >
+                    <div
+                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
+                        style={{ touchAction: activeTool === 'select' ? 'none' : 'auto' }}
+                        onClick={(e) => {
+                            if (activeTool !== 'select') return;
+                            e.stopPropagation();
+                            onSelectEntry(entry.id);
+                        }}
+                    >
+                        {entry.dataUrl ? (
+                            <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="" />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-blue-50/50 rounded overflow-hidden">
+                                {entry.type === 'date' || entry.type === 'text' ? (
+                                    <input
+                                        type="text"
+                                        value={entry.text}
+                                        onChange={(e) => onEntryUpdate(entry.id, { text: e.target.value })}
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="bg-transparent border-none outline-none text-center w-full h-full text-gray-800 font-medium p-1"
+                                        style={{ fontSize: Math.max(12, 16 * zoom) + 'px' }}
+                                    />
+                                ) : (
+                                    <span className="text-gray-800 font-medium select-none">{entry.text}</span>
+                                )}
+                            </div>
+                        )}
+
+                        {selectedEntryId === entry.id && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
+                                className="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-red-600 text-white rounded-md shadow-lg flex items-center gap-1 text-xs font-bold active:scale-95 transition-transform"
+                            >
+                                <Trash2 size={12} /> Delete
+                            </button>
+                        )}
+                    </div>
+                </Rnd>
+            ))}
+
+            {!isVisible && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 z-10">
+                    <div className="w-8 h-8 border-3 border-canada-red border-t-transparent rounded-full animate-spin" />
+                </div>
+            )}
+        </div>
+    );
+};
+const PageRenderer = React.memo(PageRendererBase);
+
+// ===== THUMBNAIL ITEM =====
+interface ThumbnailItemProps {
+    idx: number;
+    activePage: number;
+    scrollToPage: (idx: number) => void;
+    pdfJsDoc: any;
+}
+const ThumbnailItemBase: React.FC<ThumbnailItemProps> = ({ idx, activePage, scrollToPage, pdfJsDoc }) => (
+    <div
+        onClick={() => scrollToPage(idx)}
+        className={`relative cursor-pointer group rounded-lg transition-shadow duration-200 ${activePage === idx ? 'ring-2 ring-canada-red bg-white shadow-md font-bold text-canada-red' : 'hover:bg-gray-100 border border-transparent hover:border-gray-200'}`}
+    >
+        <PdfPageThumbnail
+            pdfJsDoc={pdfJsDoc}
+            pageIndex={idx}
+            isSelected={activePage === idx}
+            onClick={() => scrollToPage(idx)}
+            width={160}
+        />
+        <div className="text-center text-[10px] mt-1 font-medium">Page {idx + 1}</div>
+    </div>
+);
+const ThumbnailItem = React.memo(ThumbnailItemBase);
+
 interface SignPdfToolProps {
     file: File | null;
     onClose: () => void;
@@ -88,23 +324,36 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         return () => clearTimeout(timer);
     }, [previewZoom]);
 
-    const vibrate = (ms: number = 10) => {
+    const vibrate = useCallback((ms: number = 10) => {
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
             navigator.vibrate(ms);
         }
-    };
+    }, []);
 
-    const reportVisibility = (idx: number, isVisible: boolean) => {
+    const activePageRef = useRef(0);
+    const visibilityTimerRef = useRef<any>(null);
+
+    const reportVisibility = useCallback((idx: number, isVisible: boolean) => {
         setVisiblePages(prev => {
             const next = new Set(prev);
             if (isVisible) next.add(idx);
             else next.delete(idx);
             return next;
         });
-        if (isVisible && !isMobile) {
-            setActivePage(idx);
+
+        // Only update activePage if it's a "clean" scroll and value actually changed
+        if (isVisible && !isMobile && activePageRef.current !== idx) {
+            activePageRef.current = idx;
+
+            if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
+
+            visibilityTimerRef.current = setTimeout(() => {
+                if (activePageRef.current === idx) {
+                    setActivePage(idx);
+                }
+            }, 150);
         }
-    };
+    }, [isMobile]);
 
     const addToHistory = (newEntries: SignatureEntry[]) => {
         const newHistory = history.slice(0, historyStep + 1);
@@ -202,13 +451,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         };
     }, [previewZoom, setPreviewZoom]);
 
-    const scrollToPage = (pageIndex: number) => {
+    const scrollToPage = useCallback((pageIndex: number) => {
         const pageElement = document.getElementById(`pdf-page-${pageIndex}`);
         if (pageElement) {
             pageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             setActivePage(pageIndex);
         }
-    };
+    }, [setActivePage]);
 
     const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string) => {
         vibrate(20);
@@ -233,17 +482,32 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         setShowSignaturesDropdown(false);
     };
 
-    const updateEntry = (id: string, updates: Partial<SignatureEntry>) => {
-        const newEntries = entries.map(e => e.id === id ? { ...e, ...updates } : e);
-        addToHistory(newEntries);
-    };
+    const updateEntry = useCallback((id: string, updates: Partial<SignatureEntry>) => {
+        setEntries(prev => {
+            const next = prev.map(e => e.id === id ? { ...e, ...updates } : e);
+            // We only add to history on specific interactive finishes, not every drag tick
+            // but for now history is simplified.
+            return next;
+        });
+    }, []);
 
-    const removeEntry = (id: string) => {
+    // Helper to commit current state to history (call on mouseUp/resizeStop)
+    const commitToHistory = useCallback((newEntries: SignatureEntry[]) => {
+        const newHistory = history.slice(0, historyStep + 1);
+        newHistory.push(newEntries);
+        setHistory(newHistory);
+        setHistoryStep(newHistory.length - 1);
+    }, [history, historyStep]);
+
+    const removeEntry = useCallback((id: string) => {
         vibrate(10);
-        const newEntries = entries.filter(e => e.id !== id);
-        addToHistory(newEntries);
+        setEntries(prev => {
+            const next = prev.filter(e => e.id !== id);
+            commitToHistory(next);
+            return next;
+        });
         setSelectedEntryId(null);
-    };
+    }, [vibrate, commitToHistory]);
 
     const handleSignatureSave = (dataUrl: string) => {
         vibrate(50);
@@ -284,20 +548,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             </div>
             <div className="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar" ref={thumbnailContainerRef}>
                 {Array.from({ length: pageCount }).map((_, idx) => (
-                    <div
+                    <ThumbnailItem
                         key={idx}
-                        onClick={() => scrollToPage(idx)}
-                        className={`relative cursor-pointer group rounded-lg transition-all ${activePage === idx ? 'ring-2 ring-canada-red bg-white shadow-md font-bold text-canada-red' : 'hover:bg-gray-100 border border-transparent hover:border-gray-200'}`}
-                    >
-                        <PdfPageThumbnail
-                            pdfJsDoc={pdfJsDoc}
-                            pageIndex={idx}
-                            isSelected={activePage === idx}
-                            onClick={() => scrollToPage(idx)}
-                            width={160}
-                        />
-                        <div className="text-center text-[10px] mt-1 font-medium">Page {idx + 1}</div>
-                    </div>
+                        idx={idx}
+                        activePage={activePage}
+                        scrollToPage={scrollToPage}
+                        pdfJsDoc={pdfJsDoc}
+                    />
                 ))}
             </div>
         </div>
@@ -493,8 +750,9 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                     entries={entries.filter(e => e.pageIndex === idx)}
                                     onEntryUpdate={updateEntry}
                                     onEntryDelete={removeEntry}
+                                    onHistoryCommit={() => commitToHistory(entries)}
                                     activeTool={activeTool}
-                                    onVisibilityChange={(v) => reportVisibility(idx, v)}
+                                    onVisibilityChange={(isVisible: boolean) => reportVisibility(idx, isVisible)}
                                     selectedEntryId={selectedEntryId}
                                     onSelectEntry={setSelectedEntryId}
                                     isMobile={isMobile}
@@ -623,209 +881,4 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
 // ===== PAGE RENDERER =====
 
-interface PageRendererProps {
-    pageIndex: number;
-    pdfJsDoc: any;
-    zoom: number;
-    displayZoom: number;
-    entries: SignatureEntry[];
-    onEntryUpdate: (id: string, updates: Partial<SignatureEntry>) => void;
-    onEntryDelete: (id: string) => void;
-    activeTool: 'pan' | 'select';
-    onVisibilityChange: (isVisible: boolean) => void;
-    selectedEntryId: string | null;
-    onSelectEntry: (id: string | null) => void;
-    isMobile: boolean;
-    onPageClick?: () => void;
-}
 
-const PageRenderer: React.FC<PageRendererProps> = ({
-    pageIndex,
-    pdfJsDoc,
-    zoom,
-    displayZoom,
-    entries,
-    onEntryUpdate,
-    onEntryDelete,
-    activeTool,
-    onVisibilityChange,
-    selectedEntryId,
-    onSelectEntry,
-    isMobile,
-    onPageClick
-}) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [baseSize, setBaseSize] = useState({ width: 612, height: 792 });
-    const [isVisible, setIsVisible] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    // Get actual page dimensions once
-    useEffect(() => {
-        if (!pdfJsDoc) return;
-        const getBaseSize = async () => {
-            try {
-                const page = await pdfJsDoc.getPage(pageIndex + 1);
-                const viewport = page.getViewport({ scale: 1.0 });
-                setBaseSize({ width: viewport.width, height: viewport.height });
-            } catch (e) {
-                console.error("Failed to get page size", e);
-            }
-        };
-        getBaseSize();
-    }, [pdfJsDoc, pageIndex]);
-
-    const pageSize = {
-        width: baseSize.width * displayZoom,
-        height: baseSize.height * displayZoom
-    };
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            const visible = entry.isIntersecting;
-            setIsVisible(visible);
-            onVisibilityChange(visible);
-        }, { threshold: 0.05, rootMargin: '200px' });
-        if (containerRef.current) observer.observe(containerRef.current);
-        return () => observer.disconnect();
-    }, [onVisibilityChange]);
-
-    useEffect(() => {
-        if (!isVisible || !pdfJsDoc) return;
-
-        const renderPage = async () => {
-            try {
-                const page = await pdfJsDoc.getPage(pageIndex + 1);
-                // Render at the debounced zoom level
-                const viewport = page.getViewport({ scale: zoom });
-
-                const canvas = canvasRef.current;
-                if (canvas) {
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    const context = canvas.getContext('2d');
-                    if (context) {
-                        await page.render({ canvasContext: context, viewport }).promise;
-                    }
-                }
-            } catch (err) {
-                console.error("Error rendering page", pageIndex, err);
-            }
-        };
-        renderPage();
-    }, [pdfJsDoc, pageIndex, zoom, isVisible]);
-
-    const handleContainerClick = (e: React.MouseEvent) => {
-        onPageClick?.();
-        if (activeTool === 'select') {
-            onSelectEntry(null);
-        }
-    };
-
-    return (
-        <div
-            ref={containerRef}
-            className="relative bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-sm ring-1 ring-black/5"
-            style={{
-                width: pageSize.width,
-                height: pageSize.height,
-                minWidth: pageSize.width,
-                minHeight: pageSize.height
-            }}
-            onClick={handleContainerClick}
-        >
-            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
-
-            {/* Entries - only interactive in select mode */}
-            {pageSize.width > 0 && entries.map(entry => (
-                <Rnd
-                    key={entry.id}
-                    size={{
-                        width: entry.width * pageSize.width,
-                        height: entry.height * pageSize.height
-                    }}
-                    position={{
-                        x: entry.x * pageSize.width,
-                        y: entry.y * pageSize.height
-                    }}
-                    onDragStart={(e) => {
-                        if (activeTool !== 'select') return;
-                        e.stopPropagation();
-                        onSelectEntry(entry.id);
-                        onPageClick?.();
-                    }}
-                    onDragStop={(_, d) => {
-                        const x = Math.max(0, Math.min(d.x, pageSize.width - entry.width * pageSize.width));
-                        const y = Math.max(0, Math.min(d.y, pageSize.height - entry.height * pageSize.height));
-                        onEntryUpdate(entry.id, { x: x / pageSize.width, y: y / pageSize.height });
-                    }}
-                    onResizeStop={(_, __, ref, ___, position) => {
-                        onEntryUpdate(entry.id, {
-                            width: ref.offsetWidth / pageSize.width,
-                            height: ref.offsetHeight / pageSize.height,
-                            x: position.x / pageSize.width,
-                            y: position.y / pageSize.height
-                        });
-                    }}
-                    bounds="parent"
-                    lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
-                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}
-                    disableDragging={activeTool !== 'select' || (isMobile && selectedEntryId !== entry.id)}
-                    enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
-                        top: true, right: true, bottom: true, left: true,
-                        topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
-                    } : false}
-                    resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        topRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        bottomLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                        bottomRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
-                    }}
-                >
-                    <div
-                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
-                        style={{ touchAction: activeTool === 'select' ? 'none' : 'auto' }}
-                        onClick={(e) => {
-                            if (activeTool !== 'select') return;
-                            e.stopPropagation();
-                            onSelectEntry(entry.id);
-                        }}
-                    >
-                        {entry.dataUrl ? (
-                            <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="" />
-                        ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-blue-50/50 rounded overflow-hidden">
-                                {entry.type === 'date' || entry.type === 'text' ? (
-                                    <input
-                                        type="text"
-                                        value={entry.text}
-                                        onChange={(e) => onEntryUpdate(entry.id, { text: e.target.value })}
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="bg-transparent border-none outline-none text-center w-full h-full text-gray-800 font-medium p-1"
-                                        style={{ fontSize: Math.max(12, 16 * zoom) + 'px' }}
-                                    />
-                                ) : (
-                                    <span className="text-gray-800 font-medium select-none">{entry.text}</span>
-                                )}
-                            </div>
-                        )}
-
-                        {selectedEntryId === entry.id && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                className="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-red-600 text-white rounded-md shadow-lg flex items-center gap-1 text-xs font-bold active:scale-95 transition-transform"
-                            >
-                                <Trash2 size={12} /> Delete
-                            </button>
-                        )}
-                    </div>
-                </Rnd>
-            ))}
-
-            {!isVisible && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 z-10">
-                    <div className="w-8 h-8 border-3 border-canada-red border-t-transparent rounded-full animate-spin" />
-                </div>
-            )}
-        </div>
-    );
-};
