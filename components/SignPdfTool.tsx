@@ -12,15 +12,16 @@ import {
     ChevronDown,
     Undo2,
     Redo2,
-    ZoomIn,
-    ZoomOut,
+    Search,
     PenTool,
-    ChevronUp
+    FileText
 } from 'lucide-react';
 import { SignatureModal } from './SignatureModal';
-import { SignatureEntry } from '../utils/pdfUtils';
+import { SignatureEntry, formatFileSize } from '../utils/pdfUtils';
 
 interface SignPdfToolProps {
+    file: File | null;
+    onClose: () => void;
     pdfJsDoc: any;
     pageCount: number;
     t: any;
@@ -30,6 +31,8 @@ interface SignPdfToolProps {
 }
 
 export const SignPdfTool: React.FC<SignPdfToolProps> = ({
+    file,
+    onClose,
     pdfJsDoc,
     pageCount,
     t,
@@ -49,13 +52,18 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     // Mobile specific state
     const [isMobile, setIsMobile] = useState(false);
     const [showBottomSheet, setShowBottomSheet] = useState(false);
+    const [isPinching, setIsPinching] = useState(false);
 
     // History for Undo/Redo
     const [history, setHistory] = useState<SignatureEntry[][]>([[]]);
     const [historyStep, setHistoryStep] = useState(0);
 
     const [visiblePages, setVisiblePages] = useState<Set<number>>(new Set());
-    const containerRef = useRef<HTMLDivElement>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    // Pinch zoom refs
+    const touchStartDist = useRef<number>(0);
+    const startZoom = useRef<number>(1);
 
     // Haptics helper
     const vibrate = (ms: number = 10) => {
@@ -99,61 +107,71 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     };
 
+    // Check mobile on mount
     useEffect(() => {
         const checkMobile = () => {
-            const mobile = window.innerWidth < 768;
-            setIsMobile(mobile);
-
-            // Smart Zoom Calculation on init
-            if (mobile && previewZoom === 1.0 && containerRef.current) {
-                // Aim to fit width with some padding
-                const screenWidth = window.innerWidth;
-                const targetWidth = screenWidth - 32; // 16px padding each side
-                // Assuming standard letter width ~600px at 100% (approx)
-                // We'll let the page renderer report size, but for start let's guess 0.6
-                // Better: set a slightly lower zoom to ensure visibility
-                setPreviewZoom(Math.min(0.8, targetWidth / 600));
-            }
+            setIsMobile(window.innerWidth < 768);
         };
-
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // --- Pinch to Zoom Logic ---
-    const touchStartDist = useRef<number>(0);
-    const startZoom = useRef<number>(1);
-
-    const handleTouchStart = (e: React.TouchEvent) => {
-        if (e.touches.length === 2) {
-            const dist = Math.hypot(
-                e.touches[0].clientX - e.touches[1].clientX,
-                e.touches[0].clientY - e.touches[1].clientY
-            );
-            touchStartDist.current = dist;
-            startZoom.current = previewZoom;
-        }
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (e.touches.length === 2 && touchStartDist.current > 0) {
-            const dist = Math.hypot(
-                e.touches[0].clientX - e.touches[1].clientX,
-                e.touches[0].clientY - e.touches[1].clientY
-            );
-            const scale = dist / touchStartDist.current;
-            const newZoom = Math.min(3.0, Math.max(0.4, startZoom.current * scale)); // Allow slightly wider processing range
-
-            // Throttle zoom updates slightly for performance if needed, 
-            // but React 18 batching handles this reasonably well.
+    // Auto-fit zoom on mobile
+    useEffect(() => {
+        if (isMobile && previewZoom === 1.0) {
+            const targetWidth = window.innerWidth - 32;
+            const newZoom = Math.min(0.65, targetWidth / 612);
             setPreviewZoom(newZoom);
         }
-    };
+    }, [isMobile]);
 
-    const handleTouchEnd = () => {
-        touchStartDist.current = 0;
-    };
+    // Native touch event listeners for pinch-to-zoom
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleTouchStart = (e: TouchEvent) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                setIsPinching(true);
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                touchStartDist.current = dist;
+                startZoom.current = previewZoom;
+            }
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (e.touches.length === 2 && touchStartDist.current > 0) {
+                e.preventDefault();
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                const scale = dist / touchStartDist.current;
+                const newZoom = Math.min(2.5, Math.max(0.4, startZoom.current * scale));
+                setPreviewZoom(newZoom);
+            }
+        };
+
+        const handleTouchEnd = () => {
+            touchStartDist.current = 0;
+            setIsPinching(false);
+        };
+
+        container.addEventListener('touchstart', handleTouchStart, { passive: false });
+        container.addEventListener('touchmove', handleTouchMove, { passive: false });
+        container.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+        return () => {
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchmove', handleTouchMove);
+            container.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [previewZoom, setPreviewZoom]);
 
 
     const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string, x?: number, y?: number, page?: number) => {
@@ -166,14 +184,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             pageIndex: currentPage,
             x: x !== undefined ? x : 0.1,
             y: y !== undefined ? y : 0.1,
-            width: type === 'signature' || type === 'initials' ? 0.25 : 0.2, // Slightly larger defaults for mobile
-            height: type === 'signature' || type === 'initials' ? 0.12 : 0.06,
+            width: type === 'signature' || type === 'initials' ? 0.25 : 0.2,
+            height: type === 'signature' || type === 'initials' ? 0.1 : 0.05,
             type,
             dataUrl,
             text: text || (type === 'date' ? new Date().toLocaleDateString() : '')
         };
         addToHistory([...entries, newEntry]);
         setSelectedEntryId(id);
+        setShowBottomSheet(false);
+        setShowSignaturesDropdown(false);
     };
 
     const updateEntry = (id: string, updates: Partial<SignatureEntry>) => {
@@ -185,10 +205,11 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         vibrate(10);
         const newEntries = entries.filter(e => e.id !== id);
         addToHistory(newEntries);
+        setSelectedEntryId(null);
     };
 
     const handleSignatureSave = (dataUrl: string) => {
-        vibrate(50); // Stronger vibration on successful creation
+        vibrate(50);
         if (modalType === 'signature') {
             setSavedSignatures([...savedSignatures, dataUrl]);
             addEntry('signature', dataUrl);
@@ -198,7 +219,6 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     };
 
-    // UI Helpers
     const toggleSignMenu = () => {
         vibrate();
         if (isMobile) {
@@ -208,29 +228,52 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }
     };
 
-    // Render Bottom Sheet for Mobile
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (showSignaturesDropdown) {
+                setShowSignaturesDropdown(false);
+            }
+        };
+        if (showSignaturesDropdown) {
+            setTimeout(() => {
+                document.addEventListener('click', handleClickOutside);
+            }, 100);
+        }
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, [showSignaturesDropdown]);
+
+    // Render Bottom Sheet (Mobile)
     const renderBottomSheet = () => (
         <>
             {showBottomSheet && (
-                <div className="fixed inset-0 bg-black/50 z-[90] animate-fade-in" onClick={() => setShowBottomSheet(false)} />
+                <div
+                    className="fixed inset-0 bg-black/50 z-[90]"
+                    onClick={() => setShowBottomSheet(false)}
+                />
             )}
-            <div className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-[100] transition-transform duration-300 transform ${showBottomSheet ? 'translate-y-0' : 'translate-y-full'} max-h-[80vh] overflow-y-auto`}>
-                <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto my-3" />
-                <div className="p-6 space-y-6">
+            <div
+                className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[100] transition-transform duration-300 ${showBottomSheet ? 'translate-y-0' : 'translate-y-full'} max-h-[70vh] overflow-y-auto`}
+                style={{ paddingBottom: 'env(safe-area-inset-bottom, 20px)' }}
+            >
+                <div className="sticky top-0 bg-white pt-3 pb-2 border-b border-gray-100">
+                    <div className="w-10 h-1 bg-gray-300 rounded-full mx-auto" />
+                </div>
+                <div className="p-4 space-y-5">
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Signatures</h4>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Signatures</h4>
                         <div className="grid grid-cols-2 gap-3">
                             <button
                                 onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }}
                                 className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-xl font-bold border border-red-100 active:scale-95 transition-transform h-24"
                             >
-                                <Plus size={24} /> {t.newSignature}
+                                <Plus size={22} /> New Signature
                             </button>
                             {savedSignatures.map((sig, i) => (
                                 <button
                                     key={i}
-                                    onClick={() => { addEntry('signature', sig); setShowBottomSheet(false); }}
-                                    className="border border-gray-100 rounded-xl p-2 bg-white active:border-canada-red active:scale-95 transition-all h-24 flex items-center justify-center"
+                                    onClick={() => { addEntry('signature', sig); }}
+                                    className="border border-gray-200 rounded-xl p-2 bg-white active:border-canada-red active:scale-95 transition-all h-24 flex items-center justify-center"
                                 >
                                     <img src={sig} alt="Signature" className="max-w-full max-h-full object-contain" />
                                 </button>
@@ -239,19 +282,19 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Initials</h4>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Initials</h4>
                         <div className="grid grid-cols-2 gap-3">
                             <button
                                 onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }}
                                 className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-xl font-bold border border-red-100 active:scale-95 transition-transform h-24"
                             >
-                                <Plus size={24} /> {t.newInitials}
+                                <Plus size={22} /> New Initials
                             </button>
                             {savedInitials.map((sig, i) => (
                                 <button
                                     key={i}
-                                    onClick={() => { addEntry('initials', sig); setShowBottomSheet(false); }}
-                                    className="border border-gray-100 rounded-xl p-2 bg-white active:border-canada-red active:scale-95 transition-all h-24 flex items-center justify-center"
+                                    onClick={() => { addEntry('initials', sig); }}
+                                    className="border border-gray-200 rounded-xl p-2 bg-white active:border-canada-red active:scale-95 transition-all h-24 flex items-center justify-center"
                                 >
                                     <img src={sig} alt="Initials" className="max-w-full max-h-full object-contain" />
                                 </button>
@@ -259,127 +302,207 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         </div>
                     </div>
 
-                    {/* Quick Actions in Bottom Sheet too */}
+                    {/* Quick Actions */}
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Quick Adds</h4>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Quick Add</h4>
                         <div className="flex gap-3">
-                            <button onClick={() => { addEntry('date'); setShowBottomSheet(false); }} className="flex-1 p-3 bg-blue-50 text-blue-700 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95">
+                            <button
+                                onClick={() => addEntry('date')}
+                                className="flex-1 flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-700 font-medium active:scale-95 transition-transform"
+                            >
                                 <Calendar size={18} /> Date
                             </button>
-                            <button onClick={() => { addEntry('text', undefined, 'Text'); setShowBottomSheet(false); }} className="flex-1 p-3 bg-green-50 text-green-700 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95">
+                            <button
+                                onClick={() => addEntry('text', undefined, 'Text')}
+                                className="flex-1 flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-700 font-medium active:scale-95 transition-transform"
+                            >
                                 <Type size={18} /> Text
+                            </button>
+                            <button
+                                onClick={() => addEntry('text', undefined, '✓')}
+                                className="flex-1 flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-700 font-medium active:scale-95 transition-transform"
+                            >
+                                <CheckIcon size={18} /> Check
                             </button>
                         </div>
                     </div>
-
-                    <div className="h-4" /> {/* Spacer */}
                 </div>
             </div>
         </>
     );
 
     return (
-        <div
-            className="flex flex-col flex-1 bg-gray-50 w-full relative overflow-hidden"
-            style={{ touchAction: 'pan-y' }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-        >
-            {/* Top Bar - Minimal on Mobile */}
-            <div className={`sticky top-0 z-[60] bg-white/90 backdrop-blur-md border-b border-gray-200 px-4 py-3 shadow-sm flex items-center justify-between transition-transform duration-300 ${isMobile && activeTool === 'pan' ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+        <div className="flex flex-col flex-1 bg-gray-100 w-full h-full relative overflow-hidden">
 
-                {/* Desktop Toolbar Content (Visible only on md+) */}
-                <div className="hidden md:flex items-center gap-3 w-full">
-                    <div className="flex bg-gray-100 p-1 rounded-xl shrink-0">
-                        <button
-                            onClick={() => setActiveTool('pan')}
-                            className={`p-2 rounded-lg transition-all ${activeTool === 'pan' ? 'bg-white text-canada-red shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
-                            title={t.pan}
-                        >
-                            <Hand size={20} />
-                        </button>
-                        <button
-                            onClick={() => setActiveTool('select')}
-                            className={`p-2 rounded-lg transition-all ${activeTool === 'select' ? 'bg-white text-canada-red shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
-                            title={t.select}
-                        >
-                            <MousePointer2 size={20} />
-                        </button>
-                    </div>
-                    <div className="w-px h-8 bg-gray-200 mx-1"></div>
-
-                    <button
-                        onClick={toggleSignMenu}
-                        className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-xl hover:border-canada-red transition-all font-bold text-sm text-gray-700 shadow-sm relative"
-                    >
-                        <PenTool size={20} className="text-canada-red" />
-                        <span>Sign</span>
-                        <ChevronDown size={12} />
-
-                        {/* Desktop Dropdown */}
-                        {!isMobile && showSignaturesDropdown && (
-                            <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-[70] animate-scale-in text-left cursor-default" onClick={e => e.stopPropagation()}>
-                                <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Signatures</h4>
-                                <div className="space-y-2 mb-4">
-                                    {savedSignatures.map((sig, i) => (
-                                        <div key={i} onClick={() => { addEntry('signature', sig); setShowSignaturesDropdown(false); }} className="cursor-pointer border border-gray-100 hover:border-canada-red rounded-lg p-1 bg-gray-50 h-10 flex items-center justify-center">
-                                            <img src={sig} className="max-h-full" />
-                                        </div>
-                                    ))}
-                                    <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowSignaturesDropdown(false); }} className="w-full text-center text-xs font-bold text-canada-red py-2 hover:underline">+ New Signature</button>
-                                </div>
-
-                                <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Initials</h4>
-                                <div className="space-y-2">
-                                    {savedInitials.map((sig, i) => (
-                                        <div key={i} onClick={() => { addEntry('initials', sig); setShowSignaturesDropdown(false); }} className="cursor-pointer border border-gray-100 hover:border-canada-red rounded-lg p-1 bg-gray-50 h-10 flex items-center justify-center">
-                                            <img src={sig} className="max-h-full" />
-                                        </div>
-                                    ))}
-                                    <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowSignaturesDropdown(false); }} className="w-full text-center text-xs font-bold text-canada-red py-2 hover:underline">+ New Initials</button>
-                                </div>
-                            </div>
-                        )}
-                    </button>
-
-                    <button onClick={() => addEntry('date')} title="Add Date" className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50"><Calendar size={20} /></button>
-                    <button onClick={() => addEntry('text', undefined, 'Text')} title="Add Text" className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50"><Type size={20} /></button>
-                    <button onClick={() => addEntry('text', undefined, '✓')} title="Add Check" className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50"><CheckIcon size={20} /></button>
-
-                    <div className="flex-1"></div>
-
-                    <div className="flex items-center gap-2">
-                        <button onClick={undo} disabled={historyStep === 0} className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30"><Undo2 size={20} /></button>
-                        <button onClick={redo} disabled={historyStep === history.length - 1} className="p-2 text-gray-500 hover:text-gray-800 disabled:opacity-30"><Redo2 size={20} /></button>
-                        <div className="flex items-center bg-gray-100 rounded-xl p-1">
-                            <button onClick={() => setPreviewZoom(Math.max(0.5, previewZoom - 0.2))} className="p-1 px-2 hover:text-canada-red"><ZoomOut size={16} /></button>
-                            <span className="text-xs font-bold w-8 text-center">{Math.round(previewZoom * 100)}%</span>
-                            <button onClick={() => setPreviewZoom(Math.min(3.0, previewZoom + 0.2))} className="p-1 px-2 hover:text-canada-red"><ZoomIn size={16} /></button>
+            {/* ========== DESKTOP HEADER ========== */}
+            <div className="hidden md:block bg-white border-b border-gray-200">
+                {/* File Info Row */}
+                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-red-50 text-canada-red rounded-xl flex items-center justify-center shadow-sm">
+                            <FileText size={22} />
                         </div>
-                        <button onClick={() => onSign(entries)} className="bg-canada-red text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-canada-darkRed flex items-center gap-2 text-sm">
-                            <PenTool size={16} /> {t.btnSign}
-                        </button>
+                        <div>
+                            <h3 className="font-bold text-gray-900 text-lg">{file?.name || 'Document.pdf'}</h3>
+                            <span className="text-sm text-gray-500">{file ? formatFileSize(file.size) : '0 KB'}</span>
+                        </div>
                     </div>
+                    <button
+                        onClick={onClose}
+                        className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                        <X size={22} />
+                    </button>
                 </div>
 
-                {/* Mobile Header Content */}
-                <div className="flex md:hidden items-center justify-between w-full">
-                    <span className="font-bold text-gray-800 text-sm">Editing PDF</span>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md">{Math.round(previewZoom * 100)}%</span>
-                        <button onClick={() => onSign(entries)} className="bg-canada-red text-white px-4 py-1.5 rounded-lg font-bold text-xs shadow-md shadow-red-500/20">
-                            Done
+                {/* Toolbar Row */}
+                <div className="border-t border-gray-100 bg-gray-50/50">
+                    <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-4">
+
+                        {/* Navigation Toggle */}
+                        <div className="flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
+                            <button
+                                onClick={() => setActiveTool('pan')}
+                                className={`flex items-center justify-center w-10 h-10 rounded-lg transition-all ${activeTool === 'pan' ? 'bg-gray-100 text-canada-red' : 'text-gray-400 hover:text-gray-600'}`}
+                                title="Pan Tool"
+                            >
+                                <Hand size={20} strokeWidth={activeTool === 'pan' ? 2.5 : 2} />
+                            </button>
+                            <button
+                                onClick={() => setActiveTool('select')}
+                                className={`flex items-center justify-center w-10 h-10 rounded-lg transition-all ${activeTool === 'select' ? 'bg-gray-100 text-canada-red' : 'text-gray-400 hover:text-gray-600'}`}
+                                title="Select Tool"
+                            >
+                                <MousePointer2 size={20} strokeWidth={activeTool === 'select' ? 2.5 : 2} />
+                            </button>
+                        </div>
+
+                        <div className="w-px h-8 bg-gray-200" />
+
+                        {/* Sign Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={(e) => { e.stopPropagation(); toggleSignMenu(); }}
+                                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all border ${showSignaturesDropdown ? 'bg-red-50 border-red-200 text-canada-red' : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 shadow-sm'}`}
+                            >
+                                <PenTool size={18} className={showSignaturesDropdown ? 'text-canada-red' : 'text-gray-500'} />
+                                Sign
+                                <ChevronDown size={14} className={`transition-transform ${showSignaturesDropdown ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {showSignaturesDropdown && (
+                                <div
+                                    className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-4 z-[70]"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-3">Signatures</h4>
+                                    <div className="grid grid-cols-2 gap-2 mb-4">
+                                        <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowSignaturesDropdown(false); }} className="flex flex-col items-center gap-1 h-18 py-3 border border-dashed border-gray-300 rounded-lg hover:border-canada-red hover:bg-red-50/30 text-canada-red transition-all">
+                                            <Plus size={20} />
+                                            <span className="text-xs font-bold">New</span>
+                                        </button>
+                                        {savedSignatures.map((sig, i) => (
+                                            <button key={i} onClick={() => addEntry('signature', sig)} className="h-18 py-2 border border-gray-100 rounded-lg hover:border-canada-red transition-all flex items-center justify-center bg-gray-50">
+                                                <img src={sig} className="max-w-full max-h-12 object-contain" alt="" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-3">Initials</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowSignaturesDropdown(false); }} className="flex flex-col items-center gap-1 h-18 py-3 border border-dashed border-gray-300 rounded-lg hover:border-canada-red hover:bg-red-50/30 text-canada-red transition-all">
+                                            <Plus size={20} />
+                                            <span className="text-xs font-bold">New</span>
+                                        </button>
+                                        {savedInitials.map((sig, i) => (
+                                            <button key={i} onClick={() => addEntry('initials', sig)} className="h-18 py-2 border border-gray-100 rounded-lg hover:border-canada-red transition-all flex items-center justify-center bg-gray-50">
+                                                <img src={sig} className="max-w-full max-h-12 object-contain" alt="" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Insert Tools */}
+                        <div className="flex items-center gap-1.5">
+                            <button onClick={() => addEntry('date')} className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm text-gray-600 transition-all" title="Add Date">
+                                <Calendar size={20} />
+                            </button>
+                            <button onClick={() => addEntry('text', undefined, 'Text')} className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm text-gray-600 transition-all" title="Add Text">
+                                <Type size={20} />
+                            </button>
+                            <button onClick={() => addEntry('text', undefined, '✓')} className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm text-gray-600 transition-all" title="Add Check">
+                                <CheckIcon size={20} />
+                            </button>
+                        </div>
+
+                        <div className="w-px h-8 bg-gray-200" />
+
+                        {/* Undo/Redo */}
+                        <div className="flex items-center gap-1">
+                            <button onClick={undo} disabled={historyStep === 0} className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-800 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent transition-all" title="Undo">
+                                <Undo2 size={20} />
+                            </button>
+                            <button onClick={redo} disabled={historyStep === history.length - 1} className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-800 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent transition-all" title="Redo">
+                                <Redo2 size={20} />
+                            </button>
+                        </div>
+
+                        <div className="w-px h-8 bg-gray-200" />
+
+                        {/* Zoom */}
+                        <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-3 py-1.5 shadow-sm">
+                            <Search size={16} className="text-gray-400" />
+                            <span className="text-sm font-medium text-gray-700 w-12 text-center">{Math.round(previewZoom * 100)}%</span>
+                            <div className="flex items-center gap-1 border-l border-gray-200 pl-2 ml-1">
+                                <button onClick={() => setPreviewZoom(Math.max(0.25, previewZoom - 0.25))} className="w-6 h-6 flex items-center justify-center rounded text-gray-500 hover:text-gray-700 hover:bg-gray-100 text-lg font-bold">−</button>
+                                <button onClick={() => setPreviewZoom(Math.min(3, previewZoom + 0.25))} className="w-6 h-6 flex items-center justify-center rounded text-gray-500 hover:text-gray-700 hover:bg-gray-100 text-lg font-bold">+</button>
+                            </div>
+                        </div>
+
+                        <div className="flex-1" />
+
+                        {/* Sign Button */}
+                        <button
+                            onClick={() => onSign(entries)}
+                            className="bg-canada-red text-white py-2.5 px-6 rounded-xl font-bold shadow-md shadow-red-500/20 hover:bg-canada-darkRed hover:shadow-lg active:scale-95 transition-all"
+                        >
+                            {t.btnSign}
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* PDF View Area - Flex grow to take space, custom scrollbar */}
+            {/* ========== MOBILE HEADER ========== */}
+            <div className="flex md:hidden items-center justify-between w-full px-3 py-2.5 bg-white border-b border-gray-100 sticky top-0 z-[60]">
+                <button
+                    onClick={onClose}
+                    className="w-9 h-9 flex items-center justify-center rounded-full text-gray-500 active:bg-gray-100"
+                >
+                    <X size={22} />
+                </button>
+
+                <span className="font-bold text-gray-800 text-sm">Sign PDF</span>
+
+                <button
+                    onClick={() => onSign(entries)}
+                    className="text-canada-red font-bold text-sm px-3 py-1.5 active:opacity-70"
+                >
+                    Done
+                </button>
+            </div>
+
+            {/* ========== PDF SCROLL AREA ========== */}
             <div
-                ref={containerRef}
-                className={`flex-grow overflow-auto p-4 md:p-8 flex flex-col items-center gap-6 ${activeTool === 'pan' ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'} custom-scrollbar pb-32 md:pb-12`}
-                style={{ overflowX: 'auto', overflowY: 'auto' }}
+                ref={scrollContainerRef}
+                className={`flex-1 overflow-auto flex flex-col items-center gap-6 custom-scrollbar bg-gray-100 ${isPinching ? 'overflow-hidden' : ''}`}
+                style={{
+                    paddingTop: '24px',
+                    paddingBottom: isMobile ? '100px' : '40px',
+                    paddingLeft: '16px',
+                    paddingRight: '16px',
+                    touchAction: isPinching ? 'none' : 'pan-y'
+                }}
             >
                 {Array.from({ length: pageCount }).map((_, idx) => (
                     <PageRenderer
@@ -394,61 +517,58 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         onVisibilityChange={(v) => reportVisibility(idx, v)}
                         selectedEntryId={selectedEntryId}
                         onSelectEntry={setSelectedEntryId}
-                        onPageClick={(x, y) => {
-                            if (isMobile) {
-                                // In mobile, tapping page usually means deselect
-                                setSelectedEntryId(null);
-                            } else {
-                                setSelectedEntryId(null);
-                            }
-                        }}
+                        isMobile={isMobile}
                     />
                 ))}
             </div>
 
-            {/* Mobile Bottom Navigation Bar */}
-            <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-[80] flex items-center justify-around pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ${showBottomSheet ? 'translate-y-full' : 'translate-y-0'}`}>
+            {/* ========== MOBILE BOTTOM BAR ========== */}
+            <div
+                className={`md:hidden fixed left-3 right-3 bg-white rounded-2xl shadow-lg border border-gray-100 z-[80] flex items-center justify-around py-2 transition-all duration-300 ${showBottomSheet ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100'}`}
+                style={{ bottom: 'max(12px, env(safe-area-inset-bottom))' }}
+            >
                 <button
                     onClick={() => { vibrate(); setActiveTool('pan'); }}
-                    className={`flex flex-col items-center gap-1 p-3 w-full ${activeTool === 'pan' ? 'text-canada-red font-bold' : 'text-gray-400 font-medium'}`}
+                    className={`flex flex-col items-center gap-0.5 px-4 py-1 ${activeTool === 'pan' ? 'text-canada-red' : 'text-gray-400'}`}
                 >
-                    <Hand size={24} strokeWidth={activeTool === 'pan' ? 3 : 2} />
-                    <span className="text-[10px]">Pan</span>
+                    <Hand size={20} strokeWidth={activeTool === 'pan' ? 2.5 : 2} />
+                    <span className="text-[9px] font-semibold">Pan</span>
                 </button>
 
                 <button
                     onClick={() => { vibrate(); setActiveTool('select'); }}
-                    className={`flex flex-col items-center gap-1 p-3 w-full ${activeTool === 'select' ? 'text-canada-red font-bold' : 'text-gray-400 font-medium'}`}
+                    className={`flex flex-col items-center gap-0.5 px-4 py-1 ${activeTool === 'select' ? 'text-canada-red' : 'text-gray-400'}`}
                 >
-                    <MousePointer2 size={24} strokeWidth={activeTool === 'select' ? 3 : 2} />
-                    <span className="text-[10px]">Select</span>
+                    <MousePointer2 size={20} strokeWidth={activeTool === 'select' ? 2.5 : 2} />
+                    <span className="text-[9px] font-semibold">Edit</span>
                 </button>
 
-                <div className="relative -top-6">
+                {/* Floating Add Button */}
+                <div className="relative -top-4">
                     <button
                         onClick={toggleSignMenu}
-                        className="bg-canada-red text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 active:scale-95 transition-transform"
+                        className="bg-canada-red text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform"
                     >
-                        <Plus size={32} />
+                        <Plus size={26} />
                     </button>
                 </div>
 
                 <button
                     onClick={undo}
                     disabled={historyStep === 0}
-                    className="flex flex-col items-center gap-1 p-3 w-full text-gray-400 font-medium disabled:opacity-30 active:text-gray-600"
+                    className="flex flex-col items-center gap-0.5 px-4 py-1 text-gray-400 disabled:opacity-30"
                 >
-                    <Undo2 size={24} />
-                    <span className="text-[10px]">Undo</span>
+                    <Undo2 size={20} />
+                    <span className="text-[9px] font-semibold">Undo</span>
                 </button>
 
                 <button
                     onClick={redo}
                     disabled={historyStep === history.length - 1}
-                    className="flex flex-col items-center gap-1 p-3 w-full text-gray-400 font-medium disabled:opacity-30 active:text-gray-600"
+                    className="flex flex-col items-center gap-0.5 px-4 py-1 text-gray-400 disabled:opacity-30"
                 >
-                    <Redo2 size={24} />
-                    <span className="text-[10px]">Redo</span>
+                    <Redo2 size={20} />
+                    <span className="text-[9px] font-semibold">Redo</span>
                 </button>
             </div>
 
@@ -462,15 +582,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 title={modalType === 'signature' ? t.addSignature : t.addInitials}
             />
 
-            {/* Hidden footer trigger for external submit if needed */}
             <button
                 id="footer-sign-trigger"
                 onClick={() => onSign(entries)}
                 className="hidden"
             />
-        </div >
+        </div>
     );
 };
+
+// ========== PAGE RENDERER COMPONENT ==========
 
 interface PageRendererProps {
     pageIndex: number;
@@ -483,7 +604,7 @@ interface PageRendererProps {
     onVisibilityChange: (isVisible: boolean) => void;
     selectedEntryId: string | null;
     onSelectEntry: (id: string | null) => void;
-    onPageClick?: (x: number, y: number) => void;
+    isMobile: boolean;
 }
 
 const PageRenderer: React.FC<PageRendererProps> = ({
@@ -497,7 +618,7 @@ const PageRenderer: React.FC<PageRendererProps> = ({
     onVisibilityChange,
     selectedEntryId,
     onSelectEntry,
-    onPageClick
+    isMobile
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
@@ -506,13 +627,10 @@ const PageRenderer: React.FC<PageRendererProps> = ({
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setIsVisible(true);
-                onVisibilityChange(true);
-            } else {
-                onVisibilityChange(false);
-            }
-        }, { threshold: 0.05, rootMargin: '200px' }); // Load earlier
+            const visible = entry.isIntersecting;
+            setIsVisible(visible);
+            onVisibilityChange(visible);
+        }, { threshold: 0.01, rootMargin: '100px' });
         if (containerRef.current) observer.observe(containerRef.current);
         return () => observer.disconnect();
     }, [onVisibilityChange]);
@@ -542,29 +660,35 @@ const PageRenderer: React.FC<PageRendererProps> = ({
         renderPage();
     }, [pdfJsDoc, pageIndex, zoom, isVisible]);
 
+    const handleEntryDrag = useCallback((entryId: string, d: { x: number; y: number }, entryWidth: number, entryHeight: number) => {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(3);
+        const x = Math.max(0, Math.min(d.x, pageSize.width - entryWidth));
+        const y = Math.max(0, Math.min(d.y, pageSize.height - entryHeight));
+        onEntryUpdate(entryId, {
+            x: x / pageSize.width,
+            y: y / pageSize.height
+        });
+    }, [pageSize, onEntryUpdate]);
+
     return (
         <div
             ref={containerRef}
-            className={`relative shadow-lg bg-white ${activeTool === 'select' ? 'cursor-crosshair' : ''} transition-shadow duration-300`}
+            className="relative bg-white shadow-lg rounded-sm ring-1 ring-black/5"
             style={{
-                width: pageSize.width || 600 * zoom,
-                height: pageSize.height || 800 * zoom,
-                minWidth: pageSize.width || 600 * zoom, // Prevent flex shrinking
-                minHeight: pageSize.height || 800 * zoom
+                width: pageSize.width || 612 * zoom,
+                height: pageSize.height || 792 * zoom,
+                minWidth: pageSize.width || 612 * zoom,
+                minHeight: pageSize.height || 792 * zoom
             }}
-            onClick={(e) => {
+            onClick={() => {
                 if (activeTool === 'select') {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width;
-                    const y = (e.clientY - rect.top) / rect.height;
-                    onPageClick?.(x, y);
                     onSelectEntry(null);
                 }
             }}
         >
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
-            {/* Interaction Overlay */}
+            {/* Entries Overlay */}
             <div className={`absolute inset-0 ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}>
                 {pageSize.width > 0 && entries.map(entry => (
                     <Rnd
@@ -577,19 +701,15 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                             x: entry.x * pageSize.width,
                             y: entry.y * pageSize.height
                         }}
+                        onDragStart={(e) => {
+                            e.stopPropagation();
+                            onSelectEntry(entry.id);
+                        }}
                         onDragStop={(_, d) => {
-                            if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(5);
-                            // Constrain to page bounds
-                            const x = Math.max(0, Math.min(d.x, pageSize.width - (entry.width * pageSize.width)));
-                            const y = Math.max(0, Math.min(d.y, pageSize.height - (entry.height * pageSize.height)));
-
-                            onEntryUpdate(entry.id, {
-                                x: x / pageSize.width,
-                                y: y / pageSize.height
-                            });
+                            handleEntryDrag(entry.id, d, entry.width * pageSize.width, entry.height * pageSize.height);
                         }}
                         onResizeStop={(_, __, ref, ___, position) => {
-                            if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(5);
+                            if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(3);
                             onEntryUpdate(entry.id, {
                                 width: ref.offsetWidth / pageSize.width,
                                 height: ref.offsetHeight / pageSize.height,
@@ -599,19 +719,24 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                         }}
                         bounds="parent"
                         lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
-                        className={`group ${selectedEntryId === entry.id ? 'z-30' : 'z-20'}`}
-                        onDragStart={() => onSelectEntry(entry.id)}
+                        className={`${selectedEntryId === entry.id ? 'z-30' : 'z-20'}`}
                         disableDragging={activeTool === 'pan'}
+                        enableResizing={activeTool === 'select' && selectedEntryId === entry.id}
+                        resizeHandleStyles={{
+                            bottomRight: { width: isMobile ? 28 : 14, height: isMobile ? 28 : 14, right: isMobile ? -14 : -7, bottom: isMobile ? -14 : -7 },
+                            bottomLeft: { width: isMobile ? 28 : 14, height: isMobile ? 28 : 14, left: isMobile ? -14 : -7, bottom: isMobile ? -14 : -7 },
+                            topRight: { width: isMobile ? 28 : 14, height: isMobile ? 28 : 14, right: isMobile ? -14 : -7, top: isMobile ? -14 : -7 },
+                            topLeft: { width: isMobile ? 28 : 14, height: isMobile ? 28 : 14, left: isMobile ? -14 : -7, top: isMobile ? -14 : -7 },
+                        }}
                         resizeHandleComponent={selectedEntryId === entry.id ? {
-                            // Enhanced touch targets (invisible larger click area, visible small dot)
-                            bottomRight: <div className="w-12 h-12 -mr-6 -mb-6 md:w-6 md:h-6 md:-mr-3 md:-mb-3 bg-transparent flex items-center justify-center"><div className="w-4 h-4 md:w-2.5 md:h-2.5 bg-canada-red rounded-full shadow-md border-2 border-white" /></div>,
-                            bottomLeft: <div className="w-12 h-12 -ml-6 -mb-6 md:w-6 md:h-6 md:-ml-3 md:-mb-3 bg-transparent flex items-center justify-center"><div className="w-4 h-4 md:w-2.5 md:h-2.5 bg-canada-red rounded-full shadow-md border-2 border-white" /></div>,
-                            topRight: <div className="w-12 h-12 -mr-6 -mt-6 md:w-6 md:h-6 md:-mr-3 md:-mt-3 bg-transparent flex items-center justify-center"><div className="w-4 h-4 md:w-2.5 md:h-2.5 bg-canada-red rounded-full shadow-md border-2 border-white" /></div>,
-                            topLeft: <div className="w-12 h-12 -ml-6 -mt-6 md:w-6 md:h-6 md:-ml-3 md:-mt-3 bg-transparent flex items-center justify-center"><div className="w-4 h-4 md:w-2.5 md:h-2.5 bg-canada-red rounded-full shadow-md border-2 border-white" /></div>
+                            bottomRight: <div className="w-full h-full bg-canada-red rounded-full border-2 border-white shadow-md" />,
+                            bottomLeft: <div className="w-full h-full bg-canada-red rounded-full border-2 border-white shadow-md" />,
+                            topRight: <div className="w-full h-full bg-canada-red rounded-full border-2 border-white shadow-md" />,
+                            topLeft: <div className="w-full h-full bg-canada-red rounded-full border-2 border-white shadow-md" />
                         } : {}}
                     >
                         <div
-                            className={`w-full h-full relative cursor-move border-2 ${selectedEntryId === entry.id ? 'border-blue-500 shadow-xl' : 'border-transparent hover:border-blue-400'} p-0.5 flex items-center justify-center transition-all`}
+                            className={`w-full h-full relative border-2 ${selectedEntryId === entry.id ? 'border-blue-500' : 'border-transparent'} flex items-center justify-center`}
                             style={{ touchAction: 'none' }}
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -619,27 +744,31 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                             }}
                         >
                             {entry.dataUrl ? (
-                                <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" />
+                                <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="" />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-gray-800 font-medium overflow-hidden whitespace-nowrap bg-blue-50/50 rounded-sm">
+                                <div className="w-full h-full flex items-center justify-center bg-blue-50/30 rounded">
                                     {entry.type === 'date' || entry.type === 'text' ? (
                                         <input
                                             type="text"
                                             value={entry.text}
                                             onChange={(e) => onEntryUpdate(entry.id, { text: e.target.value })}
-                                            className="bg-transparent border-none outline-none text-center w-full h-full p-1"
-                                            style={{ fontSize: Math.max(12, 16 * zoom) + 'px' }}
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="bg-transparent border-none outline-none text-center w-full h-full text-gray-800 font-medium"
+                                            style={{ fontSize: Math.max(10, 14 * zoom) + 'px' }}
                                         />
-                                    ) : entry.text}
+                                    ) : (
+                                        <span className="text-gray-800 font-medium">{entry.text}</span>
+                                    )}
                                 </div>
                             )}
 
                             {selectedEntryId === entry.id && (
                                 <button
-                                    onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); onSelectEntry(null); }}
-                                    className="absolute -top-14 left-1/2 -translate-x-1/2 p-2 bg-red-600 text-white rounded-full shadow-lg z-50 active:scale-95 flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 md:rounded-lg"
+                                    onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
+                                    className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-red-600 text-white rounded-lg shadow-lg z-50 active:scale-95 flex items-center gap-1"
                                 >
-                                    <Trash2 size={20} className="md:w-4 md:h-4" /> <span className="hidden md:inline ml-1 text-xs font-bold">Delete</span>
+                                    <Trash2 size={14} />
+                                    <span className="text-xs font-bold">Delete</span>
                                 </button>
                             )}
                         </div>
@@ -648,8 +777,8 @@ const PageRenderer: React.FC<PageRendererProps> = ({
             </div>
 
             {!isVisible && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 z-10">
-                    <div className="w-10 h-10 border-4 border-canada-red border-t-transparent rounded-full animate-spin"></div>
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div className="w-8 h-8 border-3 border-canada-red border-t-transparent rounded-full animate-spin" />
                 </div>
             )}
         </div>

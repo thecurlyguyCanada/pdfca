@@ -105,23 +105,25 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
     return (
         <div className="flex flex-col h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px] overflow-hidden">
-            {/* Header */}
-            <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
-                <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
-                    <div className="w-10 h-10 md:w-10 md:h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
-                        <FileText size={18} className="md:w-5 md:h-5" />
+            {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
+            {!isSignTool && (
+                <div className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm">
+                    <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+                        <div className="w-10 h-10 md:w-10 md:h-10 bg-red-100 text-canada-red rounded-lg flex items-center justify-center shrink-0">
+                            <FileText size={18} className="md:w-5 md:h-5" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                            <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[180px] md:max-w-[200px]">{file.name}</h3>
+                            <p className="text-xs text-gray-500 flex items-center gap-2">
+                                <span>{file ? formatFileSize(file.size) : ''}</span>
+                            </p>
+                        </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                        <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[180px] md:max-w-[200px]">{file.name}</h3>
-                        <p className="text-xs text-gray-500 flex items-center gap-2">
-                            <span>{file ? formatFileSize(file.size) : ''}</span>
-                        </p>
-                    </div>
+                    <button onClick={onSoftReset} className="text-gray-600 hover:text-gray-800 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" aria-label="Remove file">
+                        <X size={20} />
+                    </button>
                 </div>
-                <button onClick={onSoftReset} className="text-gray-600 hover:text-gray-800 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" aria-label="Remove file">
-                    <X size={20} />
-                </button>
-            </div>
+            )}
 
             {/* Content Area */}
             <div className={`flex-grow ${isSignTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-start w-full relative`}>
@@ -244,6 +246,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     </div>
                 ) : isSignTool ? (
                     <SignPdfTool
+                        file={file}
+                        onClose={onSoftReset}
                         pdfJsDoc={pdfJsDoc}
                         pageCount={pageCount}
                         t={t}
