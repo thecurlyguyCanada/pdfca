@@ -163,8 +163,11 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-            <div className="bg-white rounded-t-3xl md:rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-scale-in flex flex-col h-[85vh] md:h-auto md:max-h-[90vh]">
+        <div
+            className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+            onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+        >
+            <div className="bg-white rounded-t-3xl md:rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-scale-in flex flex-col max-h-[90vh] md:max-h-[85vh]">
                 <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 shrink-0">
                     <h3 className="text-lg md:text-xl font-extrabold text-gray-900">{title}</h3>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
@@ -177,7 +180,7 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab as any)}
-                            className={`flex-1 py-3 md:py-4 flex items-center justify-center gap-2 font-bold transition-all whitespace-nowrap px-4 ${activeTab === tab ? 'text-canada-red border-b-4 border-canada-red bg-red-50/30' : 'text-gray-500 hover:bg-gray-50'}`}
+                            className={`flex-1 py-3 md:py-4 flex items-center justify-center gap-2 font-bold transition-all whitespace-nowrap px-4 active:scale-95 ${activeTab === tab ? 'text-canada-red border-b-4 border-canada-red bg-red-50/30' : 'text-gray-500 hover:bg-gray-50 active:bg-gray-100'}`}
                         >
                             {tab === 'draw' && <PenTool size={18} />}
                             {tab === 'type' && <Type size={18} />}
@@ -228,6 +231,9 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
                                     className="w-full border-2 border-gray-200 rounded-2xl p-4 text-xl md:text-2xl outline-none focus:border-canada-red transition-all bg-white"
                                     placeholder="John Doe"
                                     autoFocus
+                                    inputMode="text"
+                                    autoComplete="name"
+                                    autoCapitalize="words"
                                 />
                             </div>
                             <div className="p-8 border-2 border-dashed border-gray-300 rounded-2xl bg-white flex items-center justify-center min-h-[120px] shadow-sm">

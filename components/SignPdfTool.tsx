@@ -236,8 +236,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
             ))}
 
             {!isVisible && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 z-10">
-                    <div className="w-8 h-8 border-3 border-canada-red border-t-transparent rounded-full animate-spin" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 z-10 gap-3">
+                    <div className="w-10 h-10 border-4 border-canada-red border-t-transparent rounded-full animate-spin" />
+                    <span className="text-xs text-gray-400 font-medium">Loading page...</span>
                 </div>
             )}
         </div>
@@ -878,12 +879,12 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <div>
                         <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Signatures</h4>
                         <div className="grid grid-cols-2 gap-3">
-                            <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-28 shadow-sm">
-                                <Plus size={24} /> New Signature
+                            <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-32 shadow-sm">
+                                <Plus size={28} /> New Signature
                             </button>
                             {savedSignatures.map((sig, i) => (
-                                <button key={i} onClick={() => addEntry('signature', sig)} className="border border-gray-100 rounded-2xl p-2 bg-white active:border-canada-red active:scale-95 h-28 flex items-center justify-center shadow-sm">
-                                    <img src={sig} className="max-w-full max-h-full object-contain" />
+                                <button key={i} onClick={() => addEntry('signature', sig)} className="border border-gray-100 rounded-2xl p-3 bg-white active:border-canada-red active:scale-95 h-32 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Saved signature" />
                                 </button>
                             ))}
                         </div>
@@ -891,14 +892,25 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <div>
                         <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Initials</h4>
                         <div className="grid grid-cols-2 gap-3">
-                            <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-28 shadow-sm">
-                                <Plus size={24} /> New Initials
+                            <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-32 shadow-sm">
+                                <Plus size={28} /> New Initials
                             </button>
                             {savedInitials.map((sig, i) => (
-                                <button key={i} onClick={() => addEntry('initials', sig)} className="border border-gray-100 rounded-2xl p-2 bg-white active:border-canada-red active:scale-95 h-28 flex items-center justify-center shadow-sm">
-                                    <img src={sig} className="max-w-full max-h-full object-contain" />
+                                <button key={i} onClick={() => addEntry('initials', sig)} className="border border-gray-100 rounded-2xl p-3 bg-white active:border-canada-red active:scale-95 h-32 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Saved initials" />
                                 </button>
                             ))}
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Quick Add</h4>
+                        <div className="grid grid-cols-2 gap-3">
+                            <button onClick={() => addEntry('date')} className="flex flex-col items-center justify-center gap-2 p-4 bg-blue-50 text-blue-600 rounded-2xl font-bold border border-blue-100 active:scale-95 h-20 shadow-sm">
+                                <Calendar size={22} /> Today's Date
+                            </button>
+                            <button onClick={() => addEntry('text', undefined, 'Your text here')} className="flex flex-col items-center justify-center gap-2 p-4 bg-gray-50 text-gray-600 rounded-2xl font-bold border border-gray-200 active:scale-95 h-20 shadow-sm">
+                                <Type size={22} /> Text Field
+                            </button>
                         </div>
                     </div>
                 </div>
