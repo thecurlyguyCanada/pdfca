@@ -177,8 +177,8 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     }}
                     bounds="parent"
                     lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
-                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}
-                    disableDragging={activeTool !== 'select' || (isMobile && selectedEntryId !== entry.id)}
+                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : 'pointer-events-auto'}`}
+                    disableDragging={activeTool !== 'select'}
                     enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
@@ -191,8 +191,13 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     }}
                 >
                     <div
-                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
-                        style={{ touchAction: activeTool === 'select' ? 'none' : 'auto' }}
+                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
+                        style={{ touchAction: 'none' }}
+                        onTouchStart={(e) => {
+                            if (activeTool !== 'select') return;
+                            e.stopPropagation();
+                            onSelectEntry(entry.id);
+                        }}
                         onClick={(e) => {
                             if (activeTool !== 'select') return;
                             e.stopPropagation();
@@ -220,10 +225,11 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
 
                         {selectedEntryId === entry.id && (
                             <button
+                                onTouchStart={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
                                 onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                className="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-red-600 text-white rounded-md shadow-lg flex items-center gap-1 text-xs font-bold active:scale-95 transition-transform"
+                                className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-2 bg-red-600 text-white rounded-lg shadow-lg flex items-center gap-1.5 text-xs font-bold active:scale-95 transition-transform z-50"
                             >
-                                <Trash2 size={12} /> Delete
+                                <Trash2 size={14} /> Delete
                             </button>
                         )}
                     </div>
@@ -791,12 +797,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             <style>{`
                 @media (max-width: 768px) {
                     .mobile-content-inner {
-                        padding-top: 80px !important;
-                        padding-bottom: 140px !important;
-                    }
-                    /* Ensure handles are touch-friendly */
-                    .react-draggable-transparent-selection {
-                        display: none !important;
+                        padding-top: 70px !important;
+                        padding-bottom: 100px !important;
                     }
                 }
             `}</style>
