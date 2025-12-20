@@ -836,3 +836,48 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
 
   return doc.output('blob');
 };
+
+export const flattenPdf = async (file: File): Promise<Uint8Array> => {
+  const pdfjs = await getPdfJs();
+  const { PDFDocument } = await getPdfLib();
+
+  const arrayBuffer = await file.arrayBuffer();
+  // We need to use the worker for rendering
+  await initPdfWorker();
+  const loadingTask = pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: '/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/standard_fonts/',
+  });
+  const pdf = await loadingTask.promise;
+
+  const newPdfDoc = await PDFDocument.create();
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 2.0 }); // 2.0 is a good balance for quality/size
+
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d')!;
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({ canvasContext: context, viewport }).promise;
+
+    // Convert to JPEG to keep file size reasonable
+    const imageUri = canvas.toDataURL('image/jpeg', 0.85);
+    const image = await newPdfDoc.embedJpg(imageUri);
+
+    const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
+    newPage.drawImage(image, {
+      x: 0,
+      y: 0,
+      width: viewport.width,
+      height: viewport.height,
+    });
+  }
+
+  return await newPdfDoc.save();
+};
+

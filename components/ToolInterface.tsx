@@ -417,10 +417,12 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
               `}
                     >
                         {currentTool === ToolType.DELETE && t.btnRemove}
+                        {currentTool === ToolType.PDF_PAGE_REMOVER && (t.btnRemove || "Remove Pages")}
                         {currentTool === ToolType.ROTATE && t.btnRotate}
+                        {currentTool === ToolType.FLATTEN && (t.btnFlatten || "Make Non-Editable")}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
-                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF) && t.btnConvert}
+                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
                     </button>
                 </div>
             )}

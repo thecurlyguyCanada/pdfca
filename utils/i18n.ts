@@ -122,6 +122,30 @@ export const translations = {
           "Click 'Remove Pages' to instantly download your clean, updated PDF."
         ]
       },
+      pdfPageRemover: {
+        title: "PDF Page Remover Free | Remove Pages from PDF Online | pdfcanada.ca",
+        desc: "Best PDF page remover. Remove pages from your PDF securely and for free. Processed locally in Canada. No file uploads required.",
+        h1: "PDF Page Remover",
+        subtitle: "The polite way to remove pages from a PDF.",
+        content: "Need a PDF page remover? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and remove pages from a PDF file. It happens instantly in your browser.",
+        steps: [
+          "Click the 'Select File' button to choose your PDF document.",
+          "You will see thumbnails of all your pages. Simply click on the pages you wish to remove. They will be marked with a trash icon.",
+          "Click 'Remove Pages' to instantly download your clean, updated PDF."
+        ]
+      },
+      flatten: {
+        title: "Make PDF Non-Editable | Flatten PDF Online | pdfcanada.ca",
+        desc: "Convert your PDF pages to uneditable images to prevent changes. All processing happens locally in Canada.",
+        h1: "Make PDF Non-Editable",
+        subtitle: "The polite way to lock your document.",
+        content: "Need to ensure your PDF can't be edited easily? Our tool flattens your document by converting each page into a high-quality image. This prevents text selection and modifications by standard PDF editors.",
+        steps: [
+          "Select the PDF you want to protect.",
+          "We will process each page and turn it into a flat image.",
+          "Download your new, non-editable PDF."
+        ]
+      },
       rotate: {
         title: "Rotate PDF Pages Permanently | Free Tool | pdfcanada.ca",
         desc: "Rotate PDF pages left or right and save them permanently. Fix upside-down documents instantly.",
@@ -347,8 +371,12 @@ export const translations = {
     },
 
     // Tools
-    toolDelete: "Delete Pages",
+    toolDelete: "Delete PDF Pages",
     toolDeleteDesc: "Remove unwanted pages.",
+    toolFlatten: "Make Non-Editable",
+    toolFlattenDesc: "Flatten your PDF content.",
+    toolPdfPageRemover: "PDF Page Remover",
+    toolPdfPageRemoverDesc: "Remove pages from PDF.",
     toolRotate: "Rotate PDF",
     toolRotateDesc: "Fix upside-down pages.",
     toolHeic: "HEIC to PDF",
@@ -415,6 +443,7 @@ export const translations = {
     // Buttons
     btnRemove: "Remove Pages",
     btnRotate: "Apply Rotation",
+    btnFlatten: "Make Non-Editable",
     btnConvert: "Convert File",
     btnMakeFillable: "Auto-Detect & Fill",
     btnExtractText: "Extract Text",
@@ -574,15 +603,39 @@ export const translations = {
 
     features: {
       delete: {
-        title: "Supprimer Pages PDF | Outil Gratuit | pdfcanada.ca",
-        desc: "Supprimez des pages de vos PDF gratuitement et en toute sécurité. Traitement local au Canada.",
-        h1: "Supprimer des pages PDF",
-        subtitle: "La façon polie de faire le ménage.",
-        content: "Besoin de retirer une page de votre document ? Notre outil vous permet de sélectionner et supprimer des pages spécifiques instantanément.",
+        title: "Supprimer des Pages PDF Gratuit | Enlever des Pages | pdfcanada.ca",
+        desc: "Supprimez des pages de votre PDF en toute sécurité et gratuitement. Traitement local au Canada.",
+        h1: "Supprimer des Pages PDF",
+        subtitle: "La façon polie de retirer les pages indésirables.",
+        content: "Besoin de supprimer une page de votre document ? Notre outil vous permet de sélectionner et de supprimer des pages spécifiques de votre fichier PDF.",
         steps: [
-          "Cliquez sur le bouton 'Choisir un fichier' pour sélectionner votre document PDF.",
-          "Vous verrez les miniatures de toutes vos pages. Cliquez simplement sur les pages que vous souhaitez supprimer. Elles seront marquées d'une icône de corbeille.",
-          "Cliquez sur 'Supprimer' pour télécharger instantanément votre PDF mis à jour."
+          "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
+          "Cliquez sur les miniatures des pages que vous souhaitez supprimer.",
+          "Cliquez sur 'Supprimer' pour télécharger votre nouveau PDF."
+        ]
+      },
+      pdfPageRemover: {
+        title: "Suppresseur de Pages PDF Gratuit | Enlever des Pages PDF | pdfcanada.ca",
+        desc: "Le meilleur suppresseur de pages PDF. Supprimez des pages de votre PDF en toute sécurité. Traitement local au Canada.",
+        h1: "Suppresseur de Pages PDF",
+        subtitle: "La façon polie de retirer des pages d'un PDF.",
+        content: "Besoin d'un suppresseur de pages PDF ? Notre outil vous permet de sélectionner et de retirer des pages d'un fichier PDF instantanément.",
+        steps: [
+          "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
+          "Cliquez sur les miniatures des pages que vous souhaitez retirer.",
+          "Cliquez sur 'Supprimer' pour télécharger votre nouveau PDF."
+        ]
+      },
+      flatten: {
+        title: "Rendre un PDF non modifiable | Aplatir PDF | pdfcanada.ca",
+        desc: "Convertissez vos pages PDF en images non modifiables pour empêcher les changements. Traitement local au Canada.",
+        h1: "Rendre un PDF non modifiable",
+        subtitle: "La façon polie de verrouiller votre document.",
+        content: "Besoin de vous assurer que votre PDF ne peut pas être modifié facilement ? Notre outil 'aplatit' votre document en convertissant chaque page en une image de haute qualité. Cela empêche la sélection de texte et les modifications par les éditeurs PDF standards.",
+        steps: [
+          "Sélectionnez le PDF que vous souhaitez protéger.",
+          "Nous traiterons chaque page pour la transformer en image fixe.",
+          "Téléchargez votre nouveau PDF non modifiable."
         ]
       },
       rotate: {
@@ -739,6 +792,10 @@ export const translations = {
 
     toolDelete: "Supprimer des pages",
     toolDeleteDesc: "Enlever les pages inutiles.",
+    toolFlatten: "Non modifiable",
+    toolFlattenDesc: "Aplatir le PDF.",
+    toolPdfPageRemover: "Suppresseur de pages PDF",
+    toolPdfPageRemoverDesc: "Enlever des pages du PDF.",
     toolRotate: "Pivoter PDF",
     toolRotateDesc: "Arranger les pages à l'envers.",
     toolHeic: "HEIC en PDF",
@@ -794,7 +851,8 @@ export const translations = {
 
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
-    btnConvert: "Convertir",
+    btnFlatten: "Rendre non modifiable",
+    btnConvert: "Convertir le fichier",
     btnMakeFillable: "Détecter et Remplir",
     btnCancel: "Annuler",
     btnExtractText: "Extraire le Texte",
