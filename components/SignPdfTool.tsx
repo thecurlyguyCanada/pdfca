@@ -463,10 +463,11 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 {/* 2. Main Canvas Area */}
                 <div
                     ref={scrollContainerRef}
-                    className="flex-1 bg-gray-200/50 overflow-auto flex flex-col items-center relative"
+                    className="flex-1 bg-gray-200/50 overflow-auto flex flex-col items-center relative mobile-canvas-container"
                     style={{
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
-                        scrollBehavior: 'smooth'
+                        scrollBehavior: 'smooth',
+                        WebkitOverflowScrolling: 'touch'
                     }}
                 >
                     <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6">
@@ -521,10 +522,14 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             {/* Mobile Scroll Padding Overrides */}
             <style>{`
                 @media (max-width: 768px) {
-                    .flex-1.bg-gray-200\\/50 {
-                        padding-top: 60px !important;
-                        padding-bottom: 120px !important;
+                    .mobile-canvas-container {
+                        padding-top: 70px !important;
+                        padding-bottom: 140px !important;
                         background-color: #f3f4f6 !important;
+                    }
+                    /* Ensure handles are touch-friendly */
+                    .react-draggable-transparent-selection {
+                        display: none !important;
                     }
                 }
             `}</style>
@@ -701,7 +706,7 @@ const PageRenderer: React.FC<PageRendererProps> = ({
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
             {/* Entries - only interactive in select mode */}
-            {activeTool === 'select' && pageSize.width > 0 && entries.map(entry => (
+            {pageSize.width > 0 && entries.map(entry => (
                 <Rnd
                     key={entry.id}
                     size={{
@@ -713,6 +718,7 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                         y: entry.y * pageSize.height
                     }}
                     onDragStart={(e) => {
+                        if (activeTool !== 'select') return;
                         e.stopPropagation();
                         onSelectEntry(entry.id);
                         onPageClick?.();
@@ -732,22 +738,27 @@ const PageRenderer: React.FC<PageRendererProps> = ({
                     }}
                     bounds="parent"
                     lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
-                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'}`}
-                    enableResizing={selectedEntryId === entry.id ? {
+                    className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : ''}`}
+                    disableDragging={activeTool !== 'select' || (isMobile && selectedEntryId !== entry.id)}
+                    enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
                     resizeHandleStyles={{
-                        topLeft: { width: 12, height: 12, top: -6, left: -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' },
-                        topRight: { width: 12, height: 12, top: -6, right: -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' },
-                        bottomLeft: { width: 12, height: 12, bottom: -6, left: -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' },
-                        bottomRight: { width: 12, height: 12, bottom: -6, right: -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' },
+                        topLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        topRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, top: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        bottomLeft: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, left: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
+                        bottomRight: { width: isMobile ? 24 : 12, height: isMobile ? 24 : 12, bottom: isMobile ? -12 : -6, right: isMobile ? -12 : -6, background: '#dc2626', borderRadius: '50%', border: '2px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', zIndex: 40 },
                     }}
                 >
                     <div
                         className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-colors`}
-                        style={{ touchAction: 'none' }}
-                        onClick={(e) => { e.stopPropagation(); onSelectEntry(entry.id); }}
+                        style={{ touchAction: activeTool === 'select' ? 'none' : 'auto' }}
+                        onClick={(e) => {
+                            if (activeTool !== 'select') return;
+                            e.stopPropagation();
+                            onSelectEntry(entry.id);
+                        }}
                     >
                         {entry.dataUrl ? (
                             <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="" />
