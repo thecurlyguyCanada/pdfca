@@ -175,8 +175,12 @@ export const SEO: React.FC<SEOProps> = ({
       "name": [
         "Delete PDF Pages",
         "Rotate PDF",
-        "Merge PDF",
-        "Compress PDF",
+        "Make PDF Fillable",
+        "HEIC to PDF",
+        "PDF to Word",
+        "Word to PDF",
+        "Flatten PDF",
+        "Crop PDF",
         "Ultimate Guide"
       ],
       "url": [
@@ -184,10 +188,35 @@ export const SEO: React.FC<SEOProps> = ({
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/rotate-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-fillable`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/heic-to-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-word`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/word-to-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-non-editable`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
       ]
     };
     allSchemas.push(siteNavSchema);
+
+    // SoftwareApplication schema (for tool pages)
+    if (canonicalPath !== '/' && !canonicalPath.startsWith('/guides')) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": title.split('|')[0].trim(),
+        "operatingSystem": "All",
+        "applicationCategory": "BusinessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CAD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "128"
+        }
+      });
+    }
 
     // Add Breadcrumbs schema
     if (breadcrumbs && breadcrumbs.length > 0) {

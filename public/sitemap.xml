@@ -6,7 +6,7 @@
   <!-- Home Page -->
   <url>
     <loc>https://pdfcanada.ca/</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/"/>
@@ -25,7 +25,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/"/>
@@ -41,7 +41,7 @@
   <!-- Tool Pages - English -->
   <url>
     <loc>https://pdfcanada.ca/delete-pdf-pages</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/delete-pdf-pages"/>
@@ -56,7 +56,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/delete-pdf-pages</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/delete-pdf-pages"/>
@@ -66,7 +66,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/rotate-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/rotate-pdf"/>
@@ -81,7 +81,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/rotate-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/rotate-pdf"/>
@@ -91,7 +91,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/organize-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/organize-pdf"/>
@@ -106,7 +106,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/organize-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/organize-pdf"/>
@@ -116,7 +116,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/make-pdf-fillable</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/make-pdf-fillable"/>
@@ -131,7 +131,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/make-pdf-fillable</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/make-pdf-fillable"/>
@@ -141,7 +141,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/ocr-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/ocr-pdf"/>
@@ -156,7 +156,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/ocr-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/ocr-pdf"/>
@@ -166,7 +166,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/heic-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/heic-to-pdf"/>
@@ -181,7 +181,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/heic-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/heic-to-pdf"/>
@@ -191,7 +191,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/epub-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/epub-to-pdf"/>
@@ -206,7 +206,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/epub-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/epub-to-pdf"/>
@@ -216,7 +216,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/pdf-to-epub</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-epub"/>
@@ -231,7 +231,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/fr/pdf-to-epub</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-epub"/>
@@ -242,7 +242,7 @@
   <!-- Info Pages -->
   <url>
     <loc>https://pdfcanada.ca/how-to-make-a-pdf-fillable</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/how-to-make-a-pdf-fillable"/>
@@ -252,7 +252,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/howto</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/howto"/>
@@ -263,7 +263,7 @@
   <!-- SEO Guide Pages -->
   <url>
     <loc>https://pdfcanada.ca/guides/ultimate-pdf-guide</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/ultimate-pdf-guide"/>
@@ -273,7 +273,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/delete-pdf-pages</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/delete-pdf-pages"/>
@@ -283,7 +283,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/rotate-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/rotate-pdf"/>
@@ -293,7 +293,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/heic-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/heic-to-pdf"/>
@@ -303,7 +303,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/ocr-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/ocr-pdf"/>
@@ -313,7 +313,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/organize-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/organize-pdf"/>
@@ -323,7 +323,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/epub-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/epub-to-pdf"/>
@@ -333,7 +333,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/pdf-to-epub</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/pdf-to-epub"/>
@@ -343,7 +343,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/make-pdf-fillable</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/make-pdf-fillable"/>
@@ -353,7 +353,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/email-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/email-to-pdf"/>
@@ -363,7 +363,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/guides/cbr-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/cbr-to-pdf"/>
@@ -373,7 +373,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/cbr-to-pdf</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/cbr-to-pdf"/>
@@ -384,7 +384,7 @@
   <!-- Static Pages -->
   <url>
     <loc>https://pdfcanada.ca/pricing</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pricing"/>
@@ -394,7 +394,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/privacy</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/privacy"/>
@@ -404,7 +404,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/terms</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/terms"/>
@@ -414,7 +414,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/support</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/support"/>
@@ -424,7 +424,7 @@
 
   <url>
     <loc>https://pdfcanada.ca/sorry</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2025-12-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/sorry"/>
@@ -432,4 +432,190 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/sorry"/>
   </url>
 
+  <url>
+    <loc>https://pdfcanada.ca/pdf-to-word</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-word"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/word-to-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/word-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/pdf-page-remover</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-page-remover"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/make-pdf-non-editable</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/make-pdf-non-editable"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/crop-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/crop-pdf"/>
+  </url>
+
+  <!-- French Tool Pages -->
+  <url>
+    <loc>https://pdfcanada.ca/fr/pdf-to-word</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-word"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/word-to-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/word-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/pdf-page-remover</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-page-remover"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/make-pdf-non-editable</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/make-pdf-non-editable"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/crop-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/crop-pdf"/>
+  </url>
+
+  <!-- Guide Pages -->
+  <url>
+    <loc>https://pdfcanada.ca/guides/pdf-to-word</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/pdf-to-word"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/guides/word-to-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/word-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/guides/pdf-page-remover</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/pdf-page-remover"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/guides/make-pdf-non-editable</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/make-pdf-non-editable"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/guides/crop-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/crop-pdf"/>
+  </url>
+
+  <!-- French Guide Pages -->
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/pdf-to-word</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/pdf-to-word"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/word-to-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/word-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/word-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/pdf-page-remover</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/pdf-page-remover"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/pdf-page-remover"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/make-pdf-non-editable</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/make-pdf-non-editable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/make-pdf-non-editable"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/crop-pdf</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/crop-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/crop-pdf"/>
+  </url>
 </urlset>
