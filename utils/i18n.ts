@@ -18,6 +18,12 @@ export const translations = {
     organizePdfDesc: "Reorder pages",
     dragToReorder: "Drag pages to reorder",
 
+    // Sign Tool
+    btnSign: "Finish & Download",
+    drawTitle: "Draw",
+    typeTitle: "Type",
+    btnCreate: "Create",
+
     // SEO General
     seo: {
       homeTitle: "pdfcanada.ca | Free PDF Tools - HEIC to PDF, OCR, Delete Pages & More 🇨🇦",
@@ -364,8 +370,6 @@ export const translations = {
     signPagesInfo: "Place your signature or initials on the document.",
     addSignature: "Add Signature",
     addInitials: "Add Initials",
-    drawTitle: "Draw",
-    typeTitle: "Type",
     signUpload: "Upload",
     select: "Select",
     pan: "Pan",
@@ -387,8 +391,6 @@ export const translations = {
     btnMakeFillable: "Auto-Detect & Fill",
     btnExtractText: "Extract Text",
     btnSearchablePdf: "Make Searchable PDF",
-    btnSign: "Sign PDF",
-    btnCreate: "Create",
     btnCancel: "Cancel",
     btnSave: "Save",
 
@@ -502,6 +504,12 @@ export const translations = {
     organizePdf: "Organiser PDF",
     organizePdfDesc: "Réorganiser les pages",
     dragToReorder: "Glissez les pages pour réorganiser",
+
+    // Sign Tool
+    btnSign: "Terminer & Télécharger",
+    drawTitle: "Dessiner",
+    typeTitle: "Taper",
+    btnCreate: "Créer",
 
     seo: {
       homeTitle: "pdfcanada.ca | Outils PDF Gratuits - HEIC en PDF, OCR, Supprimer Pages 🇨🇦",
@@ -722,8 +730,6 @@ export const translations = {
     signPagesInfo: "Placez votre signature ou vos initiales sur le document.",
     addSignature: "Ajouter Signature",
     addInitials: "Ajouter Initiales",
-    drawTitle: "Dessiner",
-    typeTitle: "Taper",
     signUpload: "Téléverser",
     select: "Sélectionner",
     pan: "Panoramique",
@@ -734,8 +740,6 @@ export const translations = {
     btnRotate: "Appliquer",
     btnConvert: "Convertir",
     btnMakeFillable: "Détecter et Remplir",
-    btnSign: "Signer le PDF",
-    btnCreate: "Créer",
     btnCancel: "Annuler",
     btnExtractText: "Extraire le Texte",
     btnSearchablePdf: "Créer PDF Recherchable",
