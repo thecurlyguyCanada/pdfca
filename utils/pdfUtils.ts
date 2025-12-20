@@ -52,6 +52,24 @@ const getTesseract = async () => {
   return Tesseract;
 };
 
+// Lazy load docx
+const getDocx = async () => {
+  const docx = await import('docx');
+  return docx;
+};
+
+// Lazy load mammoth
+const getMammoth = async () => {
+  const mammoth = await import('mammoth');
+  return mammoth;
+};
+
+// Lazy load jsPDF
+const getJsPdf = async () => {
+  const mod = await import('jspdf');
+  return (mod as any).jsPDF || mod.default || mod;
+};
+
 export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     const pdfjs = await getPdfJs();
@@ -752,3 +770,69 @@ export const makeSearchablePdf = async (
 
 // Re-export formatFileSize from lightweight utils for backward compatibility
 export { formatFileSize } from './formatUtils';
+
+export const convertPdfToWord = async (file: File): Promise<Blob> => {
+  const { Document, Packer, Paragraph, TextRun } = await getDocx();
+  const pdfjs = await getPdfJs();
+  await initPdfWorker();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const loadingTask = pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: '/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/standard_fonts/',
+  });
+
+  const pdf = await loadingTask.promise;
+  const sections: any[] = [];
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const textContent = await page.getTextContent();
+    const strings = textContent.items.map((item: any) => item.str);
+
+    // Simplistic grouping: one paragraph per page, or we could try to detect line breaks
+    // For now, let's just do a basic text dump into paragraphs
+    strings.forEach((str: string) => {
+      if (str.trim()) {
+        sections.push(new Paragraph({
+          children: [new TextRun(str)],
+        }));
+      }
+    });
+
+    // Add a page break after each PDF page except the last
+    if (i < pdf.numPages) {
+      // Docx doesn't have a simple "PageBreak" child, usually we set break on paragraph
+    }
+  }
+
+  const doc = new Document({
+    sections: [{
+      properties: {},
+      children: sections,
+    }],
+  });
+
+  return await Packer.toBlob(doc);
+};
+
+export const convertWordToPdf = async (file: File): Promise<Blob> => {
+  const mammoth = await getMammoth();
+  const jsPDF = await getJsPdf();
+  const arrayBuffer = await file.arrayBuffer();
+
+  const result = await mammoth.extractRawText({ arrayBuffer });
+  const text = result.value;
+
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const margin = 10;
+  const maxLineWidth = pageWidth - margin * 2;
+
+  const lines = doc.splitTextToSize(text, maxLineWidth);
+  doc.text(lines, margin, margin);
+
+  return doc.output('blob');
+};

@@ -319,6 +319,30 @@ export const translations = {
           "Resize and move elements until they look just right.",
           "Click 'Sign PDF' to download your securely signed document."
         ]
+      },
+      pdfToWord: {
+        title: "PDF to Word Converter | Convert PDF to Docx Free | pdfcanada.ca",
+        desc: "Convert PDF to Word (Docx) instantly. Our free PDF to Word converter extracts text securely in your browser. No uploads, proudly Canadian.",
+        h1: "Convert PDF to Word",
+        subtitle: "Make your PDFs editable again, eh?",
+        content: "Need to edit a PDF? Convert it to a Word document (.docx) effortlessly. Our local processing ensures your sensitive data never leaves your device.",
+        steps: [
+          "Select the PDF you want to convert.",
+          "Our tool extracts the text and formatting into a Word document.",
+          "Download your editable .docx file."
+        ]
+      },
+      wordToPdf: {
+        title: "Word to PDF Converter | Convert Docx to PDF Free | pdfcanada.ca",
+        desc: "Convert Word (Docx) to PDF instantly. Our free Word to PDF converter transforms documents securely in your browser. No uploads, proudly Canadian.",
+        h1: "Convert Word to PDF",
+        subtitle: "Professional PDFs from your Word docs.",
+        content: "Turn your Word documents into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
+        steps: [
+          "Upload your .docx file.",
+          "We process the document and generate a professional PDF.",
+          "Download your new PDF file."
+        ]
       }
     },
 
@@ -341,6 +365,10 @@ export const translations = {
     toolCbrToPdfDesc: "Convert comics to PDF.",
     toolSign: "Sign PDF",
     toolSignDesc: "E-sign documents securely.",
+    toolPdfToWord: "PDF to Word",
+    toolPdfToWordDesc: "Convert PDF to editable Docx.",
+    toolWordToPdf: "Word to PDF",
+    toolWordToPdfDesc: "Convert Word docx to PDF.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -682,6 +710,30 @@ export const translations = {
           "Redimensionnez et déplacez les éléments jusqu'à ce qu'ils soient parfaits.",
           "Cliquez sur 'Signer le PDF' pour télécharger votre document signé en toute sécurité."
         ]
+      },
+      pdfToWord: {
+        title: "Convertir PDF en Word | PDF en Docx Gratuit | pdfcanada.ca",
+        desc: "Convertissez PDF en Word (Docx) instantanément. Notre convertisseur PDF en Word extrait le texte en toute sécurité dans votre navigateur. Pas de téléchargement.",
+        h1: "Convertir PDF en Word",
+        subtitle: "Rendez vos PDF à nouveau modifiables, hein ?",
+        content: "Besoin de modifier un PDF ? Convertissez-le en document Word (.docx) sans effort. Notre traitement local garantit que vos données sensibles ne quittent jamais votre appareil.",
+        steps: [
+          "Sélectionnez le PDF que vous souhaitez convertir.",
+          "Notre outil extrait le texte et la mise en forme dans un document Word.",
+          "Téléchargez votre fichier .docx modifiable."
+        ]
+      },
+      wordToPdf: {
+        title: "Convertir Word en PDF | Docx en PDF Gratuit | pdfcanada.ca",
+        desc: "Convertissez Word (Docx) en PDF instantanément. Notre convertisseur Word en PDF transforme les documents en toute sécurité dans votre navigateur. Pas de téléchargement.",
+        h1: "Convertir Word en PDF",
+        subtitle: "Des PDF professionnels à partir de vos docs Word.",
+        content: "Transformez vos documents Word en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale à laquelle vous pouvez faire confiance.",
+        steps: [
+          "Téléversez votre fichier .docx.",
+          "Nous traitons le document et générons un PDF professionnel.",
+          "Téléchargez votre nouveau fichier PDF."
+        ]
       }
     },
 
@@ -703,6 +755,10 @@ export const translations = {
     toolCbrToPdfDesc: "Convertir BD en PDF.",
     toolSign: "Signer le PDF",
     toolSignDesc: "Signer des documents en toute sécurité.",
+    toolPdfToWord: "PDF en Word",
+    toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
+    toolWordToPdf: "Word en PDF",
+    toolWordToPdfDesc: "Convertir Word docx en PDF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",

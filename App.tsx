@@ -14,7 +14,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -30,6 +30,8 @@ const OrganizePdfGuide = React.lazy(() => import('./components/pages/guides/Orga
 const MakeFillableGuide = React.lazy(() => import('./components/pages/guides/MakeFillableGuide').then(m => ({ default: m.MakeFillableGuide })));
 const EmailToPdfGuide = React.lazy(() => import('./components/pages/guides/EmailToPdfGuide').then(m => ({ default: m.EmailToPdfGuide })));
 const CbrToPdfGuide = React.lazy(() => import('./components/pages/guides/CbrToPdfGuide').then(m => ({ default: m.CbrToPdfGuide })));
+const PdfToWordGuide = React.lazy(() => import('./components/pages/guides/PdfToWordGuide').then(m => ({ default: m.PdfToWordGuide })));
+const WordToPdfGuide = React.lazy(() => import('./components/pages/guides/WordToPdfGuide').then(m => ({ default: m.WordToPdfGuide })));
 
 enum AppState {
   HOME,
@@ -40,7 +42,8 @@ enum AppState {
 }
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
-  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF';
+  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -52,7 +55,9 @@ export enum ToolType {
   CBR_TO_PDF = 'CBR_TO_PDF',
   SIGN = 'SIGN',
   ORGANIZE = 'ORGANIZE',
-  OCR = 'OCR'
+  OCR = 'OCR',
+  PDF_TO_WORD = 'PDF_TO_WORD',
+  WORD_TO_PDF = 'WORD_TO_PDF'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -163,6 +168,14 @@ function App() {
       setCurrentTool(ToolType.OCR);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
+    } else if (path === '/pdf-to-word') {
+      setCurrentTool(ToolType.PDF_TO_WORD);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/word-to-pdf') {
+      setCurrentTool(ToolType.WORD_TO_PDF);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
     else if (path === '/privacy') setView('PRIVACY');
     else if (path === '/terms') setView('TERMS');
@@ -181,6 +194,8 @@ function App() {
     else if (path === '/guides/make-pdf-fillable') setView('GUIDE_FILLABLE');
     else if (path === '/guides/email-to-pdf') setView('GUIDE_EMAIL_TO_PDF');
     else if (path === '/guides/cbr-to-pdf') setView('GUIDE_CBR_TO_PDF');
+    else if (path === '/guides/pdf-to-word') setView('GUIDE_PDF_TO_WORD');
+    else if (path === '/guides/word-to-pdf') setView('GUIDE_WORD_TO_PDF');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
@@ -344,6 +359,8 @@ function App() {
     { id: ToolType.PDF_TO_EPUB, icon: FileText, title: t.toolPdfToEpub, desc: t.toolPdfToEpubDesc, accept: '.pdf', path: '/pdf-to-epub' },
     { id: ToolType.CBR_TO_PDF, icon: BookOpen, title: "CBR to PDF", desc: "Convert Comic Book archives (CBR, CBZ) to PDF.", accept: '.cbr,.cbz', path: '/cbr-to-pdf' },
     { id: ToolType.SIGN, icon: PenTool, title: t.toolSign, desc: t.toolSignDesc, accept: '.pdf', path: '/sign-pdf' },
+    { id: ToolType.PDF_TO_WORD, icon: FileText, title: t.toolPdfToWord, desc: t.toolPdfToWordDesc, accept: '.pdf', path: '/pdf-to-word' },
+    { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -482,6 +499,14 @@ function App() {
           case ToolType.ORGANIZE:
             resultBlob = await reorderPdfPages(file, pageOrder);
             outName = file.name.replace('.pdf', '_organized_eh.pdf');
+            break;
+          case ToolType.PDF_TO_WORD:
+            resultBlob = await convertPdfToWord(file);
+            outName = file.name.replace('.pdf', '_converted_eh.docx');
+            break;
+          case ToolType.WORD_TO_PDF:
+            resultBlob = await convertWordToPdf(file);
+            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
@@ -623,6 +648,8 @@ function App() {
       case ToolType.CBR_TO_PDF: return t.features.cbrToPdf;
       case ToolType.SIGN: return t.features.sign;
       case ToolType.ORGANIZE: return t.features.organizePdf;
+      case ToolType.PDF_TO_WORD: return t.features.pdfToWord;
+      case ToolType.WORD_TO_PDF: return t.features.wordToPdf;
       default: return t.features.delete;
     }
   };
@@ -816,11 +843,13 @@ function App() {
       currentTool === ToolType.HEIC_TO_PDF ||
       currentTool === ToolType.EPUB_TO_PDF ||
       currentTool === ToolType.PDF_TO_EPUB ||
-      currentTool === ToolType.CBR_TO_PDF;
+      currentTool === ToolType.CBR_TO_PDF ||
+      currentTool === ToolType.PDF_TO_WORD ||
+      currentTool === ToolType.WORD_TO_PDF;
 
     // Check if we are in "Active Workspace" mode (file loaded)
     // Sign tool handles its own full-screen overlay, so we exclude it here if file is present
-    const isActiveWorkspace = file && isVisualTool && currentTool !== ToolType.SIGN;
+    const isActiveWorkspace = file && isVisualTool;
 
     if (isActiveWorkspace) {
       return (
@@ -968,6 +997,8 @@ function App() {
           {view === 'GUIDE_FILLABLE' && <MakeFillableGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_EMAIL_TO_PDF' && <EmailToPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_CBR_TO_PDF' && <CbrToPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_PDF_TO_WORD' && <PdfToWordGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_WORD_TO_PDF' && <WordToPdfGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>
 

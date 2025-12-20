@@ -380,6 +380,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
+                            {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF) && <FileText size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">

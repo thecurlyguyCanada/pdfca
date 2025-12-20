@@ -42,7 +42,8 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolHeic}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolEpubToPdf}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfToEpub}</button></li>
-                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">CBR to PDF</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolPdfToWord}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.toolWordToPdf}</button></li>
                   </ul>
                </div>
 
@@ -59,6 +60,8 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_PDF_TO_EPUB', '/guides/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">PDF to EPUB Guide</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_CBR_TO_PDF', '/guides/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">CBR to PDF Guide</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_EMAIL_TO_PDF', '/guides/email-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Email to PDF Guide</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_PDF_TO_WORD', '/guides/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none">PDF to Word Guide</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_WORD_TO_PDF', '/guides/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Word to PDF Guide</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_OCR', '/guides/ocr-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">OCR & Searchable Guide</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_ORGANIZE', '/guides/organize-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">Organize & Reorder Guide</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
