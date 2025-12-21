@@ -901,7 +901,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 <div className="sticky top-0 bg-white pt-3 pb-2 border-b border-gray-100 z-10">
                     <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto" />
                 </div>
-                <div className="p-5 space-y-6 pb-12">
+                <div className="p-5 space-y-6 pb-[max(48px,env(safe-area-inset-bottom)+24px)]">
                     <div>
                         <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Signatures</h4>
                         <div className="grid grid-cols-2 gap-3">

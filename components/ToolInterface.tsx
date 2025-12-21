@@ -420,7 +420,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             {isSignTool ? null : (
                 <div
                     className="p-3 md:p-4 border-t border-gray-100 bg-white"
-                    style={{ paddingBottom: 'max(12px, calc(var(--safe-area-inset-bottom) + 12px))' }}
+                    style={{ paddingBottom: 'max(12px, calc(env(safe-area-inset-bottom) + 12px))' }}
                 >
                     <button
                         onClick={() => {
