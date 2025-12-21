@@ -71,6 +71,8 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 if (canvas) {
                     canvas.width = scaledViewport.width;
                     canvas.height = scaledViewport.height;
+                    canvas.style.width = `${scaledViewport.width}px`;
+                    canvas.style.height = `${scaledViewport.height}px`;
                     const context = canvas.getContext('2d');
                     if (context) {
                         await page.render({ canvasContext: context, viewport: scaledViewport }).promise;
@@ -184,13 +186,6 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                                     }));
                                 }}
                                 onResizeStop={(e, direction, ref, delta, position) => {
-                                    setCropBox({
-                                        width: (parseInt(ref.style.width) / canvasRef.current!.width) * 100, // This might be tricky if Rnd sets px
-                                        height: (parseInt(ref.style.height) / canvasRef.current!.height) * 100, // ref.offsetWidth is safer
-                                        x: (position.x / canvasRef.current!.width) * 100,
-                                        y: (position.y / canvasRef.current!.height) * 100
-                                    });
-                                    // Better to use ref.offsetWidth / maxWidth
                                     setCropBox({
                                         width: (ref.offsetWidth / canvasRef.current!.width) * 100,
                                         height: (ref.offsetHeight / canvasRef.current!.height) * 100,

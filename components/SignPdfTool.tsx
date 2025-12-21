@@ -526,21 +526,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
     // Helper to commit current state to history (call on mouseUp/resizeStop)
     const commitToHistory = useCallback(() => {
-        setHistory(prevHistory => {
-            setHistoryStep(prevStep => {
-                const newHistory = prevHistory.slice(0, prevStep + 1);
-                // Get current entries at time of commit
-                setEntries(currentEntries => {
-                    const limitedHistory = [...newHistory, currentEntries].slice(-50); // Limit to 50 steps
-                    setHistory(limitedHistory);
-                    setHistoryStep(limitedHistory.length - 1);
-                    return currentEntries;
-                });
-                return prevStep;
+        setEntries(currentEntries => {
+            setHistory(prevHistory => {
+                const newHistory = prevHistory.slice(0, historyStep + 1);
+                const updatedHistory = [...newHistory, currentEntries].slice(-50);
+                setHistoryStep(updatedHistory.length - 1);
+                return updatedHistory;
             });
-            return prevHistory;
+            return currentEntries;
         });
-    }, []);
+    }, [historyStep]);
 
     const removeEntry = useCallback((id: string) => {
         vibrate(10);

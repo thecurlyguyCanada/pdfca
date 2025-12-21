@@ -22,8 +22,8 @@ export interface FormField {
 // Lazy load PDF.js
 const getPdfJs = async () => {
   if (!pdfjsLib) {
-    const pdfjs = await import('pdfjs-dist/legacy/build/pdf');
-    pdfjsLib = pdfjs.default || pdfjs;
+    const mod = await import('pdfjs-dist');
+    pdfjsLib = mod.default || mod;
   }
   return pdfjsLib;
 };
@@ -74,6 +74,8 @@ export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     const pdfjs = await getPdfJs();
     if (pdfjs.GlobalWorkerOptions) {
+      // Use the bundled worker from the CDN or a local path
+      // Setting it to a local path that we know exists in public/
       pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
       workerInitialized = true;
     }
