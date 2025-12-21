@@ -37,6 +37,7 @@ const PdfPageRemoverGuide = React.lazy(() => import('./components/pages/guides/P
 const FlattenPdfGuide = React.lazy(() => import('./components/pages/guides/FlattenPdfGuide').then(module => ({ default: module.FlattenPdfGuide })));
 const CropPdfGuide = React.lazy(() => import('./components/pages/guides/CropPdfGuide').then(module => ({ default: module.CropPdfGuide })));
 const CompressPdfGuide = React.lazy(() => import('./components/pages/guides/CompressPdfGuide').then(module => ({ default: module.CompressPdfGuide })));
+const EditXfaPdfGuide = React.lazy(() => import('./components/pages/guides/EditXfaPdfGuide').then(module => ({ default: module.EditXfaPdfGuide })));
 
 
 enum AppState {
@@ -49,7 +50,7 @@ enum AppState {
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE';
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -124,6 +125,7 @@ function App() {
 
   // Compression Level
   const [compressionLevel, setCompressionLevel] = useState<'good' | 'balanced' | 'extreme'>('balanced');
+  const [processedSize, setProcessedSize] = useState<number | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = translations[lang];
@@ -228,6 +230,7 @@ function App() {
 
     else if (path === '/guides/crop-pdf') setView('GUIDE_CROP');
     else if (path === '/guides/compress-pdf') setView('GUIDE_COMPRESS');
+    else if (path === '/guides/edit-xfa-pdf') setView('GUIDE_EDIT_XFA');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
@@ -570,6 +573,7 @@ function App() {
 
       if (resultBlob) {
         const blob = resultBlob instanceof Blob ? resultBlob : new Blob([resultBlob as any], { type: 'application/octet-stream' });
+        setProcessedSize(blob.size);
         const url = URL.createObjectURL(blob);
         setDownloadUrl(url);
         setDownloadName(outName);
@@ -662,6 +666,7 @@ function App() {
       setPageOrder([]);
       lastSelectedPageRef.current = null;
       setPageRangeInput('');
+      setProcessedSize(null);
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
       setDownloadUrl(null);
       setErrorKey(null);
@@ -967,6 +972,23 @@ function App() {
                   <CheckCircle2 size={40} />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
+
+                {currentTool === ToolType.COMPRESS && processedSize && file && (
+                  <div className="mb-6 p-4 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="text-sm font-black text-green-700 uppercase tracking-wider mb-1">
+                      {t.sizeReduced || "Size Reduced"}
+                    </div>
+                    <div className="text-3xl font-black text-green-600 mb-2">
+                      -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
+                    </div>
+                    <div className="flex items-center justify-center gap-3 text-xs font-bold text-green-500/80">
+                      <span>{formatFileSize(file.size)}</span>
+                      <span className="opacity-50">→</span>
+                      <span className="text-green-600">{formatFileSize(processedSize)}</span>
+                    </div>
+                  </div>
+                )}
+
                 <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
                 <div className="space-y-3 w-full max-w-xs">
                   <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
@@ -1077,6 +1099,7 @@ function App() {
 
           {view === 'GUIDE_CROP' && <CropPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_COMPRESS' && <CompressPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_EDIT_XFA' && <EditXfaPdfGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>
 

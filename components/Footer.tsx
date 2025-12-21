@@ -64,6 +64,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerGuidesGroup}</p>
                   <ul className="space-y-3 text-sm">
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</button></li>
+                     <li><button onClick={() => { triggerHaptic('light'); onNavigate('GUIDE_EDIT_XFA', '/guides/edit-xfa-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.editXfaGuide}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('SUPPORT', '/support'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</button></li>
                      <li><button onClick={() => { triggerHaptic('light'); onNavigate('SORRY', '/sorry'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.sorryPolicy}</button></li>

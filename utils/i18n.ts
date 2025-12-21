@@ -14,6 +14,7 @@ export const translations = {
     selectToolTitle: "Select a Tool",
     eh: " eh?",
     ultimateGuide: "Ultimate PDF Guide 📖",
+    editXfaGuide: "Edit XFA PDF Guide 🖨️",
     organizePdf: "Organize PDF",
     organizePdfDesc: "Reorder pages",
     dragToReorder: "Drag pages to reorder",
@@ -30,6 +31,7 @@ export const translations = {
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size while maintaining quality.",
     btnCompress: "Compress PDF",
+    sizeReduced: "Size Reduced",
 
     // SEO General
     seo: {
@@ -585,6 +587,7 @@ export const translations = {
     selectToolTitle: "Choisir un outil",
     eh: " hein ?",
     ultimateGuide: "Guide Ultime PDF 📖",
+    editXfaGuide: "Guide d'édition PDF XFA 🖨️",
     organizePdf: "Organiser PDF",
     organizePdfDesc: "Réorganiser les pages",
     dragToReorder: "Glissez les pages pour réorganiser",
@@ -601,6 +604,7 @@ export const translations = {
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille du fichier.",
     btnCompress: "Compresser PDF",
+    sizeReduced: "Taille réduite",
 
     seo: {
       homeTitle: "pdfcanada.ca | Outils PDF Gratuits - HEIC en PDF, OCR, Supprimer Pages 🇨🇦",
