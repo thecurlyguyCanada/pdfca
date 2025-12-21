@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen } from 'lucide-react';
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
+import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';

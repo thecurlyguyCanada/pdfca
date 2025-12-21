@@ -516,34 +516,43 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     };
 
     const updateEntry = useCallback((id: string, updates: Partial<SignatureEntry>) => {
-        setEntries(prev => {
-            const next = prev.map(e => e.id === id ? { ...e, ...updates } : e);
-            // We only add to history on specific interactive finishes, not every drag tick
-            // but for now history is simplified.
-            return next;
-        });
+        setEntries(prev => prev.map(e => e.id === id ? { ...e, ...updates } : e));
     }, []);
+
+    // Use ref to avoid stale closure in commitToHistory
+    const historyStepRef = useRef(historyStep);
+    useEffect(() => { historyStepRef.current = historyStep; }, [historyStep]);
 
     // Helper to commit current state to history (call on mouseUp/resizeStop)
     const commitToHistory = useCallback(() => {
         setEntries(currentEntries => {
             setHistory(prevHistory => {
-                const newHistory = prevHistory.slice(0, historyStep + 1);
+                const step = historyStepRef.current;
+                const newHistory = prevHistory.slice(0, step + 1);
                 const updatedHistory = [...newHistory, currentEntries].slice(-50);
                 setHistoryStep(updatedHistory.length - 1);
                 return updatedHistory;
             });
             return currentEntries;
         });
-    }, [historyStep]);
+    }, []);
 
     const removeEntry = useCallback((id: string) => {
         vibrate(10);
-        setEntries(prev => prev.filter(e => e.id !== id));
+        setEntries(prev => {
+            const filtered = prev.filter(e => e.id !== id);
+            // Commit immediately with the new state
+            setHistory(prevHistory => {
+                const step = historyStepRef.current;
+                const newHistory = prevHistory.slice(0, step + 1);
+                const updatedHistory = [...newHistory, filtered].slice(-50);
+                setHistoryStep(updatedHistory.length - 1);
+                return updatedHistory;
+            });
+            return filtered;
+        });
         setSelectedEntryId(null);
-        // Commit after state update
-        setTimeout(() => commitToHistory(), 0);
-    }, [vibrate, commitToHistory]);
+    }, [vibrate]);
 
     const handleSignatureSave = (dataUrl: string) => {
         vibrate(50);

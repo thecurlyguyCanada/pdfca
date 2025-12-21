@@ -294,10 +294,28 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
       try {
         const imageBytes = await fetch(entry.dataUrl).then(res => res.arrayBuffer());
         let image;
-        if (entry.dataUrl.includes('image/png')) {
+
+        // Detect format from data URL or try both
+        const isPng = entry.dataUrl.includes('image/png');
+        const isJpg = entry.dataUrl.includes('image/jpeg') || entry.dataUrl.includes('image/jpg');
+
+        if (isPng) {
           image = await doc.embedPng(imageBytes);
-        } else {
+        } else if (isJpg) {
           image = await doc.embedJpg(imageBytes);
+        } else {
+          // WebP or unknown format - try PNG first (canvas exports often use PNG)
+          try {
+            image = await doc.embedPng(imageBytes);
+          } catch {
+            // Fallback to JPG
+            try {
+              image = await doc.embedJpg(imageBytes);
+            } catch (e) {
+              console.warn('Could not embed signature image - unsupported format');
+              continue;
+            }
+          }
         }
 
         page.drawImage(image, {
@@ -677,6 +695,10 @@ export const extractTextWithOcr = async (
     });
 
     fullText += `--- Page ${pageIndex + 1} ---\n${result.data.text}\n\n`;
+
+    // Cleanup canvas to prevent memory leaks
+    canvas.width = 0;
+    canvas.height = 0;
   }
 
   onProgress?.({
@@ -758,6 +780,10 @@ export const makeSearchablePdf = async (
         opacity: 0, // Invisible but searchable
       });
     }
+
+    // Cleanup canvas to prevent memory leaks
+    canvas.width = 0;
+    canvas.height = 0;
   }
 
   onProgress?.({
@@ -989,7 +1015,11 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     const viewport = page.getViewport({ scale: 2.0 }); // 2.0 is a good balance for quality/size
 
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d')!;
+    const context = canvas.getContext('2d');
+    if (!context) {
+      console.error(`Failed to get 2D context for page ${i}`);
+      continue;
+    }
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
@@ -998,6 +1028,10 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     // Convert to JPEG to keep file size reasonable
     const imageUri = canvas.toDataURL('image/jpeg', 0.85);
     const image = await newPdfDoc.embedJpg(imageUri);
+
+    // Cleanup canvas to prevent memory leaks
+    canvas.width = 0;
+    canvas.height = 0;
 
     const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
     newPage.drawImage(image, {
