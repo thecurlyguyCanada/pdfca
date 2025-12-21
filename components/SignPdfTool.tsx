@@ -246,17 +246,25 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                                 )}
                             </div>
                         )}
-
-                        {selectedEntryId === entry.id && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                onPointerDown={(e) => e.stopPropagation()}
-                                className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all z-50 min-h-[44px] whitespace-nowrap`}
-                            >
-                                <Trash2 size={16} /> Delete
-                            </button>
-                        )}
                     </div>
+
+                    {selectedEntryId === entry.id && (
+                        <button
+                            onPointerDown={(e) => e.stopPropagation()}
+                            onTouchStart={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                onEntryDelete(entry.id);
+                            }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onEntryDelete(entry.id);
+                            }}
+                            className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all z-[100] min-h-[44px] whitespace-nowrap cursor-pointer`}
+                        >
+                            <Trash2 size={16} /> Delete
+                        </button>
+                    )}
                 </Rnd>
             ))}
 
