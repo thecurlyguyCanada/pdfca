@@ -55,13 +55,18 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
         return () => window.removeEventListener('resize', updateSize);
     }, []);
 
-    // Render Page
+    // Render Page with cancellation support
     useEffect(() => {
         if (!pdfJsDoc || !canvasRef.current || containerSize.width === 0) return;
+
+        let renderTask: any = null;
+        let cancelled = false;
 
         const renderPage = async () => {
             try {
                 const page = await pdfJsDoc.getPage(activePage + 1);
+                if (cancelled) return;
+
                 const viewport = page.getViewport({ scale: 1 });
 
                 // Calculate scale to fit container while maintaining aspect ratio, then apply user zoom
@@ -73,21 +78,31 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 const scaledViewport = page.getViewport({ scale });
 
                 const canvas = canvasRef.current;
-                if (canvas) {
-                    canvas.width = scaledViewport.width;
-                    canvas.height = scaledViewport.height;
-                    canvas.style.width = `${scaledViewport.width}px`;
-                    canvas.style.height = `${scaledViewport.height}px`;
-                    const context = canvas.getContext('2d');
-                    if (context) {
-                        await page.render({ canvasContext: context, viewport: scaledViewport }).promise;
-                    }
+                if (!canvas || cancelled) return;
+
+                canvas.width = scaledViewport.width;
+                canvas.height = scaledViewport.height;
+                canvas.style.width = `${scaledViewport.width}px`;
+                canvas.style.height = `${scaledViewport.height}px`;
+                const context = canvas.getContext('2d');
+                if (!context) return;
+
+                renderTask = page.render({ canvasContext: context, viewport: scaledViewport });
+                await renderTask.promise;
+            } catch (error: any) {
+                if (error?.name !== 'RenderingCancelledException') {
+                    console.error("Error rendering page for crop:", error);
                 }
-            } catch (error) {
-                console.error("Error rendering page for crop:", error);
             }
         };
         renderPage();
+
+        return () => {
+            cancelled = true;
+            if (renderTask) {
+                renderTask.cancel();
+            }
+        };
     }, [pdfJsDoc, activePage, containerSize, zoom]); // Re-render when page, container size, or zoom changes
 
     const handleCropAction = () => {

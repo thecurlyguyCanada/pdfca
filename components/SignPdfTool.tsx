@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Rnd } from 'react-rnd';
 import {
     X,
@@ -85,11 +85,6 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         getBaseSize();
     }, [pdfJsDoc, pageIndex]);
 
-    const pageSize = {
-        width: baseSize.width * displayZoom,
-        height: baseSize.height * displayZoom
-    };
-
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
             const visible = entry.isIntersecting;
@@ -100,27 +95,49 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         return () => observer.disconnect();
     }, [onVisibilityChange]);
 
+    // Memoize pageSize to prevent object recreation on every render
+    const pageSize = useMemo(() => ({
+        width: baseSize.width * displayZoom,
+        height: baseSize.height * displayZoom
+    }), [baseSize.width, baseSize.height, displayZoom]);
+
     useEffect(() => {
         if (!isVisible || !pdfJsDoc) return;
+
+        let renderTask: any = null;
+        let cancelled = false;
 
         const renderPage = async () => {
             try {
                 const page = await pdfJsDoc.getPage(pageIndex + 1);
+                if (cancelled) return;
+
                 const viewport = page.getViewport({ scale: zoom });
                 const canvas = canvasRef.current;
-                if (canvas) {
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    const context = canvas.getContext('2d');
-                    if (context) {
-                        await page.render({ canvasContext: context, viewport }).promise;
-                    }
+                if (!canvas || cancelled) return;
+
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                const context = canvas.getContext('2d');
+                if (!context) return;
+
+                renderTask = page.render({ canvasContext: context, viewport });
+                await renderTask.promise;
+            } catch (err: any) {
+                // Ignore cancellation errors
+                if (err?.name !== 'RenderingCancelledException') {
+                    console.error("Error rendering page", pageIndex, err);
                 }
-            } catch (err) {
-                console.error("Error rendering page", pageIndex, err);
             }
         };
         renderPage();
+
+        return () => {
+            cancelled = true;
+            if (renderTask) {
+                renderTask.cancel();
+            }
+        };
     }, [pdfJsDoc, pageIndex, zoom, isVisible]);
 
     const handleContainerClick = (e: React.MouseEvent) => {
