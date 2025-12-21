@@ -687,7 +687,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
 
     return (
-        <div className="flex flex-col h-full w-full bg-gray-100 relative overflow-hidden">
+        <div className="fixed inset-0 z-[100] flex flex-col h-screen w-screen bg-gray-100 overflow-hidden">
 
             {/* ===== DESKTOP HEADER (Top Bar) ===== */}
             <div className={`hidden md:flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 shadow-sm z-20 shrink-0 h-14`}>

@@ -126,7 +126,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-50 bg-gray-100 flex flex-col animate-fade-in">
+        <div className="fixed inset-0 z-[100] bg-gray-100 flex flex-col animate-fade-in">
             {/* Header */}
             <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shrink-0 shadow-sm z-20">
                 <div className="flex items-center gap-3">
