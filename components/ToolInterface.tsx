@@ -37,6 +37,8 @@ interface ToolInterfaceProps {
     pageRangeInput: string;
     setPageRangeInput: (val: string) => void;
     handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    cropMargins?: { top: number, bottom: number, left: number, right: number };
+    setCropMargins?: (margins: { top: number, bottom: number, left: number, right: number }) => void;
 }
 
 // ... SortableThumbnail component ...
@@ -90,6 +92,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     isDesktop,
     pageOrder,
     setPageOrder,
+    cropMargins,
+    setCropMargins,
     onFileSelect,
     onAction,
     onSoftReset,
@@ -172,8 +176,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER;
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.CROP || currentTool === ToolType.FLATTEN;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.CROP || currentTool === ToolType.FLATTEN;
     const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
 
@@ -243,6 +247,35 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-canada-red focus:border-transparent outline-none transition-all shadow-sm text-base text-gray-800 placeholder-gray-400"
                                             placeholder="e.g. 3-5, 8-9"
                                         />
+                                    </div>
+                                </div>
+                            )}
+
+                            {currentTool === ToolType.CROP && (
+                                <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
+                                    <div className="bg-canada-red/5 text-canada-red p-4 rounded-xl mb-4 text-sm flex items-start gap-3 border border-red-100 shadow-sm">
+                                        <Scissors size={18} className="mt-0.5 shrink-0" />
+                                        <div>
+                                            <p className="font-bold mb-1">Set Crop Margins</p>
+                                            <p className="text-xs opacity-80">Enter margins in points (72 points = 1 inch). These will be removed from each side of every page, eh.</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        {(['top', 'bottom', 'left', 'right'] as const).map((side) => (
+                                            <div key={side} className="flex flex-col gap-1.5">
+                                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-1">{side}</label>
+                                                <input
+                                                    type="number"
+                                                    value={cropMargins?.[side] || 0}
+                                                    onChange={(e) => {
+                                                        const val = parseInt(e.target.value) || 0;
+                                                        setCropMargins?.({ ...cropMargins!, [side]: val });
+                                                    }}
+                                                    className="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-canada-red focus:border-transparent outline-none transition-all shadow-sm text-sm font-bold text-gray-800"
+                                                />
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             )}
@@ -382,8 +415,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
                             {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF) && <FileText size={32} />}
-                            {currentTool === ToolType.CROP && <div className="text-canada-red"><Scissors size={32} /></div>}
-                            {currentTool === ToolType.FLATTEN && <Lock size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">

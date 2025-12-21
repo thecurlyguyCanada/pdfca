@@ -881,7 +881,7 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
   return await newPdfDoc.save();
 };
 
-export const cropPdfPages = async (originalFile: File, cropBox: { x: number, y: number, width: number, height: number }): Promise<Uint8Array> => {
+export const cropPdfPages = async (originalFile: File, margins: { top: number, bottom: number, left: number, right: number }): Promise<Uint8Array> => {
   const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
@@ -889,8 +889,22 @@ export const cropPdfPages = async (originalFile: File, cropBox: { x: number, y: 
 
   pages.forEach(page => {
     const { width, height } = page.getSize();
-    // pdf-lib setCropBox(x, y, width, height) where (0,0) is bottom-left
-    page.setCropBox(cropBox.x, cropBox.y, cropBox.width, cropBox.height);
+
+    // Default to points if not specified, or handle percentages if we want to be fancy later
+    // For now, let's assume they are absolute points (72 = 1 inch)
+
+    const cropX = margins.left;
+    const cropY = margins.bottom;
+    const cropWidth = width - margins.left - margins.right;
+    const cropHeight = height - margins.top - margins.bottom;
+
+    if (cropWidth > 0 && cropHeight > 0) {
+      // In PDF, (0,0) is bottom-left.
+      // We set both CropBox (viewable area) and MediaBox (actual physical area)
+      // to ensure consistent behavior across all PDF viewers.
+      page.setCropBox(cropX, cropY, cropWidth, cropHeight);
+      page.setMediaBox(cropX, cropY, cropWidth, cropHeight);
+    }
   });
 
   return await doc.save();

@@ -91,6 +91,7 @@ function App() {
   const [selectedPages, setSelectedPages] = useState<Set<number>>(new Set());
   const [rotations, setRotations] = useState<Record<number, number>>({});
   const [pageOrder, setPageOrder] = useState<number[]>([]);
+  const [cropMargins, setCropMargins] = useState<{ top: number, bottom: number, left: number, right: number }>({ top: 72, bottom: 72, left: 72, right: 72 });
   const lastSelectedPageRef = useRef<number | null>(null);
 
   // New state for manual page range input
@@ -543,9 +544,7 @@ function App() {
             outName = file.name.replace('.pdf', '_flat.pdf');
             break;
           case ToolType.CROP:
-            // Placeholder: currently crops 72 points (1 inch) from each side
-            // In a future update, we can add a visual selector.
-            resultBlob = await cropPdfPages(file, { x: 72, y: 72, width: 450, height: 650 });
+            resultBlob = await cropPdfPages(file, cropMargins);
             outName = file.name.replace('.pdf', '_cropped.pdf');
             break;
         }
@@ -723,6 +722,8 @@ function App() {
           isDesktop={isDesktop}
           pageOrder={pageOrder}
           setPageOrder={setPageOrder}
+          cropMargins={cropMargins}
+          setCropMargins={setCropMargins}
           onFileSelect={() => { }}
           onAction={handleAction}
           onSoftReset={handleSoftReset}
