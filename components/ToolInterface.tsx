@@ -133,8 +133,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         }
     };
     // Desktop mode: use larger base thumbnail size for better visibility
-    const baseThumbnailWidth = isDesktop ? 280 : 200;
-    const minThumbnailWidth = isDesktop ? 180 : 120;
+    const baseThumbnailWidth = isDesktop ? 280 : 160;
+    const minThumbnailWidth = isDesktop ? 180 : 100;
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
@@ -200,7 +200,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             <FileText size={18} className="md:w-5 md:h-5" />
                         </div>
                         <div className="min-w-0 flex-1">
-                            <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[180px] md:max-w-[200px]">{file.name}</h3>
+                            <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[140px] md:max-w-[200px]">{file.name}</h3>
                             <p className="text-xs text-gray-500 flex items-center gap-2">
                                 <span>{file ? formatFileSize(file.size) : ''}</span>
                             </p>
