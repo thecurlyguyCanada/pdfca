@@ -185,6 +185,12 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         onEntryUpdate(entry.id, { x: x / pageSize.width, y: y / pageSize.height });
                         onHistoryCommit();
                     }}
+                    onResizeStart={(e) => {
+                        if (activeTool !== 'select') return;
+                        e.stopPropagation();
+                        onSelectEntry(entry.id);
+                        onPageClick?.();
+                    }}
                     onResizeStop={(_, __, ref, ___, position) => {
                         onEntryUpdate(entry.id, {
                             width: ref.offsetWidth / pageSize.width,
@@ -204,10 +210,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize' },
-                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize' },
-                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize' },
-                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize' },
+                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
+                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
+                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
+                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
                         top: { display: 'none' },
                         right: { display: 'none' },
                         bottom: { display: 'none' },
