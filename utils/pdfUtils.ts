@@ -802,7 +802,7 @@ export const makeSearchablePdf = async (
 export { formatFileSize } from './formatUtils';
 
 export const convertPdfToWord = async (file: File): Promise<Blob> => {
-  const { Document, Packer, Paragraph, TextRun, AlignmentType } = await getDocx();
+  const { Document, Packer, Paragraph, TextRun, AlignmentType, Table, TableRow, TableCell, WidthType, ImageRun, BorderStyle } = await getDocx();
   const pdfjs = await getPdfJs();
   await initPdfWorker();
 
@@ -823,85 +823,190 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
     const textContent = await page.getTextContent();
     const items = textContent.items as any[];
 
-    // Group items by Y coordinate (with a small tolerance)
-    const yGroups: { [y: number]: any[] } = {};
-    const tolerance = 2; // Tolerance for baseline variations
+    // --- Image Extraction ---
+    const operatorList = await page.getOperatorList();
+    const images: any[] = [];
+    let transform = [1, 0, 0, 1, 0, 0];
+    const transformStack: any[] = [];
 
+    // OPS mapping for standard PDF.js (constants might vary, using literals from common versions)
+    // transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82
+    const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
+
+    for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
+      const fn = operatorList.fnArray[opIdx];
+      const args = operatorList.argsArray[opIdx];
+
+      if (fn === OPS.transform) {
+        const m = args;
+        const [a, b, c, d, e, f] = transform;
+        transform = [
+          a * m[0] + c * m[1],
+          b * m[0] + d * m[1],
+          a * m[2] + c * m[3],
+          b * m[2] + d * m[3],
+          a * m[4] + c * m[5] + e,
+          b * m[4] + d * m[5] + f
+        ];
+      } else if (fn === OPS.save) {
+        transformStack.push([...transform]);
+      } else if (fn === OPS.restore) {
+        transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
+      } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
+        const imgId = args[0];
+        try {
+          const img = await page.objs.get(imgId);
+          if (img) {
+            // Calculate real dimensions and position
+            const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
+            const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
+            const x = transform[4];
+            const y = viewport.height - (transform[5] + height); // Convert to top-based Y
+
+            // Convert raw data to array buffer (heuristic for RGB/RGBA)
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              const imageData = ctx.createImageData(img.width, img.height);
+              if (img.data.length === img.width * img.height * 3) {
+                for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
+                  imageData.data[l] = img.data[k];
+                  imageData.data[l + 1] = img.data[k + 1];
+                  imageData.data[l + 2] = img.data[k + 2];
+                  imageData.data[l + 3] = 255;
+                }
+              } else {
+                imageData.data.set(img.data);
+              }
+              ctx.putImageData(imageData, 0, 0);
+              const dataUrl = canvas.toDataURL('image/png');
+              const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+
+              images.push({ data: bytes, width, height, x, y });
+            }
+          }
+        } catch (err) { console.warn("Image extraction failed", err); }
+      }
+    }
+
+    // --- Table Detection ---
+    // Group items by Y coordinate
+    const yGroups: { [y: number]: any[] } = {};
+    const tolerance = 5;
     items.forEach(item => {
       const y = item.transform[5];
       let matchedY = Object.keys(yGroups).find(gy => Math.abs(Number(gy) - y) < tolerance);
-
-      if (!matchedY) {
-        yGroups[y] = [item];
-      } else {
-        yGroups[Number(matchedY)].push(item);
-      }
+      if (!matchedY) yGroups[y] = [item];
+      else yGroups[Number(matchedY)].push(item);
     });
 
     const sortedYs = Object.keys(yGroups).map(Number).sort((a, b) => b - a);
-    const pageParagraphs: any[] = [];
+    const tableBlocks: any[] = [];
+    let currentTable: any[] = [];
 
-    sortedYs.forEach(y => {
+    // Heuristic: adjacent lines with multiple items and similar column breaks are likely tables
+    sortedYs.forEach((y, idx) => {
       const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
+      if (rowItems.length > 1) {
+        currentTable.push({ y, items: rowItems });
+      } else {
+        if (currentTable.length > 1) tableBlocks.push([...currentTable]);
+        currentTable = [];
+      }
+    });
+    if (currentTable.length > 1) tableBlocks.push(currentTable);
 
-      const runs: any[] = [];
-      rowItems.forEach(item => {
-        const text = item.str;
-        if (!text.trim() && text !== ' ') return;
+    // --- Compilation ---
+    const pageElements: any[] = [];
+    const usedYsInTables = new Set(tableBlocks.flatMap(t => t.map((r: any) => r.y)));
 
-        const fontName = item.fontName?.toLowerCase() || '';
-        const isBold = fontName.includes('bold') || fontName.includes('700');
-        const isItalic = fontName.includes('italic') || fontName.includes('oblique');
-        const fontSize = Math.abs(item.transform[0] || item.transform[3]);
-
-        runs.push(new TextRun({
-          text: text,
-          bold: isBold,
-          italics: isItalic,
-          size: Math.round(fontSize * 2), // docx uses half-points
-        }));
+    // Add Tables
+    tableBlocks.forEach(block => {
+      const rows = block.map((row: any) => {
+        // Simple cell division - this is a basic split, ideally should use grid lines
+        const cells = row.items.map((item: any) => {
+          const fontName = item.fontName?.toLowerCase() || '';
+          return new TableCell({
+            children: [new Paragraph({
+              children: [new TextRun({
+                text: item.str,
+                size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
+                bold: fontName.includes('bold'),
+                italics: fontName.includes('italic')
+              })]
+            })],
+            width: { size: (item.width || 50) * 20, type: WidthType.DXA }
+          });
+        });
+        return new TableRow({ children: cells });
       });
 
+      pageElements.push({
+        y: viewport.height - (block[0].y + 20),
+        element: new Table({
+          rows: rows,
+          width: { size: 100, type: WidthType.PERCENTAGE },
+          borders: {
+            top: { style: BorderStyle.SINGLE, size: 1 },
+            bottom: { style: BorderStyle.SINGLE, size: 1 },
+            left: { style: BorderStyle.SINGLE, size: 1 },
+            right: { style: BorderStyle.SINGLE, size: 1 },
+          }
+        })
+      });
+    });
+
+    // Add Images
+    images.forEach(img => {
+      pageElements.push({
+        y: img.y,
+        element: new Paragraph({
+          children: [new ImageRun({
+            data: img.data,
+            transformation: { width: img.width, height: img.height }
+          } as any)],
+          alignment: AlignmentType.CENTER
+        })
+      });
+    });
+
+    // Add Text (paragraphs not in tables)
+    sortedYs.forEach(y => {
+      if (usedYsInTables.has(y)) return;
+      const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
+
+      const runs = rowItems.map(item => {
+        const text = item.str;
+        if (!text.trim() && text !== ' ') return null;
+
+        const fontName = item.fontName?.toLowerCase() || '';
+        return new TextRun({
+          text: text,
+          size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
+          bold: fontName.includes('bold') || fontName.includes('700'),
+          italics: fontName.includes('italic') || fontName.includes('oblique')
+        });
+      }).filter(Boolean) as any[];
+
       if (runs.length > 0) {
-        // Simple alignment inference
-        const firstX = rowItems[0].transform[4];
-        const lastItem = rowItems[rowItems.length - 1];
-        const lastX = lastItem.transform[4] + (lastItem.width || 0);
-        const centerX = (firstX + lastX) / 2;
-        const pageCenterX = viewport.width / 2;
-
-        let alignment = (AlignmentType as any).LEFT;
-        if (Math.abs(centerX - pageCenterX) < 30 && (lastX - firstX) < viewport.width * 0.7) {
-          alignment = (AlignmentType as any).CENTER;
-        } else if (lastX > viewport.width * 0.8 && firstX > viewport.width * 0.2) {
-          alignment = (AlignmentType as any).RIGHT;
-        }
-
-        pageParagraphs.push(new Paragraph({
-          children: runs,
-          alignment: alignment,
-          spacing: { after: 120 }
-        }));
+        pageElements.push({
+          y: viewport.height - y,
+          element: new Paragraph({ children: runs, spacing: { after: 120 } })
+        });
       }
     });
 
+    // Sort all by Y and add to sections
+    const sortedElements = pageElements.sort((a, b) => a.y - b.y).map(e => e.element);
     sections.push({
-      properties: {
-        page: {
-          size: {
-            width: viewport.width * 20, // points to twips
-            height: viewport.height * 20
-          }
-        }
-      },
-      children: pageParagraphs
+      properties: { page: { size: { width: viewport.width * 20, height: viewport.height * 20 } } },
+      children: sortedElements
     });
   }
 
-  const doc = new Document({
-    sections: sections
-  });
-
+  const doc = new Document({ sections: sections });
   return await Packer.toBlob(doc);
 };
 
