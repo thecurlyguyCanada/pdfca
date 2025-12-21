@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, ArrowRight, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
@@ -811,77 +811,67 @@ function App() {
 
 
   const renderHome = () => (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20 flex flex-col gap-10 md:gap-16">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-16 flex flex-col items-center gap-10 md:gap-14 animate-fade-in">
 
-      {/* Hero Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-        {/* Left Side: Copy */}
-        <div className="w-full md:w-1/2 space-y-6 md:space-y-8 text-center md:text-left">
-          <div className="hero-badge">
-            <MapleLeaf className="w-4 h-4" />
-            {t.builtIn}
-          </div>
-
-          <h1 className="hero-title">
-            {t.title} <span className="hero-title-accent">{t.subtitle}</span>
-          </h1>
-
-          <p className="hero-desc max-w-lg mx-auto md:mx-0">
-            {t.description}
-          </p>
-
-          <div className="flex flex-col gap-4 max-w-md mx-auto md:mx-0">
-            <div className="bg-white/80 backdrop-blur border border-gray-200 rounded-lg p-4 flex items-start gap-3 text-left shadow-sm">
-              <Shield className="w-5 h-5 text-canada-red mt-1 flex-shrink-0" aria-hidden="true" />
-              <div>
-                <p className="font-bold text-gray-900 text-sm">{t.localProcessing}</p>
-                <p className="text-gray-600 text-xs mt-1">
-                  {t.localProcessingDesc}
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* Hero Section - Centered & Simplified */}
+      <div className="w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+        <div className="inline-flex items-center gap-2 bg-red-50 text-canada-red px-4 py-1.5 rounded-full text-sm font-bold shadow-sm mx-auto">
+          <MapleLeaf className="w-4 h-4" />
+          {t.builtIn}
         </div>
 
-        {/* Right Side: Dashboard / Tool */}
-        <div className="w-full md:w-1/2 max-w-xl">
-          <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[400px] md:min-h-[500px] flex flex-col transition-all duration-300">
+        <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-gray-900 leading-[1.1]">
+          {t.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-canada-red to-red-600">{t.subtitle}</span>
+        </h1>
 
-            {/* --- DASHBOARD: SELECT TOOL --- */}
-            {appState === AppState.HOME && (
-              <div className="p-4 sm:p-6 md:p-8 h-full bg-gray-50/30 overflow-y-auto custom-scrollbar">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6 flex items-center gap-2">
-                  Select a Tool <span className="text-base md:text-lg font-normal text-gray-600">eh?</span>
-                </h2>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                  {tools.map(tool => (
-                    <button
-                      key={tool.id}
-                      onClick={() => selectTool(tool.id)}
-                      className="flex flex-col items-center md:items-start p-3 sm:p-4 md:p-5 bg-white border border-gray-200 rounded-xl md:rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 active:border-canada-red active:shadow-lg active:shadow-red-500/10 transition-all text-center md:text-left group min-h-[88px]"
-                    >
-                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-lg md:rounded-xl mb-1.5 md:mb-3 group-hover:bg-canada-red group-hover:text-white group-active:bg-canada-red group-active:text-white transition-colors">
-                        <tool.icon size={18} className="md:w-6 md:h-6" />
-                      </div>
-                      <h3 className="font-bold text-gray-800 text-xs sm:text-sm md:text-base leading-tight">{tool.title}</h3>
-                      <p className="text-[10px] md:text-xs text-gray-500 mt-1 hidden md:block">{tool.desc}</p>
-                    </button>
-                  ))}
+        <p className="hero-desc text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          {t.description}
+        </p>
+
+        <div className="inline-flex items-center gap-2 text-sm text-gray-500 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+          <Shield className="w-4 h-4 text-canada-red" />
+          <span>{t.localProcessingDesc}</span>
+        </div>
+      </div>
+
+      {/* Main Tool Grid - Direct Access */}
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="h-px bg-gray-200 w-12 md:w-24"></div>
+          <h2 className="text-xl font-bold text-gray-800 text-center">Select a Tool <span className="font-normal text-gray-500">eh?</span></h2>
+          <div className="h-px bg-gray-200 w-12 md:w-24"></div>
+        </div>
+
+        {appState === AppState.HOME ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+            {tools.map(tool => (
+              <button
+                key={tool.id}
+                onClick={() => selectTool(tool.id)}
+                className="flex flex-col items-center text-center p-6 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-xl hover:shadow-red-500/10 active:scale-[0.98] transition-all group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="p-4 bg-red-50 text-canada-red rounded-xl mb-4 group-hover:bg-canada-red group-hover:text-white transition-colors relative z-10 shadow-sm">
+                  <tool.icon size={28} className="md:w-8 md:h-8" />
                 </div>
-              </div>
-            )}
-
+                <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 relative z-10">{tool.title}</h3>
+                <p className="text-sm text-gray-500 relative z-10 leading-snug">{tool.desc}</p>
+              </button>
+            ))}
+          </div>
+        ) : (
+          /* Active Tool Container (Centered) */
+          <div className="w-full max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-500 animate-in fade-in slide-in-from-bottom-8">
             {/* --- TOOL INTERFACE (SELECTING) --- */}
             {appState === AppState.SELECTING && (
               <>
-                <div className="absolute top-4 left-4 z-20">
+                <div className="absolute top-6 left-6 z-20">
                   {!file && (
-                    <button onClick={handleReset} className="flex items-center gap-1 text-gray-500 hover:text-gray-800 active:text-canada-red text-sm font-medium bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm hover:shadow active:shadow-md border border-transparent hover:border-gray-200 active:border-canada-red/30 transition-all active:scale-95">
-                      <ArrowLeft size={16} /> {t.backToHome}
+                    <button onClick={handleReset} className="flex items-center gap-2 text-gray-500 hover:text-gray-900 active:text-canada-red text-sm font-bold bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition-all active:scale-95">
+                      <ArrowLeft size={18} /> {t.backToHome}
                     </button>
                   )}
                 </div>
-                {/* Only render inline if not in full-screen mode */}
                 {!(currentTool === ToolType.SIGN && file) && renderToolInterface()}
               </>
             )}
@@ -889,59 +879,79 @@ function App() {
             {/* --- PROCESSING --- */}
             {appState === AppState.PROCESSING && (
               <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
-                <div className="animate-spin text-canada-red mb-4">
-                  <MapleLeaf className="w-12 h-12" />
+                <div className="animate-spin text-canada-red mb-6">
+                  <MapleLeaf className="w-16 h-16" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800">{t.working}</h3>
-                <p className="text-gray-500 mt-2">{t.workingDesc}</p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.working}</h3>
+                <p className="text-gray-500">{t.workingDesc}</p>
               </div>
             )}
 
             {/* --- DONE --- */}
             {appState === AppState.DONE && downloadUrl && (
               <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in">
-                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
-                  <CheckCircle2 size={40} />
+                <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-8 animate-bounce shadow-lg shadow-green-200">
+                  <CheckCircle2 size={48} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
-                <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
-                <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
-                    <Download size={20} /> {t.download}
+                <h3 className="text-3xl font-black text-gray-900 mb-2">{t.doneTitle}</h3>
+
+                {currentTool === ToolType.COMPRESS && processedSize && file && (
+                  <div className="mb-8 p-6 bg-white rounded-2xl border border-green-100 shadow-sm w-full max-w-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="text-xs font-black text-green-700 uppercase tracking-wider mb-2">
+                      {t.sizeReduced || "Size Reduced"}
+                    </div>
+                    <div className="text-4xl font-black text-green-600 mb-3">
+                      -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
+                    </div>
+                    <div className="flex items-center justify-center gap-3 text-sm font-bold text-gray-400">
+                      <span className="line-through">{formatFileSize(file.size)}</span>
+                      <ArrowRight size={14} />
+                      <span className="text-green-600">{formatFileSize(processedSize)}</span>
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-gray-500 mb-10 max-w-xs mx-auto leading-relaxed">{t.doneDesc}</p>
+                <div className="space-y-4 w-full max-w-xs mx-auto">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-3 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-8 py-4 rounded-full font-bold shadow-xl shadow-red-500/30 transition-all hover:-translate-y-1 active:translate-y-0 active:scale-95 text-lg">
+                    <Download size={24} /> {t.download}
                   </a>
-                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
+                  <button onClick={handleReset} className="w-full bg-white border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-8 py-3 rounded-full font-bold transition-all active:scale-95">
                     {t.doAnother}
                   </button>
                 </div>
               </div>
             )}
 
+            {/* Error State within Workspace */}
             {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in">
-                <button onClick={handleReset} className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 active:text-canada-red p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full active:bg-gray-100 transition-colors" aria-label="Close error">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in z-50 bg-white">
+                <button onClick={handleReset} className="absolute top-6 right-6 text-gray-400 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors">
                   <X size={24} />
                 </button>
-                <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
-                  <AlertCircle size={32} />
+                <div className="w-20 h-20 bg-red-50 text-canada-red rounded-full flex items-center justify-center mb-6">
+                  <AlertCircle size={40} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
-                <p className="text-gray-500 mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{t.errorTitle}</h3>
+                <p className="text-gray-500 mb-8 max-w-lg leading-relaxed">
                   {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
                 </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
+                <button onClick={handleReset} className="bg-gray-900 hover:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 shadow-lg">
                   {t.backToHome}
                 </button>
               </div>
             )}
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Trust / Privacy Section (Below Hero) */}
-      <div className="max-w-3xl mx-auto text-center space-y-4">
-        <h2 className="text-3xl font-bold text-gray-900">{t.builtIn}</h2>
-        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
-      </div>
+      {/* Trust / Privacy Section (Bottom) */}
+      {appState === AppState.HOME && (
+        <div className="max-w-3xl mx-auto text-center space-y-4 mt-8 opacity-80 hover:opacity-100 transition-opacity">
+          <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
+        </div>
+      )}
     </div>
   );
 
