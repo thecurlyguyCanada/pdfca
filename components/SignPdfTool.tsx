@@ -204,10 +204,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, top: isMobile ? -28 : -6, left: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
-                        topRight: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, top: isMobile ? -28 : -6, right: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomLeft: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, bottom: isMobile ? -28 : -6, left: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomRight: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, bottom: isMobile ? -28 : -6, right: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize' },
+                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize' },
+                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize' },
+                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize' },
                         top: { display: 'none' },
                         right: { display: 'none' },
                         bottom: { display: 'none' },
@@ -216,7 +216,6 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                 >
                     <div
                         className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-lg' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150`}
-                        style={{ touchAction: 'none' }}
                         onTouchStart={(e) => {
                             if (activeTool !== 'select') return;
                             e.stopPropagation();
@@ -250,7 +249,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         {selectedEntryId === entry.id && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2.5 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-transform z-50"
+                                onTouchEnd={(e) => { e.stopPropagation(); e.preventDefault(); onEntryDelete(entry.id); }}
+                                className="absolute -top-14 left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-transform z-50 min-h-[44px]"
+                                style={{ touchAction: 'manipulation' }}
                             >
                                 <Trash2 size={16} /> Delete
                             </button>
@@ -807,7 +808,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
                         scrollBehavior: isPinching ? 'auto' : 'smooth',
                         WebkitOverflowScrolling: 'touch',
-                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'manipulation'
+                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'auto'
                     }}
                 >
                     <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6 mobile-content-inner">
