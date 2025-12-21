@@ -47,14 +47,16 @@
   <link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/">
   <link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/">
 
-  <!-- Performance: Preconnect to external origins early -->
+  <!-- Performance: DNS prefetch and preconnect for faster resource loading -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Preload critical font file for faster text rendering -->
   <link rel="preload"
     href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
-    as="font" type="font/woff2" crossorigin>
+    as="font" type="font/woff2" crossorigin fetchpriority="high">
 
   <!-- Non-render-blocking font loading: loads async, switches when ready -->
   <link rel="preload"
