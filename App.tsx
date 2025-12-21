@@ -962,7 +962,7 @@ function App() {
 
       {/* Trust / Privacy Section (Bottom) */}
       {appState === AppState.HOME && (
-        <div className="max-w-3xl mx-auto text-center space-y-4 mt-8 opacity-80 hover:opacity-100 transition-opacity">
+        <div className="max-w-3xl mx-auto text-center space-y-4 mt-8">
           <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
           <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
         </div>
