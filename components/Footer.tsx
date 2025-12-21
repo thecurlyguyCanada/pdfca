@@ -14,7 +14,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
    const year = useMemo(() => new Date().getFullYear(), []);
 
    return (
-      <footer className="mt-auto bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400 border-t-4 border-canada-red transition-colors duration-200">
+      <footer className="mt-auto bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-400 border-t-4 border-canada-red transition-colors duration-200">
          <div className="max-w-7xl mx-auto px-6 py-16">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-12">
 
@@ -82,7 +82,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                         {t.footerPrivacyNotice}
                      </p>
                   </div>
-                  <p className="text-xs text-gray-600 italic">
+                  <p className="text-xs text-gray-700 italic">
                      "{t.footerTagline}"
                   </p>
                </div>
