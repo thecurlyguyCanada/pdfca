@@ -708,6 +708,7 @@ function App() {
       case ToolType.ORGANIZE: return t.features.organizePdf;
       case ToolType.PDF_TO_WORD: return t.features.pdfToWord;
       case ToolType.WORD_TO_PDF: return t.features.wordToPdf;
+      case ToolType.OCR: return t.features.ocr;
       default: return t.features.delete;
     }
   };

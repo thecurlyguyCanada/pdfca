@@ -649,53 +649,48 @@ export const extractTextWithOcr = async (
   let fullText = '';
   const langString = languages.join('+');
 
-  // If no pages selected, process all pages
+  // Create worker once
+  const worker = await (Tesseract as any).createWorker(langString, 1, {
+    logger: (m: any) => {
+      // Internal progress is handled per page in the loop below
+    }
+  });
+
   const indicesToProcess = pageIndices.length > 0
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  for (let i = 0; i < indicesToProcess.length; i++) {
-    const pageIndex = indicesToProcess[i];
-    if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+  try {
+    for (let i = 0; i < indicesToProcess.length; i++) {
+      const pageIndex = indicesToProcess[i];
+      if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
 
-    onProgress?.({
-      page: i + 1,
-      totalPages: indicesToProcess.length,
-      status: `Processing page ${i + 1} of ${indicesToProcess.length}...`,
-      progress: (i / indicesToProcess.length) * 100
-    });
+      onProgress?.({
+        page: i + 1,
+        totalPages: indicesToProcess.length,
+        status: `Processing page ${i + 1} of ${indicesToProcess.length}...`,
+        progress: (i / indicesToProcess.length) * 100
+      });
 
-    const page = await pdf.getPage(pageIndex + 1);
-    const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+      const page = await pdf.getPage(pageIndex + 1);
+      const viewport = page.getViewport({ scale: 2.0 });
 
-    // Render page to canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) continue;
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) continue;
 
-    await page.render({ canvasContext: ctx, viewport }).promise;
+      await page.render({ canvasContext: ctx, viewport }).promise;
 
-    // Run OCR
-    const result = await Tesseract.recognize(canvas, langString, {
-      logger: (m: any) => {
-        if (m.status === 'recognizing text' && m.progress !== undefined) {
-          onProgress?.({
-            page: i + 1,
-            totalPages: indicesToProcess.length,
-            status: `Recognizing text on page ${i + 1}...`,
-            progress: ((i + m.progress) / indicesToProcess.length) * 100
-          });
-        }
-      }
-    });
+      const { data: { text } } = await worker.recognize(canvas);
+      fullText += `--- Page ${pageIndex + 1} ---\n${text}\n\n`;
 
-    fullText += `--- Page ${pageIndex + 1} ---\n${result.data.text}\n\n`;
-
-    // Cleanup canvas to prevent memory leaks
-    canvas.width = 0;
-    canvas.height = 0;
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  } finally {
+    await worker.terminate();
   }
 
   onProgress?.({
@@ -725,72 +720,73 @@ export const makeSearchablePdf = async (
   const doc = await PDFDocument.load(arrayBuffer);
   const langString = languages.join('+');
 
-  // If no pages selected, process all pages
+  const worker = await (Tesseract as any).createWorker(langString);
+
   const indicesToProcess = pageIndices.length > 0
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  for (let i = 0; i < indicesToProcess.length; i++) {
-    const pageIndex = indicesToProcess[i];
-    if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+  try {
+    for (let i = 0; i < indicesToProcess.length; i++) {
+      const pageIndex = indicesToProcess[i];
+      if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
 
-    onProgress?.({
-      page: i + 1,
-      totalPages: indicesToProcess.length,
-      status: `OCR processing page ${i + 1}...`,
-      progress: (i / indicesToProcess.length) * 100
-    });
-
-    const pdfJsPage = await pdf.getPage(pageIndex + 1);
-    const viewport = pdfJsPage.getViewport({ scale: 2.0 });
-
-    // Render to canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) continue;
-
-    await pdfJsPage.render({ canvasContext: ctx, viewport }).promise;
-
-    // OCR the page
-    const result = await Tesseract.recognize(canvas, langString);
-
-    // Get the pdf-lib page
-    const pdfLibPage = doc.getPage(pageIndex);
-    const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
-    const scaleX = pageWidth / viewport.width;
-    const scaleY = pageHeight / viewport.height;
-
-    // Add invisible text layer
-    const words = (result.data as any).words as any[];
-    for (const word of words) {
-      if (!word.text.trim()) continue;
-
-      const bbox = word.bbox;
-      const x = bbox.x0 * scaleX;
-      // PDF y-axis is from bottom, canvas is from top
-      const y = pageHeight - (bbox.y1 * scaleY);
-      const fontSize = Math.max(8, (bbox.y1 - bbox.y0) * scaleY * 0.8);
-
-      // Draw invisible text (fully transparent)
-      pdfLibPage.drawText(word.text, {
-        x,
-        y,
-        size: fontSize,
-        color: rgb(0, 0, 0),
-        opacity: 0, // Invisible but searchable
+      onProgress?.({
+        page: i + 1,
+        totalPages: indicesToProcess.length,
+        status: `OCR processing page ${i + 1}...`,
+        progress: (i / indicesToProcess.length) * 100
       });
-    }
 
-    // Cleanup canvas to prevent memory leaks
-    canvas.width = 0;
-    canvas.height = 0;
+      const pdfJsPage = await pdf.getPage(pageIndex + 1);
+      const viewport = pdfJsPage.getViewport({ scale: 2.0 });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) continue;
+
+      await pdfJsPage.render({ canvasContext: ctx, viewport }).promise;
+
+      const result = await worker.recognize(canvas);
+
+      const pdfLibPage = doc.getPage(pageIndex);
+      const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
+      const scaleX = pageWidth / viewport.width;
+      const scaleY = pageHeight / viewport.height;
+
+      const words = (result.data as any).words as any[];
+      for (const word of words) {
+        if (!word.text.trim()) continue;
+
+        const bbox = word.bbox;
+        const x = bbox.x0 * scaleX;
+        // Improved Y positioning: Tesseract bbox y1 is the bottom of the word in canvas coords (top-down)
+        // PDF coords are bottom-up. So pageHeight - (bbox.y1 * scaleY) is the baseline/bottom.
+        const y = pageHeight - (bbox.y1 * scaleY);
+        // Ensure font size is reasonable
+        const fontSize = Math.max(2, (bbox.y1 - bbox.y0) * scaleY * 0.8);
+
+        pdfLibPage.drawText(word.text, {
+          x,
+          y: y + (fontSize * 0.1), // Slight adjustment for baseline
+          size: fontSize,
+          color: rgb(0, 0, 0),
+          opacity: 0,
+        });
+      }
+
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  } finally {
+    await worker.terminate();
   }
 
   onProgress?.({
-    page: pageIndices.length,
-    totalPages: pageIndices.length,
+    page: indicesToProcess.length,
+    totalPages: indicesToProcess.length,
     status: 'Complete!',
     progress: 100
   });
