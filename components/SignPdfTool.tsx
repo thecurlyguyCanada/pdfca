@@ -185,11 +185,12 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
+                    enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, top: isMobile ? -20 : -6, left: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
-                        topRight: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, top: isMobile ? -20 : -6, right: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomLeft: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, bottom: isMobile ? -20 : -6, left: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomRight: { width: isMobile ? 40 : 12, height: isMobile ? 40 : 12, bottom: isMobile ? -20 : -6, right: isMobile ? -20 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
                         top: isMobile ? { display: 'none' } : undefined,
                         right: isMobile ? { display: 'none' } : undefined,
                         bottom: isMobile ? { display: 'none' } : undefined,
