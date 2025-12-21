@@ -386,6 +386,7 @@ function App() {
     { id: ToolType.SIGN, icon: PenTool, title: t.toolSign, desc: t.toolSignDesc, accept: '.pdf', path: '/sign-pdf' },
     { id: ToolType.PDF_TO_WORD, icon: FileText, title: t.toolPdfToWord, desc: t.toolPdfToWordDesc, accept: '.pdf', path: '/pdf-to-word' },
     { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
+    { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {

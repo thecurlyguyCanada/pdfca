@@ -183,6 +183,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                                     height: (cropBox.height / 100) * canvasRef.current.height
                                 }}
                                 onDragStop={(e, d) => {
+                                    if (!canvasRef.current) return;
                                     setCropBox(prev => ({
                                         ...prev,
                                         x: (d.x / canvasRef.current!.width) * 100,
@@ -190,6 +191,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                                     }));
                                 }}
                                 onResizeStop={(e, direction, ref, delta, position) => {
+                                    if (!canvasRef.current) return;
                                     setCropBox({
                                         width: (ref.offsetWidth / canvasRef.current!.width) * 100,
                                         height: (ref.offsetHeight / canvasRef.current!.height) * 100,

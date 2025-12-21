@@ -218,7 +218,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
       </div>
 
       {/* Rotation Indicator Badge */}
-      {rotation > 0 && mode === 'rotate' && (
+      {rotation !== 0 && mode === 'rotate' && (
         <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm z-20 flex items-center gap-1 pointer-events-none">
           <RotateCw size={10} /> {rotation}°
         </div>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Scissors, Lock } from 'lucide-react';
+import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen } from 'lucide-react';
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -427,14 +427,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 >
                     <button
                         onClick={() => {
-                            if (isSignTool) {
-                                // Find the sign button inside SignPdfTool or trigger its save
-                                const btn = document.getElementById('footer-sign-trigger');
-                                if (btn) btn.click();
-                            } else {
-                                triggerHaptic('medium'); // Haptic for primary action
-                                onAction();
-                            }
+                            triggerHaptic('medium'); // Haptic for primary action
+                            onAction();
                         }}
                         disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) && selectedPages.size === 0}
                         className={`
