@@ -204,16 +204,17 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     lockAspectRatio={entry.type === 'signature' || entry.type === 'initials'}
                     className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : 'pointer-events-auto'}`}
                     disableDragging={activeTool !== 'select'}
+                    dragHandleClassName="entry-drag-handle"
                     enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
-                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
-                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
-                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
+                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
+                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
+                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
+                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
                         top: { display: 'none' },
                         right: { display: 'none' },
                         bottom: { display: 'none' },
@@ -221,15 +222,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     }}
                 >
                     <div
-                        className={`w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-lg' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150`}
-                        onTouchStart={(e) => {
+                        className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150`}
+                        onPointerDown={(e) => {
                             if (activeTool !== 'select') return;
-                            e.stopPropagation();
-                            onSelectEntry(entry.id);
-                        }}
-                        onClick={(e) => {
-                            if (activeTool !== 'select') return;
-                            e.stopPropagation();
                             onSelectEntry(entry.id);
                         }}
                     >
@@ -255,9 +250,8 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         {selectedEntryId === entry.id && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onEntryDelete(entry.id); }}
-                                onTouchEnd={(e) => { e.stopPropagation(); e.preventDefault(); onEntryDelete(entry.id); }}
-                                className="absolute -top-14 left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-transform z-50 min-h-[44px]"
-                                style={{ touchAction: 'manipulation' }}
+                                onPointerDown={(e) => e.stopPropagation()}
+                                className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all z-50 min-h-[44px] whitespace-nowrap`}
                             >
                                 <Trash2 size={16} /> Delete
                             </button>
