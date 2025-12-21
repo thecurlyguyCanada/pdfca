@@ -84,43 +84,57 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment fusionner des fichiers PDF en ligne | pdfcanada.ca",
-            desc: "Apprenez à combiner plusieurs fichiers PDF en un seul document en toute sécurité. Réorganisez les pages et fusionnez instantanément."
+            title: "Fusionner PDF Gratuit | Combiner des Fichiers PDF en Un Seul | pdfcanada.ca",
+            desc: "Apprenez à fusionner plusieurs fichiers PDF en un seul document de manière sécurisée dans votre navigateur. Réorganisez les pages et combinez instantanément sans limite de taille."
         },
-        h1: "Comment fusionner des fichiers PDF",
-        subtitle: "Combinez plusieurs documents en un seul fichier organisé.",
+        h1: "Comment Fusionner des Fichiers PDF : Le Guide Complet",
+        subtitle: "Combinez plusieurs documents PDF en un seul fichier organisé et professionnel.",
 
         intro: (
             <>
-                Gérer plusieurs fichiers PDF peut être un cauchemar. Qu'il s'agisse de factures, de reçus ou de chapitres, <strong>les fusionner en un seul PDF</strong> permet de rester organisé.
+                Gérer plusieurs fichiers PDF peut être un cauchemar. Qu'il s'agisse de factures pour votre déclaration de revenus, de reçus de dépenses, ou de chapitres d'un rapport, <strong>les fusionner en un seul PDF</strong> permet de rester organisé et professionnel.
+                <br /><br />
+                Notre outil de fusion vous permet de combiner un nombre illimité de fichiers, de les réorganiser exactement comme vous le souhaitez, et de les enregistrer en un seul document — le tout sans jamais télécharger vos fichiers sur un serveur externe.
             </>
         ),
 
         sections: [
             {
                 id: "how-to",
-                title: "Étape par Étape",
+                title: "Étape par Étape : Comment Fusionner vos PDF",
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
-                        <li className="pl-2"><strong>Sélectionnez</strong> vos fichiers via notre <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline font-medium">outil de fusion</button>.</li>
-                        <li className="pl-2"><strong>Réorganisez</strong> l'ordre par glisser-déposer.</li>
-                        <li className="pl-2"><strong>Cliquez sur 'Fusionner'</strong> pour combiner.</li>
-                        <li className="pl-2"><strong>Téléchargez</strong> votre nouveau document unique.</li>
+                        <li className="pl-2"><strong>Sélectionnez vos fichiers</strong> : Cliquez pour télécharger ou faites glisser plusieurs fichiers PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline font-medium">outil de fusion PDF</button>.</li>
+                        <li className="pl-2"><strong>Réorganisez l'ordre</strong> : Glissez et déposez les fichiers pour les arranger dans l'ordre souhaité. Le premier fichier sera au début du document final.</li>
+                        <li className="pl-2"><strong>Fusionnez</strong> : Cliquez sur le bouton "Fusionner PDF" pour combiner instantanément tous vos fichiers.</li>
+                        <li className="pl-2"><strong>Téléchargez</strong> : Enregistrez votre nouveau document unique, prêt à être partagé ou archivé.</li>
                     </ol>
                 )
             },
             {
+                id: "use-cases",
+                title: "Cas d'Utilisation Courants pour la Fusion de PDF",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Déclarations de Revenus</strong> : Combinez tous vos T4, reçus et documents de dépenses en un seul fichier pour l'ARC (Agence du revenu du Canada).</p>
+                        <p><strong>Rapports d'Entreprise</strong> : Fusionnez les sections créées par différentes équipes en un document professionnel unique.</p>
+                        <p><strong>Portfolios</strong> : Créez un portfolio PDF complet en combinant votre CV, lettres de recommandation et échantillons de travail.</p>
+                        <p><strong>Documents Juridiques</strong> : Assemblez tous les formulaires, contrats et pièces justificatives en un seul dossier.</p>
+                    </div>
+                )
+            },
+            {
                 id: "tips",
-                title: "Conseils de Pro",
+                title: "Conseils de Pro pour la Fusion",
                 content: (
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
                         <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
                             <h3 className="font-bold text-blue-800 mb-2">L'ordre compte</h3>
-                            <p className="text-sm text-blue-700">Le fichier en haut de la liste apparaîtra en premier. Arrangez-les logiquement.</p>
+                            <p className="text-sm text-blue-700">Le fichier en haut de la liste apparaîtra en premier dans le document final. Arrangez-les logiquement ou chronologiquement.</p>
                         </div>
                         <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
                             <h3 className="font-bold text-green-800 mb-2">Compressez après</h3>
-                            <p className="text-sm text-green-700">Si le fichier final est trop gros, utilisez ensuite notre outil de compression.</p>
+                            <p className="text-sm text-green-700">Si le fichier final est trop volumineux pour l'envoyer par courriel, utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">outil de compression</button> pour réduire sa taille.</p>
                         </div>
                     </div>
                 )
@@ -129,16 +143,24 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         faq: [
             {
-                q: "Y a-t-il une limite de fichiers ?",
-                a: "Non ! Tant que votre navigateur le supporte. Nous recommandons 10-20 à la fois pour la rapidité."
+                q: "Y a-t-il une limite au nombre de fichiers que je peux fusionner ?",
+                a: "Non ! Vous pouvez ajouter autant de fichiers que la mémoire de votre navigateur le permet. Nous recommandons de fusionner 10-20 fichiers à la fois pour des performances optimales."
+            },
+            {
+                q: "Puis-je fusionner des fichiers protégés par mot de passe ?",
+                a: "Vous devrez d'abord les déverrouiller. Si vous avez le mot de passe, vous pouvez utiliser un lecteur PDF pour enregistrer une copie sans mot de passe avant de fusionner."
+            },
+            {
+                q: "La qualité des images et du texte sera-t-elle réduite ?",
+                a: "Non. Nous fusionnons les PDF sans re-compression ni perte de qualité. Votre contenu conserve sa qualité d'origine."
             }
         ],
 
-        ctaTitle: "Prêt à vous organiser ?",
+        ctaTitle: "Prêt à Vous Organiser ?",
         ctaButton: "Fusionner PDF Maintenant",
-        ctaSubtext: "Gratuit, sûr et canadien.",
-        whyTitle: "Pourquoi local ?",
-        whyDesc: "Vos fichiers sont fusionnés directement dans votre navigateur. Aucune donnée n'est envoyée sur un serveur."
+        ctaSubtext: "Gratuit, Sécurisé et Canadien.",
+        whyTitle: "Pourquoi la Fusion Locale ?",
+        whyDesc: "Vos fichiers sont fusionnés directement dans votre navigateur. Cela signifie qu'ils ne sont jamais envoyés sur un serveur distant, garantissant que vos documents confidentiels restent confidentiels."
     }
 });
 

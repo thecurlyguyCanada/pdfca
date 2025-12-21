@@ -93,29 +93,59 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment rendre un PDF non modifiable (Gratuit) | pdfcanada.ca",
-            desc: "Apprenez à rendre un PDF non modifiable gratuitement. Ce guide vous montre comment aplatir un PDF pour protéger vos données au Canada."
+            title: "Comment Rendre un PDF Non-Modifiable (Gratuit) | Aplatir PDF | pdfcanada.ca",
+            desc: "Apprenez à aplatir un PDF gratuitement pour le rendre non-modifiable. Ce guide vous montre comment verrouiller votre document pour protéger vos données au Canada."
         },
-        h1: "Comment rendre un PDF non modifiable",
-        subtitle: "Aplatissez vos documents pour empêcher les modifications indésirables.",
+        h1: "Comment Rendre un PDF Non-Modifiable : La Méthode Sécurisée",
+        subtitle: "Aplatissez vos documents pour empêcher les modifications indésirables et protéger vos données — 100% localement.",
 
         intro: (
             <>
-                Besoin de partager un document tout en vous assurant que personne ne peut copier votre texte ou modifier vos chiffres ? Savoir <strong>comment rendre un PDF non modifiable</strong> est essentiel pour les contrats et les factures.
+                Besoin de partager un document tout en vous assurant que personne ne peut copier votre texte ou modifier vos chiffres ? Savoir <strong>comment rendre un PDF non-modifiable</strong> est essentiel pour les contrats, les factures et les formulaires sensibles.
+                <br /><br />
+                Bien que beaucoup pensent qu'un PDF standard est « verrouillé », la plupart des éditeurs modernes peuvent facilement sélectionner et modifier le texte. Ce guide vous montrera comment vraiment <strong>aplatir un PDF</strong> avec notre outil canadien axé sur la confidentialité.
             </>
         ),
 
         sections: [
             {
                 id: "how-to",
-                title: "Étape par Étape : Aplatir votre PDF",
+                title: "Étape par Étape : Aplatir Votre PDF",
                 content: (
                     <>
+                        <p className="mb-4">
+                            Notre outil <strong>Rendre PDF Non-Modifiable</strong> utilise une technique appelée « rastérisation ». Il transforme chaque page de votre PDF en images en arrière-plan, en intégrant efficacement le contenu dans la page.
+                        </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li className="pl-2"><strong>Sélectionnez votre fichier</strong></li>
-                            <li className="pl-2"><strong>Traitement automatique</strong></li>
-                            <li className="pl-2"><strong>Téléchargez</strong></li>
+                            <li className="pl-2">
+                                <strong>Sélectionnez Votre Fichier</strong> : Glissez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">outil PDF Non-Modifiable</button>.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Traitement Automatique</strong> : Notre moteur canadien rendra chaque page en une image statique de haute qualité.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Téléchargez et Partagez</strong> : Une fois terminé, téléchargez votre PDF aplati. Il aura exactement la même apparence, mais le texte sera insélectionnable et non-modifiable.
+                            </li>
                         </ol>
+                    </>
+                )
+            },
+            {
+                id: "why-flatten",
+                title: "Pourquoi la Rastérisation est Meilleure que les Mots de Passe",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Les « mots de passe propriétaire » PDF standard sont faciles à contourner avec des outils de suppression de mots de passe en ligne. Cependant, la <strong>rastérisation</strong> (aplatissement en image) est irréversible. Une fois qu'une page est une image, les données textuelles sous-jacentes ont disparu.
+                        </p>
+                        <p className="mb-4">
+                            C'est le moyen le plus fiable pour garantir :
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                            <li>Votre mise en page reste exactement la même sur tous les appareils.</li>
+                            <li>Personne ne peut facilement copier-coller votre texte.</li>
+                            <li>Les métadonnées sensibles sont supprimées.</li>
+                        </ul>
                     </>
                 )
             }
@@ -123,16 +153,24 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         faq: [
             {
-                q: "Est-ce que la qualité sera réduite ?",
-                a: "Non, nous utilisons une haute résolution pour garantir que votre document reste net."
+                q: "Est-ce que mon PDF aura toujours une haute qualité ?",
+                a: "Oui ! Nous utilisons un moteur de rendu haute résolution (échelle 2.0x) pour garantir que votre PDF aplati semble net et professionnel lors de l'impression ou de la visualisation à l'écran."
+            },
+            {
+                q: "Est-ce que cet outil est gratuit ?",
+                a: "Absolument, eh ! Comme tous les outils sur pdfcanada.ca, c'est 100% gratuit sans aucune limite."
+            },
+            {
+                q: "Puis-je annuler l'aplatissement ?",
+                a: "Non. Parce que l'outil convertit le texte en pixels, vous ne pouvez pas « dé-aplatir » plus tard. Gardez toujours une copie de votre fichier original modifiable au cas où."
             }
         ],
 
-        ctaTitle: "Prêt à protéger votre PDF ?",
-        ctaButton: "Rendre non modifiable",
-        ctaSubtext: "Gratuit, sécurisé et canadien.",
-        whyTitle: "Pourquoi l'aplatissement ?",
-        whyDesc: "Convertir les pages en images est le moyen ultime de verrouiller votre contenu."
+        ctaTitle: "Prêt à Protéger Votre PDF ?",
+        ctaButton: "Rendre PDF Non-Modifiable",
+        ctaSubtext: "Gratuit, Sécurisé et Canadien.",
+        whyTitle: "Pourquoi la Rastérisation ?",
+        whyDesc: "Convertir les pages en images est le moyen ultime de verrouiller votre contenu. Contrairement aux mots de passe, cela ne peut pas être inversé par des pirates."
     }
 });
 

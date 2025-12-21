@@ -99,34 +99,54 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Supprimer des Pages PDF (Privé & Sécurisé) | pdfcanada.ca",
-            desc: "Le guide définitif 2025 pour supprimer des pages de PDF. Apprenez à nettoyer vos documents en toute sécurité sans téléchargement."
+            title: "Supprimer des Pages PDF Gratuit | Retirer Pages Indésirables | pdfcanada.ca",
+            desc: "Le guide définitif 2026 pour supprimer des pages de PDF. Apprenez à nettoyer vos documents en toute sécurité et confidentialité sans téléchargement sur un serveur."
         },
         h1: "Comment Supprimer des Pages d'un PDF : Le Guide Complet",
-        subtitle: "La méthode simple pour retirer les pages indésirables, vierges ou sensibles de vos documents.",
+        subtitle: "La méthode simple et sécurisée pour retirer les pages indésirables, vierges ou sensibles de vos documents.",
 
         intro: (
             <>
-                Nous avons tous connu cette situation : vous scannez un contrat et réalisez que <strong>la page 3 est à l'envers</strong>. Ou peut-être avez-vous téléchargé un rapport de 50 pages.
+                Nous avons tous connu cette situation : vous scannez un contrat et réalisez que <strong>la page 3 est à l'envers</strong> ou contient des informations erronées. Ou peut-être avez-vous téléchargé un rapport de 50 pages alors que vous n'avez besoin que des 5 premières.
                 <br /><br />
-                Ce guide vous montrera exactement comment nettoyer vos documents en utilisant des outils locaux qui gardent vos données en sécurité.
+                Ce guide vous montrera exactement comment <strong>supprimer des pages d'un PDF</strong> en utilisant des outils qui traitent tout localement dans votre navigateur, gardant vos données sensibles en sécurité.
             </>
         ),
 
         sections: [
             {
                 id: "how-to",
-                title: "Étape par Étape : Nettoyer en Secondes",
+                title: "Étape par Étape : Nettoyer Votre PDF en Secondes",
                 content: (
                     <>
                         <p className="mb-4">
-                            Supprimer des pages ne devrait pas être compliqué. Notre outil est conçu pour être intuitif.
+                            Supprimer des pages ne devrait pas être compliqué. Notre outil est conçu pour être intuitif et rapide.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li className="pl-2"><strong>Sélectionnez votre fichier</strong></li>
-                            <li className="pl-2"><strong>Identifiez les pages</strong></li>
-                            <li className="pl-2"><strong>Téléchargez</strong></li>
+                            <li className="pl-2">
+                                <strong>Sélectionnez votre fichier</strong> : Téléchargez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-medium">outil de suppression de pages</button>.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Identifiez les pages à supprimer</strong> : Vous verrez des miniatures de toutes les pages. Cliquez sur celles que vous voulez retirer.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Téléchargez votre PDF nettoyé</strong> : Cliquez sur "Supprimer" et téléchargez votre nouveau document sans les pages indésirables.
+                            </li>
                         </ol>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cas d'Utilisation Courants",
+                content: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-3 mb-6">
+                            <li><strong>Documents scannés</strong> : Retirez les pages vierges ou mal scannées de vos documents numérisés.</li>
+                            <li><strong>Rapports volumineux</strong> : Extrayez seulement les pages pertinentes d'un long rapport.</li>
+                            <li><strong>Formulaires gouvernementaux</strong> : Supprimez les pages d'instructions inutiles avant de soumettre à l'ARC ou IRCC.</li>
+                            <li><strong>Contrats</strong> : Retirez les annexes obsolètes ou les pages de signature vides.</li>
+                        </ul>
                     </>
                 )
             }
@@ -135,13 +155,21 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faq: [
             {
                 q: "Est-ce gratuit ?",
-                a: "Oui, comme toujours chez nous."
+                a: "Oui, absolument ! Comme tous nos outils, la suppression de pages est 100% gratuite sans aucune limite."
+            },
+            {
+                q: "Puis-je récupérer les pages supprimées ?",
+                a: "Non. Une fois le nouveau PDF créé, les pages supprimées sont définitivement retirées. Votre fichier original reste intact sur votre ordinateur, donc conservez-le si vous pensez avoir besoin de ces pages plus tard."
+            },
+            {
+                q: "Est-ce que mes fichiers sont envoyés sur un serveur ?",
+                a: "Jamais ! Tout le traitement se fait localement dans votre navigateur. Vos documents confidentiels ne quittent jamais votre appareil."
             }
         ],
 
-        ctaTitle: "Prêt à nettoyer votre PDF ?",
-        ctaButton: "Supprimer les pages",
-        ctaSubtext: "Gratuit, rapide et sécurisé."
+        ctaTitle: "Prêt à Nettoyer Votre PDF ?",
+        ctaButton: "Supprimer les Pages",
+        ctaSubtext: "Gratuit, Rapide et Sécurisé."
     }
 });
 
