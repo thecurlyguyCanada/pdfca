@@ -165,11 +165,6 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                             }}
                         >
                             <Rnd
-                                size={{ width: `${cropBox.width}%`, height: `${cropBox.height}%` }}
-                                // Actually position is in pixels, but we store %, so we need to convert back and forth or just control it fully.
-                                // Let's simplify: Use Rnd as controlled component with percentages.
-                                // But Rnd expects pixels for x/y usually unless specified? It supports %.
-
                                 default={{
                                     x: 0, y: 0, width: '80%', height: '80%'
                                 }}
