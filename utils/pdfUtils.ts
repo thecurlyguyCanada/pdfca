@@ -48,8 +48,8 @@ const getHeic2Any = async () => {
 
 // Lazy load Tesseract.js for OCR
 const getTesseract = async () => {
-  const Tesseract = await import('tesseract.js');
-  return Tesseract;
+  const mod = await import('tesseract.js');
+  return mod.default || mod;
 };
 
 // Lazy load docx

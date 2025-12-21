@@ -155,7 +155,25 @@ export const SEO: React.FC<SEOProps> = ({
     updateHreflang('fr', `https://pdfcanada.ca${frPath}`);
     updateHreflang('x-default', `https://pdfcanada.ca${enPath}`);
 
-    // 7. Dynamic JSON-LD Structured Data
+    // 7. Dynamic Favicons
+    const setLink = (rel: string, href: string, sizes?: string, type?: string) => {
+      let link = document.querySelector(`link[rel="${rel}"]${sizes ? `[sizes="${sizes}"]` : ''}`);
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        if (sizes) link.setAttribute('sizes', sizes);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+      if (type) link.setAttribute('type', type);
+    };
+
+    setLink('apple-touch-icon', '/apple-touch-icon.png', '180x180');
+    setLink('icon', '/favicon-32x32.png', '32x32', 'image/png');
+    setLink('icon', '/favicon-16x16.png', '16x16', 'image/png');
+    setLink('manifest', '/site.webmanifest');
+
+    // 8. Dynamic JSON-LD Structured Data
     // Remove existing dynamic schemas
     document.querySelectorAll('script[data-dynamic-schema]').forEach(el => el.remove());
 

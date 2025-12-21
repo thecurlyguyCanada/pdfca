@@ -427,7 +427,7 @@ function App() {
       setFile(uploadedFile);
       setAppState(AppState.PROCESSING);
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.OCR) {
         try {
           const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
             loadPdfDocument(uploadedFile),
@@ -525,6 +525,11 @@ function App() {
             resultBlob = await reorderPdfPages(file, pageOrder);
             outName = file.name.replace('.pdf', '_organized_eh.pdf');
             break;
+          case ToolType.OCR:
+            // Defaulting to searchable PDF for now
+            resultBlob = await makeSearchablePdf(file, Array.from(selectedPages));
+            outName = file.name.replace('.pdf', '_searchable.pdf');
+            break;
           case ToolType.PDF_TO_WORD:
             resultBlob = await convertPdfToWord(file);
             outName = file.name.replace('.pdf', '_converted_eh.docx');
@@ -580,7 +585,7 @@ function App() {
     triggerHaptic('light'); // Selection feedback
     const isRange = e.shiftKey;
 
-    if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) {
+    if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) {
       setSelectedPages(prev => {
         const newSelection = new Set(prev);
 

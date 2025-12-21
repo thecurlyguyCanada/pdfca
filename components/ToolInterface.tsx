@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Scissors, Lock } from 'lucide-react';
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -172,15 +172,16 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE;
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER;
     const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
 
     let headerText = '';
-    if (currentTool === ToolType.DELETE) headerText = t.selectPagesHeader;
+    if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
     else if (currentTool === ToolType.ROTATE) headerText = '';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
+    else if (currentTool === ToolType.OCR) headerText = t.selectPagesForOcr;
 
     return (
         <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
@@ -212,7 +213,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 {isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
-                            {currentTool === ToolType.DELETE && (
+                            {(currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) && (
                                 <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
                                     <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
                                         <Info size={18} className="mt-0.5 shrink-0" />
@@ -260,7 +261,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 </div>
                             )}
 
-                            {currentTool === ToolType.MAKE_FILLABLE && (
+                            {(currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
                                 <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 backdrop-blur-sm py-2">
                                     <p className="text-sm font-medium text-gray-600">
                                         {headerText}
@@ -319,7 +320,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     pageIndex={idx}
                                     isSelected={selectedPages.has(idx)}
                                     rotation={rotations[idx] || 0}
-                                    mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE ? 'delete' : 'rotate'}
+                                    mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR ? 'delete' : 'rotate'}
                                     onClick={(e) => togglePageSelection(e, idx)}
                                     width={baseThumbnailWidth * previewZoom}
                                 />
@@ -381,6 +382,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
                             {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF) && <FileText size={32} />}
+                            {currentTool === ToolType.CROP && <div className="text-canada-red"><Scissors size={32} /></div>}
+                            {currentTool === ToolType.FLATTEN && <Lock size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">
@@ -407,10 +410,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 onAction();
                             }
                         }}
-                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0}
+                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) && selectedPages.size === 0}
                         className={`
                   w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
-                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE) && selectedPages.size === 0
+                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) && selectedPages.size === 0
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
                                 : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
                             }
@@ -423,6 +426,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.CROP && (t.btnCrop || "Crop PDF")}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
+                        {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
                         {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
                     </button>
                 </div>
