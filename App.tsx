@@ -3,6 +3,7 @@ import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, Rotat
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
+import { Analytics } from '@vercel/analytics/react';
 import { ToolInterface } from './components/ToolInterface'; // Will use lazy loading for this, but first checking if we can import directly or lazy
 // Actually, we want code splitting, so:
 const PricingPage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.PricingPage })));
@@ -1063,6 +1064,7 @@ function App() {
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />
+      <Analytics />
 
       {/* Global Full-Screen Tool Overlay (e.g. Sign Tool) */}
       {currentTool === ToolType.SIGN && file && (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
