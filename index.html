@@ -14,6 +14,11 @@
   <meta name="keywords"
     content="pdf tools, delete pdf pages, rotate pdf, heic to pdf, epub converter, free pdf editor, canada, secure pdf, local processing">
   <meta name="author" content="pdfcanada.ca">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="application-name" content="pdfcanada.ca">
+  <meta name="apple-mobile-web-app-title" content="pdfcanada.ca">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -59,6 +64,54 @@
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap">
   </noscript>
+
+  <!-- JSON-LD Structured Data for Sitelinks Searchbox -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://pdfcanada.ca/#website",
+    "name": "pdfcanada.ca",
+    "url": "https://pdfcanada.ca",
+    "description": "Free, secure PDF tools built in Canada. All processing happens locally in your browser.",
+    "publisher": {
+      "@id": "https://pdfcanada.ca/#organization"
+    },
+    "inLanguage": ["en-CA", "fr-CA"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pdfcanada.ca/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://pdfcanada.ca/#organization",
+    "name": "pdfcanada.ca",
+    "url": "https://pdfcanada.ca",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pdfcanada.ca/android-chrome-512x512.png",
+      "width": 512,
+      "height": 512
+    },
+    "sameAs": ["https://twitter.com/pdfcanada"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toronto",
+      "addressRegion": "Ontario",
+      "addressCountry": "CA"
+    },
+    "foundingDate": "2024",
+    "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser."
+  }
+  </script>
 
   <!-- Critical CSS: Only what's needed for first paint (above the fold) -->
   <style id="critical-css">

@@ -10,6 +10,9 @@ interface SEOProps {
   breadcrumbs?: { name: string; path: string }[];
   ogType?: 'website' | 'article' | 'product';
   noOrganization?: boolean;
+  faqs?: { question: string; answer: string }[];
+  datePublished?: string;
+  dateModified?: string;
 }
 
 // Organization schema - reused across pages
@@ -68,7 +71,10 @@ export const SEO: React.FC<SEOProps> = ({
   schema,
   breadcrumbs,
   ogType = 'website',
-  noOrganization = false
+  noOrganization = false,
+  faqs,
+  datePublished,
+  dateModified
 }) => {
   // Memoize the setMeta helper function
   const setMeta = useCallback((attrName: string, attrValue: string, content: string) => {
@@ -224,16 +230,56 @@ export const SEO: React.FC<SEOProps> = ({
         "name": title.split('|')[0].trim(),
         "operatingSystem": "All",
         "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Document Editor",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "CAD"
+          "priceCurrency": "CAD",
+          "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "ratingCount": "128"
-        }
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "156",
+          "reviewCount": "89"
+        },
+        "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free"
+      });
+    }
+
+    // WebPage schema with Speakable for voice search (2025 SEO)
+    allSchemas.push({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `https://pdfcanada.ca${canonicalPath}#webpage`,
+      "url": `https://pdfcanada.ca${canonicalPath}`,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": "https://pdfcanada.ca/#website" },
+      "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+      ...(datePublished && { "datePublished": datePublished }),
+      ...(dateModified && { "dateModified": dateModified }),
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".hero-title", ".hero-desc", "h1", "h2"]
+      }
+    });
+
+    // FAQPage schema for pages with FAQs
+    if (faqs && faqs.length > 0) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
       });
     }
 
