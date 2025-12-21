@@ -947,7 +947,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <div>
                         <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Signatures</h4>
                         <div className="grid grid-cols-2 gap-3">
-                            <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-32 shadow-sm">
+                            <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-100 text-canada-darkRed rounded-2xl font-bold border border-red-200 active:scale-95 h-32 shadow-sm">
                                 <Plus size={28} /> New Signature
                             </button>
                             {savedSignatures.map((sig, i) => (
@@ -960,7 +960,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <div>
                         <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Initials</h4>
                         <div className="grid grid-cols-2 gap-3">
-                            <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-50 text-canada-red rounded-2xl font-bold border border-red-100 active:scale-95 h-32 shadow-sm">
+                            <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-100 text-canada-darkRed rounded-2xl font-bold border border-red-200 active:scale-95 h-32 shadow-sm">
                                 <Plus size={28} /> New Initials
                             </button>
                             {savedInitials.map((sig, i) => (

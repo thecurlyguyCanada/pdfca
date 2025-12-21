@@ -68,45 +68,62 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Organiser les Pages PDF en Ligne | Réorganiser PDF Gratuit | pdfcanada.ca",
-            desc: "Le guide définitif 2025 pour organiser les pages PDF. Apprenez à réorganiser et déplacer les pages d'un PDF en toute sécurité."
+            title: "Réorganiser les Pages PDF Gratuit | Organiser PDF en Ligne | pdfcanada.ca",
+            desc: "Apprenez à réorganiser et organiser les pages PDF gratuitement par glisser-déposer. Réordonnez vos documents PDF de manière sécurisée dans votre navigateur."
         },
-        h1: "Comment Organiser et Réorganiser les Pages PDF",
-        subtitle: "La façon la plus simple et sécurisée de déplacer les pages de votre document PDF par simple glisser-déposer.",
+        h1: "Comment Réorganiser les Pages PDF : Le Guide Complet",
+        subtitle: "Glisser-déposer pour réarranger, reordonner et perfectionner la structure de vos documents PDF.",
 
-        intro: "Votre document n'est pas dans le bon ordre? Vous avez peut-être scanné des pages dans la mauvaise séquence. Notre outil **gratuit d'organisation de PDF** vous permet de réorganiser vos pages visuellement et localement pour une confidentialité totale.",
+        intro: "Avez-vous déjà eu un PDF où les pages sont dans le mauvais ordre ? Peut-être que la page de titre est à la fin, ou que les annexes sont mélangées dans le corps du document. Notre **outil de réorganisation PDF** vous permet de réarranger les pages par simple glisser-déposer, le tout traité localement pour une confidentialité maximale.",
 
         sections: [
             {
-                id: "how-to-fr",
-                title: "Étape par Étape : Réorganiser votre PDF",
-                content: `L'utilisation de notre outil pour **réorganiser les pages PDF gratuitement** est intuitive :
+                id: "how-to",
+                title: "Comment Réorganiser Vos Pages PDF",
+                content: `**Étape 1** : Téléchargez votre PDF dans notre outil de réorganisation.
 
-1. **Sélectionnez votre fichier** : Votre PDF s'ouvre instantanément.
-2. **Glissez-déposez** : Déplacez les miniatures des pages vers leur nouvelle position.
-3. **Enregistrez** : Cliquez sur **'Enregistrer'** pour télécharger votre document organisé.`
+**Étape 2** : Vous verrez des miniatures de toutes les pages. Cliquez et faites glisser les pages pour les réarranger dans l'ordre souhaité.
+
+**Étape 3** : Une fois satisfait de la nouvelle structure, cliquez sur "Traiter le PDF" pour télécharger votre document réorganisé.`
             },
             {
-                id: "security-fr",
-                title: "Sécurité Locale : Vos documents restent chez vous",
-                content: `Contrairement aux autres sites, nous ne téléchargeons jamais vos fichiers. Tout le traitement se fait dans votre navigateur, garantissant que vos données sensibles restent privées.`
+                id: "use-cases",
+                title: "Cas d'Utilisation Courants",
+                content: `**Documents Scannés Mélangés** : Il arrive que les scanners mélangent l'ordre des pages. Remettez-les dans le bon ordre en quelques secondes.
+
+**Fusion de Plusieurs PDF** : Si vous avez fusionné plusieurs fichiers et que l'ordre n'est pas correct, réorganisez facilement les sections.
+
+**Présentation Professionnelle** : Assurez-vous que votre table des matières, introduction et conclusion sont dans le bon ordre avant de partager.`
+            },
+            {
+                id: "benefits",
+                title: "Pourquoi Utiliser Notre Outil de Réorganisation",
+                content: `**Interface Visuelle** : Voyez toutes vos pages en un coup d'œil et réarrangez-les intuitivement.
+
+**Traitement Local** : Contrairement aux services cloud, vos documents ne sont jamais téléchargés sur nos serveurs.
+
+**Aucune Limite** : Réorganisez des PDF de n'importe quelle taille sans restrictions.`
             }
         ],
 
         faq: [
             {
-                q: "Puis-je organiser sur mobile?",
-                a: "Oui, parfaitement. Notre interface est optimisée pour le tactile sur iPhone et Android."
+                q: "Puis-je supprimer des pages en même temps que je réorganise ?",
+                a: "Actuellement, notre outil se concentre sur la réorganisation. Pour supprimer des pages, utilisez d'abord notre outil de suppression de pages, puis réorganisez si nécessaire."
             },
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, c'est l'un de nos nombreux outils PDF polis et gratuits pour tous les Canadiens."
+                q: "Le fichier réorganisé aura-t-il la même qualité ?",
+                a: "Oui ! Nous ne re-compressons ni ne modifions vos pages. Elles conservent leur qualité et leur contenu d'origine."
+            },
+            {
+                q: "Y a-t-il une limite au nombre de pages ?",
+                a: "Non. Puisque le traitement est local, vous pouvez réorganiser des PDF de centaines de pages tant que votre navigateur peut les gérer."
             }
         ],
 
-        ctaTitle: "Corrigez l'ordre maintenant",
-        ctaButton: "Organiser mon PDF",
-        ctaSubtext: "Rapide, gratuit et 100% privé au Canada."
+        ctaTitle: "Prêt à Réorganiser Votre PDF ?",
+        ctaButton: "Commencer la Réorganisation",
+        ctaSubtext: "Gratuit, Rapide et Sécurisé."
     }
 });
 

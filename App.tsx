@@ -3,7 +3,6 @@ import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, Rotat
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
-import { Analytics } from '@vercel/analytics/react';
 import { ToolInterface } from './components/ToolInterface'; // Will use lazy loading for this, but first checking if we can import directly or lazy
 // Actually, we want code splitting, so:
 const PricingPage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.PricingPage })));
@@ -815,7 +814,7 @@ function App() {
 
       {/* Hero Section - Centered & Simplified */}
       <div className="w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
-        <div className="inline-flex items-center gap-2 bg-red-50 text-canada-red px-4 py-1.5 rounded-full text-sm font-bold shadow-sm mx-auto">
+        <div className="inline-flex items-center gap-2 bg-red-100 text-canada-darkRed px-4 py-1.5 rounded-full text-sm font-bold shadow-sm mx-auto">
           <MapleLeaf className="w-4 h-4" />
           {t.builtIn}
         </div>
@@ -851,7 +850,7 @@ function App() {
                 className="flex flex-col items-center text-center p-6 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-xl hover:shadow-red-500/10 active:scale-[0.98] transition-all group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="p-4 bg-red-50 text-canada-red rounded-xl mb-4 group-hover:bg-canada-red group-hover:text-white transition-colors relative z-10 shadow-sm">
+                <div className="p-4 bg-red-100 text-canada-darkRed rounded-xl mb-4 group-hover:bg-canada-red group-hover:text-white transition-colors relative z-10 shadow-sm">
                   <tool.icon size={28} className="md:w-8 md:h-8" />
                 </div>
                 <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 relative z-10">{tool.title}</h3>
@@ -929,7 +928,7 @@ function App() {
                 <button onClick={handleReset} className="absolute top-6 right-6 text-gray-400 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors">
                   <X size={24} />
                 </button>
-                <div className="w-20 h-20 bg-red-50 text-canada-red rounded-full flex items-center justify-center mb-6">
+                <div className="w-20 h-20 bg-red-100 text-canada-darkRed rounded-full flex items-center justify-center mb-6">
                   <AlertCircle size={40} />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{t.errorTitle}</h3>
@@ -1177,7 +1176,6 @@ function App() {
       </main>
 
       <Footer lang={lang} onNavigate={handleNavigation} />
-      <Analytics />
 
       {/* Global Full-Screen Tool Overlay (e.g. Sign Tool) */}
       {currentTool === ToolType.SIGN && file && (appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
