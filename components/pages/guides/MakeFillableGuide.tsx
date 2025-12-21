@@ -99,29 +99,71 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Rendre un PDF Remplissable Gratuitement | Créer des Formulaires PDF | pdfcanada.ca",
-            desc: "Apprenez comment rendre un PDF remplissable gratuitement. Créez des formulaires interactifs, ajoutez des champs de texte et des cases à cocher en ligne."
+            title: "Rendre un PDF Remplissable Gratuit | Créer des Formulaires PDF | pdfcanada.ca",
+            desc: "Apprenez comment rendre un PDF remplissable gratuitement. Créez des formulaires interactifs, ajoutez des champs de texte, cases à cocher et zones de signature en ligne."
         },
         h1: "Comment Rendre un PDF Remplissable en Ligne Gratuitement",
         subtitle: "Le guide définitif pour transformer vos documents statiques en formulaires PDF interactifs et professionnels.",
 
         intro: (
             <>
-                Vous en avez assez de demander à vos clients d'imprimer et de numériser des documents ? Vous devez <strong>rendre votre PDF remplissable</strong>. Notre outil gratuit vous permet d'ajouter des champs de texte et des cases à cocher en toute sécurité.
+                Vous en avez assez de demander à vos clients d'imprimer, de remplir à la main et de numériser des documents ? Il est temps de <strong>rendre votre PDF remplissable</strong>. Notre outil gratuit vous permet d'ajouter des champs de texte, des cases à cocher et même des zones de signature directement sur vos PDF existants.
+                <br /><br />
+                Le meilleur ? Tout le traitement se fait localement dans votre navigateur. Vos formulaires confidentiels ne sont jamais téléchargés sur des serveurs externes.
             </>
         ),
 
         sections: [
             {
                 id: "how-to",
-                title: "3 étapes pour créer des formulaires PDF remplissables",
+                title: "3 Étapes pour Créer des Formulaires PDF Remplissables",
                 content: (
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-4">
-                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre outil sécurisé.</li>
-                            <li><strong>Ajoutez des champs</strong> : Glissez-déposez des champs de texte et des cases à cocher.</li>
-                            <li><strong>Enregistrez</strong> : Téléchargez votre version interactive instantanément.</li>
+                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-fillable')} className="text-canada-red hover:underline font-medium">outil de création de formulaires</button>. Le fichier s'ouvre instantanément.</li>
+                            <li><strong>Ajoutez des champs interactifs</strong> : Glissez-déposez des champs de texte, des cases à cocher, des menus déroulants et des zones de signature là où vous en avez besoin.</li>
+                            <li><strong>Enregistrez et partagez</strong> : Cliquez sur "Traiter le PDF" pour télécharger votre version interactive, prête à être envoyée à vos clients.</li>
                         </ol>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cas d'Utilisation Courants pour les Formulaires PDF",
+                content: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-3 mb-6">
+                            <li><strong>Contrats clients</strong> : Ajoutez des champs de signature et de date pour une signature numérique facile.</li>
+                            <li><strong>Formulaires d'inscription</strong> : Créez des formulaires que vos clients peuvent remplir sans imprimer.</li>
+                            <li><strong>Demandes d'emploi</strong> : Transformez vos formulaires RH en documents interactifs.</li>
+                            <li><strong>Formulaires gouvernementaux</strong> : Rendez vos PDF conformes aux standards de l'ARC et IRCC.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "features",
+                title: "Types de Champs Disponibles",
+                content: (
+                    <>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="p-4 border border-gray-200 rounded-xl">
+                                <h4 className="font-bold mb-2">Champs de Texte</h4>
+                                <p className="text-sm">Pour les noms, adresses, courriels et autres informations textuelles.</p>
+                            </div>
+                            <div className="p-4 border border-gray-200 rounded-xl">
+                                <h4 className="font-bold mb-2">Cases à Cocher</h4>
+                                <p className="text-sm">Pour les options oui/non, les termes et conditions, et les choix multiples.</p>
+                            </div>
+                            <div className="p-4 border border-gray-200 rounded-xl">
+                                <h4 className="font-bold mb-2">Zones de Signature</h4>
+                                <p className="text-sm">Permettez aux utilisateurs de signer avec leur souris ou leur doigt.</p>
+                            </div>
+                            <div className="p-4 border border-gray-200 rounded-xl">
+                                <h4 className="font-bold mb-2">Champs de Date</h4>
+                                <p className="text-sm">Ajoutez des sélecteurs de date pour une saisie précise.</p>
+                            </div>
+                        </div>
                     </>
                 )
             }
@@ -129,14 +171,22 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, totalement gratuit et sans frais cachés."
+                q: "Est-ce vraiment gratuit ?",
+                a: "Oui, totalement gratuit et sans frais cachés. Vous pouvez créer autant de formulaires que vous le souhaitez sans aucune limite."
+            },
+            {
+                q: "Les formulaires fonctionnent-ils dans tous les lecteurs PDF ?",
+                a: "Oui ! Nos formulaires utilisent le standard PDF et sont compatibles avec Adobe Acrobat Reader, Preview sur Mac, et la plupart des lecteurs PDF modernes."
+            },
+            {
+                q: "Puis-je protéger mon formulaire par mot de passe ?",
+                a: "Pas encore, mais c'est sur notre liste de fonctionnalités à venir. Pour l'instant, vous pouvez utiliser notre outil d'aplatissement après remplissage pour verrouiller les réponses."
             }
         ],
 
-        ctaTitle: "Commencez à créer votre formulaire maintenant",
-        ctaButton: "Rendre le PDF remplissable",
-        ctaSubtext: "Gratuit pour toujours. Sécurisé et local."
+        ctaTitle: "Commencez à Créer Votre Formulaire Maintenant",
+        ctaButton: "Rendre le PDF Remplissable",
+        ctaSubtext: "Gratuit pour toujours. Sécurisé et Local."
     }
 });
 
