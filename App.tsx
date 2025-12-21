@@ -565,12 +565,21 @@ function App() {
       console.error("Action execution failed:", error);
       triggerHaptic('error'); // Error feedback
 
+      // Check for specific error messages from converters
+      const errMsg = error?.message?.toLowerCase() || '';
+
       if (error?.message === "Could not extract text from EPUB") {
         setErrorKey('emptyEpubErr');
-      } else if (error?.name === 'PasswordException' || error?.message?.toLowerCase().includes('password')) {
+      } else if (errMsg.includes('rar') || errMsg.includes('cbr') || errMsg.includes('not supported')) {
+        setErrorKey('conversionErr'); // RAR not supported in browser
+      } else if (error?.name === 'PasswordException' || errMsg.includes('password')) {
         setErrorKey('passwordErr');
+      } else if (errMsg.includes('no images found') || errMsg.includes('could not process')) {
+        setErrorKey('conversionErr');
       } else {
-        if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF) {
+        if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
+          currentTool === ToolType.CBR_TO_PDF || currentTool === ToolType.WORD_TO_PDF ||
+          currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.OCR) {
           setErrorKey('conversionErr');
         } else {
           setErrorKey('genericError');

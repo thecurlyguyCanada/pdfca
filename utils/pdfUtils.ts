@@ -560,7 +560,7 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
 
   const fileName = file.name.toLowerCase();
   const isZip = fileName.endsWith('.cbz') || fileName.endsWith('.zip');
-  const arrayBuffer = await file.arrayBuffer();
+  const isRar = fileName.endsWith('.cbr') || fileName.endsWith('.rar');
 
   const doc = await PDFDocument.create();
   const images: { data: Uint8Array, name: string }[] = [];
@@ -570,7 +570,7 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
     const content = await zip.loadAsync(file);
     const fileNames: string[] = [];
     content.forEach((path) => {
-      if (/\.(jpg|jpeg|png|webp)$/i.test(path)) {
+      if (/\.(jpg|jpeg|png)$/i.test(path)) {
         fileNames.push(path);
       }
     });
@@ -580,25 +580,11 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
       const data = await content.file(name)?.async("uint8array");
       if (data) images.push({ data, name });
     }
+  } else if (isRar) {
+    // RAR extraction requires Node.js APIs not available in browser
+    throw new Error("RAR/CBR files are not supported in browser. Please convert to CBZ (ZIP) format first.");
   } else {
-    try {
-      // @ts-ignore
-      const { createExtractorFromData } = await import('unrar-js');
-      const extractor = await createExtractorFromData(new Uint8Array(arrayBuffer));
-      const list = extractor.getFileList();
-      const fileHeaders = [...list.fileHeaders].filter(h => /\.(jpg|jpeg|png|webp)$/i.test(h.name));
-      fileHeaders.sort((a, b) => a.name.localeCompare(b.name));
-
-      const extracted = extractor.extract({ files: fileHeaders.map(h => h.name) });
-      for (const item of extracted.files) {
-        if (item.extraction) {
-          images.push({ data: item.extraction, name: item.fileHeader.name });
-        }
-      }
-    } catch (e) {
-      console.error("CBR extraction failed", e);
-      throw new Error("Could not extract images from CBR/RAR file. Make sure it is a valid archive.");
-    }
+    throw new Error("Unsupported archive format. Please use .cbz or .zip files.");
   }
 
   if (images.length === 0) {
@@ -608,9 +594,11 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
   for (const img of images) {
     try {
       let embeddedImg;
-      if (/\.(jpg|jpeg)$/i.test(img.name)) {
+      const nameLower = img.name.toLowerCase();
+
+      if (nameLower.endsWith('.jpg') || nameLower.endsWith('.jpeg')) {
         embeddedImg = await doc.embedJpg(img.data);
-      } else if (/\.png$/i.test(img.name)) {
+      } else if (nameLower.endsWith('.png')) {
         embeddedImg = await doc.embedPng(img.data);
       } else {
         continue;
@@ -628,6 +616,10 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
     } catch (e) {
       console.warn(`Failed to embed image ${img.name}`, e);
     }
+  }
+
+  if (doc.getPageCount() === 0) {
+    throw new Error("Could not process any images from the archive.");
   }
 
   return await doc.save();
@@ -657,15 +649,20 @@ export const extractTextWithOcr = async (
   let fullText = '';
   const langString = languages.join('+');
 
-  for (let i = 0; i < pageIndices.length; i++) {
-    const pageIndex = pageIndices[i];
+  // If no pages selected, process all pages
+  const indicesToProcess = pageIndices.length > 0
+    ? pageIndices
+    : Array.from({ length: pdf.numPages }, (_, i) => i);
+
+  for (let i = 0; i < indicesToProcess.length; i++) {
+    const pageIndex = indicesToProcess[i];
     if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
 
     onProgress?.({
       page: i + 1,
-      totalPages: pageIndices.length,
-      status: `Processing page ${i + 1} of ${pageIndices.length}...`,
-      progress: (i / pageIndices.length) * 100
+      totalPages: indicesToProcess.length,
+      status: `Processing page ${i + 1} of ${indicesToProcess.length}...`,
+      progress: (i / indicesToProcess.length) * 100
     });
 
     const page = await pdf.getPage(pageIndex + 1);
@@ -686,9 +683,9 @@ export const extractTextWithOcr = async (
         if (m.status === 'recognizing text' && m.progress !== undefined) {
           onProgress?.({
             page: i + 1,
-            totalPages: pageIndices.length,
+            totalPages: indicesToProcess.length,
             status: `Recognizing text on page ${i + 1}...`,
-            progress: ((i + m.progress) / pageIndices.length) * 100
+            progress: ((i + m.progress) / indicesToProcess.length) * 100
           });
         }
       }
@@ -702,8 +699,8 @@ export const extractTextWithOcr = async (
   }
 
   onProgress?.({
-    page: pageIndices.length,
-    totalPages: pageIndices.length,
+    page: indicesToProcess.length,
+    totalPages: indicesToProcess.length,
     status: 'Complete!',
     progress: 100
   });
@@ -728,15 +725,20 @@ export const makeSearchablePdf = async (
   const doc = await PDFDocument.load(arrayBuffer);
   const langString = languages.join('+');
 
-  for (let i = 0; i < pageIndices.length; i++) {
-    const pageIndex = pageIndices[i];
+  // If no pages selected, process all pages
+  const indicesToProcess = pageIndices.length > 0
+    ? pageIndices
+    : Array.from({ length: pdf.numPages }, (_, i) => i);
+
+  for (let i = 0; i < indicesToProcess.length; i++) {
+    const pageIndex = indicesToProcess[i];
     if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
 
     onProgress?.({
       page: i + 1,
-      totalPages: pageIndices.length,
+      totalPages: indicesToProcess.length,
       status: `OCR processing page ${i + 1}...`,
-      progress: (i / pageIndices.length) * 100
+      progress: (i / indicesToProcess.length) * 100
     });
 
     const pdfJsPage = await pdf.getPage(pageIndex + 1);
