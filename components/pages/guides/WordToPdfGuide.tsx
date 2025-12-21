@@ -63,31 +63,53 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Convertir Word en PDF Gratuit | Docx en PDF | pdfcanada.ca",
-            desc: "Apprenez à convertir vos documents Word (.docx) en fichiers PDF professionnels en toute sécurité dans votre navigateur."
+            desc: "Apprenez à convertir des documents Word (.docx) en fichiers PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé."
         },
-        h1: "Comment Convertir un Word en PDF",
-        subtitle: "Créez des PDF professionnels à partir de vos fichiers Word instantanément.",
+        h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
+        subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",
 
-        intro: "Transformez vos **fichiers Word** en PDF de haute qualité. Que ce soit pour un CV ou une facture, le PDF garantit que votre mise en forme reste intacte. Notre convertisseur fonctionne localement pour une confidentialité totale.",
+        intro: "Besoin de transformer votre **document Word** en PDF professionnel ? Que vous envoyiez un CV, une facture ou un rapport formel, le PDF est la norme pour garantir que votre formatage reste exactement comme prévu. Notre **convertisseur Word en PDF** gère la transition en douceur, et parce qu'il fonctionne localement, vous n'avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
 
         sections: [
             {
-                id: "why-pdf-fr",
-                title: "Pourquoi envoyer un PDF ?",
-                content: `Le PDF verrouille votre mise en forme et est lisible sur tous les appareils sans nécessiter Microsoft Word.`
+                id: "why-pdf",
+                title: "Pourquoi Toujours Envoyer un PDF ?",
+                content: `Les fichiers Word sont modifiables et leur apparence peut changer selon la version d'Office utilisée par le destinataire. Les PDF sont supérieurs car :
+- **Verrouillage du Format** : Ce que vous voyez est exactement ce qu'ils voient.
+- **Accès Universel** : Tout le monde peut ouvrir un PDF, mais tout le monde n'a pas Microsoft Word.
+- **Sécurité** : Il est beaucoup plus difficile pour quelqu'un de modifier accidentellement (ou intentionnellement) votre texte dans un PDF.`
+            },
+            {
+                id: "local-first",
+                title: "Conversion Locale : Meilleure pour Votre Confidentialité",
+                content: `La plupart des convertisseurs sur le web sont "basés sur le cloud", ce qui signifie que votre document est téléchargé sur leurs ordinateurs. Notre outil fonctionne différemment. Il utilise le **traitement dans le navigateur** pour transformer votre fichier .docx en PDF. C'est nettement plus sûr pour :
+- **Documents Juridiques**
+- **Dossiers Médicaux**
+- **CV Sensibles**
+- **Finances d'Entreprise**`
             }
         ],
 
         faq: [
             {
-                q: "C'est gratuit ?",
-                a: "Oui, comme toujours chez nous, c'est totalement gratuit."
+                q: "Est-ce vraiment gratuit ?",
+                a: "Oui ! Aucune limite, aucune carte de crédit. Juste un service canadien poli."
+            },
+            {
+                q: "Cela fonctionne-t-il sur mobile ?",
+                a: "Absolument. Vous pouvez convertir Word en PDF directement depuis votre navigateur iPhone ou Android, en sélectionnant des fichiers depuis votre stockage ou iCloud."
+            },
+            {
+                q: "Puis-je convertir des fichiers .doc ?",
+                a: "Actuellement, nous nous concentrons sur le format moderne **.docx**. Si vous avez un ancien fichier .doc, nous recommandons de l'enregistrer en .docx dans Word (ou Google Docs) avant d'utiliser notre outil."
             }
         ],
 
-        ctaTitle: "Convertissez votre document maintenant",
-        ctaButton: "Convertir Word en PDF",
-        ctaSubtext: "Privé, gratuit et rapide."
+        ctaTitle: "Convertissez Votre Document Maintenant",
+        ctaButton: "Commencer la Conversion Word en PDF",
+        ctaSubtext: "100% Gratuit. Sécurisé. Local.",
+
+        faqHeading: "Questions Courantes"
     }
 });
 

@@ -72,51 +72,58 @@ While efficient for storage, HEIC is notorious for lack of support:
     },
     fr: {
         seo: {
-            title: "Convertir HEIC en PDF Gratuit | Photos iPhone vers PDF | pdfcanada.ca",
-            desc: "Guide ultime pour convertir vos photos iPhone HEIC en PDF. Apprenez à fusionner plusieurs images HEIC en un seul PDF localement sans téléversement."
+            title: "Convertir HEIC en PDF Gratuit | Photos iPhone en PDF | pdfcanada.ca",
+            desc: "Apprenez à convertir des photos HEIC d'iPhone en PDF gratuitement. Transformez vos images Apple en documents PDF universels de manière sécurisée dans votre navigateur."
         },
-        h1: "Comment Convertir HEIC en PDF Gratuitement",
-        subtitle: "La façon la plus simple et sécurisée de transformer vos photos iPhone en documents PDF professionnels.",
+        h1: "Comment Convertir HEIC en PDF : Le Guide Complet",
+        subtitle: "Transformez vos photos iPhone en documents PDF universellement compatibles sans téléchargement ni perte de qualité.",
 
-        intro: "Vous avez des problèmes de compatibilité avec les fichiers **HEIC** de votre iPhone? Bien que ce format soit excellent pour économiser de l'espace, il n'est souvent pas accepté par les portails du gouvernement canadien (ARC, IRCC) ou les utilisateurs Windows. Notre **convertisseur HEIC en PDF gratuit** est conçu pour les Canadiens qui exigent la confidentialité totale.",
+        intro: "Vous avez déjà essayé d'ouvrir une photo de votre iPhone sur un PC Windows pour découvrir qu'elle est dans un format **.heic** étrange que rien ne peut lire ? C'est frustrant. Notre **convertisseur HEIC en PDF** résout ce problème en transformant vos photos Apple en documents PDF universellement compatibles. Le meilleur ? Tout se passe localement dans votre navigateur, donc vos photos de famille ne sont jamais téléchargées sur un serveur aléatoire.",
 
         sections: [
             {
-                id: "why-convert-fr",
-                title: "Pourquoi convertir HEIC en PDF ?",
-                content: `Le format PDF est universel. En convertissant vos photos HEIC, vous garantissez que n'importe qui pourra les ouvrir, les imprimer et les visionner sans erreur de format, que ce soit sur un PC Windows ou une liseuse.`
+                id: "what-is-heic",
+                title: "Qu'est-ce que HEIC et Pourquoi Apple l'Utilise",
+                content: `HEIC (High Efficiency Image Container) est le format d'image par défaut d'Apple depuis iOS 11. Il offre une meilleure compression que JPEG, ce qui signifie que vos photos occupent moins d'espace de stockage tout en conservant une qualité élevée.
+
+Le problème ? Windows, Android et la plupart des navigateurs web ne le supportent pas nativement. C'est pourquoi la conversion en **PDF** (ou JPEG) est souvent nécessaire pour le partage.`
             },
             {
-                id: "batch-fr",
-                title: "Fusionnez plusieurs photos en un seul document",
-                content: `Arrêtez d'envoyer 20 fichiers séparés. Notre outil vous permet de combiner toutes vos reçus ou pages de contrat en un seul document PDF organisé. Vous pouvez même réorganiser les pages avant la conversion.`
+                id: "how-to",
+                title: "Étapes pour Convertir HEIC en PDF",
+                content: `1. **Sélectionnez Vos Photos** : Téléchargez un ou plusieurs fichiers .heic depuis votre iPhone, iCloud ou ordinateur.
+2. **Conversion Automatique** : Notre outil décode le format HEIC et génère un PDF de haute qualité.
+3. **Téléchargez** : Enregistrez votre nouveau PDF, prêt à être partagé avec n'importe qui sur n'importe quel appareil.`
             },
             {
-                id: "security-fr",
-                title: "Sécurité locale : Vos photos restent chez vous",
-                content: `Contrairement aux sites 'cloud' qui stockent vos images sur des serveurs étrangers, nous traitons tout sur votre appareil. Vos photos privées ne quittent jamais votre téléphone ou ordinateur.`
+                id: "privacy",
+                title: "Pourquoi la Conversion Locale est Importante",
+                content: `Les photos contiennent souvent des informations sensibles : visages de famille, documents personnels, captures d'écran de comptes bancaires. Les télécharger sur un site de conversion aléatoire est un risque de confidentialité.
+
+**pdfcanada.ca** traite vos fichiers HEIC entièrement dans votre navigateur. Vos photos ne quittent **jamais** votre appareil.`
             }
         ],
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, totalement gratuit. Nous ne limitons pas le nombre de photos que vous pouvez convertir."
+                q: "La qualité de l'image sera-t-elle réduite ?",
+                a: "Non. Nous conservons la résolution et la qualité d'image d'origine lors de la conversion en PDF."
+            },
+            {
+                q: "Puis-je convertir plusieurs fichiers HEIC à la fois ?",
+                a: "Oui ! Vous pouvez sélectionner plusieurs photos et elles seront toutes converties en un seul document PDF multi-pages."
             },
             {
                 q: "Cela fonctionne-t-il sur Android ?",
-                a: "Oui, notre outil web est compatible avec tous les smartphones modernes (Android et iPhone) via Chrome ou Safari."
-            },
-            {
-                q: "Puis-je l'utiliser pour l'ARC (CRA) ?",
-                a: "Absolument. Le format PDF est le standard recommandé pour les soumissions de documents justificatifs auprès de l'Agence du revenu du Canada."
+                a: "Absolument. Bien que HEIC soit un format Apple, notre convertisseur fonctionne sur n'importe quel navigateur moderne, y compris Chrome sur Android."
             }
         ],
 
-        ctaTitle: "Prêt à convertir vos photos ?",
-        ctaButton: "Convertir HEIC maintenant",
-        ctaSubtext: "Gratuit, rapide et 100% privé au Canada."
+        ctaTitle: "Prêt à Convertir Vos Photos ?",
+        ctaButton: "Convertir HEIC en PDF",
+        ctaSubtext: "Gratuit, Rapide et 100% Privé."
     }
+
 });
 
 export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {

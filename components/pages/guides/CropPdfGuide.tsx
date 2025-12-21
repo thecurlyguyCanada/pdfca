@@ -70,29 +70,50 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment recadrer des pages PDF (Gratuit) | pdfcanada.ca",
-            desc: "Apprenez à recadrer des pages PDF et à ajuster les marges gratuitement. Notre outil canadien vous aide à ajuster vos PDF localement."
+            title: "Rogner un PDF en Ligne Gratuit | Recadrer les Pages PDF | pdfcanada.ca",
+            desc: "Apprenez à rogner et recadrer des pages PDF gratuitement. Supprimez les marges blanches et ajustez les zones de contenu de manière sécurisée dans votre navigateur."
         },
-        h1: "Comment recadrer des pages PDF",
-        subtitle: "Ajustez vos marges et concentrez-vous sur l'essentiel.",
+        h1: "Comment Rogner un PDF : Guide Complet",
+        subtitle: "Éliminez les marges indésirables et recadrez vos documents PDF avec précision.",
 
         intro: (
             <>
-                Besoin de supprimer des espaces blancs sur un scan ? Recadrer un PDF est facile avec nos outils canadiens gratuits et sécurisés.
+                Vous avez déjà eu un PDF avec d'énormes marges blanches qui gaspillent de l'espace à l'impression ? Ou peut-être avez-vous besoin de <strong>rogner un PDF</strong> pour vous concentrer sur une section spécifique d'un diagramme ou d'une carte.
+                <br /><br />
+                Notre <strong>outil de rognage PDF</strong> vous permet de définir des marges personnalisées ou de recadrer visuellement des zones spécifiques, le tout traité localement dans votre navigateur pour une confidentialité maximale.
             </>
         ),
 
         sections: [
             {
-                id: "step-by-step",
-                title: "Étape par Étape : Recadrer votre PDF",
+                id: "how-to",
+                title: "Comment Rogner Vos Pages PDF",
                 content: (
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li className="pl-2"><strong>Sélectionnez votre fichier</strong></li>
-                            <li className="pl-2"><strong>Ajustez les marges</strong></li>
-                            <li className="pl-2"><strong>Téléchargez</strong></li>
+                            <li className="pl-2">
+                                <strong>Téléchargez Votre PDF</strong> : Sélectionnez le fichier que vous souhaitez recadrer.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Définissez les Marges</strong> : Ajustez les valeurs de rognage pour le haut, le bas, la gauche et la droite, ou utilisez notre outil de sélection visuelle.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Appliquez et Téléchargez</strong> : Cliquez sur "Rogner le PDF" et enregistrez votre document optimisé.
+                            </li>
                         </ol>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cas d'Utilisation Courants",
+                content: (
+                    <>
+                        <ul className="list-disc pl-5 space-y-2 mt-4">
+                            <li><strong>Supprimer les Marges Blanches</strong> : Parfait pour les documents scannés avec trop d'espace blanc.</li>
+                            <li><strong>Extraire des Diagrammes</strong> : Isolez des graphiques ou des tableaux spécifiques d'un rapport plus large.</li>
+                            <li><strong>Optimiser pour l'Impression</strong> : Réduisez la taille de la page pour économiser du papier et de l'encre.</li>
+                        </ul>
                     </>
                 )
             }
@@ -100,14 +121,20 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, c'est 100% gratuit et sans inscription."
+                q: "Le rognage supprime-t-il définitivement le contenu ?",
+                a: "Oui. Le contenu en dehors de la zone rognée est supprimé du fichier final. Votre fichier original reste intact sur votre ordinateur."
+            },
+            {
+                q: "Puis-je rogner des pages spécifiques uniquement ?",
+                a: "Actuellement, le rognage s'applique à toutes les pages. Si vous devez rogner des pages spécifiques, nous recommandons d'utiliser d'abord notre outil de suppression de pages pour isoler les pages que vous souhaitez rogner."
             }
         ],
 
-        ctaTitle: "Prêt à recadrer votre PDF ?",
-        ctaButton: "Recadrer mon PDF",
-        ctaSubtext: "Gratuit, sécurisé et canadien."
+        ctaTitle: "Prêt à Recadrer Votre PDF ?",
+        ctaButton: "Commencer le Rognage",
+        ctaSubtext: "Gratuit, Rapide et Sécurisé.",
+
+        faqHeading: "Questions Fréquentes"
     }
 });
 

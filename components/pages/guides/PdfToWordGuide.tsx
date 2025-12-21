@@ -68,31 +68,58 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: "Convertir PDF en Word Gratuit | PDF en Docx | pdfcanada.ca",
-            desc: "Le guide définitif pour convertir vos PDF en documents Word modifiables. Apprenez à transformer vos fichiers en Docx localement."
+            desc: "Le guide définitif pour convertir vos PDF en documents Word modifiables. Apprenez à transformer vos fichiers statiques en Docx flexibles de manière sécurisée et locale."
         },
-        h1: "Comment Convertir un PDF en Word",
-        subtitle: "Rendez vos documents à nouveau modifiables, simplement et sécuriséement.",
+        h1: "Comment Convertir un PDF en Word : Le Guide Pratique",
+        subtitle: "Transformez vos PDF en lecture seule en documents modifiables sans installation de logiciel ni compromis sur la confidentialité.",
 
-        intro: "Besoin de modifier un **document PDF** ? Que ce soit pour un contrat ou un rapport, notre **convertisseur PDF en Word** extrait le contenu dans un fichier **.docx**. Tout se passe dans votre navigateur, garantissant que vos documents canadiens restent privés.",
+        intro: "Besoin de modifier un **document PDF** ? Nous sommes tous passés par là : vous avez un contrat, un CV ou un rapport qui nécessite une mise à jour rapide, mais vous n'avez que la version PDF. Notre **convertisseur PDF en Word** vous permet d'extraire le texte et le formatage de base dans un fichier **.docx** standard. Le meilleur ? Tout se passe entièrement dans votre navigateur, gardant vos documents canadiens sensibles en sécurité et à l'abri des serveurs étrangers.",
 
         sections: [
             {
-                id: "why-word-fr",
-                title: "Pourquoi revenir au format Word ?",
-                content: `Le PDF est idéal pour la consultation, mais difficile à modifier. Le passage en Word vous permet de corriger des erreurs, de mettre à jour des dates ou de reformater le contenu facilement.`
+                id: "why-word",
+                title: "Pourquoi reconvertir un PDF en Word ?",
+                content: `Les PDF sont excellents pour la visualisation, mais terribles pour l'édition. En convertissant en Word, vous gagnez la possibilité de :
+- **Modifier le texte** : Corriger les fautes de frappe, mettre à jour les dates ou changer les noms dans les contrats.
+- **Ajuster la mise en page** : Déplacer des images ou modifier les tailles de police dans les rapports.
+- **Collaborer** : Envoyer un document Word est souvent plus facile pour les équipes qui utilisent la fonction "Suivi des modifications".`
+            },
+            {
+                id: "how-it-works",
+                title: "Comment Fonctionne Notre Conversion Locale",
+                content: `La plupart des convertisseurs en ligne téléchargent votre fichier sur un serveur cloud, où il est traité et stocké. Chez pdfcanada.ca, nous utilisons une **technologie côté client**.
+
+1. **Extraction Locale** : Notre moteur lit les caractères de texte directement depuis le PDF dans la mémoire de votre navigateur.
+2. **Génération Docx** : Nous construisons une nouvelle chaîne de fichier Word et l'encapsulons dans un package .docx.
+3. **Téléchargement Instantané** : Le fichier vous est renvoyé immédiatement. Vos données ne quittent jamais votre appareil.`
+            },
+            {
+                id: "limitations",
+                title: "À Quoi S'attendre (Formatage)",
+                content: `Puisque nous traitons tout dans le navigateur pour maintenir votre confidentialité, les mises en page complexes comme les tableaux multi-colonnes ou les images superposées peuvent nécessiter un peu de retouche dans Word après la conversion. Cependant, pour les documents riches en texte, c'est le moyen le plus rapide et le plus sûr de récupérer votre contenu dans un état modifiable.`
             }
         ],
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Absolument. Comme tous nos outils, c'est 100% gratuit au Canada."
+                q: "Y a-t-il une limite de taille de fichier ?",
+                a: "Puisque la conversion est locale, la limite dépend de la RAM de votre ordinateur. La plupart des documents standard jusqu'à 50 Mo se convertissent en quelques secondes !"
+            },
+            {
+                q: "Dois-je m'inscrire ?",
+                a: "Pas du tout, eh. Il suffit de télécharger, convertir et télécharger. Aucun courriel requis, aucune newsletter."
+            },
+            {
+                q: "Puis-je convertir des PDF scannés en Word ?",
+                a: "Pour les images scannées, nous recommandons d'utiliser d'abord notre **outil OCR** pour rendre le texte sélectionnable, puis de le convertir en Word."
             }
         ],
 
-        ctaTitle: "Prêt à modifier votre document ?",
-        ctaButton: "Convertir PDF en Word maintenant",
-        ctaSubtext: "Rapide, gratuit et privé."
+        ctaTitle: "Prêt à Modifier Votre Document ?",
+        ctaButton: "Commencer la Conversion PDF en Word",
+        ctaSubtext: "100% Gratuit. Sécurisé. Canadien.",
+
+        faqHeading: "Questions Courantes"
     }
 });
 
