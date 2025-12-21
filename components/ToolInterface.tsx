@@ -330,7 +330,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             <FileText size={18} className="md:w-5 md:h-5" />
                         </div>
                         <div className="min-w-0 flex-1">
-                            <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[140px] md:max-w-[200px]">{file.name}</h3>
+                            <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[140px] md:max-w-[200px]">{file?.name}</h3>
                             <p className="text-xs text-gray-500 flex items-center gap-2">
                                 <span>{file ? formatFileSize(file.size) : ''}</span>
                             </p>
@@ -579,7 +579,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">
-                            Ready to convert <strong>{file.name}</strong>. This might take a few moments depending on the file size, eh.
+                            Ready to convert <strong>{file?.name}</strong>. This might take a few moments depending on the file size, eh.
                         </p>
                     </div>
                 )}
