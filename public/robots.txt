@@ -75,19 +75,19 @@ Disallow: /
 
 # AI Training Bots - Optionally block
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: Claude-Web
-Disallow: /
+Allow: /
 
 # Sitemap locations
 Sitemap: https://pdfcanada.ca/sitemap.xml

@@ -6,11 +6,11 @@
   <!-- Home Page -->
   <url>
     <loc>https://pdfcanada.ca/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/"/>
     <image:image>
       <image:loc>https://pdfcanada.ca/og-image.png</image:loc>
@@ -237,6 +237,31 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-epub"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-epub"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-epub"/>
+  </url>
+
+  <url>
+    <loc>https://pdfcanada.ca/sign-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/sign-pdf" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/sign-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/sign-pdf" />
+    <image:image>
+      <image:loc>https://pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Sign PDF</image:title>
+      <image:caption>Sign PDF documents electronically for free.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://pdfcanada.ca/fr/sign-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/sign-pdf" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/sign-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/sign-pdf" />
   </url>
 
   <!-- Info Pages -->

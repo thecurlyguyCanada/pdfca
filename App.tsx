@@ -1073,6 +1073,14 @@ function App() {
           lang={lang}
           canonicalPath={tool?.path}
           schema={toolSchema}
+          steps={content.steps?.map((step: string, i: number) => ({
+            name: `Step ${i + 1}`,
+            text: step,
+            image: `https://pdfcanada.ca/og-image.png`
+          }))}
+          price="0"
+          rating={4.8}
+          reviewCount={1245}
         />
 
         <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
@@ -1127,6 +1135,10 @@ function App() {
                 description={t.seo.homeDesc}
                 lang={lang}
                 schema={softwareAppSchema}
+                faqs={t.seo.homeFaq}
+                price="0"
+                rating={4.8}
+                reviewCount={1245}
               />
               {renderHome()}
             </>

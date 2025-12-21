@@ -25,18 +25,23 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         className="flex items-center justify-between px-5 md:px-6 py-3 md:py-4 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-t-4 border-t-canada-red border-b border-gray-100 shadow-sm"
         style={{ paddingTop: 'max(12px, var(--safe-area-inset-top))' }}
       >
-        <div
+        <a
+          href="/"
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 active:opacity-60 transition-opacity active:scale-95"
-          onClick={() => handleNavigate('HOME')}
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavigate('HOME');
+          }}
+          aria-label="pdfcanada.ca Home"
         >
           <span className="text-lg md:text-xl font-bold text-gray-800 tracking-tight">pdfcanada<span className="text-canada-red">.ca</span></span>
-        </div>
+        </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-600">
-          <button onClick={() => handleNavigate('HOW_TO')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navHowTo}</button>
-          <button onClick={() => handleNavigate('SUPPORT')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navSupport}</button>
-          <button onClick={() => handleNavigate('PRICING')} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navPricing}</button>
+          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navHowTo}</a>
+          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navSupport}</a>
+          <a href="/pricing" onClick={(e) => { e.preventDefault(); handleNavigate('PRICING'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navPricing}</a>
         </nav>
 
         <div className="flex items-center gap-2">

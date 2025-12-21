@@ -1,18 +1,23 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { Language } from '../utils/i18n';
 
 interface SEOProps {
   title: string;
   description: string;
+  lang: Language;
   canonicalPath?: string;
   image?: string;
-  lang?: string;
   schema?: Record<string, any> | Record<string, any>[];
   breadcrumbs?: { name: string; path: string }[];
   ogType?: 'website' | 'article' | 'product';
   noOrganization?: boolean;
-  faqs?: { question: string; answer: string }[];
+  faqs?: { q: string; a: string }[];
   datePublished?: string;
   dateModified?: string;
+  price?: string;
+  rating?: number;
+  reviewCount?: number;
+  steps?: { name: string; text: string; image?: string }[];
 }
 
 // Organization schema - reused across pages
@@ -74,7 +79,11 @@ export const SEO: React.FC<SEOProps> = ({
   noOrganization = false,
   faqs,
   datePublished,
-  dateModified
+  dateModified,
+  price,
+  rating,
+  reviewCount,
+  steps
 }) => {
   // Memoize the setMeta helper function
   const setMeta = useCallback((attrName: string, attrValue: string, content: string) => {
@@ -227,29 +236,39 @@ export const SEO: React.FC<SEOProps> = ({
     allSchemas.push(siteNavSchema);
 
     // SoftwareApplication schema (for tool pages)
+    // We only invoke this if it looks like a tool page (canonical path isn't root or guide)
+    // Adjust logic as needed
     if (canonicalPath !== '/' && !canonicalPath.startsWith('/guides')) {
       allSchemas.push({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": title.split('|')[0].trim(),
-        "operatingSystem": "All",
+        "operatingSystem": "Web Browser",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "Document Editor",
         "offers": {
           "@type": "Offer",
-          "price": "0",
+          "price": price || "0",
           "priceCurrency": "CAD",
           "availability": "https://schema.org/InStock"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": "156",
-          "reviewCount": "89"
-        },
-        "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free"
+        ...(rating && reviewCount && {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": rating.toString(),
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": reviewCount.toString(),
+            "reviewCount": reviewCount.toString()
+          }
+        }),
+        "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free",
+        "softwareRequirements": "Modern Web Browser",
+        "author": {
+          "@type": "Organization",
+          "name": "pdfcanada.ca",
+          "url": "https://pdfcanada.ca"
+        }
       });
     }
 
@@ -278,11 +297,32 @@ export const SEO: React.FC<SEOProps> = ({
         "@type": "FAQPage",
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
-          "name": faq.question,
+          "name": faq.q,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": faq.answer
+            "text": faq.a
           }
+        }))
+      });
+    }
+
+    // HowTo Schema - Added for 2026 Standards
+    if (steps && steps.length > 0) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": title,
+        "description": description,
+        "step": steps.map((step, index) => ({
+          "@type": "HowToStep",
+          "url": `https://pdfcanada.ca${canonicalPath}#step${index + 1}`,
+          "name": step.name,
+          "itemListElement": {
+            "@type": "HowToDirection",
+            "text": step.text
+          },
+          ...(step.image && { "image": { "@type": "ImageObject", "url": step.image } }),
+          "position": index + 1
         }))
       });
     }
@@ -301,7 +341,7 @@ export const SEO: React.FC<SEOProps> = ({
       });
     }
 
-    // Add page-specific schemas
+    // Add page-specific schemas (custom ones passed in)
     if (schema) {
       const pageSchemas = Array.isArray(schema) ? schema : [schema];
       allSchemas.push(...pageSchemas);
@@ -317,7 +357,7 @@ export const SEO: React.FC<SEOProps> = ({
       document.head.appendChild(script);
     });
 
-  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization]);
+  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization, faqs, datePublished, dateModified, price, rating, reviewCount, steps, breadcrumbs]);
 
   return null;
 };
