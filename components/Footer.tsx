@@ -91,10 +91,10 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                <p>&copy; {year} pdfcanada.ca. {t.footerRights}</p>
 
-               <div className="flex items-center gap-6">
-                  <button onClick={() => onNavigate('TERMS')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.termsService}</button>
-                  <button onClick={() => onNavigate('PRIVACY')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline">{t.privacy}</button>
-                  <span className="flex items-center gap-1">
+               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+                  <button onClick={() => onNavigate('TERMS')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline py-2 min-h-[44px]">{t.termsService}</button>
+                  <button onClick={() => onNavigate('PRIVACY')} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline py-2 min-h-[44px]">{t.privacy}</button>
+                  <span className="flex items-center gap-1 py-2">
                      {t.footerMade} <Heart size={10} className="text-canada-red fill-current" /> in 🇨🇦
                   </span>
                </div>

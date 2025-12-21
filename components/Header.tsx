@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
   return (
     <>
       <header
-        className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-t-4 border-t-canada-red border-b border-gray-100 shadow-sm"
+        className="flex items-center justify-between px-5 md:px-6 py-3 md:py-4 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-t-4 border-t-canada-red border-b border-gray-100 shadow-sm"
         style={{ paddingTop: 'max(12px, var(--safe-area-inset-top))' }}
       >
         <div
@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
-            className="text-xs font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-sm font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {lang === 'en' ? 'FR' : 'EN'}
           </button>

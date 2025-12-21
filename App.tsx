@@ -745,7 +745,7 @@ function App() {
 
 
   const renderHome = () => (
-    <div className="w-full max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-16">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20 flex flex-col gap-10 md:gap-16">
 
       {/* Hero Section */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
@@ -779,25 +779,25 @@ function App() {
 
         {/* Right Side: Dashboard / Tool */}
         <div className="w-full md:w-1/2 max-w-xl">
-          <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
+          <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[400px] md:min-h-[500px] flex flex-col transition-all duration-300">
 
             {/* --- DASHBOARD: SELECT TOOL --- */}
             {appState === AppState.HOME && (
-              <div className="p-8 h-full bg-gray-50/30 overflow-y-auto custom-scrollbar">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                  Select a Tool <span className="text-lg font-normal text-gray-600">eh?</span>
+              <div className="p-4 sm:p-6 md:p-8 h-full bg-gray-50/30 overflow-y-auto custom-scrollbar">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6 flex items-center gap-2">
+                  Select a Tool <span className="text-base md:text-lg font-normal text-gray-600">eh?</span>
                 </h2>
-                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   {tools.map(tool => (
                     <button
                       key={tool.id}
                       onClick={() => selectTool(tool.id)}
-                      className="flex flex-col items-center md:items-start p-4 md:p-5 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 active:border-canada-red active:shadow-lg active:shadow-red-500/10 transition-all text-center md:text-left group"
+                      className="flex flex-col items-center md:items-start p-3 sm:p-4 md:p-5 bg-white border border-gray-200 rounded-xl md:rounded-2xl hover:border-canada-red hover:shadow-lg hover:shadow-red-500/10 active:scale-95 active:border-canada-red active:shadow-lg active:shadow-red-500/10 transition-all text-center md:text-left group min-h-[88px]"
                     >
-                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-xl mb-2 md:mb-3 group-hover:bg-canada-red group-hover:text-white group-active:bg-canada-red group-active:text-white transition-colors">
-                        <tool.icon size={20} className="md:w-6 md:h-6" />
+                      <div className="p-2 md:p-3 bg-red-50 text-canada-red rounded-lg md:rounded-xl mb-1.5 md:mb-3 group-hover:bg-canada-red group-hover:text-white group-active:bg-canada-red group-active:text-white transition-colors">
+                        <tool.icon size={18} className="md:w-6 md:h-6" />
                       </div>
-                      <h3 className="font-bold text-gray-800 text-sm md:text-base leading-tight">{tool.title}</h3>
+                      <h3 className="font-bold text-gray-800 text-xs sm:text-sm md:text-base leading-tight">{tool.title}</h3>
                       <p className="text-[10px] md:text-xs text-gray-500 mt-1 hidden md:block">{tool.desc}</p>
                     </button>
                   ))}
