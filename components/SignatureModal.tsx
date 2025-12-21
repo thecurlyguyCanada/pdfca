@@ -7,6 +7,7 @@ interface SignatureModalProps {
     onSave: (dataUrl: string) => void;
     t: any;
     title: string;
+    defaultTab?: 'draw' | 'type' | 'upload';
 }
 
 export const SignatureModal: React.FC<SignatureModalProps> = ({
@@ -14,9 +15,10 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
     onClose,
     onSave,
     t,
-    title
+    title,
+    defaultTab = 'draw'
 }) => {
-    const [activeTab, setActiveTab] = useState<'draw' | 'type' | 'upload'>('draw');
+    const [activeTab, setActiveTab] = useState<'draw' | 'type' | 'upload'>(defaultTab);
     const [typedText, setTypedText] = useState('');
     const [isDrawing, setIsDrawing] = useState(false);
     const canvasRef = useRef<HTMLCanvasElement>(null);

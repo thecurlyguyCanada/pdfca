@@ -981,6 +981,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 onSave={handleSignatureSave}
                 t={t}
                 title={modalType === 'signature' ? t.addSignature : t.addInitials}
+                defaultTab={modalType === 'initials' ? 'type' : 'draw'}
             />
 
             <button id="footer-sign-trigger" onClick={() => onSign(entries)} className="hidden" />
