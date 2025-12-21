@@ -49,7 +49,7 @@ enum AppState {
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS';
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -67,7 +67,8 @@ export enum ToolType {
   PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
   FLATTEN = 'FLATTEN',
   CROP = 'CROP',
-  COMPRESS = 'COMPRESS'
+  COMPRESS = 'COMPRESS',
+  MERGE = 'MERGE'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -761,6 +762,8 @@ function App() {
           pageRangeInput={pageRangeInput}
           setPageRangeInput={setPageRangeInput}
           handleRangeInputChange={handleRangeInputChange}
+          compressionLevel={compressionLevel}
+          setCompressionLevel={setCompressionLevel}
         />
       </React.Suspense>
     );

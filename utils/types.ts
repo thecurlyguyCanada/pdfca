@@ -5,9 +5,17 @@ export enum ToolType {
     EPUB_TO_PDF = 'EPUB_TO_PDF',
     PDF_TO_EPUB = 'PDF_TO_EPUB',
     MAKE_FILLABLE = 'MAKE_FILLABLE',
-    OCR = 'OCR',
+    CBR_TO_PDF = 'CBR_TO_PDF',
+    SIGN = 'SIGN',
     ORGANIZE = 'ORGANIZE',
-    COMPRESS = 'COMPRESS'
+    OCR = 'OCR',
+    PDF_TO_WORD = 'PDF_TO_WORD',
+    WORD_TO_PDF = 'WORD_TO_PDF',
+    PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
+    FLATTEN = 'FLATTEN',
+    CROP = 'CROP',
+    COMPRESS = 'COMPRESS',
+    MERGE = 'MERGE'
 }
 
 export enum AppState {
