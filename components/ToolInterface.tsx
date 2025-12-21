@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen } from 'lucide-react';
+import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus } from 'lucide-react'; // Added Plus
 import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy } from '@dnd-kit/sortable';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { formatFileSize } from '../utils/pdfUtils';
@@ -15,6 +15,8 @@ import { useSwipe } from '../hooks/useSwipe';
 interface ToolInterfaceProps {
     // ... existing props
     file: File | null;
+    files?: File[];
+    setFiles?: React.Dispatch<React.SetStateAction<File[]>>;
     currentTool: ToolType;
     t: any;
     pageCount: number;
@@ -83,8 +85,40 @@ const SortableThumbnail: React.FC<{
     );
 };
 
+const SortableFileItem: React.FC<{
+    file: File;
+    id: string;
+    onRemove: (id: string) => void;
+}> = ({ file, id, onRemove }) => {
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1,
+        touchAction: 'none'
+    };
+
+    return (
+        <div ref={setNodeRef} style={style} {...attributes} {...listeners} className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 select-none mb-3 ${isDragging ? 'shadow-lg border-canada-red/50 z-50 relative' : ''}`}>
+            <GripVertical className="text-gray-400 cursor-grab active:cursor-grabbing shrink-0" size={20} />
+            <div className="p-2 bg-red-50 dark:bg-red-900/20 rounded-lg text-canada-red shrink-0">
+                <FileText size={24} />
+            </div>
+            <div className="flex-1 min-w-0 text-left">
+                <p className="font-medium truncate text-gray-900 dark:text-white max-w-[200px] md:max-w-md">{file.name}</p>
+                <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
+            </div>
+            <button onClick={(e) => { e.stopPropagation(); onRemove(id); }} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-500 rounded-lg transition-colors shrink-0" onPointerDown={e => e.stopPropagation()}>
+                <X size={20} />
+            </button>
+        </div>
+    );
+};
+
 export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     file,
+    files,
+    setFiles,
     currentTool,
     t,
     pageCount,
@@ -131,12 +165,39 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         }
     });
 
-    const handleDragEnd = (event: DragEndEvent) => {
+    const handlePageDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
         if (over && active.id !== over.id) {
             const oldIndex = pageOrder.findIndex((p) => `page-${p}` === active.id);
             const newIndex = pageOrder.findIndex((p) => `page-${p}` === over.id);
             setPageOrder(arrayMove(pageOrder, oldIndex, newIndex));
+        }
+    };
+
+    const handleFileDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+        if (over && active.id !== over.id && files && setFiles) {
+            setFiles((items) => {
+                const oldIndex = items.findIndex((_, i) => `file-${i}` === active.id);
+                const newIndex = items.findIndex((_, i) => `file-${i}` === over.id);
+                if (oldIndex !== -1 && newIndex !== -1) {
+                    return arrayMove(items, oldIndex, newIndex);
+                }
+                return items;
+            });
+            triggerHaptic('medium');
+        }
+    };
+
+    const removeFile = (id: string) => {
+        if (files && setFiles) {
+            const index = parseInt(id.replace('file-', ''));
+            const newFiles = [...files];
+            newFiles.splice(index, 1);
+            setFiles(newFiles);
+            if (newFiles.length === 0) {
+                onSoftReset();
+            }
         }
     };
     // Desktop mode: use larger base thumbnail size for better visibility
@@ -145,7 +206,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
-    if (!file) {
+    if (!file && (!files || files.length === 0)) {
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
@@ -179,6 +240,66 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     ref={fileInputRef}
                     onChange={handleFileChange}
                 />
+            </div>
+        );
+    }
+
+
+    if (currentTool === ToolType.MERGE && files && files.length > 0) {
+        return (
+            <div className="w-full max-w-2xl mx-auto px-4 pb-24 relative">
+                <div className="text-center mb-8 animate-fade-in-up pt-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/30 text-canada-red rounded-2xl mb-4">
+                        <GripVertical size={32} />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.toolMerge}</h2>
+                    <p className="text-gray-600 dark:text-gray-400">{t.toolMergeDesc}</p>
+                </div>
+
+                <div className="space-y-4 pb-8">
+                    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleFileDragEnd}>
+                        <SortableContext items={files.map((_, i) => `file-${i}`)} strategy={verticalListSortingStrategy}>
+                            <div className="space-y-3">
+                                {files.map((f, i) => (
+                                    <div key={`file-${i}-${f.name}`} className="animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
+                                        <SortableFileItem
+                                            key={`file-${i}`}
+                                            id={`file-${i}`}
+                                            file={f}
+                                            onRemove={removeFile}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </SortableContext>
+                    </DndContext>
+
+                    <label className="cursor-pointer bg-white dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 hover:border-canada-red dark:hover:border-canada-red rounded-xl p-6 flex flex-col items-center gap-2 transition-all group animate-fade-in-up">
+                        <input type="file" multiple accept=".pdf" className="hidden" onChange={handleFileChange} />
+                        <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-full group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-colors">
+                            <Plus className="text-gray-400 group-hover:text-canada-red" size={24} />
+                        </div>
+                        <span className="font-medium text-gray-600 dark:text-gray-400 group-hover:text-canada-red">Add more PDFs</span>
+                    </label>
+                </div>
+
+                <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 z-50">
+                    <div className="max-w-2xl mx-auto flex gap-4">
+                        <button
+                            onClick={onSoftReset}
+                            className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        >
+                            {t.btnCancel}
+                        </button>
+                        <button
+                            onClick={() => onAction()}
+                            disabled={files.length < 2}
+                            className="flex-1 px-6 py-3 rounded-xl bg-canada-red text-white font-bold hover:bg-canada-darkRed transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-red-500/20"
+                        >
+                            {t.toolMerge} ({files.length} files)
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -367,7 +488,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             <GripVertical size={18} className="mt-0.5 shrink-0" />
                             <p>{t.dragToReorder || 'Drag pages to reorder them. Click & hold, then drag to a new position.'}</p>
                         </div>
-                        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handlePageDragEnd}>
                             <SortableContext items={pageOrder.map(p => `page-${p}`)} strategy={rectSortingStrategy}>
                                 <div
                                     className={`grid gap-4 md:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : ''}`}

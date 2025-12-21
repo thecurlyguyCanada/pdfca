@@ -206,6 +206,8 @@ export const SEO: React.FC<SEOProps> = ({
         "Word to PDF",
         "Flatten PDF",
         "Crop PDF",
+        "Compress PDF",
+        "Merge PDF",
         "Ultimate Guide"
       ],
       "url": [
@@ -217,6 +219,8 @@ export const SEO: React.FC<SEOProps> = ({
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/word-to-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-non-editable`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/compress-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/merge-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
       ]
     };

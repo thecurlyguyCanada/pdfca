@@ -15,7 +15,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -37,6 +37,7 @@ const PdfPageRemoverGuide = React.lazy(() => import('./components/pages/guides/P
 const FlattenPdfGuide = React.lazy(() => import('./components/pages/guides/FlattenPdfGuide').then(module => ({ default: module.FlattenPdfGuide })));
 const CropPdfGuide = React.lazy(() => import('./components/pages/guides/CropPdfGuide').then(module => ({ default: module.CropPdfGuide })));
 const CompressPdfGuide = React.lazy(() => import('./components/pages/guides/CompressPdfGuide').then(module => ({ default: module.CompressPdfGuide })));
+const MergePdfGuide = React.lazy(() => import('./components/pages/guides/MergePdfGuide').then(module => ({ default: module.MergePdfGuide })));
 const EditXfaPdfGuide = React.lazy(() => import('./components/pages/guides/EditXfaPdfGuide').then(module => ({ default: module.EditXfaPdfGuide })));
 
 
@@ -90,6 +91,7 @@ function App() {
   const [currentTool, setCurrentTool] = useState<ToolType | null>(null);
 
   const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]); // For multi-file tools like Merge
   const [pageCount, setPageCount] = useState<number>(0);
   const [pdfJsDoc, setPdfJsDoc] = useState<any>(null);
 
@@ -205,6 +207,14 @@ function App() {
       setCurrentTool(ToolType.CROP);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
+    } else if (path === '/compress-pdf') {
+      setCurrentTool(ToolType.COMPRESS);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/merge-pdf') {
+      setCurrentTool(ToolType.MERGE);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
     else if (path === '/privacy') setView('PRIVACY');
     else if (path === '/terms') setView('TERMS');
@@ -230,6 +240,7 @@ function App() {
 
     else if (path === '/guides/crop-pdf') setView('GUIDE_CROP');
     else if (path === '/guides/compress-pdf') setView('GUIDE_COMPRESS');
+    else if (path === '/guides/merge-pdf') setView('GUIDE_MERGE');
     else if (path === '/guides/edit-xfa-pdf') setView('GUIDE_EDIT_XFA');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
@@ -375,6 +386,7 @@ function App() {
         setSelectedPages(new Set());
         setRotations({});
         setPageRangeInput('');
+        setFiles([]);
       }
       safePushState({}, '', `${prefix}${toolPath}`);
     } else if (path) {
@@ -401,12 +413,14 @@ function App() {
     { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
     { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
+    { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge || 'Merge PDF', desc: t.toolMergeDesc || 'Combine multiple PDFs into one.', accept: '.pdf', path: '/merge-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
     const tool = tools.find(t => t.id === toolId);
     setCurrentTool(toolId);
     setFile(null);
+    setFiles([]);
     setAppState(AppState.SELECTING);
     setView('TOOL_PAGE');
     if (tool) {
@@ -415,9 +429,18 @@ function App() {
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
+    if (e.target.files && e.target.files.length > 0) {
       triggerHaptic('light'); // Feedback for file selection
-      processFile(e.target.files[0]);
+
+      if (currentTool === ToolType.MERGE) {
+        const newFiles = Array.from(e.target.files);
+        setFiles(prev => [...prev, ...newFiles]);
+        // Set the first file as 'file' just for compatibility
+        if (!file) setFile(newFiles[0]);
+        setAppState(AppState.SELECTING);
+      } else {
+        processFile(e.target.files[0]);
+      }
     }
   };
 
@@ -563,8 +586,13 @@ function App() {
             outName = file.name.replace('.pdf', '_cropped.pdf');
             break;
           case ToolType.COMPRESS:
-            resultBlob = await compressPdf(file, compressionLevel);
             outName = file.name.replace('.pdf', '_compressed.pdf');
+            break;
+          case ToolType.MERGE:
+            if (files.length > 0) {
+              resultBlob = await mergePdfs(files);
+              outName = 'merged_document.pdf';
+            }
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
@@ -658,6 +686,7 @@ function App() {
   const handleReset = () => {
     if (currentTool) {
       setFile(null);
+      setFiles([]);
       setAppState(AppState.SELECTING);
       setPageCount(0);
       setPdfJsDoc(null);
@@ -679,6 +708,7 @@ function App() {
 
   const handleSoftReset = () => {
     setFile(null);
+    setFiles([]);
     setAppState(AppState.SELECTING);
     setDownloadUrl(null);
     lastSelectedPageRef.current = null;
@@ -728,6 +758,8 @@ function App() {
       case ToolType.PDF_TO_WORD: return t.features.pdfToWord;
       case ToolType.WORD_TO_PDF: return t.features.wordToPdf;
       case ToolType.OCR: return t.features.ocr;
+      case ToolType.COMPRESS: return t.features.compress;
+      case ToolType.MERGE: return t.features.merge;
       default: return t.features.delete;
     }
   };
@@ -742,6 +774,8 @@ function App() {
       <React.Suspense fallback={<div className="flex h-64 items-center justify-center"><div className="w-10 h-10 border-4 border-canada-red border-t-transparent rounded-full animate-spin"></div></div>}>
         <LazyToolInterface
           file={file}
+          files={files}
+          setFiles={setFiles}
           currentTool={currentTool}
           t={t}
           pageCount={pageCount}
@@ -923,11 +957,11 @@ function App() {
       currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
       currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF ||
       currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF ||
-      currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.COMPRESS;
+      currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.COMPRESS || currentTool === ToolType.MERGE;
 
     // Check if we are in "Active Workspace" mode (file loaded)
     // Sign tool handles its own full-screen overlay, so we exclude it here if file is present
-    const isActiveWorkspace = file && isVisualTool;
+    const isActiveWorkspace = (file || (files && files.length > 0)) && isVisualTool;
 
     if (isActiveWorkspace) {
       return (
@@ -1006,6 +1040,21 @@ function App() {
     }
 
     // Default "Landing" Layout (Split View) for when no file is selected
+    const toolSchema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": content.title,
+      "description": content.desc,
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CAD"
+      },
+      "featureList": tool?.title
+    };
+
     return (
       <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl animate-fade-in">
         <SEO
@@ -1013,6 +1062,7 @@ function App() {
           description={content.desc}
           lang={lang}
           canonicalPath={tool?.path}
+          schema={toolSchema}
         />
 
         <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
@@ -1099,6 +1149,7 @@ function App() {
 
           {view === 'GUIDE_CROP' && <CropPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_COMPRESS' && <CompressPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_MERGE' && <MergePdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_EDIT_XFA' && <EditXfaPdfGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>

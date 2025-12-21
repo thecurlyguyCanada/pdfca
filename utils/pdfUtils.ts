@@ -1184,74 +1184,102 @@ export const cropPdfPages = async (originalFile: File, margins: { top: number, b
 
 // Compress PDF: Multi-level compression
 export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extreme'): Promise<Uint8Array> => {
-    const { PDFDocument } = await getPdfLib();
-    const pdfjs = await getPdfJs();
-    await initPdfWorker();
+  const { PDFDocument } = await getPdfLib();
+  const pdfjs = await getPdfJs();
+  await initPdfWorker();
 
-    const arrayBuffer = await file.arrayBuffer();
+  const arrayBuffer = await file.arrayBuffer();
 
-    // Level 1: "Good" - Metadata stripping and stream compression (Lossless-ish)
-    if (level === 'good') {
-        const doc = await PDFDocument.load(arrayBuffer);
-        // Remove metadata
-        doc.setTitle('');
-        doc.setAuthor('');
-        doc.setSubject('');
-        doc.setKeywords([]);
-        doc.setProducer('');
-        doc.setCreator('');
+  // Level 1: "Good" - Metadata stripping and stream compression (Lossless-ish)
+  if (level === 'good') {
+    const doc = await PDFDocument.load(arrayBuffer);
+    // Remove metadata
+    doc.setTitle('');
+    doc.setAuthor('');
+    doc.setSubject('');
+    doc.setKeywords([]);
+    doc.setProducer('');
+    doc.setCreator('');
 
-        // Attempt to remove obscure metadata if possible (pdf-lib limited here, but we do what we can)
-        // The main saving comes from useObjectStreams: true
-        return await doc.save({ useObjectStreams: true });
-    }
+    // Attempt to remove obscure metadata if possible (pdf-lib limited here, but we do what we can)
+    // The main saving comes from useObjectStreams: true
+    return await doc.save({ useObjectStreams: true });
+  }
 
-    // Level 2 & 3: Re-rendering (Lossy)
-    const loadingTask = pdfjs.getDocument({
-        data: new Uint8Array(arrayBuffer),
-        cMapUrl: '/cmaps/',
-        cMapPacked: true,
-        standardFontDataUrl: '/standard_fonts/',
+  // Level 2 & 3: Re-rendering (Lossy)
+  const loadingTask = pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: '/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/standard_fonts/',
+  });
+  const pdf = await loadingTask.promise;
+  const newPdfDoc = await PDFDocument.create();
+
+  // Settings based on level
+  const scale = level === 'extreme' ? 1.0 : 1.5; // 1.0 = ~72-96 DPI, 1.5 = ~108-144 DPI
+  const quality = level === 'extreme' ? 0.4 : 0.7;
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale });
+
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (!context) continue;
+
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({ canvasContext: context, viewport }).promise;
+
+    // Compress content to JPEG
+    const imageUri = canvas.toDataURL('image/jpeg', quality);
+    const image = await newPdfDoc.embedJpg(imageUri);
+
+    // Cleanup
+    canvas.width = 0;
+    canvas.height = 0;
+
+    // Add page matching original dimensions (scaling the image)
+    const originalViewport = page.getViewport({ scale: 1.0 });
+    const newPage = newPdfDoc.addPage([originalViewport.width, originalViewport.height]);
+
+    newPage.drawImage(image, {
+      x: 0,
+      y: 0,
+      width: originalViewport.width,
+      height: originalViewport.height,
     });
-    const pdf = await loadingTask.promise;
-    const newPdfDoc = await PDFDocument.create();
+  }
 
-    // Settings based on level
-    const scale = level === 'extreme' ? 1.0 : 1.5; // 1.0 = ~72-96 DPI, 1.5 = ~108-144 DPI
-    const quality = level === 'extreme' ? 0.4 : 0.7;
+  return await newPdfDoc.save({ useObjectStreams: true });
+};
 
-    for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale });
+export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
+  try {
+    const pdfLib = await getPdfLib();
+    const { PDFDocument } = pdfLib;
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        if (!context) continue;
+    // Create a new document
+    const mergedPdf = await PDFDocument.create();
 
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+    for (const file of files) {
+      // Load the source PDF
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await PDFDocument.load(arrayBuffer);
 
-        await page.render({ canvasContext: context, viewport }).promise;
+      // Copy all pages
+      const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
 
-        // Compress content to JPEG
-        const imageUri = canvas.toDataURL('image/jpeg', quality);
-        const image = await newPdfDoc.embedJpg(imageUri);
-
-        // Cleanup
-        canvas.width = 0;
-        canvas.height = 0;
-
-        // Add page matching original dimensions (scaling the image)
-        const originalViewport = page.getViewport({ scale: 1.0 });
-        const newPage = newPdfDoc.addPage([originalViewport.width, originalViewport.height]);
-
-        newPage.drawImage(image, {
-            x: 0,
-            y: 0,
-            width: originalViewport.width,
-            height: originalViewport.height,
-        });
+      // Add pages to the new document
+      copiedPages.forEach((page) => mergedPdf.addPage(page));
     }
 
-    return await newPdfDoc.save({ useObjectStreams: true });
+    // Save the merged PDF
+    return await mergedPdf.save();
+  } catch (error) {
+    console.error('Error in mergePdfs:', error);
+    throw new Error('Failed to merge PDFs. One of the files might be corrupted or password protected.');
+  }
 };

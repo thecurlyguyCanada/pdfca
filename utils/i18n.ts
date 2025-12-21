@@ -28,8 +28,7 @@ export const translations = {
 
 
     // Compress Tool
-    toolCompress: "Compress PDF",
-    toolCompressDesc: "Reduce file size while maintaining quality.",
+    // Compress Tool
     btnCompress: "Compress PDF",
     sizeReduced: "Size Reduced",
 
@@ -388,6 +387,30 @@ export const translations = {
           "Use the selector to define your crop area.",
           "Apply the crop and download your updated PDF."
         ]
+      },
+      compress: {
+        title: "Compress PDF Online | Reduce File Size Free | pdfcanada.ca",
+        desc: "Compress PDF files without losing quality. Reduce file size securely in your browser. No uploads, proudly Canadian.",
+        h1: "Compress PDF File Size",
+        subtitle: "Make your files smaller, eh?",
+        content: "Need to email a large PDF but it's too big? Our Compress PDF tool reduces the file size while maintaining excellent quality. Choose from three compression levels to find the perfect balance.",
+        steps: [
+          "Select the PDF file you want to compress.",
+          "Choose your compression level (Good, Balanced, or Extreme).",
+          "Click 'Compress PDF' and download your smaller file."
+        ]
+      },
+      merge: {
+        title: "Merge PDF Online | Combine PDF Files Free | pdfcanada.ca",
+        desc: "Merge multiple PDF files into one document. Combine PDFs securely in your browser. No uploads, proudly Canadian.",
+        h1: "Merge PDF Files",
+        subtitle: "Combine your documents into one, eh?",
+        content: "Have multiple PDF files that should be one document? Our Merge PDF tool lets you combine them easily. Drag and drop to reorder, then merge them into a single file.",
+        steps: [
+          "Select the PDF files you want to merge.",
+          "Drag and drop the files to rearrange the order.",
+          "Click 'Merge PDFs' to download your combined document."
+        ]
       }
     },
 
@@ -422,6 +445,11 @@ export const translations = {
     toolCropDesc: "Adjust page margins.",
     toolOrganize: "Organize PDF",
     toolOrganizeDesc: "Reorder or remove pages.",
+
+    toolCompress: "Compress PDF",
+    toolCompressDesc: "Reduce file size.",
+    toolMerge: "Merge PDF",
+    toolMergeDesc: "Combine multiple PDFs.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -601,8 +629,7 @@ export const translations = {
 
 
     // Compress Tool
-    toolCompress: "Compresser PDF",
-    toolCompressDesc: "Réduire la taille du fichier.",
+    // Compress Tool
     btnCompress: "Compresser PDF",
     sizeReduced: "Taille réduite",
 
@@ -837,6 +864,30 @@ export const translations = {
           "Utilisez le sélecteur pour définir votre zone de recadrage.",
           "Appliquez le recadrage et téléchargez votre PDF mis à jour."
         ]
+      },
+      compress: {
+        title: "Compresser PDF en Ligne | Réduire Taille PDF Gratuit | pdfcanada.ca",
+        desc: "Compressez des fichiers PDF sans perdre de qualité. Réduisez la taille du fichier en toute sécurité. Traitement local au Canada.",
+        h1: "Compresser Fichier PDF",
+        subtitle: "Réduisez la taille de vos fichiers, hein ?",
+        content: "Besoin d'envoyer un gros PDF par courriel ? Notre outil de compression réduit la taille du fichier tout en maintenant une excellente qualité. Choisissez parmi trois niveaux de compression.",
+        steps: [
+          "Sélectionnez le fichier PDF à compresser.",
+          "Choisissez votre niveau de compression (Bon, Équilibré ou Extrême).",
+          "Cliquez sur 'Compresser PDF' et téléchargez votre fichier réduit."
+        ]
+      },
+      merge: {
+        title: "Fusionner PDF en Ligne | Combiner PDF Gratuit | pdfcanada.ca",
+        desc: "Fusionnez plusieurs fichiers PDF en un seul document. Combinez des PDF en toute sécurité dans votre navigateur.",
+        h1: "Fusionner des Fichiers PDF",
+        subtitle: "Combinez vos documents en un seul.",
+        content: "Vous avez plusieurs fichiers PDF qui devraient n'en faire qu'un ? Notre outil de fusion vous permet de les combiner facilement. Glissez-déposez pour réorganiser, puis fusionnez-les.",
+        steps: [
+          "Sélectionnez les fichiers PDF à fusionner.",
+          "Glissez-déposez les fichiers pour réorganiser l'ordre.",
+          "Cliquez sur 'Fusionner PDF' pour télécharger votre document combiné."
+        ]
       }
     },
 
@@ -870,6 +921,10 @@ export const translations = {
     toolCropDesc: "Ajuster les marges.",
     toolOrganize: "Organiser PDF",
     toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
+    toolCompress: "Compresser PDF",
+    toolCompressDesc: "Réduire la taille.",
+    toolMerge: "Fusionner PDF",
+    toolMergeDesc: "Combiner plusieurs PDFs.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
