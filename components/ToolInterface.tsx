@@ -390,6 +390,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         pdfJsDoc={pdfJsDoc}
                         pageCount={pageCount}
                         t={t}
+                        zoom={previewZoom}
+                        setZoom={setPreviewZoom}
                         onCrop={async (margins, pageIndices) => {
                             if (!file) return;
                             try {

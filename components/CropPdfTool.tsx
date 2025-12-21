@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Rnd } from 'react-rnd';
-import { X, ChevronLeft, ChevronRight, Check, Crop, Layers, FileText } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check, Crop, Layers, FileText, ZoomIn, ZoomOut } from 'lucide-react';
 import { formatFileSize } from '../utils/pdfUtils';
 import { triggerHaptic } from '../utils/haptics';
 
@@ -11,6 +11,8 @@ interface CropPdfToolProps {
     pageCount: number;
     t: any;
     onCrop: (margins: { top: number, bottom: number, left: number, right: number }, pageIndices?: number[]) => void;
+    zoom: number;
+    setZoom: (zoom: number) => void;
 }
 
 export const CropPdfTool: React.FC<CropPdfToolProps> = ({
@@ -19,7 +21,9 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
     pdfJsDoc,
     pageCount,
     t,
-    onCrop
+    onCrop,
+    zoom,
+    setZoom
 }) => {
     const [activePage, setActivePage] = useState(0);
     const [applyToAll, setApplyToAll] = useState(true);
@@ -60,10 +64,11 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 const page = await pdfJsDoc.getPage(activePage + 1);
                 const viewport = page.getViewport({ scale: 1 });
 
-                // Calculate scale to fit container while maintaining aspect ratio
-                const scaleX = (containerSize.width - 48) / viewport.width; // 24px padding on each side
+                // Calculate scale to fit container while maintaining aspect ratio, then apply user zoom
+                const scaleX = (containerSize.width - 48) / viewport.width;
                 const scaleY = (containerSize.height - 48) / viewport.height;
-                const scale = Math.min(scaleX, scaleY, 1.5); // Max zoom 1.5x
+                const baseScale = Math.min(scaleX, scaleY);
+                const scale = baseScale * zoom;
 
                 const scaledViewport = page.getViewport({ scale });
 
@@ -83,7 +88,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
             }
         };
         renderPage();
-    }, [pdfJsDoc, activePage, containerSize]); // Re-render when page or container size changes
+    }, [pdfJsDoc, activePage, containerSize, zoom]); // Re-render when page, container size, or zoom changes
 
     const handleCropAction = () => {
         triggerHaptic('medium');
@@ -150,9 +155,8 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
             </div>
 
             {/* Main Canvas Area */}
-            <div className="flex-1 overflow-hidden relative flex flex-col items-center justify-center bg-gray-200/80 p-4 md:p-8" ref={containerRef}>
-
-                <div className="relative shadow-2xl shadow-black/20" style={{ maxWidth: '100%', maxHeight: '100%' }}>
+            <div className="flex-1 overflow-auto relative flex flex-col items-center bg-gray-200/80 p-4 md:p-8" ref={containerRef}>
+                <div className="relative shadow-2xl shadow-black/20 my-auto">
                     <canvas ref={canvasRef} className="block rounded-sm bg-white" />
 
                     {/* Overlay Crop Box */}
@@ -231,25 +235,52 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
             <div className="bg-white border-t border-gray-200 p-4 shrink-0 pb-[max(16px,env(safe-area-inset-bottom))]">
                 <div className="max-w-3xl mx-auto flex flex-col gap-4">
 
-                    {/* Page Navigation */}
-                    <div className="flex items-center justify-between">
-                        <button
-                            onClick={() => setActivePage(p => Math.max(0, p - 1))}
-                            disabled={activePage === 0}
-                            className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent"
-                        >
-                            <ChevronLeft size={24} />
-                        </button>
+                    {/* Page Navigation & Zoom */}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={() => setActivePage(p => Math.max(0, p - 1))}
+                                disabled={activePage === 0}
+                                className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent"
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
 
-                        <span className="font-bold text-gray-700">Page {activePage + 1} / {pageCount}</span>
+                            <span className="font-bold text-gray-700">Page {activePage + 1} / {pageCount}</span>
 
-                        <button
-                            onClick={() => setActivePage(p => Math.min(pageCount - 1, p + 1))}
-                            disabled={activePage === pageCount - 1}
-                            className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent"
-                        >
-                            <ChevronRight size={24} />
-                        </button>
+                            <button
+                                onClick={() => setActivePage(p => Math.min(pageCount - 1, p + 1))}
+                                disabled={activePage === pageCount - 1}
+                                className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent"
+                            >
+                                <ChevronRight size={24} />
+                            </button>
+                        </div>
+
+                        {/* Zoom Controls */}
+                        <div className="flex items-center bg-gray-100 rounded-lg p-1 gap-1">
+                            <button
+                                onClick={() => setZoom(Math.max(0.5, zoom - 0.1))}
+                                className="p-2 hover:bg-white hover:shadow-sm rounded-md transition-all active:scale-95"
+                                title="Zoom Out"
+                            >
+                                <ZoomOut size={20} className="text-gray-600" />
+                            </button>
+                            <span className="text-xs font-bold text-gray-600 w-12 text-center">{Math.round(zoom * 100)}%</span>
+                            <button
+                                onClick={() => setZoom(Math.min(3.0, zoom + 0.1))}
+                                className="p-2 hover:bg-white hover:shadow-sm rounded-md transition-all active:scale-95"
+                                title="Zoom In"
+                            >
+                                <ZoomIn size={20} className="text-gray-600" />
+                            </button>
+                            <button
+                                onClick={() => setZoom(1.0)}
+                                className="px-2 py-1 text-[10px] font-bold text-gray-500 hover:text-canada-red transition-colors"
+                            >
+                                Reset
+                            </button>
+                        </div>
                     </div>
 
                     {/* Settings */}
