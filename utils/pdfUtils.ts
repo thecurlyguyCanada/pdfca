@@ -881,13 +881,16 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
   return await newPdfDoc.save();
 };
 
-export const cropPdfPages = async (originalFile: File, margins: { top: number, bottom: number, left: number, right: number }): Promise<Uint8Array> => {
+export const cropPdfPages = async (originalFile: File, margins: { top: number, bottom: number, left: number, right: number }, pageIndices?: number[]): Promise<Uint8Array> => {
   const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
   const pages = doc.getPages();
 
-  pages.forEach(page => {
+  pages.forEach((page, index) => {
+    // If specific pages are requested, skip if this page is not in the list
+    if (pageIndices && !pageIndices.includes(index)) return;
+
     const { width, height } = page.getSize();
 
     // Default to points if not specified, or handle percentages if we want to be fancy later
