@@ -774,7 +774,7 @@ export const makeSearchablePdf = async (
 export { formatFileSize } from './formatUtils';
 
 export const convertPdfToWord = async (file: File): Promise<Blob> => {
-  const { Document, Packer, Paragraph, TextRun } = await getDocx();
+  const { Document, Packer, Paragraph, TextRun, AlignmentType } = await getDocx();
   const pdfjs = await getPdfJs();
   await initPdfWorker();
 
@@ -791,30 +791,87 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
 
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 1.0 });
     const textContent = await page.getTextContent();
-    const strings = textContent.items.map((item: any) => item.str);
+    const items = textContent.items as any[];
 
-    // Simplistic grouping: one paragraph per page, or we could try to detect line breaks
-    // For now, let's just do a basic text dump into paragraphs
-    strings.forEach((str: string) => {
-      if (str.trim()) {
-        sections.push(new Paragraph({
-          children: [new TextRun(str)],
+    // Group items by Y coordinate (with a small tolerance)
+    const yGroups: { [y: number]: any[] } = {};
+    const tolerance = 2; // Tolerance for baseline variations
+
+    items.forEach(item => {
+      const y = item.transform[5];
+      let matchedY = Object.keys(yGroups).find(gy => Math.abs(Number(gy) - y) < tolerance);
+
+      if (!matchedY) {
+        yGroups[y] = [item];
+      } else {
+        yGroups[Number(matchedY)].push(item);
+      }
+    });
+
+    const sortedYs = Object.keys(yGroups).map(Number).sort((a, b) => b - a);
+    const pageParagraphs: any[] = [];
+
+    sortedYs.forEach(y => {
+      const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
+
+      const runs: any[] = [];
+      rowItems.forEach(item => {
+        const text = item.str;
+        if (!text.trim() && text !== ' ') return;
+
+        const fontName = item.fontName?.toLowerCase() || '';
+        const isBold = fontName.includes('bold') || fontName.includes('700');
+        const isItalic = fontName.includes('italic') || fontName.includes('oblique');
+        const fontSize = Math.abs(item.transform[0] || item.transform[3]);
+
+        runs.push(new TextRun({
+          text: text,
+          bold: isBold,
+          italics: isItalic,
+          size: Math.round(fontSize * 2), // docx uses half-points
+        }));
+      });
+
+      if (runs.length > 0) {
+        // Simple alignment inference
+        const firstX = rowItems[0].transform[4];
+        const lastItem = rowItems[rowItems.length - 1];
+        const lastX = lastItem.transform[4] + (lastItem.width || 0);
+        const centerX = (firstX + lastX) / 2;
+        const pageCenterX = viewport.width / 2;
+
+        let alignment = (AlignmentType as any).LEFT;
+        if (Math.abs(centerX - pageCenterX) < 30 && (lastX - firstX) < viewport.width * 0.7) {
+          alignment = (AlignmentType as any).CENTER;
+        } else if (lastX > viewport.width * 0.8 && firstX > viewport.width * 0.2) {
+          alignment = (AlignmentType as any).RIGHT;
+        }
+
+        pageParagraphs.push(new Paragraph({
+          children: runs,
+          alignment: alignment,
+          spacing: { after: 120 }
         }));
       }
     });
 
-    // Add a page break after each PDF page except the last
-    if (i < pdf.numPages) {
-      // Docx doesn't have a simple "PageBreak" child, usually we set break on paragraph
-    }
+    sections.push({
+      properties: {
+        page: {
+          size: {
+            width: viewport.width * 20, // points to twips
+            height: viewport.height * 20
+          }
+        }
+      },
+      children: pageParagraphs
+    });
   }
 
   const doc = new Document({
-    sections: [{
-      properties: {},
-      children: sections,
-    }],
+    sections: sections
   });
 
   return await Packer.toBlob(doc);
@@ -825,16 +882,87 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
   const jsPDF = await getJsPdf();
   const arrayBuffer = await file.arrayBuffer();
 
-  const result = await mammoth.extractRawText({ arrayBuffer });
-  const text = result.value;
+  const result = await mammoth.convertToHtml({ arrayBuffer });
+  const html = result.value;
 
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
-  const margin = 10;
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 20;
   const maxLineWidth = pageWidth - margin * 2;
+  const lineHeight = 7;
 
-  const lines = doc.splitTextToSize(text, maxLineWidth);
-  doc.text(lines, margin, margin);
+  let y = margin;
+
+  // Split by paragraph-like tags
+  const paragraphs = html.split(/<\/p>|<\/li>|<\/h[1-6]>/);
+
+  paragraphs.forEach((p) => {
+    if (!p.trim()) return;
+
+    // Clean up starting tags
+    const cleanP = p.replace(/<p>|<li>|<h[1-6][^>]*>/g, '').trim();
+    if (!cleanP) return;
+
+    // Split into segments (tags vs text)
+    const segments = cleanP.split(/(<[^>]+>)/g);
+
+    let currentX = margin;
+    let isBold = false;
+    let isItalic = false;
+
+    // Process segments to build a line-wrapped list of styled fragments
+    // For simplicity in a browser environment, we render word by word if needed
+    const words = cleanP.split(/(\s+)/);
+
+    // Reset formatting for new paragraph
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+
+    // We'll use a more advanced approach: process all segments and handle wrapping
+    const styledFragments: { text: string, bold: boolean, italic: boolean }[] = [];
+    segments.forEach(seg => {
+      if (seg === '<strong>' || seg === '<b>') isBold = true;
+      else if (seg === '</strong>' || seg === '</b>') isBold = false;
+      else if (seg === '<em>' || seg === '<i>') isItalic = true;
+      else if (seg === '</em>' || seg === '</i>') isItalic = false;
+      else if (!seg.startsWith('<')) {
+        styledFragments.push({ text: seg, bold: isBold, italic: isItalic });
+      }
+    });
+
+    // Render styled fragments with wrapping
+    styledFragments.forEach(frag => {
+      doc.setFont("helvetica", frag.bold && frag.italic ? "bolditalic" : frag.bold ? "bold" : frag.italic ? "italic" : "normal");
+
+      const words = frag.text.split(/(\s+)/);
+      words.forEach(word => {
+        if (!word) return;
+        const wordWidth = doc.getTextWidth(word);
+
+        if (currentX + wordWidth > pageWidth - margin && word.trim()) {
+          y += lineHeight;
+          currentX = margin;
+
+          if (y > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+          }
+        }
+
+        doc.text(word, currentX, y);
+        currentX += wordWidth;
+      });
+    });
+
+    y += lineHeight * 1.5; // Paragraph spacing
+    currentX = margin;
+
+    if (y > pageHeight - margin) {
+      doc.addPage();
+      y = margin;
+    }
+  });
 
   return doc.output('blob');
 };
