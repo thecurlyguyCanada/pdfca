@@ -24,7 +24,7 @@ export const MakePdfFillablePage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.fillableTitle} description={t.seo.fillableDesc} canonicalPath="/how-to-make-a-pdf-fillable" schema={fillableSchema} />
+            <SEO title={t.seo.fillableTitle} description={t.seo.fillableDesc} canonicalPath="/how-to-make-a-pdf-fillable" lang={lang} schema={fillableSchema} />
             <PageLayout title={t.fillablePageTitle} subtitle={t.fillablePageSubtitle} icon={<PenTool size={32} />}>
                 <div className="space-y-8 text-gray-700 dark:text-gray-300">
                     <p className="text-lg font-medium">{t.fillableIntro}</p>

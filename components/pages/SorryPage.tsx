@@ -12,7 +12,7 @@ export const SorryPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     return (
         <>
-            <SEO title={t.seo.sorryTitle} description={t.seo.sorryDesc} canonicalPath="/sorry" />
+            <SEO title={t.seo.sorryTitle} description={t.seo.sorryDesc} canonicalPath="/sorry" lang={lang} />
             <PageLayout title={t.sorryTitle} icon={<AlertTriangle size={32} />}>
                 <div className="text-center space-y-8">
                     <p className="text-xl text-gray-700 dark:text-gray-300 font-medium">{t.sorryText1}</p>

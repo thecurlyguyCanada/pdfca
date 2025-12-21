@@ -20,7 +20,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.privacyTitle} description={t.seo.privacyDesc} canonicalPath="/privacy" schema={privacySchema} />
+            <SEO title={t.seo.privacyTitle} description={t.seo.privacyDesc} canonicalPath="/privacy" lang={lang} schema={privacySchema} />
             <PageLayout title={t.privacyTitle} icon={<Shield size={32} />}>
                 <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-400">
                     <p className="mb-6">{t.privacyText1}</p>

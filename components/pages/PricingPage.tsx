@@ -36,7 +36,7 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.pricingTitle} description={t.seo.pricingDesc} canonicalPath="/pricing" ogType="product" schema={[pricingSchema, faqSchema]} />
+            <SEO title={t.seo.pricingTitle} description={t.seo.pricingDesc} canonicalPath="/pricing" lang={lang} ogType="product" schema={[pricingSchema, faqSchema]} />
             <div className="max-w-5xl mx-auto px-6 py-12 animate-fade-in">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">{t.pricingTitle}</h1>

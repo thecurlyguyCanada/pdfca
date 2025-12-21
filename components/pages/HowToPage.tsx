@@ -24,7 +24,7 @@ export const HowToPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.howtoTitle} description={t.seo.howtoDesc} canonicalPath="/howto" schema={howtoSchema} />
+            <SEO title={t.seo.howtoTitle} description={t.seo.howtoDesc} canonicalPath="/howto" lang={lang} schema={howtoSchema} />
             <PageLayout title={t.howtoTitle} icon={<HelpCircle size={32} />}>
                 <div className="grid gap-6">
                     {[t.howtoStep1, t.howtoStep2, t.howtoStep3, t.howtoStep4].map((step, i) => (

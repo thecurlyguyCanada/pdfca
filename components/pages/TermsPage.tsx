@@ -20,7 +20,7 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.termsTitle} description={t.seo.termsDesc} canonicalPath="/terms" schema={termsSchema} />
+            <SEO title={t.seo.termsTitle} description={t.seo.termsDesc} canonicalPath="/terms" lang={lang} schema={termsSchema} />
             <PageLayout title={t.termsTitle} icon={<FileText size={32} />}>
                 <div className="space-y-6 text-gray-600 dark:text-gray-400">
                     <div className="flex gap-4">

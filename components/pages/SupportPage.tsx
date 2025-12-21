@@ -32,7 +32,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={translations[lang].seo.supportTitle} description={translations[lang].seo.supportDesc} canonicalPath="/support" schema={supportSchema} />
+            <SEO title={translations[lang].seo.supportTitle} description={translations[lang].seo.supportDesc} canonicalPath="/support" lang={lang} schema={supportSchema} />
             <PageLayout title={translations[lang].navSupport} icon={<Coffee size={32} />}>
                 <div className="text-center text-gray-600 dark:text-gray-400 space-y-8">
                     <p className="text-lg leading-relaxed max-w-2xl mx-auto">
