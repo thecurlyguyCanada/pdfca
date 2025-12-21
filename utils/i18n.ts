@@ -31,6 +31,17 @@ export const translations = {
     // Compress Tool
     btnCompress: "Compress PDF",
     sizeReduced: "Size Reduced",
+    addMorePdfs: "Add more PDFs",
+    compressGood: "Good",
+    compressGoodDesc: "Best quality, selectable text.",
+    compressBalanced: "Balanced",
+    compressBalancedDesc: "Good quality, smaller size.",
+    compressExtreme: "Extreme",
+    compressExtremeDesc: "Smallest size, lower quality.",
+    compressGoodInfo: "Optimizes metadata and streams. Text remains selectable.",
+    compressBalancedInfo: "Re-renders pages at 150 DPI. Text becomes non-selectable.",
+    compressExtremeInfo: "Aggressive re-rendering at 96 DPI. Max compression.",
+    selectCompressionLevel: "Select Compression Level",
 
     // SEO General
     seo: {
@@ -632,6 +643,17 @@ export const translations = {
     // Compress Tool
     btnCompress: "Compresser PDF",
     sizeReduced: "Taille réduite",
+    addMorePdfs: "Ajouter plus de PDF",
+    compressGood: "Bon",
+    compressGoodDesc: "Meilleure qualité, texte sélectionnable.",
+    compressBalanced: "Équilibré",
+    compressBalancedDesc: "Bonne qualité, taille réduite.",
+    compressExtreme: "Extrême",
+    compressExtremeDesc: "Taille minimale, qualité réduite.",
+    compressGoodInfo: "Optimise les métadonnées. Le texte reste sélectionnable.",
+    compressBalancedInfo: "Re-rendu à 150 DPI. Le texte devient non-sélectionnable.",
+    compressExtremeInfo: "Re-rendu agressif à 96 DPI. Compression maximale.",
+    selectCompressionLevel: "Choisir le niveau de compression",
 
     seo: {
       homeTitle: "pdfcanada.ca | Outils PDF Gratuits - HEIC en PDF, OCR, Supprimer Pages 🇨🇦",

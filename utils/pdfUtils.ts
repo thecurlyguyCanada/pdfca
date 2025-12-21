@@ -113,12 +113,17 @@ export const deletePagesFromPdf = async (originalFile: File, pageIndicesToDelete
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
 
+  const totalPages = doc.getPageCount();
   const sortedIndices = [...pageIndicesToDelete].sort((a, b) => b - a);
 
-  sortedIndices.forEach((index) => {
-    if (index >= 0 && index < doc.getPageCount()) {
-      doc.removePage(index);
-    }
+  // Validate: ensure we don't delete all pages
+  const validIndices = sortedIndices.filter(index => index >= 0 && index < totalPages);
+  if (validIndices.length >= totalPages) {
+    throw new Error('Cannot delete all pages from PDF. At least one page must remain.');
+  }
+
+  validIndices.forEach((index) => {
+    doc.removePage(index);
   });
 
   return await doc.save();

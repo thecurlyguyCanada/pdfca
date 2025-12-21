@@ -279,7 +279,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-full group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-colors">
                             <Plus className="text-gray-400 group-hover:text-canada-red" size={24} />
                         </div>
-                        <span className="font-medium text-gray-600 dark:text-gray-400 group-hover:text-canada-red">Add more PDFs</span>
+                        <span className="font-medium text-gray-600 dark:text-gray-400 group-hover:text-canada-red">{t.addMorePdfs || 'Add more PDFs'}</span>
                     </label>
                 </div>
 
@@ -540,31 +540,31 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     onClick={() => setCompressionLevel && setCompressionLevel('good')}
                                     className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'good' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">Good</div>
-                                    <div className="text-xs text-gray-500">Best quality, selectable text.</div>
+                                    <div className="font-bold text-gray-800 mb-1">{t.compressGood || 'Good'}</div>
+                                    <div className="text-xs text-gray-500">{t.compressGoodDesc || 'Best quality, selectable text.'}</div>
                                 </button>
 
                                 <button
                                     onClick={() => setCompressionLevel && setCompressionLevel('balanced')}
                                     className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">Balanced</div>
-                                    <div className="text-xs text-gray-500">Good quality, smaller size.</div>
+                                    <div className="font-bold text-gray-800 mb-1">{t.compressBalanced || 'Balanced'}</div>
+                                    <div className="text-xs text-gray-500">{t.compressBalancedDesc || 'Good quality, smaller size.'}</div>
                                 </button>
 
                                 <button
                                     onClick={() => setCompressionLevel && setCompressionLevel('extreme')}
                                     className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">Extreme</div>
-                                    <div className="text-xs text-gray-500">Smallest size, lower quality.</div>
+                                    <div className="font-bold text-gray-800 mb-1">{t.compressExtreme || 'Extreme'}</div>
+                                    <div className="text-xs text-gray-500">{t.compressExtremeDesc || 'Smallest size, lower quality.'}</div>
                                 </button>
                             </div>
 
                             <div className="mt-6 text-center text-sm text-gray-400">
-                                {compressionLevel === 'good' && "Optimizes metadata and streams. Text remains selectable."}
-                                {compressionLevel === 'balanced' && "Re-renders pages at 150 DPI. Text becomes non-selectable."}
-                                {compressionLevel === 'extreme' && "Aggressive re-rendering at 96 DPI. Max compression."}
+                                {compressionLevel === 'good' && (t.compressGoodInfo || "Optimizes metadata and streams. Text remains selectable.")}
+                                {compressionLevel === 'balanced' && (t.compressBalancedInfo || "Re-renders pages at 150 DPI. Text becomes non-selectable.")}
+                                {compressionLevel === 'extreme' && (t.compressExtremeInfo || "Aggressive re-rendering at 96 DPI. Max compression.")}
                             </div>
                         </div>
                     </div>

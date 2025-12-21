@@ -585,6 +585,7 @@ function App() {
             outName = file.name.replace('.pdf', '_cropped.pdf');
             break;
           case ToolType.COMPRESS:
+            resultBlob = await compressPdf(file, compressionLevel);
             outName = file.name.replace('.pdf', '_compressed.pdf');
             break;
           case ToolType.MERGE:
@@ -601,6 +602,8 @@ function App() {
       if (resultBlob) {
         const blob = resultBlob instanceof Blob ? resultBlob : new Blob([resultBlob as any], { type: 'application/octet-stream' });
         setProcessedSize(blob.size);
+        // Revoke previous URL to prevent memory leaks
+        if (downloadUrl) URL.revokeObjectURL(downloadUrl);
         const url = URL.createObjectURL(blob);
         setDownloadUrl(url);
         setDownloadName(outName);
@@ -709,9 +712,22 @@ function App() {
     setFile(null);
     setFiles([]);
     setAppState(AppState.SELECTING);
+    // Clean up pdfJsDoc to prevent memory leaks
+    if (pdfJsDoc) {
+      pdfJsDoc.cleanup?.();
+      pdfJsDoc.destroy?.();
+    }
+    setPdfJsDoc(null);
+    setPageCount(0);
+    setSelectedPages(new Set());
+    setRotations({});
+    setPageOrder([]);
+    // Revoke blob URL to free memory
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
     setDownloadUrl(null);
     lastSelectedPageRef.current = null;
     setPageRangeInput('');
+    setProcessedSize(null);
   };
 
   const softwareAppSchema = {
