@@ -1017,9 +1017,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-gray-50">
-      {!(view === 'TOOL_PAGE' && file) && (
-        <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
-      )}
+      <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
 
       <main className="flex-grow flex flex-col">
         <React.Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-12 h-12 border-4 border-canada-red border-t-transparent rounded-full animate-spin"></div></div>}>
