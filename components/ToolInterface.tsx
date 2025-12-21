@@ -418,7 +418,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action - Hidden for Sign Tool as it has its own sidebar/modal actions */}
-            {isSignTool ? null : (
+            {isSignTool || isCropTool ? null : (
                 <div
                     className="p-3 md:p-4 border-t border-gray-100 bg-white"
                     style={{ paddingBottom: 'max(12px, calc(env(safe-area-inset-bottom) + 12px))' }}
@@ -447,7 +447,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.PDF_PAGE_REMOVER && (t.btnRemove || "Remove Pages")}
                         {currentTool === ToolType.ROTATE && t.btnRotate}
                         {currentTool === ToolType.FLATTEN && (t.btnFlatten || "Make Non-Editable")}
-                        {currentTool === ToolType.CROP && (t.btnCrop || "Crop PDF")}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
