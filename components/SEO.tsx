@@ -169,6 +169,7 @@ export const SEO: React.FC<SEOProps> = ({
     };
 
     setLink('apple-touch-icon', '/apple-touch-icon.png', '180x180');
+    setLink('icon', '/favicon.svg', undefined, 'image/svg+xml');
     setLink('icon', '/favicon-32x32.png', '32x32', 'image/png');
     setLink('icon', '/favicon-16x16.png', '16x16', 'image/png');
     setLink('manifest', '/site.webmanifest');
