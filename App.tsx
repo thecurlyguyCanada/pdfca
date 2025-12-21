@@ -15,7 +15,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -36,6 +36,8 @@ const WordToPdfGuide = React.lazy(() => import('./components/pages/guides/WordTo
 const PdfPageRemoverGuide = React.lazy(() => import('./components/pages/guides/PdfPageRemoverGuide').then(module => ({ default: module.PdfPageRemoverGuide })));
 const FlattenPdfGuide = React.lazy(() => import('./components/pages/guides/FlattenPdfGuide').then(module => ({ default: module.FlattenPdfGuide })));
 const CropPdfGuide = React.lazy(() => import('./components/pages/guides/CropPdfGuide').then(module => ({ default: module.CropPdfGuide })));
+const CompressPdfGuide = React.lazy(() => import('./components/pages/guides/CompressPdfGuide').then(module => ({ default: module.CompressPdfGuide })));
+
 
 enum AppState {
   HOME,
@@ -47,7 +49,7 @@ enum AppState {
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP';
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -64,7 +66,8 @@ export enum ToolType {
   WORD_TO_PDF = 'WORD_TO_PDF',
   PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
   FLATTEN = 'FLATTEN',
-  CROP = 'CROP'
+  CROP = 'CROP',
+  COMPRESS = 'COMPRESS'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -117,6 +120,9 @@ function App() {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [downloadName, setDownloadName] = useState<string>('');
   const [errorKey, setErrorKey] = useState<keyof typeof translations['en'] | null>(null);
+
+  // Compression Level
+  const [compressionLevel, setCompressionLevel] = useState<'good' | 'balanced' | 'extreme'>('balanced');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = translations[lang];
@@ -218,7 +224,9 @@ function App() {
     else if (path === '/guides/word-to-pdf') setView('GUIDE_WORD_TO_PDF');
     else if (path === '/guides/pdf-page-remover') setView('GUIDE_PDF_PAGE_REMOVER');
     else if (path === '/guides/make-pdf-non-editable') setView('GUIDE_FLATTEN');
+
     else if (path === '/guides/crop-pdf') setView('GUIDE_CROP');
+    else if (path === '/guides/compress-pdf') setView('GUIDE_COMPRESS');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
@@ -388,6 +396,7 @@ function App() {
     { id: ToolType.PDF_TO_WORD, icon: FileText, title: t.toolPdfToWord, desc: t.toolPdfToWordDesc, accept: '.pdf', path: '/pdf-to-word' },
     { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
     { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
+    { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -548,6 +557,10 @@ function App() {
           case ToolType.CROP:
             resultBlob = await cropPdfPages(file, cropMargins);
             outName = file.name.replace('.pdf', '_cropped.pdf');
+            break;
+          case ToolType.COMPRESS:
+            resultBlob = await compressPdf(file, compressionLevel);
+            outName = file.name.replace('.pdf', '_compressed.pdf');
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
@@ -902,7 +915,7 @@ function App() {
       currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
       currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF ||
       currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF ||
-      currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP;
+      currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.COMPRESS;
 
     // Check if we are in "Active Workspace" mode (file loaded)
     // Sign tool handles its own full-screen overlay, so we exclude it here if file is present
@@ -1058,7 +1071,9 @@ function App() {
           {view === 'GUIDE_WORD_TO_PDF' && <WordToPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_PDF_PAGE_REMOVER' && <PdfPageRemoverGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_FLATTEN' && <FlattenPdfGuide lang={lang} onNavigate={handleNavigation} />}
+
           {view === 'GUIDE_CROP' && <CropPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_COMPRESS' && <CompressPdfGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>
 

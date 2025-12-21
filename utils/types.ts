@@ -6,7 +6,8 @@ export enum ToolType {
     PDF_TO_EPUB = 'PDF_TO_EPUB',
     MAKE_FILLABLE = 'MAKE_FILLABLE',
     OCR = 'OCR',
-    ORGANIZE = 'ORGANIZE'
+    ORGANIZE = 'ORGANIZE',
+    COMPRESS = 'COMPRESS'
 }
 
 export enum AppState {

@@ -24,6 +24,13 @@ export const translations = {
     typeTitle: "Type",
     btnCreate: "Create",
 
+
+
+    // Compress Tool
+    toolCompress: "Compress PDF",
+    toolCompressDesc: "Reduce file size while maintaining quality.",
+    btnCompress: "Compress PDF",
+
     // SEO General
     seo: {
       homeTitle: "pdfcanada.ca | Free PDF Tools - HEIC to PDF, OCR, Delete Pages & More 🇨🇦",
@@ -587,6 +594,13 @@ export const translations = {
     drawTitle: "Dessiner",
     typeTitle: "Taper",
     btnCreate: "Créer",
+
+
+
+    // Compress Tool
+    toolCompress: "Compresser PDF",
+    toolCompressDesc: "Réduire la taille du fichier.",
+    btnCompress: "Compresser PDF",
 
     seo: {
       homeTitle: "pdfcanada.ca | Outils PDF Gratuits - HEIC en PDF, OCR, Supprimer Pages 🇨🇦",

@@ -40,6 +40,9 @@ interface ToolInterfaceProps {
     handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     cropMargins?: { top: number, bottom: number, left: number, right: number };
     setCropMargins?: (margins: { top: number, bottom: number, left: number, right: number }) => void;
+
+    compressionLevel?: 'good' | 'balanced' | 'extreme';
+    setCompressionLevel?: (level: 'good' | 'balanced' | 'extreme') => void;
 }
 
 // ... SortableThumbnail component ...
@@ -106,7 +109,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     handleFileChange,
     pageRangeInput,
     setPageRangeInput,
-    handleRangeInputChange
+    handleRangeInputChange,
+    compressionLevel,
+    setCompressionLevel
 }) => {
     // dnd-kit sensors for drag and drop
     const sensors = useSensors(
@@ -183,6 +188,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
+    const isCompressTool = currentTool === ToolType.COMPRESS;
 
     let headerText = '';
     if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
@@ -401,7 +407,46 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 console.error("Cropping failed", e);
                             }
                         }}
+
                     />
+                ) : isCompressTool ? (
+                    <div className="flex-grow flex flex-col items-center justify-center p-6 w-full max-w-2xl mx-auto">
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 w-full">
+                            <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">{t.toolCompress || "Select Compression Level"}</h3>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <button
+                                    onClick={() => setCompressionLevel && setCompressionLevel('good')}
+                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'good' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                >
+                                    <div className="font-bold text-gray-800 mb-1">Good</div>
+                                    <div className="text-xs text-gray-500">Best quality, selectable text.</div>
+                                </button>
+
+                                <button
+                                    onClick={() => setCompressionLevel && setCompressionLevel('balanced')}
+                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                >
+                                    <div className="font-bold text-gray-800 mb-1">Balanced</div>
+                                    <div className="text-xs text-gray-500">Good quality, smaller size.</div>
+                                </button>
+
+                                <button
+                                    onClick={() => setCompressionLevel && setCompressionLevel('extreme')}
+                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                >
+                                    <div className="font-bold text-gray-800 mb-1">Extreme</div>
+                                    <div className="text-xs text-gray-500">Smallest size, lower quality.</div>
+                                </button>
+                            </div>
+
+                            <div className="mt-6 text-center text-sm text-gray-400">
+                                {compressionLevel === 'good' && "Optimizes metadata and streams. Text remains selectable."}
+                                {compressionLevel === 'balanced' && "Re-renders pages at 150 DPI. Text becomes non-selectable."}
+                                {compressionLevel === 'extreme' && "Aggressive re-rendering at 96 DPI. Max compression."}
+                            </div>
+                        </div>
+                    </div>
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
@@ -446,6 +491,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
+                        {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
                         {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
                     </button>
                 </div>
