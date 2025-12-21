@@ -204,14 +204,14 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
-                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
-                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 8px rgba(0,0,0,0.4)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
-                        top: isMobile ? { display: 'none' } : undefined,
-                        right: isMobile ? { display: 'none' } : undefined,
-                        bottom: isMobile ? { display: 'none' } : undefined,
-                        left: isMobile ? { display: 'none' } : undefined,
+                        topLeft: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, top: isMobile ? -28 : -6, left: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        topRight: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, top: isMobile ? -28 : -6, right: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomLeft: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, bottom: isMobile ? -28 : -6, left: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nesw-resize' },
+                        bottomRight: { width: isMobile ? 56 : 12, height: isMobile ? 56 : 12, bottom: isMobile ? -28 : -6, right: isMobile ? -28 : -6, background: '#dc2626', borderRadius: '50%', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.5)', zIndex: 100, touchAction: 'none', cursor: 'nwse-resize' },
+                        top: { display: 'none' },
+                        right: { display: 'none' },
+                        bottom: { display: 'none' },
+                        left: { display: 'none' },
                     }}
                 >
                     <div
@@ -515,13 +515,25 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         // On desktop, add to currently active page
         const targetPage = isMobile ? (visiblePages.size > 0 ? Math.min(...Array.from(visiblePages)) : 0) : activePage;
 
+        // Different sizes for different entry types
+        const getSizeForType = () => {
+            switch (type) {
+                case 'signature': return { width: 0.28, height: 0.1 };
+                case 'initials': return { width: 0.12, height: 0.08 };
+                case 'date': return { width: 0.2, height: 0.04 };
+                case 'text': return { width: 0.15, height: 0.04 };
+                default: return { width: 0.2, height: 0.06 };
+            }
+        };
+        const size = getSizeForType();
+
         const newEntry: SignatureEntry = {
             id,
             pageIndex: targetPage,
             x: 0.35,
             y: 0.35,
-            width: type === 'signature' || type === 'initials' ? 0.3 : 0.2,
-            height: type === 'signature' || type === 'initials' ? 0.1 : 0.04,
+            width: size.width,
+            height: size.height,
             type,
             dataUrl,
             text: text || (type === 'date' ? new Date().toLocaleDateString() : '')
