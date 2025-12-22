@@ -217,6 +217,11 @@ export const SEO: React.FC<SEOProps> = ({
         "Crop PDF",
         "Compress PDF",
         "Merge PDF",
+        "Split PDF",
+        "Sign PDF",
+        "OCR PDF",
+        "PDF to XML",
+        "XML to PDF",
         "Ultimate Guide"
       ],
       "url": [
@@ -230,6 +235,11 @@ export const SEO: React.FC<SEOProps> = ({
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/compress-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/merge-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/split-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/sign-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/ocr-pdf`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-xml`,
+        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/xml-to-pdf`,
         `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
       ]
     };
@@ -302,11 +312,15 @@ export const SEO: React.FC<SEOProps> = ({
           { "@type": "ListItem", "position": 1, "name": "Delete PDF Pages", "url": "https://pdfcanada.ca/delete-pdf-pages" },
           { "@type": "ListItem", "position": 2, "name": "Rotate PDF", "url": "https://pdfcanada.ca/rotate-pdf" },
           { "@type": "ListItem", "position": 3, "name": "Merge PDF", "url": "https://pdfcanada.ca/merge-pdf" },
-          { "@type": "ListItem", "position": 4, "name": "Compress PDF", "url": "https://pdfcanada.ca/compress-pdf" },
-          { "@type": "ListItem", "position": 5, "name": "PDF to Word", "url": "https://pdfcanada.ca/pdf-to-word" },
-          { "@type": "ListItem", "position": 6, "name": "Word to PDF", "url": "https://pdfcanada.ca/word-to-pdf" },
-          { "@type": "ListItem", "position": 7, "name": "HEIC to PDF", "url": "https://pdfcanada.ca/heic-to-pdf" },
-          { "@type": "ListItem", "position": 8, "name": "Sign PDF", "url": "https://pdfcanada.ca/sign-pdf" }
+          { "@type": "ListItem", "position": 4, "name": "Split PDF", "url": "https://pdfcanada.ca/split-pdf" },
+          { "@type": "ListItem", "position": 5, "name": "Compress PDF", "url": "https://pdfcanada.ca/compress-pdf" },
+          { "@type": "ListItem", "position": 6, "name": "PDF to Word", "url": "https://pdfcanada.ca/pdf-to-word" },
+          { "@type": "ListItem", "position": 7, "name": "Word to PDF", "url": "https://pdfcanada.ca/word-to-pdf" },
+          { "@type": "ListItem", "position": 8, "name": "HEIC to PDF", "url": "https://pdfcanada.ca/heic-to-pdf" },
+          { "@type": "ListItem", "position": 9, "name": "Sign PDF", "url": "https://pdfcanada.ca/sign-pdf" },
+          { "@type": "ListItem", "position": 10, "name": "OCR PDF", "url": "https://pdfcanada.ca/ocr-pdf" },
+          { "@type": "ListItem", "position": 11, "name": "PDF to XML", "url": "https://pdfcanada.ca/pdf-to-xml" },
+          { "@type": "ListItem", "position": 12, "name": "Crop PDF", "url": "https://pdfcanada.ca/crop-pdf" }
         ]
       });
     }

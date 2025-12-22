@@ -34,6 +34,24 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
     toolSchemas,
     children
 }) => {
+    // Generate breadcrumbs for better SERP display
+    const breadcrumbs = [
+        { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+        { name: content.h1, path: tool.path }
+    ];
+
+    // Format steps for HowTo schema
+    const howToSteps = content.steps?.map((step, i) => ({
+        name: `Step ${i + 1}`,
+        text: step
+    }));
+
+    // Format FAQs for FAQ schema
+    const faqItems = content.faq?.map(item => ({
+        q: item.question,
+        a: item.answer
+    }));
+
     return (
         <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl mx-auto px-6 py-12 md:py-20 gap-12">
             <SEO
@@ -43,6 +61,10 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
                 canonicalPath={tool.path}
                 ogType="website"
                 schema={toolSchemas}
+                breadcrumbs={breadcrumbs}
+                steps={howToSteps}
+                faqs={faqItems}
+                dateModified={new Date().toISOString().split('T')[0]}
             />
 
             <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
