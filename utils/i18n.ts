@@ -58,7 +58,19 @@ export const translations = {
         },
         {
           q: "What tools do you offer?",
-          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, OCR (Make PDF Searchable), and a PDF Form Filler."
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, OCR (Make PDF Searchable), PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
+        },
+        {
+          q: "Do I need to create an account or sign up?",
+          a: "No signup required! Just visit our site, select your tool, and start working on your PDF immediately. No email, no password, no hassle."
+        },
+        {
+          q: "Can I merge multiple PDF files into one?",
+          a: "Absolutely! Our Merge PDF tool lets you combine multiple PDF files into a single document. Just drag and drop your files, arrange them in order, and download your merged PDF."
+        },
+        {
+          q: "How do I convert a PDF to Word without losing formatting?",
+          a: "Use our PDF to Word tool. It extracts text and basic structure from your PDF into a .docx file. For best results, use PDFs with selectable text rather than scanned images."
         }
       ],
       pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
@@ -670,7 +682,19 @@ export const translations = {
         },
         {
           q: "Quels outils proposez-vous ?",
-          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, HEIC en PDF, EPUB en PDF, OCR (rendre un PDF consultable) et un remplisseur de formulaires PDF."
+          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, OCR, PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
+        },
+        {
+          q: "Dois-je créer un compte ou m'inscrire ?",
+          a: "Aucune inscription requise ! Visitez simplement notre site, sélectionnez votre outil et commencez à travailler sur votre PDF immédiatement. Pas d'email, pas de mot de passe, pas de tracas."
+        },
+        {
+          q: "Puis-je fusionner plusieurs fichiers PDF en un seul ?",
+          a: "Absolument ! Notre outil Fusionner PDF vous permet de combiner plusieurs fichiers PDF en un seul document. Glissez-déposez vos fichiers, arrangez-les dans l'ordre et téléchargez votre PDF fusionné."
+        },
+        {
+          q: "Comment convertir un PDF en Word sans perdre le formatage ?",
+          a: "Utilisez notre outil PDF en Word. Il extrait le texte et la structure de base de votre PDF vers un fichier .docx. Pour de meilleurs résultats, utilisez des PDF avec du texte sélectionnable plutôt que des images scannées."
         }
       ],
       pricingTitle: "Tarifs - pdfcanada.ca | Toujours Gratuit",

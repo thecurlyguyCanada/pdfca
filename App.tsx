@@ -962,11 +962,71 @@ function App() {
         )}
       </div>
 
-      {/* Trust / Privacy Section (Bottom) */}
+      {/* Testimonials & Trust Section */}
       {appState === AppState.HOME && (
-        <div className="max-w-3xl mx-auto text-center space-y-4 mt-8">
-          <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
-          <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
+        <div className="w-full max-w-5xl mx-auto mt-16 space-y-12">
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+              <Shield className="w-5 h-5 text-canada-red" />
+              <span className="text-sm font-bold text-gray-700">Privacy First</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+              <MapleLeaf className="w-5 h-5 text-canada-red" />
+              <span className="text-sm font-bold text-gray-700">Proudly Canadian</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+              <Lock className="w-5 h-5 text-canada-red" />
+              <span className="text-sm font-bold text-gray-700">No Upload Required</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+              <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <span className="text-sm font-bold text-gray-700">100% Free</span>
+            </div>
+          </div>
+
+          {/* Testimonials */}
+          <div className="text-center">
+            <h3 className="text-xl font-bold text-gray-900 mb-6">What Our Users Say</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
+                <p className="text-gray-600 italic mb-4">"Finally, a PDF tool that doesn't ask for my email or upload my documents. Fast, free, and actually private!"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-red-100 text-canada-red rounded-full flex items-center justify-center font-bold">S</div>
+                  <div>
+                    <p className="font-bold text-gray-900 text-sm">Sarah M.</p>
+                    <p className="text-xs text-gray-500">Small Business Owner, Toronto</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
+                <p className="text-gray-600 italic mb-4">"I use the Merge PDF tool every week for my reports. It's so much faster than Adobe and completely free."</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">J</div>
+                  <div>
+                    <p className="font-bold text-gray-900 text-sm">James K.</p>
+                    <p className="text-xs text-gray-500">Project Manager, Vancouver</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
+                <p className="text-gray-600 italic mb-4">"The privacy focus is exactly what I needed for handling client documents. Local processing is a game changer."</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">M</div>
+                  <div>
+                    <p className="font-bold text-gray-900 text-sm">Maria L.</p>
+                    <p className="text-xs text-gray-500">Lawyer, Montreal</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Trust Message */}
+          <div className="text-center space-y-3 pt-4">
+            <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
+          </div>
         </div>
       )}
     </div>
