@@ -430,7 +430,7 @@ function App() {
     { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
     { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge || 'Merge PDF', desc: t.toolMergeDesc || 'Combine multiple PDFs into one.', accept: '.pdf', path: '/merge-pdf' },
-    { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit || 'Split PDF', desc: t.toolSplitDesc || 'Separate PDF into individual pages.', accept: '.pdf', path: '/split-pdf' },
+    { id: ToolType.SPLIT, icon: Scissors, title: 'Split PDF', desc: 'Separate PDF into individual pages.', accept: '.pdf', path: '/split-pdf' },
     { id: ToolType.PDF_TO_XML, icon: FileText, title: 'PDF to XML', desc: 'Extract PDF content into structured XML.', accept: '.pdf', path: '/pdf-to-xml' },
     { id: ToolType.XML_TO_PDF, icon: FileText, title: 'XML to PDF', desc: 'Convert XML data into a PDF document.', accept: '.xml', path: '/xml-to-pdf' },
   ];
