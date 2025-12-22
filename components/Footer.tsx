@@ -39,10 +39,12 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><a href="/delete-pdf-pages" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolDelete}</a></li>
                      <li><a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolRotate}</a></li>
                      <li><a href="/organize-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/organize-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolOrganize}</a></li>
-                     <li><a href="/pdf-page-remover" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-page-remover'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfPageRemover}</a></li>
+                     <li><a href="/compress-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/compress-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCompress}</a></li>
+                     <li><a href="/merge-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/merge-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolMerge}</a></li>
+                     <li><a href="/split-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/split-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolSplit}</a></li>
+                     <li><a href="/crop-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/crop-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCrop}</a></li>
                      <li><a href="/make-pdf-fillable" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-fillable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolMakeFillable}</a></li>
                      <li><a href="/make-pdf-non-editable" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-non-editable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolFlatten}</a></li>
-                     <li><a href="/crop-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/crop-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCrop}</a></li>
                   </ul>
                </div>
 
@@ -50,11 +52,15 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                <div>
                   <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerConvertGroup}</p>
                   <ul className="space-y-3 text-sm">
+                     <li><a href="/sign-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/sign-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolSign}</a></li>
+                     <li><a href="/ocr-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/ocr-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolOcr}</a></li>
                      <li><a href="/word-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolWordToPdf}</a></li>
                      <li><a href="/pdf-to-word" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToWord}</a></li>
                      <li><a href="/heic-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolHeic}</a></li>
                      <li><a href="/epub-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolEpubToPdf}</a></li>
                      <li><a href="/pdf-to-epub" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToEpub}</a></li>
+                     <li><a href="/pdf-to-xml" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-xml'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToXml}</a></li>
+                     <li><a href="/xml-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/xml-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolXmlToPdf}</a></li>
                      <li><a href="/cbr-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCbrToPdf}</a></li>
                   </ul>
                </div>

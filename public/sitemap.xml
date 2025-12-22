@@ -528,24 +528,39 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/split-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/split-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/split-pdf"/>
+    <image:image>
+      <image:loc>https://pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Split PDF - Free Online Tool</image:title>
+      <image:caption>Split PDF into individual pages. Download as ZIP file.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://pdfcanada.ca/pdf-to-xml</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-xml"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-xml"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-xml"/>
+    <image:image>
+      <image:loc>https://pdfcanada.ca/og-image.png</image:loc>
+      <image:title>PDF to XML Converter - Free Online Tool</image:title>
+      <image:caption>Convert PDF documents to structured XML format.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://pdfcanada.ca/xml-to-pdf</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/xml-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/xml-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/xml-to-pdf"/>
+    <image:image>
+      <image:loc>https://pdfcanada.ca/og-image.png</image:loc>
+      <image:title>XML to PDF Converter - Free Online Tool</image:title>
+      <image:caption>Create PDF documents from XML data.</image:caption>
+    </image:image>
   </url>
 
   <!-- French Tool Pages -->

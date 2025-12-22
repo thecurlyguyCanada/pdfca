@@ -510,6 +510,12 @@ export const translations = {
     toolCompressDesc: "Reduce file size.",
     toolMerge: "Merge PDF",
     toolMergeDesc: "Combine multiple PDFs.",
+    toolSplit: "Split PDF",
+    toolSplitDesc: "Separate into pages.",
+    toolPdfToXml: "PDF to XML",
+    toolPdfToXmlDesc: "Extract structured data.",
+    toolXmlToPdf: "XML to PDF",
+    toolXmlToPdfDesc: "Create PDF from XML.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -1045,6 +1051,12 @@ export const translations = {
     toolCompressDesc: "Réduire la taille.",
     toolMerge: "Fusionner PDF",
     toolMergeDesc: "Combiner plusieurs PDFs.",
+    toolSplit: "Diviser PDF",
+    toolSplitDesc: "Séparer en pages.",
+    toolPdfToXml: "PDF en XML",
+    toolPdfToXmlDesc: "Extraire données structurées.",
+    toolXmlToPdf: "XML en PDF",
+    toolXmlToPdfDesc: "Créer PDF depuis XML.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
