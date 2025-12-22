@@ -89,6 +89,23 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
             </div>
 
+            {/* E-E-A-T Trust Badges */}
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                  <ShieldCheck className="w-4 h-4 text-green-600" />
+                  Privacy First
+               </div>
+               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                  🍁 Proudly Canadian
+               </div>
+               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                  🔒 No Upload Required
+               </div>
+               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                  ✓ 100% Free
+               </div>
+            </div>
+
             <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                <p>&copy; {year} pdfcanada.ca. {t.footerRights}</p>
 
