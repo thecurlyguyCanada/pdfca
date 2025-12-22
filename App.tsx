@@ -14,7 +14,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf, convertPdfToXml, convertXmlToPdf } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf, convertPdfToXml, convertXmlToPdf, convertExcelToPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -73,7 +73,8 @@ export enum ToolType {
   MERGE = 'MERGE',
   SPLIT = 'SPLIT',
   PDF_TO_XML = 'PDF_TO_XML',
-  XML_TO_PDF = 'XML_TO_PDF'
+  XML_TO_PDF = 'XML_TO_PDF',
+  EXCEL_TO_PDF = 'EXCEL_TO_PDF'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -228,6 +229,10 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/xml-to-pdf') {
       setCurrentTool(ToolType.XML_TO_PDF);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/excel-to-pdf') {
+      setCurrentTool(ToolType.EXCEL_TO_PDF);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
@@ -418,21 +423,22 @@ function App() {
     { id: ToolType.ROTATE, icon: RotateCw, title: t.toolRotate, desc: t.toolRotateDesc, accept: '.pdf', path: '/rotate-pdf' },
     { id: ToolType.FLATTEN, icon: Lock, title: t.toolFlatten, desc: t.toolFlattenDesc, accept: '.pdf', path: '/make-pdf-non-editable' },
     { id: ToolType.CROP, icon: Scissors, title: t.toolCrop, desc: t.toolCropDesc, accept: '.pdf', path: '/crop-pdf' },
-    { id: ToolType.ORGANIZE, icon: GripVertical, title: t.organizePdf, desc: t.organizePdfDesc, accept: '.pdf', path: '/organize-pdf' },
+    { id: ToolType.ORGANIZE, icon: GripVertical, title: t.toolOrganize, desc: t.toolOrganizeDesc, accept: '.pdf', path: '/organize-pdf' },
     { id: ToolType.MAKE_FILLABLE, icon: PenTool, title: t.toolMakeFillable, desc: t.toolMakeFillableDesc, accept: '.pdf', path: '/make-pdf-fillable' },
     { id: ToolType.HEIC_TO_PDF, icon: Image, title: t.toolHeic, desc: t.toolHeicDesc, accept: '.heic', path: '/heic-to-pdf' },
     { id: ToolType.EPUB_TO_PDF, icon: BookOpen, title: t.toolEpubToPdf, desc: t.toolEpubToPdfDesc, accept: '.epub', path: '/epub-to-pdf' },
     { id: ToolType.PDF_TO_EPUB, icon: FileText, title: t.toolPdfToEpub, desc: t.toolPdfToEpubDesc, accept: '.pdf', path: '/pdf-to-epub' },
-    { id: ToolType.CBR_TO_PDF, icon: BookOpen, title: "CBR to PDF", desc: "Convert Comic Book archives (CBR, CBZ) to PDF.", accept: '.cbr,.cbz', path: '/cbr-to-pdf' },
+    { id: ToolType.CBR_TO_PDF, icon: BookOpen, title: t.toolCbrToPdf, desc: t.toolCbrToPdfDesc, accept: '.cbr,.cbz', path: '/cbr-to-pdf' },
     { id: ToolType.SIGN, icon: PenTool, title: t.toolSign, desc: t.toolSignDesc, accept: '.pdf', path: '/sign-pdf' },
     { id: ToolType.PDF_TO_WORD, icon: FileText, title: t.toolPdfToWord, desc: t.toolPdfToWordDesc, accept: '.pdf', path: '/pdf-to-word' },
     { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
-    { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
-    { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
-    { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge || 'Merge PDF', desc: t.toolMergeDesc || 'Combine multiple PDFs into one.', accept: '.pdf', path: '/merge-pdf' },
-    { id: ToolType.SPLIT, icon: Scissors, title: 'Split PDF', desc: 'Separate PDF into individual pages.', accept: '.pdf', path: '/split-pdf' },
-    { id: ToolType.PDF_TO_XML, icon: FileText, title: 'PDF to XML', desc: 'Extract PDF content into structured XML.', accept: '.pdf', path: '/pdf-to-xml' },
-    { id: ToolType.XML_TO_PDF, icon: FileText, title: 'XML to PDF', desc: 'Convert XML data into a PDF document.', accept: '.xml', path: '/xml-to-pdf' },
+    { id: ToolType.OCR, icon: FileText, title: t.toolOcr, desc: t.toolOcrDesc, accept: '.pdf', path: '/ocr-pdf' },
+    { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress, desc: t.toolCompressDesc, accept: '.pdf', path: '/compress-pdf' },
+    { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge, desc: t.toolMergeDesc, accept: '.pdf', path: '/merge-pdf' },
+    { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit, desc: t.toolSplitDesc, accept: '.pdf', path: '/split-pdf' },
+    { id: ToolType.PDF_TO_XML, icon: FileText, title: t.toolPdfToXml, desc: t.toolPdfToXmlDesc, accept: '.pdf', path: '/pdf-to-xml' },
+    { id: ToolType.XML_TO_PDF, icon: FileText, title: t.toolXmlToPdf, desc: t.toolXmlToPdfDesc, accept: '.xml', path: '/xml-to-pdf' },
+    { id: ToolType.EXCEL_TO_PDF, icon: FileText, title: t.toolExcelToPdf, desc: t.toolExcelToPdfDesc, accept: '.xlsx,.xls', path: '/excel-to-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -626,6 +632,10 @@ function App() {
             resultBlob = await convertXmlToPdf(file);
             outName = file.name.replace('.xml', '.pdf');
             break;
+          case ToolType.EXCEL_TO_PDF:
+            resultBlob = await convertExcelToPdf(file);
+            outName = file.name.replace(/\.(xlsx|xls)$/, '.pdf');
+            break;
         }
       } else if (currentTool === ToolType.SIGN) {
         outName = file.name.replace('.pdf', '_signed_eh.pdf');
@@ -810,6 +820,7 @@ function App() {
       case ToolType.SPLIT: return t.features.split;
       case ToolType.PDF_TO_XML: return t.features.pdfToXml;
       case ToolType.XML_TO_PDF: return t.features.xmlToPdf;
+      case ToolType.EXCEL_TO_PDF: return t.features.excelToPdf;
       default: return t.features.delete;
     }
   };
@@ -888,7 +899,7 @@ function App() {
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="h-px bg-gray-200 w-12 md:w-24"></div>
-          <h2 className="text-xl font-bold text-gray-800 text-center">Select a Tool <span className="font-normal text-gray-500">eh?</span></h2>
+          <h2 className="text-xl font-bold text-gray-800 text-center">{t.selectToolTitle} <span className="font-normal text-gray-500">{t.eh}</span></h2>
           <div className="h-px bg-gray-200 w-12 md:w-24"></div>
         </div>
 

@@ -28,7 +28,6 @@ export const translations = {
 
 
     // Compress Tool
-    // Compress Tool
     btnCompress: "Compress PDF",
     sizeReduced: "Size Reduced",
     addMorePdfs: "Add more PDFs",
@@ -496,8 +495,21 @@ export const translations = {
           { question: "Can I customize the PDF output?", answer: "Currently, the tool creates a standard formatted PDF. For advanced customization, consider using templates or post-processing tools." },
           { question: "Is there a file size limit?", answer: "There's no strict limit, but very large XML files may take longer to process. All processing is done locally in your browser." }
         ]
+      },
+      excelToPdf: {
+        title: "Excel to PDF Online - Convert XLSX/XLS to PDF for Free | pdfcanada.ca",
+        desc: "Create high-quality PDFs from Excel spreadsheets instantly. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.",
+        h1: "Convert Excel to PDF",
+        subtitle: "Professional PDFs from your Excel files instantly.",
+        content: "Turn your Excel spreadsheets into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
+        steps: [
+          "Upload your .xlsx or .xls file.",
+          "We process the spreadsheet and generate a professional PDF.",
+          "Download your new PDF file."
+        ]
       }
     },
+
 
     // Tools
     toolDelete: "Delete PDF Pages",
@@ -526,6 +538,8 @@ export const translations = {
     toolPdfToWordDesc: "Convert PDF to editable Docx.",
     toolWordToPdf: "Word to PDF",
     toolWordToPdfDesc: "Convert Word docx to PDF.",
+    toolExcelToPdf: "Excel to PDF",
+    toolExcelToPdfDesc: "Convert Excel sheets to PDF.",
     toolCrop: "Crop PDF",
     toolCropDesc: "Adjust page margins.",
     toolOrganize: "Organize PDF",
@@ -575,6 +589,26 @@ export const translations = {
     pan: "Pan",
     newSignature: "New signature",
     newInitials: "New initials",
+    loadingPage: "Loading page...",
+    pageNumber: "Page {number}",
+    signTools: "Sign Tools",
+    signatures: "Signatures",
+    createNewSignature: "Create New Signature",
+    initials: "Initials",
+    createNewInitials: "Create New Initials",
+    annotation: "Annotation",
+    date: "Date",
+    text: "Text",
+    check: "Check",
+    btnDeleteEntry: "Delete",
+    done: "Done",
+    edit: "Edit",
+    undo: "Undo",
+    redo: "Redo",
+    quickAdd: "Quick Add",
+    todaysDate: "Today's Date",
+    textField: "Text Field",
+    of: "of",
 
     // Form Builder
     fbTitle: "Form Builder",
@@ -595,6 +629,7 @@ export const translations = {
     btnSearchablePdf: "Make Searchable PDF",
     btnCancel: "Cancel",
     btnSave: "Save",
+    readyToConvertDesc: "Ready to convert {fileName}. This might take a few moments depending on the file size, eh.",
 
     working: "Working on it...",
     workingDesc: "Scanning for fields and fixing that up for you, eh.",
@@ -719,7 +754,6 @@ export const translations = {
 
 
 
-    // Compress Tool
     // Compress Tool
     btnCompress: "Compresser PDF",
     sizeReduced: "Taille réduite",
@@ -1064,8 +1098,21 @@ export const translations = {
           { question: "Puis-je personnaliser la sortie PDF ?", answer: "Actuellement, l'outil crée un PDF formaté standard. Pour une personnalisation avancée, envisagez d'utiliser des modèles ou des outils de post-traitement." },
           { question: "Y a-t-il une limite de taille de fichier ?", answer: "Il n'y a pas de limite stricte, mais les très gros fichiers XML peuvent prendre plus de temps à traiter. Tout le traitement est fait localement dans votre navigateur." }
         ]
+      },
+      excelToPdf: {
+        title: "Excel vers PDF en Ligne - Convertir XLSX/XLS en PDF Gratuitement | pdfcanada.ca",
+        desc: "Créez instantanément des PDF de haute qualité à partir de feuilles de calcul Excel. Notre convertisseur sécurisé traite les fichiers localement - pas de téléversement, pas de suivi, juste un service canadien rapide et gratuit.",
+        h1: "Convertir Excel en PDF",
+        subtitle: "Des PDF professionnels à partir de vos fichiers Excel instantanément.",
+        content: "Transformez vos feuilles de calcul Excel en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale en laquelle vous pouvez avoir confiance.",
+        steps: [
+          "Téléversez votre fichier .xlsx ou .xls.",
+          "Nous traitons la feuille de calcul et générons un PDF professionnel.",
+          "Téléchargez votre nouveau fichier PDF."
+        ]
       }
     },
+
 
     toolDelete: "Supprimer des pages",
     toolDeleteDesc: "Enlever les pages inutiles.",
@@ -1093,6 +1140,8 @@ export const translations = {
     toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
     toolWordToPdf: "Word en PDF",
     toolWordToPdfDesc: "Convertir Word docx en PDF.",
+    toolExcelToPdf: "Excel vers PDF",
+    toolExcelToPdfDesc: "Convertir Excel doc en PDF.",
     toolCrop: "Recadrer PDF",
     toolCropDesc: "Ajuster les marges.",
     toolOrganize: "Organiser PDF",
@@ -1139,6 +1188,26 @@ export const translations = {
     pan: "Panoramique",
     newSignature: "Nouvelle signature",
     newInitials: "Nouvelles initiales",
+    loadingPage: "Chargement de la page...",
+    pageNumber: "Page {number}",
+    signTools: "Outils de signature",
+    signatures: "Signatures",
+    createNewSignature: "Créer une nouvelle signature",
+    initials: "Initiales",
+    createNewInitials: "Créer de nouvelles initiales",
+    annotation: "Annotation",
+    date: "Date",
+    text: "Texte",
+    check: "Case à cocher",
+    btnDeleteEntry: "Supprimer",
+    done: "Terminé",
+    edit: "Modifier",
+    undo: "Annuler",
+    redo: "Rétablir",
+    quickAdd: "Ajout rapide",
+    todaysDate: "Date d'aujourd'hui",
+    textField: "Champ texte",
+    of: "sur",
 
     btnRemove: "Supprimer",
     btnRotate: "Appliquer",
@@ -1150,6 +1219,7 @@ export const translations = {
     btnExtractText: "Extraire le Texte",
     btnSearchablePdf: "Créer PDF Recherchable",
     btnSave: "Enregistrer",
+    readyToConvertDesc: "Prêt à convertir {fileName}. Cela peut prendre quelques instants selon la taille du fichier.",
 
     working: "On y travaille...",
     workingDesc: "On scanne pour les champs et on arrange ça.",

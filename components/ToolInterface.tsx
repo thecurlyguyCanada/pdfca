@@ -575,11 +575,11 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
-                            {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF) && <FileText size={32} />}
+                            {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF || currentTool === ToolType.PDF_TO_XML || currentTool === ToolType.XML_TO_PDF || currentTool === ToolType.EXCEL_TO_PDF) && <FileText size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">
-                            Ready to convert <strong>{file?.name}</strong>. This might take a few moments depending on the file size, eh.
+                            {t.readyToConvertDesc?.replace('{fileName}', file?.name || '')}
                         </p>
                     </div>
                 )}
@@ -613,6 +613,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
                         {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
+                        {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
+                        {currentTool === ToolType.XML_TO_PDF && (t.btnConvert || "Convert to PDF")}
+                        {currentTool === ToolType.EXCEL_TO_PDF && (t.btnConvert || "Convert to PDF")}
                         {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
                     </button>
                 </div>

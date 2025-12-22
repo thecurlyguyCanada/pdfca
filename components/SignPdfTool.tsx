@@ -47,6 +47,7 @@ interface PageRendererProps {
     onSelectEntry: (id: string | null) => void;
     isMobile: boolean;
     onPageClick?: () => void;
+    t: any;
 }
 
 const PageRendererBase: React.FC<PageRendererProps> = ({
@@ -63,7 +64,8 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
     selectedEntryId,
     onSelectEntry,
     isMobile,
-    onPageClick
+    onPageClick,
+    t
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [baseSize, setBaseSize] = useState({ width: 612, height: 792 });
@@ -262,7 +264,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                             }}
                             className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all z-[100] min-h-[44px] whitespace-nowrap cursor-pointer`}
                         >
-                            <Trash2 size={16} /> Delete
+                            <Trash2 size={16} /> {t.btnDeleteEntry}
                         </button>
                     )}
                 </Rnd>
@@ -271,7 +273,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
             {!isVisible && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 z-10 gap-3">
                     <div className="w-10 h-10 border-4 border-canada-red border-t-transparent rounded-full animate-spin" />
-                    <span className="text-xs text-gray-400 font-medium">Loading page...</span>
+                    <span className="text-xs text-gray-400 font-medium">{t.loadingPage}</span>
                 </div>
             )}
         </div>
@@ -285,8 +287,9 @@ interface ThumbnailItemProps {
     activePage: number;
     scrollToPage: (idx: number) => void;
     pdfJsDoc: any;
+    t: any;
 }
-const ThumbnailItemBase: React.FC<ThumbnailItemProps> = ({ idx, activePage, scrollToPage, pdfJsDoc }) => (
+const ThumbnailItemBase: React.FC<ThumbnailItemProps> = ({ idx, activePage, scrollToPage, pdfJsDoc, t }) => (
     <div
         onClick={() => scrollToPage(idx)}
         className={`relative cursor-pointer group rounded-lg transition-shadow duration-200 ${activePage === idx ? 'ring-2 ring-canada-red bg-white shadow-md font-bold text-canada-red' : 'hover:bg-gray-100 border border-transparent hover:border-gray-200'}`}
@@ -299,7 +302,7 @@ const ThumbnailItemBase: React.FC<ThumbnailItemProps> = ({ idx, activePage, scro
             width={160}
             mode="none"
         />
-        <div className="text-center text-[10px] mt-1 font-medium">Page {idx + 1}</div>
+        <div className="text-center text-[10px] mt-1 font-medium">{t.pageNumber?.replace('{number}', String(idx + 1))}</div>
     </div>
 );
 const ThumbnailItem = React.memo(ThumbnailItemBase);
@@ -627,7 +630,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const renderThumbnailSidebar = () => (
         <div className={`hidden md:flex flex-col flex-shrink-0 border-r border-gray-200 bg-gray-50/50 transition-all duration-300 ${showThumbnails ? 'w-48' : 'w-0 overflow-hidden'}`}>
             <div className="p-3 font-semibold text-xs text-gray-500 uppercase tracking-wider border-b border-gray-100 flex justify-between items-center">
-                <span>Pages ({pageCount})</span>
+                <span>{t.pages} ({pageCount})</span>
             </div>
             <div className="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar" ref={thumbnailContainerRef}>
                 {Array.from({ length: pageCount }).map((_, idx) => (
@@ -637,6 +640,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         activePage={activePage}
                         scrollToPage={scrollToPage}
                         pdfJsDoc={pdfJsDoc}
+                        t={t}
                     />
                 ))}
             </div>
@@ -646,14 +650,14 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const renderToolsSidebar = () => (
         <div className={`hidden md:flex flex-col flex-shrink-0 border-l border-gray-200 bg-white transition-all duration-300 ${showToolsSidebar ? 'w-72' : 'w-0 overflow-hidden'}`}>
             <div className="p-4 border-b border-gray-100">
-                <h3 className="font-bold text-gray-800">Tools</h3>
+                <h3 className="font-bold text-gray-800">{t.signTools}</h3>
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
 
                 {/* Signature Section */}
                 <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 flex items-center gap-2">
-                        <PenTool size={12} /> Signatures
+                        <PenTool size={12} /> {t.signatures}
                     </h4>
                     <div className="space-y-2">
                         <button
@@ -663,7 +667,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                             <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <Plus size={16} />
                             </div>
-                            <span className="font-semibold text-sm">Create New Signature</span>
+                            <span className="font-semibold text-sm">{t.createNewSignature}</span>
                         </button>
 
                         <div className="grid grid-cols-2 gap-2 mt-2">
@@ -679,7 +683,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 {/* Initials Section */}
                 <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 flex items-center gap-2">
-                        <Type size={12} /> Initials
+                        <Type size={12} /> {t.initials}
                     </h4>
                     <div className="space-y-2">
                         <button
@@ -689,7 +693,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                             <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <Plus size={16} />
                             </div>
-                            <span className="font-semibold text-sm">Create New Initials</span>
+                            <span className="font-semibold text-sm">{t.createNewInitials}</span>
                         </button>
 
                         <div className="grid grid-cols-2 gap-2 mt-2">
@@ -704,19 +708,19 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
 
                 {/* Standard Tools */}
                 <div>
-                    <h4 className="text-xs font-bold text-gray-400 uppercase mb-3">Annotation</h4>
+                    <h4 className="text-xs font-bold text-gray-400 uppercase mb-3">{t.annotation}</h4>
                     <div className="grid grid-cols-3 gap-2">
                         <button onClick={() => addEntry('date')} className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-sm text-gray-600 transition-all">
                             <Calendar size={20} className="text-blue-500" />
-                            <span className="text-[10px] font-bold">Date</span>
+                            <span className="text-[10px] font-bold">{t.date}</span>
                         </button>
                         <button onClick={() => addEntry('text', undefined, 'Text')} className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-sm text-gray-600 transition-all">
                             <Type size={20} className="text-purple-500" />
-                            <span className="text-[10px] font-bold">Text</span>
+                            <span className="text-[10px] font-bold">{t.text}</span>
                         </button>
                         <button onClick={() => addEntry('text', undefined, '✓')} className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-sm text-gray-600 transition-all">
                             <CheckIcon size={20} className="text-green-500" />
-                            <span className="text-[10px] font-bold">Check</span>
+                            <span className="text-[10px] font-bold">{t.check}</span>
                         </button>
                     </div>
                 </div>
@@ -762,13 +766,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                             onClick={() => setActiveTool('pan')}
                             className={`flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold transition-all ${activeTool === 'pan' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
                         >
-                            <Hand size={14} /> Pan
+                            <Hand size={14} /> {t.pan}
                         </button>
                         <button
                             onClick={() => setActiveTool('select')}
                             className={`flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold transition-all ${activeTool === 'select' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
                         >
-                            <MousePointer2 size={14} /> Select
+                            <MousePointer2 size={14} /> {t.select}
                         </button>
                     </div>
                 </div>
@@ -841,6 +845,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                     onSelectEntry={setSelectedEntryId}
                                     isMobile={isMobile}
                                     onPageClick={() => setActivePage(idx)}
+                                    t={t}
                                 />
                             </div>
                         ))}
@@ -879,8 +884,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         <ChevronLeft size={20} />
                     </button>
                     <div className="flex flex-col items-center min-w-[60px]">
-                        <span className="font-bold text-gray-800 text-sm">Page {activePage + 1}</span>
-                        <span className="text-[10px] text-gray-400">of {pageCount}</span>
+                        <span className="font-bold text-gray-800 text-sm">{t.pageNumber?.replace('{number}', String(activePage + 1))}</span>
+                        <span className="text-[10px] text-gray-400">{t.of} {pageCount}</span>
                     </div>
                     <button
                         onClick={() => { triggerHaptic('light'); scrollToPage(Math.min(pageCount - 1, activePage + 1)); }}
@@ -894,7 +899,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     onClick={() => { triggerHaptic('success'); onSign(entries); }}
                     className="text-canada-red font-bold text-sm px-4 py-2 rounded-xl active:bg-red-50"
                 >
-                    Done
+                    {t.done}
                 </button>
             </div>
 
@@ -914,11 +919,11 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             >
                 <button onClick={() => handleToolChange('pan')} className={`flex flex-col items-center gap-1 px-5 py-2 rounded-xl transition-colors ${activeTool === 'pan' ? 'text-canada-red bg-red-50' : 'text-gray-400 active:bg-gray-100'}`}>
                     <Hand size={22} strokeWidth={activeTool === 'pan' ? 2.5 : 2} />
-                    <span className="text-[10px] font-bold">Pan</span>
+                    <span className="text-[10px] font-bold">{t.pan}</span>
                 </button>
                 <button onClick={() => handleToolChange('select')} className={`flex flex-col items-center gap-1 px-5 py-2 rounded-xl transition-colors ${activeTool === 'select' ? 'text-canada-red bg-red-50' : 'text-gray-400 active:bg-gray-100'}`}>
                     <MousePointer2 size={22} strokeWidth={activeTool === 'select' ? 2.5 : 2} />
-                    <span className="text-[10px] font-bold">Edit</span>
+                    <span className="text-[10px] font-bold">{t.edit}</span>
                 </button>
                 <div className="relative -top-6">
                     <button onClick={toggleSignMenu} className="bg-canada-red text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 active:scale-95 border-4 border-white">
@@ -927,11 +932,11 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 </div>
                 <button onClick={undo} disabled={historyStep === 0} className="flex flex-col items-center gap-1 px-5 py-2 rounded-xl text-gray-400 disabled:opacity-30 active:bg-gray-100">
                     <Undo2 size={22} />
-                    <span className="text-[10px] font-bold">Undo</span>
+                    <span className="text-[10px] font-bold">{t.undo}</span>
                 </button>
                 <button onClick={redo} disabled={historyStep === history.length - 1} className="flex flex-col items-center gap-1 px-5 py-2 rounded-xl text-gray-400 disabled:opacity-30 active:bg-gray-100">
                     <Redo2 size={22} />
-                    <span className="text-[10px] font-bold">Redo</span>
+                    <span className="text-[10px] font-bold">{t.redo}</span>
                 </button>
             </div>
 
@@ -945,10 +950,10 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                 </div>
                 <div className="p-5 space-y-6 pb-[max(48px,env(safe-area-inset-bottom)+24px)]">
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Signatures</h4>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">{t.signatures}</h4>
                         <div className="grid grid-cols-2 gap-3">
                             <button onClick={() => { setModalType('signature'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-100 text-canada-darkRed rounded-2xl font-bold border border-red-200 active:scale-95 h-32 shadow-sm">
-                                <Plus size={28} /> New Signature
+                                <Plus size={28} /> {t.newSignature}
                             </button>
                             {savedSignatures.map((sig, i) => (
                                 <button key={i} onClick={() => addEntry('signature', sig)} className="border border-gray-100 rounded-2xl p-3 bg-white active:border-canada-red active:scale-95 h-32 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
@@ -958,10 +963,10 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         </div>
                     </div>
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Initials</h4>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">{t.initials}</h4>
                         <div className="grid grid-cols-2 gap-3">
                             <button onClick={() => { setModalType('initials'); setIsModalOpen(true); setShowBottomSheet(false); }} className="flex flex-col items-center justify-center gap-2 p-4 bg-red-100 text-canada-darkRed rounded-2xl font-bold border border-red-200 active:scale-95 h-32 shadow-sm">
-                                <Plus size={28} /> New Initials
+                                <Plus size={28} /> {t.newInitials}
                             </button>
                             {savedInitials.map((sig, i) => (
                                 <button key={i} onClick={() => addEntry('initials', sig)} className="border border-gray-100 rounded-2xl p-3 bg-white active:border-canada-red active:scale-95 h-32 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
@@ -971,13 +976,13 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         </div>
                     </div>
                     <div>
-                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">Quick Add</h4>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 px-1">{t.quickAdd}</h4>
                         <div className="grid grid-cols-2 gap-3">
                             <button onClick={() => addEntry('date')} className="flex flex-col items-center justify-center gap-2 p-4 bg-blue-50 text-blue-600 rounded-2xl font-bold border border-blue-100 active:scale-95 h-20 shadow-sm">
-                                <Calendar size={22} /> Today's Date
+                                <Calendar size={22} /> {t.todaysDate}
                             </button>
                             <button onClick={() => addEntry('text', undefined, 'Your text here')} className="flex flex-col items-center justify-center gap-2 p-4 bg-gray-50 text-gray-600 rounded-2xl font-bold border border-gray-200 active:scale-95 h-20 shadow-sm">
-                                <Type size={22} /> Text Field
+                                <Type size={22} /> {t.textField}
                             </button>
                         </div>
                     </div>

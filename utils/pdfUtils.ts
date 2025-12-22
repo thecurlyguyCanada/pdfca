@@ -70,6 +70,11 @@ const getJsPdf = async () => {
   return (mod as any).jsPDF || mod.default || mod;
 };
 
+const getXlsx = async () => {
+  const xlsx = await import('xlsx');
+  return xlsx;
+};
+
 export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     const pdfjs = await getPdfJs();
@@ -1031,7 +1036,7 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
   // Split by paragraph-like tags
   const paragraphs = html.split(/<\/p>|<\/li>|<\/h[1-6]>/);
 
-  paragraphs.forEach((p) => {
+  paragraphs.forEach((p: string) => {
     if (!p.trim()) return;
 
     // Clean up starting tags
@@ -1055,7 +1060,7 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
 
     // We'll use a more advanced approach: process all segments and handle wrapping
     const styledFragments: { text: string, bold: boolean, italic: boolean }[] = [];
-    segments.forEach(seg => {
+    segments.forEach((seg: string) => {
       if (seg === '<strong>' || seg === '<b>') isBold = true;
       else if (seg === '</strong>' || seg === '</b>') isBold = false;
       else if (seg === '<em>' || seg === '<i>') isItalic = true;
@@ -1075,6 +1080,25 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
         const wordWidth = doc.getTextWidth(word);
 
         if (currentX + wordWidth > pageWidth - margin && word.trim()) {
+          // If a single word is wider than the page, break it down
+          if (wordWidth > maxLineWidth) {
+            for (let i = 0; i < word.length; i++) {
+              const char = word[i];
+              const charWidth = doc.getTextWidth(char);
+              if (currentX + charWidth > pageWidth - margin) {
+                y += lineHeight;
+                currentX = margin;
+                if (y > pageHeight - margin) {
+                  doc.addPage();
+                  y = margin;
+                }
+              }
+              doc.text(char, currentX, y);
+              currentX += charWidth;
+            }
+            return;
+          }
+
           y += lineHeight;
           currentX = margin;
 
@@ -1463,4 +1487,66 @@ export const convertXmlToPdf = async (file: File): Promise<Uint8Array> => {
   }
 
   return await doc.save();
+};
+
+export const convertExcelToPdf = async (file: File): Promise<Blob> => {
+  const XLSX = await getXlsx();
+  const jsPDF = await getJsPdf();
+  const arrayBuffer = await file.arrayBuffer();
+
+  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  const doc = new jsPDF();
+  const margin = 10;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const cellPadding = 2;
+  const fontSize = 10;
+
+  workbook.SheetNames.forEach((sheetName: string, index: number) => {
+    if (index > 0) doc.addPage();
+
+    const worksheet = workbook.Sheets[sheetName];
+    const data: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Sheet: ' + sheetName, margin, margin + 5);
+
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', 'normal');
+
+    let y = margin + 15;
+    const colCount = Math.max(...data.map((r: any[]) => (r ? r.length : 0)), 1);
+    const colWidth = (pageWidth - margin * 2) / colCount;
+
+    data.forEach((row) => {
+      if (!row) return;
+      let x = margin;
+      let maxHeight = 0;
+
+      row.forEach((cell: any) => {
+        const text = cell !== null && cell !== undefined ? String(cell) : '';
+        const lines = doc.splitTextToSize(text, colWidth - cellPadding * 2);
+        const cellHeight = lines.length * (fontSize * 0.5) + cellPadding * 2;
+        if (cellHeight > maxHeight) maxHeight = cellHeight;
+      });
+
+      if (y + maxHeight > pageHeight - margin) {
+        doc.addPage();
+        y = margin;
+      }
+
+      row.forEach((cell: any) => {
+        const text = cell !== null && cell !== undefined ? String(cell) : '';
+        const lines = doc.splitTextToSize(text, colWidth - cellPadding * 2);
+        doc.rect(x, y, colWidth, maxHeight);
+        doc.text(lines, x + cellPadding, y + cellPadding + (fontSize * 0.4));
+        x += colWidth;
+      });
+
+      y += maxHeight;
+    });
+  });
+
+  return doc.output('blob');
 };
