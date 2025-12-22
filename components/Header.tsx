@@ -52,6 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
             className="text-sm font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
             {lang === 'en' ? 'FR' : 'EN'}
           </button>

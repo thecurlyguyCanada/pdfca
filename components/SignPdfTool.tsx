@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Rnd } from 'react-rnd';
+import { TranslationType } from '../utils/i18n';
 import {
     X,
     Plus,
@@ -47,7 +48,7 @@ interface PageRendererProps {
     onSelectEntry: (id: string | null) => void;
     isMobile: boolean;
     onPageClick?: () => void;
-    t: any;
+    t: TranslationType;
 }
 
 const PageRendererBase: React.FC<PageRendererProps> = ({
@@ -312,7 +313,7 @@ interface SignPdfToolProps {
     onClose: () => void;
     pdfJsDoc: any;
     pageCount: number;
-    t: any;
+    t: TranslationType;
     onSign: (entries: SignatureEntry[]) => void;
     previewZoom: number;
     setPreviewZoom: (zoom: number) => void;
@@ -458,15 +459,21 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Initial Zoom Fit
+    // Initial & Resize Zoom Fit
     useEffect(() => {
-        if (scrollContainerRef.current) {
-            const containerWidth = scrollContainerRef.current.clientWidth;
-            const padding = isMobile ? 32 : 80;
-            const availableWidth = containerWidth - padding;
-            const newZoom = Math.min(isMobile ? 1.0 : 1.2, Math.max(0.5, availableWidth / 612));
-            setPreviewZoom(newZoom);
-        }
+        const fitToWidth = () => {
+            if (scrollContainerRef.current) {
+                const containerWidth = scrollContainerRef.current.clientWidth;
+                const padding = isMobile ? 32 : 80;
+                const availableWidth = containerWidth - padding;
+                const newZoom = Math.min(isMobile ? 1.0 : 1.2, Math.max(0.5, availableWidth / 612));
+                setPreviewZoom(newZoom);
+            }
+        };
+
+        fitToWidth();
+        window.addEventListener('resize', fitToWidth);
+        return () => window.removeEventListener('resize', fitToWidth);
     }, [isMobile, setPreviewZoom]);
 
     useEffect(() => {

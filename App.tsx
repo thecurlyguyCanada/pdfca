@@ -128,6 +128,14 @@ function App() {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [downloadName, setDownloadName] = useState<string>('');
   const [errorKey, setErrorKey] = useState<keyof typeof translations['en'] | null>(null);
+  // Revoke previous URL to prevent memory leaks when downloadUrl changes
+  useEffect(() => {
+    return () => {
+      if (downloadUrl) {
+        URL.revokeObjectURL(downloadUrl);
+      }
+    };
+  }, [downloadUrl]);
 
   // Compression Level
   const [compressionLevel, setCompressionLevel] = useState<'good' | 'balanced' | 'extreme'>('balanced');

@@ -4,6 +4,9 @@
 let pdfjsLib: any = null;
 let workerInitialized = false;
 
+import type { PDFDocument } from 'pdf-lib';
+import type { jsPDF } from 'jspdf';
+
 export interface FormField {
   id: string;
   type: 'text' | 'checkbox' | 'signature';
@@ -54,25 +57,45 @@ const getTesseract = async () => {
 
 // Lazy load docx
 const getDocx = async () => {
-  const docx = await import('docx');
-  return docx;
+  try {
+    const docx = await import('docx');
+    return docx;
+  } catch (error) {
+    console.error('Failed to load docx library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_DOCX');
+  }
 };
 
 // Lazy load mammoth
 const getMammoth = async () => {
-  const mammoth = await import('mammoth');
-  return mammoth;
+  try {
+    const mammoth = await import('mammoth');
+    return mammoth;
+  } catch (error) {
+    console.error('Failed to load mammoth library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_MAMMOTH');
+  }
 };
 
 // Lazy load jsPDF
 const getJsPdf = async () => {
-  const mod = await import('jspdf');
-  return (mod as any).jsPDF || mod.default || mod;
+  try {
+    const mod = await import('jspdf');
+    return (mod as any).jsPDF || mod.default || mod;
+  } catch (error) {
+    console.error('Failed to load jspdf library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_JSPDF');
+  }
 };
 
 const getXlsx = async () => {
-  const xlsx = await import('xlsx');
-  return xlsx;
+  try {
+    const xlsx = await import('xlsx');
+    return xlsx;
+  } catch (error) {
+    console.error('Failed to load xlsx library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_XLSX');
+  }
 };
 
 export const initPdfWorker = async () => {
@@ -106,7 +129,7 @@ export const getPdfJsDocument = async (file: File) => {
   }
 };
 
-export const loadPdfDocument = async (file: File): Promise<{ doc: any; pageCount: number }> => {
+export const loadPdfDocument = async (file: File): Promise<{ doc: PDFDocument; pageCount: number }> => {
   const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await file.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
