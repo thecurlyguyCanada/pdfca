@@ -1317,3 +1317,150 @@ export const splitPdf = async (file: File): Promise<Blob> => {
 
   return await zip.generateAsync({ type: 'blob' });
 };
+
+// PDF to XML: Extract PDF content into structured XML
+export const convertPdfToXml = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  const escapeXml = (unsafe: string) => {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
+  };
+
+  let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xmlContent += '<document>\n';
+  xmlContent += `  <metadata>\n`;
+  xmlContent += `    <filename>${escapeXml(file.name)}</filename>\n`;
+  xmlContent += `    <pageCount>${pdf.numPages}</pageCount>\n`;
+  xmlContent += `    <exportDate>${new Date().toISOString()}</exportDate>\n`;
+  xmlContent += `  </metadata>\n`;
+  xmlContent += '  <pages>\n';
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const textContent = await page.getTextContent();
+    const viewport = page.getViewport({ scale: 1.0 });
+
+    xmlContent += `    <page number="${i}" width="${viewport.width.toFixed(2)}" height="${viewport.height.toFixed(2)}">\n`;
+
+    for (const item of textContent.items as any[]) {
+      if (item.str && item.str.trim()) {
+        const x = item.transform ? item.transform[4].toFixed(2) : '0';
+        const y = item.transform ? item.transform[5].toFixed(2) : '0';
+        const fontSize = item.transform ? item.transform[0].toFixed(2) : '12';
+        xmlContent += `      <text x="${x}" y="${y}" fontSize="${fontSize}">${escapeXml(item.str)}</text>\n`;
+      }
+    }
+
+    xmlContent += `    </page>\n`;
+  }
+
+  xmlContent += '  </pages>\n';
+  xmlContent += '</document>';
+
+  return new Blob([xmlContent], { type: 'application/xml' });
+};
+
+// XML to PDF: Convert structured XML into a PDF document
+export const convertXmlToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument, StandardFonts, rgb } = await getPdfLib();
+
+  const xmlText = await file.text();
+
+  // Parse XML using DOMParser
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+
+  const parseError = xmlDoc.querySelector('parsererror');
+  if (parseError) {
+    throw new Error('Invalid XML file. Please check the XML syntax.');
+  }
+
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+
+  // Try to find pages in the XML
+  const pages = xmlDoc.querySelectorAll('page');
+
+  if (pages.length > 0) {
+    // Structured XML with page elements
+    for (const pageEl of pages) {
+      const width = parseFloat(pageEl.getAttribute('width') || '612');
+      const height = parseFloat(pageEl.getAttribute('height') || '792');
+      const pdfPage = doc.addPage([width, height]);
+
+      const textElements = pageEl.querySelectorAll('text');
+      for (const textEl of textElements) {
+        const x = parseFloat(textEl.getAttribute('x') || '50');
+        const y = parseFloat(textEl.getAttribute('y') || '700');
+        const fontSize = parseFloat(textEl.getAttribute('fontSize') || '12');
+        const text = textEl.textContent || '';
+
+        if (text.trim()) {
+          pdfPage.drawText(text, {
+            x,
+            y,
+            size: Math.min(fontSize, 72), // Cap font size
+            font,
+            color: rgb(0, 0, 0),
+          });
+        }
+      }
+    }
+  } else {
+    // Simple XML - just extract all text content
+    const allText = xmlDoc.documentElement.textContent || '';
+    const lines = allText.split('\n').filter(line => line.trim());
+
+    if (lines.length === 0) {
+      throw new Error('No text content found in XML file.');
+    }
+
+    const fontSize = 11;
+    const margin = 50;
+    const lineHeight = fontSize + 4;
+
+    let page = doc.addPage();
+    const { width: pageWidth, height: pageHeight } = page.getSize();
+    let y = pageHeight - margin;
+
+    for (const line of lines) {
+      if (y < margin) {
+        page = doc.addPage();
+        y = pageHeight - margin;
+      }
+
+      // Word wrap long lines
+      const maxCharsPerLine = Math.floor((pageWidth - 2 * margin) / (fontSize * 0.5));
+      const wrappedLines = [];
+      let remaining = line;
+
+      while (remaining.length > maxCharsPerLine) {
+        let breakPoint = remaining.lastIndexOf(' ', maxCharsPerLine);
+        if (breakPoint === -1) breakPoint = maxCharsPerLine;
+        wrappedLines.push(remaining.substring(0, breakPoint).trim());
+        remaining = remaining.substring(breakPoint).trim();
+      }
+      if (remaining.trim()) wrappedLines.push(remaining.trim());
+
+      for (const wLine of wrappedLines) {
+        if (y < margin) {
+          page = doc.addPage();
+          y = pageHeight - margin;
+        }
+        page.drawText(wLine, { x: margin, y, size: fontSize, font, color: rgb(0, 0, 0) });
+        y -= lineHeight;
+      }
+    }
+  }
+
+  return await doc.save();
+};

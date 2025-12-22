@@ -14,7 +14,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf, convertPdfToXml, convertXmlToPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -71,7 +71,9 @@ export enum ToolType {
   CROP = 'CROP',
   COMPRESS = 'COMPRESS',
   MERGE = 'MERGE',
-  SPLIT = 'SPLIT'
+  SPLIT = 'SPLIT',
+  PDF_TO_XML = 'PDF_TO_XML',
+  XML_TO_PDF = 'XML_TO_PDF'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -218,6 +220,14 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/split-pdf') {
       setCurrentTool(ToolType.SPLIT);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/pdf-to-xml') {
+      setCurrentTool(ToolType.PDF_TO_XML);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/xml-to-pdf') {
+      setCurrentTool(ToolType.XML_TO_PDF);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
@@ -421,6 +431,8 @@ function App() {
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
     { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge || 'Merge PDF', desc: t.toolMergeDesc || 'Combine multiple PDFs into one.', accept: '.pdf', path: '/merge-pdf' },
     { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit || 'Split PDF', desc: t.toolSplitDesc || 'Separate PDF into individual pages.', accept: '.pdf', path: '/split-pdf' },
+    { id: ToolType.PDF_TO_XML, icon: FileText, title: 'PDF to XML', desc: 'Extract PDF content into structured XML.', accept: '.pdf', path: '/pdf-to-xml' },
+    { id: ToolType.XML_TO_PDF, icon: FileText, title: 'XML to PDF', desc: 'Convert XML data into a PDF document.', accept: '.xml', path: '/xml-to-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -605,6 +617,14 @@ function App() {
           case ToolType.SPLIT:
             resultBlob = await splitPdf(file);
             outName = file.name.replace('.pdf', '_pages.zip');
+            break;
+          case ToolType.PDF_TO_XML:
+            resultBlob = await convertPdfToXml(file);
+            outName = file.name.replace('.pdf', '.xml');
+            break;
+          case ToolType.XML_TO_PDF:
+            resultBlob = await convertXmlToPdf(file);
+            outName = file.name.replace('.xml', '.pdf');
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
