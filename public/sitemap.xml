@@ -520,6 +520,33 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/merge-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/merge-pdf"/>
   </url>
+  <url>
+    <loc>https://pdfcanada.ca/split-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/split-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/pdf-to-xml</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-xml"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/xml-to-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/xml-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/xml-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/xml-to-pdf"/>
+  </url>
 
   <!-- French Tool Pages -->
   <url>
@@ -584,6 +611,33 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/merge-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/merge-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/merge-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/split-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/split-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/pdf-to-xml</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/pdf-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/pdf-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/pdf-to-xml"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/xml-to-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/xml-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/xml-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/xml-to-pdf"/>
   </url>
 
   <!-- Guide Pages -->
