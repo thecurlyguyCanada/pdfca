@@ -422,6 +422,11 @@ export const translations = {
           "Select the PDF file you want to compress.",
           "Choose your compression level (Good, Balanced, or Extreme).",
           "Click 'Compress PDF' and download your smaller file."
+        ],
+        faq: [
+          { question: "How much can I reduce my PDF file size?", answer: "Depending on the content, you can reduce file size by 50-90%. Image-heavy PDFs see the biggest reductions." },
+          { question: "Will compression reduce quality?", answer: "Our 'Good' and 'Balanced' modes maintain excellent quality. 'Extreme' mode prioritizes size over quality." },
+          { question: "Is PDF compression secure?", answer: "Yes! All processing happens locally in your browser. Your files never leave your device." }
         ]
       },
       merge: {
@@ -434,6 +439,11 @@ export const translations = {
           "Select the PDF files you want to merge.",
           "Drag and drop the files to rearrange the order.",
           "Click 'Merge PDFs' to download your combined document."
+        ],
+        faq: [
+          { question: "How many PDFs can I merge at once?", answer: "There's no limit! Merge as many PDF files as you need. All processing happens locally in your browser." },
+          { question: "Can I reorder pages before merging?", answer: "Yes! Drag and drop files to rearrange their order before merging into one document." },
+          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents." }
         ]
       },
       split: {
@@ -446,6 +456,11 @@ export const translations = {
           "Upload your PDF document.",
           "Click 'Split PDF' to separate all pages.",
           "Download your ZIP file containing individual PDFs."
+        ],
+        faq: [
+          { question: "How do I split a PDF into separate pages?", answer: "Upload your PDF, click 'Split PDF', and download a ZIP file containing each page as an individual PDF file." },
+          { question: "Is splitting PDFs free?", answer: "Yes! Our Split PDF tool is 100% free with no limits. Your files are processed locally in your browser for complete privacy." },
+          { question: "Can I split a password-protected PDF?", answer: "You'll need to remove the password first. We recommend using a dedicated PDF unlock tool before splitting." }
         ]
       },
       pdfToXml: {
@@ -458,6 +473,11 @@ export const translations = {
           "Upload your PDF file.",
           "Click 'Convert to XML' to process.",
           "Download your structured XML file."
+        ],
+        faq: [
+          { question: "What data is extracted in PDF to XML conversion?", answer: "Our tool extracts text content, page dimensions, text positions, and content structure into a clean XML format." },
+          { question: "Can I convert scanned PDFs to XML?", answer: "For scanned documents, we recommend using OCR first to extract text, then convert to XML for best results." },
+          { question: "Is my PDF data secure during conversion?", answer: "Absolutely! All processing happens locally in your browser. Your files never leave your device." }
         ]
       },
       xmlToPdf: {
@@ -470,6 +490,11 @@ export const translations = {
           "Upload your XML file.",
           "Click 'Convert to PDF' to process.",
           "Download your generated PDF document."
+        ],
+        faq: [
+          { question: "What XML formats are supported?", answer: "Our converter supports standard XML files. The tool extracts text content and formats it into a clean, readable PDF document." },
+          { question: "Can I customize the PDF output?", answer: "Currently, the tool creates a standard formatted PDF. For advanced customization, consider using templates or post-processing tools." },
+          { question: "Is there a file size limit?", answer: "There's no strict limit, but very large XML files may take longer to process. All processing is done locally in your browser." }
         ]
       }
     },
@@ -965,6 +990,11 @@ export const translations = {
           "Sélectionnez le fichier PDF à compresser.",
           "Choisissez votre niveau de compression (Bon, Équilibré ou Extrême).",
           "Cliquez sur 'Compresser PDF' et téléchargez votre fichier réduit."
+        ],
+        faq: [
+          { question: "De combien puis-je réduire la taille de mon PDF ?", answer: "Selon le contenu, vous pouvez réduire la taille de 50 à 90%. Les PDF riches en images voient les plus grandes réductions." },
+          { question: "La compression réduira-t-elle la qualité ?", answer: "Nos modes 'Bon' et 'Équilibré' maintiennent une excellente qualité. Le mode 'Extrême' privilégie la taille à la qualité." },
+          { question: "La compression PDF est-elle sécurisée ?", answer: "Oui ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
         ]
       },
       merge: {
@@ -977,6 +1007,11 @@ export const translations = {
           "Sélectionnez les fichiers PDF à fusionner.",
           "Glissez-déposez les fichiers pour réorganiser l'ordre.",
           "Cliquez sur 'Fusionner PDF' pour télécharger votre document combiné."
+        ],
+        faq: [
+          { question: "Combien de PDF puis-je fusionner à la fois ?", answer: "Il n'y a pas de limite ! Fusionnez autant de fichiers PDF que nécessaire. Tout le traitement se fait localement dans votre navigateur." },
+          { question: "Puis-je réorganiser les pages avant la fusion ?", answer: "Oui ! Glissez-déposez les fichiers pour réorganiser leur ordre avant de fusionner en un seul document." },
+          { question: "La fusion affectera-t-elle la qualité de mes PDF ?", answer: "Non ! Notre outil de fusion préserve la qualité originale de tous vos documents." }
         ]
       },
       split: {
@@ -989,6 +1024,11 @@ export const translations = {
           "Téléversez votre document PDF.",
           "Cliquez sur 'Diviser PDF' pour séparer toutes les pages.",
           "Téléchargez votre fichier ZIP contenant les PDF individuels."
+        ],
+        faq: [
+          { question: "Comment diviser un PDF en pages séparées ?", answer: "Téléversez votre PDF, cliquez sur 'Diviser PDF', et téléchargez un fichier ZIP contenant chaque page comme PDF individuel." },
+          { question: "La division de PDF est-elle gratuite ?", answer: "Oui ! Notre outil Diviser PDF est 100% gratuit sans limites. Vos fichiers sont traités localement dans votre navigateur pour une confidentialité totale." },
+          { question: "Puis-je diviser un PDF protégé par mot de passe ?", answer: "Vous devrez d'abord supprimer le mot de passe. Nous recommandons d'utiliser un outil de déverrouillage PDF dédié avant la division." }
         ]
       },
       pdfToXml: {
@@ -1001,6 +1041,11 @@ export const translations = {
           "Téléversez votre fichier PDF.",
           "Cliquez sur 'Convertir en XML' pour traiter.",
           "Téléchargez votre fichier XML structuré."
+        ],
+        faq: [
+          { question: "Quelles données sont extraites lors de la conversion PDF vers XML ?", answer: "Notre outil extrait le contenu textuel, les dimensions des pages, les positions du texte et la structure du contenu dans un format XML propre." },
+          { question: "Puis-je convertir des PDF scannés en XML ?", answer: "Pour les documents scannés, nous recommandons d'utiliser l'OCR d'abord pour extraire le texte, puis de convertir en XML pour de meilleurs résultats." },
+          { question: "Mes données PDF sont-elles sécurisées pendant la conversion ?", answer: "Absolument ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
         ]
       },
       xmlToPdf: {
@@ -1013,6 +1058,11 @@ export const translations = {
           "Téléversez votre fichier XML.",
           "Cliquez sur 'Convertir en PDF' pour traiter.",
           "Téléchargez votre document PDF généré."
+        ],
+        faq: [
+          { question: "Quels formats XML sont supportés ?", answer: "Notre convertisseur supporte les fichiers XML standard. L'outil extrait le contenu textuel et le formate dans un document PDF propre et lisible." },
+          { question: "Puis-je personnaliser la sortie PDF ?", answer: "Actuellement, l'outil crée un PDF formaté standard. Pour une personnalisation avancée, envisagez d'utiliser des modèles ou des outils de post-traitement." },
+          { question: "Y a-t-il une limite de taille de fichier ?", answer: "Il n'y a pas de limite stricte, mais les très gros fichiers XML peuvent prendre plus de temps à traiter. Tout le traitement est fait localement dans votre navigateur." }
         ]
       }
     },
