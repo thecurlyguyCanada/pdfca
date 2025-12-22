@@ -12,8 +12,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Convert CBR to PDF Online Free | Secure Comic Converter | pdfcanada.ca",
-            desc: "Learn how to convert CBR and CBZ comic files to PDF for free. No uploads required, 100% private and secure local conversion in your browser."
+            title: "How to Convert CBR to PDF | Free Comic Book Conversion Guide | pdfcanada.ca",
+            desc: "Read your comics on any device. Our 2026 guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device."
         },
         h1: "How to Convert CBR/CBZ to PDF",
         subtitle: "The definitive guide to taking your digital comics anywhere.",
@@ -138,8 +138,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Convertir CBR en PDF en Ligne Gratuit | Convertisseur Sécurisé | pdfcanada.ca",
-            desc: "Apprenez à convertir gratuitement vos fichiers de bandes dessinées CBR et CBZ en PDF. Pas de téléchargement requis, conversion locale 100 % privée."
+            title: "Convertir CBR en PDF | Guide BD 2026 | pdfcanada.ca",
+            desc: "Lisez vos bandes dessinées partout. Notre guide 2026 vous montre comment convertir CBR/CBZ en PDF en toute sécurité localement sans jamais les télécharger."
         },
         h1: "Comment Convertir CBR/CBZ en PDF",
         subtitle: "Le guide définitif pour emporter vos bandes dessinées partout.",
@@ -267,7 +267,7 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-06-15",
-            "dateModified": "2025-01-10",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

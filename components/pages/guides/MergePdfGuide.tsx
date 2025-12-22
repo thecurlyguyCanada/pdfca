@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Merge PDF Files Online | Combine PDFs Free | pdfcanada.ca",
-            desc: "Learn how to combine multiple PDF files into one document securely in your browser. Rearrange pages and merge instantly with no size limits."
+            title: "How to Merge PDF Files | Free & Secure 2026 Guide | pdfcanada.ca",
+            desc: "Learn how to combine multiple PDF files into one securely. Our 2026 guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private."
         },
-        h1: "How to Merge PDF Files",
+        h1: "How to Merge PDF Files: The 2026 Guide",
         subtitle: "Combine multiple documents into a single, organized PDF file.",
 
         intro: (
@@ -84,8 +84,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Fusionner PDF Gratuit | Combiner des Fichiers PDF en Un Seul | pdfcanada.ca",
-            desc: "Apprenez à fusionner plusieurs fichiers PDF en un seul document de manière sécurisée dans votre navigateur. Réorganisez les pages et combinez instantanément sans limite de taille."
+            title: "Comment Fusionner des PDF | Guide Sécurisé 2026 | pdfcanada.ca",
+            desc: "Découvrez comment fusionner plusieurs PDF en toute sécurité dans votre navigateur avec notre guide 2026. Combinez vos documents sans téléchargement—100% privé."
         },
         h1: "Comment Fusionner des Fichiers PDF : Le Guide Complet",
         subtitle: "Combinez plusieurs documents PDF en un seul fichier organisé et professionnel.",

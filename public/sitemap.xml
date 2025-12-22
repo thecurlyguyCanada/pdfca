@@ -733,4 +733,22 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/edit-xfa-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/edit-xfa-pdf"/>
   </url>
+  <url>
+    <loc>https://pdfcanada.ca/guides/insert-picture-in-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/insert-picture-in-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/insert-picture-in-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/insert-picture-in-pdf"/>
+  </url>
+  <url>
+    <loc>https://pdfcanada.ca/fr/guides/insert-picture-in-pdf</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfcanada.ca/guides/insert-picture-in-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pdfcanada.ca/fr/guides/insert-picture-in-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfcanada.ca/guides/insert-picture-in-pdf"/>
+  </url>
 </urlset>

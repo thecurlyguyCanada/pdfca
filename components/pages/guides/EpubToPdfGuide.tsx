@@ -13,8 +13,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
-            title: "Convertir EPUB en PDF Gratuit | epub en pdf | pdfcanada.ca",
-            desc: "Le guide ultime pour convertir vos EPUB en PDF au Canada. Apprenez à transformer vos ebooks en documents PDF professionnels pour l'impression ou le partage."
+            title: "Convertir EPUB en PDF | Guide Ebook 2026 | pdfcanada.ca",
+            desc: "Transformez vos ebooks en PDF pour une lecture facile. Notre guide 2026 vous montre comment convertir EPUB localement. Sécurisé, rapide et 100% privé."
         },
         h1: "Le Guide Ultime : Convertir un EPUB en PDF",
         subtitle: "Transformez vos livres numériques en documents universels, sécurisés et prêts pour l'impression.",
@@ -89,8 +89,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     en: {
         seo: {
-            title: "Convert EPUB to PDF Free | Professional Online Converter | pdfcanada.ca",
-            desc: "Expert guide on converting EPUB to PDF for owners of Kindle, Kobo, and reMarkable. High-fidelity rendering with total privacy and no uploads."
+            title: "How to Convert EPUB to PDF | Free & Secure Ebook Guide | pdfcanada.ca",
+            desc: "Turn your ebooks into PDFs for easy reading and printing. Our 2026 guide shows you how to convert EPUB locally in your browser. Secure, fast, and 100% private."
         },
         h1: "The Definitive Guide: Converting EPUB to PDF",
         subtitle: "Transform your digital library into a stable, printable, and universally accessible format.",
@@ -205,7 +205,7 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-04-01",
-            "dateModified": "2025-12-20",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

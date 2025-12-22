@@ -13,10 +13,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "Organize PDF Pages Online | Reorder PDF Pages Free | pdfcanada.ca",
-            desc: "The definitive 2025 guide to organizing PDF pages. Learn how to reorder, move, and shuffle PDF pages securely using our free, local-first Canadian tool."
+            title: "How to Organize PDF Pages | Free Drag-and-Drop Guide | pdfcanada.ca",
+            desc: "Reorder your PDF document exactly how you want. Our 2026 guide shows you how to rearrange pages securely on your device. No uploads, fast, and 100% private."
         },
-        h1: "How to Organize and Reorder PDF Pages: The 2025 Guide",
+        h1: "How to Organize and Reorder PDF Pages: The 2026 Guide",
         subtitle: "The easiest, most secure way to shuffle and move pages in your PDF document with drag-and-drop simplicity.",
 
         intro: "Got a document that's all out of order? Maybe you scanned pages in the wrong sequence, or you need to move an appendix to the front of a report. Knowing how to **organize PDF pages online** is a critical skill for creating professional documents. Our **free PDF page organizer** allows you to visually **reorder PDF pages** using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it, processed locally on your device for maximum privacy.",
@@ -68,8 +68,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Réorganiser les Pages PDF Gratuit | Organiser PDF en Ligne | pdfcanada.ca",
-            desc: "Apprenez à réorganiser et organiser les pages PDF gratuitement par glisser-déposer. Réordonnez vos documents PDF de manière sécurisée dans votre navigateur."
+            title: "Comment Organiser vos PDF | Guide Glisser-Déposer 2026 | pdfcanada.ca",
+            desc: "Réorganisez les pages de vos PDF exactement comme vous le souhaitez. Notre guide 2026 vous montre comment faire en toute sécurité et localement sans téléchargement."
         },
         h1: "Comment Réorganiser les Pages PDF : Le Guide Complet",
         subtitle: "Glisser-déposer pour réarranger, reordonner et perfectionner la structure de vos documents PDF.",
@@ -149,7 +149,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-05-01",
-            "dateModified": "2025-01-10",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

@@ -12,8 +12,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Make a PDF Non-Editable (Free & Secure) | pdfcanada.ca",
-            desc: "Learn how to make a PDF non-editable for free. This guide shows you how to flatten a PDF so text cannot be selected or changed, keeping your data secure in Canada."
+            title: "How to Flatten PDF Online | Secure & Non-Editable Guide | pdfcanada.ca",
+            desc: "Protect your PDF from unauthorized edits. Our 2026 guide shows you how to flatten PDF pages securely in your browser. No uploads—processed entirely on your device."
         },
         h1: "How to Make a PDF Non-Editable: The Secure Way",
         subtitle: "Flatten your documents to prevent unwanted changes and protect your data—100% locally.",
@@ -93,8 +93,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Rendre un PDF Non-Modifiable (Gratuit) | Aplatir PDF | pdfcanada.ca",
-            desc: "Apprenez à aplatir un PDF gratuitement pour le rendre non-modifiable. Ce guide vous montre comment verrouiller votre document pour protéger vos données au Canada."
+            title: "Comment Aplatir un PDF | Guide Document Non-Éditable 2026 | pdfcanada.ca",
+            desc: "Protégez vos PDF contre les modifications. Notre guide 2026 vous montre comment aplatir vos pages en toute sécurité localement pour empêcher toute sélection ou édition."
         },
         h1: "Comment Rendre un PDF Non-Modifiable : La Méthode Sécurisée",
         subtitle: "Aplatissez vos documents pour empêcher les modifications indésirables et protéger vos données — 100% localement.",

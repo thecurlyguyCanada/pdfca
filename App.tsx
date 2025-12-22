@@ -38,6 +38,7 @@ const CropPdfGuide = React.lazy(() => import('./components/pages/guides/CropPdfG
 const CompressPdfGuide = React.lazy(() => import('./components/pages/guides/CompressPdfGuide').then(module => ({ default: module.CompressPdfGuide })));
 const MergePdfGuide = React.lazy(() => import('./components/pages/guides/MergePdfGuide').then(module => ({ default: module.MergePdfGuide })));
 const EditXfaPdfGuide = React.lazy(() => import('./components/pages/guides/EditXfaPdfGuide').then(module => ({ default: module.EditXfaPdfGuide })));
+const InsertPictureGuide = React.lazy(() => import('./components/pages/guides/InsertPictureGuide').then(module => ({ default: module.InsertPictureGuide })));
 
 
 enum AppState {
@@ -50,7 +51,7 @@ enum AppState {
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA';
+  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE';
 
 export enum ToolType {
   DELETE = 'DELETE',
@@ -241,6 +242,7 @@ function App() {
     else if (path === '/guides/compress-pdf') setView('GUIDE_COMPRESS');
     else if (path === '/guides/merge-pdf') setView('GUIDE_MERGE');
     else if (path === '/guides/edit-xfa-pdf') setView('GUIDE_EDIT_XFA');
+    else if (path === '/guides/insert-picture-in-pdf') setView('GUIDE_INSERT_PICTURE');
     else if (path !== '/') {
       safePushState({}, '', currentLang === 'fr' ? '/fr/' : '/');
       setView('HOME');
@@ -1188,6 +1190,7 @@ function App() {
           {view === 'GUIDE_COMPRESS' && <CompressPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_MERGE' && <MergePdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_EDIT_XFA' && <EditXfaPdfGuide lang={lang} onNavigate={handleNavigation} />}
+          {view === 'GUIDE_INSERT_PICTURE' && <InsertPictureGuide lang={lang} onNavigate={handleNavigation} />}
         </React.Suspense>
       </main>
 

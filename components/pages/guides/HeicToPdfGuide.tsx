@@ -13,8 +13,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "Convert HEIC to PDF Free Online | iPhone Photos to PDF | pdfcanada.ca",
-            desc: "The definitive guide to converting iPhone HEIC photos to PDF. Learn how to merge multiple HEIC images into a single PDF locally on Windows, Mac, and mobile."
+            title: "How to Convert HEIC to PDF | Secure iPhone Photo Guide | pdfcanada.ca",
+            desc: "Make your iPhone photos compatible with everything. Our 2026 tutorial shows you how to convert HEIC to PDF securely in your browser without uploading photos."
         },
         h1: "How to Convert HEIC to PDF: The Ultimate 2026 Guide",
         subtitle: "The simplest, most secure way to transform your iPhone photos into professional PDF documents without leaving your browser.",
@@ -72,8 +72,8 @@ While efficient for storage, HEIC is notorious for lack of support:
     },
     fr: {
         seo: {
-            title: "Convertir HEIC en PDF Gratuit | Photos iPhone en PDF | pdfcanada.ca",
-            desc: "Apprenez à convertir des photos HEIC d'iPhone en PDF gratuitement. Transformez vos images Apple en documents PDF universels de manière sécurisée dans votre navigateur."
+            title: "Convertir HEIC en PDF | Guide Photos iPhone 2026 | pdfcanada.ca",
+            desc: "Rendez vos photos iPhone compatibles partout. Notre tutoriel 2026 vous montre comment convertir HEIC en PDF en toute sécurité sans jamais télécharger vos photos."
         },
         h1: "Comment Convertir HEIC en PDF : Le Guide Complet",
         subtitle: "Transformez vos photos iPhone en documents PDF universellement compatibles sans téléchargement ni perte de qualité.",
@@ -89,6 +89,7 @@ While efficient for storage, HEIC is notorious for lack of support:
 Le problème ? Windows, Android et la plupart des navigateurs web ne le supportent pas nativement. C'est pourquoi la conversion en **PDF** (ou JPEG) est souvent nécessaire pour le partage.`
             },
             {
+                "dateModified": "2026-01-01",
                 id: "how-to",
                 title: "Étapes pour Convertir HEIC en PDF",
                 content: `1. **Sélectionnez Vos Photos** : Téléchargez un ou plusieurs fichiers .heic depuis votre iPhone, iCloud ou ordinateur.

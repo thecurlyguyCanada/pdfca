@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Crop PDF Pages Online (Free & Secure) | pdfcanada.ca",
-            desc: "Learn how to crop PDF pages and adjust margins for free. Our Canadian-made tool helps you trim PDF white space locally in your browser."
+            title: "How to Crop PDF Pages | Free Margin Adjustment Guide | pdfcanada.ca",
+            desc: "Trim white space and focus on what matters. Our 2026 guide shows you how to crop PDF pages securely on your device. No uploads, fast, and 100% private."
         },
-        h1: "How to Crop PDF Pages",
+        h1: "How to Crop PDF Pages: The 2026 Guide",
         subtitle: "Trim the fat and focus on your content—100% private and Canadian.",
 
         intro: (
@@ -27,6 +27,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         sections: [
             {
                 id: "step-by-step",
+                "dateModified": "2026-01-01",
                 title: "Step-by-Step: Cropping Your PDF",
                 content: (
                     <>
@@ -70,8 +71,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Rogner un PDF en Ligne Gratuit | Recadrer les Pages PDF | pdfcanada.ca",
-            desc: "Apprenez à rogner et recadrer des pages PDF gratuitement. Supprimez les marges blanches et ajustez les zones de contenu de manière sécurisée dans votre navigateur."
+            title: "Comment Recadrer un PDF | Guide Ajustement Marges 2026 | pdfcanada.ca",
+            desc: "Supprimez les marges inutiles et concentrez-vous sur l'essentiel. Notre guide 2026 vous montre comment recadrer vos PDF en toute sécurité et sans téléchargement."
         },
         h1: "Comment Rogner un PDF : Guide Complet",
         subtitle: "Éliminez les marges indésirables et recadrez vos documents PDF avec précision.",

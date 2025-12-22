@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "OCR PDF Online Free | Scanned PDF to Searchable Text | pdfcanada.ca",
-            desc: "Convert scanned PDFs to searchable text for free. Use our secure OCR PDF online tool to extract text and make documents searchable. No uploads required."
+            title: "How to OCR PDF Online | Free Guide to Searchable Documents | pdfcanada.ca",
+            desc: "Unlock text in your scanned PDFs. Our 2026 guide shows you how to use high-accuracy OCR locally on your device. No uploads—keep your data 100% private."
         },
-        h1: "The Ultimate Guide to OCR: Making PDFs Searchable",
+        h1: "How to OCR PDF: The 2026 Guide",
         subtitle: "Unlock the hidden text in your scanned documents with advanced Optical Character Recognition.",
 
         intro: (
@@ -33,10 +33,10 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            OCR stands for Optical Character Recognition. It's a technology that "reads" the pixels in an image (like a scan) and identifies the alphanumeric characters within.
+                            L'OCR signifie reconnaissance optique de caractères. C'est une technologie qui « lit » les pixels d'une image et identifie les caractères alphanumériques.
                         </p>
                         <p className="mb-4">
-                            By running <strong>OCR on a PDF</strong>, you create an invisible layer of real text over the original image. This means:
+                            En exécutant l'<strong>OCR sur un PDF</strong>, vous créez une couche invisible de texte réel sur l'image originale. Cela signifie :
                         </p>
                         <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
                             <li><strong>Searchability</strong>: You can use <code className="bg-gray-100 px-1 rounded">Ctrl+F</code> to find keywords.</li>
@@ -105,8 +105,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "OCR PDF Gratuit en Ligne | PDF Numérisé vers Texte | pdfcanada.ca",
-            desc: "Convertissez les PDF numérisés en texte consultable gratuitement. Utilisez notre guide OCR PDF sécurisé pour extraire le texte et rendre vos documents consultables."
+            title: "Comment Utiliser l'OCR PDF | Guide Texte Consultable 2026 | pdfcanada.ca",
+            desc: "Déverrouillez le texte de vos PDF numérisés. Notre guide 2026 vous montre comment utiliser l'OCR localement. Sans téléchargement—gardez vos données 100% privées."
         },
         h1: "Le Guide Ultime de l'OCR : Rendre vos PDF Consultables",
         subtitle: "Déverrouillez le texte caché dans vos documents numérisés grâce à la reconnaissance optique de caractères.",
@@ -186,7 +186,7 @@ export const OcrPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2024-03-15",
-        "dateModified": "2025-01-10",
+        "dateModified": "2026-01-01",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",

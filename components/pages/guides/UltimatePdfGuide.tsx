@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "Ultimate 2025 Guide to Free PDF Tools | Secure Document Editing | pdfcanada.ca",
-            desc: "The definitive guide to managing PDFs online in 2025. Master deleting pages, rotation, HEIC conversion, OCR, and document security. 100% free Canadian PDF tools guide."
+            title: "Ultimate 2026 Guide to PDF Tools | Master Your Documents | pdfcanada.ca",
+            desc: "Master PDF management with our definitive 2026 guide. Learn how to edit, merge, and convert PDFs securely using local-first tools. No uploads, 100% private."
         },
-        h1: "The Ultimate Guide to Modern PDF Management (2025 Edition)",
+        h1: "The Ultimate Guide to Modern PDF Management (2026 Edition)",
         subtitle: "A comprehensive deep-dive into editing, converting, and securing your PDF documents without expensive software.",
 
         sections: [
@@ -146,10 +146,10 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Guide Ultime 2025 des Outils PDF Gratuits | Édition Sécurisée | pdfcanada.ca",
-            desc: "Le guide définitif pour gérer vos PDF en ligne en 2025. Apprenez à supprimer des pages, pivoter, convertir HEIC et utiliser l'OCR gratuitement sans logiciel."
+            title: "Guide Ultime 2026 des Outils PDF | Maîtrisez vos Documents | pdfcanada.ca",
+            desc: "Maîtrisez la gestion des PDF avec notre guide définitif 2026. Apprenez à éditer, fusionner et convertir vos PDF en toute sécurité sans jamais les télécharger."
         },
-        h1: "Le Guide Ultime de la Gestion Moderne des PDF (Édition 2025)",
+        h1: "Le Guide Ultime de la Gestion Moderne des PDF (Édition 2026)",
         subtitle: "Un plongeon complet dans l'édition, la conversion et la sécurisation de vos documents PDF sans logiciel coûteux.",
 
         sections: [
@@ -290,7 +290,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2024-01-15",
-        "dateModified": "2025-01-10",
+        "dateModified": "2026-01-01",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",
@@ -411,7 +411,8 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                                 { name: 'Fillable Form Creation', path: '/guides/make-pdf-fillable', icon: PenTool, view: 'GUIDE_FILLABLE' },
                                 { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
                                 { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },
-                                { name: 'Convert Comics to PDF', path: '/guides/cbr-to-pdf', icon: BookOpen, view: 'GUIDE_CBR_TO_PDF' }
+                                { name: 'Convert Comics to PDF', path: '/guides/cbr-to-pdf', icon: BookOpen, view: 'GUIDE_CBR_TO_PDF' },
+                                { name: 'Insert Picture in PDF', path: '/guides/insert-picture-in-pdf', icon: Image, view: 'GUIDE_INSERT_PICTURE' }
                             ].map((guide: any, i: number) => (
                                 <button
                                     key={i}

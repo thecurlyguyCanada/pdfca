@@ -12,8 +12,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "Make PDF Fillable Online Free | Create PDF Forms Without Acrobat | pdfcanada.ca",
-            desc: "Learn how to make a PDF fillable for free. Create interactive PDF forms, add text fields, checkboxes, and signatures online. Secure, local, and no signup."
+            title: "How to Make a PDF Fillable | Free Interactive Form Guide | pdfcanada.ca",
+            desc: "Create professional fillable forms for free. Our 2026 guide shows you how to add text fields to any PDF securely without uploading to a server or signup."
         },
         h1: "How to Make a PDF Fillable Online for Free",
         subtitle: "The definitive guide to transforming flat documents into interactive, professional PDF forms.",
@@ -99,8 +99,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Rendre un PDF Remplissable Gratuit | Créer des Formulaires PDF | pdfcanada.ca",
-            desc: "Apprenez comment rendre un PDF remplissable gratuitement. Créez des formulaires interactifs, ajoutez des champs de texte, cases à cocher et zones de signature en ligne."
+            title: "Créer des PDF Remplissables | Guide Formulaire Interactif 2026 | pdfcanada.ca",
+            desc: "Créez des formulaires remplissables gratuitement. Notre guide 2026 vous montre comment ajouter des champs de texte en toute sécurité sans aucun téléchargement."
         },
         h1: "Comment Rendre un PDF Remplissable en Ligne Gratuitement",
         subtitle: "Le guide définitif pour transformer vos documents statiques en formulaires PDF interactifs et professionnels.",
@@ -212,7 +212,7 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-05-15",
-            "dateModified": "2025-01-10",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

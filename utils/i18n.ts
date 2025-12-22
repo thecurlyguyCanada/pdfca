@@ -45,8 +45,8 @@ export const translations = {
 
     // SEO General
     seo: {
-      homeTitle: "pdfcanada.ca | Free PDF Tools - HEIC to PDF, OCR, Delete Pages & More 🇨🇦",
-      homeDesc: "The Polite Canadian PDF Tools. 100% free, private, and secure. Convert PDF, delete pages, rotate, and more directly in your browser without uploading files.",
+      homeTitle: "Free PDF Tools Canada | Online & Secure No-Upload Service | pdfcanada.ca",
+      homeDesc: "The Polite Canadian PDF Tools. 100% free & secure in 2026. Merge, compress, and convert PDFs directly in your browser. No uploads—your files never leave your device.",
       homeFaq: [
         {
           q: "Is pdfcanada.ca really free?",
@@ -63,10 +63,10 @@ export const translations = {
       ],
       pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
       pricingDesc: "Unbelievably free PDF tools. $0 CAD for unlimited file conversions, merges, and edits. No hidden fees, no subscriptions, just polite Canadian service.",
-      privacyTitle: "Privacy Policy - pdfcanada.ca | Secure & Local",
-      privacyDesc: "We respect your data. All PDF processing happens locally in your browser via WebAssembly. No file uploads.",
-      termsTitle: "Terms of Service - pdfcanada.ca",
-      termsDesc: "Our polite terms of service. Be nice, use the tools freely.",
+      privacyTitle: "Privacy Policy & Data Security | pdfcanada.ca",
+      privacyDesc: "Our 2026 privacy commitment: All PDF processing happens locally in your browser via WebAssembly. Your files are never uploaded, ensuring maximum security and trust.",
+      termsTitle: "Terms of Service - Friendly & Secure | pdfcanada.ca",
+      termsDesc: "Read our polite 2026 terms of service. We focus on document privacy and user-friendly tools that keep your files safe on your device. Free to use for everyone.",
       howtoTitle: "How to Use pdfcanada.ca | PDF Tutorials",
       howtoDesc: "Easy instructions on how to delete PDF pages, rotate documents, and convert files using pdfcanada.ca.",
       supportTitle: "Support Local Canadian Developers | Donate | pdfcanada.ca",
@@ -130,10 +130,10 @@ export const translations = {
     },
     features: {
       delete: {
-        title: "Delete PDF Pages Free | Remove Pages Online | pdfcanada.ca",
-        desc: "Remove pages from your PDF securely and for free. Processed locally in Canada. No file uploads required.",
+        title: "Delete PDF Pages Online - Remove Pages from PDF for Free | pdfcanada.ca",
+        desc: "Remove unwanted pages from your PDF securely. Select pages visually and delete them instantly. No uploads—all processing happens on your device. Free & private.",
         h1: "Delete PDF Pages",
-        subtitle: "The polite way to remove unwanted pages.",
+        subtitle: "The polite way to remove unwanted or blank pages.",
         content: "Need to remove a page from your document? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and delete specific pages from your PDF file. It happens instantly in your browser.",
         steps: [
           "Click the 'Select File' button to choose your PDF document.",
@@ -142,8 +142,8 @@ export const translations = {
         ]
       },
       pdfPageRemover: {
-        title: "PDF Page Remover Free | Remove Pages from PDF Online | pdfcanada.ca",
-        desc: "Best PDF page remover. Remove pages from your PDF securely and for free. Processed locally in Canada. No file uploads required.",
+        title: "PDF Page Remover Online - Remove Pages from PDF for Free | pdfcanada.ca",
+        desc: "Best PDF page remover. Remove unwanted pages from your PDF securely. Select pages visually and delete them instantly. No uploads—all processing happens on your device. Free & private.",
         h1: "PDF Page Remover",
         subtitle: "The polite way to remove pages from a PDF.",
         content: "Need a PDF page remover? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and remove pages from a PDF file. It happens instantly in your browser.",
@@ -154,10 +154,10 @@ export const translations = {
         ]
       },
       flatten: {
-        title: "Make PDF Non-Editable | Flatten PDF Online | pdfcanada.ca",
-        desc: "Convert your PDF pages to uneditable images to prevent changes. All processing happens locally in Canada.",
-        h1: "Make PDF Non-Editable",
-        subtitle: "The polite way to lock your document.",
+        title: "Flatten PDF Online - Make PDF Non-Editable & Secure | pdfcanada.ca",
+        desc: "Convert PDF pages to uneditable images to prevent changes. Flatten forms and protect your content securely via local processing. 100% private, no uploads.",
+        h1: "Flatten PDF",
+        subtitle: "Lock your document to prevent edits or selection.",
         content: "Need to ensure your PDF can't be edited easily? Our tool flattens your document by converting each page into a high-quality image. This prevents text selection and modifications by standard PDF editors.",
         steps: [
           "Select the PDF you want to protect.",
@@ -166,10 +166,10 @@ export const translations = {
         ]
       },
       rotate: {
-        title: "Rotate PDF Pages Permanently | Free Tool | pdfcanada.ca",
-        desc: "Rotate PDF pages left or right and save them permanently. Fix upside-down documents instantly.",
+        title: "Rotate PDF Online - Permanently Fix PDF Orientation for Free | pdfcanada.ca",
+        desc: "Rotate PDF pages left or right and save them permanently. Fix upside-down scans instantly in your browser with 100% privacy. No uploads, proudly Canadian.",
         h1: "Rotate PDF Pages",
-        subtitle: "Fix those upside-down scans, eh?",
+        subtitle: "Fix those upside-down scans in seconds, eh?",
         content: "Scanned a document the wrong way? We've all been there. Use this tool to rotate individual pages or the whole document left or right. We'll save a new copy that's oriented correctly.",
         steps: [
           "Upload your PDF file using the file selector.",
@@ -178,10 +178,10 @@ export const translations = {
         ]
       },
       heic: {
-        title: "HEIC to PDF Converter | Convert iPhone Photos | pdfcanada.ca",
-        desc: "Convert HEIC to PDF instantly. Our free HEIC to PDF converter transforms iPhone photos into PDF files securely in your browser. No uploads, proudly Canadian.",
-        h1: "Convert HEIC to PDF | iPhone Photo Converter",
-        subtitle: "Make iPhone photos compatible with everything, eh?",
+        title: "HEIC to PDF Converter - Convert iPhone Photos Safely | pdfcanada.ca",
+        desc: "Convert HEIC photos to PDF instantly in your browser. Safely transform iPhone photos without uploading to a server. 100% free, private, and local-first processing.",
+        h1: "Convert HEIC to PDF",
+        subtitle: "Make iPhone photos compatible with everything.",
         content: "If you've ever tried to send an iPhone photo to a PC or upload it to a government form, you've probably run into the .HEIC problem. Apple devices use HEIC files for photos, which are great for saving space but tricky for sharing. That's where we come in. Our tool lets you convert heic to pdf quickly and easily. Whether you're wondering how do i convert heic to pdf for a job application or how to change a heic file to pdf for your taxes, our Canadian-made tool is the answer.\n\nWe process your files locally, which means if you need to know how to change heic to pdf without uploading your personal photos to a server, this is the safest way. You can change heic file to pdf or even combine heic to pdf (by converting them one by one!) without worrying about privacy. We support standard .heic files and turn them into high-quality PDFs.\n\nSo, if you're looking for a heic to pdf converter that respects your data, give pdfcanada.ca a try. We help you learn how to change a heic to a pdf instantly. No need for expensive software like Adobe convert heic to pdf—our free tool does the trick right in your browser. From conversion heic to pdf to ensuring your memories are safe, we've got you covered.",
         steps: [
           "Select your .HEIC image file from your computer or phone.",
@@ -212,10 +212,10 @@ export const translations = {
         ]
       },
       epubToPdf: {
-        title: "EPUB to PDF Converter | Convert Ebook to PDF | pdfcanada.ca",
-        desc: "Convert EPUB to PDF instantly. Our free EPUB to PDF converter transforms ebooks into PDF files securely in your browser. No uploads, proudly Canadian.",
-        h1: "Convert EPUB to PDF | The Ultimate Ebook Converter",
-        subtitle: "Turn those ebooks into PDFs, eh? Fast, free, and secure.",
+        title: "EPUB to PDF Converter - Convert Ebooks to PDF for Free | pdfcanada.ca",
+        desc: "Convert EPUB ebooks to PDF format instantly. Read your books on any device. Secure local-first conversion—your files never leave your browser. Fast & Free.",
+        h1: "Convert EPUB to PDF",
+        subtitle: "Read your favorite ebooks on any device, eh?",
         content: "Looking to convert an EPUB to PDF? You've landed in the right spot, friend. Whether you need to print an ebook, share it with a colleague who doesn't have an e-reader, or just prefer the universality of a PDF, our tool is here to help. Using our free EPUB to PDF converter, you can easily change EPUB to PDF format without your file ever leaving your computer. That's right—we process everything locally, making it the safest way to transform PDF to EPUB or vice versa. We handle the formatting so you don't have to worry about how to convert epub to pdf manually.\n\nWhy use our tool? Well, if you're wondering how do i convert epub to pdf without signing up for sketchy sites, this is your answer. We support standard .epub files and convert them into clean, readable PDFs. This is perfect for students, professionals, and anyone who needs to translate epub to pdf for wider compatibility. So if you need to convert a epub to pdf, convert an epub to pdf, or just want a reliable epub file convert to pdf solution, give ours a try. It's built right here in Canada, and we promise to treat your files with the utmost respect. No data collection, just simple, polite conversion.",
         steps: [
           "Click 'Select File' to upload your .epub file.",
@@ -247,10 +247,10 @@ export const translations = {
         ]
       },
       pdfToEpub: {
-        title: "PDF to EPUB Converter | Create Ebooks from PDF | pdfcanada.ca",
-        desc: "Convert PDF to EPUB format for better reading on Kindle, Kobo, and other e-readers. Free, secure, and processing happens locally.",
-        h1: "Convert PDF to EPUB | Make Your Docs E-Reader Ready",
-        subtitle: "Take your documents to go on your Kobo or Kindle.",
+        title: "PDF to EPUB Converter - Make PDF E-Reader Ready for Free | pdfcanada.ca",
+        desc: "Convert PDF to reflowable EPUB format for Kindle, Kobo, or mobile. Local-first processing ensures 100% privacy. No uploads required, proudly Canadian.",
+        h1: "Convert PDF to EPUB",
+        subtitle: "Take your reading material to go on your e-reader.",
         content: "Trying to read a standard PDF on an e-reader can be a bit of a hassle, eh? Text is too small, zooming is awkward... that's where we come in. Our tool lets you convert pdf to epub format, making your documents reflowable and easy to read on any screen size. Whether you're looking to convert pdf file to epub for your morning commute or need a reliable pdf to epub converter for your personal library, we've got you covered.\n\nWe know you might be asking, 'how do you convert pdf to epub securely?' or 'how to convert pdf to epub without losing my data?' The answer is local processing. Unlike other tools that upload your private docs to a server, our AI-enhanced engine handles the convert pdf to epub task right on your device. It minimizes formatting errors and attempts to preserve the structure of your document. If you've been searching for how to turn pdf into epub, how to convert a pdf to an epub, or even AI convert pdf to epub, you'll find our solution robust and privacy-focused.\n\nUse our tool to transform pdf to epub today. It supports converting bulk text and simple images into the .epub format. So stop squinting at tiny PDF text and change epub to pdf (or back again!) with pdfcanada.ca. We make it easy to learn how to convert pdf to epub format and take your reading material with you, wherever the True North leads you.",
         steps: [
           "Select the PDF file you wish to convert to an ebook.",
@@ -283,10 +283,10 @@ export const translations = {
         ]
       },
       fillable: {
-        title: "Make PDF Fillable Online | Free Form Creator | pdfcanada.ca",
-        desc: "Add fillable text fields to any PDF. Create interactive forms for free securely.",
+        title: "Make PDF Fillable Online - Free & Secure Interactive Form Creator | pdfcanada.ca",
+        desc: "Add fillable text fields to any PDF instantly. Create professional interactive forms for free securely in your browser. No uploads—100% private & Canadian.",
         h1: "Make PDF Fillable",
-        subtitle: "Auto-detects lines and checkboxes.",
+        subtitle: "The polite way to create interactive forms.",
         content: "Turn a flat document into an interactive form. We automatically detect underscores (____) and checkboxes ([ ]) on your selected pages and turn them into real, fillable fields.",
         steps: [
           "Upload a PDF form that has static lines or checkboxes.",
@@ -296,10 +296,10 @@ export const translations = {
         ]
       },
       ocr: {
-        title: "OCR PDF | Make PDF Searchable | pdfcanada.ca",
-        desc: "Convert scanned documents and images into searchable, selectable PDF files for free.",
-        h1: "OCR PDF & Make Searchable",
-        subtitle: "Unlock text in your scans, eh?",
+        title: "OCR PDF Online - Make PDF Searchable for Free | No-Upload Service | pdfcanada.ca",
+        desc: "Convert scanned PDFs into searchable text for free in 2026. High-accuracy OCR processed 100% locally in your browser. Secure, fast, and no-upload required—keep your data private.",
+        h1: "OCR PDF & Searchable",
+        subtitle: "Unlock text in your scans securely and for free.",
         content: "Turn those flat images and scans into real text you can search and copy. Our OCR tool runs right in your browser—private and secure.",
         steps: ["Upload your scanned PDF.", "Select the languages in your document.", "Download your new searchable PDF."],
         faq: [
@@ -308,15 +308,16 @@ export const translations = {
         ]
       },
       organizePdf: {
-        title: "Organize PDF Pages | Reorder PDF | pdfcanada.ca",
-        desc: "Rearrange PDF pages easily. Drag and drop to reorder pages in your PDF document.",
+        title: "Organize PDF Online - Reorder & Rearrange PDF Pages for Free | pdfcanada.ca",
+        desc: "Rearrange PDF pages easily with drag-and-drop in 2026. Reorder your PDF document securely in your browser. No uploads—your files remain 100% private on your device.",
         h1: "Organize PDF Pages",
-        subtitle: "Get your pages in order, eh?",
+        subtitle: "Get your document's pages in the perfect order.",
         content: "Need to fix the page order of your PDF? Our Organize PDF tool lets you drag and drop pages to rearrange them exactly how you want.",
         steps: [
           "Upload your valid PDF file.",
           "Drag and drop the page thumbnails to reorder them.",
-          "Click 'Save Organized PDF' to download."
+          "Click 'Save Organized PDF' to download.",
+          "Download your meticulously organized PDF document."
         ],
         faq: [
           { q: "Can I move pages between PDFs?", a: "Not yet! Currently you can only reorder pages within a single file." },
@@ -324,10 +325,10 @@ export const translations = {
         ]
       },
       cbrToPdf: {
-        title: "CBR to PDF Converter | Convert Comic Books Online | pdfcanada.ca",
-        desc: "Convert CBR and CBZ files to PDF instantly for free. Secure, local comic book conversion in your browser. No uploads, proudly Canadian.",
-        h1: "Convert CBR to PDF | Online Comic Converter",
-        subtitle: "Read your comics on any device, eh?",
+        title: "CBR to PDF Converter - Convert Comic Books Online | pdfcanada.ca",
+        desc: "Read your comics on any device. Our 2026 guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device.",
+        h1: "Convert CBR to PDF",
+        subtitle: "The definitive guide to digital comic conversion.",
         content: "Got a collection of digital comics in CBR or CBZ format? While these are great for specialized readers, sometimes you just want a PDF to read on your tablet or share with a friend. Our CBR to PDF converter makes it easy to change comic book archives into standard PDF documents. We support both CBR (RAR-based) and CBZ (ZIP-based) files. \n\nMost online converters make you upload your comics to their servers. But digital comics can be large, and your privacy matters. That's why pdfcanada.ca processes your comics right in your browser. No uploading, no waiting for a queue, just fast and secure conversion. Whether you're looking for how to convert cbr to pdf for free or need a bulk cbr to pdf tool, we've got you covered with our Canadian-made tool.",
         steps: [
           "Select your .CBR or .CBZ file from your device.",
@@ -350,10 +351,10 @@ export const translations = {
         ]
       },
       sign: {
-        title: "E-sign PDF Online | Sign Documents Securely | pdfcanada.ca",
-        desc: "Sign PDF documents online for free. Add signatures, initials, dates, and text locally in your browser. No uploads required.",
+        title: "E-Sign PDF Online - Secure & Free Digital Signatures | pdfcanada.ca",
+        desc: "Sign PDF documents online securely in 2026. Add signatures, initials, and dates locally in your browser. Your sensitive documents never leave your computer. Fast & Free.",
         h1: "E-sign PDF Documents",
-        subtitle: "The most secure way to sign, eh?",
+        subtitle: "The most secure way to sign contracts and forms.",
         content: "Need to sign a contract, lease, or form? Our e-sign tool lets you add professional signatures, initials, and dates to any PDF. Everything happens locally on your device, so your sensitive documents and signatures never leave your browser.",
         steps: [
           "Upload the PDF document you need to sign.",
@@ -364,10 +365,10 @@ export const translations = {
         ]
       },
       pdfToWord: {
-        title: "PDF to Word Converter | Convert PDF to Docx Free | pdfcanada.ca",
-        desc: "Convert PDF to Word (Docx) instantly. Our free PDF to Word converter extracts text securely in your browser. No uploads, proudly Canadian.",
+        title: "PDF to Word Online - Convert PDF to Editable DOCX | Free & Secure",
+        desc: "Convert PDF to editable Word documents for free in 2026. Our local-first converter keeps your data secure on your device. Fast, accurate, and 100% private—no signup.",
         h1: "Convert PDF to Word",
-        subtitle: "Make your PDFs editable again, eh?",
+        subtitle: "Make your PDFs editable again—accurately & securely.",
         content: "Need to edit a PDF? Convert it to a Word document (.docx) effortlessly. Our local processing ensures your sensitive data never leaves your device.",
         steps: [
           "Select the PDF you want to convert.",
@@ -376,10 +377,10 @@ export const translations = {
         ]
       },
       wordToPdf: {
-        title: "Word to PDF Converter | Convert Docx to PDF Free | pdfcanada.ca",
-        desc: "Convert Word (Docx) to PDF instantly. Our free Word to PDF converter transforms documents securely in your browser. No uploads, proudly Canadian.",
+        title: "Word to PDF Online - Convert DOCX to PDF for Free | pdfcanada.ca",
+        desc: "Create high-quality PDFs from Word documents instantly in 2026. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.",
         h1: "Convert Word to PDF",
-        subtitle: "Professional PDFs from your Word docs.",
+        subtitle: "Professional PDFs from your DOCX files instantly.",
         content: "Turn your Word documents into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
         steps: [
           "Upload your .docx file.",
@@ -388,10 +389,10 @@ export const translations = {
         ]
       },
       crop: {
-        title: "Crop PDF Pages Online Free | Adjust PDF Margins | pdfcanada.ca",
-        desc: "Crop your PDF pages instantly. Resize and trim PDF pages securely in your browser without uploading files. 100% private and free.",
+        title: "Crop PDF Online - Trim PDF Margins & Resize Pages for Free | pdfcanada.ca",
+        desc: "Crop PDF pages instantly to remove white space or focus on content. Adjust margins securely in your browser. No uploads, processed entirely on your device.",
         h1: "Crop PDF Pages",
-        subtitle: "Trim those margins and focus on what matters, eh?",
+        subtitle: "Trim those margins and focus on what matters.",
         content: "Need to remove white space or focus on a specific area of your document? Our crop tool lets you adjust the margins of your PDF pages effortlessly. It's fast, free, and happens entirely on your device.",
         steps: [
           "Upload your PDF document.",
@@ -400,10 +401,10 @@ export const translations = {
         ]
       },
       compress: {
-        title: "Compress PDF Online | Reduce File Size Free | pdfcanada.ca",
-        desc: "Compress PDF files without losing quality. Reduce file size securely in your browser. No uploads, proudly Canadian.",
-        h1: "Compress PDF File Size",
-        subtitle: "Make your files smaller, eh?",
+        title: "Compress PDF Online - Reduce File Size without Losing Quality | pdfcanada.ca",
+        desc: "Compress PDF files to reduce size while keeping original quality. Optimize PDFs securely in your browser—no uploads required, 100% private & proudly Canadian.",
+        h1: "Compress PDF Size",
+        subtitle: "Make your files smaller without losing quality, eh?",
         content: "Need to email a large PDF but it's too big? Our Compress PDF tool reduces the file size while maintaining excellent quality. Choose from three compression levels to find the perfect balance.",
         steps: [
           "Select the PDF file you want to compress.",
@@ -412,10 +413,10 @@ export const translations = {
         ]
       },
       merge: {
-        title: "Merge PDF Online | Combine PDF Files Free | pdfcanada.ca",
-        desc: "Merge multiple PDF files into one document. Combine PDFs securely in your browser. No uploads, proudly Canadian.",
+        title: "Merge PDF Online - Free & Secure No-Upload Tool | pdfcanada.ca",
+        desc: "Select & merge multiple PDF files in seconds securely in your browser. Combine PDFs online with 100% privacy—no files ever leave your device. Fast, free & Canadian.",
         h1: "Merge PDF Files",
-        subtitle: "Combine your documents into one, eh?",
+        subtitle: "Combine multiple PDFs into one document securely.",
         content: "Have multiple PDF files that should be one document? Our Merge PDF tool lets you combine them easily. Drag and drop to reorder, then merge them into a single file.",
         steps: [
           "Select the PDF files you want to merge.",
@@ -656,8 +657,8 @@ export const translations = {
     selectCompressionLevel: "Choisir le niveau de compression",
 
     seo: {
-      homeTitle: "pdfcanada.ca | Outils PDF Gratuits - HEIC en PDF, OCR, Supprimer Pages 🇨🇦",
-      homeDesc: "Outils PDF canadiens polis. 100% gratuit, privé et sécurisé. Convertissez, supprimez des pages, pivotez et plus encore directement dans votre navigateur.",
+      homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
+      homeDesc: "Outils PDF canadiens polis. 100% gratuit et sécurisé en 2026. Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.",
       homeFaq: [
         {
           q: "Est-ce vraiment gratuit ?",
@@ -674,8 +675,8 @@ export const translations = {
       ],
       pricingTitle: "Tarifs - pdfcanada.ca | Toujours Gratuit",
       pricingDesc: "Nos prix sont simples : 0 $ CAD pour tout le monde. Conversions illimitées et traitement local.",
-      privacyTitle: "Confidentialité - pdfcanada.ca | Sécurisé & Local",
-      privacyDesc: "Nous respectons vos données. Tout le traitement se fait localement dans votre navigateur via WebAssembly.",
+      privacyTitle: "Politique de Confidentialité et Sécurité des Données | pdfcanada.ca",
+      privacyDesc: "Notre engagement 2026 : tout le traitement PDF se fait localement dans votre navigateur. Vos fichiers ne sont jamais téléchargés, garantissant une sécurité maximale.",
       termsTitle: "Conditions d'utilisation - pdfcanada.ca",
       termsDesc: "Nos conditions d'utilisation polies. Soyez gentil, utilisez les outils librement.",
       howtoTitle: "Mode d'emploi - pdfcanada.ca",
@@ -690,10 +691,10 @@ export const translations = {
 
     features: {
       delete: {
-        title: "Supprimer des Pages PDF Gratuit | Enlever des Pages | pdfcanada.ca",
-        desc: "Supprimez des pages de votre PDF en toute sécurité et gratuitement. Traitement local au Canada.",
+        title: "Supprimer Pages PDF en Ligne - Retirer Pages de PDF Gratuit | pdfcanada.ca",
+        desc: "Supprimez les pages indésirables de votre PDF en toute sécurité en 2026. Sélectionnez les pages visuellement et supprimez-les instantanément. Aucun téléchargement—tout le traitement se fait sur votre appareil. Gratuit et privé.",
         h1: "Supprimer des Pages PDF",
-        subtitle: "La façon polie de retirer les pages indésirables.",
+        subtitle: "La façon polie de retirer les pages indésirables ou vierges.",
         content: "Besoin de supprimer une page de votre document ? Notre outil vous permet de sélectionner et de supprimer des pages spécifiques de votre fichier PDF.",
         steps: [
           "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
@@ -702,8 +703,8 @@ export const translations = {
         ]
       },
       pdfPageRemover: {
-        title: "Suppresseur de Pages PDF Gratuit | Enlever des Pages PDF | pdfcanada.ca",
-        desc: "Le meilleur suppresseur de pages PDF. Supprimez des pages de votre PDF en toute sécurité. Traitement local au Canada.",
+        title: "Suppresseur de Pages PDF en Ligne - Retirer Pages de PDF Gratuit | pdfcanada.ca",
+        desc: "Le meilleur suppresseur de pages PDF. Supprimez les pages indésirables de votre PDF en toute sécurité. Sélectionnez les pages visuellement et supprimez-les instantanément. Aucun téléchargement—tout le traitement se fait sur votre appareil. Gratuit et privé.",
         h1: "Suppresseur de Pages PDF",
         subtitle: "La façon polie de retirer des pages d'un PDF.",
         content: "Besoin d'un suppresseur de pages PDF ? Notre outil vous permet de sélectionner et de retirer des pages d'un fichier PDF instantanément.",
@@ -714,10 +715,10 @@ export const translations = {
         ]
       },
       flatten: {
-        title: "Rendre un PDF non modifiable | Aplatir PDF | pdfcanada.ca",
-        desc: "Convertissez vos pages PDF en images non modifiables pour empêcher les changements. Traitement local au Canada.",
-        h1: "Rendre un PDF non modifiable",
-        subtitle: "La façon polie de verrouiller votre document.",
+        title: "Aplatir PDF en Ligne - Rendre PDF Non-Éditable et Sécurisé | pdfcanada.ca",
+        desc: "Convertissez les pages PDF en images non éditables en 2026 pour empêcher les modifications. Aplatissez les formulaires et protégez votre contenu en toute sécurité via traitement local. 100% privé, aucun téléchargement.",
+        h1: "Aplatir PDF",
+        subtitle: "Verrouillez votre document pour empêcher les modifications ou la sélection.",
         content: "Besoin de vous assurer que votre PDF ne peut pas être modifié facilement ? Notre outil 'aplatit' votre document en convertissant chaque page en une image de haute qualité. Cela empêche la sélection de texte et les modifications par les éditeurs PDF standards.",
         steps: [
           "Sélectionnez le PDF que vous souhaitez protéger.",
@@ -726,10 +727,10 @@ export const translations = {
         ]
       },
       rotate: {
-        title: "Pivoter PDF Gratuit | Rotation Permanente | pdfcanada.ca",
-        desc: "Pivotez des pages PDF à gauche ou à droite. Corrigez les documents à l'envers.",
-        h1: "Pivoter des pages PDF",
-        subtitle: "Remettez vos documents à l'endroit.",
+        title: "Pivoter PDF en Ligne - Corriger l'Orientation PDF Gratuitement | pdfcanada.ca",
+        desc: "Faites pivoter les pages PDF et enregistrez-les de façon permanente en 2026. Corrigez les numérisations à l'envers instantanément avec 100% de confidentialité. Aucun téléchargement, fièrement canadien.",
+        h1: "Pivoter des Pages PDF",
+        subtitle: "Corrigez ces numérisations à l'envers en quelques secondes.",
         content: "Vous avez numérisé une page à l'envers ? Ça arrive. Utilisez cet outil pour pivoter les pages individuellement ou tout le document.",
         steps: [
           "Téléversez votre fichier PDF.",
@@ -738,10 +739,10 @@ export const translations = {
         ]
       },
       heic: {
-        title: "Convertir HEIC en PDF | Photos iPhone | pdfcanada.ca",
-        desc: "Convertissez des photos HEIC (iPhone) en PDF. Rapide, gratuit et sécurisé.",
+        title: "Convertisseur HEIC vers PDF - Convertir Photos iPhone en Toute Sécurité | pdfcanada.ca",
+        desc: "Convertissez des photos HEIC en PDF instantanément en 2026. Transformez les photos iPhone en toute sécurité sans télécharger sur un serveur. 100% gratuit, privé et traitement local.",
         h1: "Convertir HEIC en PDF",
-        subtitle: "Pour vos photos iPhone.",
+        subtitle: "Rendez les photos iPhone compatibles avec tout.",
         content: "Les appareils Apple utilisent le format HEIC. Parfois, on a besoin d'un PDF. Convertissez vos images ici.",
         steps: [
           "Sélectionnez votre fichier image .HEIC depuis votre ordinateur ou téléphone.",
@@ -750,10 +751,10 @@ export const translations = {
         ]
       },
       epubToPdf: {
-        title: "Convertir EPUB en PDF | Ebooks | pdfcanada.ca",
-        desc: "Convertissez des livres EPUB en PDF en ligne. Gardez votre mise en page.",
+        title: "Convertisseur EPUB vers PDF - Convertir Livres Électroniques Gratuit | pdfcanada.ca",
+        desc: "Convertissez des livres électroniques EPUB en format PDF instantanément. Lisez vos livres sur n'importe quel appareil. Conversion locale sécurisée—vos fichiers ne quittent jamais votre navigateur. Rapide et gratuit.",
         h1: "Convertir EPUB en PDF",
-        subtitle: "Lisez vos ebooks partout.",
+        subtitle: "Lisez vos livres électroniques préférés sur n'importe quel appareil.",
         content: "Imprimez ou lisez vos ebooks sur n'importe quel appareil en les convertissant en PDF.",
         steps: [
           "Téléversez votre fichier .epub.",
@@ -762,10 +763,10 @@ export const translations = {
         ]
       },
       pdfToEpub: {
-        title: "Convertir PDF en EPUB | Pour Liseuses | pdfcanada.ca",
-        desc: "Convertissez des PDF en format EPUB pour liseuses Kobo ou Kindle.",
+        title: "Convertisseur PDF vers EPUB - Optimiser PDF pour Liseuse Gratuit | pdfcanada.ca",
+        desc: "Convertissez PDF en format EPUB adaptable pour Kindle, Kobo ou mobile. Le traitement local garantit 100% de confidentialité. Aucun téléchargement requis, fièrement canadien.",
         h1: "Convertir PDF en EPUB",
-        subtitle: "Pour une meilleure lecture.",
+        subtitle: "Emportez votre matériel de lecture sur votre liseuse.",
         content: "Transformez vos documents PDF en format EPUB fluide pour votre liseuse préférée.",
         steps: [
           "Sélectionnez le PDF que vous voulez lire sur votre liseuse.",
@@ -774,10 +775,10 @@ export const translations = {
         ]
       },
       fillable: {
-        title: "Rendre PDF Remplissable | Formulaire Gratuit | pdfcanada.ca",
-        desc: "Ajoutez des champs de texte remplissables à n'importe quel PDF.",
+        title: "Rendre PDF Remplissable en Ligne - Créateur de Formulaire Gratuit | pdfcanada.ca",
+        desc: "Ajoutez des champs de texte remplissables à n'importe quel PDF instantanément. Créez des formulaires interactifs professionnels gratuitement et en toute sécurité dans votre navigateur. Aucun téléchargement—100% privé et canadien.",
         h1: "Rendre un PDF Remplissable",
-        subtitle: "Détection automatique des lignes et cases.",
+        subtitle: "La façon polie de créer des formulaires interactifs.",
         content: "Transformez un document plat en formulaire interactif. Nous détectons automatiquement les lignes (____) et les cases ([ ]) et les rendons remplissables.",
         steps: [
           "Téléversez un formulaire PDF qui contient des lignes statiques ou des cases à cocher.",
@@ -787,10 +788,10 @@ export const translations = {
         ]
       },
       ocr: {
-        title: "OCR PDF | PDF Cherchable | pdfcanada.ca",
-        desc: "Convertissez des documents numérisés en PDF consultables gratuitement.",
-        h1: "OCR PDF et Recherche",
-        subtitle: "Libérez le texte, hein ?",
+        title: "OCR PDF en Ligne - Rendre PDF Consultable Gratuitement | Service Sans Téléchargement | pdfcanada.ca",
+        desc: "Convertissez des PDF numérisés en texte consultable. OCR haute précision traité 100% localement dans votre navigateur. Sécurisé, rapide et aucun téléchargement requis—gardez vos données privées.",
+        h1: "OCR PDF et Consultable",
+        subtitle: "Déverrouillez le texte dans vos numérisations en toute sécurité et gratuitement.",
         content: "Transformez vos images et scans en vrai texte que vous pouvez copier. Notre outil OCR fonctionne dans votre navigateur.",
         steps: ["Téléchargez votre PDF numérisé.", "Sélectionnez la langue.", "Téléchargez votre nouveau PDF consultable."],
         faq: [
@@ -798,15 +799,16 @@ export const translations = {
         ]
       },
       organizePdf: {
-        title: "Organiser les pages PDF | Réorganiser PDF | pdfcanada.ca",
-        desc: "Réorganisez facilement les pages PDF. Glissez-déposez pour changer l'ordre.",
-        h1: "Organiser les pages PDF",
-        subtitle: "Mettez de l'ordre, hein ?",
+        title: "Organiser PDF en Ligne - Réorganiser Pages PDF Gratuitement | pdfcanada.ca",
+        desc: "Réorganisez les pages PDF facilement par glisser-déposer. Réordonnez votre document PDF en toute sécurité dans votre navigateur. Aucun téléchargement—vos fichiers restent 100% privés sur votre appareil.",
+        h1: "Organiser les Pages PDF",
+        subtitle: "Mettez les pages de votre document dans l'ordre parfait.",
         content: "Besoin de changer l'ordre des pages ? Notre outil vous permet de glisser-déposer les pages pour les réorganiser exactement comme vous le souhaitez.",
         steps: [
           "Téléchargez votre fichier PDF.",
           "Glissez-déposez les vignettes pour les réorganiser.",
-          "Cliquez sur 'Enregistrer' pour télécharger."
+          "Cliquez sur 'Enregistrer' pour télécharger.",
+          "Téléchargez votre PDF méticuleusement organisé."
         ],
         faq: [
           {
@@ -816,10 +818,10 @@ export const translations = {
         ]
       },
       cbrToPdf: {
-        title: "Convertir CBR en PDF | Bandes Dessinées en Ligne | pdfcanada.ca",
-        desc: "Convertissez des fichiers CBR et CBZ en PDF instantanément et gratuitement. Conversion locale sécurisée au Canada. Pas de téléchargement.",
-        h1: "Convertir CBR en PDF | Convertisseur de Comics",
-        subtitle: "Lisez vos BD sur n'importe quel appareil.",
+        title: "Convertisseur CBR vers PDF - Convertir Livres de Bandes Dessinées Gratuit | pdfcanada.ca",
+        desc: "Lisez vos bandes dessinées sur n'importe quel appareil. Notre guide 2026 vous montre comment convertir CBR/CBZ en PDF en toute sécurité dans votre navigateur. Aucun téléchargement.",
+        h1: "Convertir CBR en PDF",
+        subtitle: "Le guide définitif pour la conversion de bandes dessinées numériques.",
         content: "Vous avez une collection de bandes dessinées numériques au format CBR ou CBZ ? Bien que ces formats soient excellents pour les lecteurs spécialisés, vous voudrez parfois un PDF pour lire sur votre tablette ou partager avec un ami. Notre convertisseur CBR en PDF facilite la transformation des archives de bandes dessinées en documents PDF standards. Nous supportons les fichiers CBR (basés sur RAR) et CBZ (basés sur ZIP).\n\nLa plupart des convertisseurs en ligne vous obligent à télécharger vos BD sur leurs serveurs. Mais les bandes dessinées peuvent être volumineuses et votre vie privée est importante. C'est pourquoi pdfcanada.ca traite vos BD directement dans votre navigateur. Pas de téléchargement, pas d'attente, juste une conversion rapide et sécurisée.",
         steps: [
           "Sélectionnez votre fichier .CBR ou .CBZ.",
@@ -838,10 +840,10 @@ export const translations = {
         ]
       },
       sign: {
-        title: "Signer PDF en Ligne | Signer SÉCURISÉMENT | pdfcanada.ca",
-        desc: "Signez des documents PDF en ligne gratuitement. Ajoutez des signatures, initiales, dates et texte localement dans votre navigateur.",
-        h1: "Signer des documents PDF",
-        subtitle: "La façon la plus sécurisée de signer, hein ?",
+        title: "Signer PDF en Ligne - Signatures Numériques Sécurisées Gratuites | pdfcanada.ca",
+        desc: "Signez des documents PDF en ligne en toute sécurité. Ajoutez des signatures, initiales et dates localement dans votre navigateur. Vos documents sensibles ne quittent jamais votre ordinateur. Rapide et gratuit.",
+        h1: "Signer des Documents PDF",
+        subtitle: "La façon la plus sécurisée de signer des contrats et formulaires.",
         content: "Besoin de signer un contrat, un bail ou un formulaire ? Notre outil de signature électronique vous permet d'ajouter des signatures professionnelles, des initiales et des dates à n'importe quel PDF.",
         steps: [
           "Téléversez le document PDF que vous devez signer.",
@@ -852,10 +854,10 @@ export const translations = {
         ]
       },
       pdfToWord: {
-        title: "Convertir PDF en Word | PDF en Docx Gratuit | pdfcanada.ca",
-        desc: "Convertissez PDF en Word (Docx) instantanément. Notre convertisseur PDF en Word extrait le texte en toute sécurité dans votre navigateur. Pas de téléchargement.",
+        title: "PDF vers Word en Ligne - Convertir PDF en DOCX Éditable | Gratuit & Sécurisé",
+        desc: "Convertissez PDF en documents Word éditables gratuitement. Notre convertisseur local garantit la sécurité de vos données sur votre appareil. Rapide, précis et 100% privé.",
         h1: "Convertir PDF en Word",
-        subtitle: "Rendez vos PDF à nouveau modifiables, hein ?",
+        subtitle: "Rendez vos PDF à nouveau modifiables—précisément et en toute sécurité.",
         content: "Besoin de modifier un PDF ? Convertissez-le en document Word (.docx) sans effort. Notre traitement local garantit que vos données sensibles ne quittent jamais votre appareil.",
         steps: [
           "Sélectionnez le PDF que vous souhaitez convertir.",
@@ -864,10 +866,10 @@ export const translations = {
         ]
       },
       wordToPdf: {
-        title: "Convertir Word en PDF | Docx en PDF Gratuit | pdfcanada.ca",
-        desc: "Convertissez Word (Docx) en PDF instantanément. Notre convertisseur Word en PDF transforme les documents en toute sécurité dans votre navigateur. Pas de téléchargement.",
+        title: "Word vers PDF en Ligne - Convertir DOCX en PDF Gratuitement | pdfcanada.ca",
+        desc: "Créez des PDF de haute qualité à partir de documents Word instantanément. Notre convertisseur sécurisé traite les fichiers localement—aucun téléchargement, aucun suivi, juste un service canadien gratuit et rapide.",
         h1: "Convertir Word en PDF",
-        subtitle: "Des PDF professionnels à partir de vos docs Word.",
+        subtitle: "Des PDF professionnels à partir de vos fichiers DOCX instantanément.",
         content: "Transformez vos documents Word en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale à laquelle vous pouvez faire confiance.",
         steps: [
           "Téléversez votre fichier .docx.",
@@ -876,11 +878,11 @@ export const translations = {
         ]
       },
       crop: {
-        title: "Recadrer des Pages PDF Gratuit | Ajuster les Marges | pdfcanada.ca",
-        desc: "Recadrez vos pages PDF instantanément. Redimensionnez et ajustez vos pages PDF en toute sécurité dans votre navigateur sans téléverser de fichiers.",
+        title: "Recadrer PDF en Ligne - Ajuster les Marges & Redimensionner Gratuitement | pdfcanada.ca",
+        desc: "Recadrez vos pages PDF instantanément pour supprimer les espaces blancs ou vous concentrer sur le contenu. Ajustez les marges en toute sécurité dans votre navigateur. Aucun téléchargement.",
         h1: "Recadrer des Pages PDF",
-        subtitle: "Ajustez les marges et concentrez-vous sur l'essentiel, eh?",
-        content: "Besoin de supprimer des espaces blancs ou de vous concentrer sur une zone spécifique de votre document ? Notre outil de recadrage vous permet d'ajuster les marges de vos pages PDF sans effort.",
+        subtitle: "Ajustez les marges et concentrez-vous sur l'essentiel.",
+        content: "Besoin de supprimer des espaces blancs ou de vous concentrer sur une zone spécifique de votre document ? Notre outil de recadrage vous permet d'ajuster les marges de vos pages PDF sans effort. C'est rapide, gratuit et se passe entièrement sur votre appareil.",
         steps: [
           "Téléversez votre document PDF.",
           "Utilisez le sélecteur pour définir votre zone de recadrage.",
@@ -888,10 +890,10 @@ export const translations = {
         ]
       },
       compress: {
-        title: "Compresser PDF en Ligne | Réduire Taille PDF Gratuit | pdfcanada.ca",
-        desc: "Compressez des fichiers PDF sans perdre de qualité. Réduisez la taille du fichier en toute sécurité. Traitement local au Canada.",
+        title: "Compresser PDF en Ligne - Réduire la Taille sans Perdre de Qualité | pdfcanada.ca",
+        desc: "Compressez les fichiers PDF pour réduire la taille tout en conservant la qualité d'origine. Optimisez les PDF en toute sécurité dans votre navigateur—aucun téléchargement requis.",
         h1: "Compresser Fichier PDF",
-        subtitle: "Réduisez la taille de vos fichiers, hein ?",
+        subtitle: "Réduisez la taille de vos fichiers sans perte de qualité.",
         content: "Besoin d'envoyer un gros PDF par courriel ? Notre outil de compression réduit la taille du fichier tout en maintenant une excellente qualité. Choisissez parmi trois niveaux de compression.",
         steps: [
           "Sélectionnez le fichier PDF à compresser.",
@@ -900,10 +902,10 @@ export const translations = {
         ]
       },
       merge: {
-        title: "Fusionner PDF en Ligne | Combiner PDF Gratuit | pdfcanada.ca",
-        desc: "Fusionnez plusieurs fichiers PDF en un seul document. Combinez des PDF en toute sécurité dans votre navigateur.",
+        title: "Fusionner PDF en Ligne - Service Sécurisé Sans Téléchargement | pdfcanada.ca",
+        desc: "Sélectionnez et fusionnez plusieurs fichiers PDF en quelques secondes en toute sécurité dans votre navigateur. Combinez des PDF en ligne avec 100% de confidentialité. Rapide et gratuit.",
         h1: "Fusionner des Fichiers PDF",
-        subtitle: "Combinez vos documents en un seul.",
+        subtitle: "Combinez plusieurs PDF en un seul document en toute sécurité.",
         content: "Vous avez plusieurs fichiers PDF qui devraient n'en faire qu'un ? Notre outil de fusion vous permet de les combiner facilement. Glissez-déposez pour réorganiser, puis fusionnez-les.",
         steps: [
           "Sélectionnez les fichiers PDF à fusionner.",

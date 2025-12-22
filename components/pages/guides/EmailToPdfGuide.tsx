@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Save an Email as a PDF (Gmail, Outlook, iPhone) | pdfcanada.ca",
-            desc: "Learn how to save emails as PDF files from Gmail, Outlook, and iPhone instantly. A step-by-step guide for secure, offline email archiving."
+            title: "How to Save Email as PDF | Free & Secure 2026 Guide | pdfcanada.ca",
+            desc: "Keep important emails as secure PDF files. Our 2026 guide shows you how to convert Outlook, Gmail, and Windows Mail to PDF locally and for free. Secure & Private."
         },
-        h1: "How to Save an Email as a PDF",
+        h1: "How to Save Email as PDF: The 2026 Guide",
         subtitle: "The complete guide to archiving your important correspondence instantly.",
         intro: (
             <>
@@ -141,8 +141,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Enregistrer un Courriel en PDF (Gmail, Outlook) | pdfcanada.ca",
-            desc: "Apprenez à enregistrer des courriels en PDF depuis Gmail, Outlook et iPhone. Un guide étape par étape pour l'archivage sécurisé de vos messages."
+            title: "Enregistrer Courriel en PDF | Guide Sécurisé 2026 | pdfcanada.ca",
+            desc: "Conservez vos courriels importants sous forme de fichiers PDF sécurisés. Notre guide 2026 vous montre comment convertir sans risque vos courriels Outlook ou Gmail."
         },
         h1: "Comment Enregistrer un Courriel en PDF",
         subtitle: "Le guide complet pour archiver instantanément votre correspondance importante.",
@@ -301,7 +301,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-06-01",
-            "dateModified": "2025-01-10",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

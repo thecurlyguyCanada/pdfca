@@ -12,8 +12,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
-            title: "Convertir PDF en EPUB Gratuit | pdf a epub | pdfcanada.ca",
-            desc: "Convertir pdf en epub facilement. Transformez vos documents PDF en ebooks lisibles sur Kindle, Kobo et toutes les liseuses. Conversion gratuite et sécurisée."
+            title: "Convertir PDF en EPUB | Guide E-Reader 2026 | pdfcanada.ca",
+            desc: "Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide 2026 vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Conversion gratuite et sécurisée."
         },
         h1: "Convertir PDF en EPUB",
         subtitle: "Transformez vos PDF en ebooks pour liseuses",
@@ -114,8 +114,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     en: {
         seo: {
-            title: "Convert PDF to EPUB Free | Online Converter | pdfcanada.ca",
-            desc: "Convert PDF to EPUB easily. Transform your PDF documents into readable ebooks for Kindle, Kobo, and all e-readers. Free and secure conversion."
+            title: "How to Convert PDF to EPUB | Free E-Reader Optimization Guide | pdfcanada.ca",
+            desc: "Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide 2026 vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Free and secure conversion."
         },
         h1: "Convert PDF to EPUB",
         subtitle: "Transform your PDFs into ebooks for e-readers",
@@ -251,7 +251,7 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-04-15",
-            "dateModified": "2025-01-10",
+            "dateModified": "2026-01-01",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

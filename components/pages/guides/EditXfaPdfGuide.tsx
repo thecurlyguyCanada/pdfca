@@ -12,8 +12,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Edit XFA PDF by Printing to Adobe PDF (Complete Guide) | pdfcanada.ca",
-            desc: "Learn how to edit XFA PDFs using the officially recommended Adobe PDF printer workaround. Flatten dynamic forms into editable standard PDFs securely."
+            title: "How to Edit XFA PDFs | Free 2026 Technical Guide | pdfcanada.ca",
+            desc: "Unlock and edit XFA-based PDF forms securely. Our technical guide shows you how to manage dynamic forms locally on your device without uploading private data."
         },
         h1: "How to Edit an XFA PDF: The Adobe PDF Printer Guide",
         subtitle: "Flatten dynamic forms into standard, editable PDFs using the officially recommended workaround.",
@@ -146,8 +146,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment éditer un PDF XFA en l'imprimant vers Adobe PDF | pdfcanada.ca",
-            desc: "Apprenez à éditer des PDF XFA en utilisant la méthode recommandée par Adobe. Aplatissez vos formulaires dynamiques en PDF standard modifiables."
+            title: "Comment Éditer un PDF XFA | Guide Technique 2026 | pdfcanada.ca",
+            desc: "Déverrouillez et modifiez les formulaires PDF basés sur XFA en toute sécurité. Notre guide technique vous montre comment gérer les formulaires dynamiques localement."
         },
         h1: "Éditer un PDF XFA : Guide de l'imprimante Adobe PDF",
         subtitle: "Aplatissez les formulaires dynamiques en PDF standard modifiables.",

@@ -12,10 +12,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Delete Pages from PDF (Free & Private) | pdfcanada.ca",
-            desc: "The definitive 2025 guide to removing pages from PDFs. Learn how to delete pages securely on any device without uploading your files."
+            title: "How to Delete PDF Pages | Free & Private 2026 Guide | pdfcanada.ca",
+            desc: "Learn how to remove pages from PDF securely. Our definitive 2026 guide shows you how to delete pages locally on any device without uploads. Free and private."
         },
-        h1: "How to Delete Pages from a PDF: The Definitive Guide",
+        h1: "How to Delete PDF Pages: The 2026 Guide",
         subtitle: "A complete walkthrough on removing unwanted, blank, or sensitive pages from your documents—securely and for free.",
 
         intro: (
@@ -99,8 +99,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Supprimer des Pages PDF Gratuit | Retirer Pages Indésirables | pdfcanada.ca",
-            desc: "Le guide définitif 2026 pour supprimer des pages de PDF. Apprenez à nettoyer vos documents en toute sécurité et confidentialité sans téléchargement sur un serveur."
+            title: "Comment Supprimer des Pages PDF | Guide Local 2026 | pdfcanada.ca",
+            desc: "Apprenez à supprimer des pages de vos PDF en toute sécurité. Notre guide 2026 vous montre comment retirer des pages localement sans téléchargement. Gratuit et privé."
         },
         h1: "Comment Supprimer des Pages d'un PDF : Le Guide Complet",
         subtitle: "La méthode simple et sécurisée pour retirer les pages indésirables, vierges ou sensibles de vos documents.",
