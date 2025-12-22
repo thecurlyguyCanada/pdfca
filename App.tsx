@@ -14,7 +14,7 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs } from './utils/pdfUtils';
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -70,7 +70,8 @@ export enum ToolType {
   FLATTEN = 'FLATTEN',
   CROP = 'CROP',
   COMPRESS = 'COMPRESS',
-  MERGE = 'MERGE'
+  MERGE = 'MERGE',
+  SPLIT = 'SPLIT'
 }
 
 // Helper to safely update history without crashing in sandboxed environments
@@ -213,6 +214,10 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/merge-pdf') {
       setCurrentTool(ToolType.MERGE);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/split-pdf') {
+      setCurrentTool(ToolType.SPLIT);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pricing') setView('PRICING');
@@ -415,6 +420,7 @@ function App() {
     { id: ToolType.OCR, icon: FileText, title: t.toolOcr || 'OCR PDF', desc: t.toolOcrDesc || 'Make scanned PDFs searchable with OCR.', accept: '.pdf', path: '/ocr-pdf' },
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress || 'Compress PDF', desc: t.toolCompressDesc || 'Reduce file size while maintaining quality.', accept: '.pdf', path: '/compress-pdf' },
     { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge || 'Merge PDF', desc: t.toolMergeDesc || 'Combine multiple PDFs into one.', accept: '.pdf', path: '/merge-pdf' },
+    { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit || 'Split PDF', desc: t.toolSplitDesc || 'Separate PDF into individual pages.', accept: '.pdf', path: '/split-pdf' },
   ];
 
   const selectTool = (toolId: ToolType) => {
@@ -595,6 +601,10 @@ function App() {
               resultBlob = await mergePdfs(files);
               outName = 'merged_document.pdf';
             }
+            break;
+          case ToolType.SPLIT:
+            resultBlob = await splitPdf(file);
+            outName = file.name.replace('.pdf', '_pages.zip');
             break;
         }
       } else if (currentTool === ToolType.SIGN) {

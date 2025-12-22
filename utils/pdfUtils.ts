@@ -1288,3 +1288,32 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
     throw new Error('Failed to merge PDFs. One of the files might be corrupted or password protected.');
   }
 };
+
+// Split PDF: Separate a PDF into individual pages, returned as a ZIP
+export const splitPdf = async (file: File): Promise<Blob> => {
+  const { PDFDocument } = await getPdfLib();
+  const JSZip = await getJSZip();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const sourceDoc = await PDFDocument.load(arrayBuffer);
+  const pageCount = sourceDoc.getPageCount();
+
+  if (pageCount === 0) {
+    throw new Error('PDF has no pages to split.');
+  }
+
+  const zip = new JSZip();
+  const baseName = file.name.replace(/\.pdf$/i, '');
+
+  for (let i = 0; i < pageCount; i++) {
+    const newDoc = await PDFDocument.create();
+    const [copiedPage] = await newDoc.copyPages(sourceDoc, [i]);
+    newDoc.addPage(copiedPage);
+
+    const pdfBytes = await newDoc.save();
+    const pageNum = String(i + 1).padStart(3, '0');
+    zip.file(`${baseName}_page_${pageNum}.pdf`, pdfBytes);
+  }
+
+  return await zip.generateAsync({ type: 'blob' });
+};
