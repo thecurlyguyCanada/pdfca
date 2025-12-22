@@ -807,6 +807,9 @@ function App() {
       case ToolType.OCR: return t.features.ocr;
       case ToolType.COMPRESS: return t.features.compress;
       case ToolType.MERGE: return t.features.merge;
+      case ToolType.SPLIT: return t.features.split;
+      case ToolType.PDF_TO_XML: return t.features.pdfToXml;
+      case ToolType.XML_TO_PDF: return t.features.xmlToPdf;
       default: return t.features.delete;
     }
   };

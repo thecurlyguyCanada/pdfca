@@ -435,6 +435,42 @@ export const translations = {
           "Drag and drop the files to rearrange the order.",
           "Click 'Merge PDFs' to download your combined document."
         ]
+      },
+      split: {
+        title: "Split PDF Online - Separate PDF Pages for Free | pdfcanada.ca",
+        desc: "Split your PDF into individual pages instantly. Download as a ZIP file containing each page as a separate PDF. 100% private—no uploads required.",
+        h1: "Split PDF into Pages",
+        subtitle: "Separate your PDF into individual page files.",
+        content: "Need to break apart a PDF document? Our Split PDF tool separates each page into its own file and packages them as a convenient ZIP download. Perfect for extracting specific pages or distributing content.",
+        steps: [
+          "Upload your PDF document.",
+          "Click 'Split PDF' to separate all pages.",
+          "Download your ZIP file containing individual PDFs."
+        ]
+      },
+      pdfToXml: {
+        title: "PDF to XML Converter - Extract Structured Data | pdfcanada.ca",
+        desc: "Convert PDF documents to XML format with structured data extraction. Preserve page layout, text positions, and content hierarchy. Free and private.",
+        h1: "Convert PDF to XML",
+        subtitle: "Extract structured data from your PDF documents.",
+        content: "Transform your PDF documents into structured XML format. Our converter extracts text content with position data, page dimensions, and content hierarchy—ideal for data processing and analysis.",
+        steps: [
+          "Upload your PDF file.",
+          "Click 'Convert to XML' to process.",
+          "Download your structured XML file."
+        ]
+      },
+      xmlToPdf: {
+        title: "XML to PDF Converter - Create PDFs from XML Data | pdfcanada.ca",
+        desc: "Convert XML documents to PDF format. Transform structured data into clean, readable PDF documents. Free, fast, and processed locally.",
+        h1: "Convert XML to PDF",
+        subtitle: "Transform XML data into PDF documents.",
+        content: "Convert your XML files into professionally formatted PDF documents. Our tool parses XML structure and creates clean, readable PDFs from your data—perfect for reports and documentation.",
+        steps: [
+          "Upload your XML file.",
+          "Click 'Convert to PDF' to process.",
+          "Download your generated PDF document."
+        ]
       }
     },
 
@@ -935,6 +971,42 @@ export const translations = {
           "Sélectionnez les fichiers PDF à fusionner.",
           "Glissez-déposez les fichiers pour réorganiser l'ordre.",
           "Cliquez sur 'Fusionner PDF' pour télécharger votre document combiné."
+        ]
+      },
+      split: {
+        title: "Diviser PDF en Ligne - Séparer les Pages PDF Gratuitement | pdfcanada.ca",
+        desc: "Divisez votre PDF en pages individuelles instantanément. Téléchargez en tant que fichier ZIP contenant chaque page comme PDF séparé. 100% privé—aucun téléversement requis.",
+        h1: "Diviser PDF en Pages",
+        subtitle: "Séparez votre PDF en fichiers de pages individuelles.",
+        content: "Besoin de séparer un document PDF ? Notre outil de division sépare chaque page en son propre fichier et les regroupe dans un téléchargement ZIP pratique. Parfait pour extraire des pages spécifiques ou distribuer du contenu.",
+        steps: [
+          "Téléversez votre document PDF.",
+          "Cliquez sur 'Diviser PDF' pour séparer toutes les pages.",
+          "Téléchargez votre fichier ZIP contenant les PDF individuels."
+        ]
+      },
+      pdfToXml: {
+        title: "Convertisseur PDF vers XML - Extraire des Données Structurées | pdfcanada.ca",
+        desc: "Convertissez des documents PDF au format XML avec extraction de données structurées. Préservez la mise en page, les positions du texte et la hiérarchie du contenu. Gratuit et privé.",
+        h1: "Convertir PDF en XML",
+        subtitle: "Extrayez des données structurées de vos documents PDF.",
+        content: "Transformez vos documents PDF en format XML structuré. Notre convertisseur extrait le contenu textuel avec les données de position, les dimensions des pages et la hiérarchie du contenu—idéal pour le traitement et l'analyse de données.",
+        steps: [
+          "Téléversez votre fichier PDF.",
+          "Cliquez sur 'Convertir en XML' pour traiter.",
+          "Téléchargez votre fichier XML structuré."
+        ]
+      },
+      xmlToPdf: {
+        title: "Convertisseur XML vers PDF - Créer des PDF à partir de Données XML | pdfcanada.ca",
+        desc: "Convertissez des documents XML au format PDF. Transformez des données structurées en documents PDF propres et lisibles. Gratuit, rapide et traité localement.",
+        h1: "Convertir XML en PDF",
+        subtitle: "Transformez les données XML en documents PDF.",
+        content: "Convertissez vos fichiers XML en documents PDF professionnellement formatés. Notre outil analyse la structure XML et crée des PDF propres et lisibles à partir de vos données—parfait pour les rapports et la documentation.",
+        steps: [
+          "Téléversez votre fichier XML.",
+          "Cliquez sur 'Convertir en PDF' pour traiter.",
+          "Téléchargez votre document PDF généré."
         ]
       }
     },
