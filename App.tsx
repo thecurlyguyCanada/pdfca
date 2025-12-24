@@ -1208,8 +1208,6 @@ function App() {
             image: `https://www.pdfcanada.ca/og-image.png`
           }))}
           price="0"
-          rating={4.8}
-          reviewCount={1245}
         />
 
         <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
@@ -1266,8 +1264,6 @@ function App() {
                 schema={softwareAppSchema}
                 faqs={t.seo.homeFaq}
                 price="0"
-                rating={4.8}
-                reviewCount={1245}
               />
               {renderHome()}
             </>

@@ -1,27 +1,26 @@
 # robots.txt for pdfcanada.ca
-# Last updated: 2025-12-21
+# Last updated: 2025-12-24
 
 # Allow all search engine crawlers
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_next/
-Disallow: /*.json$
-Disallow: /*?*
+Disallow: /*.json
+Disallow: /*?
 
 # Allow all static assets
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.svg$
-Allow: /*.webp$
-Allow: /*.woff2$
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.woff2
 
-# Google-specific directives
+# Google-specific directives (note: Google ignores Crawl-delay, use Search Console)
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 # Google Images
 User-agent: Googlebot-Image
@@ -89,8 +88,5 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-# Sitemap locations
+# Sitemap location
 Sitemap: https://www.pdfcanada.ca/sitemap.xml
-
-# Host
-Host: https://www.pdfcanada.ca

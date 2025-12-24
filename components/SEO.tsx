@@ -46,25 +46,18 @@ const organizationSchema = {
   "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser."
 };
 
-// WebSite schema for sitelinks search box
+// WebSite schema (SearchAction removed - site doesn't have search functionality)
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://www.pdfcanada.ca/#website",
   "name": "pdfcanada.ca",
   "url": "https://www.pdfcanada.ca",
+  "description": "Free, secure PDF tools built in Canada. All processing happens locally in your browser.",
   "publisher": {
     "@id": "https://www.pdfcanada.ca/#organization"
   },
-  "inLanguage": ["en-CA", "fr-CA"],
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://www.pdfcanada.ca/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+  "inLanguage": ["en-CA", "fr-CA"]
 };
 
 export const SEO: React.FC<SEOProps> = ({
@@ -125,6 +118,7 @@ export const SEO: React.FC<SEOProps> = ({
     setMeta('name', 'twitter:url', `https://www.pdfcanada.ca${canonicalPath}`);
     setMeta('name', 'twitter:image', image);
     setMeta('name', 'twitter:image:alt', `${title} - pdfcanada.ca`);
+    setMeta('name', 'twitter:site', '@pdfcanada');
     setMeta('name', 'twitter:creator', '@pdfcanada');
 
     // 6. Update Canonical Link
@@ -166,8 +160,8 @@ export const SEO: React.FC<SEOProps> = ({
       }
     };
 
-    updateHreflang('en', `https://www.pdfcanada.ca${enPath}`);
-    updateHreflang('fr', `https://www.pdfcanada.ca${frPath}`);
+    updateHreflang('en-CA', `https://www.pdfcanada.ca${enPath}`);
+    updateHreflang('fr-CA', `https://www.pdfcanada.ca${frPath}`);
     updateHreflang('x-default', `https://www.pdfcanada.ca${enPath}`);
 
     // 7. Dynamic Favicons
