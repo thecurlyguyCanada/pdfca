@@ -14,7 +14,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "pdfcanada.ca",
-        "url": "https://pdfcanada.ca",
+        "url": "https://www.pdfcanada.ca",
         "description": translations[lang].seo.supportDesc,
         "address": {
             "@type": "PostalAddress",

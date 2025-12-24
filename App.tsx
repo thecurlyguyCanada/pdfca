@@ -797,7 +797,7 @@ function App() {
     "author": {
       "@type": "Organization",
       "name": "pdfcanada.ca",
-      "url": "https://pdfcanada.ca"
+      "url": "https://www.pdfcanada.ca"
     }
   };
 
@@ -1205,7 +1205,7 @@ function App() {
           steps={content.steps?.map((step: string, i: number) => ({
             name: `Step ${i + 1}`,
             text: step,
-            image: `https://pdfcanada.ca/og-image.png`
+            image: `https://www.pdfcanada.ca/og-image.png`
           }))}
           price="0"
           rating={4.8}

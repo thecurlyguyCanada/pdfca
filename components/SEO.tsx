@@ -24,12 +24,12 @@ interface SEOProps {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://pdfcanada.ca/#organization",
+  "@id": "https://www.pdfcanada.ca/#organization",
   "name": "pdfcanada.ca",
-  "url": "https://pdfcanada.ca",
+  "url": "https://www.pdfcanada.ca",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://pdfcanada.ca/android-chrome-512x512.png",
+    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png",
     "width": 512,
     "height": 512
   },
@@ -50,18 +50,18 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://pdfcanada.ca/#website",
+  "@id": "https://www.pdfcanada.ca/#website",
   "name": "pdfcanada.ca",
-  "url": "https://pdfcanada.ca",
+  "url": "https://www.pdfcanada.ca",
   "publisher": {
-    "@id": "https://pdfcanada.ca/#organization"
+    "@id": "https://www.pdfcanada.ca/#organization"
   },
   "inLanguage": ["en-CA", "fr-CA"],
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://pdfcanada.ca/?q={search_term_string}"
+      "urlTemplate": "https://www.pdfcanada.ca/?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -71,7 +71,7 @@ export const SEO: React.FC<SEOProps> = ({
   title,
   description,
   canonicalPath = '/',
-  image = 'https://pdfcanada.ca/og-image.png',
+  image = 'https://www.pdfcanada.ca/og-image.png',
   lang = 'en',
   schema,
   breadcrumbs,
@@ -110,7 +110,7 @@ export const SEO: React.FC<SEOProps> = ({
     setMeta('property', 'og:type', ogType);
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
-    setMeta('property', 'og:url', `https://pdfcanada.ca${canonicalPath}`);
+    setMeta('property', 'og:url', `https://www.pdfcanada.ca${canonicalPath}`);
     setMeta('property', 'og:image', image);
     setMeta('property', 'og:image:width', '1200');
     setMeta('property', 'og:image:height', '630');
@@ -122,7 +122,7 @@ export const SEO: React.FC<SEOProps> = ({
     // 5. Update Twitter
     setMeta('name', 'twitter:title', title);
     setMeta('name', 'twitter:description', description);
-    setMeta('name', 'twitter:url', `https://pdfcanada.ca${canonicalPath}`);
+    setMeta('name', 'twitter:url', `https://www.pdfcanada.ca${canonicalPath}`);
     setMeta('name', 'twitter:image', image);
     setMeta('name', 'twitter:image:alt', `${title} - pdfcanada.ca`);
     setMeta('name', 'twitter:creator', '@pdfcanada');
@@ -144,11 +144,11 @@ export const SEO: React.FC<SEOProps> = ({
 
     let link = document.querySelector('link[rel="canonical"]');
     if (link) {
-      link.setAttribute('href', `https://pdfcanada.ca${finalCanonicalPath}`);
+      link.setAttribute('href', `https://www.pdfcanada.ca${finalCanonicalPath}`);
     } else {
       link = document.createElement('link');
       link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', `https://pdfcanada.ca${finalCanonicalPath}`);
+      link.setAttribute('href', `https://www.pdfcanada.ca${finalCanonicalPath}`);
       document.head.appendChild(link);
     }
 
@@ -166,9 +166,9 @@ export const SEO: React.FC<SEOProps> = ({
       }
     };
 
-    updateHreflang('en', `https://pdfcanada.ca${enPath}`);
-    updateHreflang('fr', `https://pdfcanada.ca${frPath}`);
-    updateHreflang('x-default', `https://pdfcanada.ca${enPath}`);
+    updateHreflang('en', `https://www.pdfcanada.ca${enPath}`);
+    updateHreflang('fr', `https://www.pdfcanada.ca${frPath}`);
+    updateHreflang('x-default', `https://www.pdfcanada.ca${enPath}`);
 
     // 7. Dynamic Favicons
     const setLink = (rel: string, href: string, sizes?: string, type?: string) => {
@@ -225,22 +225,22 @@ export const SEO: React.FC<SEOProps> = ({
         "Ultimate Guide"
       ],
       "url": [
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/delete-pdf-pages`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/rotate-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-fillable`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/heic-to-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-word`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/word-to-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-non-editable`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/compress-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/merge-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/split-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/sign-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/ocr-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-xml`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/xml-to-pdf`,
-        `https://pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/delete-pdf-pages`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/rotate-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-fillable`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/heic-to-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-word`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/word-to-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-non-editable`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/compress-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/merge-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/split-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/sign-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/ocr-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-xml`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/xml-to-pdf`,
+        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
       ]
     };
     allSchemas.push(siteNavSchema);
@@ -274,11 +274,11 @@ export const SEO: React.FC<SEOProps> = ({
         }),
         "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free",
         "softwareRequirements": "Modern Web Browser",
-        "screenshot": "https://pdfcanada.ca/og-image.png",
+        "screenshot": "https://www.pdfcanada.ca/og-image.png",
         "author": {
           "@type": "Organization",
           "name": "pdfcanada.ca",
-          "url": "https://pdfcanada.ca"
+          "url": "https://www.pdfcanada.ca"
         }
       });
     }
@@ -287,11 +287,11 @@ export const SEO: React.FC<SEOProps> = ({
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": `https://pdfcanada.ca${canonicalPath}#webpage`,
-      "url": `https://pdfcanada.ca${canonicalPath}`,
+      "@id": `https://www.pdfcanada.ca${canonicalPath}#webpage`,
+      "url": `https://www.pdfcanada.ca${canonicalPath}`,
       "name": title,
       "description": description,
-      "isPartOf": { "@id": "https://pdfcanada.ca/#website" },
+      "isPartOf": { "@id": "https://www.pdfcanada.ca/#website" },
       "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
       ...(datePublished && { "datePublished": datePublished }),
       ...(dateModified && { "dateModified": dateModified }),
@@ -309,18 +309,18 @@ export const SEO: React.FC<SEOProps> = ({
         "name": "Free PDF Tools",
         "description": "A collection of free, secure PDF tools that process files locally in your browser.",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Delete PDF Pages", "url": "https://pdfcanada.ca/delete-pdf-pages" },
-          { "@type": "ListItem", "position": 2, "name": "Rotate PDF", "url": "https://pdfcanada.ca/rotate-pdf" },
-          { "@type": "ListItem", "position": 3, "name": "Merge PDF", "url": "https://pdfcanada.ca/merge-pdf" },
-          { "@type": "ListItem", "position": 4, "name": "Split PDF", "url": "https://pdfcanada.ca/split-pdf" },
-          { "@type": "ListItem", "position": 5, "name": "Compress PDF", "url": "https://pdfcanada.ca/compress-pdf" },
-          { "@type": "ListItem", "position": 6, "name": "PDF to Word", "url": "https://pdfcanada.ca/pdf-to-word" },
-          { "@type": "ListItem", "position": 7, "name": "Word to PDF", "url": "https://pdfcanada.ca/word-to-pdf" },
-          { "@type": "ListItem", "position": 8, "name": "HEIC to PDF", "url": "https://pdfcanada.ca/heic-to-pdf" },
-          { "@type": "ListItem", "position": 9, "name": "Sign PDF", "url": "https://pdfcanada.ca/sign-pdf" },
-          { "@type": "ListItem", "position": 10, "name": "OCR PDF", "url": "https://pdfcanada.ca/ocr-pdf" },
-          { "@type": "ListItem", "position": 11, "name": "PDF to XML", "url": "https://pdfcanada.ca/pdf-to-xml" },
-          { "@type": "ListItem", "position": 12, "name": "Crop PDF", "url": "https://pdfcanada.ca/crop-pdf" }
+          { "@type": "ListItem", "position": 1, "name": "Delete PDF Pages", "url": "https://www.pdfcanada.ca/delete-pdf-pages" },
+          { "@type": "ListItem", "position": 2, "name": "Rotate PDF", "url": "https://www.pdfcanada.ca/rotate-pdf" },
+          { "@type": "ListItem", "position": 3, "name": "Merge PDF", "url": "https://www.pdfcanada.ca/merge-pdf" },
+          { "@type": "ListItem", "position": 4, "name": "Split PDF", "url": "https://www.pdfcanada.ca/split-pdf" },
+          { "@type": "ListItem", "position": 5, "name": "Compress PDF", "url": "https://www.pdfcanada.ca/compress-pdf" },
+          { "@type": "ListItem", "position": 6, "name": "PDF to Word", "url": "https://www.pdfcanada.ca/pdf-to-word" },
+          { "@type": "ListItem", "position": 7, "name": "Word to PDF", "url": "https://www.pdfcanada.ca/word-to-pdf" },
+          { "@type": "ListItem", "position": 8, "name": "HEIC to PDF", "url": "https://www.pdfcanada.ca/heic-to-pdf" },
+          { "@type": "ListItem", "position": 9, "name": "Sign PDF", "url": "https://www.pdfcanada.ca/sign-pdf" },
+          { "@type": "ListItem", "position": 10, "name": "OCR PDF", "url": "https://www.pdfcanada.ca/ocr-pdf" },
+          { "@type": "ListItem", "position": 11, "name": "PDF to XML", "url": "https://www.pdfcanada.ca/pdf-to-xml" },
+          { "@type": "ListItem", "position": 12, "name": "Crop PDF", "url": "https://www.pdfcanada.ca/crop-pdf" }
         ]
       });
     }
@@ -355,7 +355,7 @@ export const SEO: React.FC<SEOProps> = ({
         },
         "step": steps.map((step, index) => ({
           "@type": "HowToStep",
-          "url": `https://pdfcanada.ca${canonicalPath}#step${index + 1}`,
+          "url": `https://www.pdfcanada.ca${canonicalPath}#step${index + 1}`,
           "name": step.name,
           "itemListElement": {
             "@type": "HowToDirection",
@@ -376,7 +376,7 @@ export const SEO: React.FC<SEOProps> = ({
           "@type": "ListItem",
           "position": index + 1,
           "name": crumb.name,
-          "item": crumb.path.startsWith('http') ? crumb.path : `https://pdfcanada.ca${crumb.path}`
+          "item": crumb.path.startsWith('http') ? crumb.path : `https://www.pdfcanada.ca${crumb.path}`
         }))
       });
     }

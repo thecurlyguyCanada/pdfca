@@ -271,14 +271,14 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",
-                "url": "https://pdfcanada.ca"
+                "url": "https://www.pdfcanada.ca"
             },
             "publisher": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://pdfcanada.ca/android-chrome-512x512.png"
+                    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png"
                 }
             }
         }
