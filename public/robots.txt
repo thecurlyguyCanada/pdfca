@@ -90,7 +90,7 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemap locations
-Sitemap: https://pdfcanada.ca/sitemap.xml
+Sitemap: https://www.pdfcanada.ca/sitemap.xml
 
 # Host
-Host: https://pdfcanada.ca
+Host: https://www.pdfcanada.ca

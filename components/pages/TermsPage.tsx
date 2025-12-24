@@ -15,7 +15,7 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
         "@type": "WebPage",
         "name": t.seo.termsTitle,
         "description": t.seo.termsDesc,
-        "url": "https://pdfcanada.ca/terms",
+        "url": "https://www.pdfcanada.ca/terms",
         "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA'
     };
     return (

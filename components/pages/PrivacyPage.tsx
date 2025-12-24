@@ -15,7 +15,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
         "@type": "WebPage",
         "name": t.seo.privacyTitle,
         "description": t.seo.privacyDesc,
-        "url": "https://pdfcanada.ca/privacy",
+        "url": "https://www.pdfcanada.ca/privacy",
         "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA'
     };
     return (
