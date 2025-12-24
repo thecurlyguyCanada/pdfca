@@ -196,46 +196,33 @@ export const SEO: React.FC<SEOProps> = ({
       allSchemas.push(websiteSchema);
     }
 
-    // SiteNavigationElement Schema
+    // SiteNavigationElement Schema - Complete tool list with translations
+    const navNames = lang === 'fr' ? [
+      "Supprimer des pages PDF", "Pivoter PDF", "Rendre PDF modifiable", "HEIC en PDF",
+      "PDF en Word", "Word en PDF", "Aplatir PDF", "Rogner PDF", "Compresser PDF",
+      "Fusionner PDF", "Diviser PDF", "Signer PDF", "OCR PDF", "PDF en XML", "XML en PDF",
+      "EPUB en PDF", "PDF en EPUB", "Organiser PDF", "CBR en PDF", "Excel en PDF",
+      "Supprimer pages PDF", "Guide ultime"
+    ] : [
+      "Delete PDF Pages", "Rotate PDF", "Make PDF Fillable", "HEIC to PDF",
+      "PDF to Word", "Word to PDF", "Flatten PDF", "Crop PDF", "Compress PDF",
+      "Merge PDF", "Split PDF", "Sign PDF", "OCR PDF", "PDF to XML", "XML to PDF",
+      "EPUB to PDF", "PDF to EPUB", "Organize PDF", "CBR to PDF", "Excel to PDF",
+      "PDF Page Remover", "Ultimate Guide"
+    ];
+    const navUrls = [
+      "/delete-pdf-pages", "/rotate-pdf", "/make-pdf-fillable", "/heic-to-pdf",
+      "/pdf-to-word", "/word-to-pdf", "/make-pdf-non-editable", "/crop-pdf", "/compress-pdf",
+      "/merge-pdf", "/split-pdf", "/sign-pdf", "/ocr-pdf", "/pdf-to-xml", "/xml-to-pdf",
+      "/epub-to-pdf", "/pdf-to-epub", "/organize-pdf", "/cbr-to-pdf", "/excel-to-pdf",
+      "/pdf-page-remover", "/guides/ultimate-pdf-guide"
+    ];
+    const langPrefix = lang === 'fr' ? '/fr' : '';
     const siteNavSchema = {
       "@context": "https://schema.org",
       "@type": "SiteNavigationElement",
-      "name": [
-        "Delete PDF Pages",
-        "Rotate PDF",
-        "Make PDF Fillable",
-        "HEIC to PDF",
-        "PDF to Word",
-        "Word to PDF",
-        "Flatten PDF",
-        "Crop PDF",
-        "Compress PDF",
-        "Merge PDF",
-        "Split PDF",
-        "Sign PDF",
-        "OCR PDF",
-        "PDF to XML",
-        "XML to PDF",
-        "Ultimate Guide"
-      ],
-      "url": [
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/delete-pdf-pages`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/rotate-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-fillable`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/heic-to-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-word`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/word-to-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/make-pdf-non-editable`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/crop-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/compress-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/merge-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/split-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/sign-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/ocr-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/pdf-to-xml`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/xml-to-pdf`,
-        `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
-      ]
+      "name": navNames,
+      "url": navUrls.map(url => `https://www.pdfcanada.ca${langPrefix}${url}`)
     };
     allSchemas.push(siteNavSchema);
 
@@ -297,25 +284,36 @@ export const SEO: React.FC<SEOProps> = ({
 
     // ItemList schema for home page tools (enables carousel rich results)
     if (canonicalPath === '/') {
+      const itemListNames = lang === 'fr' ? [
+        "Supprimer des pages PDF", "Pivoter PDF", "Fusionner PDF", "Diviser PDF", "Compresser PDF",
+        "PDF en Word", "Word en PDF", "HEIC en PDF", "Signer PDF", "OCR PDF", "PDF en XML", "Rogner PDF",
+        "Rendre PDF modifiable", "EPUB en PDF", "PDF en EPUB", "Organiser PDF", "CBR en PDF", "Excel en PDF",
+        "Aplatir PDF", "XML en PDF"
+      ] : [
+        "Delete PDF Pages", "Rotate PDF", "Merge PDF", "Split PDF", "Compress PDF",
+        "PDF to Word", "Word to PDF", "HEIC to PDF", "Sign PDF", "OCR PDF", "PDF to XML", "Crop PDF",
+        "Make PDF Fillable", "EPUB to PDF", "PDF to EPUB", "Organize PDF", "CBR to PDF", "Excel to PDF",
+        "Flatten PDF", "XML to PDF"
+      ];
+      const itemListUrls = [
+        "/delete-pdf-pages", "/rotate-pdf", "/merge-pdf", "/split-pdf", "/compress-pdf",
+        "/pdf-to-word", "/word-to-pdf", "/heic-to-pdf", "/sign-pdf", "/ocr-pdf", "/pdf-to-xml", "/crop-pdf",
+        "/make-pdf-fillable", "/epub-to-pdf", "/pdf-to-epub", "/organize-pdf", "/cbr-to-pdf", "/excel-to-pdf",
+        "/make-pdf-non-editable", "/xml-to-pdf"
+      ];
       allSchemas.push({
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Free PDF Tools",
-        "description": "A collection of free, secure PDF tools that process files locally in your browser.",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Delete PDF Pages", "url": "https://www.pdfcanada.ca/delete-pdf-pages" },
-          { "@type": "ListItem", "position": 2, "name": "Rotate PDF", "url": "https://www.pdfcanada.ca/rotate-pdf" },
-          { "@type": "ListItem", "position": 3, "name": "Merge PDF", "url": "https://www.pdfcanada.ca/merge-pdf" },
-          { "@type": "ListItem", "position": 4, "name": "Split PDF", "url": "https://www.pdfcanada.ca/split-pdf" },
-          { "@type": "ListItem", "position": 5, "name": "Compress PDF", "url": "https://www.pdfcanada.ca/compress-pdf" },
-          { "@type": "ListItem", "position": 6, "name": "PDF to Word", "url": "https://www.pdfcanada.ca/pdf-to-word" },
-          { "@type": "ListItem", "position": 7, "name": "Word to PDF", "url": "https://www.pdfcanada.ca/word-to-pdf" },
-          { "@type": "ListItem", "position": 8, "name": "HEIC to PDF", "url": "https://www.pdfcanada.ca/heic-to-pdf" },
-          { "@type": "ListItem", "position": 9, "name": "Sign PDF", "url": "https://www.pdfcanada.ca/sign-pdf" },
-          { "@type": "ListItem", "position": 10, "name": "OCR PDF", "url": "https://www.pdfcanada.ca/ocr-pdf" },
-          { "@type": "ListItem", "position": 11, "name": "PDF to XML", "url": "https://www.pdfcanada.ca/pdf-to-xml" },
-          { "@type": "ListItem", "position": 12, "name": "Crop PDF", "url": "https://www.pdfcanada.ca/crop-pdf" }
-        ]
+        "name": lang === 'fr' ? "Outils PDF gratuits" : "Free PDF Tools",
+        "description": lang === 'fr'
+          ? "Une collection d'outils PDF gratuits et sécurisés qui traitent les fichiers localement dans votre navigateur."
+          : "A collection of free, secure PDF tools that process files locally in your browser.",
+        "itemListElement": itemListNames.map((name, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": name,
+          "url": `https://www.pdfcanada.ca${langPrefix}${itemListUrls[i]}`
+        }))
       });
     }
 
@@ -343,9 +341,14 @@ export const SEO: React.FC<SEOProps> = ({
         "name": title,
         "description": description,
         "totalTime": "PT2M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "CAD"
+        },
         "tool": {
           "@type": "HowToTool",
-          "name": "Web Browser"
+          "name": lang === 'fr' ? "Navigateur Web" : "Web Browser"
         },
         "step": steps.map((step, index) => ({
           "@type": "HowToStep",
