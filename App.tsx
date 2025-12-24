@@ -1014,7 +1014,7 @@ function App() {
         )}
       </div>
 
-      {/* Testimonials & Trust Section */}
+      {/* Trust Section */}
       {appState === AppState.HOME && (
         <div className="w-full max-w-5xl mx-auto mt-16 space-y-12">
           {/* Trust Badges */}
@@ -1034,43 +1034,6 @@ function App() {
             <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
               <span className="text-sm font-bold text-gray-700">100% Free</span>
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">What Our Users Say</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
-                <p className="text-gray-600 italic mb-4">"Finally, a PDF tool that doesn't ask for my email or upload my documents. Fast, free, and actually private!"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-red-100 text-canada-red rounded-full flex items-center justify-center font-bold">S</div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm">Sarah M.</p>
-                    <p className="text-xs text-gray-500">Small Business Owner, Toronto</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
-                <p className="text-gray-600 italic mb-4">"I use the Merge PDF tool every week for my reports. It's so much faster than Adobe and completely free."</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">J</div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm">James K.</p>
-                    <p className="text-xs text-gray-500">Project Manager, Vancouver</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-left">
-                <p className="text-gray-600 italic mb-4">"The privacy focus is exactly what I needed for handling client documents. Local processing is a game changer."</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">M</div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm">Maria L.</p>
-                    <p className="text-xs text-gray-500">Lawyer, Montreal</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1253,7 +1216,7 @@ function App() {
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-gray-50">
       <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
 
-      <main className="flex-grow flex flex-col">
+      <main id="main-content" className="flex-grow flex flex-col">
         <React.Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-12 h-12 border-4 border-canada-red border-t-transparent rounded-full animate-spin"></div></div>}>
           {view === 'HOME' && (
             <>

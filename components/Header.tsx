@@ -21,6 +21,13 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
   return (
     <>
+      {/* Skip to main content - Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-canada-red focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+      >
+        Skip to main content
+      </a>
       <header
         className="flex items-center justify-between px-5 md:px-6 py-3 md:py-4 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-t-4 border-t-canada-red border-b border-gray-100 shadow-sm"
         style={{ paddingTop: 'max(12px, var(--safe-area-inset-top))' }}

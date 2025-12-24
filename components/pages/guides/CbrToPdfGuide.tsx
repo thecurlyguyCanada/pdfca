@@ -267,7 +267,7 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-06-15",
-            "dateModified": "2026-01-01",
+            "dateModified": "2024-12-24",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

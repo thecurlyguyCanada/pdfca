@@ -27,7 +27,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         sections: [
             {
                 id: "step-by-step",
-                "dateModified": "2026-01-01",
+                "dateModified": "2024-12-24",
                 title: "Step-by-Step: Cropping Your PDF",
                 content: (
                     <>

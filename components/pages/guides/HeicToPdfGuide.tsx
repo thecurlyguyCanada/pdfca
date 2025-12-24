@@ -89,7 +89,7 @@ While efficient for storage, HEIC is notorious for lack of support:
 Le problème ? Windows, Android et la plupart des navigateurs web ne le supportent pas nativement. C'est pourquoi la conversion en **PDF** (ou JPEG) est souvent nécessaire pour le partage.`
             },
             {
-                "dateModified": "2026-01-01",
+                "dateModified": "2024-12-24",
                 id: "how-to",
                 title: "Étapes pour Convertir HEIC en PDF",
                 content: `1. **Sélectionnez Vos Photos** : Téléchargez un ou plusieurs fichiers .heic depuis votre iPhone, iCloud ou ordinateur.
