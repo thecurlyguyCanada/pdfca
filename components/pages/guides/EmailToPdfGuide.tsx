@@ -287,7 +287,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             "headline": t.h1,
             "description": t.seo.desc,
             "datePublished": "2024-06-01",
-            "dateModified": "2024-12-24",
+            "dateModified": "2025-12-24",
             "author": {
                 "@type": "Organization",
                 "name": "pdfcanada.ca",

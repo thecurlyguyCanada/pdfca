@@ -225,7 +225,7 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2024-04-15",
-        "dateModified": "2024-12-24",
+        "dateModified": "2025-12-24",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",
@@ -246,7 +246,7 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/guides/convertir-pdf-en-epub"
+                canonicalPath="/guides/pdf-to-epub"
                 lang={lang}
                 schema={schema}
                 faqs={t.faq}
