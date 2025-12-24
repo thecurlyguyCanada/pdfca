@@ -1165,11 +1165,16 @@ function App() {
           lang={lang}
           canonicalPath={tool?.path}
           schema={toolSchema}
+          faqs={(content as any).faq?.map((f: any) => ({ q: f.question || f.q, a: f.answer || f.a }))}
           steps={content.steps?.map((step: string, i: number) => ({
             name: `Step ${i + 1}`,
             text: step,
             image: `https://www.pdfcanada.ca/og-image.png`
           }))}
+          breadcrumbs={[
+            { name: 'Home', path: '/' },
+            { name: tool?.title || 'Tool', path: tool?.path || '/' }
+          ]}
           price="0"
         />
 
@@ -1227,6 +1232,7 @@ function App() {
                 schema={softwareAppSchema}
                 faqs={t.seo.homeFaq}
                 price="0"
+                breadcrumbs={[{ name: 'Home', path: '/' }]}
               />
               {renderHome()}
             </>

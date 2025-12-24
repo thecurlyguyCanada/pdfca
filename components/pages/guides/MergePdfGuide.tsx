@@ -174,6 +174,7 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/merge-pdf"
+                faqs={t.faq}
                 lang={lang}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },

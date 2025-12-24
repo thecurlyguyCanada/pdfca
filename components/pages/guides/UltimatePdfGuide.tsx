@@ -318,6 +318,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 canonicalPath="/guides/ultimate-pdf-guide"
                 lang={lang}
                 schema={schema}
+                faqs={t.faqs}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Ultimate PDF Guide', path: '/guides/ultimate-pdf-guide' }

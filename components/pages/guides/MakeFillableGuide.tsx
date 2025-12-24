@@ -235,6 +235,7 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/make-pdf-fillable"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[

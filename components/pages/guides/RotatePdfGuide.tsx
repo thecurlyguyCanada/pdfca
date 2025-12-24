@@ -191,7 +191,6 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             ]
         },
         {
-            "@context": "https://schema.org",
             "@type": "Article",
             "headline": t.h1,
             "description": t.seo.desc,
@@ -219,6 +218,7 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/rotate-pdf"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[

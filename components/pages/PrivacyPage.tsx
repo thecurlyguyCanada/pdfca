@@ -11,7 +11,6 @@ interface PageProps {
 export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     const privacySchema = {
-        "@context": "https://schema.org",
         "@type": "WebPage",
         "name": t.seo.privacyTitle,
         "description": t.seo.privacyDesc,
@@ -20,7 +19,17 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.privacyTitle} description={t.seo.privacyDesc} canonicalPath="/privacy" lang={lang} schema={privacySchema} />
+            <SEO
+                title={t.seo.privacyTitle}
+                description={t.seo.privacyDesc}
+                canonicalPath="/privacy"
+                lang={lang}
+                schema={privacySchema}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Privacy Policy', path: '/privacy' }
+                ]}
+            />
             <PageLayout title={t.privacyTitle} icon={<Shield size={32} />}>
                 <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-400">
                     <p className="mb-6">{t.privacyText1}</p>

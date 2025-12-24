@@ -11,7 +11,7 @@ interface SEOProps {
   breadcrumbs?: { name: string; path: string }[];
   ogType?: 'website' | 'article' | 'product';
   noOrganization?: boolean;
-  faqs?: { q: string; a: string }[];
+  faqs?: { q: string; a: any }[];
   datePublished?: string;
   dateModified?: string;
   price?: string;
@@ -329,7 +329,7 @@ export const SEO: React.FC<SEOProps> = ({
           "name": faq.q,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": faq.a
+            "text": typeof faq.a === 'string' ? faq.a : title // Fallback to title if answer is JSX
           }
         }))
       });

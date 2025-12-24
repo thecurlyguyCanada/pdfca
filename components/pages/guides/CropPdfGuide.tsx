@@ -149,7 +149,13 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/crop-pdf"
+                faqs={t.faq}
                 lang={lang}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
+                    { name: 'Crop PDF', path: '/guides/crop-pdf' }
+                ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">

@@ -194,11 +194,12 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/insert-picture-in-pdf"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: t.h1, path: `/guides/insert-picture-in-pdf` }
+                    { name: 'Insert Picture in PDF', path: `/guides/insert-picture-in-pdf` }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<ImageIcon size={32} />}>

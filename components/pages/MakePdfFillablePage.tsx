@@ -10,21 +10,26 @@ interface PageProps {
 
 export const MakePdfFillablePage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
-    const fillableSchema = {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": t.fillablePageTitle,
-        "description": t.seo.fillableDesc,
-        "step": [
-            { "@type": "HowToStep", "position": 1, "name": "Upload", "text": t.fillableStep1 },
-            { "@type": "HowToStep", "position": 2, "name": "Select", "text": t.fillableStep2 },
-            { "@type": "HowToStep", "position": 3, "name": "Fillify", "text": t.fillableStep3 },
-            { "@type": "HowToStep", "position": 4, "name": "Download", "text": t.fillableStep4 }
-        ]
-    };
+    const steps = [
+        { name: 'Upload', text: t.fillableStep1 },
+        { name: 'Select', text: t.fillableStep2 },
+        { name: 'Fillify', text: t.fillableStep3 },
+        { name: 'Download', text: t.fillableStep4 }
+    ];
+
     return (
         <>
-            <SEO title={t.seo.fillableTitle} description={t.seo.fillableDesc} canonicalPath="/how-to-make-a-pdf-fillable" lang={lang} schema={fillableSchema} />
+            <SEO
+                title={t.seo.fillableTitle}
+                description={t.seo.fillableDesc}
+                canonicalPath="/how-to-make-a-pdf-fillable"
+                lang={lang}
+                steps={steps}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'How to Make a PDF Fillable', path: '/how-to-make-a-pdf-fillable' }
+                ]}
+            />
             <PageLayout title={t.fillablePageTitle} subtitle={t.fillablePageSubtitle} icon={<PenTool size={32} />}>
                 <div className="space-y-8 text-gray-700 dark:text-gray-300">
                     <p className="text-lg font-medium">{t.fillableIntro}</p>

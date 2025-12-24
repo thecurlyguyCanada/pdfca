@@ -290,6 +290,7 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/cbr-to-pdf"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[

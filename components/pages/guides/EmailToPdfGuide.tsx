@@ -273,7 +273,6 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
 
     const schema = [
         {
-            "@context": "https://schema.org",
             "@type": "HowTo",
             "name": t.h1,
             "description": t.seo.desc,
@@ -284,19 +283,6 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
             ]
         },
         {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": t.faq.map(item => ({
-                "@type": "Question",
-                "name": item.q,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": item.a
-                }
-            }))
-        },
-        {
-            "@context": "https://schema.org",
             "@type": "Article",
             "headline": t.h1,
             "description": t.seo.desc,
@@ -324,6 +310,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/email-to-pdf"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[

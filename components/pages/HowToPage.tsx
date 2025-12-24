@@ -10,21 +10,26 @@ interface PageProps {
 
 export const HowToPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
-    const steps = [t.howtoStep1, t.howtoStep2, t.howtoStep3, t.howtoStep4];
-    const howtoSchema = {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": t.howtoTitle,
-        "description": t.seo.howtoDesc,
-        "step": steps.map((step, index) => ({
-            "@type": "HowToStep",
-            "position": index + 1,
-            "text": step
-        }))
-    };
+    const steps = [
+        { name: 'Select Tool', text: t.howtoStep1 },
+        { name: 'Upload PDF', text: t.howtoStep2 },
+        { name: 'Edit/Process', text: t.howtoStep3 },
+        { name: 'Download', text: t.howtoStep4 }
+    ];
+
     return (
         <>
-            <SEO title={t.seo.howtoTitle} description={t.seo.howtoDesc} canonicalPath="/howto" lang={lang} schema={howtoSchema} />
+            <SEO
+                title={t.seo.howtoTitle}
+                description={t.seo.howtoDesc}
+                canonicalPath="/howto"
+                lang={lang}
+                steps={steps}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'How To', path: '/howto' }
+                ]}
+            />
             <PageLayout title={t.howtoTitle} icon={<HelpCircle size={32} />}>
                 <div className="grid gap-6">
                     {[t.howtoStep1, t.howtoStep2, t.howtoStep3, t.howtoStep4].map((step, i) => (

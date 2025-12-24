@@ -220,53 +220,26 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang];
 
-    const schema = [
-        {
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": t.h1,
-            "description": t.seo.desc,
-            "step": t.steps.map((step, i) => ({
-                "@type": "HowToStep",
-                "position": i + 1,
-                "name": step.title,
-                "text": step.desc
-            }))
+    const schema = {
+        "@type": "Article",
+        "headline": t.h1,
+        "description": t.seo.desc,
+        "datePublished": "2024-04-15",
+        "dateModified": "2024-12-24",
+        "author": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca",
+            "url": "https://www.pdfcanada.ca"
         },
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": t.faq.map(item => ({
-                "@type": "Question",
-                "name": item.q,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": item.a
-                }
-            }))
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": t.h1,
-            "description": t.seo.desc,
-            "datePublished": "2024-04-15",
-            "dateModified": "2024-12-24",
-            "author": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "url": "https://www.pdfcanada.ca"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png"
-                }
+        "publisher": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.pdfcanada.ca/android-chrome-512x512.png"
             }
         }
-    ];
+    };
 
     return (
         <>
@@ -276,6 +249,8 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/convertir-pdf-en-epub"
                 lang={lang}
                 schema={schema}
+                faqs={t.faq}
+                steps={t.steps.map(s => ({ name: s.title, text: typeof s.desc === 'string' ? s.desc : s.title }))}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },

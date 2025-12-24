@@ -11,7 +11,6 @@ interface PageProps {
 export const TermsPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     const termsSchema = {
-        "@context": "https://schema.org",
         "@type": "WebPage",
         "name": t.seo.termsTitle,
         "description": t.seo.termsDesc,
@@ -20,7 +19,17 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
     };
     return (
         <>
-            <SEO title={t.seo.termsTitle} description={t.seo.termsDesc} canonicalPath="/terms" lang={lang} schema={termsSchema} />
+            <SEO
+                title={t.seo.termsTitle}
+                description={t.seo.termsDesc}
+                canonicalPath="/terms"
+                lang={lang}
+                schema={termsSchema}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Terms of Service', path: '/terms' }
+                ]}
+            />
             <PageLayout title={t.termsTitle} icon={<FileText size={32} />}>
                 <div className="space-y-6 text-gray-600 dark:text-gray-400">
                     <div className="flex gap-4">

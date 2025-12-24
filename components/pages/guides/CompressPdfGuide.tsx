@@ -159,10 +159,11 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/compress-pdf"
+                faqs={t.faq}
                 lang={lang}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: t.h1, path: `/guides/compress-pdf` }
+                    { name: 'Compress PDF', path: `/guides/compress-pdf` }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>

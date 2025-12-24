@@ -11,7 +11,6 @@ interface PageProps {
 export const SupportPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     const supportSchema = {
-        "@context": "https://schema.org",
         "@type": "Organization",
         "name": "pdfcanada.ca",
         "url": "https://www.pdfcanada.ca",
@@ -20,19 +19,22 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
             "@type": "PostalAddress",
             "addressLocality": "Toronto",
             "addressCountry": "CA"
-        },
-        "mainEntity": t.supportPage.faq.map(item => ({
-            "@type": "Question",
-            "name": item.question,
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": item.answer
-            }
-        }))
+        }
     };
     return (
         <>
-            <SEO title={translations[lang].seo.supportTitle} description={translations[lang].seo.supportDesc} canonicalPath="/support" lang={lang} schema={supportSchema} />
+            <SEO
+                title={translations[lang].seo.supportTitle}
+                description={translations[lang].seo.supportDesc}
+                canonicalPath="/support"
+                lang={lang}
+                schema={supportSchema}
+                faqs={t.supportPage.faq.map(item => ({ q: item.question, a: item.answer }))}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Support', path: '/support' }
+                ]}
+            />
             <PageLayout title={translations[lang].navSupport} icon={<Coffee size={32} />}>
                 <div className="text-center text-gray-600 dark:text-gray-400 space-y-8">
                     <p className="text-lg leading-relaxed max-w-2xl mx-auto">

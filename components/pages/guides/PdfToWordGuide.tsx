@@ -133,7 +133,13 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/pdf-to-word"
+                faqs={t.faq}
                 lang={lang}
+                breadcrumbs={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
+                    { name: 'PDF to Word', path: '/guides/pdf-to-word' }
+                ]}
             />
             <PageLayout
                 title={t.h1}

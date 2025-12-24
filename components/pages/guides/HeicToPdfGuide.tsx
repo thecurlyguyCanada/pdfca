@@ -149,6 +149,7 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 title={t.seo.title}
                 description={t.seo.desc}
                 canonicalPath="/guides/heic-to-pdf"
+                faqs={t.faq}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[

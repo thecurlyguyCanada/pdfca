@@ -210,6 +210,7 @@ export const OcrPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/ocr-pdf"
                 lang={lang}
                 schema={schema}
+                faqs={t.faq}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
