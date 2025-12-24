@@ -10,7 +10,7 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/"/>
     <image:image>
       <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
@@ -56,12 +56,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/delete-pdf-pages</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/delete-pdf-pages"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/delete-pdf-pages"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/delete-pdf-pages"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Supprimer des pages PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Supprimez les pages indésirables de tout document PDF. Rapide, gratuit et sécurisé.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -81,12 +86,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/rotate-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/rotate-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/rotate-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/rotate-pdf"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Pivoter PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Faites pivoter les pages PDF de 90 ou 180 degrés et enregistrez de façon permanente.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -106,12 +116,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/organize-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/organize-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/organize-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/organize-pdf"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Organiser les pages PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Réorganisez et réordonnez les pages de vos documents PDF.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -131,12 +146,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/make-pdf-fillable</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/make-pdf-fillable"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/make-pdf-fillable"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/make-pdf-fillable"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Rendre PDF modifiable - Outil en ligne gratuit</image:title>
+      <image:caption>Ajoutez des champs de texte, des cases à cocher et des champs de formulaire à tout document PDF.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -156,12 +176,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/ocr-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/ocr-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/ocr-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/ocr-pdf"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>OCR PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Extrayez le texte des documents numérisés. Rendez les PDF recherchables.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -181,12 +206,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/heic-to-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/heic-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/heic-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/heic-to-pdf"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Convertisseur HEIC en PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Convertissez les photos HEIC iPhone en format PDF.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -206,12 +236,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/epub-to-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/epub-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/epub-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/epub-to-pdf"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Convertisseur EPUB en PDF - Outil en ligne gratuit</image:title>
+      <image:caption>Convertissez les livres numériques du format EPUB au format PDF.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -231,12 +266,17 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/pdf-to-epub</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/pdf-to-epub"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/pdf-to-epub"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/pdf-to-epub"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Convertisseur PDF en EPUB - Outil en ligne gratuit</image:title>
+      <image:caption>Convertissez vos documents PDF au format EPUB pour liseuses.</image:caption>
+    </image:image>
   </url>
 
   <url>
@@ -590,12 +630,22 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/support</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/support"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/support"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/support"/>
+  </url>
+
+  <url>
+    <loc>https://www.pdfcanada.ca/sorry</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/sorry"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/sorry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/sorry"/>
   </url>
 
   <!-- French Static Pages -->
@@ -657,6 +707,16 @@
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/support"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/support"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/support"/>
+  </url>
+
+  <url>
+    <loc>https://www.pdfcanada.ca/fr/sorry</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/sorry"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/sorry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/sorry"/>
   </url>
 
   <url>
