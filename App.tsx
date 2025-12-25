@@ -3,6 +3,7 @@ import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, Rotat
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
+import { RelatedTools } from './components/RelatedTools';
 import { ToolInterface } from './components/ToolInterface'; // Will use lazy loading for this, but first checking if we can import directly or lazy
 // Actually, we want code splitting, so:
 const PricingPage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.PricingPage })));
@@ -1160,60 +1161,72 @@ function App() {
     };
 
     return (
-      <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl animate-fade-in">
-        <SEO
-          title={content.title}
-          description={content.desc}
-          lang={lang}
-          canonicalPath={tool?.path}
-          schema={toolSchema}
-          faqs={(content as any).faq?.map((f: any) => ({ q: f.question || f.q, a: f.answer || f.a }))}
-          steps={content.steps?.map((step: string, i: number) => ({
-            name: `Step ${i + 1}`,
-            text: step,
-            image: `https://www.pdfcanada.ca/og-image.png`
-          }))}
-          breadcrumbs={[
-            { name: 'Home', path: '/' },
-            { name: tool?.title || 'Tool', path: tool?.path || '/' }
-          ]}
-          price="0"
-        />
+      <div className="flex flex-col w-full">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl animate-fade-in">
+          <SEO
+            title={content.title}
+            description={content.desc}
+            lang={lang}
+            canonicalPath={tool?.path}
+            schema={toolSchema}
+            faqs={(content as any).faq?.map((f: any) => ({ q: f.question || f.q, a: f.answer || f.a }))}
+            steps={content.steps?.map((step: string, i: number) => ({
+              name: `Step ${i + 1}`,
+              text: step,
+              image: `https://www.pdfcanada.ca/og-image.png`
+            }))}
+            breadcrumbs={[
+              { name: 'Home', path: '/' },
+              { name: tool?.title || 'Tool', path: tool?.path || '/' }
+            ]}
+            price="0"
+          />
 
-        <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
-          <button
-            onClick={() => handleNavigation('HOME')}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 transition-all min-h-[44px]"
-          >
-            <ArrowLeft size={12} />
-            {t.backToHome}
-          </button>
+          <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
+            <button
+              onClick={() => handleNavigation('HOME')}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 transition-all min-h-[44px]"
+            >
+              <ArrowLeft size={12} />
+              {t.backToHome}
+            </button>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-gray-900">
-            {content.h1}
-          </h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-gray-900">
+              {content.h1}
+            </h1>
 
-          <p className="text-xl text-canada-red font-medium">
-            {content.subtitle}
-          </p>
+            <p className="text-xl text-canada-red font-medium">
+              {content.subtitle}
+            </p>
 
-          <div className="prose prose-lg text-gray-600 mx-auto md:mx-0">
-            <p>{content.content}</p>
+            <div className="prose prose-lg text-gray-600 mx-auto md:mx-0">
+              <p>{content.content}</p>
+            </div>
+          </div>
+
+          <div className="w-full md:w-1/2 max-w-xl">
+            <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
+
+              {/* Tool Upload Interface */}
+              {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
+                renderToolInterface()
+              )}
+
+              {/* We don't generally expect PROCESSING/ERROR/DONE here because file selection
+                usually triggers the switch to 'isActiveWorkspace' layout, but if something fails
+                immediately or we want to show it here, we keep basic fallbacks. */}
+            </div>
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 max-w-xl">
-          <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
-
-            {/* Tool Upload Interface */}
-            {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
-              renderToolInterface()
-            )}
-
-            {/* We don't generally expect PROCESSING/ERROR/DONE here because file selection
-                usually triggers the switch to 'isActiveWorkspace' layout, but if something fails
-                immediately or we want to show it here, we keep basic fallbacks. */}
-          </div>
+        {/* Related Tools Section */}
+        <div className="w-full max-w-7xl mx-auto px-6 pb-20">
+          <RelatedTools
+            lang={lang}
+            onNavigate={handleNavigation}
+            currentPath={tool?.path}
+            category="all" // Or smarter category logic if desired
+          />
         </div>
       </div>
     );

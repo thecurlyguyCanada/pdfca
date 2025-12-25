@@ -53,7 +53,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faq: [
             {
                 q: "Can I move pages between different PDF files?",
-                a: "Currently, this tool supports reordering pages within a single PDF. If you need to combine files, stay tuned—we're working on a merge tool, eh!"
+                a: "Currently, this tool supports reordering pages within a single PDF. If you need to combine files, use our [Merge PDF tool](/merge-pdf) to combine them first!"
             },
             {
                 q: "What happens to the original file?",
@@ -94,7 +94,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Cas d'Utilisation Courants",
                 content: `**Documents Scannés Mélangés** : Il arrive que les scanners mélangent l'ordre des pages. Remettez-les dans le bon ordre en quelques secondes.
 
-**Fusion de Plusieurs PDF** : Si vous avez fusionné plusieurs fichiers et que l'ordre n'est pas correct, réorganisez facilement les sections.
+**Fusion de Plusieurs PDF** : Si vous avez fusionné plusieurs fichiers avec notre <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline">outil de fusion</button> et que l'ordre n'est pas correct, réorganisez facilement les sections.
 
 **Présentation Professionnelle** : Assurez-vous que votre table des matières, introduction et conclusion sont dans le bon ordre avant de partager.`
             },
@@ -112,7 +112,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faq: [
             {
                 q: "Puis-je supprimer des pages en même temps que je réorganise ?",
-                a: "Actuellement, notre outil se concentre sur la réorganisation. Pour supprimer des pages, utilisez d'abord notre outil de suppression de pages, puis réorganisez si nécessaire."
+                a: "Actuellement, notre outil se concentre sur la réorganisation. Pour supprimer des pages, utilisez d'abord notre [outil de suppression de pages](/delete-pdf-pages), puis réorganisez si nécessaire."
             },
             {
                 q: "Le fichier réorganisé aura-t-il la même qualité ?",
@@ -216,7 +216,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                     <div className="bg-amber-50 dark:bg-amber-900/10 p-8 rounded-[2rem] border border-amber-200 dark:border-amber-800 flex gap-6 mb-16">
                         <Zap className="text-amber-600 shrink-0" size={28} />
                         <p className="text-lg text-amber-900 dark:text-amber-300">
-                            <strong>Insider Tip:</strong> You can combine this tool with our 'Delete Pages' tool to perfectly curate your final document before sharing. Perfect for clean board reports!
+                            <strong>Insider Tip:</strong> You can combine this tool with our <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">'Delete Pages' tool</button> to perfectly curate your final document before sharing. Perfect for clean board reports!
                         </p>
                     </div>
 
@@ -263,7 +263,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                                         <MousePointer2 size={24} className="text-canada-red" /> {item.q}
                                     </h4>
                                     <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                                        {item.a}
+                                        <MarkdownContent content={item.a} />
                                     </div>
                                 </div>
                             ))}

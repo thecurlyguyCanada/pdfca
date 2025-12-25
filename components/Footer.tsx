@@ -61,6 +61,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      <li><a href="/pdf-to-epub" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToEpub}</a></li>
                      <li><a href="/pdf-to-xml" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-xml'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToXml}</a></li>
                      <li><a href="/xml-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/xml-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolXmlToPdf}</a></li>
+                     <li><a href="/excel-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/excel-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolExcelToPdf}</a></li>
                      <li><a href="/cbr-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCbrToPdf}</a></li>
                   </ul>
                </div>

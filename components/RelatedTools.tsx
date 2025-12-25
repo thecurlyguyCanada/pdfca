@@ -33,9 +33,12 @@ const getTools = (lang: Language) => ({
     convert: [
         { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: '/pdf-to-word', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: '/word-to-pdf', view: 'TOOL_PAGE' },
+        { name: lang === 'fr' ? 'Excel vers PDF' : 'Excel to PDF', path: '/excel-to-pdf', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'HEIC vers PDF' : 'HEIC to PDF', path: '/heic-to-pdf', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'EPUB vers PDF' : 'EPUB to PDF', path: '/epub-to-pdf', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'PDF vers EPUB' : 'PDF to EPUB', path: '/pdf-to-epub', view: 'TOOL_PAGE' },
+        { name: lang === 'fr' ? 'PDF vers XML' : 'PDF to XML', path: '/pdf-to-xml', view: 'TOOL_PAGE' },
+        { name: lang === 'fr' ? 'XML vers PDF' : 'XML to PDF', path: '/xml-to-pdf', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'OCR PDF' : 'OCR PDF', path: '/ocr-pdf', view: 'TOOL_PAGE' },
     ],
 });

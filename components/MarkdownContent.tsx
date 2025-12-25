@@ -91,11 +91,21 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
         processPattern(parts, /\*(.*?)\*/g, (match) => <em key={Math.random()}>{match}</em>);
 
         // Link: [text](url)
-        processPattern(parts, /\[(.*?)\]\((.*?)\)/g, (match, url) => (
-            <a key={Math.random()} href={url} target="_blank" rel="noopener noreferrer" className="text-canada-red hover:underline">
-                {match}
-            </a>
-        ), true);
+        processPattern(parts, /\[(.*?)\]\((.*?)\)/g, (match, url) => {
+            const safeUrl = url || '';
+            const isInternal = safeUrl.startsWith('/') || safeUrl.startsWith(window.location.origin);
+            return (
+                <a
+                    key={Math.random()}
+                    href={safeUrl}
+                    target={isInternal ? undefined : "_blank"}
+                    rel={isInternal ? undefined : "noopener noreferrer"}
+                    className="text-canada-red hover:underline"
+                >
+                    {match}
+                </a>
+            );
+        }, true);
 
         return parts;
     };
