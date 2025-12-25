@@ -18,6 +18,7 @@ interface ToolInterfaceProps {
     files?: File[];
     setFiles?: React.Dispatch<React.SetStateAction<File[]>>;
     currentTool: ToolType;
+    lang: string;
     t: any;
     pageCount: number;
     pdfJsDoc: any;
@@ -117,6 +118,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     files,
     setFiles,
     currentTool,
+    lang,
     t,
     pageCount,
     pdfJsDoc,
@@ -205,7 +207,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
-                className="flex-grow flex flex-col items-center justify-center p-6 md:p-10 text-center cursor-pointer hover:bg-gray-50 transition-colors group border-2 border-dashed border-transparent hover:border-canada-red/20 m-2 md:m-4 rounded-2xl md:rounded-3xl active:scale-[0.99]"
+                className="flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/40 backdrop-blur-2xl border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-1000 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                     e.preventDefault();
@@ -215,19 +217,40 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 }}
                 onClick={() => fileInputRef.current?.click()}
             >
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                    {tool && <tool.icon size={28} className="md:w-8 md:h-8" />}
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">{tool?.title}</h3>
-                <p className="text-sm md:text-base text-gray-500 mb-2">{t.uploadDesc} ({tool?.accept})</p>
+                {/* Dynamic Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/0 group-hover/drop:from-red-500/5 group-hover/drop:to-orange-500/5 transition-all duration-1000 pointer-events-none" />
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-500/5 blur-[100px] rounded-full group-hover:bg-red-500/10 transition-all duration-1000" />
 
-                <div className="inline-flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 rounded-full text-xs font-medium text-gray-500 mb-6 md:mb-8">
-                    <Shield size={12} /> {t.processedLocally}
+                <div className="relative z-10 w-28 h-28 md:w-36 md:h-36 bg-white/80 rounded-[2.5rem] shadow-premium flex items-center justify-center mb-10 group-hover/drop:scale-110 group-hover/drop:rotate-6 transition-all duration-700 border border-white/60">
+                    <div className="text-canada-red group-hover/drop:animate-bounce">
+                        {tool && <tool.icon size={56} strokeWidth={1.5} />}
+                    </div>
                 </div>
 
-                <button className="w-full max-w-xs bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 md:px-8 py-4 rounded-full font-bold shadow-lg shadow-red-500/30 hover:shadow-red-500/40 active:shadow-red-500/50 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 text-base min-h-[56px]">
-                    {t.selectFile}
-                </button>
+                <div className="relative z-10 space-y-6">
+                    <div className="space-y-2">
+                        <h3 className="text-3xl md:text-5xl font-[1000] text-modern-neutral-900 tracking-tighter lowercase italic leading-none">{tool?.title}</h3>
+                        <p className="text-modern-neutral-500 font-bold max-w-sm mx-auto leading-relaxed text-sm md:text-base opacity-70">
+                            {t.uploadDesc} <br />
+                            <span className="text-canada-red font-black text-[10px] tracking-[0.2em] uppercase mt-2 inline-block">({tool?.accept})</span>
+                        </p>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-8 pt-4">
+                        <div className="flex items-center gap-2.5 text-[10px] font-black tracking-widest text-modern-neutral-400 uppercase bg-white/50 px-4 py-2 rounded-full border border-white/60 shadow-sm">
+                            <Shield size={14} className="text-red-500/40" />
+                            {t.processedLocally}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-14 group-hover/drop:translate-y-[-8px] transition-transform duration-700">
+                    <div className="bg-modern-neutral-900 hover:bg-black text-white px-14 py-6 rounded-full font-black text-lg shadow-2xl shadow-modern-neutral-900/20 flex items-center gap-4 transition-all">
+                        <Plus size={24} strokeWidth={4} />
+                        {t.selectFile}
+                    </div>
+                </div>
+
                 <input
                     type="file"
                     accept={tool?.accept}
@@ -242,21 +265,22 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
     if (currentTool === ToolType.MERGE && files && files.length > 0) {
         return (
-            <div className="w-full max-w-2xl mx-auto px-4 pb-24 relative">
-                <div className="text-center mb-8 animate-fade-in-up pt-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/30 text-canada-red rounded-2xl mb-4">
-                        <GripVertical size={32} />
+            <div className="w-full max-w-4xl mx-auto px-6 pb-32 animate-fade-in">
+                <div className="text-center py-12 md:py-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-md border border-white/40 shadow-premium mb-6">
+                        <GripVertical size={16} className="text-canada-red" />
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">{t.reorderFiles || (lang === 'en' ? 'Reorder Files' : 'Réorganiser')}</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.toolMerge}</h2>
-                    <p className="text-gray-600 dark:text-gray-400">{t.toolMergeDesc}</p>
+                    <h2 className="text-3xl md:text-5xl font-[1000] text-gray-900 tracking-tighter mb-4">{t.toolMerge}</h2>
+                    <p className="text-gray-600 font-medium max-w-md mx-auto">{t.toolMergeDesc}</p>
                 </div>
 
-                <div className="space-y-4 pb-8">
+                <div className="space-y-4">
                     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleFileDragEnd}>
                         <SortableContext items={files.map((_, i) => `file-${i}`)} strategy={verticalListSortingStrategy}>
-                            <div className="space-y-3">
+                            <div className="grid gap-4">
                                 {files.map((f, i) => (
-                                    <div key={`file-${i}-${f.name}`} className="animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
+                                    <div key={`file-${i}-${f.name}`} className="animate-slide-up" style={{ animationDelay: `${i * 100}ms` }}>
                                         <SortableFileItem
                                             key={`file-${i}`}
                                             id={`file-${i}`}
@@ -269,29 +293,32 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </SortableContext>
                     </DndContext>
 
-                    <label className="cursor-pointer bg-white dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 hover:border-canada-red dark:hover:border-canada-red rounded-xl p-6 flex flex-col items-center gap-2 transition-all group animate-fade-in-up">
-                        <input type="file" multiple accept=".pdf" className="hidden" onChange={handleFileChange} />
-                        <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-full group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-colors">
-                            <Plus className="text-gray-400 group-hover:text-canada-red" size={24} />
+                    <button
+                        onClick={() => fileInputRef.current?.click()}
+                        className="w-full bg-white/40 backdrop-blur-xl border-2 border-dashed border-gray-200 hover:border-canada-red/40 rounded-[2rem] p-8 flex flex-col items-center gap-3 transition-all group mt-8"
+                    >
+                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-premium group-hover:scale-110 group-hover:rotate-12 transition-all">
+                            <Plus className="text-canada-red" size={24} strokeWidth={3} />
                         </div>
-                        <span className="font-medium text-gray-600 dark:text-gray-400 group-hover:text-canada-red">{t.addMorePdfs || 'Add more PDFs'}</span>
-                    </label>
+                        <span className="font-black text-gray-400 group-hover:text-canada-red transition-colors uppercase tracking-widest text-xs">{t.addMorePdfs || 'Add more PDFs'}</span>
+                        <input type="file" multiple accept=".pdf" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
+                    </button>
                 </div>
 
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 z-50">
-                    <div className="max-w-2xl mx-auto flex gap-4">
+                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-[70]">
+                    <div className="bg-modern-glass backdrop-blur-3xl border border-modern-glassBorder p-4 rounded-[2.5rem] shadow-glass flex gap-3 animate-slide-up">
                         <button
                             onClick={onSoftReset}
-                            className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            className="flex-1 px-8 py-4 rounded-full bg-white/50 text-gray-900 font-black text-sm uppercase tracking-widest hover:bg-white transition-all active:scale-95"
                         >
-                            {t.btnCancel}
+                            {t.btnCancel || 'Cancel'}
                         </button>
                         <button
                             onClick={() => onAction()}
                             disabled={files.length < 2}
-                            className="flex-1 px-6 py-3 rounded-xl bg-canada-red text-white font-bold hover:bg-canada-darkRed transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-red-500/20"
+                            className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-black text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/20"
                         >
-                            {t.toolMerge} ({files.length} files)
+                            {t.toolMerge}
                         </button>
                     </div>
                 </div>

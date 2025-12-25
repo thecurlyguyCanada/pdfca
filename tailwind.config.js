@@ -15,14 +15,49 @@ export default {
       colors: {
         canada: {
           // WCAG AA compliant colors (4.5:1 contrast ratio on white)
-          red: '#dc2626',      // Previously #FF0000 - now passes WCAG AA
-          darkRed: '#b91c1c',  // Darker for hover states
-          leaf: '#dc2626'      // Matching brand red
+          red: '#E31837', // Refined Canadian Red
+          darkRed: '#8C031E',
+          leaf: '#E31837',
+          accent: '#FF4D4D',
+          subtle: '#FFF1F2'
+        },
+        modern: {
+          glass: 'rgba(255, 255, 255, 0.4)',
+          glassBorder: 'rgba(255, 255, 255, 0.5)',
+          glassDark: 'rgba(15, 23, 42, 0.7)',
+          glassDarkBorder: 'rgba(255, 255, 255, 0.1)',
+          neutral: {
+            50: '#F8FAFC',
+            100: '#F1F5F9',
+            200: '#E2E8F0',
+            300: '#CBD5E1',
+            400: '#94A3B8',
+            500: '#64748B',
+            600: '#475569',
+            700: '#334155',
+            800: '#1E293B',
+            900: '#0F172A',
+          }
         }
       },
+      backgroundImage: {
+        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(350, 100%, 92%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 50% 100%, hsla(0, 0%, 100%, 1) 0, transparent 50%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1))',
+        'bento-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%)',
+      },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.04)',
+        'glass-hover': '0 12px 48px 0 rgba(227, 24, 55, 0.08)',
+        'premium': '0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
+        'bento': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.03)',
+        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.1), 0 12px 32px rgba(227, 24, 55, 0.08)',
+      },
       animation: {
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
+        'fade-in': 'fadeIn 0.5s ease-out forwards',
+        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'mesh': 'mesh 15s ease infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'glow': 'glow 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -30,9 +65,21 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        mesh: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-15px)' },
+        },
+        glow: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.8' },
+        }
       },
     }
   },

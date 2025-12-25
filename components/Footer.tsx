@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Heart, ShieldCheck, MapPin, ChevronDown } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
+import { MapleLeaf } from './MapleLeaf';
 
 interface FooterProps {
    lang: Language;
@@ -36,117 +37,102 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
    const year = useMemo(() => new Date().getFullYear(), []);
 
    return (
-      <footer className="mt-auto bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-400 border-t-4 border-canada-red transition-colors duration-200">
-         <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 mb-12">
+      <footer className="mt-20 bg-modern-neutral-900 text-white selection:bg-red-500/30 selection:text-white relative overflow-hidden">
+         {/* Decorative Mesh in Footer */}
+         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-canada-red to-transparent opacity-50" />
+         <div className="absolute -top-24 -left-24 w-96 h-96 bg-canada-red/10 blur-[120px] rounded-full pointer-events-none" />
 
-               {/* Column 1: Brand */}
-               <div className="space-y-4 lg:col-span-1 mb-6 md:mb-0">
-                  <a href="/" className="flex items-center gap-2 text-gray-900 dark:text-white cursor-pointer" onClick={(e) => { e.preventDefault(); onNavigate('HOME'); }}>
-                     <span className="text-xl font-bold tracking-tight">pdfcanada.ca</span>
-                  </a>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">
-                     {t.footerBuilt}
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-2 rounded-lg w-fit shadow-sm">
+         <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
+
+               {/* Column 1: Brand & Purpose */}
+               <div className="space-y-6 lg:col-span-2 pr-0 md:pr-12">
+                  <div className="space-y-4">
+                     <a href="/" className="inline-block group" onClick={(e) => { e.preventDefault(); onNavigate('HOME'); }}>
+                        <div className="flex items-center gap-3">
+                           <div className="w-10 h-10 bg-canada-red rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform">
+                              <MapleLeaf className="w-6 h-6 text-white" />
+                           </div>
+                           <span className="text-2xl font-black tracking-tighter lowercase italic">pdfcanada.ca</span>
+                        </div>
+                     </a>
+                     <p className="text-modern-neutral-400 text-lg leading-relaxed font-medium max-w-sm">
+                        {t.footerBuilt}
+                     </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.2em] text-modern-neutral-500 uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full w-fit">
                      <MapPin size={12} className="text-canada-red" />
-                     <span>Toronto, Ontario</span>
+                     <span>Toronto &bull; Ontario &bull; Canada</span>
                   </div>
                </div>
 
-               {/* Column 2: Edit & Optimize */}
-               <div>
+               {/* Column 2: Edit Group */}
+               <div className="lg:col-span-1">
                   <FooterSection title={t.footerEditGroup}>
-                     <ul className="space-y-3 text-sm">
-                        <li><a href="/delete-pdf-pages" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolDelete}</a></li>
-                        <li><a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolRotate}</a></li>
-                        <li><a href="/organize-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/organize-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolOrganize}</a></li>
-                        <li><a href="/compress-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/compress-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCompress}</a></li>
-                        <li><a href="/merge-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/merge-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolMerge}</a></li>
-                        <li><a href="/split-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/split-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolSplit}</a></li>
-                        <li><a href="/crop-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/crop-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCrop}</a></li>
-                        <li><a href="/make-pdf-fillable" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-fillable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolMakeFillable}</a></li>
-                        <li><a href="/make-pdf-non-editable" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/make-pdf-non-editable'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolFlatten}</a></li>
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                        <li><a href="/delete-pdf-pages" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-white transition-colors">{t.toolDelete}</a></li>
+                        <li><a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-white transition-colors">{t.toolRotate}</a></li>
+                        <li><a href="/compress-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/compress-pdf'); }} className="hover:text-white transition-colors">{t.toolCompress}</a></li>
+                        <li><a href="/merge-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/merge-pdf'); }} className="hover:text-white transition-colors">{t.toolMerge}</a></li>
+                        <li><a href="/split-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/split-pdf'); }} className="hover:text-white transition-colors">{t.toolSplit}</a></li>
+                        <li><a href="/make-pdf-fillable" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/make-pdf-fillable'); }} className="hover:text-white transition-colors">{t.toolMakeFillable}</a></li>
                      </ul>
                   </FooterSection>
                </div>
 
-               {/* Column 3: Convert PDF */}
-               <div>
+               {/* Column 3: Convert Group */}
+               <div className="lg:col-span-1">
                   <FooterSection title={t.footerConvertGroup}>
-                     <ul className="space-y-3 text-sm">
-                        <li><a href="/sign-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/sign-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolSign}</a></li>
-                        <li><a href="/ocr-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/ocr-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolOcr}</a></li>
-                        <li><a href="/word-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolWordToPdf}</a></li>
-                        <li><a href="/pdf-to-word" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToWord}</a></li>
-                        <li><a href="/heic-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolHeic}</a></li>
-                        <li><a href="/epub-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/epub-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolEpubToPdf}</a></li>
-                        <li><a href="/pdf-to-epub" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToEpub}</a></li>
-                        <li><a href="/pdf-to-xml" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/pdf-to-xml'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolPdfToXml}</a></li>
-                        <li><a href="/xml-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/xml-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolXmlToPdf}</a></li>
-                        <li><a href="/excel-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/excel-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolExcelToPdf}</a></li>
-                        <li><a href="/cbr-to-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('TOOL_PAGE', '/cbr-to-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.toolCbrToPdf}</a></li>
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                        <li><a href="/sign-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/sign-pdf'); }} className="hover:text-white transition-colors">{t.toolSign}</a></li>
+                        <li><a href="/ocr-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/ocr-pdf'); }} className="hover:text-white transition-colors">{t.toolOcr}</a></li>
+                        <li><a href="/word-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-white transition-colors">{t.toolWordToPdf}</a></li>
+                        <li><a href="/pdf-to-word" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-white transition-colors">{t.toolPdfToWord}</a></li>
+                        <li><a href="/heic-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-white transition-colors">{t.toolHeic}</a></li>
+                        <li><a href="/pdf-to-epub" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/pdf-to-epub'); }} className="hover:text-white transition-colors">{t.toolPdfToEpub}</a></li>
                      </ul>
                   </FooterSection>
                </div>
 
                {/* Column 4: Resources */}
-               <div>
-                  <FooterSection title={t.footerGuidesGroup}>
-                     <ul className="space-y-3 text-sm">
-                        <li><a href="/guides/ultimate-pdf-guide" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</a></li>
-                        <li><a href="/about" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('ABOUT', '/about'); }} className="hover:text-canada-red transition-colors focus:outline-none">{lang === 'fr' ? 'À Propos' : 'About Us'}</a></li>
-                        <li><a href="/guides/edit-xfa-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('GUIDE_EDIT_XFA', '/guides/edit-xfa-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.editXfaGuide}</a></li>
-                        <li><a href="/howto" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</a></li>
-                        <li><a href="/support" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('SUPPORT', '/support'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</a></li>
-                        <li><a href="/sorry" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('SORRY', '/sorry'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.sorryPolicy}</a></li>
+               <div className="lg:col-span-1">
+                  <FooterSection title={lang === 'fr' ? 'Ressources' : 'Resources'}>
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                        <li><a href="/guides/ultimate-pdf-guide" onClick={(e) => { e.preventDefault(); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</a></li>
+                        <li><a href="/about" onClick={(e) => { e.preventDefault(); onNavigate('ABOUT', '/about'); }} className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : 'About Us'}</a></li>
+                        <li><a href="/howto" onClick={(e) => { e.preventDefault(); onNavigate('HOW_TO', '/howto'); }} className="hover:text-white transition-colors">{t.navHowTo}</a></li>
+                        <li><a href="/support" onClick={(e) => { e.preventDefault(); onNavigate('SUPPORT', '/support'); }} className="hover:text-white transition-colors">{t.navSupport}</a></li>
+                        <li><a href="/privacy" onClick={(e) => { e.preventDefault(); onNavigate('PRIVACY'); }} className="hover:text-white transition-colors">{t.privacy}</a></li>
                      </ul>
                   </FooterSection>
                </div>
+            </div>
 
-               {/* Column 5: Safety & Tagline */}
-               <div className="flex flex-col items-start gap-4 mt-6 md:mt-0">
-                  <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 w-full shadow-sm hover:shadow-md transition-shadow duration-300">
-                     <div className="flex items-center gap-3 mb-2">
-                        <ShieldCheck className="text-green-600" size={20} />
-                        <span className="font-bold text-gray-900 dark:text-white text-sm">{t.secure || 'Secure Processing'}</span>
+            {/* Bottom Bar - Minimalist */}
+            <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+               <div className="flex flex-col md:flex-row items-center gap-6">
+                  <p className="text-xs text-modern-neutral-500 font-bold">&copy; {year} pdfcanada.ca</p>
+
+                  <div className="flex items-center gap-4">
+                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-400">
+                        <ShieldCheck className="w-3.5 h-3.5 text-green-500/70" />
+                        Privacy First
                      </div>
-                     <p className="text-xs text-gray-500 dark:text-gray-400 leading-normal">
-                        {t.footerPrivacyNotice}
-                     </p>
+                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-400">
+                        <Heart className="w-3.5 h-3.5 text-canada-red/70" />
+                        100% Free
+                     </div>
                   </div>
-                  <p className="text-xs text-gray-700 italic px-2">
-                     "{t.footerTagline}"
-                  </p>
                </div>
 
-            </div>
-
-            {/* E-E-A-T Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
-               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
-                  <ShieldCheck className="w-4 h-4 text-green-600" />
-                  Privacy First
-               </div>
-               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
-                  🍁 Proudly Canadian
-               </div>
-               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
-                  🔒 No Upload Required
-               </div>
-               <div className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
-                  ✓ 100% Free
-               </div>
-            </div>
-
-            <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-500 dark:text-gray-400">
-               <p className="text-center md:text-left">&copy; {year} pdfcanada.ca. {t.footerRights}</p>
-
-               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-                  <a href="/terms" onClick={(e) => { e.preventDefault(); onNavigate('TERMS'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline py-2">{t.termsService}</a>
-                  <a href="/privacy" onClick={(e) => { e.preventDefault(); onNavigate('PRIVACY'); }} className="hover:text-canada-red transition-colors focus:outline-none focus:text-canada-red focus:underline py-2">{t.privacy}</a>
-                  <span className="flex items-center gap-1 py-1 px-3 bg-red-50 dark:bg-red-900/20 text-canada-red rounded-full font-medium">
-                     {t.footerMade} <Heart size={10} className="text-canada-red fill-current" /> in 🇨🇦
+               <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-500">
+                  <a href="/terms" onClick={(e) => { e.preventDefault(); onNavigate('TERMS'); }} className="hover:text-white transition-colors">{t.termsService}</a>
+                  <div className="w-1 h-1 bg-white/20 rounded-full" />
+                  <a href="/privacy" onClick={(e) => { e.preventDefault(); onNavigate('PRIVACY'); }} className="hover:text-white transition-colors">{t.privacy}</a>
+                  <div className="w-1 h-1 bg-white/20 rounded-full" />
+                  <span className="flex items-center gap-2 group">
+                     {t.footerMade} <MapleLeaf className="w-3.5 h-3.5 text-canada-red group-hover:animate-pulse" />
                   </span>
                </div>
             </div>

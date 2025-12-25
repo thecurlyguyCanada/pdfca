@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
+import { MapleLeaf } from './MapleLeaf';
 
 interface HeaderProps {
   lang: Language;
@@ -29,62 +30,60 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         Skip to main content
       </a>
       <header
-        className="flex items-center justify-between px-5 md:px-8 py-4 bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/50 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.05)]"
-        style={{ paddingTop: 'max(16px, var(--safe-area-inset-top))' }}
+        className="flex items-center justify-between px-6 md:px-10 py-5 bg-modern-glass/60 backdrop-blur-2xl sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-4 md:mx-auto max-w-7xl rounded-[2.5rem] transition-all duration-500 hover:shadow-premium group/header"
+        style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
       >
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-canada-red/20 to-transparent" />
-
         <a
           href="/"
-          className="flex items-center gap-2 cursor-pointer group transition-all active:scale-95"
+          className="flex items-center gap-3 cursor-pointer group transition-all active:scale-95"
           onClick={(e) => {
             e.preventDefault();
             handleNavigate('HOME');
           }}
           aria-label="pdfcanada.ca Home"
         >
-          <span className="text-xl md:text-2xl font-black text-gray-900 tracking-tighter">
-            pdfcanada<span className="text-canada-red group-hover:animate-pulse">.ca</span>
+          <div className="w-12 h-12 bg-canada-red rounded-[1.25rem] flex items-center justify-center shadow-lg shadow-red-500/10 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/20" />
+            <MapleLeaf className="w-7 h-7 text-white relative z-10" />
+          </div>
+          <span className="text-2xl font-[1000] text-gray-900 tracking-tighter decoration-canada-red transition-all">
+            pdfcanada<span className="text-canada-red">.ca</span>
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex gap-8 text-sm font-bold text-gray-600">
-          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
-            {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+        {/* Desktop Nav - High End */}
+        <nav className="hidden lg:flex gap-1 items-center bg-gray-100/50 p-1 rounded-full border border-gray-200/50 backdrop-blur-sm">
+          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
+            {lang === 'en' ? 'Tools' : 'Outils'}
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'About' : 'À Propos'}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {t.navHowTo}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {t.navSupport}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
-          </a>
-          <a href="/pricing" onClick={(e) => { e.preventDefault(); handleNavigate('PRICING'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
-            {t.navPricing}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
         </nav>
 
-        <div className="flex items-center gap-3">
-          {/* Language Toggle - Premium Pill */}
+        <div className="flex items-center gap-4">
+          {/* Language Toggle - Premium Glass Pill */}
           <button
             onClick={() => {
               triggerHaptic('light');
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
-            className="text-xs font-black bg-gray-100 hover:bg-red-50 hover:text-canada-red border border-transparent hover:border-red-100 px-5 py-2.5 rounded-full transition-all active:scale-95 flex items-center gap-2 shadow-sm"
+            className="text-[11px] font-black bg-white/40 hover:bg-white border border-white/60 px-6 py-3 rounded-full transition-all active:scale-95 flex items-center gap-4 shadow-glass hover:shadow-premium group/lang"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
-            <span className={lang === 'en' ? 'text-canada-darkRed underline underline-offset-4' : 'text-gray-600 hover:text-gray-900 transition-colors'}>EN</span>
-            <div className="w-px h-3 bg-gray-300" />
-            <span className={lang === 'fr' ? 'text-canada-darkRed underline underline-offset-4' : 'text-gray-600 hover:text-gray-900 transition-colors'}>FR</span>
+            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-gray-400'} transition-colors`}>EN</span>
+            <div className="w-px h-3 bg-gray-300 group-hover/lang:h-4 transition-all" />
+            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-gray-400'} transition-colors`}>FR</span>
           </button>
 
           {/* Mobile Menu Button */}
@@ -93,10 +92,10 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="lg:hidden p-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 active:bg-gray-200 transition-all active:scale-95 border border-gray-200/50"
+            className="lg:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass transition-all active:scale-95"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={22} className="text-canada-red" /> : <Menu size={22} className="text-gray-700" />}
+            {mobileMenuOpen ? <X size={20} className="text-canada-red" /> : <Menu size={20} className="text-gray-900" />}
           </button>
         </div>
       </header>
