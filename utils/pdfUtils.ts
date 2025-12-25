@@ -759,27 +759,32 @@ export const extractTextWithOcr = async (
   const Tesseract = await getTesseract();
 
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: '/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/standard_fonts/',
+  }).promise;
 
   let fullText = '';
-  const langString = languages.join('+');
+  const langString = languages.length > 0 ? languages.join('+') : 'eng';
 
   // Create worker once - Updated for Tesseract.js v5+ API
   let worker: any;
   try {
-    // In Tesseract.js v5+, createWorker is async and takes langs as first argument
-    worker = await (Tesseract as any).createWorker(langString || 'eng', 1, {
+    // Tesseract.js v5+ createWorker is async
+    worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@v5.0.0/dist/worker.min.js',
+      corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.0.0/tesseract-core.wasm.js',
       logger: (m: any) => {
-        // Internal progress can be logged here if needed
         if (m.status === 'recognizing text') {
-          // You could update onProgress here for finer granularity
+          // Progress logging
         }
       }
     });
-    // With v5+ createWorker(langs), worker is already initialized
   } catch (err) {
     console.error("Failed to initialize Tesseract worker:", err);
-    throw new Error("OCR initialization failed. Please check your internet connection.");
+    throw new Error("OCR initialization failed. This service requires an active internet connection to download language models.");
   }
 
   const indicesToProcess = pageIndices.length > 0
@@ -843,16 +848,24 @@ export const makeSearchablePdf = async (
   const Tesseract = await getTesseract();
 
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: '/cmaps/',
+    cMapPacked: true,
+    standardFontDataUrl: '/standard_fonts/',
+  }).promise;
   const doc = await PDFDocument.load(arrayBuffer);
-  const langString = languages.join('+');
+  const langString = languages.length > 0 ? languages.join('+') : 'eng';
 
   let worker: any;
   try {
-    worker = await (Tesseract as any).createWorker(langString || 'eng');
+    worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@v5.0.0/dist/worker.min.js',
+      corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.0.0/tesseract-core.wasm.js',
+    });
   } catch (err) {
     console.error("Failed to initialize Tesseract worker for searchable PDF:", err);
-    throw new Error("OCR initialization failed.");
+    throw new Error("OCR initialization failed. This service requires an internet connection to download OCR assets.");
   }
 
   const indicesToProcess = pageIndices.length > 0
@@ -889,25 +902,28 @@ export const makeSearchablePdf = async (
       const scaleX = pageWidth / viewport.width;
       const scaleY = pageHeight / viewport.height;
 
-      const words = (result.data as any).words as any[];
+      const words = (result.data as any).words as any[] || [];
       for (const word of words) {
-        if (!word.text.trim()) continue;
+        try {
+          if (!word.text || !word.text.trim()) continue;
 
-        const bbox = word.bbox;
-        const x = bbox.x0 * scaleX;
-        // Improved Y positioning: Tesseract bbox y1 is the bottom of the word in canvas coords (top-down)
-        // PDF coords are bottom-up. So pageHeight - (bbox.y1 * scaleY) is the baseline/bottom.
-        const y = pageHeight - (bbox.y1 * scaleY);
-        // Ensure font size is reasonable
-        const fontSize = Math.max(2, (bbox.y1 - bbox.y0) * scaleY * 0.8);
+          const bbox = word.bbox;
+          if (!bbox) continue;
 
-        pdfLibPage.drawText(word.text, {
-          x,
-          y: y + (fontSize * 0.1), // Slight adjustment for baseline
-          size: fontSize,
-          color: rgb(0, 0, 0),
-          opacity: 0,
-        });
+          const x = bbox.x0 * scaleX;
+          const y = pageHeight - (bbox.y1 * scaleY);
+          const fontSize = Math.max(1, (bbox.y1 - bbox.y0) * scaleY * 0.8);
+
+          pdfLibPage.drawText(word.text, {
+            x,
+            y: y + (fontSize * 0.1),
+            size: fontSize,
+            color: rgb(0, 0, 0),
+            opacity: 0,
+          });
+        } catch (wordErr) {
+          console.warn("Failed to add word to PDF layer", wordErr);
+        }
       }
 
       // Explicit cleanup
