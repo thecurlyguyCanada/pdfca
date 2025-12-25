@@ -92,11 +92,10 @@
   <!-- 2026 Core Web Vitals Optimization -->
   <link rel="dns-prefetch" href="https://vercel.live">
   <link rel="dns-prefetch" href="https://vitals.vercel-insights.com">
-  <link rel="preconnect" href="https://www.pdfcanada.ca">
 
   <!-- Preload critical assets for LCP optimization -->
-  <link rel="preload" href="/og-image.png" as="image" type="image/png" fetchpriority="high">
-  <link rel="modulepreload" href="/src/main.tsx">
+  <!-- Note: og-image.png is not the LCP element, so we don't preload it -->
+  <!-- LCP is optimized via critical CSS and static HTML content -->
 
   <!-- Preload critical font file for faster text rendering -->
   <link rel="preload"
@@ -115,6 +114,7 @@
   <!-- JSON-LD Structured Data is dynamically injected by React SEO component -->
 
   <!-- Critical CSS: Only what's needed for first paint (above the fold) -->
+  <!-- 2026 Optimization: Minimized for LCP performance -->
   <style id="critical-css">
     /* Font-face with font-display: swap for instant text render */
     @font-face {
@@ -131,6 +131,7 @@
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
     }
 
+    /* 2026 Performance: Optimize HTML/Body for LCP */
     html,
     body {
       margin: 0;
