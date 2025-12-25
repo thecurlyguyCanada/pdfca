@@ -963,7 +963,7 @@ function App() {
               {searchTerm ? (lang === 'en' ? 'Search Results' : 'Résultats') : (t.selectToolTitle)}
             </h2>
           </div>
-          <span className="text-sm font-bold text-gray-400 bg-gray-100/50 px-3 py-1 rounded-full">{filteredTools.length} {lang === 'en' ? 'tools' : 'outils'}</span>
+          <span className="text-sm font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{filteredTools.length} {lang === 'en' ? 'tools' : 'outils'}</span>
         </div>
 
         {appState === AppState.HOME ? (
@@ -981,7 +981,7 @@ function App() {
                 </div>
 
                 <h3 className="font-black text-gray-900 text-lg md:text-xl mb-2 relative z-10 tracking-tight">{tool.title}</h3>
-                <p className="text-sm text-gray-400 font-medium relative z-10 leading-snug group-hover:text-gray-600 transition-colors">{tool.desc}</p>
+                <p className="text-sm text-gray-500 font-medium relative z-10 leading-snug group-hover:text-gray-600 transition-colors">{tool.desc}</p>
               </button>
             ))}
 

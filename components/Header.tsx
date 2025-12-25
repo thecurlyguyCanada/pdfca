@@ -79,12 +79,12 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
-            className="text-xs font-black bg-gray-100/50 hover:bg-red-50 hover:text-canada-red border border-transparent hover:border-red-100 px-5 py-2.5 rounded-full transition-all active:scale-95 flex items-center gap-2 shadow-sm"
+            className="text-xs font-black bg-gray-100 hover:bg-red-50 hover:text-canada-red border border-transparent hover:border-red-100 px-5 py-2.5 rounded-full transition-all active:scale-95 flex items-center gap-2 shadow-sm"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
-            <span className={lang === 'en' ? 'text-canada-red' : 'text-gray-400'}>EN</span>
+            <span className={lang === 'en' ? 'text-canada-red' : 'text-gray-500'}>EN</span>
             <div className="w-px h-3 bg-gray-300" />
-            <span className={lang === 'fr' ? 'text-canada-red' : 'text-gray-400'}>FR</span>
+            <span className={lang === 'fr' ? 'text-canada-red' : 'text-gray-500'}>FR</span>
           </button>
 
           {/* Mobile Menu Button */}
