@@ -26,8 +26,10 @@ const FooterSection = ({ title, children }: { title: string, children: React.Rea
             <p className="font-bold text-white group-active:text-canada-red transition-colors text-base md:text-sm md:text-modern-neutral-500 md:uppercase md:tracking-widest">{title}</p>
             <ChevronDown className={`w-5 h-5 text-modern-neutral-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
          </button>
-         <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0 md:max-h-full md:opacity-100 md:mb-0'} md:block`}>
-            {children}
+         <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] mb-6' : 'grid-rows-[0fr] md:grid-rows-[1fr] md:mb-0'}`}>
+            <div className="overflow-hidden">
+               {children}
+            </div>
          </div>
       </div>
    );
