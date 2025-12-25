@@ -15,7 +15,11 @@ const SupportLocalPage = React.lazy(() => import('./components/StaticPages').the
 const MakePdfFillablePage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.MakePdfFillablePage })));
 
 const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').then(module => ({ default: module.ToolInterface })));
-import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertHeicToPdf, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, convertCbrToPdf, extractTextWithOcr, makeSearchablePdf, OcrProgress, convertPdfToWord, convertWordToPdf, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf, convertPdfToXml, convertXmlToPdf, convertExcelToPdf } from './utils/pdfUtils';
+// Core PDF utilities (lightweight, always needed)
+import { loadPdfDocument, getPdfJsDocument, deletePagesFromPdf, rotatePdfPages, reorderPdfPages, convertPdfToEpub, convertEpubToPdf, formatFileSize, makePdfFillable, flattenPdf, cropPdfPages, compressPdf, mergePdfs, splitPdf, convertPdfToXml, convertXmlToPdf } from './utils/pdfUtils';
+// Heavy conversion functions are dynamically imported only when needed (see processFile function)
+// This prevents 4MB+ of libraries from loading on initial page load
+import type { OcrProgress } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
@@ -605,8 +609,11 @@ function App() {
             outName = file.name.replace('.pdf', '_fillable_eh.pdf');
             break;
           case ToolType.HEIC_TO_PDF:
-            resultBlob = await convertHeicToPdf(file);
-            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            {
+              const { convertHeicToPdf } = await import('./utils/heavyConversions');
+              resultBlob = await convertHeicToPdf(file);
+              outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            }
             break;
           case ToolType.EPUB_TO_PDF:
             resultBlob = await convertEpubToPdf(file);
@@ -617,8 +624,11 @@ function App() {
             outName = file.name.replace('.pdf', '_converted_eh.epub');
             break;
           case ToolType.CBR_TO_PDF:
-            resultBlob = await convertCbrToPdf(file);
-            outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            {
+              const { convertCbrToPdf } = await import('./utils/heavyConversions');
+              resultBlob = await convertCbrToPdf(file);
+              outName = file.name.replace(/\.[^/.]+$/, "") + "_converted_eh.pdf";
+            }
             break;
           case ToolType.SIGN:
             // Signing is typically handled by components/SignPdfTool calling onAction with processedBlob
@@ -628,17 +638,26 @@ function App() {
             outName = file.name.replace('.pdf', '_organized_eh.pdf');
             break;
           case ToolType.OCR:
-            // Defaulting to searchable PDF for now
-            resultBlob = await makeSearchablePdf(file, Array.from(selectedPages));
-            outName = file.name.replace('.pdf', '_searchable.pdf');
+            {
+              // Defaulting to searchable PDF for now
+              const { makeSearchablePdf } = await import('./utils/heavyConversions');
+              resultBlob = await makeSearchablePdf(file, Array.from(selectedPages));
+              outName = file.name.replace('.pdf', '_searchable.pdf');
+            }
             break;
           case ToolType.PDF_TO_WORD:
-            resultBlob = await convertPdfToWord(file);
-            outName = file.name.replace('.pdf', '_converted_eh.docx');
+            {
+              const { convertPdfToWord } = await import('./utils/heavyConversions');
+              resultBlob = await convertPdfToWord(file);
+              outName = file.name.replace('.pdf', '_converted_eh.docx');
+            }
             break;
           case ToolType.WORD_TO_PDF:
-            resultBlob = await convertWordToPdf(file);
-            outName = file.name.replace('.docx', '.pdf');
+            {
+              const { convertWordToPdf } = await import('./utils/heavyConversions');
+              resultBlob = await convertWordToPdf(file);
+              outName = file.name.replace('.docx', '.pdf');
+            }
             break;
           case ToolType.FLATTEN:
             resultBlob = await flattenPdf(file);
@@ -671,8 +690,11 @@ function App() {
             outName = file.name.replace('.xml', '.pdf');
             break;
           case ToolType.EXCEL_TO_PDF:
-            resultBlob = await convertExcelToPdf(file);
-            outName = file.name.replace(/\.(xlsx|xls)$/, '.pdf');
+            {
+              const { convertExcelToPdf } = await import('./utils/heavyConversions');
+              resultBlob = await convertExcelToPdf(file);
+              outName = file.name.replace(/\.(xlsx|xls)$/, '.pdf');
+            }
             break;
         }
       } else if (currentTool === ToolType.SIGN) {
