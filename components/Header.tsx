@@ -81,9 +81,9 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
             className="text-[11px] font-black bg-white/40 hover:bg-white border border-white/60 px-6 py-3 rounded-full transition-all active:scale-95 flex items-center gap-4 shadow-glass hover:shadow-premium group/lang"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
-            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-gray-400'} transition-colors`}>EN</span>
+            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>EN</span>
             <div className="w-px h-3 bg-gray-300 group-hover/lang:h-4 transition-all" />
-            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-gray-400'} transition-colors`}>FR</span>
+            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>FR</span>
           </button>
 
           {/* Mobile Menu Button */}

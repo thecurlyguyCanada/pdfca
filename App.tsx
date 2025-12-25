@@ -938,7 +938,7 @@ function App() {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-modern-neutral-500 max-w-2xl mx-auto leading-relaxed font-medium tracking-tight">
+          <p className="text-xl md:text-2xl text-modern-neutral-600 max-w-2xl mx-auto leading-relaxed font-medium tracking-tight">
             {t.description}
           </p>
         </div>
@@ -1008,7 +1008,7 @@ function App() {
 
                 <div className="relative z-10 w-full">
                   <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
-                  <p className="text-xs text-modern-neutral-500 font-bold leading-relaxed opacity-80 group-hover:opacity-100 line-clamp-2 md:line-clamp-none">
+                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2 md:line-clamp-none">
                     {tool.desc}
                   </p>
                 </div>
@@ -1021,12 +1021,12 @@ function App() {
 
             {filteredTools.length === 0 && (
               <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white/40 backdrop-blur-xl rounded-[3rem] border-2 border-dashed border-gray-200 shadow-glass">
-                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-300">
+                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-400">
                   <Search size={40} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black text-modern-neutral-800 lowercase">{lang === 'en' ? 'No tools found...' : 'Aucun outil trouvé...'}</h3>
-                  <p className="text-modern-neutral-500 font-medium">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
+                  <p className="text-modern-neutral-600 font-medium">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
                 </div>
                 <button onClick={() => setSearchTerm('')} className="bg-modern-neutral-800 text-white px-8 py-3 rounded-full font-bold hover:bg-black transition-all active:scale-95">Clear Search</button>
               </div>
@@ -1092,7 +1092,7 @@ function App() {
                   </div>
                 ))}
               </div>
-              <span className="text-xs font-black uppercase tracking-widest text-modern-neutral-400">10k+ Canadians</span>
+              <span className="text-xs font-black uppercase tracking-widest text-modern-neutral-600">10k+ Canadians</span>
             </div>
           </div>
         </div>

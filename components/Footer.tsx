@@ -22,8 +22,8 @@ const FooterSection = ({ title, children }: { title: string, children: React.Rea
             }}
             className="flex items-center justify-between w-full py-4 md:py-0 md:mb-4 md:cursor-default md:pointer-events-none group"
          >
-            <p className="font-bold text-gray-900 dark:text-white group-active:text-canada-red md:group-active:text-gray-900 transition-colors">{title}</p>
-            <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
+            <p className="font-bold text-white group-active:text-canada-red transition-colors">{title}</p>
+            <ChevronDown className={`w-5 h-5 text-modern-neutral-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
          </button>
          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0 md:max-h-full md:opacity-100 md:mb-0'} md:block`}>
             {children}
@@ -61,7 +61,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                      </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.2em] text-modern-neutral-500 uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full w-fit">
+                  <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.2em] text-modern-neutral-300 uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full w-fit">
                      <MapPin size={12} className="text-canada-red" />
                      <span>Toronto &bull; Ontario &bull; Canada</span>
                   </div>
@@ -70,7 +70,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                {/* Column 2: Edit Group */}
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerEditGroup}>
-                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><a href="/delete-pdf-pages" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/delete-pdf-pages'); }} className="hover:text-white transition-colors">{t.toolDelete}</a></li>
                         <li><a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/rotate-pdf'); }} className="hover:text-white transition-colors">{t.toolRotate}</a></li>
                         <li><a href="/compress-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/compress-pdf'); }} className="hover:text-white transition-colors">{t.toolCompress}</a></li>
@@ -84,7 +84,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                {/* Column 3: Convert Group */}
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerConvertGroup}>
-                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><a href="/sign-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/sign-pdf'); }} className="hover:text-white transition-colors">{t.toolSign}</a></li>
                         <li><a href="/ocr-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/ocr-pdf'); }} className="hover:text-white transition-colors">{t.toolOcr}</a></li>
                         <li><a href="/word-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-white transition-colors">{t.toolWordToPdf}</a></li>
@@ -98,7 +98,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                {/* Column 4: Resources */}
                <div className="lg:col-span-1">
                   <FooterSection title={lang === 'fr' ? 'Ressources' : 'Resources'}>
-                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-400">
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><a href="/guides/ultimate-pdf-guide" onClick={(e) => { e.preventDefault(); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</a></li>
                         <li><a href="/about" onClick={(e) => { e.preventDefault(); onNavigate('ABOUT', '/about'); }} className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : 'About Us'}</a></li>
                         <li><a href="/howto" onClick={(e) => { e.preventDefault(); onNavigate('HOW_TO', '/howto'); }} className="hover:text-white transition-colors">{t.navHowTo}</a></li>
@@ -112,21 +112,21 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             {/* Bottom Bar - Minimalist */}
             <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <p className="text-xs text-modern-neutral-500 font-bold">&copy; {year} pdfcanada.ca</p>
+                  <p className="text-xs text-modern-neutral-400 font-bold">&copy; {year} pdfcanada.ca</p>
 
                   <div className="flex items-center gap-4">
-                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-400">
+                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">
                         <ShieldCheck className="w-3.5 h-3.5 text-green-500/70" />
                         Privacy First
                      </div>
-                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-400">
+                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">
                         <Heart className="w-3.5 h-3.5 text-canada-red/70" />
                         100% Free
                      </div>
                   </div>
                </div>
 
-               <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-500">
+               <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-400">
                   <a href="/terms" onClick={(e) => { e.preventDefault(); onNavigate('TERMS'); }} className="hover:text-white transition-colors">{t.termsService}</a>
                   <div className="w-1 h-1 bg-white/20 rounded-full" />
                   <a href="/privacy" onClick={(e) => { e.preventDefault(); onNavigate('PRIVACY'); }} className="hover:text-white transition-colors">{t.privacy}</a>
