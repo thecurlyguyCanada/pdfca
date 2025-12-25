@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex gap-8 text-sm font-bold text-gray-500">
+        <nav className="hidden lg:flex gap-8 text-sm font-bold text-gray-600">
           <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
             {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
@@ -82,9 +82,9 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
             className="text-xs font-black bg-gray-100 hover:bg-red-50 hover:text-canada-red border border-transparent hover:border-red-100 px-5 py-2.5 rounded-full transition-all active:scale-95 flex items-center gap-2 shadow-sm"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
-            <span className={lang === 'en' ? 'text-canada-red' : 'text-gray-500'}>EN</span>
+            <span className={lang === 'en' ? 'text-canada-darkRed underline underline-offset-4' : 'text-gray-600 hover:text-gray-900 transition-colors'}>EN</span>
             <div className="w-px h-3 bg-gray-300" />
-            <span className={lang === 'fr' ? 'text-canada-red' : 'text-gray-500'}>FR</span>
+            <span className={lang === 'fr' ? 'text-canada-darkRed underline underline-offset-4' : 'text-gray-600 hover:text-gray-900 transition-colors'}>FR</span>
           </button>
 
           {/* Mobile Menu Button */}

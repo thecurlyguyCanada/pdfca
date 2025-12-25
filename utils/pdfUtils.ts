@@ -390,13 +390,28 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
   const { PDFDocument } = await getPdfLib();
   const heic2any = await getHeic2Any();
 
-  const convertedBlobOrBlobs = await heic2any({
-    blob: file,
-    toType: "image/jpeg",
-    quality: 0.8
-  });
+  /* heic2any returns a Blob or Blob[] */
+  const blobs: Blob[] = [];
 
-  const blobs = Array.isArray(convertedBlobOrBlobs) ? convertedBlobOrBlobs : [convertedBlobOrBlobs];
+  try {
+    const convertedBlobOrBlobs = await heic2any({
+      blob: file,
+      toType: "image/jpeg",
+      quality: 0.8
+    });
+
+    if (Array.isArray(convertedBlobOrBlobs)) {
+      blobs.push(...convertedBlobOrBlobs);
+    } else {
+      blobs.push(convertedBlobOrBlobs);
+    }
+  } catch (error) {
+    console.error("HEIC conversion failed:", error);
+    throw new Error("Could not process HEIC file. The file might be corrupted or in an unsupported format.");
+  }
+
+  // Yield to UI loop if heavy processing happened
+  await new Promise(resolve => setTimeout(resolve, 0));
 
   const doc = await PDFDocument.create();
 
@@ -410,6 +425,9 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
       width: image.width,
       height: image.height,
     });
+
+    // Prevent UI freeze during multi-page processing
+    if (blobs.length > 1) await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   addPdfMetadata(doc, 'HEIC to PDF Conversion');
@@ -659,6 +677,9 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
     } catch (e) {
       console.warn(`Failed to embed image ${img.name}`, e);
     }
+
+    // Yield to avoid freezing during large comic conversion
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   if (doc.getPageCount() === 0) {
@@ -765,7 +786,7 @@ export const makeSearchablePdf = async (
   const doc = await PDFDocument.load(arrayBuffer);
   const langString = languages.join('+');
 
-  const worker = await (Tesseract as any).createWorker(langString);
+  let worker = await (Tesseract as any).createWorker(langString);
 
   const indicesToProcess = pageIndices.length > 0
     ? pageIndices
@@ -825,9 +846,13 @@ export const makeSearchablePdf = async (
       // Explicit cleanup
       canvas.width = 0;
       canvas.height = 0;
+
+      // Yield to UI loop
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
   } finally {
     await worker.terminate();
+    worker = null;
   }
 
   onProgress?.({
@@ -1067,6 +1092,9 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
       properties: { page: { size: { width: viewport.width * 20, height: viewport.height * 20 } } },
       children: sortedElements
     });
+
+    // Yield to avoid freezing
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   const doc = new Document({ sections: sections });
@@ -1454,6 +1482,9 @@ export const splitPdf = async (file: File, pageIndices?: number[]): Promise<Blob
     const pdfBytes = await newDoc.save();
     const pageNum = String(pageIndex + 1).padStart(3, '0');
     zip.file(`${baseName}_page_${pageNum}.pdf`, pdfBytes);
+
+    // Yield to avoid freezing
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   return await zip.generateAsync({ type: 'blob' });
