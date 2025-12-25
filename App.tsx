@@ -112,6 +112,9 @@ function App() {
   const [pageRangeInput, setPageRangeInput] = useState<string>('');
   const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
+  // Async Operation Tracking to prevent race conditions
+  const operationIdRef = useRef<number>(0);
+
   // Zoom Level: Granular (0.5 to 3.0)
   const [previewZoom, setPreviewZoom] = useState<number>(1.0);
 
@@ -468,6 +471,7 @@ function App() {
 
   const selectTool = (toolId: ToolType) => {
     triggerHaptic('light');
+    operationIdRef.current++; // Invalidate pending operations
     const tool = tools.find(t => t.id === toolId);
     setCurrentTool(toolId);
     setFile(null);
@@ -517,12 +521,17 @@ function App() {
       setFile(uploadedFile);
       setAppState(AppState.PROCESSING);
 
+      const opId = ++operationIdRef.current; // Start new op
+
       if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.OCR) {
         try {
           const [pdfLibResult, pdfJsResult] = await Promise.allSettled([
             loadPdfDocument(uploadedFile),
             getPdfJsDocument(uploadedFile)
           ]);
+
+          // Race condition check
+          if (opId !== operationIdRef.current) return;
 
           if (pdfLibResult.status === 'fulfilled') {
             setPageCount(pdfLibResult.value.pageCount);
@@ -546,6 +555,7 @@ function App() {
           lastSelectedPageRef.current = null;
           setAppState(AppState.SELECTING);
         } catch (e: any) {
+          if (opId !== operationIdRef.current) return; // Ignore errors from stale ops
           console.error("Failed to load PDF structure:", e);
           triggerHaptic('error'); // Error feedback
           if (e?.message?.toLowerCase().includes('password') || e?.name === 'PasswordException' || e?.message?.includes('encrypted')) {
@@ -573,6 +583,8 @@ function App() {
 
     try {
       setAppState(AppState.PROCESSING);
+
+      const opId = ++operationIdRef.current; // Start new op
 
       let resultBlob: Blob | Uint8Array | null = processedBlob || null;
       let outName = file.name;
@@ -667,6 +679,8 @@ function App() {
         outName = file.name.replace('.pdf', '_signed_eh.pdf');
       }
 
+      if (opId !== operationIdRef.current) return; // Race condition check
+
       if (resultBlob) {
         const blob = resultBlob instanceof Blob ? resultBlob : new Blob([resultBlob as any], { type: 'application/octet-stream' });
         setProcessedSize(blob.size);
@@ -755,6 +769,7 @@ function App() {
   };
 
   const handleReset = () => {
+    operationIdRef.current++; // Invalidate pending operations
     if (currentTool) {
       setFile(null);
       setFiles([]);

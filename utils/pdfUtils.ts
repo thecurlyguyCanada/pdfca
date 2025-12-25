@@ -310,9 +310,10 @@ export interface SignatureEntry {
 }
 
 export const signPdf = async (originalFile: File, signatureEntries: SignatureEntry[]): Promise<Uint8Array> => {
-  const { PDFDocument, rgb, StandardFonts } = await getPdfLib();
+  /* import from lib */
+  const { PDFDocument: PDFLibDoc, rgb, StandardFonts, degrees } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
-  const doc = await PDFDocument.load(arrayBuffer);
+  const doc = await PDFLibDoc.load(arrayBuffer);
   const pages = doc.getPages();
   const helveticaFont = await doc.embedFont(StandardFonts.Helvetica);
 
@@ -321,12 +322,54 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
 
     const page = pages[entry.pageIndex];
     const { width: pageWidth, height: pageHeight } = page.getSize();
+    const rotation = page.getRotation().angle;
 
-    // Convert percentage to actual PDF points
-    const x = entry.x * pageWidth;
-    const y = (1 - entry.y - entry.height) * pageHeight; // Flip Y for PDF-lib (0,0 is bottom-left)
-    const width = entry.width * pageWidth;
-    const height = entry.height * pageHeight;
+    // Calculate coords based on rotation
+    let x, y, width, height;
+
+    if (rotation === 0) {
+      x = entry.x * pageWidth;
+      y = (1 - entry.y - entry.height) * pageHeight;
+      width = entry.width * pageWidth;
+      height = entry.height * pageHeight;
+    } else if (rotation === 90) {
+      // Visual Width = PDF Height; Visual Height = PDF Width
+      // Visual (0,0) [TL] -> PDF (0,0) [BL]
+      // Visual X+ (Right) -> PDF Y+ (Up)
+      // Visual Y+ (Down) -> PDF X+ (Right)
+      x = (1 - entry.y - entry.height) * pageWidth;
+      y = entry.x * pageHeight;
+      width = entry.height * pageWidth;  // Swapped dimensions
+      height = entry.width * pageHeight;
+    } else if (rotation === 180) {
+      // Visual Width = PDF Width; Visual Height = PDF Height
+      // Visual (0,0) [TL] -> PDF (W, H) [TR]
+      // Visual X+ -> PDF X-
+      // Visual Y+ -> PDF Y-
+      x = (1 - entry.x - entry.width) * pageWidth;
+      y = entry.y * pageHeight; // (1 - (1 - y - h)) * H ?? No.
+      // PDF Y=0 is Bottom. Visual Y=0 is Top.
+      // At 180, Visual Top is PDF Bottom (0).
+      // So y_visual (from Top) maps to y_pdf (from Bottom).
+      // y_pdf = y_visual * H
+      width = entry.width * pageWidth;
+      height = entry.height * pageHeight;
+    } else if (rotation === 270) {
+      // Visual Width = PDF Height; Visual Height = PDF Width
+      // Visual (0,0) [TL] -> PDF (W, H) [TR]
+      // Visual X+ -> PDF Y-
+      // Visual Y+ -> PDF X-
+      x = entry.y * pageWidth;
+      y = (1 - entry.x - entry.width) * pageHeight;
+      width = entry.height * pageWidth;
+      height = entry.width * pageHeight;
+    } else {
+      // Fallback for weird rotations
+      x = entry.x * pageWidth;
+      y = (1 - entry.y - entry.height) * pageHeight;
+      width = entry.width * pageWidth;
+      height = entry.height * pageHeight;
+    }
 
     if (entry.type === 'signature' || entry.type === 'initials' || (entry.type === 'text' && !entry.text && entry.dataUrl)) {
       if (!entry.dataUrl) continue;
@@ -363,6 +406,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
           y,
           width,
           height,
+          rotate: degrees(rotation),
         });
       } catch (e) {
         console.error("Failed to embed signature image", e);
@@ -378,6 +422,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
         size: fontSize,
         font: helveticaFont,
         color: rgb(0, 0, 0),
+        rotate: degrees(rotation),
       });
     }
   }
@@ -459,6 +504,8 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
       .filter((item: any) => typeof item.str === 'string')
       .map((item: any) => escapeHtml(item.str));
     fullText += `<h2>Page ${i}</h2><p>${strings.join(' ')}</p><hr/>`;
+    // Yield to UI loop
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   const zip = new JSZip();
@@ -563,6 +610,9 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   const paragraphs = textContent.split('\n');
 
   for (const paragraph of paragraphs) {
+    // Yield to UI loop
+    await new Promise(resolve => setTimeout(resolve, 0));
+
     const trimmedPara = paragraph.trim();
     if (!trimmedPara) {
       y -= (fontSize + 2);
@@ -1238,6 +1288,8 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
   const bodyNodes = Array.from(container.childNodes);
   for (const node of bodyNodes) {
     await processNode(node);
+    // Yield to UI
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   return doc.output('blob');
@@ -1439,6 +1491,9 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
 
       // Add pages to the new document
       copiedPages.forEach((page) => mergedPdf.addPage(page));
+
+      // Yield to event loop to prevent UI freezing
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
 
     // Save the merged PDF
