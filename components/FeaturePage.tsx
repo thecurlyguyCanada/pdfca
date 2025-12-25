@@ -64,7 +64,8 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
                 breadcrumbs={breadcrumbs}
                 steps={howToSteps}
                 faqs={faqItems}
-                dateModified={new Date().toISOString().split('T')[0]}
+                dateModified="2025-12-24"
+                datePublished="2024-01-15"
             />
 
             <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
