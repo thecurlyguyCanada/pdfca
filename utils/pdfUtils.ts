@@ -813,8 +813,10 @@ export const extractTextWithOcr = async (
   let worker: any;
   try {
     console.info(`[Neural Engine] Stage 1/3: Creating Worker...`);
-    // Using (langs, oem, config) signature to satisfy stubborn type definitions
+    // Using local assets to prevent CDN blocking and ensure 100% local-first reliability
     worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: '/tesseract/worker.min.js',
+      corePath: '/tesseract/tesseract-core.wasm.js',
       logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
     });
 
@@ -930,8 +932,10 @@ export const makeSearchablePdf = async (
   let worker: any;
   try {
     console.info(`[Neural Searchable] Stage 1/3: Creating Worker...`);
-    // Using (langs, oem, config) signature to satisfy stubborn type definitions
+    // Local-first pathing for Searchable Layer generation
     worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: '/tesseract/worker.min.js',
+      corePath: '/tesseract/tesseract-core.wasm.js',
       logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
     });
 
