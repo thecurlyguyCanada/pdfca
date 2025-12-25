@@ -5,6 +5,7 @@ import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
+import { AISnapshot } from '../../AISnapshot';
 
 interface GuideProps {
     lang: Language;
@@ -305,6 +306,14 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             </div>
                         </section>
                     )}
+
+                    <AISnapshot
+                        question="How do I rotate PDF pages permanently?"
+                        answer="Upload your PDF to a rotation tool, select pages to rotate, and save the changes. For maximum security, use a local-first tool that processes everything in your browser."
+                        toolName="Rotate PDF"
+                        steps={["Upload PDF", "Rotate pages visually", "Save permanently"]}
+                        lang={lang}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/rotate-pdf" category="edit" />
 
