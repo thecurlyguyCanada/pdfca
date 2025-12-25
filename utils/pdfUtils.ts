@@ -752,13 +752,13 @@ const optimizeImageForOcr = (canvas: HTMLCanvasElement) => {
   for (let i = 0; i < data.length; i += 4) {
     const r = data[i], g = data[i + 1], b = data[i + 2];
 
-    // Perceptive luminance grayscale
+    // Luminance grayscale
     let gray = 0.299 * r + 0.587 * g + 0.114 * b;
 
-    // Non-linear contrast sharpening (Threshold simulation)
-    if (gray > 190) gray = 255;      // Bleach background
-    else if (gray < 70) gray = 0;    // Deepen text
-    else gray = ((gray - 70) / 120) * 255; // Stretch remainders
+    // High-contrast sharpening
+    if (gray > 200) gray = 255;
+    else if (gray < 70) gray = 0;
+    else gray = ((gray - 70) / 130) * 255;
 
     data[i] = data[i + 1] = data[i + 2] = gray;
   }
@@ -797,29 +797,33 @@ export const extractTextWithOcr = async (
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  const { createWorker, createScheduler } = Tesseract;
-  const scheduler = createScheduler();
-  const workerCount = Math.min(4, indicesToProcess.length);
+  // Stable worker initialization for sequential memory safety
+  const TesseractMod: any = Tesseract;
+  const createWorker = TesseractMod.createWorker || (TesseractMod.default && TesseractMod.default.createWorker);
 
+  if (!createWorker) {
+    throw new Error("OCR library failed to initialize.");
+  }
+
+  let worker: any;
   try {
-    for (let i = 0; i < workerCount; i++) {
-      const worker = await createWorker(langString, 1);
-      scheduler.addWorker(worker);
-    }
+    worker = await createWorker(langString, 1);
   } catch (err) {
-    console.error("Neural engine failure:", err);
+    console.error("Worker failure:", err);
     throw new Error("OCR engine failed to start.");
   }
 
-  const results: { text: string; idx: number }[] = [];
+  let fullText = '';
   let processedCount = 0;
 
   try {
-    const tasks = indicesToProcess.map(async (pageIndex) => {
+    for (const pageIndex of indicesToProcess) {
+      if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+
       try {
         const page = await pdf.getPage(pageIndex + 1);
-        // Ultra-high 300 DPI equivalent for surgery-level precision
-        const viewport = page.getViewport({ scale: 3.125 });
+        // Scale 2.4 is approx 173 DPI - reliable balance of accuracy and memory
+        const viewport = page.getViewport({ scale: 2.4 });
 
         const canvas = document.createElement('canvas');
         canvas.width = viewport.width;
@@ -830,35 +834,31 @@ export const extractTextWithOcr = async (
           await page.render({ canvasContext: ctx, viewport }).promise;
           optimizeImageForOcr(canvas);
 
-          const { data: { text } } = await (scheduler.addJob('recognize', canvas) as any);
-          results.push({ text, idx: pageIndex });
+          const { data: { text } } = await worker.recognize(canvas);
+          fullText += `--- Page ${pageIndex + 1} ---\n${text}\n\n`;
         }
 
         processedCount++;
         onProgress?.({
           page: processedCount,
           totalPages: indicesToProcess.length,
-          status: `Neural scan in progress... (${processedCount}/${indicesToProcess.length})`,
+          status: `Processing Page ${processedCount}/${indicesToProcess.length}`,
           progress: (processedCount / indicesToProcess.length) * 100
         });
 
+        // Cleanup immediately to free memory
         canvas.width = 0;
         canvas.height = 0;
       } catch (err) {
         console.error(`Page ${pageIndex} failed:`, err);
-        results.push({ text: `[Error processing page ${pageIndex + 1}]`, idx: pageIndex });
+        fullText += `--- Page ${pageIndex + 1} ---\n[Error on this page]\n\n`;
       }
-    });
-
-    await Promise.all(tasks);
+    }
   } finally {
-    await scheduler.terminate();
+    if (worker) await worker.terminate();
   }
 
-  return results
-    .sort((a, b) => a.idx - b.idx)
-    .map(r => `--- Page ${r.idx + 1} ---\n${r.text}\n\n`)
-    .join('');
+  return fullText;
 };
 
 // OCR: Create searchable PDF with invisible text layer
@@ -887,28 +887,32 @@ export const makeSearchablePdf = async (
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  const { createWorker, createScheduler } = Tesseract;
-  const scheduler = createScheduler();
-  const workerCount = Math.min(4, indicesToProcess.length);
+  // Stable worker initialization for sequential memory safety
+  const TesseractMod: any = Tesseract;
+  const createWorker = TesseractMod.createWorker || (TesseractMod.default && TesseractMod.default.createWorker);
 
+  if (!createWorker) {
+    throw new Error("OCR library initialization failed.");
+  }
+
+  let worker: any;
   try {
-    for (let i = 0; i < workerCount; i++) {
-      const worker = await createWorker(langString, 1);
-      scheduler.addWorker(worker);
-    }
+    worker = await createWorker(langString, 1);
   } catch (err) {
     console.error("Neural engine failure:", err);
-    throw new Error("Searchable layer creation failed.");
+    throw new Error("Searchable layer engine failed.");
   }
 
   let processedCount = 0;
 
   try {
-    const tasks = indicesToProcess.map(async (pageIndex) => {
+    for (const pageIndex of indicesToProcess) {
+      if (pageIndex < 0 || pageIndex >= pdf.numPages) continue;
+
       try {
         const pdfJsPage = await pdf.getPage(pageIndex + 1);
-        // High-precision viewport (approx 250-300 DPI)
-        const viewport = pdfJsPage.getViewport({ scale: 2.5 });
+        // Scale 2.2 is ideal for memory-conscious text layering
+        const viewport = pdfJsPage.getViewport({ scale: 2.2 });
 
         const canvas = document.createElement('canvas');
         canvas.width = viewport.width;
@@ -919,7 +923,7 @@ export const makeSearchablePdf = async (
           await pdfJsPage.render({ canvasContext: ctx, viewport }).promise;
           optimizeImageForOcr(canvas);
 
-          const result = await (scheduler.addJob('recognize', canvas) as any);
+          const result = await worker.recognize(canvas);
 
           const pdfLibPage = doc.getPage(pageIndex);
           const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
@@ -931,7 +935,7 @@ export const makeSearchablePdf = async (
             try {
               if (!word.text || !word.text.trim()) continue;
               const bbox = word.bbox;
-              // World-class precision font size calculation
+              // Precision font size calculation for alignment
               const fontSize = Math.max(1, (bbox.y1 - bbox.y0) * scaleY * 0.81);
 
               pdfLibPage.drawText(word.text, {
@@ -949,23 +953,25 @@ export const makeSearchablePdf = async (
         onProgress?.({
           page: processedCount,
           totalPages: indicesToProcess.length,
-          status: `Generating searchable layer... (${processedCount}/${indicesToProcess.length})`,
+          status: `Creating Searchable Layer (${processedCount}/${indicesToProcess.length})...`,
           progress: (processedCount / indicesToProcess.length) * 100
         });
 
+        // Immediate disposal of canvas memory
         canvas.width = 0;
         canvas.height = 0;
       } catch (err) {
         console.error(`Neural layer failed for page ${pageIndex}:`, err);
       }
-    });
 
-    await Promise.all(tasks);
+      // Yield for UI responsiveness
+      await new Promise(r => setTimeout(r, 0));
+    }
   } finally {
-    await scheduler.terminate();
+    if (worker) await worker.terminate();
   }
 
-  addPdfMetadata(doc, 'Searchable PDF with Neural-Enhanced OCR');
+  addPdfMetadata(doc, 'Searchable PDF with Neural OCR');
   return await doc.save();
 };
 
