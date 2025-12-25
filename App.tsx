@@ -985,7 +985,7 @@ function App() {
 
         {/* Search Bar - Minimalist Glass */}
         <div className="w-full max-w-2xl mx-auto relative group pt-4">
-          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento group-focus-within:shadow-bento-hover p-2 group-focus-within:ring-8 group-focus-within:ring-red-500/5">
+          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento p-2">
             <div className="pl-6 text-modern-neutral-400 group-focus-within:text-canada-red">
               <Search size={22} strokeWidth={2.5} />
             </div>
@@ -1031,29 +1031,24 @@ function App() {
                 onClick={() => selectTool(tool.id)}
                 className={`
                   flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem]
-                  hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98]
-                  group relative overflow-hidden active:shadow-inner
+                  hover:border-red-100 shadow-sm active:scale-[0.98]
+                  group relative overflow-hidden
                   ${idx % 7 === 0 ? 'lg:col-span-2 lg:row-span-1 bg-gradient-to-br from-white to-red-50/30' : ''}
                 `}
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0" />
 
                 <div className={`
                   p-4 rounded-2xl mb-6 shadow-sm relative z-10
-                  ${idx % 7 === 0 ? 'bg-canada-red text-white shadow-red-500/20' : 'bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red'}
+                  ${idx % 7 === 0 ? 'bg-canada-red text-white shadow-red-500/20' : 'bg-gray-50 text-gray-600'}
                 `}>
                   <tool.icon size={idx % 7 === 0 ? 32 : 24} strokeWidth={2.5} />
                 </div>
 
                 <div className="relative z-10 w-full">
-                  <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red">{tool.title}</h3>
-                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 line-clamp-2 md:line-clamp-none">
+                  <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight">{tool.title}</h3>
+                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed line-clamp-2 md:line-clamp-none">
                     {tool.desc}
                   </p>
-                </div>
-
-                <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
-                  <ArrowRight size={18} className="text-canada-red" />
                 </div>
               </button>
             ))}
@@ -1113,7 +1108,7 @@ function App() {
             </div>
           </div>
 
-          <div className="p-10 bg-white border border-gray-100 rounded-[3rem] shadow-bento flex flex-col justify-between group hover:shadow-bento-hover">
+          <div className="p-10 bg-white border border-gray-100 rounded-[3rem] shadow-sm flex flex-col justify-between group">
             <div className="space-y-4">
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center border border-red-100">
                 <Heart className="text-canada-red fill-canada-red" size={24} />
