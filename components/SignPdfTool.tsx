@@ -97,7 +97,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
             const visible = entry.isIntersecting;
             setIsVisible(visible);
             onVisibilityChange(visible);
-        }, { threshold: 0.05, rootMargin: '200px' });
+        }, {
+            threshold: [0, 0.01, 0.1, 0.5],
+            rootMargin: '400px 0px 400px 0px'
+        });
         if (containerRef.current) observer.observe(containerRef.current);
         return () => observer.disconnect();
     }, [onVisibilityChange]);
@@ -229,7 +232,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     }}
                 >
                     <div
-                        className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150`}
+                        className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150 touch-none`}
                         onPointerDown={(e) => {
                             if (activeTool !== 'select') return;
                             onSelectEntry(entry.id);
@@ -306,8 +309,8 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                 </Rnd>
             ))}
 
-            {!isVisible && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 z-10 gap-3">
+            {!isVisible && entries.length === 0 && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 z-5 gap-3">
                     <div className="w-10 h-10 border-4 border-canada-red border-t-transparent rounded-full animate-spin" />
                     <span className="text-xs text-gray-400 font-medium">{t.loadingPage}</span>
                 </div>
