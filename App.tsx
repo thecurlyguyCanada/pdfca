@@ -527,7 +527,7 @@ function App() {
 
       const opId = ++operationIdRef.current; // Start new op
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.OCR) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.OCR || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML) {
         try {
           // Lazy load PDF utilities only when file is uploaded
           const { loadPdfDocument, getPdfJsDocument } = await import('./utils/corePdfUtils');

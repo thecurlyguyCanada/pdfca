@@ -332,7 +332,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML;
     const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
@@ -609,7 +609,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
-                            {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF || currentTool === ToolType.PDF_TO_XML || currentTool === ToolType.XML_TO_PDF || currentTool === ToolType.EXCEL_TO_PDF) && <FileText size={32} />}
+                            {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF || currentTool === ToolType.XML_TO_PDF || currentTool === ToolType.EXCEL_TO_PDF) && <FileText size={32} />}
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{t.btnConvert}</h3>
                         <p className="text-gray-500 mb-6">
