@@ -16,7 +16,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
   <!-- 2026 SEO Enhancements -->
-  <meta name="keywords" content="free PDF tools, PDF editor online, merge PDF, split PDF, compress PDF, PDF converter, secure PDF tools Canada">
+  <meta name="keywords"
+    content="free PDF tools, PDF editor online, merge PDF, split PDF, compress PDF, PDF converter, secure PDF tools Canada">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
   <meta name="rating" content="general">
@@ -126,7 +127,8 @@
       font-family: 'Inter';
       font-style: normal;
       font-weight: 300 1000;
-      font-display: optional; /* Don't block render - use fallback if not loaded quickly */
+      font-display: optional;
+      /* Don't block render - use fallback if not loaded quickly */
       src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2) format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
@@ -147,7 +149,7 @@
       overflow-x: hidden;
     }
 
-    /* 2026 Mesh Gradient Placeholder */
+    /* 2026 Mesh Gradient Placeholder - Optimized for performance */
     .mesh-bg {
       position: fixed;
       top: 0;
@@ -156,10 +158,9 @@
       height: 100%;
       z-index: -1;
       background: radial-gradient(at 0% 0%, #fff1f2 0%, transparent 50%),
-        radial-gradient(at 100% 0%, #fff7ed 0%, transparent 50%),
-        radial-gradient(at 100% 100%, #fff1f2 0%, transparent 50%),
-        radial-gradient(at 0% 100%, #fef2f2 0%, transparent 50%);
-      opacity: 0.6;
+        radial-gradient(at 100% 0%, #fff7ed 0%, transparent 50%);
+      opacity: 0.4;
+      will-change: background-position;
     }
 
     .static-wrapper {

@@ -41,24 +41,24 @@ export default {
         }
       },
       backgroundImage: {
-        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(350, 100%, 92%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 50% 100%, hsla(0, 0%, 100%, 1) 0, transparent 50%)',
+        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(350, 100%, 92%, 1) 0, transparent 50%)',
         'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1))',
-        'bento-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%)',
+        'bento-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.04)',
-        'glass-hover': '0 12px 48px 0 rgba(227, 24, 55, 0.08)',
-        'premium': '0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
-        'bento': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.03)',
-        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.1), 0 12px 32px rgba(227, 24, 55, 0.08)',
+        'glass': '0 4px 16px 0 rgba(0, 0, 0, 0.03)',
+        'glass-hover': '0 8px 32px 0 rgba(227, 24, 55, 0.05)',
+        'premium': '0 10px 15px -3px rgba(0, 0, 0, 0.02), 0 4px 6px -2px rgba(0, 0, 0, 0.01)',
+        'bento': '0 0 0 1px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.02)',
+        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.05), 0 8px 16px rgba(227, 24, 55, 0.04)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in': 'fadeIn 0.4s ease-out forwards',
+        'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'slide-in-right': 'slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'mesh': 'mesh 15s ease infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 3s ease-in-out infinite',
+        'mesh': 'mesh 30s ease infinite',
+        'float': 'float 8s ease-in-out infinite',
+        'glow': 'glow 4s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {

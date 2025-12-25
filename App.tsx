@@ -962,7 +962,7 @@ function App() {
 
       {/* Hero Section - Premium 2026 Typography */}
       <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
-        <div className="inline-flex items-center gap-2.5 bg-white/60 backdrop-blur-md border border-red-100/50 text-canada-darkRed px-6 py-2.5 rounded-full text-[10px] font-black shadow-sm mx-auto hover:scale-105 transition-all cursor-default tracking-[0.2em] uppercase">
+        <div className="inline-flex items-center gap-2.5 bg-white/40 backdrop-blur-sm border border-red-100/30 text-canada-darkRed px-6 py-2.5 rounded-full text-[10px] font-black shadow-sm mx-auto hover:scale-105 transition-all cursor-default tracking-[0.2em] uppercase">
           <Sparkles className="w-3.5 h-3.5 text-red-500 animate-pulse" />
           <span>{t.builtIn}</span>
         </div>
@@ -970,7 +970,7 @@ function App() {
         <div className="space-y-6">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-[1000] tracking-[-0.04em] text-gray-900 leading-[0.9] md:leading-[0.85]">
             {t.title.split(' ').map((word: string, i: number) => (
-              <span key={i} className="inline-block hover:scale-[1.02] transition-transform duration-300 mr-[0.2em] last:mr-0">{word}</span>
+              <span key={i} className="inline-block hover:scale-[1.01] transition-transform duration-500 mr-[0.2em] last:mr-0">{word}</span>
             ))}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-canada-red to-[#FF4D4D] drop-shadow-sm inline-block mt-2">
@@ -985,8 +985,8 @@ function App() {
 
         {/* Search Bar - Minimalist Glass */}
         <div className="w-full max-w-2xl mx-auto relative group pt-4">
-          <div className="absolute -inset-4 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-red-500/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento group-focus-within:shadow-bento-hover p-2 transition-all group-focus-within:ring-8 group-focus-within:ring-red-500/5">
+          <div className="absolute -inset-4 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-red-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <div className="relative flex items-center bg-white border border-gray-200/50 rounded-[2rem] shadow-bento group-focus-within:shadow-bento-hover p-1.5 transition-all group-focus-within:ring-4 group-focus-within:ring-red-500/5">
             <div className="pl-6 text-modern-neutral-400 group-focus-within:text-canada-red transition-colors">
               <Search size={22} strokeWidth={2.5} />
             </div>
@@ -1075,13 +1075,13 @@ function App() {
         ) : (
           /* Tool Interface Wrapper */
           <div className="w-full max-w-2xl mx-auto">
-            <div className="bg-white/80 backdrop-blur-2xl rounded-[3rem] shadow-bento border border-white/60 overflow-hidden relative min-h-[500px] flex flex-col animate-slide-up">
+            <div className="bg-white/90 backdrop-blur-xl rounded-[3rem] shadow-bento border border-white/60 overflow-hidden relative min-h-[500px] flex flex-col animate-slide-up">
               {/* Tool navigation can go here if needed */}
               {appState === AppState.SELECTING && renderToolInterface()}
 
               {/* Rendering Logic remains similarly structured */}
               {appState === AppState.PROCESSING && (
-                <div className="absolute inset-0 bg-white/60 backdrop-blur-3xl z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-2xl z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
                   <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                     <MapleLeaf className="w-12 h-12 text-white animate-pulse" />
                   </div>
@@ -1097,7 +1097,7 @@ function App() {
       {appState === AppState.HOME && (
         <div className="w-full max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="col-span-1 md:col-span-2 p-10 bg-gradient-to-br from-modern-neutral-900 to-modern-neutral-800 rounded-[3rem] text-white flex flex-col justify-between relative overflow-hidden group shadow-2xl shadow-modern-neutral-900/10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-canada-red/10 blur-[100px] rounded-full group-hover:bg-canada-red/20 transition-all duration-1000" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-canada-red/10 blur-[80px] rounded-full group-hover:bg-canada-red/20 transition-all duration-1000" />
             <div className="space-y-4 relative z-10">
               <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/10">
                 <Shield className="text-red-400" size={24} />
@@ -1174,7 +1174,7 @@ function App() {
 
             {/* Processing Overlay within Workspace */}
             {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-3xl z-50 flex flex-col items-center justify-center p-8 animate-fade-in">
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-8 animate-fade-in">
                 <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                   <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
                 </div>
@@ -1340,12 +1340,12 @@ function App() {
 
       {/* Dynamic Mesh Background - Fixed for whole page */}
       <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-mesh-gradient animate-mesh bg-[length:200%_200%] opacity-60" />
+        <div className="absolute inset-0 bg-mesh-gradient animate-mesh bg-[length:200%_200%] opacity-40 will-change-[background-position]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
 
         {/* Decorative Floating Orbs */}
-        <div className="absolute top-[20%] left-[10%] w-[40rem] h-[40rem] bg-red-400/5 rounded-full blur-[120px] animate-float mix-blend-multiply" />
-        <div className="absolute bottom-[20%] right-[10%] w-[35rem] h-[35rem] bg-orange-400/5 rounded-full blur-[120px] animate-float opacity-70 mix-blend-multiply" style={{ animationDelay: '-2s' }} />
+        <div className="absolute top-[20%] left-[10%] w-[30rem] h-[30rem] bg-red-400/5 rounded-full blur-[80px] animate-float mix-blend-multiply will-change-transform" />
+        <div className="absolute bottom-[20%] right-[10%] w-[25rem] h-[25rem] bg-orange-400/5 rounded-full blur-[80px] animate-float opacity-50 mix-blend-multiply will-change-transform" style={{ animationDelay: '-2s' }} />
       </div>
 
       <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
@@ -1410,7 +1410,7 @@ function App() {
 
           {/* PROCESSING State in Full-Screen overlay */}
           {appState === AppState.PROCESSING && (
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-3xl z-[110] flex flex-col items-center justify-center p-8 animate-fade-in">
+            <div className="absolute inset-0 bg-white/70 backdrop-blur-xl z-[110] flex flex-col items-center justify-center p-8 animate-fade-in">
               <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                 <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
               </div>

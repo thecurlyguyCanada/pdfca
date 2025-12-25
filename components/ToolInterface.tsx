@@ -71,7 +71,7 @@ const SortableThumbnail: React.FC<{
             {/* Enlarged Drag Handle for Mobile */}
             <div className="absolute inset-0 z-20 md:hidden" role="button" aria-label="Drag to reorder" />
 
-            <div className="absolute top-2 right-2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 hidden md:flex cursor-grab active:cursor-grabbing">
+            <div className="absolute top-2 right-2 z-10 p-2 bg-white/95 rounded-xl shadow-sm border border-gray-100 hidden md:flex cursor-grab active:cursor-grabbing">
                 <GripVertical size={18} className="text-gray-400" />
             </div>
 
@@ -213,7 +213,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
-                className="flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/40 backdrop-blur-2xl border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-1000 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover"
+                className="flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/60 border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-700 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                     e.preventDefault();
@@ -225,10 +225,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             >
                 {/* Dynamic Background Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/0 group-hover/drop:from-red-500/5 group-hover/drop:to-orange-500/5 transition-all duration-1000 pointer-events-none" />
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-500/5 blur-[100px] rounded-full group-hover:bg-red-500/10 transition-all duration-1000" />
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-500/5 blur-[60px] rounded-full group-hover:bg-red-500/10 transition-all duration-1000" />
 
-                <div className="relative z-10 w-28 h-28 md:w-36 md:h-36 bg-white/80 rounded-[2.5rem] shadow-premium flex items-center justify-center mb-10 group-hover/drop:scale-110 group-hover/drop:rotate-6 transition-all duration-700 border border-white/60">
-                    <div className="text-canada-red group-hover/drop:animate-bounce">
+                <div className="relative z-10 w-28 h-28 md:w-36 md:h-36 bg-white/90 rounded-[2.5rem] shadow-premium flex items-center justify-center mb-10 group-hover/drop:scale-105 transition-all duration-500 border border-white/60">
+                    <div className="text-canada-red">
                         {tool && <tool.icon size={56} strokeWidth={1.5} />}
                     </div>
                 </div>
@@ -243,7 +243,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     </div>
 
                     <div className="flex items-center justify-center gap-8 pt-4">
-                        <div className="flex items-center gap-2.5 text-[10px] font-black tracking-widest text-modern-neutral-600 uppercase bg-white/50 px-4 py-2 rounded-full border border-white/60 shadow-sm">
+                        <div className="flex items-center gap-2.5 text-[10px] font-black tracking-widest text-modern-neutral-600 uppercase bg-white/80 px-4 py-2 rounded-full border border-white/60 shadow-sm">
                             <Shield size={14} className="text-red-600/60" />
                             {t.processedLocally}
                         </div>
@@ -273,7 +273,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         return (
             <div className="w-full max-w-4xl mx-auto px-6 pb-32 animate-fade-in">
                 <div className="text-center py-12 md:py-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-md border border-white/40 shadow-premium mb-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-white/40 shadow-premium mb-6">
                         <GripVertical size={16} className="text-canada-red" />
                         <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">{t.reorderFiles || (lang === 'en' ? 'Reorder Files' : 'Réorganiser')}</span>
                     </div>
@@ -301,9 +301,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                     <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="w-full bg-white/40 backdrop-blur-xl border-2 border-dashed border-gray-200 hover:border-canada-red/40 rounded-[2rem] p-8 flex flex-col items-center gap-3 transition-all group mt-8"
+                        className="w-full bg-white/60 border-2 border-dashed border-gray-200 hover:border-canada-red/40 rounded-[2rem] p-8 flex flex-col items-center gap-3 transition-all group mt-8"
                     >
-                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-premium group-hover:scale-110 group-hover:rotate-12 transition-all">
+                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-premium group-hover:scale-105 transition-all">
                             <Plus className="text-canada-red" size={24} strokeWidth={3} />
                         </div>
                         <span className="font-black text-gray-400 group-hover:text-canada-red transition-colors uppercase tracking-widest text-xs">{t.addMorePdfs || 'Add more PDFs'}</span>
@@ -312,17 +312,17 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 </div>
 
                 <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-[70]">
-                    <div className="bg-modern-glass backdrop-blur-3xl border border-modern-glassBorder p-4 rounded-[2.5rem] shadow-glass flex gap-3 animate-slide-up">
+                    <div className="bg-white/95 border border-modern-glassBorder p-4 rounded-[2.5rem] shadow-glass flex gap-3 animate-slide-up">
                         <button
                             onClick={onSoftReset}
-                            className="flex-1 px-8 py-4 rounded-full bg-white/50 text-gray-900 font-black text-sm uppercase tracking-widest hover:bg-white transition-all active:scale-95"
+                            className="flex-1 px-8 py-4 rounded-full bg-gray-100 text-gray-900 font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition-all active:scale-95"
                         >
                             {t.btnCancel || 'Cancel'}
                         </button>
                         <button
                             onClick={() => onAction()}
                             disabled={files.length < 2}
-                            className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-black text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/20"
+                            className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-bold text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/10"
                         >
                             {t.toolMerge}
                         </button>
@@ -412,7 +412,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
 
                             {currentTool === ToolType.ROTATE && (
-                                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 backdrop-blur-sm pt-2">
+                                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 pt-2">
                                     <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 active:border-canada-red active:text-canada-red active:bg-red-50 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                                         <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
                                     </button>
@@ -426,7 +426,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             )}
 
                             {(currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
-                                <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 backdrop-blur-sm py-2">
+                                <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 py-2">
                                     <p className="text-sm font-medium text-gray-600">
                                         {headerText}
                                     </p>
