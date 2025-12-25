@@ -29,41 +29,62 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         Skip to main content
       </a>
       <header
-        className="flex items-center justify-between px-5 md:px-6 py-3 md:py-4 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-t-4 border-t-canada-red border-b border-gray-100 shadow-sm"
-        style={{ paddingTop: 'max(12px, var(--safe-area-inset-top))' }}
+        className="flex items-center justify-between px-5 md:px-8 py-4 bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/50 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.05)]"
+        style={{ paddingTop: 'max(16px, var(--safe-area-inset-top))' }}
       >
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-canada-red/20 to-transparent" />
+
         <a
           href="/"
-          className="flex items-center gap-2 cursor-pointer hover:opacity-80 active:opacity-60 transition-opacity active:scale-95"
+          className="flex items-center gap-2 cursor-pointer group transition-all active:scale-95"
           onClick={(e) => {
             e.preventDefault();
             handleNavigate('HOME');
           }}
           aria-label="pdfcanada.ca Home"
         >
-          <span className="text-lg md:text-xl font-bold text-gray-800 tracking-tight">pdfcanada<span className="text-canada-red">.ca</span></span>
+          <span className="text-xl md:text-2xl font-black text-gray-900 tracking-tighter">
+            pdfcanada<span className="text-canada-red group-hover:animate-pulse">.ca</span>
+          </span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-600">
-          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{lang === 'en' ? 'All Tools' : 'Tous les Outils'}</a>
-          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{lang === 'en' ? 'About' : 'À Propos'}</a>
-          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navHowTo}</a>
-          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navSupport}</a>
-          <a href="/pricing" onClick={(e) => { e.preventDefault(); handleNavigate('PRICING'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navPricing}</a>
+        <nav className="hidden lg:flex gap-8 text-sm font-bold text-gray-500">
+          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+            {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+          </a>
+          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+            {lang === 'en' ? 'About' : 'À Propos'}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+          </a>
+          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+            {t.navHowTo}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+          </a>
+          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+            {t.navSupport}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+          </a>
+          <a href="/pricing" onClick={(e) => { e.preventDefault(); handleNavigate('PRICING'); }} className="hover:text-canada-red active:text-canada-red transition-all relative group py-2">
+            {t.navPricing}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-canada-red transition-all group-hover:w-full" />
+          </a>
         </nav>
 
-        <div className="flex items-center gap-2">
-          {/* Language Toggle - Larger touch target */}
+        <div className="flex items-center gap-3">
+          {/* Language Toggle - Premium Pill */}
           <button
             onClick={() => {
               triggerHaptic('light');
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
-            className="text-sm font-bold bg-gray-50 border border-gray-200 hover:border-canada-red/30 hover:text-canada-red active:border-canada-red active:text-canada-red active:bg-red-50 text-gray-600 px-4 py-2.5 rounded-lg transition-all active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-xs font-black bg-gray-100/50 hover:bg-red-50 hover:text-canada-red border border-transparent hover:border-red-100 px-5 py-2.5 rounded-full transition-all active:scale-95 flex items-center gap-2 shadow-sm"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
-            {lang === 'en' ? 'FR' : 'EN'}
+            <span className={lang === 'en' ? 'text-canada-red' : 'text-gray-400'}>EN</span>
+            <div className="w-px h-3 bg-gray-300" />
+            <span className={lang === 'fr' ? 'text-canada-red' : 'text-gray-400'}>FR</span>
           </button>
 
           {/* Mobile Menu Button */}
@@ -72,10 +93,10 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="lg:hidden p-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 active:bg-gray-200 transition-all active:scale-95 border border-gray-200/50"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={22} className="text-canada-red" /> : <Menu size={22} className="text-gray-700" />}
           </button>
         </div>
       </header>

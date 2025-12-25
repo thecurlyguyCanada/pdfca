@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, ArrowRight, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, ArrowRight, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors, Search, Sparkles } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
@@ -98,6 +98,7 @@ function App() {
 
   const [file, setFile] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]); // For multi-file tools like Merge
+  const [searchTerm, setSearchTerm] = useState('');
   const [pageCount, setPageCount] = useState<number>(0);
   const [pdfJsDoc, setPdfJsDoc] = useState<any>(null);
 
@@ -895,54 +896,105 @@ function App() {
 
 
 
-  const renderHome = () => (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-16 flex flex-col items-center gap-10 md:gap-14 animate-fade-in">
+  const filteredTools = tools.filter(tool =>
+    tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tool.desc.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      {/* Hero Section - Centered & Simplified */}
-      <div className="w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
-        <div className="inline-flex items-center gap-2 bg-red-100 text-canada-darkRed px-4 py-1.5 rounded-full text-sm font-bold shadow-sm mx-auto">
-          <MapleLeaf className="w-4 h-4" />
-          {t.builtIn}
+  const renderHome = () => (
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 flex flex-col items-center gap-12 md:gap-20 animate-fade-in relative overflow-hidden">
+
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-100/50 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-50/50 rounded-full blur-[120px]" />
+      </div>
+
+      {/* Hero Section - Premium Typography */}
+      <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-10">
+        <div className="inline-flex items-center gap-2.5 bg-white border border-red-100 text-canada-darkRed px-5 py-2 rounded-full text-xs font-black shadow-sm mx-auto hover:scale-105 transition-transform cursor-default">
+          <Sparkles className="w-3.5 h-3.5 text-orange-500 animate-pulse" />
+          <span className="uppercase tracking-widest">{t.builtIn}</span>
         </div>
 
-        <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-gray-900 leading-[1.1]">
-          {t.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-canada-red to-red-600">{t.subtitle}</span>
+        <h1 className="hero-title text-5xl md:text-7xl lg:text-8xl font-[1000] tracking-tighter text-gray-900 leading-[0.95] md:leading-[0.9]">
+          {t.title} <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-canada-red to-orange-500 drop-shadow-sm">
+            {t.subtitle}
+          </span>
         </h1>
 
-        <p className="hero-desc text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="hero-desc text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed font-medium">
           {t.description}
         </p>
 
-        <div className="inline-flex items-center gap-2 text-sm text-gray-500 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-          <Shield className="w-4 h-4 text-canada-red" />
-          <span>{t.localProcessingDesc}</span>
+        {/* Premium Search Bar */}
+        <div className="w-full max-w-2xl mx-auto relative group">
+          <div className="absolute inset-0 bg-canada-red/5 blur-2xl group-focus-within:bg-canada-red/10 transition-all rounded-[2rem]" />
+          <div className="relative flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-xl shadow-gray-200/40 p-1.5 transition-all group-focus-within:border-canada-red/30 group-focus-within:ring-4 group-focus-within:ring-red-50">
+            <div className="pl-4 text-gray-400 group-focus-within:text-canada-red transition-colors">
+              <Search size={22} strokeWidth={2.5} />
+            </div>
+            <input
+              type="text"
+              placeholder={lang === 'en' ? "Search for a tool (e.g. Merge, Sign, OCR)..." : "Rechercher un outil (ex: Fusionner, Signer)..."}
+              className="w-full bg-transparent border-none focus:ring-0 p-3 text-lg font-bold text-gray-800 placeholder-gray-400"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="p-2 mr-1 text-gray-400 hover:text-gray-600 active:scale-95 transition-all"
+              >
+                <X size={20} strokeWidth={3} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Main Tool Grid - Direct Access */}
+      {/* Main Tool Grid - Premium Cards */}
       <div className="w-full max-w-6xl mx-auto">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="h-px bg-gray-200 w-12 md:w-24"></div>
-          <h2 className="text-xl font-bold text-gray-800 text-center">{t.selectToolTitle} <span className="font-normal text-gray-500">{t.eh}</span></h2>
-          <div className="h-px bg-gray-200 w-12 md:w-24"></div>
+        <div className="flex items-center justify-between mb-10 px-2 lg:px-0">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-6 bg-canada-red rounded-full" />
+            <h2 className="text-2xl font-black text-gray-900 tracking-tight">
+              {searchTerm ? (lang === 'en' ? 'Search Results' : 'Résultats') : (t.selectToolTitle)}
+            </h2>
+          </div>
+          <span className="text-sm font-bold text-gray-400 bg-gray-100/50 px-3 py-1 rounded-full">{filteredTools.length} {lang === 'en' ? 'tools' : 'outils'}</span>
         </div>
 
         {appState === AppState.HOME ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
-            {tools.map(tool => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {filteredTools.map((tool, idx) => (
               <button
                 key={tool.id}
                 onClick={() => selectTool(tool.id)}
-                className="flex flex-col items-center text-center p-6 bg-white border border-gray-200 rounded-2xl hover:border-canada-red hover:shadow-xl hover:shadow-red-500/10 active:scale-[0.98] transition-all group relative overflow-hidden"
+                className="flex flex-col items-center text-center p-8 bg-white border border-gray-100 rounded-[2rem] hover:border-red-100 hover:shadow-[0_20px_50px_-15px_rgba(220,38,38,0.12)] active:scale-[0.97] transition-all duration-300 group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="p-4 bg-red-100 text-canada-darkRed rounded-xl mb-4 group-hover:bg-canada-red group-hover:text-white transition-colors relative z-10 shadow-sm">
-                  <tool.icon size={28} className="md:w-8 md:h-8" />
+                <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                <div className="p-5 bg-gray-50 text-gray-500 rounded-3xl mb-6 group-hover:bg-canada-red group-hover:text-white group-hover:shadow-lg group-hover:shadow-red-500/30 transition-all duration-300 relative z-10">
+                  <tool.icon size={32} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 relative z-10">{tool.title}</h3>
-                <p className="text-sm text-gray-500 relative z-10 leading-snug">{tool.desc}</p>
+
+                <h3 className="font-black text-gray-900 text-lg md:text-xl mb-2 relative z-10 tracking-tight">{tool.title}</h3>
+                <p className="text-sm text-gray-400 font-medium relative z-10 leading-snug group-hover:text-gray-600 transition-colors">{tool.desc}</p>
               </button>
             ))}
+
+            {filteredTools.length === 0 && (
+              <div className="col-span-full py-20 flex flex-col items-center text-center space-y-4 bg-gray-50/50 rounded-[3rem] border border-dashed border-gray-200">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-300">
+                  <Search size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">{lang === 'en' ? 'No tools found' : 'Aucun outil trouvé'}</h3>
+                <p className="text-gray-500">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
+                <button onClick={() => setSearchTerm('')} className="text-canada-red font-bold hover:underline">Clear Search</button>
+              </div>
+            )}
           </div>
         ) : (
           /* Active Tool Container (Centered) */
@@ -1039,35 +1091,36 @@ function App() {
       </div>
 
       {/* Trust Section */}
-      {appState === AppState.HOME && (
-        <div className="w-full max-w-5xl mx-auto mt-16 space-y-12">
-          {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-              <Shield className="w-5 h-5 text-canada-red" />
-              <span className="text-sm font-bold text-gray-700">Privacy First</span>
+      {
+        appState === AppState.HOME && (
+          <div className="w-full max-w-5xl mx-auto mt-16 space-y-12">
+            {/* Trust Badges */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+              <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+                <Shield className="w-5 h-5 text-canada-red" />
+                <span className="text-sm font-bold text-gray-700">Privacy First</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+                <MapleLeaf className="w-5 h-5 text-canada-red" />
+                <span className="text-sm font-bold text-gray-700">Proudly Canadian</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+                <Lock className="w-5 h-5 text-canada-red" />
+                <span className="text-sm font-bold text-gray-700">No Upload Required</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
+                <CheckCircle2 className="w-5 h-5 text-green-600" />
+                <span className="text-sm font-bold text-gray-700">100% Free</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-              <MapleLeaf className="w-5 h-5 text-canada-red" />
-              <span className="text-sm font-bold text-gray-700">Proudly Canadian</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-              <Lock className="w-5 h-5 text-canada-red" />
-              <span className="text-sm font-bold text-gray-700">No Upload Required</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-              <CheckCircle2 className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-bold text-gray-700">100% Free</span>
-            </div>
-          </div>
 
-          {/* Bottom Trust Message */}
-          <div className="text-center space-y-3 pt-4">
-            <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
-            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
+            {/* Bottom Trust Message */}
+            <div className="text-center space-y-3 pt-4">
+              <h2 className="text-2xl font-bold text-gray-900">{t.builtIn}</h2>
+              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.seo.privacyDesc}</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 
