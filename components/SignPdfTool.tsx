@@ -232,7 +232,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         }}
                     >
                         {entry.dataUrl ? (
-                            <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="" />
+                            <img src={entry.dataUrl} className="w-full h-full object-contain pointer-events-none select-none" alt="Signature or annotation element" loading="lazy" />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center bg-blue-50/50 rounded overflow-hidden">
                                 {entry.type === 'date' || entry.type === 'text' ? (
@@ -680,7 +680,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         <div className="grid grid-cols-2 gap-2 mt-2">
                             {savedSignatures.map((sig, i) => (
                                 <button key={i} onClick={() => addEntry('signature', sig)} className="h-20 border border-gray-100 rounded-xl p-2 bg-gray-50 hover:border-canada-red hover:bg-white hover:shadow-sm transition-all flex items-center justify-center">
-                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Signature" />
+                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Saved signature" loading="lazy" />
                                 </button>
                             ))}
                         </div>
@@ -706,7 +706,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         <div className="grid grid-cols-2 gap-2 mt-2">
                             {savedInitials.map((sig, i) => (
                                 <button key={i} onClick={() => addEntry('initials', sig)} className="h-20 border border-gray-100 rounded-xl p-2 bg-gray-50 hover:border-canada-red hover:bg-white hover:shadow-sm transition-all flex items-center justify-center">
-                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Initial" />
+                                    <img src={sig} className="max-w-full max-h-full object-contain" alt="Saved initials" loading="lazy" />
                                 </button>
                             ))}
                         </div>

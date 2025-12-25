@@ -200,10 +200,12 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
+                datePublished="2024-01-15"
+                dateModified="2025-12-24"
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'Delete PDF Pages', path: '/guides/delete-pdf-pages' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Supprimer des pages PDF' : 'Delete PDF Pages', path: lang === 'fr' ? '/fr/guides/delete-pdf-pages' : '/guides/delete-pdf-pages' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Trash2 size={32} />}>

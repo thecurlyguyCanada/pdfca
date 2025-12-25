@@ -186,10 +186,12 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/make-pdf-non-editable"
                 faqs={t.faq}
                 lang={lang}
+                datePublished="2024-02-01"
+                dateModified="2025-12-24"
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'Make PDF Non-Editable', path: '/guides/make-pdf-non-editable' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'PDF Non-Modifiable' : 'Make PDF Non-Editable', path: lang === 'fr' ? '/fr/guides/make-pdf-non-editable' : '/guides/make-pdf-non-editable' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Lock size={32} />}>

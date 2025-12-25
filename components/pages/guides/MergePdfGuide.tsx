@@ -176,9 +176,12 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/merge-pdf"
                 faqs={t.faq}
                 lang={lang}
+                datePublished="2024-02-15"
+                dateModified="2025-12-24"
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: t.h1, path: `/guides/merge-pdf` }
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: lang === 'fr' ? '/fr/guides/merge-pdf' : '/guides/merge-pdf' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<GripVertical size={32} />}>

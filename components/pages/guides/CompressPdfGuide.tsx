@@ -161,9 +161,12 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 canonicalPath="/guides/compress-pdf"
                 faqs={t.faq}
                 lang={lang}
+                datePublished="2024-03-01"
+                dateModified="2025-12-24"
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: 'Compress PDF', path: `/guides/compress-pdf` }
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>

@@ -140,10 +140,12 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                 canonicalPath="/guides/pdf-page-remover"
                 faqs={t.faq}
                 lang={lang}
+                datePublished="2024-01-20"
+                dateModified="2025-12-24"
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'PDF Page Remover', path: '/guides/pdf-page-remover' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Suppresseur de Pages PDF' : 'PDF Page Remover', path: lang === 'fr' ? '/fr/guides/pdf-page-remover' : '/guides/pdf-page-remover' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Trash2 size={32} />}>

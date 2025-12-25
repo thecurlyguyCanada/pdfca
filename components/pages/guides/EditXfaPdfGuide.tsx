@@ -207,10 +207,12 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/edit-xfa-pdf"
                 faqs={t.faq}
                 lang={lang}
+                datePublished="2024-04-01"
+                dateModified="2025-12-24"
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'Edit XFA PDF', path: '/guides/edit-xfa-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Éditer PDF XFA' : 'Edit XFA PDF', path: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : '/guides/edit-xfa-pdf' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Printer size={32} />}>

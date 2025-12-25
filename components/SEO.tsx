@@ -202,20 +202,20 @@ export const SEO: React.FC<SEOProps> = ({
       "PDF en Word", "Word en PDF", "Aplatir PDF", "Rogner PDF", "Compresser PDF",
       "Fusionner PDF", "Diviser PDF", "Signer PDF", "OCR PDF", "PDF en XML", "XML en PDF",
       "EPUB en PDF", "PDF en EPUB", "Organiser PDF", "CBR en PDF", "Excel en PDF",
-      "Supprimer pages PDF", "Guide ultime"
+      "Supprimer pages PDF", "Guide ultime", "Guide Diviser PDF", "Guide Signer PDF", "Guide Excel en PDF"
     ] : [
       "Delete PDF Pages", "Rotate PDF", "Make PDF Fillable", "HEIC to PDF",
       "PDF to Word", "Word to PDF", "Flatten PDF", "Crop PDF", "Compress PDF",
       "Merge PDF", "Split PDF", "Sign PDF", "OCR PDF", "PDF to XML", "XML to PDF",
       "EPUB to PDF", "PDF to EPUB", "Organize PDF", "CBR to PDF", "Excel to PDF",
-      "PDF Page Remover", "Ultimate Guide"
+      "PDF Page Remover", "Ultimate Guide", "Split PDF Guide", "Sign PDF Guide", "Excel to PDF Guide"
     ];
     const navUrls = [
       "/delete-pdf-pages", "/rotate-pdf", "/make-pdf-fillable", "/heic-to-pdf",
       "/pdf-to-word", "/word-to-pdf", "/make-pdf-non-editable", "/crop-pdf", "/compress-pdf",
       "/merge-pdf", "/split-pdf", "/sign-pdf", "/ocr-pdf", "/pdf-to-xml", "/xml-to-pdf",
       "/epub-to-pdf", "/pdf-to-epub", "/organize-pdf", "/cbr-to-pdf", "/excel-to-pdf",
-      "/pdf-page-remover", "/guides/ultimate-pdf-guide"
+      "/pdf-page-remover", "/guides/ultimate-pdf-guide", "/guides/split-pdf", "/guides/sign-pdf", "/guides/excel-to-pdf"
     ];
     const langPrefix = lang === 'fr' ? '/fr' : '';
     const siteNavSchema = {
