@@ -968,7 +968,7 @@ function App() {
         </div>
 
         <div className="space-y-6">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-[1000] tracking-[-0.04em] text-gray-900 leading-[0.9] md:leading-[0.85]">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-gray-900 leading-tight">
             {t.title.split(' ').map((word: string, i: number) => (
               <span key={i} className="inline-block mr-[0.2em] last:mr-0">{word}</span>
             ))}
@@ -985,7 +985,7 @@ function App() {
 
         {/* Search Bar - Minimalist Glass */}
         <div className="w-full max-w-2xl mx-auto relative group pt-4">
-          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento p-2">
+          <div className="relative flex items-center bg-white border border-gray-200 rounded-lg shadow-sm p-2">
             <div className="pl-6 text-modern-neutral-400 group-focus-within:text-canada-red">
               <Search size={22} strokeWidth={2.5} />
             </div>
@@ -1030,7 +1030,7 @@ function App() {
                 key={tool.id}
                 onClick={() => selectTool(tool.id)}
                 className={`
-                  flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem]
+                  flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-lg
                   hover:border-red-100 shadow-sm active:scale-[0.98]
                   group relative overflow-hidden
                   ${idx % 7 === 0 ? 'lg:col-span-2 lg:row-span-1 bg-red-50' : ''}
@@ -1054,7 +1054,7 @@ function App() {
             ))}
 
             {filteredTools.length === 0 && (
-              <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white rounded-[3rem] border-2 border-dashed border-gray-200">
+              <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white rounded-xl border-2 border-dashed border-gray-200">
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-400">
                   <Search size={40} />
                 </div>
@@ -1069,7 +1069,7 @@ function App() {
         ) : (
           /* Tool Interface Wrapper */
           <div className="w-full max-w-2xl mx-auto">
-            <div className="bg-white rounded-[3rem] shadow-bento border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
               {/* Tool navigation can go here if needed */}
               {appState === AppState.SELECTING && renderToolInterface()}
 
@@ -1079,7 +1079,7 @@ function App() {
                   <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center animate-float">
                     <MapleLeaf className="w-12 h-12 text-white animate-pulse" />
                   </div>
-                  <h3 className="text-2xl font-[1000] text-modern-neutral-900 mt-8 lowercase italic tracking-tighter">{t.working}...</h3>
+                  <h3 className="text-2xl font-black text-gray-900 mt-8">{t.working}...</h3>
                 </div>
               )}
             </div>
@@ -1090,7 +1090,7 @@ function App() {
       {/* Trust & Features Bento */}
       {appState === AppState.HOME && (
         <div className="w-full max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="col-span-1 md:col-span-2 p-10 bg-gray-900 rounded-[3rem] text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="col-span-1 md:col-span-2 p-10 bg-gray-900 rounded-xl text-white flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full" />
             <div className="space-y-4 relative z-10">
               <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
@@ -1108,7 +1108,7 @@ function App() {
             </div>
           </div>
 
-          <div className="p-10 bg-white border border-gray-100 rounded-[3rem] shadow-sm flex flex-col justify-between group">
+          <div className="p-10 bg-white border border-gray-100 rounded-xl shadow-sm flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center border border-red-100">
                 <Heart className="text-canada-red fill-canada-red" size={24} />
@@ -1169,10 +1169,10 @@ function App() {
             {/* Processing Overlay within Workspace */}
             {appState === AppState.PROCESSING && (
               <div className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-8">
-                <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center animate-float">
+                <div className="w-24 h-24 bg-canada-red rounded-xl flex items-center justify-center animate-float">
                   <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
                 </div>
-                <h3 className="text-3xl font-[1000] text-modern-neutral-900 mt-10 lowercase italic tracking-tighter">{t.working}...</h3>
+                <h3 className="text-3xl font-black text-gray-900 mt-10">{t.working}...</h3>
                 <p className="text-modern-neutral-500 font-bold mt-2 opacity-60 uppercase tracking-[0.2em] text-[10px]">{t.workingDesc}</p>
               </div>
             )}
@@ -1302,7 +1302,7 @@ function App() {
           </div>
 
           <div className="w-full md:w-1/2 max-w-xl">
-            <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
 
               {/* Tool Upload Interface */}
               {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
@@ -1399,10 +1399,10 @@ function App() {
           {/* PROCESSING State in Full-Screen overlay */}
           {appState === AppState.PROCESSING && (
             <div className="absolute inset-0 bg-white/95 z-[110] flex flex-col items-center justify-center p-8">
-              <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center animate-float">
+              <div className="w-24 h-24 bg-canada-red rounded-xl flex items-center justify-center animate-float">
                 <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
               </div>
-              <h3 className="text-3xl font-[1000] text-modern-neutral-900 mt-10 lowercase italic tracking-tighter">{t.working}...</h3>
+              <h3 className="text-3xl font-black text-gray-900 mt-10">{t.working}...</h3>
             </div>
           )}
         </div>
