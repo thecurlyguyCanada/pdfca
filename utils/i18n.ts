@@ -846,7 +846,7 @@ export const translations = {
   fillableProTip: "Pro Tip: Use standard underscores for the best detection results.",
   fillableWhy: "Why use our tool?",
   fillableWhyText: "Most software that does this costs an arm and a leg. We do it for free, locally on your device, because that's the neighbourly thing to do."
-},
+  },
   fr: {
     builtIn: "Fait au Canada",
     title: "Outils PDF Polis",
