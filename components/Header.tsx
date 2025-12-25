@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         Skip to main content
       </a>
       <header
-        className="flex items-center justify-between px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-modern-glass/60 backdrop-blur-xl sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-2 sm:mx-4 md:mx-auto max-w-7xl rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header"
+        className="flex items-center justify-between px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-modern-glass/60 backdrop-blur-xl sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-2 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header"
         style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
       >
         <a
