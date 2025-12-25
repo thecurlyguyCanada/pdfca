@@ -180,10 +180,14 @@ export const reorderPdfPages = async (originalFile: File, newOrder: number[]): P
   const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const sourceDoc = await PDFDocument.load(arrayBuffer);
+
+  // Fallback to original order if newOrder is empty
+  const order = (newOrder && newOrder.length > 0) ? newOrder : sourceDoc.getPageIndices();
+
   const newDoc = await PDFDocument.create();
 
   // Copy pages in the new order
-  for (const pageIndex of newOrder) {
+  for (const pageIndex of order) {
     if (pageIndex >= 0 && pageIndex < sourceDoc.getPageCount()) {
       const [copiedPage] = await newDoc.copyPages(sourceDoc, [pageIndex]);
       newDoc.addPage(copiedPage);
@@ -959,6 +963,9 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
     let currentTable: any[] = [];
 
     // Heuristic: adjacent lines with multiple items and similar column breaks are likely tables
+    // Disabled for stability: formatting text paragraphs often triggers false positives.
+    // Future improvement: Use stricter column alignment checks.
+    /* 
     sortedYs.forEach((y, idx) => {
       const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
       if (rowItems.length > 1) {
@@ -969,6 +976,7 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
       }
     });
     if (currentTable.length > 1) tableBlocks.push(currentTable);
+    */
 
     // --- Compilation ---
     const pageElements: any[] = [];
@@ -1070,6 +1078,7 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
   const jsPDF = await getJsPdf();
   const arrayBuffer = await file.arrayBuffer();
 
+  // Configure mammoth to preserve images
   const result = await mammoth.convertToHtml({ arrayBuffer });
   const html = result.value;
 
@@ -1077,87 +1086,131 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 20;
-  const maxLineWidth = pageWidth - margin * 2;
   const lineHeight = 7;
 
   let y = margin;
+  let currentX = margin;
 
-  // Use a DOM parser for more robust HTML handling
   const container = document.createElement('div');
   container.innerHTML = html;
 
-  // Select primary content blocks
-  const blocks = container.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6');
-
-  blocks.forEach((block: any) => {
-    const tagName = block.tagName.toLowerCase();
-    const isHeading = tagName.startsWith('h');
-
-    // Set styles based on tag
-    if (isHeading) {
-      doc.setFont("helvetica", "bold");
-      const hLevel = parseInt(tagName.substring(1));
-      doc.setFontSize(22 - (hLevel * 2));
-    } else {
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-    }
-
-    let currentX = margin;
-
-    // Process child nodes to handle nested styling (<strong>, <em>, etc)
-    const processChildNodes = (parent: Node) => {
-      parent.childNodes.forEach((node: Node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const text = node.textContent || '';
-          const words = text.split(/(\s+)/);
-
-          words.forEach(word => {
-            if (!word) return;
-            const wordWidth = doc.getTextWidth(word);
-
-            if (currentX + wordWidth > pageWidth - margin && word.trim()) {
-              y += lineHeight;
-              currentX = margin;
-
-              if (y > pageHeight - margin) {
-                doc.addPage();
-                y = margin;
-              }
-            }
-
-            doc.text(word, currentX, y);
-            currentX += wordWidth;
-          });
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const el = node as HTMLElement;
-          const prevFont = doc.getFont().fontStyle;
-
-          // Apply styling
-          if (el.tagName === 'STRONG' || el.tagName === 'B') {
-            doc.setFont("helvetica", isHeading ? "bold" : (doc.getFont().fontStyle.includes('italic') ? "bolditalic" : "bold"));
-          } else if (el.tagName === 'EM' || el.tagName === 'I') {
-            doc.setFont("helvetica", doc.getFont().fontStyle.includes('bold') ? "bolditalic" : "italic");
-          }
-
-          processChildNodes(el);
-
-          // Restore styling
-          doc.setFont("helvetica", prevFont);
-        }
-      });
-    };
-
-    processChildNodes(block);
-
-    y += lineHeight * (isHeading ? 2 : 1.5); // Spacing
-    currentX = margin;
-
-    if (y > pageHeight - margin) {
+  // Helper to check page bounds
+  const checkPageBreak = (heightNeeded: number) => {
+    if (y + heightNeeded > pageHeight - margin) {
       doc.addPage();
       y = margin;
+      return true;
     }
-  });
+    return false;
+  };
+
+  const processNode = async (node: Node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent || '';
+      if (!text.trim() && text !== ' ') return;
+
+      const words = text.split(/(\s+)/);
+      for (const word of words) {
+        if (!word) continue;
+        const wordWidth = doc.getTextWidth(word);
+
+        if (currentX + wordWidth > pageWidth - margin && word.trim()) {
+          y += lineHeight;
+          currentX = margin;
+          checkPageBreak(lineHeight);
+        }
+
+        doc.text(word, currentX, y);
+        currentX += wordWidth;
+      }
+
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node as HTMLElement;
+      const tagName = el.tagName.toLowerCase();
+
+      const prevFont = doc.getFont();
+      const prevFontSize = doc.getFontSize();
+
+      // Handle Blocks
+      if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'li'].includes(tagName)) {
+        if (currentX > margin) { // Finish previous line
+          y += lineHeight * 1.5;
+          currentX = margin;
+        }
+        checkPageBreak(lineHeight);
+      }
+
+      // Styles
+      if (tagName.startsWith('h')) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(Math.max(12, 24 - (parseInt(tagName[1]) * 2)));
+        y += 4; // Extra space before heading
+      } else if (tagName === 'strong' || tagName === 'b') {
+        doc.setFont("helvetica", "bold");
+      } else if (tagName === 'em' || tagName === 'i') {
+        doc.setFont("helvetica", "italic");
+      }
+
+      // Lists
+      if (tagName === 'li') {
+        currentX = margin + 10;
+        doc.text('•', margin, y);
+      }
+
+      // Images
+      if (tagName === 'img') {
+        const src = (el as HTMLImageElement).src;
+        if (src && src.startsWith('data:image')) {
+          try {
+            // Create an image element to get dimensions
+            await new Promise<void>((resolve) => {
+              const img = new Image();
+              img.onload = () => {
+                let imgW = img.width * 0.264583; // px to mm approx (72dpi vs 96dpi)
+                let imgH = img.height * 0.264583;
+
+                // Constrain to page width
+                const maxWidth = pageWidth - (margin * 2);
+                if (imgW > maxWidth) {
+                  const ratio = maxWidth / imgW;
+                  imgW = maxWidth;
+                  imgH = imgH * ratio;
+                }
+
+                checkPageBreak(imgH + 10);
+                doc.addImage(src, 'JPEG', margin, y, imgW, imgH);
+                y += imgH + 10;
+                resolve();
+              };
+              img.onerror = () => resolve();
+              img.src = src;
+            });
+          } catch (e) { console.warn("Failed to add image", e); }
+        }
+      } else {
+        // Recurse for non-images
+        const childNodes = Array.from(el.childNodes);
+        for (const child of childNodes) {
+          await processNode(child);
+        }
+      }
+
+      // Restore Styles
+      doc.setFont(prevFont.fontName, prevFont.fontStyle);
+      doc.setFontSize(prevFontSize);
+
+      // Block spacing after
+      if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'li'].includes(tagName)) {
+        y += lineHeight * 0.5;
+      }
+    }
+  };
+
+  // Process all body children
+  const bodyNodes = Array.from(container.childNodes);
+  for (const node of bodyNodes) {
+    await processNode(node);
+  }
 
   return doc.output('blob');
 };
@@ -1193,6 +1246,9 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     canvas.width = viewport.width;
 
     await page.render({ canvasContext: context, viewport }).promise;
+
+    // Yield to main thread to avoid freezing UI on large documents
+    await new Promise(resolve => setTimeout(resolve, 0));
 
     // Convert to JPEG to keep file size reasonable
     const imageUri = canvas.toDataURL('image/jpeg', 0.85);
@@ -1309,6 +1365,9 @@ export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extr
     canvas.width = viewport.width;
 
     await page.render({ canvasContext: context, viewport }).promise;
+
+    // Yield to avoid freezing
+    await new Promise(resolve => setTimeout(resolve, 0));
 
     // Compress content to JPEG
     const imageUri = canvas.toDataURL('image/jpeg', quality);
