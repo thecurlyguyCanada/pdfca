@@ -36,23 +36,20 @@ export default defineConfig({
     target: 'esnext',
     // Generate source maps for error tracking but don't expose them publicly
     sourcemap: 'hidden',
-    // 2026 Performance Optimization: Aggressive minification
+    // Performance Optimization: Safe minification
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        passes: 2, // Run minification twice for better compression
-        pure_funcs: ['console.log', 'console.info', 'console.debug'], // Remove specific console calls
-        unsafe_arrows: true, // Convert functions to arrow functions
-        unsafe_methods: true, // Optimize method calls
-        unsafe_proto: true, // Optimize prototype access
+        passes: 1, // Safe single-pass minification
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
       },
       mangle: {
-        safari10: true, // Fix Safari 10 bugs
+        safari10: true,
       },
       format: {
-        comments: false, // Remove all comments
+        comments: false,
       },
     },
     // 2026 Enhancement: Better chunking and tree-shaking
@@ -146,12 +143,8 @@ export default defineConfig({
           constBindings: true, // Use const for bindings
         },
       },
-      // 2026 Enhancement: Tree-shaking optimization
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
-        tryCatchDeoptimization: false,
-      },
+      // Safe tree-shaking
+      treeshake: true,
     }
   },
   // 2026 Performance: Optimized dependency pre-bundling
