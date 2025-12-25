@@ -531,8 +531,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     const addEntry = (type: SignatureEntry['type'], dataUrl?: string, text?: string) => {
         vibrate(20);
         const id = `entry_${Date.now()}`;
-        // On desktop, add to currently active page
-        const targetPage = isMobile ? (visiblePages.size > 0 ? Math.min(...Array.from(visiblePages)) : 0) : activePage;
+        // Use activePage for all devices - it's updated by scrollToPage and IntersectionObserver
+        const targetPage = activePage;
 
         // Different sizes for different entry types
         const getSizeForType = () => {
