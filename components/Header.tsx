@@ -54,9 +54,8 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
           }}
           aria-label="pdfcanada.ca Home"
         >
-          <div className="w-12 h-12 bg-canada-red rounded-[1.25rem] flex items-center justify-center shadow-lg shadow-red-500/10 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/20" />
-            <MapleLeaf className="w-7 h-7 text-white relative z-10" />
+          <div className="w-12 h-12 bg-canada-red rounded-[1.25rem] flex items-center justify-center">
+            <MapleLeaf className="w-7 h-7 text-white" />
           </div>
           <span className="text-xl sm:text-2xl font-[1000] text-gray-900 tracking-tighter decoration-canada-red">
             pdfcanada<span className="text-canada-red">.ca</span>
