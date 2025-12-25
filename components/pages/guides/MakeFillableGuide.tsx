@@ -327,6 +327,18 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
                         </section>
                     )}
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment rendre un PDF remplissable gratuitement?" : "How do I make a PDF fillable for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez le créateur de formulaires PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez des champs de texte, cases à cocher et zones de signature, puis téléchargez votre formulaire interactif. Tout se fait localement sans aucun serveur."
+                            : "Use pdfcanada.ca's PDF form creator. Upload your PDF, drag and drop text fields, checkboxes, and signature areas, then download your interactive form. All processing happens locally - no servers involved."}
+                        toolName="PDF Form Creator"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier PDF", "Ajoutez des champs interactifs par glisser-déposer", "Téléchargez votre formulaire remplissable"]
+                            : ["Upload your PDF file", "Add interactive fields via drag-and-drop", "Download your fillable form"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/make-pdf-fillable" category="organize" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

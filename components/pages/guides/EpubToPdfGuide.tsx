@@ -339,6 +339,18 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </div>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment convertir un EPUB en PDF gratuitement?" : "How do I convert EPUB to PDF for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez le convertisseur EPUB en PDF de pdfcanada.ca. Sélectionnez votre fichier .epub, notre moteur WebAssembly le convertira localement dans votre navigateur, puis téléchargez le PDF. Vos livres ne quittent jamais votre appareil."
+                            : "Use pdfcanada.ca's EPUB to PDF converter. Select your .epub file, our WebAssembly engine converts it locally in your browser, then download the PDF. Your books never leave your device."}
+                        toolName="EPUB to PDF Converter"
+                        steps={lang === 'fr'
+                            ? ["Sélectionnez votre fichier EPUB", "Attendez le rendu local", "Téléchargez votre PDF"]
+                            : ["Select your EPUB file", "Wait for local rendering", "Download your PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/epub-to-pdf" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

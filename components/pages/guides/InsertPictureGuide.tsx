@@ -218,13 +218,7 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                     { name: lang === 'fr' ? 'Insérer une Image' : 'Insert Picture in PDF', path: lang === 'fr' ? '/fr/guides/insert-picture-in-pdf' : '/guides/insert-picture-in-pdf' }
                 ]}
             />
-            <AISnapshot
-                lang={lang}
-                question={quickAnswerData.question}
-                answer={quickAnswerData.answer}
-                steps={quickAnswerData.steps}
-                toolName={quickAnswerData.tool}
-            />
+
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<ImageIcon size={32} />}>
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
                     <section className="animate-fade-in">
@@ -289,6 +283,14 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                         </button>
                         <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <AISnapshot
+                        lang={lang}
+                        question={quickAnswerData.question}
+                        answer={quickAnswerData.answer}
+                        steps={quickAnswerData.steps}
+                        toolName={quickAnswerData.tool}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/insert-picture-in-pdf" category="edit" />
 

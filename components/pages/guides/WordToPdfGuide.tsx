@@ -199,6 +199,18 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                     </div>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment convertir Word en PDF gratuitement?" : "How do I convert Word to PDF for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez le convertisseur Word en PDF de pdfcanada.ca. Téléchargez votre fichier .docx, notre moteur le convertit localement dans votre navigateur, puis téléchargez votre PDF professionnel. Vos documents ne quittent jamais votre appareil - idéal pour les CV, factures et documents juridiques."
+                            : "Use pdfcanada.ca's Word to PDF converter. Upload your .docx file, our engine converts it locally in your browser, then download your professional PDF. Your documents never leave your device - ideal for resumes, invoices, and legal documents."}
+                        toolName="Word to PDF Converter"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier Word (.docx)", "Conversion locale automatique", "Téléchargez votre PDF"]
+                            : ["Upload your Word file (.docx)", "Automatic local conversion", "Download your PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/word-to-pdf" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

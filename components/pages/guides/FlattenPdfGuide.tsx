@@ -295,10 +295,14 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                     </section>
 
                     <AISnapshot
-                        question="How do I make a PDF non-editable?"
-                        answer="Flatten your PDF by converting pages to images. This prevents text selection and editing while preserving the visual appearance. Use a local-first flattening tool for maximum security."
-                        toolName="Flatten PDF"
-                        steps={["Upload your PDF", "Process pages as images", "Download secured file"]}
+                        question={lang === 'fr' ? "Comment rendre un PDF non modifiable?" : "How do I make a PDF non-editable?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil d'aplatissement de pdfcanada.ca. Il 'rastérise' chaque page en image, rendant le texte non sélectionnable et non modifiable. C'est plus sûr qu'un mot de passe car c'est irréversible. Tout se fait localement."
+                            : "Use pdfcanada.ca's flattening tool. It 'rasterizes' each page into an image, making text non-selectable and non-editable. This is safer than password protection because it's irreversible. All processing happens locally."}
+                        toolName="PDF Flattening Tool"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre PDF", "Le traitement automatique aplatit chaque page", "Téléchargez votre PDF protégé"]
+                            : ["Upload your PDF", "Automatic processing flattens each page", "Download your protected PDF"]}
                         lang={lang}
                     />
 

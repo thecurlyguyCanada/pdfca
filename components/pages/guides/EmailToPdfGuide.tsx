@@ -333,12 +333,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                     { name: 'Email to PDF', path: '/guides/email-to-pdf' }
                 ]}
             />
-            <AISnapshot
-                lang={lang}
-                question={quickAnswerData.question}
-                answer={quickAnswerData.answer}
-                steps={quickAnswerData.steps}
-            />
+
             <PageLayout
                 title={t.h1}
                 subtitle={t.subtitle}
@@ -414,6 +409,13 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                         <p className="mt-6 text-sm opacity-80 font-medium">{t.ctaSubtext}</p>
                     </div>
+
+                    <AISnapshot
+                        lang={lang}
+                        question={quickAnswerData.question}
+                        answer={quickAnswerData.answer}
+                        steps={quickAnswerData.steps}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/email-to-pdf" category="convert" />
 

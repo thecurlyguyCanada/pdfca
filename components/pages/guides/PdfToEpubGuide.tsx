@@ -405,6 +405,18 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </div>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment convertir un PDF en EPUB pour Kindle?" : "How do I convert PDF to EPUB for Kindle?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez le convertisseur PDF vers EPUB de pdfcanada.ca pour créer un fichier EPUB, puis utilisez le logiciel gratuit Calibre pour le convertir en format MOBI/AZW3 compatible Kindle. Vous pouvez aussi envoyer l'EPUB par courriel à votre Kindle. Tout le traitement initial se fait localement."
+                            : "Use pdfcanada.ca's PDF to EPUB converter to create an EPUB file, then use the free Calibre software to convert it to Kindle-compatible MOBI/AZW3 format. You can also email the EPUB to your Kindle. All initial processing happens locally."}
+                        toolName="PDF to EPUB Converter"
+                        steps={lang === 'fr'
+                            ? ["Choisissez votre fichier PDF", "Conversion locale automatique", "Téléchargez votre EPUB"]
+                            : ["Choose your PDF file", "Automatic local conversion", "Download your EPUB"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/pdf-to-epub" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

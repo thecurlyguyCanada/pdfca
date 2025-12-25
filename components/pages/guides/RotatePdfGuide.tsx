@@ -308,10 +308,14 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                     )}
 
                     <AISnapshot
-                        question="How do I rotate PDF pages permanently?"
-                        answer="Upload your PDF to a rotation tool, select pages to rotate, and save the changes. For maximum security, use a local-first tool that processes everything in your browser."
-                        toolName="Rotate PDF"
-                        steps={["Upload PDF", "Rotate pages visually", "Save permanently"]}
+                        question={lang === 'fr' ? "Comment faire pivoter un PDF de façon permanente?" : "How do I rotate a PDF permanently?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil de rotation PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les boutons de rotation des pages individuelles ou utilisez 'Tout pivoter', puis téléchargez. L'orientation est fixée définitivement dans le fichier, pas seulement dans l'affichage."
+                            : "Use pdfcanada.ca's Rotate PDF tool. Upload your PDF, click rotate buttons on individual pages or use 'Rotate All', then download. The orientation is fixed permanently in the file, not just in the view."}
+                        toolName="PDF Rotation Tool"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier PDF", "Pivotez les pages individuellement ou toutes", "Téléchargez le PDF corrigé"]
+                            : ["Upload your PDF file", "Rotate pages individually or all", "Download corrected PDF"]}
                         lang={lang}
                     />
 

@@ -213,6 +213,18 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </div>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment rogner un PDF gratuitement?" : "How do I crop a PDF for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
+                            : "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser."}
+                        toolName="PDF Crop Tool"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier PDF", "Définissez les marges de rognage", "Téléchargez votre PDF recadré"]
+                            : ["Upload your PDF file", "Set crop margins", "Download your cropped PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/crop-pdf" category="edit" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

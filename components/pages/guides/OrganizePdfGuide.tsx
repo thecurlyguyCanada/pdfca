@@ -282,6 +282,18 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                         </button>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment réorganiser les pages d'un PDF gratuitement?" : "How do I reorder PDF pages for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil d'organisation PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez les miniatures de pages pour les réarranger, puis téléchargez votre PDF réorganisé. Interface visuelle intuitive, traitement 100% local."
+                            : "Use pdfcanada.ca's Organize PDF tool. Upload your PDF, drag-and-drop page thumbnails to rearrange, then download your reordered PDF. Visual intuitive interface, 100% local processing."}
+                        toolName="PDF Page Organizer"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier PDF", "Glissez-déposez pour réorganiser les pages", "Téléchargez le PDF réorganisé"]
+                            : ["Upload your PDF file", "Drag-and-drop to reorder pages", "Download reordered PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/organize-pdf" category="organize" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

@@ -391,6 +391,18 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                     </div>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment convertir CBR en PDF gratuitement?" : "How do I convert CBR to PDF for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil gratuit CBR en PDF de pdfcanada.ca. Sélectionnez votre fichier CBR/CBZ, attendez l'extraction des images dans votre navigateur, puis téléchargez le PDF. Tout le traitement se fait localement - aucun téléchargement vers des serveurs requis."
+                            : "Use pdfcanada.ca's free CBR to PDF tool. Select your CBR/CBZ file, wait for image extraction in your browser, then download the PDF. All processing happens locally - no server uploads required."}
+                        toolName="CBR to PDF Converter"
+                        steps={lang === 'fr'
+                            ? ["Sélectionnez votre fichier CBR ou CBZ", "Attendez l'extraction des images", "Téléchargez votre PDF compilé"]
+                            : ["Select your CBR or CBZ file", "Wait for image extraction", "Download your compiled PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/cbr-to-pdf" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

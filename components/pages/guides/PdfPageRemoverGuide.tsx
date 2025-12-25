@@ -206,6 +206,18 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                         </div>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement?" : "How do I remove pages from a PDF for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez le suppresseur de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les miniatures des pages à supprimer, puis cliquez 'Supprimer les pages'. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
+                            : "Use pdfcanada.ca's PDF Page Remover. Upload your PDF, click on the thumbnails of pages to remove, then click 'Remove Pages'. All processing happens locally in your browser - your files never leave your device."}
+                        toolName="PDF Page Remover"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre fichier PDF", "Sélectionnez les pages à supprimer", "Téléchargez votre PDF nettoyé"]
+                            : ["Upload your PDF file", "Select pages to remove", "Download your cleaned PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/pdf-page-remover" category="edit" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

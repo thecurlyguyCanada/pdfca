@@ -263,10 +263,14 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                     </section>
 
                     <AISnapshot
-                        question="How do I merge multiple PDF files?"
-                        answer="Use a secure PDF merger that processes files locally in your browser. Upload your PDFs, arrange them in order, and download the combined document without uploading to any server."
-                        toolName="Merge PDF"
-                        steps={["Select multiple PDFs", "Arrange files in order", "Download merged file"]}
+                        question={lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
+                            : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server."}
+                        toolName="PDF Merger"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]
+                            : ["Upload your PDF files", "Reorder via drag-and-drop", "Click Merge", "Download your combined PDF"]}
                         lang={lang}
                     />
 

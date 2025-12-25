@@ -302,6 +302,18 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </div>
                     </section>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment éditer un PDF XFA?" : "How do I edit an XFA PDF?"}
+                        answer={lang === 'fr'
+                            ? "Les PDF XFA sont des formulaires dynamiques qui ne peuvent pas être édités directement. La solution: ouvrez le PDF dans Adobe Acrobat, faites Ctrl+P, sélectionnez 'Adobe PDF' comme imprimante, et imprimez. Cela 'aplatit' le formulaire en un PDF standard éditable."
+                            : "XFA PDFs are dynamic forms that can't be edited directly. The solution: open the PDF in Adobe Acrobat, press Ctrl+P, select 'Adobe PDF' as the printer, and print. This 'flattens' the form into a standard editable PDF."}
+                        toolName="PDF Flattening Tool"
+                        steps={lang === 'fr'
+                            ? ["Ouvrez dans Adobe Acrobat", "Faites Ctrl+P pour imprimer", "Sélectionnez 'Adobe PDF' comme imprimante", "Enregistrez le nouveau fichier aplati"]
+                            : ["Open in Adobe Acrobat", "Press Ctrl+P to print", "Select 'Adobe PDF' as printer", "Save the new flattened file"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/edit-xfa-pdf" category="edit" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

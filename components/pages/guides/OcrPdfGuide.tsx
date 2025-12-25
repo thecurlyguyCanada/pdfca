@@ -304,6 +304,18 @@ export const OcrPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         <p className="mt-4 text-sm text-gray-400 font-medium">{t.ctaSubtext}</p>
                     </div>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment rendre un PDF scanné consultable avec l'OCR?" : "How do I make a scanned PDF searchable with OCR?"}
+                        answer={lang === 'fr'
+                            ? "Utilisez l'outil OCR de pdfcanada.ca. Téléchargez votre PDF scanné, notre moteur Tesseract.js reconnaît le texte localement, puis téléchargez votre PDF consultable. Utilisez Ctrl+F pour chercher du texte. Tout se fait dans votre navigateur - vos documents sensibles ne quittent jamais votre appareil."
+                            : "Use pdfcanada.ca's OCR tool. Upload your scanned PDF, our Tesseract.js engine recognizes text locally, then download your searchable PDF. Use Ctrl+F to search text. All processing happens in your browser - your sensitive documents never leave your device."}
+                        toolName="PDF OCR Tool"
+                        steps={lang === 'fr'
+                            ? ["Téléchargez votre PDF scanné", "L'OCR s'exécute localement", "Téléchargez votre PDF consultable"]
+                            : ["Upload your scanned PDF", "OCR runs locally", "Download your searchable PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/ocr-pdf" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />

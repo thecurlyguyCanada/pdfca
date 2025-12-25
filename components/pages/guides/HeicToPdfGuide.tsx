@@ -246,6 +246,18 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                     </div>
 
+                    <AISnapshot
+                        question={lang === 'fr' ? "Comment convertir HEIC en PDF sur iPhone?" : "How do I convert HEIC to PDF on iPhone?"}
+                        answer={lang === 'fr'
+                            ? "Ouvrez Safari sur votre iPhone, allez sur pdfcanada.ca, sélectionnez vos photos HEIC depuis votre bibliothèque, et nous générerons un PDF automatiquement. Vous pouvez l'enregistrer dans Fichiers ou l'envoyer par email. Pas d'application requise."
+                            : "Open Safari on your iPhone, go to pdfcanada.ca, select your HEIC photos from your library, and we'll generate a PDF on the fly. You can save it to Files or send via email. No app needed."}
+                        toolName="HEIC to PDF Converter"
+                        steps={lang === 'fr'
+                            ? ["Sélectionnez vos photos HEIC", "Organisez les pages", "Téléchargez votre PDF"]
+                            : ["Select your HEIC photos", "Organize the pages", "Download your PDF"]}
+                        lang={lang}
+                    />
+
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/heic-to-pdf" category="convert" />
 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />
