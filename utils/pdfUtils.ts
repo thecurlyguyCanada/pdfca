@@ -767,7 +767,8 @@ export const extractTextWithOcr = async (
   // Create worker once - Updated for Tesseract.js v5+ API
   let worker: any;
   try {
-    worker = await (Tesseract as any).createWorker({
+    // In Tesseract.js v5+, createWorker is async and takes langs as first argument
+    worker = await (Tesseract as any).createWorker(langString || 'eng', 1, {
       logger: (m: any) => {
         // Internal progress can be logged here if needed
         if (m.status === 'recognizing text') {
@@ -775,8 +776,7 @@ export const extractTextWithOcr = async (
         }
       }
     });
-    await worker.loadLanguage(langString);
-    await worker.initialize(langString);
+    // With v5+ createWorker(langs), worker is already initialized
   } catch (err) {
     console.error("Failed to initialize Tesseract worker:", err);
     throw new Error("OCR initialization failed. Please check your internet connection.");
@@ -849,9 +849,7 @@ export const makeSearchablePdf = async (
 
   let worker: any;
   try {
-    worker = await (Tesseract as any).createWorker();
-    await worker.loadLanguage(langString);
-    await worker.initialize(langString);
+    worker = await (Tesseract as any).createWorker(langString || 'eng');
   } catch (err) {
     console.error("Failed to initialize Tesseract worker for searchable PDF:", err);
     throw new Error("OCR initialization failed.");

@@ -630,10 +630,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             triggerHaptic('medium'); // Haptic for primary action
                             onAction();
                         }}
-                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) && selectedPages.size === 0}
+                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER) && selectedPages.size === 0}
                         className={`
                   w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
-                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) && selectedPages.size === 0
+                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER) && selectedPages.size === 0
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
                                 : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
                             }
@@ -645,7 +645,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.FLATTEN && (t.btnFlatten || "Make Non-Editable")}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
-                        {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
+                        {currentTool === ToolType.OCR && (selectedPages.size === 0 ? (t.btnSearchablePdfAll || "Make Entire PDF Searchable") : (t.btnSearchablePdf || "Make Searchable PDF"))}
                         {currentTool === ToolType.SPLIT && (t.btnSplit || "Split PDF")}
                         {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
