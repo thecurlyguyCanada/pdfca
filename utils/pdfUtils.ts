@@ -53,13 +53,15 @@ const getHeic2Any = async () => {
 const getTesseract = async () => {
   try {
     const mod = await import('tesseract.js');
+    console.info('[Neural Engine] Module loaded. Keys:', Object.keys(mod));
+
     // Tesseract.js v5+ can have different export structures depending on bundler
     if (mod.default && (mod.default as any).createWorker) return mod.default;
     if ((mod as any).createWorker) return mod;
     return mod.default || mod;
   } catch (error) {
     console.error('Failed to load tesseract.js:', error);
-    throw new Error('ERR_LIB_LOAD_FAILED_TESSERACT');
+    throw new Error(`ERR_LIB_LOAD_FAILED_TESSERACT: ${error instanceof Error ? error.message : String(error)}`);
   }
 };
 
@@ -810,14 +812,24 @@ export const extractTextWithOcr = async (
   // Create and initialize special Neural worker
   let worker: any;
   try {
-    console.info(`[Neural Engine] Initializing for languages: ${langString}`);
-    // Tesseract.js v5-v7 initialization with diagnostic logger
-    worker = await Tesseract.createWorker(langString, 1, {
+    console.info(`[Neural Engine] Stage 1/3: Creating Worker...`);
+    // Using (langs, oem, config) signature to satisfy stubborn type definitions
+    worker = await (Tesseract as any).createWorker(langString, 1, {
       logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
     });
+
+    console.info(`[Neural Engine] Stage 2/3: Loading Languages (${langString})...`);
+    // Already loaded in createWorker above, but calling explicitly to verify stage
+    await worker.loadLanguage(langString);
+
+    console.info(`[Neural Engine] Stage 3/3: Initializing API...`);
+    await worker.initialize(langString);
+
+    console.info(`[Neural Engine] System ready for processing.`);
   } catch (err) {
     console.error("[Neural Engine] Critical startup failure:", err);
-    throw new Error(`OCR engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    const detail = err instanceof Error ? err.message : (typeof err === 'object' ? JSON.stringify(err) : String(err));
+    throw new Error(`OCR engine failed to start: ${detail}`);
   }
 
   let fullText = '';
@@ -917,14 +929,23 @@ export const makeSearchablePdf = async (
   // Create and initialize Searchable Layer worker
   let worker: any;
   try {
-    console.info(`[Neural Searchable] Initializing for languages: ${langString}`);
-    // Tesseract.js v5-v7 initialization with diagnostic logger
-    worker = await Tesseract.createWorker(langString, 1, {
+    console.info(`[Neural Searchable] Stage 1/3: Creating Worker...`);
+    // Using (langs, oem, config) signature to satisfy stubborn type definitions
+    worker = await (Tesseract as any).createWorker(langString, 1, {
       logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
     });
+
+    console.info(`[Neural Searchable] Stage 2/3: Loading Languages (${langString})...`);
+    await worker.loadLanguage(langString);
+
+    console.info(`[Neural Searchable] Stage 3/3: Initializing API...`);
+    await worker.initialize(langString);
+
+    console.info(`[Neural Searchable] System ready.`);
   } catch (err) {
     console.error("[Neural Searchable] Critical startup failure:", err);
-    throw new Error(`Searchable layer engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    const detail = err instanceof Error ? err.message : (typeof err === 'object' ? JSON.stringify(err) : String(err));
+    throw new Error(`Searchable layer engine failed to start: ${detail}`);
   }
 
   let processedCount = 0;
