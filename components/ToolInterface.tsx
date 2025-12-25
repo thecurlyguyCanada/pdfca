@@ -63,22 +63,28 @@ const SortableThumbnail: React.FC<{
 
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}
-            className={`relative cursor-grab active:cursor-grabbing touch-none ${isDragging ? 'scale-105 shadow-2xl' : ''}`}
+            className={`relative cursor-grab active:cursor-grabbing touch-none ${isDragging ? 'scale-105 shadow-2xl z-50' : 'z-1'}`}
         >
-            <div className="absolute -top-2 -left-2 z-10 w-7 h-7 bg-canada-red text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
+            <div className="absolute top-2 left-2 z-10 w-8 h-8 bg-canada-red text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg border-2 border-white">
                 {position}
             </div>
-            <div className="absolute top-1 right-1 z-10 p-1.5 bg-white/80 rounded-lg shadow-sm">
-                <GripVertical size={16} className="text-gray-400" />
+            {/* Enlarged Drag Handle for Mobile */}
+            <div className="absolute inset-0 z-20 md:hidden" role="button" aria-label="Drag to reorder" />
+
+            <div className="absolute top-2 right-2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 hidden md:flex cursor-grab active:cursor-grabbing">
+                <GripVertical size={18} className="text-gray-400" />
             </div>
-            <PdfPageThumbnail
-                pdfJsDoc={pdfJsDoc}
-                pageIndex={pageIndex}
-                isSelected={false}
-                onClick={() => { }}
-                mode="none"
-                width={width}
-            />
+
+            <div className="block active:scale-[0.98] transition-transform">
+                <PdfPageThumbnail
+                    pdfJsDoc={pdfJsDoc}
+                    pageIndex={pageIndex}
+                    isSelected={false}
+                    onClick={() => { }}
+                    mode="none"
+                    width={width}
+                />
+            </div>
         </div>
     );
 };
@@ -519,9 +525,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handlePageDragEnd}>
                             <SortableContext items={pageOrder.map(p => `page-${p}`)} strategy={rectSortingStrategy}>
                                 <div
-                                    className={`grid gap-4 md:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : ''}`}
+                                    className={`grid gap-4 md:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : 'p-4 pb-20'}`}
                                     style={{
-                                        gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom)}px, 1fr))`
+                                        gridTemplateColumns: `repeat(auto-fill, minmax(${isDesktop ? Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom) : 140}px, 1fr))`
                                     }}
                                 >
                                     {pageOrder.map((pageIdx, position) => (
