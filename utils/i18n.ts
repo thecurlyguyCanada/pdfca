@@ -776,12 +776,12 @@ export const translations = {
 
     // Errors
     errorTitle: "Oh snap!",
-    genericError: "Something went wrong. Sorry!",
+    genericError: "Something went wrong. Technical Details: {detail}",
     fileTypeErr: "Sorry about that, but we don't accept that file type, eh?",
     readErr: "Sorry, we couldn't read that file. It might be corrupted.",
     passwordErr: "This PDF is password protected. Please unlock it first, eh.",
     corruptPdfErr: "The PDF file appears to be corrupt or invalid.",
-    conversionErr: "Failed to convert the file. It might be too complex or damaged.",
+    conversionErr: "Oh snap! Failed to convert the file. It might be too complex or damaged. Eh?\n\nTechnical Details: {detail}",
     emptyEpubErr: "Could not extract text from this EPUB.",
 
     // Nav

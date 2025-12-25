@@ -51,8 +51,16 @@ const getHeic2Any = async () => {
 
 // Lazy load Tesseract.js for OCR
 const getTesseract = async () => {
-  const mod = await import('tesseract.js');
-  return mod.default || mod;
+  try {
+    const mod = await import('tesseract.js');
+    // Tesseract.js v5+ can have different export structures depending on bundler
+    if (mod.default && (mod.default as any).createWorker) return mod.default;
+    if ((mod as any).createWorker) return mod;
+    return mod.default || mod;
+  } catch (error) {
+    console.error('Failed to load tesseract.js:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_TESSERACT');
+  }
 };
 
 // Lazy load docx
@@ -797,21 +805,15 @@ export const extractTextWithOcr = async (
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  // Stable worker initialization for Tesseract.js v7+
-  const TesseractMod: any = Tesseract;
-  const createWorker = TesseractMod.createWorker || (TesseractMod.default && TesseractMod.default.createWorker);
-
-  if (!createWorker) {
-    throw new Error("OCR library engine initialization failed.");
-  }
-
+  // Create and initialize special Neural worker
   let worker: any;
   try {
-    console.info(`[OCR] Initializing worker for languages: ${langString}`);
-    worker = await createWorker(langString, 1);
+    console.info(`[Neural Engine] Initializing for languages: ${langString}`);
+    // Tesseract.js v5-v7 initialization
+    worker = await Tesseract.createWorker(langString, 1);
   } catch (err) {
-    console.error("[OCR] Neural engine failed to start:", err);
-    throw new Error("OCR engine failed to start.");
+    console.error("[Neural Engine] Critical startup failure:", err);
+    throw new Error(`OCR engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 
   let fullText = '';
@@ -905,21 +907,15 @@ export const makeSearchablePdf = async (
     ? pageIndices
     : Array.from({ length: pdf.numPages }, (_, i) => i);
 
-  // Stable worker initialization for Tesseract.js v7+
-  const TesseractMod: any = Tesseract;
-  const createWorker = TesseractMod.createWorker || (TesseractMod.default && TesseractMod.default.createWorker);
-
-  if (!createWorker) {
-    throw new Error("Searchable layer engine failed to initialize.");
-  }
-
+  // Create and initialize Searchable Layer worker
   let worker: any;
   try {
-    console.info(`[OCR-Searchable] Initializing worker for: ${langString}`);
-    worker = await createWorker(langString, 1);
+    console.info(`[Neural Searchable] Initializing for languages: ${langString}`);
+    // Tesseract.js v5-v7 initialization
+    worker = await Tesseract.createWorker(langString, 1);
   } catch (err) {
-    console.error("[OCR-Searchable] Workers failed to start:", err);
-    throw new Error("Searchable layer creation engine failed.");
+    console.error("[Neural Searchable] Critical startup failure:", err);
+    throw new Error(`Searchable layer engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 
   let processedCount = 0;

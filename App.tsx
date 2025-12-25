@@ -754,7 +754,6 @@ function App() {
         setErrorKey('passwordErr');
       } else if (errMsg.includes('no images found') || errMsg.includes('could not process')) {
         setErrorKey('conversionErr');
-      } else {
         if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
           currentTool === ToolType.CBR_TO_PDF || currentTool === ToolType.WORD_TO_PDF ||
           currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.OCR) {
@@ -764,6 +763,8 @@ function App() {
         }
       }
       setAppState(AppState.ERROR);
+      // Capture the actual error message for the UI to display if possible
+      (window as any).__lastActionError = error?.message || String(error);
     }
   };
 
@@ -942,6 +943,7 @@ function App() {
           onAction={handleAction}
           onSoftReset={handleSoftReset}
           togglePageSelection={togglePageSelection}
+          setSelectedPages={setSelectedPages}
           rotateAll={rotateAll}
           resetRotations={resetRotations}
           setPreviewZoom={setPreviewZoom}
@@ -1197,8 +1199,9 @@ function App() {
                   <AlertCircle size={32} />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{t.errorTitle}</h3>
-                <p className="text-gray-500 mb-8 max-w-lg">
-                  {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
+                <p className="text-gray-500 mb-8 max-w-lg whitespace-pre-wrap">
+                  {((errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : (t.genericError as string))
+                    .replace('{detail}', (window as any).__lastActionError || 'Unknown technical failure')}
                 </p>
                 <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
                   {t.backToHome}

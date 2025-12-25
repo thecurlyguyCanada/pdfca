@@ -34,6 +34,7 @@ interface ToolInterfaceProps {
     onAction: (processedBlob?: Blob | Uint8Array) => void;
     onSoftReset: () => void;
     togglePageSelection: (e: any, idx: number) => void;
+    setSelectedPages: React.Dispatch<React.SetStateAction<Set<number>>>;
     rotateAll: (direction: 'left' | 'right') => void;
     resetRotations: () => void;
     setPreviewZoom: React.Dispatch<React.SetStateAction<number>>;
@@ -149,7 +150,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     setPageRangeInput,
     handleRangeInputChange,
     compressionLevel,
-    setCompressionLevel
+    setCompressionLevel,
+    setSelectedPages,
 }) => {
     // dnd-kit sensors for drag and drop
     const sensors = useSensors(
@@ -450,7 +452,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                         pageCount={pageCount}
                                         t={t}
                                         selectedPages={selectedPages}
-                                        setSelectedPages={() => { }}
+                                        setSelectedPages={setSelectedPages}
                                         isMobile={!isDesktop}
                                         onClose={onSoftReset}
                                         onOcr={(mode: 'searchable' | 'text', langs: string[]) => {
