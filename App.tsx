@@ -958,7 +958,7 @@ function App() {
   );
 
   const renderHome = () => (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-24 flex flex-col items-center gap-16 md:gap-24 animate-fade-in relative z-10">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-24 flex flex-col items-center gap-16 md:gap-24 relative z-10">
 
       {/* Hero Section - Premium 2026 Typography */}
       <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
@@ -985,8 +985,8 @@ function App() {
 
         {/* Search Bar - Minimalist Glass */}
         <div className="w-full max-w-2xl mx-auto relative group pt-4">
-          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento group-focus-within:shadow-bento-hover p-2 transition-all group-focus-within:ring-8 group-focus-within:ring-red-500/5">
-            <div className="pl-6 text-modern-neutral-400 group-focus-within:text-canada-red transition-colors">
+          <div className="relative flex items-center bg-white border border-gray-200/60 rounded-[2rem] shadow-bento group-focus-within:shadow-bento-hover p-2 group-focus-within:ring-8 group-focus-within:ring-red-500/5">
+            <div className="pl-6 text-modern-neutral-400 group-focus-within:text-canada-red">
               <Search size={22} strokeWidth={2.5} />
             </div>
             <input
@@ -999,7 +999,7 @@ function App() {
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="p-3 mr-2 bg-gray-50 hover:bg-red-50 text-modern-neutral-400 hover:text-canada-red rounded-full transition-all"
+                className="p-3 mr-2 bg-gray-50 hover:bg-red-50 text-modern-neutral-400 hover:text-canada-red rounded-full"
               >
                 <X size={18} strokeWidth={3} />
               </button>
@@ -1046,8 +1046,8 @@ function App() {
                 </div>
 
                 <div className="relative z-10 w-full">
-                  <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
-                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2 md:line-clamp-none">
+                  <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red">{tool.title}</h3>
+                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 line-clamp-2 md:line-clamp-none">
                     {tool.desc}
                   </p>
                 </div>
@@ -1067,20 +1067,20 @@ function App() {
                   <h3 className="text-2xl font-black text-modern-neutral-800 lowercase">{lang === 'en' ? 'No tools found...' : 'Aucun outil trouvé...'}</h3>
                   <p className="text-modern-neutral-600 font-medium">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
                 </div>
-                <button onClick={() => setSearchTerm('')} className="bg-modern-neutral-800 text-white px-8 py-3 rounded-full font-bold hover:bg-black transition-all active:scale-95">Clear Search</button>
+                <button onClick={() => setSearchTerm('')} className="bg-modern-neutral-800 text-white px-8 py-3 rounded-full font-bold hover:bg-black active:scale-95">Clear Search</button>
               </div>
             )}
           </div>
         ) : (
           /* Tool Interface Wrapper */
           <div className="w-full max-w-2xl mx-auto">
-            <div className="bg-white rounded-[3rem] shadow-bento border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col animate-slide-up">
+            <div className="bg-white rounded-[3rem] shadow-bento border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
               {/* Tool navigation can go here if needed */}
               {appState === AppState.SELECTING && renderToolInterface()}
 
               {/* Rendering Logic remains similarly structured */}
               {appState === AppState.PROCESSING && (
-                <div className="absolute inset-0 bg-white/95 z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
+                <div className="absolute inset-0 bg-white/95 z-30 flex flex-col items-center justify-center p-8">
                   <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                     <MapleLeaf className="w-12 h-12 text-white animate-pulse" />
                   </div>
@@ -1164,7 +1164,7 @@ function App() {
 
     if (isActiveWorkspace) {
       return (
-        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 animate-fade-in min-h-[calc(100vh-80px)] flex flex-col">
+        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 min-h-[calc(100vh-80px)] flex flex-col">
           <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden flex-1 flex flex-col relative min-h-[600px]">
             {/* Render Tool Interface directly here, full size */}
             {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
@@ -1173,7 +1173,7 @@ function App() {
 
             {/* Processing Overlay within Workspace */}
             {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-8 animate-fade-in">
+              <div className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-8">
                 <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                   <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
                 </div>
@@ -1184,7 +1184,7 @@ function App() {
 
             {/* Error State within Workspace */}
             {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in z-50 bg-white">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative z-50 bg-white">
                 <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
                   <AlertCircle size={32} />
                 </div>
@@ -1192,7 +1192,7 @@ function App() {
                 <p className="text-gray-500 mb-8 max-w-lg">
                   {(errorKey && typeof t[errorKey] === 'string') ? (t[errorKey] as string) : t.genericError}
                 </p>
-                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold transition-all active:scale-95 min-h-[48px]">
+                <button onClick={handleReset} className="bg-gray-800 hover:bg-black active:bg-black text-white px-8 py-3 rounded-full font-bold active:scale-95 min-h-[48px]">
                   {t.backToHome}
                 </button>
               </div>
@@ -1200,7 +1200,7 @@ function App() {
 
             {/* Done State within Workspace */}
             {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in z-50">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white z-50">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                   <CheckCircle2 size={40} />
                 </div>
@@ -1232,10 +1232,10 @@ function App() {
 
                 <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
                 <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-95 min-h-[48px]">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 active:scale-95 min-h-[48px]">
                     <Download size={20} /> {t.download}
                   </a>
-                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium transition-colors active:scale-95 min-h-[48px]">
+                  <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium active:scale-95 min-h-[48px]">
                     {t.doAnother}
                   </button>
                 </div>
@@ -1264,7 +1264,7 @@ function App() {
 
     return (
       <div className="flex flex-col w-full">
-        <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl animate-fade-in">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto px-6 py-12 md:py-20 gap-12 max-w-7xl">
           <SEO
             title={content.title}
             description={content.desc}
@@ -1287,7 +1287,7 @@ function App() {
           <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
             <button
               onClick={() => handleNavigation('HOME')}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 transition-all min-h-[44px]"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 min-h-[44px]"
             >
               <ArrowLeft size={12} />
               {t.backToHome}
@@ -1307,7 +1307,7 @@ function App() {
           </div>
 
           <div className="w-full md:w-1/2 max-w-xl">
-            <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-300">
+            <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
 
               {/* Tool Upload Interface */}
               {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
@@ -1339,7 +1339,7 @@ function App() {
 
       {/* Dynamic Mesh Background - Fixed for whole page */}
       <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-mesh-gradient animate-mesh bg-[length:200%_200%] opacity-60" />
+        <div className="absolute inset-0 bg-mesh-gradient opacity-40" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
 
         {/* Decorative Floating Orbs - Removed for performance */}
@@ -1407,7 +1407,7 @@ function App() {
 
           {/* PROCESSING State in Full-Screen overlay */}
           {appState === AppState.PROCESSING && (
-            <div className="absolute inset-0 bg-white/95 z-[110] flex flex-col items-center justify-center p-8 animate-fade-in">
+            <div className="absolute inset-0 bg-white/95 z-[110] flex flex-col items-center justify-center p-8">
               <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                 <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
               </div>
