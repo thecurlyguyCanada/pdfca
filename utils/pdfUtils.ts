@@ -813,15 +813,19 @@ export const extractTextWithOcr = async (
   let worker: any;
   try {
     console.info(`[Neural Engine] Stage 1/3: Creating Worker...`);
-    // Using local assets to prevent CDN blocking and ensure 100% local-first reliability
-    worker = await (Tesseract as any).createWorker(langString, 1, {
+    // v5+ signature: first argument is the options object
+    worker = await (Tesseract as any).createWorker({
       workerPath: '/tesseract/worker.min.js',
       corePath: '/tesseract/tesseract-core.wasm.js',
       logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
     });
 
+    if (!worker || typeof worker.loadLanguage !== 'function') {
+      const keys = worker ? Object.keys(worker) : 'null';
+      throw new Error(`Worker created but loadLanguage missing. Keys: ${keys}`);
+    }
+
     console.info(`[Neural Engine] Stage 2/3: Loading Languages (${langString})...`);
-    // Already loaded in createWorker above, but calling explicitly to verify stage
     await worker.loadLanguage(langString);
 
     console.info(`[Neural Engine] Stage 3/3: Initializing API...`);
@@ -932,12 +936,17 @@ export const makeSearchablePdf = async (
   let worker: any;
   try {
     console.info(`[Neural Searchable] Stage 1/3: Creating Worker...`);
-    // Local-first pathing for Searchable Layer generation
-    worker = await (Tesseract as any).createWorker(langString, 1, {
+    // v5+ signature: first argument is the options object
+    worker = await (Tesseract as any).createWorker({
       workerPath: '/tesseract/worker.min.js',
       corePath: '/tesseract/tesseract-core.wasm.js',
       logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
     });
+
+    if (!worker || typeof worker.loadLanguage !== 'function') {
+      const keys = worker ? Object.keys(worker) : 'null';
+      throw new Error(`Worker created but loadLanguage missing. Keys: ${keys}`);
+    }
 
     console.info(`[Neural Searchable] Stage 2/3: Loading Languages (${langString})...`);
     await worker.loadLanguage(langString);
