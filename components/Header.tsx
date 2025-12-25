@@ -65,19 +65,19 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
         {/* Desktop Nav - High End */}
         <nav className="hidden lg:flex gap-1 items-center bg-gray-100/50 p-1 rounded-full border border-gray-200/50 backdrop-blur-sm">
-          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
+          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
+          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'About' : 'À Propos'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
+          <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {t.navHowTo}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
-          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
+          <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {t.navSupport}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
           </a>
