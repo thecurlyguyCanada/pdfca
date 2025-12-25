@@ -14,15 +14,16 @@ const FooterSection = ({ title, children }: { title: string, children: React.Rea
    const [isOpen, setIsOpen] = useState(false);
 
    return (
-      <div className="border-b border-gray-200 dark:border-gray-800 md:border-none last:border-none">
+      <div className="border-b border-modern-neutral-800 md:border-none last:border-none">
          <button
             onClick={() => {
                setIsOpen(!isOpen);
                triggerHaptic('light');
             }}
-            className="flex items-center justify-between w-full py-4 md:py-0 md:mb-4 md:cursor-default md:pointer-events-none group"
+            className="flex items-center justify-between w-full py-4 md:py-0 md:mb-6 md:cursor-default md:pointer-events-none group"
+            aria-expanded={isOpen}
          >
-            <p className="font-bold text-white group-active:text-canada-red transition-colors">{title}</p>
+            <p className="font-bold text-white group-active:text-canada-red transition-colors text-base md:text-sm md:text-modern-neutral-500 md:uppercase md:tracking-widest">{title}</p>
             <ChevronDown className={`w-5 h-5 text-modern-neutral-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
          </button>
          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0 md:max-h-full md:opacity-100 md:mb-0'} md:block`}>
