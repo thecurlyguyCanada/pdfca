@@ -27,9 +27,9 @@
   X-XSS-Protection: 1; mode=block
 
   # Cross-Origin Policies (2026 Enhancement)
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
-  Cross-Origin-Resource-Policy: same-origin
+  # Note: COEP removed - breaks Google Fonts and external resources
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Cross-Origin-Resource-Policy: cross-origin
 
   # Additional Security Headers
   X-Permitted-Cross-Domain-Policies: none
