@@ -626,8 +626,7 @@ export const translations = {
         tool: "Excel to PDF",
         steps: ["Select Excel file", "Generate professional PDF", "Download your file"]
       }
-    }
-  },
+    },
 
 
   // Tools
