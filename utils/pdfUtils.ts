@@ -792,8 +792,10 @@ export const extractTextWithOcr = async (
   const Tesseract = await getTesseract();
 
   const arrayBuffer = await file.arrayBuffer();
+  // We clone the buffer to prevent PDF.js from detaching it
+  const pdfBuffer = arrayBuffer.slice(0);
   const pdf = await pdfjs.getDocument({
-    data: new Uint8Array(arrayBuffer),
+    data: new Uint8Array(pdfBuffer),
     cMapUrl: '/cmaps/',
     cMapPacked: true,
     standardFontDataUrl: '/standard_fonts/',
@@ -809,8 +811,10 @@ export const extractTextWithOcr = async (
   let worker: any;
   try {
     console.info(`[Neural Engine] Initializing for languages: ${langString}`);
-    // Tesseract.js v5-v7 initialization
-    worker = await Tesseract.createWorker(langString, 1);
+    // Tesseract.js v5-v7 initialization with diagnostic logger
+    worker = await Tesseract.createWorker(langString, 1, {
+      logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
+    });
   } catch (err) {
     console.error("[Neural Engine] Critical startup failure:", err);
     throw new Error(`OCR engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
@@ -883,10 +887,13 @@ export const makeSearchablePdf = async (
   const Tesseract = await getTesseract();
 
   const arrayBuffer = await file.arrayBuffer();
+  // We use a Uint8Array wrapper for PDF.js and clone it to preserve the original for pdf-lib
+  const baseData = new Uint8Array(arrayBuffer);
+  const pdfjsData = baseData.slice(0);
 
   // Robust PDF.js loading
   const pdf = await pdfjs.getDocument({
-    data: new Uint8Array(arrayBuffer),
+    data: pdfjsData,
     cMapUrl: '/cmaps/',
     cMapPacked: true,
     standardFontDataUrl: '/standard_fonts/',
@@ -911,8 +918,10 @@ export const makeSearchablePdf = async (
   let worker: any;
   try {
     console.info(`[Neural Searchable] Initializing for languages: ${langString}`);
-    // Tesseract.js v5-v7 initialization
-    worker = await Tesseract.createWorker(langString, 1);
+    // Tesseract.js v5-v7 initialization with diagnostic logger
+    worker = await Tesseract.createWorker(langString, 1, {
+      logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
+    });
   } catch (err) {
     console.error("[Neural Searchable] Critical startup failure:", err);
     throw new Error(`Searchable layer engine failed to start: ${err instanceof Error ? err.message : 'Unknown error'}`);
