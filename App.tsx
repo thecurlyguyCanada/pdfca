@@ -1018,7 +1018,7 @@ function App() {
               {searchTerm ? (lang === 'en' ? 'Results' : 'Résultats') : (lang === 'en' ? 'Quick Access' : 'Accès Rapide')}
             </h2>
           </div>
-          <div className="hidden sm:flex items-center gap-2 text-[10px] font-black tracking-widest text-modern-neutral-400 uppercase bg-gray-100/80 px-4 py-2 rounded-full border border-gray-200/50">
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-black tracking-widest text-gray-700 uppercase bg-gray-100/80 px-4 py-2 rounded-full border border-gray-200/50">
             <Zap size={14} className="text-yellow-500" />
             {filteredTools.length} {lang === 'en' ? 'Tools available' : 'Outils disponibles'}
           </div>
