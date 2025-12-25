@@ -273,15 +273,17 @@ export const SEO: React.FC<SEOProps> = ({
         "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free",
         "softwareRequirements": "Modern Web Browser",
         "screenshot": "https://www.pdfcanada.ca/og-image.png",
-        "author": {
-          "@type": "Organization",
-          "name": "pdfcanada.ca",
-          "url": "https://www.pdfcanada.ca"
+        "author": author ? {
+          "@type": author.type || "Person",
+          "name": author.name,
+          "url": author.url ? (author.url.startsWith('http') ? author.url : `https://www.pdfcanada.ca${author.url}`) : undefined
+        } : {
+          "@id": "https://www.pdfcanada.ca/#organization"
         }
       });
     }
 
-    // WebPage schema with Speakable for voice search (2025 SEO)
+    // WebPage schema with Speakable for voice search (2025/2026 SEO)
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -293,9 +295,14 @@ export const SEO: React.FC<SEOProps> = ({
       "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
       ...(datePublished && { "datePublished": datePublished }),
       ...(dateModified && { "dateModified": dateModified }),
+      "author": author ? {
+        "@type": author.type || "Person",
+        "name": author.name,
+        "url": author.url ? (author.url.startsWith('http') ? author.url : `https://www.pdfcanada.ca${author.url}`) : undefined
+      } : { "@id": "https://www.pdfcanada.ca/#organization" },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": [".hero-title", ".hero-desc", "h1", "h2"]
+        "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2"]
       }
     });
 

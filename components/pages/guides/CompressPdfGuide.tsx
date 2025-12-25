@@ -1,11 +1,12 @@
 
 import React from 'react';
 import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { translations, Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
+import { AISnapshot } from '../../AISnapshot';
 
 interface GuideProps {
     lang: Language;
@@ -152,33 +153,27 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 });
 
 export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
-    const guideContent = getGuideContent(onNavigate);
-    const t = guideContent[lang] || guideContent.en;
+    const content = getGuideContent(onNavigate)[lang];
+    const qa = translations[lang].features.compress.quickAnswer;
+    const t = content;
 
     return (
-        <>
+        <div className="max-w-4xl mx-auto px-4 py-12">
             <SEO
-                title={t.seo.title}
-                description={t.seo.desc}
-                canonicalPath="/guides/compress-pdf"
-                faqs={t.faq}
+                title={content.seo.title}
+                description={content.seo.desc}
+                canonicalPath={lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf'}
                 lang={lang}
-                datePublished="2024-03-01"
-                dateModified="2025-12-24"
-                quickAnswer={{
-                    question: lang === 'fr' ? "Comment compresser un PDF gratuitement sans perte de qualité?" : "How do I compress a PDF for free without losing quality?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil Compresser PDF de pdfcanada.ca. Choisissez le niveau 'Bon' pour une compression sans perte qui préserve le texte sélectionnable, 'Équilibré' pour un bon compromis, ou 'Extrême' pour une compression maximale. Tout se fait dans votre navigateur."
-                        : "Use pdfcanada.ca's Compress PDF tool. Choose 'Good' level for lossless compression that preserves selectable text, 'Balanced' for a good tradeoff, or 'Extreme' for maximum compression. All processing happens in your browser.",
-                    tool: "PDF Compressor",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier PDF", "Sélectionnez le niveau de compression (Bon/Équilibré/Extrême)", "Téléchargez votre PDF optimisé"]
-                        : ["Upload your PDF file", "Select compression level (Good/Balanced/Extreme)", "Download your optimized PDF"]
+                author={{
+                    name: "pdfcanada.ca Team",
+                    url: "https://www.pdfcanada.ca/about"
                 }}
+                quickAnswer={qa}
+                faqs={t.faq.map(f => ({ q: f.q, a: f.a }))}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' }
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
+                    { name: 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>
@@ -188,6 +183,15 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                             {t.intro}
                         </div>
                     </section>
+
+                    {qa && (
+                        <AISnapshot
+                            lang={lang}
+                            question={qa.question}
+                            answer={qa.answer}
+                            steps={qa.steps}
+                        />
+                    )}
 
                     {t.sections.map((section: any, idx: number) => (
                         <section key={section.id} id={section.id} className="scroll-mt-24 animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
@@ -251,6 +255,6 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                     <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
-        </>
+        </div>
     );
 };
