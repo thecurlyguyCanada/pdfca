@@ -973,7 +973,7 @@ function App() {
               <span key={i} className="inline-block mr-[0.2em] last:mr-0">{word}</span>
             ))}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-canada-red to-[#FF4D4D] drop-shadow-sm inline-block mt-2">
+            <span className="text-canada-red inline-block mt-2">
               {t.subtitle}
             </span>
           </h1>
@@ -1033,7 +1033,7 @@ function App() {
                   flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem]
                   hover:border-red-100 shadow-sm active:scale-[0.98]
                   group relative overflow-hidden
-                  ${idx % 7 === 0 ? 'lg:col-span-2 lg:row-span-1 bg-gradient-to-br from-white to-red-50/30' : ''}
+                  ${idx % 7 === 0 ? 'lg:col-span-2 lg:row-span-1 bg-red-50' : ''}
                 `}
               >
 
@@ -1054,7 +1054,7 @@ function App() {
             ))}
 
             {filteredTools.length === 0 && (
-              <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white rounded-[3rem] border-2 border-dashed border-gray-200 shadow-glass">
+              <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white rounded-[3rem] border-2 border-dashed border-gray-200">
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-400">
                   <Search size={40} />
                 </div>
@@ -1076,7 +1076,7 @@ function App() {
               {/* Rendering Logic remains similarly structured */}
               {appState === AppState.PROCESSING && (
                 <div className="absolute inset-0 bg-white/95 z-30 flex flex-col items-center justify-center p-8">
-                  <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
+                  <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center animate-float">
                     <MapleLeaf className="w-12 h-12 text-white animate-pulse" />
                   </div>
                   <h3 className="text-2xl font-[1000] text-modern-neutral-900 mt-8 lowercase italic tracking-tighter">{t.working}...</h3>
@@ -1090,8 +1090,8 @@ function App() {
       {/* Trust & Features Bento */}
       {appState === AppState.HOME && (
         <div className="w-full max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="col-span-1 md:col-span-2 p-10 bg-gradient-to-br from-modern-neutral-900 to-modern-neutral-800 rounded-[3rem] text-white flex flex-col justify-between relative overflow-hidden group shadow-2xl shadow-modern-neutral-900/10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-canada-red/10 rounded-full" />
+          <div className="col-span-1 md:col-span-2 p-10 bg-gray-900 rounded-[3rem] text-white flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full" />
             <div className="space-y-4 relative z-10">
               <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
                 <Shield className="text-red-400" size={24} />
@@ -1160,7 +1160,7 @@ function App() {
     if (isActiveWorkspace) {
       return (
         <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 min-h-[calc(100vh-80px)] flex flex-col">
-          <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden flex-1 flex flex-col relative min-h-[600px]">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex-1 flex flex-col relative min-h-[600px]">
             {/* Render Tool Interface directly here, full size */}
             {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
               renderToolInterface()
@@ -1169,7 +1169,7 @@ function App() {
             {/* Processing Overlay within Workspace */}
             {appState === AppState.PROCESSING && (
               <div className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-8">
-                <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
+                <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center animate-float">
                   <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
                 </div>
                 <h3 className="text-3xl font-[1000] text-modern-neutral-900 mt-10 lowercase italic tracking-tighter">{t.working}...</h3>
@@ -1195,7 +1195,7 @@ function App() {
 
             {/* Done State within Workspace */}
             {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white z-50">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-white z-50">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                   <CheckCircle2 size={40} />
                 </div>
@@ -1227,7 +1227,7 @@ function App() {
 
                 <p className="text-gray-500 mb-8 max-w-xs">{t.doneDesc}</p>
                 <div className="space-y-3 w-full max-w-xs">
-                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-red-500/30 active:scale-95 min-h-[48px]">
+                  <a href={downloadUrl} download={downloadName} className="flex items-center justify-center gap-2 w-full bg-canada-red hover:bg-canada-darkRed active:bg-canada-darkRed text-white px-6 py-3 rounded-full font-bold active:scale-95 min-h-[48px]">
                     <Download size={20} /> {t.download}
                   </a>
                   <button onClick={handleReset} className="w-full bg-white border border-gray-200 hover:bg-gray-50 active:bg-gray-100 text-gray-600 px-6 py-3 rounded-full font-medium active:scale-95 min-h-[48px]">
@@ -1302,7 +1302,7 @@ function App() {
           </div>
 
           <div className="w-full md:w-1/2 max-w-xl">
-            <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
+            <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
 
               {/* Tool Upload Interface */}
               {(appState === AppState.SELECTING || appState === AppState.PROCESSING) && (
@@ -1332,12 +1332,8 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-modern-neutral-800 selection:bg-red-100 selection:text-canada-red">
 
-      {/* Dynamic Mesh Background - Fixed for whole page */}
-      <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-mesh-gradient opacity-40" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
-
-        {/* Decorative Floating Orbs - Removed for performance */}
+      {/* Background - Simple for performance */}
+      <div className="fixed inset-0 -z-50 bg-gray-50">
       </div>
 
       <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
@@ -1403,7 +1399,7 @@ function App() {
           {/* PROCESSING State in Full-Screen overlay */}
           {appState === AppState.PROCESSING && (
             <div className="absolute inset-0 bg-white/95 z-[110] flex flex-col items-center justify-center p-8">
-              <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
+              <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center animate-float">
                 <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
               </div>
               <h3 className="text-3xl font-[1000] text-modern-neutral-900 mt-10 lowercase italic tracking-tighter">{t.working}...</h3>
