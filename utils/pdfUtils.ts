@@ -1469,6 +1469,7 @@ export const convertPdfToXml = async (file: File): Promise<Blob> => {
 
   const escapeXml = (unsafe: string) => {
     return unsafe
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]/g, "") // Remove invalid XML chars
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -1624,7 +1625,8 @@ export const convertExcelToPdf = async (file: File): Promise<Blob> => {
     if (index > 0) doc.addPage();
 
     const worksheet = workbook.Sheets[sheetName];
-    const data: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    // raw: false ensures dates and numbers are formatted as text (e.g. "2023-12-25" instead of 45285)
+    const data: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false, dateNF: 'yyyy-mm-dd' });
 
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
