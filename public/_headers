@@ -2,6 +2,8 @@
 # Compatible with Netlify, Vercel, and most modern hosting platforms
 
 /*
+  # 2026 Security Headers - Enhanced for Modern Browsers
+
   # Prevent clickjacking attacks
   X-Frame-Options: DENY
 
@@ -11,18 +13,32 @@
   # Control referrer information
   Referrer-Policy: strict-origin-when-cross-origin
 
-  # Disable unnecessary browser features
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  # 2026 Enhanced Permissions Policy
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), magnetometer=(), gyroscope=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), encrypted-media=(), picture-in-picture=(), screen-wake-lock=(), web-share=(), display-capture=(), browsing-topics=(), interest-cohort=()
 
-  # Content Security Policy (CSP)
+  # Content Security Policy (CSP) - 2026 Enhanced
   # Allows inline styles and scripts from self, Google Fonts, and Vercel Analytics
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://vercel.live https://*.pusher.com wss://*.pusher.com https://vitals.vercel-insights.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://vercel.live https://*.pusher.com wss://*.pusher.com https://vitals.vercel-insights.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;
 
-  # Strict Transport Security (HSTS) - Force HTTPS for 1 year
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # Strict Transport Security (HSTS) - Force HTTPS for 2 years (2026 standard)
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
   # X-XSS-Protection (legacy browsers)
   X-XSS-Protection: 1; mode=block
+
+  # Cross-Origin Policies (2026 Enhancement)
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: same-origin
+
+  # Additional Security Headers
+  X-Permitted-Cross-Domain-Policies: none
+  X-Download-Options: noopen
+  X-DNS-Prefetch-Control: on
+
+  # Server Information Hiding
+  X-Powered-By:
+  Server:
 
 # Additional caching headers for static assets
 /assets/*

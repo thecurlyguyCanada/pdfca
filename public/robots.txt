@@ -72,20 +72,69 @@ Disallow: /
 User-agent: DataForSeoBot
 Disallow: /
 
-# AI Training Bots - Optionally block
+# AI Search & Training Bots - 2026 Update
+# OpenAI Crawlers
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: CCBot
+User-agent: OAI-SearchBot
 Allow: /
 
+# Anthropic (Claude) Crawlers
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-AI
+Allow: /
+
+# Google AI (Bard/Gemini)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# AI2 (Semantic Scholar)
+User-agent: AI2Bot
+Allow: /
+
+# You.com
+User-agent: YouBot
 Allow: /
 
 # Sitemap location
