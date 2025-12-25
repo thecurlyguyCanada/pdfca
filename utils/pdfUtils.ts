@@ -812,32 +812,44 @@ export const extractTextWithOcr = async (
   // Create and initialize special Neural worker
   let worker: any;
   try {
-    console.info(`[Neural Engine] Stage 1/3: Creating Worker...`);
-    // Using absolute URLs and disabling blob URLs to strictly prevent CDN fallbacks
-    const baseUrl = window.location.origin;
-    worker = await (Tesseract as any).createWorker({
-      workerPath: `${baseUrl}/tesseract/worker.min.js`,
-      corePath: `${baseUrl}/tesseract/tesseract-core.wasm.js`,
-      langPath: `${baseUrl}/tesseract/`,
-      workerBlobURL: false,
+    const origin = window.location.origin;
+    const workerUrl = `${origin}/tesseract/worker.min.js`;
+    const coreUrl = `${origin}/tesseract/tesseract-core.wasm.js`;
+    const langUrl = `${origin}/tesseract/`;
+
+    console.info(`[Neural Engine] Stage 1/3: Booting Worker (Local-First)...`);
+    // Pre-flight verify local script is serving
+    const check = await fetch(workerUrl, { method: 'HEAD' }).catch(() => ({ ok: false }));
+    if (!check.ok) console.warn("[Neural Engine] Local worker verify failed at", workerUrl);
+
+    // v5+ Robust signature: langs + oem + options
+    worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: workerUrl,
+      corePath: coreUrl,
+      langPath: langUrl,
+      workerBlobURL: false, // Strictly use the direct script path
       logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
     });
 
-    if (!worker || typeof worker.loadLanguage !== 'function') {
-      const keys = worker ? Object.keys(worker) : 'null';
-      throw new Error(`Worker created but loadLanguage missing. Keys: ${keys}`);
+    console.info(`[Neural Engine] Stage 2/3: Lexicon Check...`);
+    if (typeof worker.loadLanguage === 'function') {
+      await worker.loadLanguage(langString);
     }
 
-    console.info(`[Neural Engine] Stage 2/3: Loading Languages (${langString})...`);
-    await worker.loadLanguage(langString);
+    console.info(`[Neural Engine] Stage 3/3: API Check...`);
+    if (typeof worker.initialize === 'function') {
+      await worker.initialize(langString);
+    }
 
-    console.info(`[Neural Engine] Stage 3/3: Initializing API...`);
-    await worker.initialize(langString);
-
-    console.info(`[Neural Engine] System ready for processing.`);
+    console.info(`[Neural Engine] System ready.`);
   } catch (err) {
     console.error("[Neural Engine] Critical startup failure:", err);
-    const detail = err instanceof Error ? err.message : (typeof err === 'object' ? JSON.stringify(err) : String(err));
+    let detail = "Neural bootstrapping failed.";
+    if (err instanceof Error) detail = err.message;
+    else if (typeof err === 'object') {
+      try { detail = JSON.stringify(err); } catch (e) { detail = String(err); }
+    } else detail = String(err);
+
     throw new Error(`OCR engine failed to start: ${detail}`);
   }
 
@@ -938,32 +950,44 @@ export const makeSearchablePdf = async (
   // Create and initialize Searchable Layer worker
   let worker: any;
   try {
-    console.info(`[Neural Searchable] Stage 1/3: Creating Worker...`);
-    // Strict local-first pathing for Searchable Layer generation
-    const baseUrl = window.location.origin;
-    worker = await (Tesseract as any).createWorker({
-      workerPath: `${baseUrl}/tesseract/worker.min.js`,
-      corePath: `${baseUrl}/tesseract/tesseract-core.wasm.js`,
-      langPath: `${baseUrl}/tesseract/`,
-      workerBlobURL: false,
+    const origin = window.location.origin;
+    const workerUrl = `${origin}/tesseract/worker.min.js`;
+    const coreUrl = `${origin}/tesseract/tesseract-core.wasm.js`;
+    const langUrl = `${origin}/tesseract/`;
+
+    console.info(`[Neural Searchable] Stage 1/3: Booting Engine (Local-First)...`);
+    // Pre-flight verify local script is serving
+    const check = await fetch(workerUrl, { method: 'HEAD' }).catch(() => ({ ok: false }));
+    if (!check.ok) console.warn("[Neural Searchable] Local worker verify failed at", workerUrl);
+
+    // v5+ Robust signature: langs + oem + options
+    worker = await (Tesseract as any).createWorker(langString, 1, {
+      workerPath: workerUrl,
+      corePath: coreUrl,
+      langPath: langUrl,
+      workerBlobURL: false, // Strictly use direct script path
       logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
     });
 
-    if (!worker || typeof worker.loadLanguage !== 'function') {
-      const keys = worker ? Object.keys(worker) : 'null';
-      throw new Error(`Worker created but loadLanguage missing. Keys: ${keys}`);
+    console.info(`[Neural Searchable] Stage 2/3: Lexicon Load...`);
+    if (typeof worker.loadLanguage === 'function') {
+      await worker.loadLanguage(langString);
     }
 
-    console.info(`[Neural Searchable] Stage 2/3: Loading Languages (${langString})...`);
-    await worker.loadLanguage(langString);
-
-    console.info(`[Neural Searchable] Stage 3/3: Initializing API...`);
-    await worker.initialize(langString);
+    console.info(`[Neural Searchable] Stage 3/3: API Boot...`);
+    if (typeof worker.initialize === 'function') {
+      await worker.initialize(langString);
+    }
 
     console.info(`[Neural Searchable] System ready.`);
   } catch (err) {
     console.error("[Neural Searchable] Critical startup failure:", err);
-    const detail = err instanceof Error ? err.message : (typeof err === 'object' ? JSON.stringify(err) : String(err));
+    let detail = "Searchable layer bootstrapping failed.";
+    if (err instanceof Error) detail = err.message;
+    else if (typeof err === 'object') {
+      try { detail = JSON.stringify(err); } catch (e) { detail = String(err); }
+    } else detail = String(err);
+
     throw new Error(`Searchable layer engine failed to start: ${detail}`);
   }
 
