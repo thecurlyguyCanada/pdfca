@@ -466,6 +466,7 @@ function App() {
   ];
 
   const selectTool = (toolId: ToolType) => {
+    triggerHaptic('light');
     const tool = tools.find(t => t.id === toolId);
     setCurrentTool(toolId);
     setFile(null);
@@ -738,6 +739,7 @@ function App() {
   };
 
   const rotateAll = (direction: 'left' | 'right') => {
+    triggerHaptic('light');
     const newRotations = { ...rotations };
     for (let i = 0; i < pageCount; i++) {
       const current = newRotations[i] || 0;
@@ -978,19 +980,27 @@ function App() {
                 </div>
                 <h3 className="text-3xl font-black text-gray-900 mb-2">{t.doneTitle}</h3>
 
-                {currentTool === ToolType.COMPRESS && processedSize && file && (
-                  <div className="mb-8 p-6 bg-white rounded-2xl border border-green-100 shadow-sm w-full max-w-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    <div className="text-xs font-black text-green-700 uppercase tracking-wider mb-2">
-                      {t.sizeReduced || "Size Reduced"}
+                {processedSize && (
+                  <div className="mb-8 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm w-full max-w-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider mb-2">
+                      {currentTool === ToolType.COMPRESS ? (t.sizeReduced || "Size Reduced") : (t.processedSize || "Processed Size")}
                     </div>
-                    <div className="text-4xl font-black text-green-600 mb-3">
-                      -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
-                    </div>
-                    <div className="flex items-center justify-center gap-3 text-sm font-bold text-gray-400">
-                      <span className="line-through">{formatFileSize(file.size)}</span>
-                      <ArrowRight size={14} />
-                      <span className="text-green-600">{formatFileSize(processedSize)}</span>
-                    </div>
+                    {currentTool === ToolType.COMPRESS && file ? (
+                      <>
+                        <div className="text-4xl font-black text-green-600 mb-3">
+                          -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
+                        </div>
+                        <div className="flex items-center justify-center gap-3 text-sm font-bold text-gray-400">
+                          <span className="line-through">{formatFileSize(file.size)}</span>
+                          <ArrowRight size={14} />
+                          <span className="text-green-600">{formatFileSize(processedSize)}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-3xl font-black text-gray-800 mb-2">
+                        {formatFileSize(processedSize)}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1123,19 +1133,27 @@ function App() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.doneTitle}</h3>
 
-                {currentTool === ToolType.COMPRESS && processedSize && file && (
-                  <div className="mb-6 p-4 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    <div className="text-sm font-black text-green-700 uppercase tracking-wider mb-1">
-                      {t.sizeReduced || "Size Reduced"}
+                {processedSize && (
+                  <div className="mb-6 p-4 bg-white rounded-2xl border border-gray-100 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">
+                      {currentTool === ToolType.COMPRESS ? (t.sizeReduced || "Size Reduced") : (t.processedSize || "Processed Size")}
                     </div>
-                    <div className="text-3xl font-black text-green-600 mb-2">
-                      -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
-                    </div>
-                    <div className="flex items-center justify-center gap-3 text-xs font-bold text-green-500/80">
-                      <span>{formatFileSize(file.size)}</span>
-                      <span className="opacity-50">→</span>
-                      <span className="text-green-600">{formatFileSize(processedSize)}</span>
-                    </div>
+                    {currentTool === ToolType.COMPRESS && file ? (
+                      <>
+                        <div className="text-3xl font-black text-green-600 mb-2">
+                          -{Math.max(0, Math.round((1 - (processedSize / file.size)) * 100))}%
+                        </div>
+                        <div className="flex items-center justify-center gap-3 text-xs font-bold text-green-500/80">
+                          <span>{formatFileSize(file.size)}</span>
+                          <span className="opacity-50">→</span>
+                          <span className="text-green-600">{formatFileSize(processedSize)}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-2xl font-black text-gray-800 mb-1">
+                        {formatFileSize(processedSize)}
+                      </div>
+                    )}
                   </div>
                 )}
 

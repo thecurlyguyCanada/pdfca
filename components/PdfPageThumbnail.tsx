@@ -8,7 +8,7 @@ interface PdfPageThumbnailProps {
   isSelected: boolean;
   rotation?: number; // degrees
   onClick: (event: React.MouseEvent) => void;
-  mode?: 'delete' | 'rotate' | 'none';
+  mode?: 'delete' | 'rotate' | 'select' | 'none';
   width?: number;
 }
 
@@ -203,11 +203,16 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
       {/* Mode Specific Overlays */}
       <div className={`
         absolute inset-0 flex items-center justify-center transition-opacity duration-200 z-30 pointer-events-none
-        ${mode === 'none' ? 'hidden' : (isSelected && mode === 'delete' ? 'bg-canada-red/10 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-10')}
+        ${mode === 'none' ? 'hidden' : (isSelected && (mode === 'delete' || mode === 'select') ? (mode === 'delete' ? 'bg-canada-red/10' : 'bg-blue-500/10') + ' opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-10')}
       `}>
         {mode === 'delete' && isSelected && (
           <div className="bg-canada-red text-white p-3 rounded-full shadow-lg">
             <Trash2 size={24} />
+          </div>
+        )}
+        {mode === 'select' && isSelected && (
+          <div className="bg-blue-600 text-white p-3 rounded-full shadow-lg">
+            <FileText size={24} />
           </div>
         )}
         {mode === 'rotate' && (

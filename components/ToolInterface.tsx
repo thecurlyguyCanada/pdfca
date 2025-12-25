@@ -300,14 +300,14 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     }
 
     const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT;
-    const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
+    const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
     const isCompressTool = currentTool === ToolType.COMPRESS;
 
     let headerText = '';
     if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
-    else if (currentTool === ToolType.ROTATE) headerText = '';
+    else if (currentTool === ToolType.ROTATE) headerText = t.toolRotateInfo || 'Click pages to rotate or use controls above.';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
     else if (currentTool === ToolType.OCR) headerText = t.selectPagesForOcr;
     else if (currentTool === ToolType.SPLIT) headerText = t.toolSplitDesc || 'PDF will be split into individual pages.';
@@ -408,7 +408,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div className="w-full flex justify-end px-2 mb-2">
                             <div className="bg-white border border-gray-200 rounded-lg shadow-sm flex items-center p-1 gap-0.5" role="group" aria-label="Zoom controls">
                                 <button
-                                    onClick={() => setPreviewZoom(z => Math.max(0.5, z - 0.1))}
+                                    onClick={() => { triggerHaptic('light'); setPreviewZoom(z => Math.max(0.5, z - 0.1)); }}
                                     disabled={previewZoom <= 0.5}
                                     className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom Out (Ctrl + -)"
@@ -418,7 +418,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 </button>
                                 <span className="text-xs font-mono w-12 text-center text-gray-700 font-medium" aria-live="polite">{Math.round(previewZoom * 100)}%</span>
                                 <button
-                                    onClick={() => setPreviewZoom(z => Math.min(5.0, z + 0.1))}
+                                    onClick={() => { triggerHaptic('light'); setPreviewZoom(z => Math.min(5.0, z + 0.1)); }}
                                     disabled={previewZoom >= 5.0}
                                     className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-gray-900 active:bg-gray-100 active:text-canada-red rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     title="Zoom In (Ctrl + +)"
@@ -451,7 +451,13 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     pageIndex={idx}
                                     isSelected={selectedPages.has(idx)}
                                     rotation={rotations[idx] || 0}
-                                    mode={currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR ? 'delete' : 'rotate'}
+                                    mode={
+                                        currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER
+                                            ? 'delete'
+                                            : (currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR)
+                                                ? 'select'
+                                                : 'rotate'
+                                    }
                                     onClick={(e) => togglePageSelection(e, idx)}
                                     width={baseThumbnailWidth * previewZoom}
                                 />

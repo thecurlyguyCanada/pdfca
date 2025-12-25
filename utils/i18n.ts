@@ -754,6 +754,9 @@ export const translations = {
     btnSearchablePdf: "Make Searchable PDF",
     btnCancel: "Cancel",
     btnSave: "Save",
+    btnSplit: "Split PDF",
+    processedSize: "Processed Size",
+    toolRotateInfo: "Click pages to rotate or use global controls above.",
     readyToConvertDesc: "Ready to convert {fileName}. This might take a few moments depending on the file size, eh.",
 
     working: "Working on it...",
@@ -1408,6 +1411,9 @@ export const translations = {
     selectPagesToFill: "Sélectionnez les pages à scanner :",
     selectPagesForOcr: "Sélectionnez les pages pour l'OCR :",
     ocrProgress: "Reconnaissance du texte...",
+    toolRotateInfo: "Cliquez sur les pages pour les faire pivoter ou utilisez les contrôles ci-dessus.",
+    btnSplit: "Diviser le PDF",
+    processedSize: "Taille traitée",
 
     // Tool Specific Inputs
     deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
