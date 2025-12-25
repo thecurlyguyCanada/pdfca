@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
@@ -13,6 +13,18 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => {
   const t = translations[lang];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const handleNavigate = (view: string) => {
     triggerHaptic('light');
@@ -102,40 +114,56 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[60px] bg-white z-40 animate-fade-in" style={{ paddingBottom: 'var(--safe-area-inset-bottom)' }}>
-          <nav className="flex flex-col p-4 gap-1">
-            <button
-              onClick={() => handleNavigate('HOME')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
-            >
-              {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
-            </button>
-            <button
-              onClick={() => handleNavigate('ABOUT')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
-            >
-              {lang === 'en' ? 'About Us' : 'À Propos'}
-            </button>
-            <button
-              onClick={() => handleNavigate('HOW_TO')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
-            >
-              {t.navHowTo}
-            </button>
-            <button
-              onClick={() => handleNavigate('SUPPORT')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
-            >
-              {t.navSupport}
-            </button>
-            <button
-              onClick={() => handleNavigate('PRICING')}
-              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
-            >
-              {t.navPricing}
-            </button>
-          </nav>
-        </div>
+        <>
+          {/* Backdrop */}
+          <div
+            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fade-in"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Menu Panel */}
+          <div
+            className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
+            style={{
+              paddingTop: 'max(88px, calc(var(--safe-area-inset-top) + 88px))',
+              paddingBottom: 'var(--safe-area-inset-bottom)',
+            }}
+          >
+            <nav className="flex flex-col p-6 gap-2">
+              <button
+                onClick={() => handleNavigate('HOME')}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+              >
+                {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
+              </button>
+              <button
+                onClick={() => handleNavigate('ABOUT')}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+              >
+                {lang === 'en' ? 'About Us' : 'À Propos'}
+              </button>
+              <button
+                onClick={() => handleNavigate('HOW_TO')}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+              >
+                {t.navHowTo}
+              </button>
+              <button
+                onClick={() => handleNavigate('SUPPORT')}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+              >
+                {t.navSupport}
+              </button>
+              <button
+                onClick={() => handleNavigate('PRICING')}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+              >
+                {t.navPricing}
+              </button>
+            </nav>
+          </div>
+        </>
       )}
     </>
   );
