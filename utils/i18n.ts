@@ -938,668 +938,675 @@ export const translations = {
       fillableDesc: "Apprenez à rendre un PDF remplissable gratuitement avec nos outils canadiens."
     },
     features: {
-      steps: [
-        "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
-        "Cliquez sur les miniatures des pages que vous souhaitez supprimer.",
-        "Cliquez sur 'Supprimer' pour télécharger votre nouveau PDF."
-      ],
-      quickAnswer: {
-        question: "Comment supprimer des pages spécifiques d'un PDF ?",
-        answer: "Vous pouvez supprimer des pages d'un PDF gratuitement en utilisant notre outil local. Sélectionnez simplement les pages indésirables et téléchargez le fichier mis à jour. Aucun téléchargement requis.",
-        tool: "Supprimer des pages",
-        steps: ["Séléctionnez votre PDF", "Cochez les pages à enlever", "Téléchargez le PDF nettoyé"]
-      }
-    },
-    pdfPageRemover: {
-      title: "Suppresseur de Pages PDF en Ligne - Retirer Pages de PDF Gratuit | pdfcanada.ca",
-      desc: "Le meilleur suppresseur de pages PDF. Supprimez les pages indésirables de votre PDF en toute sécurité. Sélectionnez les pages visuellement et supprimez-les instantanément. Aucun téléchargement—tout le traitement se fait sur votre appareil. Gratuit et privé.",
-      h1: "Suppresseur de Pages PDF",
-      subtitle: "La façon polie de retirer des pages d'un PDF.",
-      content: "Besoin d'un suppresseur de pages PDF ? Notre outil vous permet de sélectionner et de retirer des pages d'un fichier PDF instantanément.",
-      steps: [
-        "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
-        "Cliquez sur les miniatures des pages que vous souhaitez retirer.",
-        "Cliquez sur 'Supprimer' pour télécharger votre nouveau PDF."
-      ],
-      quickAnswer: {
-        question: "Quelle est la meilleure façon de retirer des pages d'un PDF ?",
-        answer: "La meilleure façon est d'utiliser un outil sécurisé basé sur le navigateur comme pdfcanada.ca qui traite votre fichier localement. Cela garantit que vos données ne quittent jamais votre appareil.",
-        tool: "Suppresseur de Pages PDF",
-        steps: ["Sélectionnez votre fichier PDF", "Cliquez sur les pages à supprimer", "Enregistrez votre nouveau PDF"]
-      }
-    },
-    flatten: {
-      title: "Aplatir PDF en Ligne - Rendre PDF Non-Éditable et Sécurisé | pdfcanada.ca",
-      desc: "Convertissez les pages PDF en images non éditables en 2026 pour empêcher les modifications. Aplatissez les formulaires et protégez votre contenu en toute sécurité via traitement local. 100% privé, aucun téléchargement.",
-      h1: "Aplatir PDF",
-      subtitle: "Verrouillez votre document pour empêcher les modifications ou la sélection.",
-      content: "Besoin de vous assurer que votre PDF ne peut pas être modifié facilement ? Notre outil 'aplatit' votre document en convertissant chaque page en une image de haute qualité. Cela empêche la sélection de texte et les modifications par les éditeurs PDF standards.",
-      steps: [
-        "Sélectionnez le PDF que vous souhaitez protéger.",
-        "Nous traiterons chaque page pour la transformer en image fixe.",
-        "Téléchargez votre nouveau PDF non modifiable."
-      ],
-      quickAnswer: {
-        question: "Comment rendre un PDF non modifiable ?",
-        answer: "Aplatir un PDF convertit ses pages en images, empêchant ainsi les autres de modifier facilement le texte ou les champs de formulaire. Notre outil le fait localement pour une confidentialité maximale.",
-        tool: "Aplatir PDF",
-        steps: ["Téléversez le PDF", "Traitez en images fixes", "Téléchargez le fichier sécurisé"]
-      }
-    },
-    rotate: {
-      title: "Pivoter PDF en Ligne - Corriger l'Orientation PDF Gratuitement | pdfcanada.ca",
-      desc: "Faites pivoter les pages PDF et enregistrez-les de façon permanente en 2026. Corrigez les numérisations à l'envers instantanément avec 100% de confidentialité. Aucun téléchargement, fièrement canadien.",
-      h1: "Pivoter des Pages PDF",
-      subtitle: "Corrigez ces numérisations à l'envers en quelques secondes.",
-      content: "Vous avez numérisé une page à l'envers ? Ça arrive. Utilisez cet outil pour pivoter les pages individuellement ou tout le document.",
-      steps: [
-        "Téléversez votre fichier PDF.",
-        "Cliquez sur le bouton de rotation des pages individuelles pour les faire tourner de 90 degrés, ou utilisez les boutons 'Tout Pivoter' en haut.",
-        "Quand tout semble correct, cliquez sur 'Appliquer' pour sauvegarder votre nouveau PDF."
-      ],
-      quickAnswer: {
-        question: "Comment puis-je faire pivoter un PDF de façon permanente ?",
-        answer: "Utilisez un outil de rotation en ligne pour ajuster l'orientation des pages (gauche ou droite) et enregistrez les modifications de façon permanente. Notre outil est sécurisé et traite la rotation directement dans votre navigateur.",
-        tool: "Pivoter PDF",
-        steps: ["Téléversez le document", "Pivotez les pages visuellement", "Enregistrez définitivement"]
-      }
-    },
-    heic: {
-      title: "Convertisseur HEIC vers PDF - Convertir Photos iPhone en Toute Sécurité | pdfcanada.ca",
-      desc: "Convertissez des photos HEIC en PDF instantanément en 2026. Transformez les photos iPhone en toute sécurité sans télécharger sur un serveur. 100% gratuit, privé et traitement local.",
-      h1: "Convertir HEIC en PDF",
-      subtitle: "Rendez les photos iPhone compatibles avec tout.",
-      content: "Les appareils Apple utilisent le format HEIC. Parfois, on a besoin d'un PDF. Convertissez vos images ici.",
-      steps: [
-        "Sélectionnez votre fichier image .HEIC depuis votre ordinateur ou téléphone.",
-        "Notre outil convertit automatiquement l'image localement dans votre navigateur.",
-        "Cliquez sur 'Télécharger' pour sauvegarder votre nouveau fichier PDF."
-      ],
-      quickAnswer: {
-        question: "Comment convertis-je des photos HEIC en PDF sur un PC ?",
-        answer: "Vous pouvez convertir les photos HEIC d'Apple en PDF gratuitement sans logiciel spécialisé. Utilisez notre convertisseur par navigateur pour transformer les photos iPhone en PDF localement.",
-        tool: "HEIC en PDF",
-        steps: ["Choisissez les images HEIC", "Auto-conversion locale", "Téléchargez les PDF"]
-      }
-    },
-    epubToPdf: {
-      title: "Convertisseur EPUB vers PDF - Convertir Livres Électroniques Gratuit | pdfcanada.ca",
-      desc: "Convertissez des livres électroniques EPUB en format PDF instantanément. Lisez vos livres sur n'importe quel appareil. Conversion locale sécurisée—vos fichiers ne quittent jamais votre navigateur. Rapide et gratuit.",
-      h1: "Convertir EPUB en PDF",
-      subtitle: "Lisez vos livres électroniques préférés sur n'importe quel appareil.",
-      content: "Imprimez ou lisez vos ebooks sur n'importe quel appareil en les convertissant en PDF.",
-      steps: [
-        "Téléversez votre fichier .epub.",
-        "Attendez un instant pendant que nous formatons le livre en pages.",
-        "Téléchargez votre nouveau PDF prêt à être imprimé ou partagé."
-      ],
-      quickAnswer: {
-        question: "Comment convertir un livre électronique EPUB en PDF ?",
-        answer: "Vous pouvez convertir un EPUB en PDF instantanément grâce à notre outil par navigateur. Il formate votre ebook en un document PDF propre pour une lecture ou une impression facile, tout en traitant localement.",
-        tool: "EPUB en PDF",
-        steps: ["Téléversez le fichier .epub", "Attendez le formatage local", "Téléchargez votre PDF"]
-      }
-    },
-    pdfToEpub: {
-      title: "Convertisseur PDF vers EPUB - Optimiser PDF pour Liseuse Gratuit | pdfcanada.ca",
-      desc: "Convertissez PDF en format EPUB adaptable pour Kindle, Kobo ou mobile. Le traitement local garantit 100% de confidentialité. Aucun téléchargement requis, fièrement canadien.",
-      h1: "Convertir PDF en EPUB",
-      subtitle: "Emportez votre matériel de lecture sur votre liseuse.",
-      content: "Transformez vos documents PDF en format EPUB fluide pour votre liseuse préférée.",
-      steps: [
-        "Sélectionnez le PDF que vous voulez lire sur votre liseuse.",
-        "Notre outil extrait le texte et tente de créer une structure d'ebook fluide.",
-        "Téléchargez le fichier .epub et transférez-le sur votre appareil."
-      ],
-      quickAnswer: {
-        question: "Comment convertir un PDF en EPUB pour ma liseuse ?",
-        answer: "Pour lire un PDF sur une liseuse, convertissez-le au format EPUB fluide. Notre outil extrait le texte et l'optimise pour les petits écrans, garantissant une expérience de lecture confortable.",
-        tool: "PDF en EPUB",
-        steps: ["Sélectionnez votre PDF", "Auto-analyse et conversion", "Téléchargez le fichier .epub"]
-      }
-    },
-    fillable: {
-      title: "Rendre PDF Remplissable en Ligne - Créateur de Formulaire Gratuit | pdfcanada.ca",
-      desc: "Ajoutez des champs de texte remplissables à n'importe quel PDF instantanément. Créez des formulaires interactifs professionnels gratuitement et en toute sécurité dans votre navigateur. Aucun téléchargement—100% privé et canadien.",
-      h1: "Rendre un PDF Remplissable",
-      subtitle: "La façon polie de créer des formulaires interactifs.",
-      content: "Transformez un document plat en formulaire interactif. Nous détectons automatiquement les lignes (____) et les cases ([ ]) et les rendons remplissables.",
-      steps: [
-        "Téléversez un formulaire PDF qui contient des lignes statiques ou des cases à cocher.",
-        "Sélectionnez les pages que vous voulez scanner.",
-        "Cliquez sur 'Détecter et Remplir'. Nous calculerons où les champs devraient être.",
-        "Téléchargez votre formulaire PDF interactif."
-      ],
-      quickAnswer: {
-        question: "Comment rendre un PDF standard remplissable gratuitement ?",
-        answer: "Notre outil détecte automatiquement les lignes et les cases à cocher dans votre document et ajoute des champs de texte interactifs. C'est le moyen le plus simple de créer un formulaire sans logiciel coûteux.",
-        tool: "Rendre PDF Remplissable",
-        steps: ["Téléversez le PDF statique", "Scannez pour auto-détection", "Téléchargez le formulaire"]
-      }
-    },
-    ocr: {
-      title: "OCR PDF en Ligne - Rendre PDF Consultable Gratuitement | Service Sans Téléchargement | pdfcanada.ca",
-      desc: "Convertissez des PDF numérisés en texte consultable. OCR haute précision traité 100% localement dans votre navigateur. Sécurisé, rapide et aucun téléchargement requis—gardez vos données privées.",
-      h1: "OCR PDF et Consultable",
-      subtitle: "Déverrouillez le texte dans vos numérisations en toute sécurité et gratuitement.",
-      content: "Transformez vos images et scans en vrai texte que vous pouvez copier. Notre outil OCR fonctionne dans votre navigateur.",
-      steps: ["Téléchargez votre PDF numérisé.", "Sélectionnez la langue.", "Téléchargez votre nouveau PDF consultable."],
-      quickAnswer: {
-        question: "Comment rendre un PDF numérisé consultable ?",
-        answer: "Utilisez la reconnaissance optique de caractères (OCR) pour convertir les images de texte en contenu réel et consultable. Notre outil traite vos numérisations localement pour préserver vos données.",
-        tool: "OCR PDF",
-        steps: ["Téléchargez le PDF numérisé", "Sélectionnez la langue OCR", "Téléchargez le fichier consultable"]
-      },
-      faq: [
-        { q: "C'est quoi l'OCR ?", a: "La reconnaissance optique de caractères. Ça transforme les images de mots en vrais mots." }
-      ]
-    },
-    organizePdf: {
-      title: "Organiser PDF en Ligne - Réorganiser Pages PDF Gratuitement | pdfcanada.ca",
-      desc: "Réorganisez les pages PDF facilement par glisser-déposer. Réordonnez votre document PDF en toute sécurité dans votre navigateur. Aucun téléchargement—vos fichiers restent 100% privés sur votre appareil.",
-      h1: "Organiser les Pages PDF",
-      subtitle: "Mettez les pages de votre document dans l'ordre parfait.",
-      content: "Besoin de changer l'ordre des pages ? Notre outil vous permet de glisser-déposer les pages pour les réorganiser exactement comme vous le souhaitez.",
-      steps: [
-        "Téléchargez votre fichier PDF.",
-        "Glissez-déposez les vignettes pour les réorganiser.",
-        "Cliquez sur 'Enregistrer' pour télécharger.",
-        "Téléchargez votre PDF méticuleusement organisé."
-      ],
-      quickAnswer: {
-        question: "Comment puis-je réorganiser les pages d'un document PDF ?",
-        answer: "Vous pouvez réordonner les pages PDF en faisant simplement glisser et déposer les vignettes dans l'ordre souhaité. Notre outil d'organisation vous permet de réorganiser votre document rapidement.",
-        tool: "Organiser PDF",
-        steps: ["Téléchargez votre PDF", "Glissez les pages", "Enregistrez votre fichier organisé"]
-      },
-      faq: [
-        {
-          q: "Puis-je déplacer des pages entre PDF ?",
-          a: "Pas encore ! Pour l'instant, uniquement au sein d'un même fichier."
+      delete: {
+        title: "Supprimer des Pages PDF en Ligne - Retirer des Pages PDF Gratuitement | pdfcanada.ca",
+        desc: "Meilleur outil de suppression de pages PDF. Supprimez les pages indésirables de votre PDF en toute sécurité. Sélectionnez les pages visuellement et supprimez-les instantanément. Pas de téléversement - tout le traitement se fait sur votre appareil. Gratuit et privé.",
+        h1: "Supprimer des Pages PDF",
+        subtitle: "La manière polie de retirer des pages d'un PDF.",
+        content: "Besoin de supprimer des pages de votre PDF ? Notre outil facilite la sélection et le retrait des pages indésirables. Qu'il s'agisse d'une page blanche, d'une erreur ou d'informations sensibles, vous pouvez nettoyer votre document en quelques secondes.",
+        steps: [
+          "Cliquez sur le bouton 'Sélectionner le fichier' pour choisir votre document PDF.",
+          "Vous verrez des vignettes de toutes vos pages. Cliquez simplement sur les pages que vous souhaitez supprimer. Elles seront marquées d'une icône de corbeille.",
+          "Cliquez sur 'Supprimer les pages' pour télécharger instantanément votre PDF propre et mis à jour."
+        ],
+        quickAnswer: {
+          question: "Comment supprimer des pages spécifiques d'un PDF ?",
+          answer: "Vous pouvez supprimer des pages d'un PDF gratuitement en utilisant notre outil local. Sélectionnez simplement les pages que vous souhaitez supprimer et téléchargez le fichier mis à jour. Aucune inscription ou téléversement requis.",
+          tool: "Supprimer des pages PDF",
+          steps: ["Téléversez votre PDF", "Sélectionnez les pages indésirables", "Téléchargez le PDF nettoyé"]
         }
-      ]
-    },
-    cbrToPdf: {
-      title: "Convertisseur CBR vers PDF - Convertir Livres de Bandes Dessinées Gratuit | pdfcanada.ca",
-      desc: "Lisez vos bandes dessinées sur n'importe quel appareil. Notre guide 2026 vous montre comment convertir CBR/CBZ en PDF en toute sécurité dans votre navigateur. Aucun téléchargement.",
-      h1: "Convertir CBR en PDF",
-      subtitle: "Le guide définitif pour la conversion de bandes dessinées numériques.",
-      content: "Vous avez une collection de bandes dessinées numériques au format CBR ou CBZ ? Bien que ces formats soient excellents pour les lecteurs spécialisés, vous voudrez parfois un PDF pour lire sur votre tablette ou partager avec un ami. Notre convertisseur CBR en PDF facilite la transformation des archives de bandes dessinées en documents PDF standards. Nous supportons les fichiers CBR (basés sur RAR) et CBZ (basés sur ZIP).\n\nLa plupart des convertisseurs en ligne vous obligent à télécharger vos BD sur leurs serveurs. Mais les bandes dessinées peuvent être volumineuses et votre vie privée est importante. C'est pourquoi pdfcanada.ca traite vos BD directement dans votre navigateur. Pas de téléchargement, pas d'attente, juste une conversion rapide et sécurisée.",
-      steps: [
-        "Sélectionnez votre fichier .CBR ou .CBZ.",
-        "Notre système extrait les images et les compile dans un seul document PDF.",
-        "Une fois la conversion terminée, cliquez sur 'Télécharger' pour sauvegarder votre nouveau PDF."
-      ],
-      quickAnswer: {
-        question: "Comment convertir une bande dessinée CBR en PDF ?",
-        answer: "Vous pouvez convertir les formats de bandes dessinées numériques comme CBR (RAR) et CBZ (ZIP) en PDF gratuitement grâce à notre convertisseur local. Il extrait les images et les compile en un seul fichier PDF partageable.",
-        tool: "CBR en PDF",
-        steps: ["Choisissez votre fichier BD", "Extrayez les images localement", "Téléchargez votre livre PDF"]
       },
+      pdfPageRemover: {
+        title: "Suppresseur de Pages PDF en Ligne - Retirer Pages de PDF Gratuit | pdfcanada.ca",
+        desc: "Le meilleur suppresseur de pages PDF. Supprimez les pages indésirables de votre PDF en toute sécurité. Sélectionnez les pages visuellement et supprimez-les instantanément. Aucun téléchargement—tout le traitement se fait sur votre appareil. Gratuit et privé.",
+        h1: "Suppresseur de Pages PDF",
+        subtitle: "La façon polie de retirer des pages d'un PDF.",
+        content: "Besoin d'un suppresseur de pages PDF ? Notre outil vous permet de sélectionner et de retirer des pages d'un fichier PDF instantanément.",
+        steps: [
+          "Cliquez sur 'Choisir un fichier' pour sélectionner votre PDF.",
+          "Cliquez sur les miniatures des pages que vous souhaitez retirer.",
+          "Cliquez sur 'Supprimer' pour télécharger votre nouveau PDF."
+        ],
+        quickAnswer: {
+          question: "Quelle est la meilleure façon de retirer des pages d'un PDF ?",
+          answer: "La meilleure façon est d'utiliser un outil sécurisé basé sur le navigateur comme pdfcanada.ca qui traite votre fichier localement. Cela garantit que vos données ne quittent jamais votre appareil.",
+          tool: "Suppresseur de Pages PDF",
+          steps: ["Sélectionnez votre fichier PDF", "Cliquez sur les pages à supprimer", "Enregistrez votre nouveau PDF"]
+        }
+      },
+      flatten: {
+        title: "Aplatir PDF en Ligne - Rendre PDF Non-Éditable et Sécurisé | pdfcanada.ca",
+        desc: "Convertissez les pages PDF en images non éditables en 2026 pour empêcher les modifications. Aplatissez les formulaires et protégez votre contenu en toute sécurité via traitement local. 100% privé, aucun téléchargement.",
+        h1: "Aplatir PDF",
+        subtitle: "Verrouillez votre document pour empêcher les modifications ou la sélection.",
+        content: "Besoin de vous assurer que votre PDF ne peut pas être modifié facilement ? Notre outil 'aplatit' votre document en convertissant chaque page en une image de haute qualité. Cela empêche la sélection de texte et les modifications par les éditeurs PDF standards.",
+        steps: [
+          "Sélectionnez le PDF que vous souhaitez protéger.",
+          "Nous traiterons chaque page pour la transformer en image fixe.",
+          "Téléchargez votre nouveau PDF non modifiable."
+        ],
+        quickAnswer: {
+          question: "Comment rendre un PDF non modifiable ?",
+          answer: "Aplatir un PDF convertit ses pages en images, empêchant ainsi les autres de modifier facilement le texte ou les champs de formulaire. Notre outil le fait localement pour une confidentialité maximale.",
+          tool: "Aplatir PDF",
+          steps: ["Téléversez le PDF", "Traitez en images fixes", "Téléchargez le fichier sécurisé"]
+        }
+      },
+      rotate: {
+        title: "Pivoter PDF en Ligne - Corriger l'Orientation PDF Gratuitement | pdfcanada.ca",
+        desc: "Faites pivoter les pages PDF et enregistrez-les de façon permanente en 2026. Corrigez les numérisations à l'envers instantanément avec 100% de confidentialité. Aucun téléchargement, fièrement canadien.",
+        h1: "Pivoter des Pages PDF",
+        subtitle: "Corrigez ces numérisations à l'envers en quelques secondes.",
+        content: "Vous avez numérisé une page à l'envers ? Ça arrive. Utilisez cet outil pour pivoter les pages individuellement ou tout le document.",
+        steps: [
+          "Téléversez votre fichier PDF.",
+          "Cliquez sur le bouton de rotation des pages individuelles pour les faire tourner de 90 degrés, ou utilisez les boutons 'Tout Pivoter' en haut.",
+          "Quand tout semble correct, cliquez sur 'Appliquer' pour sauvegarder votre nouveau PDF."
+        ],
+        quickAnswer: {
+          question: "Comment puis-je faire pivoter un PDF de façon permanente ?",
+          answer: "Utilisez un outil de rotation en ligne pour ajuster l'orientation des pages (gauche ou droite) et enregistrez les modifications de façon permanente. Notre outil est sécurisé et traite la rotation directement dans votre navigateur.",
+          tool: "Pivoter PDF",
+          steps: ["Téléversez le document", "Pivotez les pages visuellement", "Enregistrez définitivement"]
+        }
+      },
+      heic: {
+        title: "Convertisseur HEIC vers PDF - Convertir Photos iPhone en Toute Sécurité | pdfcanada.ca",
+        desc: "Convertissez des photos HEIC en PDF instantanément en 2026. Transformez les photos iPhone en toute sécurité sans télécharger sur un serveur. 100% gratuit, privé et traitement local.",
+        h1: "Convertir HEIC en PDF",
+        subtitle: "Rendez les photos iPhone compatibles avec tout.",
+        content: "Les appareils Apple utilisent le format HEIC. Parfois, on a besoin d'un PDF. Convertissez vos images ici.",
+        steps: [
+          "Sélectionnez votre fichier image .HEIC depuis votre ordinateur ou téléphone.",
+          "Notre outil convertit automatiquement l'image localement dans votre navigateur.",
+          "Cliquez sur 'Télécharger' pour sauvegarder votre nouveau fichier PDF."
+        ],
+        quickAnswer: {
+          question: "Comment convertis-je des photos HEIC en PDF sur un PC ?",
+          answer: "Vous pouvez convertir les photos HEIC d'Apple en PDF gratuitement sans logiciel spécialisé. Utilisez notre convertisseur par navigateur pour transformer les photos iPhone en PDF localement.",
+          tool: "HEIC en PDF",
+          steps: ["Choisissez les images HEIC", "Auto-conversion locale", "Téléchargez les PDF"]
+        }
+      },
+      epubToPdf: {
+        title: "Convertisseur EPUB vers PDF - Convertir Livres Électroniques Gratuit | pdfcanada.ca",
+        desc: "Convertissez des livres électroniques EPUB en format PDF instantanément. Lisez vos livres sur n'importe quel appareil. Conversion locale sécurisée—vos fichiers ne quittent jamais votre navigateur. Rapide et gratuit.",
+        h1: "Convertir EPUB en PDF",
+        subtitle: "Lisez vos livres électroniques préférés sur n'importe quel appareil.",
+        content: "Imprimez ou lisez vos ebooks sur n'importe quel appareil en les convertissant en PDF.",
+        steps: [
+          "Téléversez votre fichier .epub.",
+          "Attendez un instant pendant que nous formatons le livre en pages.",
+          "Téléchargez votre nouveau PDF prêt à être imprimé ou partagé."
+        ],
+        quickAnswer: {
+          question: "Comment convertir un livre électronique EPUB en PDF ?",
+          answer: "Vous pouvez convertir un EPUB en PDF instantanément grâce à notre outil par navigateur. Il formate votre ebook en un document PDF propre pour une lecture ou une impression facile, tout en traitant localement.",
+          tool: "EPUB en PDF",
+          steps: ["Téléversez le fichier .epub", "Attendez le formatage local", "Téléchargez votre PDF"]
+        }
+      },
+      pdfToEpub: {
+        title: "Convertisseur PDF vers EPUB - Optimiser PDF pour Liseuse Gratuit | pdfcanada.ca",
+        desc: "Convertissez PDF en format EPUB adaptable pour Kindle, Kobo ou mobile. Le traitement local garantit 100% de confidentialité. Aucun téléchargement requis, fièrement canadien.",
+        h1: "Convertir PDF en EPUB",
+        subtitle: "Emportez votre matériel de lecture sur votre liseuse.",
+        content: "Transformez vos documents PDF en format EPUB fluide pour votre liseuse préférée.",
+        steps: [
+          "Sélectionnez le PDF que vous voulez lire sur votre liseuse.",
+          "Notre outil extrait le texte et tente de créer une structure d'ebook fluide.",
+          "Téléchargez le fichier .epub et transférez-le sur votre appareil."
+        ],
+        quickAnswer: {
+          question: "Comment convertir un PDF en EPUB pour ma liseuse ?",
+          answer: "Pour lire un PDF sur une liseuse, convertissez-le au format EPUB fluide. Notre outil extrait le texte et l'optimise pour les petits écrans, garantissant une expérience de lecture confortable.",
+          tool: "PDF en EPUB",
+          steps: ["Sélectionnez votre PDF", "Auto-analyse et conversion", "Téléchargez le fichier .epub"]
+        }
+      },
+      fillable: {
+        title: "Rendre PDF Remplissable en Ligne - Créateur de Formulaire Gratuit | pdfcanada.ca",
+        desc: "Ajoutez des champs de texte remplissables à n'importe quel PDF instantanément. Créez des formulaires interactifs professionnels gratuitement et en toute sécurité dans votre navigateur. Aucun téléchargement—100% privé et canadien.",
+        h1: "Rendre un PDF Remplissable",
+        subtitle: "La façon polie de créer des formulaires interactifs.",
+        content: "Transformez un document plat en formulaire interactif. Nous détectons automatiquement les lignes (____) et les cases ([ ]) et les rendons remplissables.",
+        steps: [
+          "Téléversez un formulaire PDF qui contient des lignes statiques ou des cases à cocher.",
+          "Sélectionnez les pages que vous voulez scanner.",
+          "Cliquez sur 'Détecter et Remplir'. Nous calculerons où les champs devraient être.",
+          "Téléchargez votre formulaire PDF interactif."
+        ],
+        quickAnswer: {
+          question: "Comment rendre un PDF standard remplissable gratuitement ?",
+          answer: "Notre outil détecte automatiquement les lignes et les cases à cocher dans votre document et ajoute des champs de texte interactifs. C'est le moyen le plus simple de créer un formulaire sans logiciel coûteux.",
+          tool: "Rendre PDF Remplissable",
+          steps: ["Téléversez le PDF statique", "Scannez pour auto-détection", "Téléchargez le formulaire"]
+        }
+      },
+      ocr: {
+        title: "OCR PDF en Ligne - Rendre PDF Consultable Gratuitement | Service Sans Téléchargement | pdfcanada.ca",
+        desc: "Convertissez des PDF numérisés en texte consultable. OCR haute précision traité 100% localement dans votre navigateur. Sécurisé, rapide et aucun téléchargement requis—gardez vos données privées.",
+        h1: "OCR PDF et Consultable",
+        subtitle: "Déverrouillez le texte dans vos numérisations en toute sécurité et gratuitement.",
+        content: "Transformez vos images et scans en vrai texte que vous pouvez copier. Notre outil OCR fonctionne dans votre navigateur.",
+        steps: ["Téléchargez votre PDF numérisé.", "Sélectionnez la langue.", "Téléchargez votre nouveau PDF consultable."],
+        quickAnswer: {
+          question: "Comment rendre un PDF numérisé consultable ?",
+          answer: "Utilisez la reconnaissance optique de caractères (OCR) pour convertir les images de texte en contenu réel et consultable. Notre outil traite vos numérisations localement pour préserver vos données.",
+          tool: "OCR PDF",
+          steps: ["Téléchargez le PDF numérisé", "Sélectionnez la langue OCR", "Téléchargez le fichier consultable"]
+        },
+        faq: [
+          { q: "C'est quoi l'OCR ?", a: "La reconnaissance optique de caractères. Ça transforme les images de mots en vrais mots." }
+        ]
+      },
+      organizePdf: {
+        title: "Organiser PDF en Ligne - Réorganiser Pages PDF Gratuitement | pdfcanada.ca",
+        desc: "Réorganisez les pages PDF facilement par glisser-déposer. Réordonnez votre document PDF en toute sécurité dans votre navigateur. Aucun téléchargement—vos fichiers restent 100% privés sur votre appareil.",
+        h1: "Organiser les Pages PDF",
+        subtitle: "Mettez les pages de votre document dans l'ordre parfait.",
+        content: "Besoin de changer l'ordre des pages ? Notre outil vous permet de glisser-déposer les pages pour les réorganiser exactement comme vous le souhaitez.",
+        steps: [
+          "Téléchargez votre fichier PDF.",
+          "Glissez-déposez les vignettes pour les réorganiser.",
+          "Cliquez sur 'Enregistrer' pour télécharger.",
+          "Téléchargez votre PDF méticuleusement organisé."
+        ],
+        quickAnswer: {
+          question: "Comment puis-je réorganiser les pages d'un document PDF ?",
+          answer: "Vous pouvez réordonner les pages PDF en faisant simplement glisser et déposer les vignettes dans l'ordre souhaité. Notre outil d'organisation vous permet de réorganiser votre document rapidement.",
+          tool: "Organiser PDF",
+          steps: ["Téléchargez votre PDF", "Glissez les pages", "Enregistrez votre fichier organisé"]
+        },
+        faq: [
+          {
+            q: "Puis-je déplacer des pages entre PDF ?",
+            a: "Pas encore ! Pour l'instant, uniquement au sein d'un même fichier."
+          }
+        ]
+      },
+      cbrToPdf: {
+        title: "Convertisseur CBR vers PDF - Convertir Livres de Bandes Dessinées Gratuit | pdfcanada.ca",
+        desc: "Lisez vos bandes dessinées sur n'importe quel appareil. Notre guide 2026 vous montre comment convertir CBR/CBZ en PDF en toute sécurité dans votre navigateur. Aucun téléchargement.",
+        h1: "Convertir CBR en PDF",
+        subtitle: "Le guide définitif pour la conversion de bandes dessinées numériques.",
+        content: "Vous avez une collection de bandes dessinées numériques au format CBR ou CBZ ? Bien que ces formats soient excellents pour les lecteurs spécialisés, vous voudrez parfois un PDF pour lire sur votre tablette ou partager avec un ami. Notre convertisseur CBR en PDF facilite la transformation des archives de bandes dessinées en documents PDF standards. Nous supportons les fichiers CBR (basés sur RAR) et CBZ (basés sur ZIP).\n\nLa plupart des convertisseurs en ligne vous obligent à télécharger vos BD sur leurs serveurs. Mais les bandes dessinées peuvent être volumineuses et votre vie privée est importante. C'est pourquoi pdfcanada.ca traite vos BD directement dans votre navigateur. Pas de téléchargement, pas d'attente, juste une conversion rapide et sécurisée.",
+        steps: [
+          "Sélectionnez votre fichier .CBR ou .CBZ.",
+          "Notre système extrait les images et les compile dans un seul document PDF.",
+          "Une fois la conversion terminée, cliquez sur 'Télécharger' pour sauvegarder votre nouveau PDF."
+        ],
+        quickAnswer: {
+          question: "Comment convertir une bande dessinée CBR en PDF ?",
+          answer: "Vous pouvez convertir les formats de bandes dessinées numériques comme CBR (RAR) et CBZ (ZIP) en PDF gratuitement grâce à notre convertisseur local. Il extrait les images et les compile en un seul fichier PDF partageable.",
+          tool: "CBR en PDF",
+          steps: ["Choisissez votre fichier BD", "Extrayez les images localement", "Téléchargez votre livre PDF"]
+        },
+        faq: [
+          {
+            question: "Quelle est la différence entre CBR et CBZ ?",
+            answer: "Les fichiers CBR sont des archives RAR renommées, tandis que les fichiers CBZ sont des archives ZIP renommées. Les deux contiennent des images de pages de bandes dessinées."
+          },
+          {
+            question: "Puis-je convertir de gros fichiers CBR ?",
+            answer: "Oui ! Comme la conversion se fait sur votre appareil, la seule limite est la mémoire de votre navigateur."
+          }
+        ]
+      },
+      sign: {
+        title: "Signer PDF en Ligne - Signatures Numériques Sécurisées Gratuites | pdfcanada.ca",
+        desc: "Signez des documents PDF en ligne en toute sécurité. Ajoutez des signatures, initiales et dates localement dans votre navigateur. Vos documents sensibles ne quittent jamais votre ordinateur. Rapide et gratuit.",
+        h1: "Signer des Documents PDF",
+        subtitle: "La façon la plus sécurisée de signer des contrats et formulaires.",
+        content: "Besoin de signer un contrat, un bail ou un formulaire ? Notre outil de signature électronique vous permet d'ajouter des signatures professionnelles, des initiales et des dates à n'importe quel PDF.",
+        steps: [
+          "Téléversez le document PDF que vous devez signer.",
+          "Choisissez de dessiner, taper ou téléverser votre signature.",
+          "Placez votre signature, vos initiales ou la date du jour n'importe où sur le document.",
+          "Redimensionnez et déplacez les éléments jusqu'à ce qu'ils soient parfaits.",
+          "Cliquez sur 'Signer le PDF' pour télécharger votre document signé en toute sécurité."
+        ],
+        quickAnswer: {
+          question: "Comment signer un document PDF en ligne en toute sécurité ?",
+          answer: "Utilisez un outil de signature électronique qui traite votre signature localement dans le navigateur pour garantir une sécurité maximale. Notre outil vous permet de dessiner, taper ou téléverser des signatures sans envoyer votre document à un serveur.",
+          tool: "Signer PDF",
+          steps: ["Téléversez votre document", "Ajoutez signature et date", "Téléchargez le PDF signé"]
+        }
+      },
+      pdfToWord: {
+        title: "PDF vers Word en Ligne - Convertir PDF en DOCX Éditable | Gratuit & Sécurisé",
+        desc: "Convertissez PDF en documents Word éditables gratuitement. Notre convertisseur local garantit la sécurité de vos données sur votre appareil. Rapide, précis et 100% privé.",
+        h1: "Convertir PDF en Word",
+        subtitle: "Rendez vos PDF à nouveau modifiables—précisément et en toute sécurité.",
+        content: "Besoin de modifier un PDF ? Convertissez-le en document Word (.docx) sans effort. Notre traitement local garantit que vos données sensibles ne quittent jamais votre appareil.",
+        steps: [
+          "Sélectionnez le PDF que vous souhaitez convertir.",
+          "Notre outil extrait le texte et la mise en forme dans un document Word.",
+          "Téléchargez votre fichier .docx modifiable."
+        ],
+        quickAnswer: {
+          question: "Comment transformer un PDF en document Word modifiable ?",
+          answer: "Vous pouvez convertir un PDF en Word (.docx) gratuitement à l'aide de notre convertisseur par navigateur. Il extrait le texte et la structure de base, vous permettant de modifier le document dans Microsoft Word ou Google Docs.",
+          tool: "PDF en Word",
+          steps: ["Téléversez votre PDF", "Extrayez le texte et la mise en page", "Téléchargez le fichier Word"]
+        }
+      },
+      wordToPdf: {
+        title: "Word vers PDF en Ligne - Convertir DOCX en PDF Gratuitement | pdfcanada.ca",
+        desc: "Créez des PDF de haute qualité à partir de documents Word instantanément. Notre convertisseur sécurisé traite les fichiers localement—aucun téléchargement, aucun suivi, juste un service canadien gratuit et rapide.",
+        h1: "Convertir Word en PDF",
+        subtitle: "Des PDF professionnels à partir de vos fichiers DOCX instantanément.",
+        content: "Transformez vos documents Word en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale à laquelle vous pouvez faire confiance.",
+        steps: [
+          "Téléversez votre fichier .docx.",
+          "Nous traitons le document et générons un PDF professionnel.",
+          "Téléchargez votre nouveau fichier PDF."
+        ],
+        quickAnswer: {
+          question: "Quelle est la meilleure façon de convertir Word en PDF ?",
+          answer: "La meilleure façon est d'utiliser un convertisseur local sécurisé qui préserve votre formatage. Notre outil transforme vos fichiers .docx en PDF professionnels instantanément sans nécessiter de téléchargement sur un serveur.",
+          tool: "Word en PDF",
+          steps: ["Sélectionnez le document .docx", "Générez un PDF professionnel", "Téléchargez votre fichier"]
+        }
+      },
+      crop: {
+        title: "Recadrer PDF en Ligne - Ajuster les Marges & Redimensionner Gratuitement | pdfcanada.ca",
+        desc: "Recadrez vos pages PDF instantanément pour supprimer les espaces blancs ou vous concentrer sur le contenu. Ajustez les marges en toute sécurité dans votre navigateur. Aucun téléchargement.",
+        h1: "Recadrer des Pages PDF",
+        subtitle: "Ajustez les marges et concentrez-vous sur l'essentiel.",
+        content: "Besoin de supprimer des espaces blancs ou de vous concentrer sur une zone spécifique de votre document ? Notre outil de recadrage vous permet d'ajuster les marges de vos pages PDF sans effort. C'est rapide, gratuit et se passe entièrement sur votre appareil.",
+        steps: [
+          "Téléversez votre document PDF.",
+          "Utilisez le sélecteur pour définir votre zone de recadrage.",
+          "Appliquez le recadrage et téléchargez votre PDF mis à jour."
+        ],
+        quickAnswer: {
+          question: "Comment recadrer les pages PDF pour supprimer les marges blanches ?",
+          answer: "Utilisez un outil de recadrage visuel pour sélectionner le contenu que vous souhaitez conserver et supprimer les marges blanches. Notre outil vous permet d'appliquer le recadrage à une ou toutes les pages en toute sécurité.",
+          tool: "Recadrer PDF",
+          steps: ["Téléversez le fichier PDF", "Définissez la zone de recadrage", "Téléchargez le PDF ajusté"]
+        }
+      },
+      compress: {
+        title: "Compresser PDF en Ligne - Réduire la Taille sans Perdre de Qualité | pdfcanada.ca",
+        desc: "Compressez les fichiers PDF pour réduire la taille tout en conservant la qualité d'origine. Optimisez les PDF en toute sécurité dans votre navigateur—aucun téléchargement requis.",
+        h1: "Compresser Fichier PDF",
+        subtitle: "Réduisez la taille de vos fichiers sans perte de qualité.",
+        content: "Besoin d'envoyer un gros PDF par courriel ? Notre outil de compression réduit la taille du fichier tout en maintenant une excellente qualité. Choisissez parmi trois niveaux de compression.",
+        steps: [
+          "Sélectionnez le fichier PDF à compresser.",
+          "Choisissez votre niveau de compression (Bon, Équilibré ou Extrême).",
+          "Cliquez sur 'Compresser PDF' et téléchargez votre fichier réduit."
+        ],
+        quickAnswer: {
+          question: "Comment puis-je réduire la taille de mon PDF sans perdre de qualité ?",
+          answer: "Vous pouvez compresser les PDF en optimisant les métadonnées internes et les flux. Notre outil propose plusieurs niveaux de compression, vous permettant de choisir le meilleur équilibre entre taille et qualité d'image.",
+          tool: "Compresser PDF",
+          steps: ["Choisissez le fichier PDF", "Sélectionnez le niveau", "Téléchargez le PDF compressé"]
+        },
+        faq: [
+          { question: "De combien puis-je réduire la taille de mon PDF ?", answer: "Selon le contenu, vous pouvez réduire la taille de 50 à 90%. Les PDF riches en images voient les plus grandes réductions." },
+          { question: "La compression réduira-t-elle la qualité ?", answer: "Nos modes 'Bon' et 'Équilibré' maintiennent une excellente qualité. Le mode 'Extrême' privilégie la taille à la qualité." },
+          { question: "La compression PDF est-elle sécurisée ?", answer: "Oui ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
+        ]
+      },
+      merge: {
+        title: "Fusionner PDF en Ligne - Service Sécurisé Sans Téléchargement | pdfcanada.ca",
+        desc: "Sélectionnez et fusionnez plusieurs fichiers PDF en quelques secondes en toute sécurité dans votre navigateur. Combinez des PDF en ligne avec 100% de confidentialité. Rapide et gratuit.",
+        h1: "Fusionner des Fichiers PDF",
+        subtitle: "Combinez plusieurs PDF en un seul document en toute sécurité.",
+        content: "Vous avez plusieurs fichiers PDF qui devraient n'en faire qu'un ? Notre outil de fusion vous permet de les combiner facilement. Glissez-déposez pour réorganiser, puis fusionnez-les.",
+        steps: [
+          "Sélectionnez les fichiers PDF à fusionner.",
+          "Glissez-déposez les fichiers pour réorganiser l'ordre.",
+          "Cliquez sur 'Fusionner PDF' pour télécharger votre document combiné."
+        ],
+        quickAnswer: {
+          question: "Comment fusionner plusieurs fichiers PDF en un seul ?",
+          answer: "Fusionner des PDF est facile avec notre outil local. Il suffit de téléverser vos documents, de les organiser dans le bon ordre et de télécharger le fichier combiné unique. Vos données restent sécurisées sur votre appareil.",
+          tool: "Fusionner PDF",
+          steps: ["Sélectionnez plusieurs PDF", "Organisez les fichiers", "Téléchargez le fichier fusionné"]
+        },
+        faq: [
+          { question: "Combien de PDF puis-je fusionner à la fois ?", answer: "Il n'y a pas de limite ! Fusionnez autant de fichiers PDF que nécessaire. Tout le traitement se fait localement dans votre navigateur." },
+          { question: "Puis-je réorganiser les pages avant la fusion ?", answer: "Oui ! Glissez-déposez les fichiers pour réorganiser leur ordre avant de fusionner en un seul document." },
+          { question: "La fusion affectera-t-elle la qualité de mes PDF ?", answer: "Non ! Notre outil de fusion préserve la qualité originale de tous vos documents." }
+        ]
+      },
+      split: {
+        title: "Diviser PDF en Ligne - Séparer les Pages PDF Gratuitement | pdfcanada.ca",
+        desc: "Divisez votre PDF en pages individuelles instantanément. Téléchargez en tant que fichier ZIP contenant chaque page comme PDF séparé. 100% privé—aucun téléversement requis.",
+        h1: "Diviser PDF en Pages",
+        subtitle: "Séparez votre PDF en fichiers de pages individuelles.",
+        content: "Besoin de séparer un document PDF ? Notre outil de division sépare chaque page en son propre fichier et les regroupe dans un téléchargement ZIP pratique. Parfait pour extraire des pages spécifiques ou distribuer du contenu.",
+        steps: [
+          "Téléversez votre document PDF.",
+          "Cliquez sur 'Diviser PDF' pour séparer toutes les pages.",
+          "Téléchargez votre fichier ZIP contenant les PDF individuels."
+        ],
+        quickAnswer: {
+          question: "Comment diviser un gros PDF en pages séparées ?",
+          answer: "Vous pouvez diviser un PDF en extrayant chaque page dans son propre fichier. Notre outil sépare le document pour vous et fournit un téléchargement ZIP pratique, le tout traité localement.",
+          tool: "Diviser PDF",
+          steps: ["Téléversez votre document", "Extrayez les pages individuelles", "Téléchargez l'archive ZIP"]
+        },
+        faq: [
+          { question: "Comment diviser un PDF en pages séparées ?", answer: "Téléversez votre PDF, cliquez sur 'Diviser PDF', et téléchargez un fichier ZIP contenant chaque page comme PDF individuel." },
+          { question: "La division de PDF est-elle gratuite ?", answer: "Oui ! Notre outil Diviser PDF est 100% gratuit sans limites. Vos fichiers sont traités localement dans votre navigateur pour une confidentialité totale." },
+          { question: "Puis-je diviser un PDF protégé par mot de passe ?", answer: "Vous devrez d'abord supprimer le mot de passe. Nous recommandons d'utiliser un outil de déverrouillage PDF dédié avant la division." }
+        ]
+      },
+      pdfToXml: {
+        title: "Convertisseur PDF vers XML - Extraire des Données Structurées | pdfcanada.ca",
+        desc: "Convertissez des documents PDF au format XML avec extraction de données structurées. Préservez la mise en page, les positions du texte et la hiérarchie du contenu. Gratuit et privé.",
+        h1: "Convertir PDF en XML",
+        subtitle: "Extrayez des données structurées de vos documents PDF.",
+        content: "Transformez vos documents PDF en format XML structuré. Notre convertisseur extrait le contenu textuel avec les données de position, les dimensions des pages et la hiérarchie du contenu—idéal pour le traitement et l'analyse de données.",
+        steps: [
+          "Téléversez votre fichier PDF.",
+          "Cliquez sur 'Convertir en XML' pour traiter.",
+          "Téléchargez votre fichier XML structuré."
+        ],
+        faq: [
+          { question: "Quelles données sont extraites lors de la conversion PDF vers XML ?", answer: "Notre outil extrait le contenu textuel, les dimensions des pages, les positions du texte et la structure du contenu dans un format XML propre." },
+          { question: "Puis-je convertir des PDF scannés en XML ?", answer: "Pour les documents scannés, nous recommandons d'utiliser l'OCR d'abord pour extraire le texte, puis de convertir en XML pour de meilleurs résultats." },
+          { question: "Mes données PDF sont-elles sécurisées pendant la conversion ?", answer: "Absolument ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
+        ]
+      },
+      xmlToPdf: {
+        title: "Convertisseur XML vers PDF - Créer des PDF à partir de Données XML | pdfcanada.ca",
+        desc: "Convertissez des documents XML au format PDF. Transformez des données structurées en documents PDF propres et lisibles. Gratuit, rapide et traité localement.",
+        h1: "Convertir XML en PDF",
+        subtitle: "Transformez les données XML en documents PDF.",
+        content: "Convertissez vos fichiers XML en documents PDF professionnellement formatés. Notre outil analyse la structure XML et crée des PDF propres et lisibles à partir de vos données—parfait pour les rapports et la documentation.",
+        steps: [
+          "Téléversez votre fichier XML.",
+          "Cliquez sur 'Convertir en PDF' pour traiter.",
+          "Téléchargez votre document PDF généré."
+        ],
+        faq: [
+          { question: "Quels formats XML sont supportés ?", answer: "Notre convertisseur supporte les fichiers XML standard. L'outil extrait le contenu textuel et le formate dans un document PDF propre et lisible." },
+          { question: "Puis-je personnaliser la sortie PDF ?", answer: "Actuellement, l'outil crée un PDF formaté standard. Pour une personnalisation avancée, envisagez d'utiliser des modèles ou des outils de post-traitement." },
+          { question: "Y a-t-il une limite de taille de fichier ?", answer: "Il n'y a pas de limite stricte, mais les très gros fichiers XML peuvent prendre plus de temps à traiter. Tout le traitement est fait localement dans votre navigateur." }
+        ]
+      },
+      excelToPdf: {
+        title: "Excel vers PDF en Ligne - Convertir XLSX/XLS en PDF Gratuitement | pdfcanada.ca",
+        desc: "Créez instantanément des PDF de haute qualité à partir de feuilles de calcul Excel. Notre convertisseur sécurisé traite les fichiers localement - pas de téléversement, pas de suivi, juste un service canadien rapide et gratuit.",
+        h1: "Convertir Excel en PDF",
+        subtitle: "Des PDF professionnels à partir de vos fichiers Excel instantanément.",
+        content: "Transformez vos feuilles de calcul Excel en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale en laquelle vous pouvez avoir confiance.",
+        steps: [
+          "Téléversez votre fichier .xlsx ou .xls.",
+          "Nous traitons la feuille de calcul et générons un PDF professionnel.",
+          "Téléchargez votre nouveau fichier PDF."
+        ],
+        quickAnswer: {
+          question: "Comment convertir des feuilles Excel en PDF gratuitement ?",
+          answer: "Vous pouvez convertir des fichiers .xlsx et .xls en PDF de haute qualité gratuitement à l'aide de notre convertisseur local. Il préserve la structure de vos tableaux sans nécessiter de téléchargement sur un serveur.",
+          tool: "Excel vers PDF",
+          steps: ["Sélectionnez le fichier Excel", "Générez un PDF professionnel", "Téléchargez votre fichier"]
+        }
+      },
+    },
+
+    toolDelete: "Supprimer des pages",
+    toolDeleteDesc: "Enlever les pages inutiles.",
+    toolFlatten: "Non modifiable",
+    toolFlattenDesc: "Aplatir le PDF.",
+    toolPdfPageRemover: "Suppresseur de pages PDF",
+    toolPdfPageRemoverDesc: "Enlever des pages du PDF.",
+    toolRotate: "Pivoter PDF",
+    toolRotateDesc: "Arranger les pages à l'envers.",
+    toolHeic: "HEIC en PDF",
+    toolHeicDesc: "Convertir photos iPhone.",
+    toolEpubToPdf: "EPUB en PDF",
+    toolEpubToPdfDesc: "Lire ebooks en PDF.",
+    toolPdfToEpub: "PDF en EPUB",
+    toolPdfToEpubDesc: "Convertir pour liseuses.",
+    toolMakeFillable: "Rendre PDF Remplissable",
+    toolMakeFillableDesc: "Ajouter des zones de texte auto.",
+    toolOcr: "OCR PDF",
+    toolOcrDesc: "Extraire texte des scans.",
+    toolCbrToPdf: "CBR en PDF",
+    toolCbrToPdfDesc: "Convertir BD en PDF.",
+    toolSign: "Signer le PDF",
+    toolSignDesc: "Signer des documents en toute sécurité.",
+    toolPdfToWord: "PDF en Word",
+    toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
+    toolWordToPdf: "Word en PDF",
+    toolWordToPdfDesc: "Convertir Word docx en PDF.",
+    toolExcelToPdf: "Excel vers PDF",
+    toolExcelToPdfDesc: "Convertir Excel doc en PDF.",
+    toolCrop: "Recadrer PDF",
+    toolCropDesc: "Ajuster les marges.",
+    toolOrganize: "Organiser PDF",
+    toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
+    toolCompress: "Compresser PDF",
+    toolCompressDesc: "Réduire la taille.",
+    toolMerge: "Fusionner PDF",
+    toolMergeDesc: "Combiner plusieurs PDFs.",
+    toolSplit: "Diviser PDF",
+    toolSplitDesc: "Séparer en pages.",
+    toolPdfToXml: "PDF en XML",
+    toolPdfToXmlDesc: "Extraire données structurées.",
+    toolXmlToPdf: "XML en PDF",
+    toolXmlToPdfDesc: "Créer PDF depuis XML.",
+
+    uploadTitle: "Téléverser",
+    uploadDesc: "ou glisser un fichier ici",
+    processedLocally: "Traitement local",
+    selectFile: "Choisir un fichier",
+    terms: "En téléversant, vous acceptez nos conditions polies.",
+    pages: "pages",
+    local: "Local",
+
+    selectPagesHeader: "Sélectionnez les pages :",
+    selected: "sélectionnées",
+    rotateLeft: "Gauche",
+    rotateRight: "Droite",
+    rotateAllLeft: "Tout Pivoter Gauche",
+    rotateAllRight: "Tout Pivoter Droite",
+    resetRotations: "Réinitialiser",
+    selectPagesToFill: "Sélectionnez les pages à scanner :",
+    selectPagesForOcr: "Sélectionnez les pages pour l'OCR :",
+    ocrProgress: "Reconnaissance du texte...",
+
+    // Tool Specific Inputs
+    deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
+    totalPages: "Nombre de pages",
+    pagesToRemove: "Pages à supprimer",
+    signPagesInfo: "Placez votre signature ou vos initiales sur le document.",
+    addSignature: "Ajouter Signature",
+    addInitials: "Ajouter Initiales",
+    signUpload: "Téléverser",
+    select: "Sélectionner",
+    pan: "Panoramique",
+    newSignature: "Nouvelle signature",
+    newInitials: "Nouvelles initiales",
+    loadingPage: "Chargement de la page...",
+    pageNumber: "Page {number}",
+    signTools: "Outils de signature",
+    signatures: "Signatures",
+    createNewSignature: "Créer une nouvelle signature",
+    initials: "Initiales",
+    createNewInitials: "Créer de nouvelles initiales",
+    annotation: "Annotation",
+    date: "Date",
+    text: "Texte",
+    check: "Case à cocher",
+    btnDeleteEntry: "Supprimer",
+    done: "Terminé",
+    edit: "Modifier",
+    undo: "Annuler",
+    redo: "Rétablir",
+    quickAdd: "Ajout rapide",
+    todaysDate: "Date d'aujourd'hui",
+    textField: "Champ texte",
+    of: "sur",
+
+    btnRemove: "Supprimer",
+    btnRotate: "Appliquer",
+    btnFlatten: "Rendre non modifiable",
+    btnCrop: "Recadrer PDF",
+    btnConvert: "Convertir le fichier",
+    btnMakeFillable: "Détecter et Remplir",
+    btnCancel: "Annuler",
+    btnExtractText: "Extraire le Texte",
+    btnSearchablePdf: "Créer PDF Recherchable",
+    btnSave: "Enregistrer",
+    readyToConvertDesc: "Prêt à convertir {fileName}. Cela peut prendre quelques instants selon la taille du fichier.",
+
+    working: "On y travaille...",
+    workingDesc: "On scanne pour les champs et on arrange ça.",
+    doneTitle: "C'est tiguidou !",
+    doneDesc: "Votre fichier est prêt.",
+    download: "Télécharger",
+    doAnother: "En faire un autre",
+    backToHome: "Retour aux outils",
+
+    errorTitle: "Ah zut !",
+    genericError: "Quelque chose a mal tourné. Désolé !",
+    fileTypeErr: "Désolé, mais on n'accepte pas ce type de fichier.",
+    readErr: "Désolé, on n'a pas pu lire ce fichier.",
+    passwordErr: "Ce PDF est protégé par mot de passe. Veuillez le déverrouiller d'abord.",
+    corruptPdfErr: "Le fichier PDF semble corrompu ou invalide.",
+    conversionErr: "Échec de la conversion du fichier. Il est peut-être trop complexe ou endommagé.",
+    emptyEpubErr: "Impossible d'extraire le texte de cet EPUB.",
+
+    navHowTo: "Aide",
+    navSupport: "Soutenir local",
+    navPricing: "Tarifs",
+    footerEditGroup: "Modifier & Optimiser",
+    footerConvertGroup: "Convertir PDF",
+    footerGuidesGroup: "Guides & Aide",
+    login: "Connexion",
+    signup: "S'inscrire",
+
+    footerBuilt: "Fièrement bâti dans le Nord fort et libre.",
+    footerMade: "Fait avec",
+    footerLocation: "et du sirop d'érable à Toronto, ON.",
+    footerRights: "Tous droits réservés, désolé.",
+    footerTagline: "L'outil PDF préféré du Grand Nord Blanc.",
+    footerPrivacyNotice: "On ne vous suit pas. Ce ne serait pas poli.",
+    termsService: "Conditions",
+    privacy: "Confidentialité",
+    sorryPolicy: "Politique d'excuses",
+    makeFillableFooter: "Comment rendre un PDF remplissable",
+
+    pricingTitle: "Tarification Simple",
+    pricingSubtitle: "Prix honnêtes pour gens honnêtes.",
+    freePlan: "Le plan 'Gars des vues'",
+    freeCost: "0 $ CAD",
+    freeFeature1: "Conversions illimitées",
+    freeFeature2: "Pas de compte requis",
+    freeFeature3: "Messages d'erreur polis",
+    freeFeature4: "Traitement local (Sécurisé)",
+    enterprisePlan: "Le plan 'Double Double'",
+    enterpriseCost: "0 $ CAD",
+    enterpriseFeature1: "Tout du plan de base",
+    enterpriseFeature2: "On s'excuse deux fois plus",
+    enterpriseFeature3: "Livraison de sirop prioritaire (optionnel)",
+
+    // Timbits Support Tier
+    timbitsPlan: "Le pourboire 'Timbits'",
+    timbitsCost: "1 $ CAD",
+    timbitsDesc: "Un huard, ça fait la différence!",
+    timbitsFeature1: "Garder les serveurs au pays",
+    timbitsFeature2: "Financer de nouveaux outils",
+    timbitsFeature3: "Soutenir des devs canadiens",
+    timbitsFeature4: "Recevoir nos remerciements",
+    timbitsButton: "Donner un Huard",
+
+    // Form Builder
+    fbTitle: "Créateur de Formulaire",
+    fbAddText: "Ajouter Texte",
+    fbAddCheckbox: "Ajouter Case",
+    fbCancel: "Annuler",
+    fbDownload: "Télécharger",
+    fbPage: "Page",
+
+    privacyTitle: "Politique de Confidentialité",
+    privacyText1: "Chez pdfcanada.ca, vos affaires sont vos affaires. Parce qu'on traite les fichiers localement, vos documents ne sont jamais envoyés sur nos serveurs.",
+    privacyText2: "On n'utilise pas de cookies pour vous suivre. On ne vend pas vos données. C'est juste vous et votre PDF.",
+
+    termsTitle: "Conditions d'utilisation",
+    termsText1: "En utilisant ce service, vous acceptez d'être gentil.",
+    termsText2: "S'il vous plaît, n'utilisez pas nos outils pour des trucs illégaux.",
+    termsText3: "Service fourni 'tel quel'. Si ça brise, on est vraiment désolé.",
+
+    sorryTitle: "Notre Politique d'Excuses",
+    sorryText1: "Dans le cas peu probable où quelque chose cloche :",
+    sorryList1: "1. On va s'excuser immédiatement.",
+    sorryList2: "2. On va essayer d'arranger ça.",
+    sorryList3: "3. On va s'excuser encore, juste au cas.",
+
+    howtoTitle: "Comment ça marche",
+    howtoStep1: "Choisissez un outil sur le tableau de bord.",
+    howtoStep2: "Sélectionnez votre fichier (PDF, HEIC, ou EPUB).",
+    howtoStep3: "Suivez les instructions polies à l'écran.",
+    howtoStep4: "Téléchargez votre nouveau fichier. Facile.",
+
+    fillablePageTitle: "Comment rendre un PDF remplissable",
+    fillablePageSubtitle: "Le guide poli pour créer des formulaires.",
+    fillableIntro: "Vous voulez que les gens puissent écrire dans votre document ?",
+    fillableStep1: "Téléversez votre PDF dans notre outil.",
+    fillableStep2: "Sélectionnez les pages.",
+    fillableStep3: "Nous ajoutons une boîte de texte.",
+    fillableStep4: "Téléchargez et partagez.",
+    fillableProTip: "Conseil de pro : Idéal pour les formulaires.",
+    fillableWhy: "Pourquoi nous utiliser ?",
+    fillableWhyText: "C'est gratuit et canadien.",
+    pricingPage: {
+      content: "Chez pdfcanada.ca, nous croyons que les outils essentiels doivent être gratuits. C'est pourquoi nos fonctionnalités de base sont à 0 $. Pas de frais cachés. Si vous cherchez des outils PDF gratuits au Canada, vous êtes au bon endroit.",
       faq: [
         {
-          question: "Quelle est la différence entre CBR et CBZ ?",
-          answer: "Les fichiers CBR sont des archives RAR renommées, tandis que les fichiers CBZ sont des archives ZIP renommées. Les deux contiennent des images de pages de bandes dessinées."
+          question: "Est-ce vraiment gratuit ?",
+          answer: "Oui, absolument ! Tous nos outils sont gratuits."
         },
         {
-          question: "Puis-je convertir de gros fichiers CBR ?",
-          answer: "Oui ! Comme la conversion se fait sur votre appareil, la seule limite est la mémoire de votre navigateur."
+          question: "Ai-je besoin d'une carte de crédit ?",
+          answer: "No, aucune carte ni inscription requise."
+        },
+        {
+          question: "Pourquoi est-ce gratuit ?",
+          answer: "Grâce au traitement local, nos coûts sont faibles. Nous acceptons les dons optionnels."
+        },
+        {
+          question: "Puis-je l'utiliser pour mon entreprise ?",
+          answer: "Bien sûr. C'est parfait pour les PME et les pigistes."
+        },
+        {
+          question: "C'est quoi le pourboire Timbits ?",
+          answer: "C'est un don optionnel de 1 $ pour nous dire merci."
         }
       ]
     },
-    sign: {
-      title: "Signer PDF en Ligne - Signatures Numériques Sécurisées Gratuites | pdfcanada.ca",
-      desc: "Signez des documents PDF en ligne en toute sécurité. Ajoutez des signatures, initiales et dates localement dans votre navigateur. Vos documents sensibles ne quittent jamais votre ordinateur. Rapide et gratuit.",
-      h1: "Signer des Documents PDF",
-      subtitle: "La façon la plus sécurisée de signer des contrats et formulaires.",
-      content: "Besoin de signer un contrat, un bail ou un formulaire ? Notre outil de signature électronique vous permet d'ajouter des signatures professionnelles, des initiales et des dates à n'importe quel PDF.",
-      steps: [
-        "Téléversez le document PDF que vous devez signer.",
-        "Choisissez de dessiner, taper ou téléverser votre signature.",
-        "Placez votre signature, vos initiales ou la date du jour n'importe où sur le document.",
-        "Redimensionnez et déplacez les éléments jusqu'à ce qu'ils soient parfaits.",
-        "Cliquez sur 'Signer le PDF' pour télécharger votre document signé en toute sécurité."
-      ],
-      quickAnswer: {
-        question: "Comment signer un document PDF en ligne en toute sécurité ?",
-        answer: "Utilisez un outil de signature électronique qui traite votre signature localement dans le navigateur pour garantir une sécurité maximale. Notre outil vous permet de dessiner, taper ou téléverser des signatures sans envoyer votre document à un serveur.",
-        tool: "Signer PDF",
-        steps: ["Téléversez votre document", "Ajoutez signature et date", "Téléchargez le PDF signé"]
-      }
-    },
-    pdfToWord: {
-      title: "PDF vers Word en Ligne - Convertir PDF en DOCX Éditable | Gratuit & Sécurisé",
-      desc: "Convertissez PDF en documents Word éditables gratuitement. Notre convertisseur local garantit la sécurité de vos données sur votre appareil. Rapide, précis et 100% privé.",
-      h1: "Convertir PDF en Word",
-      subtitle: "Rendez vos PDF à nouveau modifiables—précisément et en toute sécurité.",
-      content: "Besoin de modifier un PDF ? Convertissez-le en document Word (.docx) sans effort. Notre traitement local garantit que vos données sensibles ne quittent jamais votre appareil.",
-      steps: [
-        "Sélectionnez le PDF que vous souhaitez convertir.",
-        "Notre outil extrait le texte et la mise en forme dans un document Word.",
-        "Téléchargez votre fichier .docx modifiable."
-      ],
-      quickAnswer: {
-        question: "Comment transformer un PDF en document Word modifiable ?",
-        answer: "Vous pouvez convertir un PDF en Word (.docx) gratuitement à l'aide de notre convertisseur par navigateur. Il extrait le texte et la structure de base, vous permettant de modifier le document dans Microsoft Word ou Google Docs.",
-        tool: "PDF en Word",
-        steps: ["Téléversez votre PDF", "Extrayez le texte et la mise en page", "Téléchargez le fichier Word"]
-      }
-    },
-    wordToPdf: {
-      title: "Word vers PDF en Ligne - Convertir DOCX en PDF Gratuitement | pdfcanada.ca",
-      desc: "Créez des PDF de haute qualité à partir de documents Word instantanément. Notre convertisseur sécurisé traite les fichiers localement—aucun téléchargement, aucun suivi, juste un service canadien gratuit et rapide.",
-      h1: "Convertir Word en PDF",
-      subtitle: "Des PDF professionnels à partir de vos fichiers DOCX instantanément.",
-      content: "Transformez vos documents Word en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale à laquelle vous pouvez faire confiance.",
-      steps: [
-        "Téléversez votre fichier .docx.",
-        "Nous traitons le document et générons un PDF professionnel.",
-        "Téléchargez votre nouveau fichier PDF."
-      ],
-      quickAnswer: {
-        question: "Quelle est la meilleure façon de convertir Word en PDF ?",
-        answer: "La meilleure façon est d'utiliser un convertisseur local sécurisé qui préserve votre formatage. Notre outil transforme vos fichiers .docx en PDF professionnels instantanément sans nécessiter de téléchargement sur un serveur.",
-        tool: "Word en PDF",
-        steps: ["Sélectionnez le document .docx", "Générez un PDF professionnel", "Téléchargez votre fichier"]
-      }
-    },
-    crop: {
-      title: "Recadrer PDF en Ligne - Ajuster les Marges & Redimensionner Gratuitement | pdfcanada.ca",
-      desc: "Recadrez vos pages PDF instantanément pour supprimer les espaces blancs ou vous concentrer sur le contenu. Ajustez les marges en toute sécurité dans votre navigateur. Aucun téléchargement.",
-      h1: "Recadrer des Pages PDF",
-      subtitle: "Ajustez les marges et concentrez-vous sur l'essentiel.",
-      content: "Besoin de supprimer des espaces blancs ou de vous concentrer sur une zone spécifique de votre document ? Notre outil de recadrage vous permet d'ajuster les marges de vos pages PDF sans effort. C'est rapide, gratuit et se passe entièrement sur votre appareil.",
-      steps: [
-        "Téléversez votre document PDF.",
-        "Utilisez le sélecteur pour définir votre zone de recadrage.",
-        "Appliquez le recadrage et téléchargez votre PDF mis à jour."
-      ],
-      quickAnswer: {
-        question: "Comment recadrer les pages PDF pour supprimer les marges blanches ?",
-        answer: "Utilisez un outil de recadrage visuel pour sélectionner le contenu que vous souhaitez conserver et supprimer les marges blanches. Notre outil vous permet d'appliquer le recadrage à une ou toutes les pages en toute sécurité.",
-        tool: "Recadrer PDF",
-        steps: ["Téléversez le fichier PDF", "Définissez la zone de recadrage", "Téléchargez le PDF ajusté"]
-      }
-    },
-    compress: {
-      title: "Compresser PDF en Ligne - Réduire la Taille sans Perdre de Qualité | pdfcanada.ca",
-      desc: "Compressez les fichiers PDF pour réduire la taille tout en conservant la qualité d'origine. Optimisez les PDF en toute sécurité dans votre navigateur—aucun téléchargement requis.",
-      h1: "Compresser Fichier PDF",
-      subtitle: "Réduisez la taille de vos fichiers sans perte de qualité.",
-      content: "Besoin d'envoyer un gros PDF par courriel ? Notre outil de compression réduit la taille du fichier tout en maintenant une excellente qualité. Choisissez parmi trois niveaux de compression.",
-      steps: [
-        "Sélectionnez le fichier PDF à compresser.",
-        "Choisissez votre niveau de compression (Bon, Équilibré ou Extrême).",
-        "Cliquez sur 'Compresser PDF' et téléchargez votre fichier réduit."
-      ],
-      quickAnswer: {
-        question: "Comment puis-je réduire la taille de mon PDF sans perdre de qualité ?",
-        answer: "Vous pouvez compresser les PDF en optimisant les métadonnées internes et les flux. Notre outil propose plusieurs niveaux de compression, vous permettant de choisir le meilleur équilibre entre taille et qualité d'image.",
-        tool: "Compresser PDF",
-        steps: ["Choisissez le fichier PDF", "Sélectionnez le niveau", "Téléchargez le PDF compressé"]
-      },
+    supportPage: {
+      content: "Nous sommes une petite équipe à Toronto. Contrairement aux grandes entreprises, nous traitons tout localement sur votre appareil. En nous soutenant, vous aidez le logiciel canadien indépendant.",
       faq: [
-        { question: "De combien puis-je réduire la taille de mon PDF ?", answer: "Selon le contenu, vous pouvez réduire la taille de 50 à 90%. Les PDF riches en images voient les plus grandes réductions." },
-        { question: "La compression réduira-t-elle la qualité ?", answer: "Nos modes 'Bon' et 'Équilibré' maintiennent une excellente qualité. Le mode 'Extrême' privilégie la taille à la qualité." },
-        { question: "La compression PDF est-elle sécurisée ?", answer: "Oui ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
+        {
+          question: "Comment soutenir pdfcanada.ca ?",
+          answer: "Partagez l'outil ou donnez un huard via notre bouton de don."
+        },
+        {
+          question: "Où va mon don ?",
+          answer: "Il paie l'hébergement et le café des développeurs."
+        },
+        {
+          question: "Est-ce sécurisé ?",
+          answer: "Oui, nous utilisons Stripe. Nous ne voyons jamais vos infos bancaires."
+        },
+        {
+          question: "Pourquoi soutenir le local ?",
+          answer: "C'est important pour l'écosystème techno canadien."
+        },
+        {
+          question: "Offrez-vous des remboursements ?",
+          answer: "Pour les petits dons, généralement non, mais contactez-nous en cas d'erreur."
+        }
       ]
-    },
-    merge: {
-      title: "Fusionner PDF en Ligne - Service Sécurisé Sans Téléchargement | pdfcanada.ca",
-      desc: "Sélectionnez et fusionnez plusieurs fichiers PDF en quelques secondes en toute sécurité dans votre navigateur. Combinez des PDF en ligne avec 100% de confidentialité. Rapide et gratuit.",
-      h1: "Fusionner des Fichiers PDF",
-      subtitle: "Combinez plusieurs PDF en un seul document en toute sécurité.",
-      content: "Vous avez plusieurs fichiers PDF qui devraient n'en faire qu'un ? Notre outil de fusion vous permet de les combiner facilement. Glissez-déposez pour réorganiser, puis fusionnez-les.",
-      steps: [
-        "Sélectionnez les fichiers PDF à fusionner.",
-        "Glissez-déposez les fichiers pour réorganiser l'ordre.",
-        "Cliquez sur 'Fusionner PDF' pour télécharger votre document combiné."
-      ],
-      quickAnswer: {
-        question: "Comment fusionner plusieurs fichiers PDF en un seul ?",
-        answer: "Fusionner des PDF est facile avec notre outil local. Il suffit de téléverser vos documents, de les organiser dans le bon ordre et de télécharger le fichier combiné unique. Vos données restent sécurisées sur votre appareil.",
-        tool: "Fusionner PDF",
-        steps: ["Sélectionnez plusieurs PDF", "Organisez les fichiers", "Téléchargez le fichier fusionné"]
-      },
-      faq: [
-        { question: "Combien de PDF puis-je fusionner à la fois ?", answer: "Il n'y a pas de limite ! Fusionnez autant de fichiers PDF que nécessaire. Tout le traitement se fait localement dans votre navigateur." },
-        { question: "Puis-je réorganiser les pages avant la fusion ?", answer: "Oui ! Glissez-déposez les fichiers pour réorganiser leur ordre avant de fusionner en un seul document." },
-        { question: "La fusion affectera-t-elle la qualité de mes PDF ?", answer: "Non ! Notre outil de fusion préserve la qualité originale de tous vos documents." }
-      ]
-    },
-    split: {
-      title: "Diviser PDF en Ligne - Séparer les Pages PDF Gratuitement | pdfcanada.ca",
-      desc: "Divisez votre PDF en pages individuelles instantanément. Téléchargez en tant que fichier ZIP contenant chaque page comme PDF séparé. 100% privé—aucun téléversement requis.",
-      h1: "Diviser PDF en Pages",
-      subtitle: "Séparez votre PDF en fichiers de pages individuelles.",
-      content: "Besoin de séparer un document PDF ? Notre outil de division sépare chaque page en son propre fichier et les regroupe dans un téléchargement ZIP pratique. Parfait pour extraire des pages spécifiques ou distribuer du contenu.",
-      steps: [
-        "Téléversez votre document PDF.",
-        "Cliquez sur 'Diviser PDF' pour séparer toutes les pages.",
-        "Téléchargez votre fichier ZIP contenant les PDF individuels."
-      ],
-      quickAnswer: {
-        question: "Comment diviser un gros PDF en pages séparées ?",
-        answer: "Vous pouvez diviser un PDF en extrayant chaque page dans son propre fichier. Notre outil sépare le document pour vous et fournit un téléchargement ZIP pratique, le tout traité localement.",
-        tool: "Diviser PDF",
-        steps: ["Téléversez votre document", "Extrayez les pages individuelles", "Téléchargez l'archive ZIP"]
-      },
-      faq: [
-        { question: "Comment diviser un PDF en pages séparées ?", answer: "Téléversez votre PDF, cliquez sur 'Diviser PDF', et téléchargez un fichier ZIP contenant chaque page comme PDF individuel." },
-        { question: "La division de PDF est-elle gratuite ?", answer: "Oui ! Notre outil Diviser PDF est 100% gratuit sans limites. Vos fichiers sont traités localement dans votre navigateur pour une confidentialité totale." },
-        { question: "Puis-je diviser un PDF protégé par mot de passe ?", answer: "Vous devrez d'abord supprimer le mot de passe. Nous recommandons d'utiliser un outil de déverrouillage PDF dédié avant la division." }
-      ]
-    },
-    pdfToXml: {
-      title: "Convertisseur PDF vers XML - Extraire des Données Structurées | pdfcanada.ca",
-      desc: "Convertissez des documents PDF au format XML avec extraction de données structurées. Préservez la mise en page, les positions du texte et la hiérarchie du contenu. Gratuit et privé.",
-      h1: "Convertir PDF en XML",
-      subtitle: "Extrayez des données structurées de vos documents PDF.",
-      content: "Transformez vos documents PDF en format XML structuré. Notre convertisseur extrait le contenu textuel avec les données de position, les dimensions des pages et la hiérarchie du contenu—idéal pour le traitement et l'analyse de données.",
-      steps: [
-        "Téléversez votre fichier PDF.",
-        "Cliquez sur 'Convertir en XML' pour traiter.",
-        "Téléchargez votre fichier XML structuré."
-      ],
-      faq: [
-        { question: "Quelles données sont extraites lors de la conversion PDF vers XML ?", answer: "Notre outil extrait le contenu textuel, les dimensions des pages, les positions du texte et la structure du contenu dans un format XML propre." },
-        { question: "Puis-je convertir des PDF scannés en XML ?", answer: "Pour les documents scannés, nous recommandons d'utiliser l'OCR d'abord pour extraire le texte, puis de convertir en XML pour de meilleurs résultats." },
-        { question: "Mes données PDF sont-elles sécurisées pendant la conversion ?", answer: "Absolument ! Tout le traitement se fait localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil." }
-      ]
-    },
-    xmlToPdf: {
-      title: "Convertisseur XML vers PDF - Créer des PDF à partir de Données XML | pdfcanada.ca",
-      desc: "Convertissez des documents XML au format PDF. Transformez des données structurées en documents PDF propres et lisibles. Gratuit, rapide et traité localement.",
-      h1: "Convertir XML en PDF",
-      subtitle: "Transformez les données XML en documents PDF.",
-      content: "Convertissez vos fichiers XML en documents PDF professionnellement formatés. Notre outil analyse la structure XML et crée des PDF propres et lisibles à partir de vos données—parfait pour les rapports et la documentation.",
-      steps: [
-        "Téléversez votre fichier XML.",
-        "Cliquez sur 'Convertir en PDF' pour traiter.",
-        "Téléchargez votre document PDF généré."
-      ],
-      faq: [
-        { question: "Quels formats XML sont supportés ?", answer: "Notre convertisseur supporte les fichiers XML standard. L'outil extrait le contenu textuel et le formate dans un document PDF propre et lisible." },
-        { question: "Puis-je personnaliser la sortie PDF ?", answer: "Actuellement, l'outil crée un PDF formaté standard. Pour une personnalisation avancée, envisagez d'utiliser des modèles ou des outils de post-traitement." },
-        { question: "Y a-t-il une limite de taille de fichier ?", answer: "Il n'y a pas de limite stricte, mais les très gros fichiers XML peuvent prendre plus de temps à traiter. Tout le traitement est fait localement dans votre navigateur." }
-      ]
-    },
-    excelToPdf: {
-      title: "Excel vers PDF en Ligne - Convertir XLSX/XLS en PDF Gratuitement | pdfcanada.ca",
-      desc: "Créez instantanément des PDF de haute qualité à partir de feuilles de calcul Excel. Notre convertisseur sécurisé traite les fichiers localement - pas de téléversement, pas de suivi, juste un service canadien rapide et gratuit.",
-      h1: "Convertir Excel en PDF",
-      subtitle: "Des PDF professionnels à partir de vos fichiers Excel instantanément.",
-      content: "Transformez vos feuilles de calcul Excel en PDF de haute qualité. Parfait pour le partage et l'impression, avec une sécurité locale en laquelle vous pouvez avoir confiance.",
-      steps: [
-        "Téléversez votre fichier .xlsx ou .xls.",
-        "Nous traitons la feuille de calcul et générons un PDF professionnel.",
-        "Téléchargez votre nouveau fichier PDF."
-      ],
-      quickAnswer: {
-        question: "Comment convertir des feuilles Excel en PDF gratuitement ?",
-        answer: "Vous pouvez convertir des fichiers .xlsx et .xls en PDF de haute qualité gratuitement à l'aide de notre convertisseur local. Il préserve la structure de vos tableaux sans nécessiter de téléchargement sur un serveur.",
-        tool: "Excel vers PDF",
-        steps: ["Sélectionnez le fichier Excel", "Générez un PDF professionnel", "Téléchargez votre fichier"]
-      }
-    },
-  },
-
-  toolDelete: "Supprimer des pages",
-  toolDeleteDesc: "Enlever les pages inutiles.",
-  toolFlatten: "Non modifiable",
-  toolFlattenDesc: "Aplatir le PDF.",
-  toolPdfPageRemover: "Suppresseur de pages PDF",
-  toolPdfPageRemoverDesc: "Enlever des pages du PDF.",
-  toolRotate: "Pivoter PDF",
-  toolRotateDesc: "Arranger les pages à l'envers.",
-  toolHeic: "HEIC en PDF",
-  toolHeicDesc: "Convertir photos iPhone.",
-  toolEpubToPdf: "EPUB en PDF",
-  toolEpubToPdfDesc: "Lire ebooks en PDF.",
-  toolPdfToEpub: "PDF en EPUB",
-  toolPdfToEpubDesc: "Convertir pour liseuses.",
-  toolMakeFillable: "Rendre PDF Remplissable",
-  toolMakeFillableDesc: "Ajouter des zones de texte auto.",
-  toolOcr: "OCR PDF",
-  toolOcrDesc: "Extraire texte des scans.",
-  toolCbrToPdf: "CBR en PDF",
-  toolCbrToPdfDesc: "Convertir BD en PDF.",
-  toolSign: "Signer le PDF",
-  toolSignDesc: "Signer des documents en toute sécurité.",
-  toolPdfToWord: "PDF en Word",
-  toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
-  toolWordToPdf: "Word en PDF",
-  toolWordToPdfDesc: "Convertir Word docx en PDF.",
-  toolExcelToPdf: "Excel vers PDF",
-  toolExcelToPdfDesc: "Convertir Excel doc en PDF.",
-  toolCrop: "Recadrer PDF",
-  toolCropDesc: "Ajuster les marges.",
-  toolOrganize: "Organiser PDF",
-  toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
-  toolCompress: "Compresser PDF",
-  toolCompressDesc: "Réduire la taille.",
-  toolMerge: "Fusionner PDF",
-  toolMergeDesc: "Combiner plusieurs PDFs.",
-  toolSplit: "Diviser PDF",
-  toolSplitDesc: "Séparer en pages.",
-  toolPdfToXml: "PDF en XML",
-  toolPdfToXmlDesc: "Extraire données structurées.",
-  toolXmlToPdf: "XML en PDF",
-  toolXmlToPdfDesc: "Créer PDF depuis XML.",
-
-  uploadTitle: "Téléverser",
-  uploadDesc: "ou glisser un fichier ici",
-  processedLocally: "Traitement local",
-  selectFile: "Choisir un fichier",
-  terms: "En téléversant, vous acceptez nos conditions polies.",
-  pages: "pages",
-  local: "Local",
-
-  selectPagesHeader: "Sélectionnez les pages :",
-  selected: "sélectionnées",
-  rotateLeft: "Gauche",
-  rotateRight: "Droite",
-  rotateAllLeft: "Tout Pivoter Gauche",
-  rotateAllRight: "Tout Pivoter Droite",
-  resetRotations: "Réinitialiser",
-  selectPagesToFill: "Sélectionnez les pages à scanner :",
-  selectPagesForOcr: "Sélectionnez les pages pour l'OCR :",
-  ocrProgress: "Reconnaissance du texte...",
-
-  // Tool Specific Inputs
-  deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
-  totalPages: "Nombre de pages",
-  pagesToRemove: "Pages à supprimer",
-  signPagesInfo: "Placez votre signature ou vos initiales sur le document.",
-  addSignature: "Ajouter Signature",
-  addInitials: "Ajouter Initiales",
-  signUpload: "Téléverser",
-  select: "Sélectionner",
-  pan: "Panoramique",
-  newSignature: "Nouvelle signature",
-  newInitials: "Nouvelles initiales",
-  loadingPage: "Chargement de la page...",
-  pageNumber: "Page {number}",
-  signTools: "Outils de signature",
-  signatures: "Signatures",
-  createNewSignature: "Créer une nouvelle signature",
-  initials: "Initiales",
-  createNewInitials: "Créer de nouvelles initiales",
-  annotation: "Annotation",
-  date: "Date",
-  text: "Texte",
-  check: "Case à cocher",
-  btnDeleteEntry: "Supprimer",
-  done: "Terminé",
-  edit: "Modifier",
-  undo: "Annuler",
-  redo: "Rétablir",
-  quickAdd: "Ajout rapide",
-  todaysDate: "Date d'aujourd'hui",
-  textField: "Champ texte",
-  of: "sur",
-
-  btnRemove: "Supprimer",
-  btnRotate: "Appliquer",
-  btnFlatten: "Rendre non modifiable",
-  btnCrop: "Recadrer PDF",
-  btnConvert: "Convertir le fichier",
-  btnMakeFillable: "Détecter et Remplir",
-  btnCancel: "Annuler",
-  btnExtractText: "Extraire le Texte",
-  btnSearchablePdf: "Créer PDF Recherchable",
-  btnSave: "Enregistrer",
-  readyToConvertDesc: "Prêt à convertir {fileName}. Cela peut prendre quelques instants selon la taille du fichier.",
-
-  working: "On y travaille...",
-  workingDesc: "On scanne pour les champs et on arrange ça.",
-  doneTitle: "C'est tiguidou !",
-  doneDesc: "Votre fichier est prêt.",
-  download: "Télécharger",
-  doAnother: "En faire un autre",
-  backToHome: "Retour aux outils",
-
-  errorTitle: "Ah zut !",
-  genericError: "Quelque chose a mal tourné. Désolé !",
-  fileTypeErr: "Désolé, mais on n'accepte pas ce type de fichier.",
-  readErr: "Désolé, on n'a pas pu lire ce fichier.",
-  passwordErr: "Ce PDF est protégé par mot de passe. Veuillez le déverrouiller d'abord.",
-  corruptPdfErr: "Le fichier PDF semble corrompu ou invalide.",
-  conversionErr: "Échec de la conversion du fichier. Il est peut-être trop complexe ou endommagé.",
-  emptyEpubErr: "Impossible d'extraire le texte de cet EPUB.",
-
-  navHowTo: "Aide",
-  navSupport: "Soutenir local",
-  navPricing: "Tarifs",
-  footerEditGroup: "Modifier & Optimiser",
-  footerConvertGroup: "Convertir PDF",
-  footerGuidesGroup: "Guides & Aide",
-  login: "Connexion",
-  signup: "S'inscrire",
-
-  footerBuilt: "Fièrement bâti dans le Nord fort et libre.",
-  footerMade: "Fait avec",
-  footerLocation: "et du sirop d'érable à Toronto, ON.",
-  footerRights: "Tous droits réservés, désolé.",
-  footerTagline: "L'outil PDF préféré du Grand Nord Blanc.",
-  footerPrivacyNotice: "On ne vous suit pas. Ce ne serait pas poli.",
-  termsService: "Conditions",
-  privacy: "Confidentialité",
-  sorryPolicy: "Politique d'excuses",
-  makeFillableFooter: "Comment rendre un PDF remplissable",
-
-  pricingTitle: "Tarification Simple",
-  pricingSubtitle: "Prix honnêtes pour gens honnêtes.",
-  freePlan: "Le plan 'Gars des vues'",
-  freeCost: "0 $ CAD",
-  freeFeature1: "Conversions illimitées",
-  freeFeature2: "Pas de compte requis",
-  freeFeature3: "Messages d'erreur polis",
-  freeFeature4: "Traitement local (Sécurisé)",
-  enterprisePlan: "Le plan 'Double Double'",
-  enterpriseCost: "0 $ CAD",
-  enterpriseFeature1: "Tout du plan de base",
-  enterpriseFeature2: "On s'excuse deux fois plus",
-  enterpriseFeature3: "Livraison de sirop prioritaire (optionnel)",
-
-  // Timbits Support Tier
-  timbitsPlan: "Le pourboire 'Timbits'",
-  timbitsCost: "1 $ CAD",
-  timbitsDesc: "Un huard, ça fait la différence!",
-  timbitsFeature1: "Garder les serveurs au pays",
-  timbitsFeature2: "Financer de nouveaux outils",
-  timbitsFeature3: "Soutenir des devs canadiens",
-  timbitsFeature4: "Recevoir nos remerciements",
-  timbitsButton: "Donner un Huard",
-
-  // Form Builder
-  fbTitle: "Créateur de Formulaire",
-  fbAddText: "Ajouter Texte",
-  fbAddCheckbox: "Ajouter Case",
-  fbCancel: "Annuler",
-  fbDownload: "Télécharger",
-  fbPage: "Page",
-
-  privacyTitle: "Politique de Confidentialité",
-  privacyText1: "Chez pdfcanada.ca, vos affaires sont vos affaires. Parce qu'on traite les fichiers localement, vos documents ne sont jamais envoyés sur nos serveurs.",
-  privacyText2: "On n'utilise pas de cookies pour vous suivre. On ne vend pas vos données. C'est juste vous et votre PDF.",
-
-  termsTitle: "Conditions d'utilisation",
-  termsText1: "En utilisant ce service, vous acceptez d'être gentil.",
-  termsText2: "S'il vous plaît, n'utilisez pas nos outils pour des trucs illégaux.",
-  termsText3: "Service fourni 'tel quel'. Si ça brise, on est vraiment désolé.",
-
-  sorryTitle: "Notre Politique d'Excuses",
-  sorryText1: "Dans le cas peu probable où quelque chose cloche :",
-  sorryList1: "1. On va s'excuser immédiatement.",
-  sorryList2: "2. On va essayer d'arranger ça.",
-  sorryList3: "3. On va s'excuser encore, juste au cas.",
-
-  howtoTitle: "Comment ça marche",
-  howtoStep1: "Choisissez un outil sur le tableau de bord.",
-  howtoStep2: "Sélectionnez votre fichier (PDF, HEIC, ou EPUB).",
-  howtoStep3: "Suivez les instructions polies à l'écran.",
-  howtoStep4: "Téléchargez votre nouveau fichier. Facile.",
-
-  fillablePageTitle: "Comment rendre un PDF remplissable",
-  fillablePageSubtitle: "Le guide poli pour créer des formulaires.",
-  fillableIntro: "Vous voulez que les gens puissent écrire dans votre document ?",
-  fillableStep1: "Téléversez votre PDF dans notre outil.",
-  fillableStep2: "Sélectionnez les pages.",
-  fillableStep3: "Nous ajoutons une boîte de texte.",
-  fillableStep4: "Téléchargez et partagez.",
-  fillableProTip: "Conseil de pro : Idéal pour les formulaires.",
-  fillableWhy: "Pourquoi nous utiliser ?",
-  fillableWhyText: "C'est gratuit et canadien.",
-  pricingPage: {
-    content: "Chez pdfcanada.ca, nous croyons que les outils essentiels doivent être gratuits. C'est pourquoi nos fonctionnalités de base sont à 0 $. Pas de frais cachés. Si vous cherchez des outils PDF gratuits au Canada, vous êtes au bon endroit.",
-    faq: [
-      {
-        question: "Est-ce vraiment gratuit ?",
-        answer: "Oui, absolument ! Tous nos outils sont gratuits."
-      },
-      {
-        question: "Ai-je besoin d'une carte de crédit ?",
-        answer: "No, aucune carte ni inscription requise."
-      },
-      {
-        question: "Pourquoi est-ce gratuit ?",
-        answer: "Grâce au traitement local, nos coûts sont faibles. Nous acceptons les dons optionnels."
-      },
-      {
-        question: "Puis-je l'utiliser pour mon entreprise ?",
-        answer: "Bien sûr. C'est parfait pour les PME et les pigistes."
-      },
-      {
-        question: "C'est quoi le pourboire Timbits ?",
-        answer: "C'est un don optionnel de 1 $ pour nous dire merci."
-      }
-    ]
-  },
-  supportPage: {
-    content: "Nous sommes une petite équipe à Toronto. Contrairement aux grandes entreprises, nous traitons tout localement sur votre appareil. En nous soutenant, vous aidez le logiciel canadien indépendant.",
-    faq: [
-      {
-        question: "Comment soutenir pdfcanada.ca ?",
-        answer: "Partagez l'outil ou donnez un huard via notre bouton de don."
-      },
-      {
-        question: "Où va mon don ?",
-        answer: "Il paie l'hébergement et le café des développeurs."
-      },
-      {
-        question: "Est-ce sécurisé ?",
-        answer: "Oui, nous utilisons Stripe. Nous ne voyons jamais vos infos bancaires."
-      },
-      {
-        question: "Pourquoi soutenir le local ?",
-        answer: "C'est important pour l'écosystème techno canadien."
-      },
-      {
-        question: "Offrez-vous des remboursements ?",
-        answer: "Pour les petits dons, généralement non, mais contactez-nous en cas d'erreur."
-      }
-    ]
+    }
   }
 };
 export type TranslationType = typeof translations.en;
