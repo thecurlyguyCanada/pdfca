@@ -18,6 +18,9 @@ interface SEOProps {
   rating?: number;
   reviewCount?: number;
   steps?: { name: string; text: string; image?: string }[];
+  author?: { name: string; jobTitle?: string; sameAs?: string[] };
+  isArticle?: boolean; // Use Article schema instead of WebPage for guides
+  articleBody?: string; // Full article content for Article schema
 }
 
 // Organization schema - reused across pages
@@ -60,6 +63,28 @@ const websiteSchema = {
   "inLanguage": ["en-CA", "fr-CA"]
 };
 
+// Person schema for author (E-E-A-T signal for 2026 SEO)
+const createPersonSchema = (author?: { name: string; jobTitle?: string; sameAs?: string[] }) => {
+  if (!author) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `https://www.pdfcanada.ca/#author-${author.name.toLowerCase().replace(/\s+/g, '-')}`,
+    "name": author.name,
+    "jobTitle": author.jobTitle || "Software Engineer",
+    "worksFor": { "@id": "https://www.pdfcanada.ca/#organization" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toronto",
+      "addressRegion": "Ontario",
+      "addressCountry": "CA"
+    },
+    "knowsAbout": ["PDF Processing", "Privacy Engineering", "Browser-based Tools", "Document Security"],
+    ...(author.sameAs && author.sameAs.length > 0 && { "sameAs": author.sameAs })
+  };
+};
+
 export const SEO: React.FC<SEOProps> = ({
   title,
   description,
@@ -76,7 +101,10 @@ export const SEO: React.FC<SEOProps> = ({
   price,
   rating,
   reviewCount,
-  steps
+  steps,
+  author,
+  isArticle = false,
+  articleBody
 }) => {
   // Memoize the setMeta helper function
   const setMeta = useCallback((attrName: string, attrValue: string, content: string) => {
@@ -264,23 +292,62 @@ export const SEO: React.FC<SEOProps> = ({
       });
     }
 
-    // WebPage schema with Speakable for voice search (2025 SEO)
-    allSchemas.push({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": `https://www.pdfcanada.ca${canonicalPath}#webpage`,
-      "url": `https://www.pdfcanada.ca${canonicalPath}`,
-      "name": title,
-      "description": description,
-      "isPartOf": { "@id": "https://www.pdfcanada.ca/#website" },
-      "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
-      ...(datePublished && { "datePublished": datePublished }),
-      ...(dateModified && { "dateModified": dateModified }),
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".hero-title", ".hero-desc", "h1", "h2"]
-      }
-    });
+    // Add Person schema if author is provided (2026 E-E-A-T requirement)
+    const personSchema = createPersonSchema(author);
+    if (personSchema) {
+      allSchemas.push(personSchema);
+    }
+
+    // WebPage or Article schema (use Article for guides - 2026 SEO best practice)
+    if (isArticle || canonicalPath.startsWith('/guides')) {
+      // TechArticle schema for guide pages - signals expertise and authority
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": `https://www.pdfcanada.ca${canonicalPath}#article`,
+        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "headline": title,
+        "description": description,
+        "image": image,
+        "author": author ? { "@id": `https://www.pdfcanada.ca/#author-${author.name.toLowerCase().replace(/\s+/g, '-')}` } : { "@id": "https://www.pdfcanada.ca/#organization" },
+        "publisher": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "datePublished": datePublished || "2024-01-15",
+        "dateModified": dateModified || new Date().toISOString().split('T')[0],
+        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+        "isPartOf": { "@id": "https://www.pdfcanada.ca/#website" },
+        "mainEntityOfPage": `https://www.pdfcanada.ca${canonicalPath}`,
+        ...(articleBody && {
+          "articleBody": articleBody,
+          "wordCount": articleBody.split(/\s+/).length
+        }),
+        "about": {
+          "@type": "Thing",
+          "name": "PDF Document Processing"
+        },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".quick-answer", ".hero-title", ".hero-desc", "h1", "h2"]
+        }
+      });
+    } else {
+      // WebPage schema with Speakable for voice search (2025 SEO)
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `https://www.pdfcanada.ca${canonicalPath}#webpage`,
+        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "name": title,
+        "description": description,
+        "isPartOf": { "@id": "https://www.pdfcanada.ca/#website" },
+        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+        ...(datePublished && { "datePublished": datePublished }),
+        ...(dateModified && { "dateModified": dateModified }),
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".quick-answer", ".hero-title", ".hero-desc", "h1", "h2"]
+        }
+      });
+    }
 
     // ItemList schema for home page tools (enables carousel rich results)
     if (canonicalPath === '/') {
@@ -394,7 +461,7 @@ export const SEO: React.FC<SEOProps> = ({
       document.head.appendChild(script);
     });
 
-  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization, faqs, datePublished, dateModified, price, rating, reviewCount, steps, breadcrumbs]);
+  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization, faqs, datePublished, dateModified, price, rating, reviewCount, steps, breadcrumbs, author, isArticle, articleBody]);
 
   return null;
 };

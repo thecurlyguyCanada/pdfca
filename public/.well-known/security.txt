@@ -1,14 +1,18 @@
-Contact: mailto:support@pdfcanada.ca
+Contact: mailto:security@pdfcanada.ca
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en, fr
 Canonical: https://www.pdfcanada.ca/.well-known/security.txt
-Policy: https://www.pdfcanada.ca/privacy
+Policy: https://www.pdfcanada.ca/security-policy
+Acknowledgments: https://www.pdfcanada.ca/security-acknowledgments
 
-# Security Disclosure Policy
-# If you discover a security vulnerability in pdfcanada.ca, please report it to:
-# Email: support@pdfcanada.ca
-#
+# Security Policy for pdfcanada.ca
+
+# If you discover a security vulnerability, please report it to:
+# security@pdfcanada.ca
+
 # We appreciate responsible disclosure and will respond within 48 hours.
-# Please do not publicly disclose the vulnerability until we have addressed it.
-#
+
+# For more information about our security practices:
+# https://www.pdfcanada.ca/privacy
+
 # Thank you for helping keep pdfcanada.ca secure!
