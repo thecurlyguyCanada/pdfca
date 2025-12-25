@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         </a>
 
         {/* Desktop Nav - High End */}
-        <nav className="hidden lg:flex gap-1 items-center bg-gray-100/50 p-1 rounded-full border border-gray-200/50 backdrop-blur-sm">
+        <nav className="hidden md:flex gap-1 items-center bg-gray-100/50 p-1 rounded-full border border-gray-200/50 backdrop-blur-sm">
           <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-all uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-all duration-300 shadow-sm" />
@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="lg:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass transition-all active:scale-95"
+            className="md:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass transition-all active:scale-95"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={20} className="text-canada-red" /> : <Menu size={20} className="text-gray-900" />}
@@ -117,14 +117,14 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         <>
           {/* Backdrop */}
           <div
-            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fade-in"
+            className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fade-in"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Menu Panel */}
           <div
-            className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
+            className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
             style={{
               paddingTop: 'max(88px, calc(var(--safe-area-inset-top) + 88px))',
               paddingBottom: 'var(--safe-area-inset-bottom)',
