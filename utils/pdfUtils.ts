@@ -154,6 +154,7 @@ export const deletePagesFromPdf = async (originalFile: File, pageIndicesToDelete
     doc.removePage(index);
   });
 
+  addPdfMetadata(doc, 'PDF with Pages Deleted');
   return await doc.save();
 };
 
@@ -171,6 +172,7 @@ export const rotatePdfPages = async (originalFile: File, rotations: Record<numbe
     }
   });
 
+  addPdfMetadata(doc, 'Rotated PDF');
   return await doc.save();
 };
 
@@ -188,6 +190,7 @@ export const reorderPdfPages = async (originalFile: File, newOrder: number[]): P
     }
   }
 
+  addPdfMetadata(newDoc, 'Reorganized PDF');
   return await newDoc.save();
 };
 
@@ -375,6 +378,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
     }
   }
 
+  addPdfMetadata(doc, 'Signed PDF');
   return await doc.save();
 };
 
@@ -404,6 +408,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
     });
   }
 
+  addPdfMetadata(doc, 'HEIC to PDF Conversion');
   return await doc.save();
 };
 
@@ -584,6 +589,7 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
     }
   }
 
+  addPdfMetadata(doc, 'EPUB to PDF Conversion');
   return await doc.save();
 };
 
@@ -655,6 +661,7 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
     throw new Error("Could not process any images from the archive.");
   }
 
+  addPdfMetadata(doc, 'CBR/CBZ to PDF Conversion');
   return await doc.save();
 };
 
@@ -824,7 +831,21 @@ export const makeSearchablePdf = async (
     progress: 100
   });
 
+  addPdfMetadata(doc, 'Searchable PDF with OCR');
   return await doc.save();
+};
+
+/**
+ * Add SEO-friendly metadata to PDF documents
+ * Improves searchability and attribution when users share generated PDFs
+ */
+const addPdfMetadata = (doc: PDFDocument, title?: string) => {
+  doc.setTitle(title || 'Document processed by pdfcanada.ca');
+  doc.setAuthor('pdfcanada.ca');
+  doc.setSubject('PDF processed with free, privacy-focused Canadian PDF tools');
+  doc.setKeywords(['PDF', 'Canada', 'Free PDF Tools', 'Privacy', 'pdfcanada.ca']);
+  doc.setCreator('pdfcanada.ca - Free Canadian PDF Tools');
+  doc.setProducer('pdfcanada.ca');
 };
 
 // Re-export formatFileSize from lightweight utils for backward compatibility
@@ -1197,6 +1218,7 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     });
   }
 
+  addPdfMetadata(newPdfDoc, 'Flattened PDF');
   return await newPdfDoc.save();
 };
 
@@ -1229,6 +1251,7 @@ export const cropPdfPages = async (originalFile: File, margins: { top: number, b
     }
   });
 
+  addPdfMetadata(doc, 'Cropped PDF');
   return await doc.save();
 };
 
@@ -1305,6 +1328,7 @@ export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extr
     });
   }
 
+  addPdfMetadata(newPdfDoc, 'Compressed PDF');
   return await newPdfDoc.save({ useObjectStreams: true });
 };
 
@@ -1329,6 +1353,7 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
     }
 
     // Save the merged PDF
+    addPdfMetadata(mergedPdf, 'Merged PDF');
     return await mergedPdf.save();
   } catch (error) {
     console.error('Error in mergePdfs:', error);
@@ -1357,6 +1382,7 @@ export const splitPdf = async (file: File): Promise<Blob> => {
     const [copiedPage] = await newDoc.copyPages(sourceDoc, [i]);
     newDoc.addPage(copiedPage);
 
+    addPdfMetadata(newDoc, `${baseName} - Page ${i + 1}`);
     const pdfBytes = await newDoc.save();
     const pageNum = String(i + 1).padStart(3, '0');
     zip.file(`${baseName}_page_${pageNum}.pdf`, pdfBytes);
@@ -1509,6 +1535,7 @@ export const convertXmlToPdf = async (file: File): Promise<Uint8Array> => {
     }
   }
 
+  addPdfMetadata(doc, 'XML to PDF Conversion');
   return await doc.save();
 };
 
