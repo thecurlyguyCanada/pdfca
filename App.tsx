@@ -1086,9 +1086,14 @@ function App() {
             </div>
             <div className="mt-12 flex items-center gap-3">
               <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-4 border-white bg-gray-100 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-red-100 to-red-50" />
+                {[
+                  { initials: 'JD', bg: 'bg-red-100', text: 'text-red-700' },
+                  { initials: 'AS', bg: 'bg-orange-50', text: 'text-orange-700' },
+                  { initials: 'MK', bg: 'bg-rose-100', text: 'text-rose-700' },
+                  { initials: 'ER', bg: 'bg-red-50', text: 'text-red-800' }
+                ].map((user, i) => (
+                  <div key={i} className={`w-10 h-10 rounded-full border-4 border-white ${user.bg} flex items-center justify-center relative z-10`}>
+                    <span className={`text-[10px] font-black ${user.text}`}>{user.initials}</span>
                   </div>
                 ))}
               </div>
