@@ -304,18 +304,20 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN;
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN;
+    const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT;
     const isSignTool = currentTool === ToolType.SIGN || (currentTool as string) === 'SIGN';
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
     const isCompressTool = currentTool === ToolType.COMPRESS;
+    const isSplitTool = currentTool === ToolType.SPLIT;
 
     let headerText = '';
     if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
     else if (currentTool === ToolType.ROTATE) headerText = '';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
     else if (currentTool === ToolType.OCR) headerText = t.selectPagesForOcr;
+    else if (currentTool === ToolType.SPLIT) headerText = t.toolSplitDesc || 'PDF will be split into individual pages.';
 
     return (
         <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
@@ -612,6 +614,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.OCR && (t.btnSearchablePdf || "Make Searchable PDF")}
+                        {currentTool === ToolType.SPLIT && (t.btnSplit || "Split PDF")}
                         {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
                         {currentTool === ToolType.XML_TO_PDF && (t.btnConvert || "Convert to PDF")}

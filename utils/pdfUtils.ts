@@ -726,6 +726,7 @@ export const extractTextWithOcr = async (
       const { data: { text } } = await worker.recognize(canvas);
       fullText += `--- Page ${pageIndex + 1} ---\n${text}\n\n`;
 
+      // Explicit cleanup
       canvas.width = 0;
       canvas.height = 0;
     }
@@ -817,6 +818,7 @@ export const makeSearchablePdf = async (
         });
       }
 
+      // Explicit cleanup
       canvas.width = 0;
       canvas.height = 0;
     }
@@ -1048,6 +1050,9 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
       }
     });
 
+    // Explicit cleanup for images if any operator logic used a temporary canvas
+    // (None currently in the loop besides the one inside paintImageXObject logic)
+
     // Sort all by Y and add to sections
     const sortedElements = pageElements.sort((a, b) => a.y - b.y).map(e => e.element);
     sections.push({
@@ -1077,87 +1082,75 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
 
   let y = margin;
 
-  // Split by paragraph-like tags
-  const paragraphs = html.split(/<\/p>|<\/li>|<\/h[1-6]>/);
+  // Use a DOM parser for more robust HTML handling
+  const container = document.createElement('div');
+  container.innerHTML = html;
 
-  paragraphs.forEach((p: string) => {
-    if (!p.trim()) return;
+  // Select primary content blocks
+  const blocks = container.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6');
 
-    // Clean up starting tags
-    const cleanP = p.replace(/<p>|<li>|<h[1-6][^>]*>/g, '').trim();
-    if (!cleanP) return;
+  blocks.forEach((block: any) => {
+    const tagName = block.tagName.toLowerCase();
+    const isHeading = tagName.startsWith('h');
 
-    // Split into segments (tags vs text)
-    const segments = cleanP.split(/(<[^>]+>)/g);
+    // Set styles based on tag
+    if (isHeading) {
+      doc.setFont("helvetica", "bold");
+      const hLevel = parseInt(tagName.substring(1));
+      doc.setFontSize(22 - (hLevel * 2));
+    } else {
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+    }
 
     let currentX = margin;
-    let isBold = false;
-    let isItalic = false;
 
-    // Process segments to build a line-wrapped list of styled fragments
-    // For simplicity in a browser environment, we render word by word if needed
-    const words = cleanP.split(/(\s+)/);
+    // Process child nodes to handle nested styling (<strong>, <em>, etc)
+    const processChildNodes = (parent: Node) => {
+      parent.childNodes.forEach((node: Node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent || '';
+          const words = text.split(/(\s+)/);
 
-    // Reset formatting for new paragraph
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
+          words.forEach(word => {
+            if (!word) return;
+            const wordWidth = doc.getTextWidth(word);
 
-    // We'll use a more advanced approach: process all segments and handle wrapping
-    const styledFragments: { text: string, bold: boolean, italic: boolean }[] = [];
-    segments.forEach((seg: string) => {
-      if (seg === '<strong>' || seg === '<b>') isBold = true;
-      else if (seg === '</strong>' || seg === '</b>') isBold = false;
-      else if (seg === '<em>' || seg === '<i>') isItalic = true;
-      else if (seg === '</em>' || seg === '</i>') isItalic = false;
-      else if (!seg.startsWith('<')) {
-        styledFragments.push({ text: seg, bold: isBold, italic: isItalic });
-      }
-    });
+            if (currentX + wordWidth > pageWidth - margin && word.trim()) {
+              y += lineHeight;
+              currentX = margin;
 
-    // Render styled fragments with wrapping
-    styledFragments.forEach(frag => {
-      doc.setFont("helvetica", frag.bold && frag.italic ? "bolditalic" : frag.bold ? "bold" : frag.italic ? "italic" : "normal");
-
-      const words = frag.text.split(/(\s+)/);
-      words.forEach(word => {
-        if (!word) return;
-        const wordWidth = doc.getTextWidth(word);
-
-        if (currentX + wordWidth > pageWidth - margin && word.trim()) {
-          // If a single word is wider than the page, break it down
-          if (wordWidth > maxLineWidth) {
-            for (let i = 0; i < word.length; i++) {
-              const char = word[i];
-              const charWidth = doc.getTextWidth(char);
-              if (currentX + charWidth > pageWidth - margin) {
-                y += lineHeight;
-                currentX = margin;
-                if (y > pageHeight - margin) {
-                  doc.addPage();
-                  y = margin;
-                }
+              if (y > pageHeight - margin) {
+                doc.addPage();
+                y = margin;
               }
-              doc.text(char, currentX, y);
-              currentX += charWidth;
             }
-            return;
+
+            doc.text(word, currentX, y);
+            currentX += wordWidth;
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const el = node as HTMLElement;
+          const prevFont = doc.getFont().fontStyle;
+
+          // Apply styling
+          if (el.tagName === 'STRONG' || el.tagName === 'B') {
+            doc.setFont("helvetica", isHeading ? "bold" : (doc.getFont().fontStyle.includes('italic') ? "bolditalic" : "bold"));
+          } else if (el.tagName === 'EM' || el.tagName === 'I') {
+            doc.setFont("helvetica", doc.getFont().fontStyle.includes('bold') ? "bolditalic" : "italic");
           }
 
-          y += lineHeight;
-          currentX = margin;
+          processChildNodes(el);
 
-          if (y > pageHeight - margin) {
-            doc.addPage();
-            y = margin;
-          }
+          // Restore styling
+          doc.setFont("helvetica", prevFont);
         }
-
-        doc.text(word, currentX, y);
-        currentX += wordWidth;
       });
-    });
+    };
 
-    y += lineHeight * 1.5; // Paragraph spacing
+    processChildNodes(block);
+
+    y += lineHeight * (isHeading ? 2 : 1.5); // Spacing
     currentX = margin;
 
     if (y > pageHeight - margin) {
@@ -1209,12 +1202,13 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     canvas.width = 0;
     canvas.height = 0;
 
-    const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
+    const originalViewport = page.getViewport({ scale: 1.0 });
+    const newPage = newPdfDoc.addPage([originalViewport.width, originalViewport.height]);
     newPage.drawImage(image, {
       x: 0,
       y: 0,
-      width: viewport.width,
-      height: viewport.height,
+      width: originalViewport.width,
+      height: originalViewport.height,
     });
   }
 
@@ -1222,7 +1216,11 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
   return await newPdfDoc.save();
 };
 
-export const cropPdfPages = async (originalFile: File, margins: { top: number, bottom: number, left: number, right: number }, pageIndices?: number[]): Promise<Uint8Array> => {
+export const cropPdfPages = async (
+  originalFile: File,
+  margins: { top: number, bottom: number, left: number, right: number, usePercentage?: boolean },
+  pageIndices?: number[]
+): Promise<Uint8Array> => {
   const { PDFDocument } = await getPdfLib();
   const arrayBuffer = await originalFile.arrayBuffer();
   const doc = await PDFDocument.load(arrayBuffer);
@@ -1234,18 +1232,22 @@ export const cropPdfPages = async (originalFile: File, margins: { top: number, b
 
     const { width, height } = page.getSize();
 
-    // Default to points if not specified, or handle percentages if we want to be fancy later
-    // For now, let's assume they are absolute points (72 = 1 inch)
+    let cropX, cropY, cropWidth, cropHeight;
 
-    const cropX = margins.left;
-    const cropY = margins.bottom;
-    const cropWidth = width - margins.left - margins.right;
-    const cropHeight = height - margins.top - margins.bottom;
+    if (margins.usePercentage) {
+      cropX = (margins.left / 100) * width;
+      cropY = (margins.bottom / 100) * height;
+      cropWidth = width - ((margins.left + margins.right) / 100) * width;
+      cropHeight = height - ((margins.top + margins.bottom) / 100) * height;
+    } else {
+      cropX = margins.left;
+      cropY = margins.bottom;
+      cropWidth = width - margins.left - margins.right;
+      cropHeight = height - margins.top - margins.bottom;
+    }
 
     if (cropWidth > 0 && cropHeight > 0) {
       // In PDF, (0,0) is bottom-left.
-      // We set both CropBox (viewable area) and MediaBox (actual physical area)
-      // to ensure consistent behavior across all PDF viewers.
       page.setCropBox(cropX, cropY, cropWidth, cropHeight);
       page.setMediaBox(cropX, cropY, cropWidth, cropHeight);
     }
@@ -1567,16 +1569,30 @@ export const convertExcelToPdf = async (file: File): Promise<Blob> => {
 
     let y = margin + 15;
     const colCount = Math.max(...data.map((r: any[]) => (r ? r.length : 0)), 1);
-    const colWidth = (pageWidth - margin * 2) / colCount;
+
+    // Calculate max widths based on content
+    const colMaxChars = new Array(colCount).fill(5); // Minimum 5 chars width
+    data.forEach(row => {
+      if (!row) return;
+      row.forEach((cell, i) => {
+        const text = String(cell || '');
+        if (text.length > colMaxChars[i]) colMaxChars[i] = text.length;
+      });
+    });
+
+    const totalChars = colMaxChars.reduce((a, b) => a + b, 0);
+    const usableWidth = pageWidth - margin * 2;
+    const colWidths = colMaxChars.map(chars => (chars / totalChars) * usableWidth);
 
     data.forEach((row) => {
       if (!row) return;
       let x = margin;
       let maxHeight = 0;
 
-      row.forEach((cell: any) => {
+      row.forEach((cell: any, i: number) => {
         const text = cell !== null && cell !== undefined ? String(cell) : '';
-        const lines = doc.splitTextToSize(text, colWidth - cellPadding * 2);
+        const currentColWidth = colWidths[i];
+        const lines = doc.splitTextToSize(text, currentColWidth - cellPadding * 2);
         const cellHeight = lines.length * (fontSize * 0.5) + cellPadding * 2;
         if (cellHeight > maxHeight) maxHeight = cellHeight;
       });
@@ -1586,12 +1602,13 @@ export const convertExcelToPdf = async (file: File): Promise<Blob> => {
         y = margin;
       }
 
-      row.forEach((cell: any) => {
+      row.forEach((cell: any, i: number) => {
         const text = cell !== null && cell !== undefined ? String(cell) : '';
-        const lines = doc.splitTextToSize(text, colWidth - cellPadding * 2);
-        doc.rect(x, y, colWidth, maxHeight);
+        const currentColWidth = colWidths[i];
+        const lines = doc.splitTextToSize(text, currentColWidth - cellPadding * 2);
+        doc.rect(x, y, currentColWidth, maxHeight);
         doc.text(lines, x + cellPadding, y + cellPadding + (fontSize * 0.4));
-        x += colWidth;
+        x += currentColWidth;
       });
 
       y += maxHeight;

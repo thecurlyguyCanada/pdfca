@@ -108,41 +108,15 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
     const handleCropAction = () => {
         triggerHaptic('medium');
 
-        // Calculate Margins based on cropBox percentages
-        // margins are in points usually, but we need to pass relative factors or let backend handle it?
-        // My backend cropPdfPages takes absolute points. I need to know the page size to calculate points?
-        // Actually, my updated cropPdfPages takes margins (top, bottom, left, right).
-        // AND it calculates them relative to the MEDIA BOX of the page.
-        // So I need to pass margins in POINTS (72 dpi).
-        // Wait, if I pass percentages, the backend logic I wrote:
-        // const currentWidth = mediaBox.width;
-        // const currentHeight = mediaBox.height;
-        // cropBox.x = mediaBox.x + margins.left;
-        // ...
-        // If I pass absolute points from the frontend, I assume a standard size? No.
-        // I should probably update `cropPdfPages` to accept percentages OR calculate points here based on the CURRENT rendered page size?
-        // "Current rendered page" might be different from the actual PDF page size.
-        // It's safer to pass PERCENTAGES or RATIOS to the backend and let the backend apply them to the actual page dimensions.
-        // BUT, the current `cropPdfPages` expects POINTS (implied by "72 points = 1 inch" in UI).
-        // Let's stick to the current implementation: I will get the actual page size from PDFJS here, calculate the points, and pass those.
+        const margins = {
+            left: cropBox.x,
+            top: cropBox.y,
+            right: 100 - (cropBox.x + cropBox.width),
+            bottom: 100 - (cropBox.y + cropBox.height),
+            usePercentage: true
+        };
 
-        // However, if "Apply to All" is checked, and pages are different sizes, absolute points margins (e.g. 1 inch from left) is safer than percentages (e.g. 10% from left) which might cut off text on narrow pages?
-        // Usually, margins are absolute physical distances (e.g. cut 1 inch off header).
-        // Let's stick to absolute points.
-
-        pdfJsDoc.getPage(activePage + 1).then((page: any) => {
-            const viewport = page.getViewport({ scale: 1.0 }); // Raw PDF points
-            const { width, height } = viewport;
-
-            const margins = {
-                left: (cropBox.x / 100) * width,
-                top: (cropBox.y / 100) * height,
-                right: width - ((cropBox.x + cropBox.width) / 100) * width,
-                bottom: height - ((cropBox.y + cropBox.height) / 100) * height
-            };
-
-            onCrop(margins, applyToAll ? undefined : [activePage]);
-        });
+        onCrop(margins, applyToAll ? undefined : [activePage]);
     };
 
     return (

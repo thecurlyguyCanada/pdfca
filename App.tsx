@@ -139,9 +139,23 @@ function App() {
     };
   }, [downloadUrl]);
 
-  // Compression Level
   const [compressionLevel, setCompressionLevel] = useState<'good' | 'balanced' | 'extreme'>('balanced');
   const [processedSize, setProcessedSize] = useState<number | null>(null);
+
+  // Cleanup pdfJsDoc when it changes or component unmounts to prevent memory leaks
+  useEffect(() => {
+    const docToCleanup = pdfJsDoc;
+    return () => {
+      if (docToCleanup) {
+        try {
+          docToCleanup.cleanup?.();
+          docToCleanup.destroy?.();
+        } catch (e) {
+          console.debug('PDF.js cleanup failed', e);
+        }
+      }
+    };
+  }, [pdfJsDoc]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = translations[lang];
@@ -744,7 +758,7 @@ function App() {
       setFiles([]);
       setAppState(AppState.SELECTING);
       setPageCount(0);
-      setPdfJsDoc(null);
+      setPdfJsDoc(null); // Cleanup is handled by the useEffect above
       setSelectedPages(new Set());
       setRotations({});
       setPageOrder([]);
