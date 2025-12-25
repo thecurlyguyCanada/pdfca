@@ -105,7 +105,6 @@ function App() {
   const [selectedPages, setSelectedPages] = useState<Set<number>>(new Set());
   const [rotations, setRotations] = useState<Record<number, number>>({});
   const [pageOrder, setPageOrder] = useState<number[]>([]);
-  const [cropMargins, setCropMargins] = useState<{ top: number, bottom: number, left: number, right: number }>({ top: 72, bottom: 72, left: 72, right: 72 });
   const lastSelectedPageRef = useRef<number | null>(null);
 
   // New state for manual page range input
@@ -632,8 +631,7 @@ function App() {
             outName = file.name.replace('.pdf', '_flat.pdf');
             break;
           case ToolType.CROP:
-            resultBlob = await cropPdfPages(file, cropMargins);
-            outName = file.name.replace('.pdf', '_cropped.pdf');
+            // Crop is handled via onAction callback with processed blob
             break;
           case ToolType.COMPRESS:
             resultBlob = await compressPdf(file, compressionLevel);
@@ -646,7 +644,8 @@ function App() {
             }
             break;
           case ToolType.SPLIT:
-            resultBlob = await splitPdf(file);
+            // Pass selected pages if any, otherwise it splits all
+            resultBlob = await splitPdf(file, Array.from(selectedPages));
             outName = file.name.replace('.pdf', '_pages.zip');
             break;
           case ToolType.PDF_TO_XML:
@@ -873,8 +872,6 @@ function App() {
           isDesktop={isDesktop}
           pageOrder={pageOrder}
           setPageOrder={setPageOrder}
-          cropMargins={cropMargins}
-          setCropMargins={setCropMargins}
           onFileSelect={() => { }}
           onAction={handleAction}
           onSoftReset={handleSoftReset}

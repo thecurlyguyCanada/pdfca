@@ -2,6 +2,7 @@ import React from 'react';
 import { Image as ImageIcon, Shield, Zap, HelpCircle, FileText, CheckCircle, Upload } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
+import { AISnapshot } from '../../AISnapshot';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
@@ -154,6 +155,17 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
+    const quickAnswerData = {
+        question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",
+        answer: lang === 'fr'
+            ? "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
+            : "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
+        tool: "PDF Sign & Edit Tool",
+        steps: lang === 'fr'
+            ? ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
+            : ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
+    };
+
     const schema = [
         {
             "@context": "https://schema.org",
@@ -199,21 +211,19 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
-                quickAnswer={{
-                    question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
-                        : "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
-                    tool: "PDF Sign & Edit Tool",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
-                        : ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
-                }}
+                quickAnswer={quickAnswerData}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Insérer une Image' : 'Insert Picture in PDF', path: lang === 'fr' ? '/fr/guides/insert-picture-in-pdf' : '/guides/insert-picture-in-pdf' }
                 ]}
+            />
+            <AISnapshot
+                lang={lang}
+                question={quickAnswerData.question}
+                answer={quickAnswerData.answer}
+                steps={quickAnswerData.steps}
+                toolName={quickAnswerData.tool}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<ImageIcon size={32} />}>
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">

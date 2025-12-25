@@ -1364,29 +1364,36 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
 };
 
 // Split PDF: Separate a PDF into individual pages, returned as a ZIP
-export const splitPdf = async (file: File): Promise<Blob> => {
+export const splitPdf = async (file: File, pageIndices?: number[]): Promise<Blob> => {
   const { PDFDocument } = await getPdfLib();
   const JSZip = await getJSZip();
 
   const arrayBuffer = await file.arrayBuffer();
   const sourceDoc = await PDFDocument.load(arrayBuffer);
-  const pageCount = sourceDoc.getPageCount();
+  const totalPages = sourceDoc.getPageCount();
 
-  if (pageCount === 0) {
+  if (totalPages === 0) {
     throw new Error('PDF has no pages to split.');
   }
+
+  // Determine which pages to split
+  const pagesToProcess = (pageIndices && pageIndices.length > 0)
+    ? pageIndices.sort((a, b) => a - b)
+    : Array.from({ length: totalPages }, (_, i) => i);
 
   const zip = new JSZip();
   const baseName = file.name.replace(/\.pdf$/i, '');
 
-  for (let i = 0; i < pageCount; i++) {
+  for (const pageIndex of pagesToProcess) {
+    if (pageIndex < 0 || pageIndex >= totalPages) continue;
+
     const newDoc = await PDFDocument.create();
-    const [copiedPage] = await newDoc.copyPages(sourceDoc, [i]);
+    const [copiedPage] = await newDoc.copyPages(sourceDoc, [pageIndex]);
     newDoc.addPage(copiedPage);
 
-    addPdfMetadata(newDoc, `${baseName} - Page ${i + 1}`);
+    addPdfMetadata(newDoc, `${baseName} - Page ${pageIndex + 1}`);
     const pdfBytes = await newDoc.save();
-    const pageNum = String(i + 1).padStart(3, '0');
+    const pageNum = String(pageIndex + 1).padStart(3, '0');
     zip.file(`${baseName}_page_${pageNum}.pdf`, pdfBytes);
   }
 

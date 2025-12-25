@@ -40,9 +40,6 @@ interface ToolInterfaceProps {
     pageRangeInput: string;
     setPageRangeInput: (val: string) => void;
     handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    cropMargins?: { top: number, bottom: number, left: number, right: number };
-    setCropMargins?: (margins: { top: number, bottom: number, left: number, right: number }) => void;
-
     compressionLevel?: 'good' | 'balanced' | 'extreme';
     setCompressionLevel?: (level: 'good' | 'balanced' | 'extreme') => void;
 }
@@ -130,8 +127,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     isDesktop,
     pageOrder,
     setPageOrder,
-    cropMargins,
-    setCropMargins,
     onFileSelect,
     onAction,
     onSoftReset,

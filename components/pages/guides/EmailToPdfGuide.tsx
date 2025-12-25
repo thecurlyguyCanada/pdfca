@@ -2,6 +2,7 @@ import React from 'react';
 import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
+import { AISnapshot } from '../../AISnapshot';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
@@ -273,6 +274,16 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
     const guideContent = getGuideContent(onNavigate);
     const t = guideContent[lang] || guideContent.en;
 
+    const quickAnswerData = {
+        question: lang === 'fr' ? "Comment enregistrer un courriel en PDF?" : "How do I save an email as PDF?",
+        answer: lang === 'fr'
+            ? "Gmail/Outlook: Ouvrez le courriel → Cliquez sur les trois points → Sélectionnez 'Imprimer' → Changez la destination en 'Enregistrer au format PDF' → Sauvegardez. iPhone: Ouvrez le courriel → Appuyez sur Répondre → Imprimer → Écartez deux doigts sur l'aperçu → Partagez et sauvegardez."
+            : "Gmail/Outlook: Open email → Click three dots → Select 'Print' → Change destination to 'Save as PDF' → Save. iPhone: Open email → Tap Reply → Print → Pinch outward on preview → Share and save.",
+        steps: lang === 'fr'
+            ? ["Ouvrez le courriel dans Gmail/Outlook/Mail", "Sélectionnez Imprimer", "Choisissez 'Enregistrer au format PDF'", "Sauvegardez le fichier"]
+            : ["Open the email in Gmail/Outlook/Mail", "Select Print", "Choose 'Save as PDF'", "Save the file"]
+    };
+
     const schema = [
         {
             "@type": "HowTo",
@@ -315,20 +326,18 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
-                quickAnswer={{
-                    question: lang === 'fr' ? "Comment enregistrer un courriel en PDF?" : "How do I save an email as PDF?",
-                    answer: lang === 'fr'
-                        ? "Gmail/Outlook: Ouvrez le courriel → Cliquez sur les trois points → Sélectionnez 'Imprimer' → Changez la destination en 'Enregistrer au format PDF' → Sauvegardez. iPhone: Ouvrez le courriel → Appuyez sur Répondre → Imprimer → Écartez deux doigts sur l'aperçu → Partagez et sauvegardez."
-                        : "Gmail/Outlook: Open email → Click three dots → Select 'Print' → Change destination to 'Save as PDF' → Save. iPhone: Open email → Tap Reply → Print → Pinch outward on preview → Share and save.",
-                    steps: lang === 'fr'
-                        ? ["Ouvrez le courriel dans Gmail/Outlook/Mail", "Sélectionnez Imprimer", "Choisissez 'Enregistrer au format PDF'", "Sauvegardez le fichier"]
-                        : ["Open the email in Gmail/Outlook/Mail", "Select Print", "Choose 'Save as PDF'", "Save the file"]
-                }}
+                quickAnswer={quickAnswerData}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
                     { name: 'Email to PDF', path: '/guides/email-to-pdf' }
                 ]}
+            />
+            <AISnapshot
+                lang={lang}
+                question={quickAnswerData.question}
+                answer={quickAnswerData.answer}
+                steps={quickAnswerData.steps}
             />
             <PageLayout
                 title={t.h1}
