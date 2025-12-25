@@ -64,14 +64,20 @@ export default defineConfig({
     // This eliminates the sequential waterfall (HTML → JS) by injecting modulepreload hints
     modulePreload: {
       polyfill: true,
-      // Preload strategy: load entry point + React core immediately
+      // Preload strategy: load ALL critical dependencies in parallel
       resolveDependencies: (filename, deps, { hostId, hostType }) => {
-        // For the main entry point, preload React core to eliminate waterfall
+        // For HTML, preload all critical chunks to eliminate sequential waterfall
+        // This includes: index, vendor-react, vendor-dom (react-dom), vendor-pdf-core
+        // Excludes heavy libs (docx, xlsx, tesseract, etc.) which are lazy-loaded
         if (hostType === 'html') {
           return deps.filter(dep =>
-            dep.includes('vendor-react') ||
-            dep.includes('vendor-pdf-core') ||
-            dep.includes('index-')
+            !dep.includes('vendor-docx') &&
+            !dep.includes('vendor-xlsx') &&
+            !dep.includes('vendor-ocr') &&
+            !dep.includes('vendor-heic') &&
+            !dep.includes('vendor-jszip') &&
+            !dep.includes('vendor-unrar') &&
+            !dep.includes('vendor-jspdf')
           );
         }
         return deps;
