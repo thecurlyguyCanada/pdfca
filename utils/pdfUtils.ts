@@ -764,12 +764,23 @@ export const extractTextWithOcr = async (
   let fullText = '';
   const langString = languages.join('+');
 
-  // Create worker once
-  const worker = await (Tesseract as any).createWorker(langString, 1, {
-    logger: (m: any) => {
-      // Internal progress is handled per page in the loop below
-    }
-  });
+  // Create worker once - Updated for Tesseract.js v5+ API
+  let worker: any;
+  try {
+    worker = await (Tesseract as any).createWorker({
+      logger: (m: any) => {
+        // Internal progress can be logged here if needed
+        if (m.status === 'recognizing text') {
+          // You could update onProgress here for finer granularity
+        }
+      }
+    });
+    await worker.loadLanguage(langString);
+    await worker.initialize(langString);
+  } catch (err) {
+    console.error("Failed to initialize Tesseract worker:", err);
+    throw new Error("OCR initialization failed. Please check your internet connection.");
+  }
 
   const indicesToProcess = pageIndices.length > 0
     ? pageIndices
@@ -836,7 +847,15 @@ export const makeSearchablePdf = async (
   const doc = await PDFDocument.load(arrayBuffer);
   const langString = languages.join('+');
 
-  let worker = await (Tesseract as any).createWorker(langString);
+  let worker: any;
+  try {
+    worker = await (Tesseract as any).createWorker();
+    await worker.loadLanguage(langString);
+    await worker.initialize(langString);
+  } catch (err) {
+    console.error("Failed to initialize Tesseract worker for searchable PDF:", err);
+    throw new Error("OCR initialization failed.");
+  }
 
   const indicesToProcess = pageIndices.length > 0
     ? pageIndices
