@@ -657,10 +657,17 @@ function App() {
             break;
           case ToolType.OCR:
             {
-              // Defaulting to searchable PDF for now
-              const { makeSearchablePdf } = await import('./utils/heavyConversions');
-              resultBlob = await makeSearchablePdf(file, Array.from(selectedPages));
-              outName = file.name.replace('.pdf', '_searchable.pdf');
+              const { extractTextWithOcr, makeSearchablePdf } = await import('./utils/heavyConversions');
+              const ocrParams = (window as any).__ocrParams || { mode: 'searchable', langs: ['eng'] };
+
+              if (ocrParams.mode === 'text') {
+                const text = await extractTextWithOcr(file, Array.from(selectedPages), ocrParams.langs);
+                resultBlob = new Blob([text], { type: 'text/plain' });
+                outName = file.name.replace('.pdf', '_extracted_eh.txt');
+              } else {
+                resultBlob = await makeSearchablePdf(file, Array.from(selectedPages), ocrParams.langs);
+                outName = file.name.replace('.pdf', '_searchable.pdf');
+              }
             }
             break;
           case ToolType.PDF_TO_WORD:

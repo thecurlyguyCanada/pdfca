@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus } from 'lucide-react'; // Added Plus
+import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
+import { OcrTool } from './OcrTool';
 import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -425,7 +426,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 </div>
                             )}
 
-                            {(currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR) && (
+                            {currentTool === ToolType.MAKE_FILLABLE && (
                                 <div className="flex justify-between items-center sticky top-0 bg-gray-50/95 py-2">
                                     <p className="text-sm font-medium text-gray-600">
                                         {headerText}
@@ -433,6 +434,30 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
                                         {selectedPages.size} {t.selected}
                                     </span>
+                                </div>
+                            )}
+
+                            {currentTool === ToolType.OCR && (
+                                <div className="fixed inset-0 z-[100] bg-white pt-16 md:pt-0">
+                                    <div className="absolute top-4 left-4 md:hidden z-[110]">
+                                        <button onClick={onSoftReset} className="p-2 bg-gray-100 rounded-full">
+                                            <X size={20} />
+                                        </button>
+                                    </div>
+                                    <OcrTool
+                                        file={file}
+                                        pdfJsDoc={pdfJsDoc}
+                                        pageCount={pageCount}
+                                        t={t}
+                                        selectedPages={selectedPages}
+                                        setSelectedPages={() => { }}
+                                        isMobile={!isDesktop}
+                                        onClose={onSoftReset}
+                                        onOcr={(mode: 'searchable' | 'text', langs: string[]) => {
+                                            (window as any).__ocrParams = { mode, langs };
+                                            onAction();
+                                        }}
+                                    />
                                 </div>
                             )}
                         </div>
