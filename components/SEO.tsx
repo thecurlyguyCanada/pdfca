@@ -284,6 +284,7 @@ export const SEO: React.FC<SEOProps> = ({
     }
 
     // WebPage schema with Speakable for voice search (2025/2026 SEO)
+    // Enhanced for AI Search (Google SGE, Perplexity, ChatGPT, Claude)
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -302,7 +303,29 @@ export const SEO: React.FC<SEOProps> = ({
       } : { "@id": "https://www.pdfcanada.ca/#organization" },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2"]
+        "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2", "[data-ai-summary]"],
+        "xpath": [
+          "/html/head/title",
+          "/html/head/meta[@name='description']/@content"
+        ]
+      },
+      // 2026 Enhancement: Add accessibility and semantic signals
+      "accessMode": ["textual", "visual"],
+      "accessModeSufficient": ["textual"],
+      "accessibilityFeature": ["alternativeText", "structuralNavigation", "readingOrder"],
+      "accessibilityHazard": ["none"],
+      "accessibilityControl": ["fullKeyboardControl", "fullMouseControl", "fullTouchControl"],
+      // Primary keywords for AI understanding
+      "keywords": lang === 'fr'
+        ? "PDF gratuit, outils PDF, Canada, sécurisé, sans téléchargement"
+        : "free PDF tools, PDF editor, Canada, secure, no upload, privacy-first",
+      // Help AI understand page purpose
+      "about": {
+        "@type": "Thing",
+        "name": lang === 'fr' ? "Outils PDF" : "PDF Tools",
+        "description": lang === 'fr'
+          ? "Services de traitement PDF gratuits et sécurisés"
+          : "Free and secure PDF processing services"
       }
     });
 
@@ -434,6 +457,121 @@ export const SEO: React.FC<SEOProps> = ({
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
           }
         })
+      });
+    }
+
+    // 2026 Enhancement: Add LearningResource/Course schema for guide pages
+    if (canonicalPath.startsWith('/guides')) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": title,
+        "description": description,
+        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+        "learningResourceType": "how-to guide",
+        "educationalLevel": "beginner",
+        "isAccessibleForFree": true,
+        "timeRequired": "PT5M",
+        "teaches": title.split('|')[0].trim(),
+        "author": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "publisher": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "datePublished": datePublished || "2024-01-01",
+        "dateModified": dateModified || new Date().toISOString().split('T')[0],
+        "keywords": lang === 'fr'
+          ? `guide PDF, tutoriel PDF, ${title.split('|')[0].trim()}`
+          : `PDF guide, PDF tutorial, ${title.split('|')[0].trim()}`,
+        "educationalUse": "self-directed learning",
+        "audience": {
+          "@type": "EducationalAudience",
+          "educationalRole": "student"
+        }
+      });
+
+      // Also add an Article schema for better discoverability
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "datePublished": datePublished || "2024-01-01",
+        "dateModified": dateModified || new Date().toISOString().split('T')[0],
+        "author": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "publisher": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://www.pdfcanada.ca${canonicalPath}`
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": image,
+          "width": 1200,
+          "height": 630
+        },
+        "articleSection": lang === 'fr' ? "Guides" : "Guides",
+        "wordCount": 500,
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", "h2", ".guide-content", "[data-ai-summary]"]
+        }
+      });
+    }
+
+    // 2026 Enhancement: Enhanced Product schema for service pages (non-guide tool pages)
+    if (!canonicalPath.startsWith('/guides') && canonicalPath !== '/' && !canonicalPath.includes('/privacy') && !canonicalPath.includes('/terms') && !canonicalPath.includes('/about')) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": title.split('|')[0].trim(),
+        "description": description,
+        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "image": image,
+        "brand": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "manufacturer": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CAD",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": "2026-12-31",
+          "url": `https://www.pdfcanada.ca${canonicalPath}`,
+          "seller": { "@id": "https://www.pdfcanada.ca/#organization" },
+          "itemCondition": "https://schema.org/NewCondition",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "CA"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          }
+        },
+        ...(rating && reviewCount && {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": rating.toString(),
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": reviewCount.toString(),
+            "reviewCount": reviewCount.toString()
+          }
+        }),
+        "category": "Software Application",
+        "additionalType": "https://schema.org/WebApplication",
+        "isRelatedTo": {
+          "@type": "Product",
+          "name": lang === 'fr' ? "Outils PDF gratuits" : "Free PDF Tools"
+        }
       });
     }
 
