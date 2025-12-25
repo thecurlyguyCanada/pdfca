@@ -42,8 +42,8 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         Skip to main content
       </a>
       <header
-        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white/98 sticky top-4 z-[60] border border-modern-glassBorder shadow-md mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem]"
-        style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
+        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-[60] will-change-transform"
+        style={{ transform: 'translateZ(0)' }}
       >
         <a
           href="/"
@@ -113,14 +113,14 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         <>
           {/* Backdrop */}
           <div
-            className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fade-in"
+            className="md:hidden fixed inset-0 bg-black/30 z-50"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Menu Panel */}
           <div
-            className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
+            className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-xl overflow-y-auto"
             style={{
               paddingTop: 'max(88px, calc(var(--safe-area-inset-top) + 88px))',
               paddingBottom: 'var(--safe-area-inset-bottom)',
