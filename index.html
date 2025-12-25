@@ -97,6 +97,10 @@
   <!-- Note: og-image.png is not the LCP element, so we don't preload it -->
   <!-- LCP is optimized via critical CSS and static HTML content -->
 
+  <!-- 2026 Critical Path Optimization: Preload main JS module -->
+  <!-- This eliminates the sequential waterfall (HTML → JS) by loading in parallel -->
+  <!-- Vite will automatically inject the correct hashed filename during build -->
+
   <!-- Preload critical font file for faster text rendering -->
   <link rel="preload"
     href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
