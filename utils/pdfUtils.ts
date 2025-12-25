@@ -813,10 +813,13 @@ export const extractTextWithOcr = async (
   let worker: any;
   try {
     console.info(`[Neural Engine] Stage 1/3: Creating Worker...`);
-    // v5+ signature: first argument is the options object
+    // Using absolute URLs and disabling blob URLs to strictly prevent CDN fallbacks
+    const baseUrl = window.location.origin;
     worker = await (Tesseract as any).createWorker({
-      workerPath: '/tesseract/worker.min.js',
-      corePath: '/tesseract/tesseract-core.wasm.js',
+      workerPath: `${baseUrl}/tesseract/worker.min.js`,
+      corePath: `${baseUrl}/tesseract/tesseract-core.wasm.js`,
+      langPath: `${baseUrl}/tesseract/`,
+      workerBlobURL: false,
       logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
     });
 
@@ -936,10 +939,13 @@ export const makeSearchablePdf = async (
   let worker: any;
   try {
     console.info(`[Neural Searchable] Stage 1/3: Creating Worker...`);
-    // v5+ signature: first argument is the options object
+    // Strict local-first pathing for Searchable Layer generation
+    const baseUrl = window.location.origin;
     worker = await (Tesseract as any).createWorker({
-      workerPath: '/tesseract/worker.min.js',
-      corePath: '/tesseract/tesseract-core.wasm.js',
+      workerPath: `${baseUrl}/tesseract/worker.min.js`,
+      corePath: `${baseUrl}/tesseract/tesseract-core.wasm.js`,
+      langPath: `${baseUrl}/tesseract/`,
+      workerBlobURL: false,
       logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
     });
 
