@@ -60,9 +60,22 @@ export default defineConfig({
     chunkSizeWarningLimit: 500, // Warn if chunks exceed 500KB
     // 2026 Performance: Enable CSS code splitting
     cssCodeSplit: true,
-    // Enable module preload polyfill for better browser support
+    // 2026 Critical Path Optimization: Force preload of entry point and critical deps
+    // This eliminates the sequential waterfall (HTML → JS) by injecting modulepreload hints
     modulePreload: {
       polyfill: true,
+      // Preload strategy: load entry point + React core immediately
+      resolveDependencies: (filename, deps, { hostId, hostType }) => {
+        // For the main entry point, preload React core to eliminate waterfall
+        if (hostType === 'html') {
+          return deps.filter(dep =>
+            dep.includes('vendor-react') ||
+            dep.includes('vendor-pdf-core') ||
+            dep.includes('index-')
+          );
+        }
+        return deps;
+      },
     },
     rollupOptions: {
       output: {
