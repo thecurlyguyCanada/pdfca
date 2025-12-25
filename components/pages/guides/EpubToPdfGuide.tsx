@@ -3,6 +3,8 @@ import { BookOpen, CheckCircle, Shield, Zap, ArrowRight } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 import { MarkdownContent } from '../../MarkdownContent';
 
 interface GuideProps {
@@ -205,6 +207,16 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 schema={schema}
                 faqs={t.faq}
                 steps={t.steps.map(s => ({ name: s.title, text: typeof s.desc === 'string' ? s.desc : s.title }))}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment convertir un EPUB en PDF gratuitement?" : "How do I convert EPUB to PDF for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez le convertisseur EPUB en PDF de pdfcanada.ca. Sélectionnez votre fichier .epub, notre moteur WebAssembly le convertira localement dans votre navigateur, puis téléchargez le PDF. Vos livres ne quittent jamais votre appareil."
+                        : "Use pdfcanada.ca's EPUB to PDF converter. Select your .epub file, our WebAssembly engine converts it locally in your browser, then download the PDF. Your books never leave your device.",
+                    tool: "EPUB to PDF Converter",
+                    steps: lang === 'fr'
+                        ? ["Sélectionnez votre fichier EPUB", "Attendez le rendu local", "Téléchargez votre PDF"]
+                        : ["Select your EPUB file", "Wait for local rendering", "Download your PDF"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -325,6 +337,10 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             ))}
                         </div>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/epub-to-pdf" category="convert" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

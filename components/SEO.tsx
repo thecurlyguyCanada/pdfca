@@ -1,6 +1,19 @@
 import React, { useEffect, useCallback } from 'react';
 import { Language } from '../utils/i18n';
 
+interface QuickAnswer {
+  question: string;
+  answer: string;
+  tool?: string;
+  steps?: string[];
+}
+
+interface Author {
+  name: string;
+  url?: string;
+  type?: 'Person' | 'Organization';
+}
+
 interface SEOProps {
   title: string;
   description: string;
@@ -18,6 +31,8 @@ interface SEOProps {
   rating?: number;
   reviewCount?: number;
   steps?: { name: string; text: string; image?: string }[];
+  quickAnswer?: QuickAnswer;
+  author?: Author;
 }
 
 // Organization schema - reused across pages
@@ -76,7 +91,9 @@ export const SEO: React.FC<SEOProps> = ({
   price,
   rating,
   reviewCount,
-  steps
+  steps,
+  quickAnswer,
+  author
 }) => {
   // Memoize the setMeta helper function
   const setMeta = useCallback((attrName: string, attrValue: string, content: string) => {
@@ -378,6 +395,41 @@ export const SEO: React.FC<SEOProps> = ({
       });
     }
 
+    // AI Quick Answer Schema (QAPage) - Optimized for ChatGPT, Claude, Perplexity
+    if (quickAnswer) {
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "QAPage",
+        "mainEntity": {
+          "@type": "Question",
+          "name": quickAnswer.question,
+          "text": quickAnswer.question,
+          "answerCount": 1,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": quickAnswer.answer,
+            "url": `https://www.pdfcanada.ca${canonicalPath}`,
+            ...(quickAnswer.steps && quickAnswer.steps.length > 0 && {
+              "step": quickAnswer.steps.map((step, i) => ({
+                "@type": "HowToStep",
+                "position": i + 1,
+                "text": step
+              }))
+            })
+          }
+        },
+        ...(quickAnswer.tool && {
+          "about": {
+            "@type": "SoftwareApplication",
+            "name": quickAnswer.tool,
+            "operatingSystem": "Web Browser",
+            "applicationCategory": "BusinessApplication",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
+          }
+        })
+      });
+    }
+
     // Add page-specific schemas (custom ones passed in)
     if (schema) {
       const pageSchemas = Array.isArray(schema) ? schema : [schema];
@@ -394,7 +446,7 @@ export const SEO: React.FC<SEOProps> = ({
       document.head.appendChild(script);
     });
 
-  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization, faqs, datePublished, dateModified, price, rating, reviewCount, steps, breadcrumbs]);
+  }, [title, description, canonicalPath, image, lang, schema, ogType, setMeta, noOrganization, faqs, datePublished, dateModified, price, rating, reviewCount, steps, breadcrumbs, quickAnswer, author]);
 
   return null;
 };

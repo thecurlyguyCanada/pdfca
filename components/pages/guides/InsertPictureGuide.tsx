@@ -3,6 +3,8 @@ import { Image as ImageIcon, Shield, Zap, HelpCircle, FileText, CheckCircle, Upl
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -197,6 +199,16 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
+                        : "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
+                    tool: "PDF Sign & Edit Tool",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
+                        : ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -267,6 +279,10 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
                         </button>
                         <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/insert-picture-in-pdf" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

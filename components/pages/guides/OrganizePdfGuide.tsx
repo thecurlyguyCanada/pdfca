@@ -3,6 +3,8 @@ import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Mov
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 import { MarkdownContent } from '../../MarkdownContent';
 
 interface GuideProps {
@@ -179,6 +181,16 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment réorganiser les pages d'un PDF gratuitement?" : "How do I reorder PDF pages for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil d'organisation PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez les miniatures de pages pour les réarranger, puis téléchargez votre PDF réorganisé. Interface visuelle intuitive, traitement 100% local."
+                        : "Use pdfcanada.ca's Organize PDF tool. Upload your PDF, drag-and-drop page thumbnails to rearrange, then download your reordered PDF. Visual intuitive interface, 100% local processing.",
+                    tool: "PDF Page Organizer",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Glissez-déposez pour réorganiser les pages", "Téléchargez le PDF réorganisé"]
+                        : ["Upload your PDF file", "Drag-and-drop to reorder pages", "Download reordered PDF"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -268,6 +280,10 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                             {t.ctaButton}
                         </button>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/organize-pdf" category="organize" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </div>

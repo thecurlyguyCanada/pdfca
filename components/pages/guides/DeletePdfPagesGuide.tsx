@@ -3,6 +3,8 @@ import { Trash2, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Mouse
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -202,6 +204,16 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                 schema={schema}
                 datePublished="2024-01-15"
                 dateModified="2025-12-24"
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement?" : "How do I delete pages from a PDF for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil de suppression de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les pages à supprimer (elles deviennent rouges), puis cliquez sur 'Supprimer'. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
+                        : "Use pdfcanada.ca's Delete PDF Pages tool. Upload your PDF, click on pages you want to remove (they turn red), then click 'Delete Selected Pages'. All processing happens locally in your browser - your files never leave your device.",
+                    tool: "PDF Page Remover",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Cliquez sur les pages à supprimer", "Téléchargez votre PDF nettoyé"]
+                        : ["Upload your PDF file", "Click on pages to remove", "Download your cleaned PDF"]
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -259,6 +271,10 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                             ))}
                         </div>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/delete-pdf-pages" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

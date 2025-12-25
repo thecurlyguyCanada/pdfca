@@ -3,6 +3,8 @@ import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, 
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -319,6 +321,15 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 lang={lang}
                 schema={schema}
                 faqs={t.faqs}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment éditer un PDF gratuitement sans logiciel?" : "How do I edit a PDF for free without software?",
+                    answer: lang === 'fr'
+                        ? "Utilisez pdfcanada.ca - tous les outils fonctionnent directement dans votre navigateur sans téléchargement. Vous pouvez supprimer des pages, faire pivoter, fusionner, compresser, convertir et même créer des formulaires remplissables. Tout le traitement se fait localement sur votre appareil - vos fichiers ne sont jamais téléchargés sur un serveur."
+                        : "Use pdfcanada.ca - all tools work directly in your browser with no downloads. You can delete pages, rotate, merge, compress, convert, and even create fillable forms. All processing happens locally on your device - your files are never uploaded to a server.",
+                    steps: lang === 'fr'
+                        ? ["Visitez pdfcanada.ca", "Sélectionnez l'outil dont vous avez besoin", "Téléchargez votre PDF", "Éditez localement et téléchargez"]
+                        : ["Visit pdfcanada.ca", "Select the tool you need", "Upload your PDF", "Edit locally and download"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Ultimate PDF Guide', path: '/guides/ultimate-pdf-guide' }
@@ -436,6 +447,10 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                             {t.ctaBtn}
                         </button>
                     </div>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/ultimate-pdf-guide" category="all" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
 
                 </div>
             </PageLayout>

@@ -3,6 +3,8 @@ import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Sma
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 import { MarkdownContent } from '../../MarkdownContent';
 
 interface GuideProps {
@@ -135,6 +137,16 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/pdf-to-word"
                 faqs={t.faq}
                 lang={lang}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment convertir un PDF en Word gratuitement?" : "How do I convert PDF to Word for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez le convertisseur PDF vers Word de pdfcanada.ca. Téléchargez votre PDF, notre moteur extrait le texte et le formatage localement dans votre navigateur, puis téléchargez votre fichier .docx éditable. Pas d'inscription requise."
+                        : "Use pdfcanada.ca's PDF to Word converter. Upload your PDF, our engine extracts text and formatting locally in your browser, then download your editable .docx file. No signup needed.",
+                    tool: "PDF to Word Converter",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Extraction locale du texte", "Téléchargez votre fichier Word"]
+                        : ["Upload your PDF file", "Local text extraction", "Download your Word file"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -195,6 +207,10 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             {t.ctaButton}
                         </button>
                     </div>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/pdf-to-word" category="convert" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </div>

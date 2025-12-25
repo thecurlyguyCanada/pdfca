@@ -3,6 +3,8 @@ import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart 
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -178,6 +180,16 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 lang={lang}
                 datePublished="2024-02-15"
                 dateModified="2025-12-24"
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
+                        : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server.",
+                    tool: "PDF Merger",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]
+                        : ["Upload your PDF files", "Reorder via drag-and-drop", "Click Merge", "Download your combined PDF"]
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -248,6 +260,10 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                         <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/merge-pdf" category="organize" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

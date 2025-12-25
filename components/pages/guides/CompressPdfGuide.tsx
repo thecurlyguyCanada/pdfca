@@ -4,6 +4,8 @@ import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } fr
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -163,6 +165,16 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 lang={lang}
                 datePublished="2024-03-01"
                 dateModified="2025-12-24"
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment compresser un PDF gratuitement sans perte de qualité?" : "How do I compress a PDF for free without losing quality?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil Compresser PDF de pdfcanada.ca. Choisissez le niveau 'Bon' pour une compression sans perte qui préserve le texte sélectionnable, 'Équilibré' pour un bon compromis, ou 'Extrême' pour une compression maximale. Tout se fait dans votre navigateur."
+                        : "Use pdfcanada.ca's Compress PDF tool. Choose 'Good' level for lossless compression that preserves selectable text, 'Balanced' for a good tradeoff, or 'Extreme' for maximum compression. All processing happens in your browser.",
+                    tool: "PDF Compressor",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Sélectionnez le niveau de compression (Bon/Équilibré/Extrême)", "Téléchargez votre PDF optimisé"]
+                        : ["Upload your PDF file", "Select compression level (Good/Balanced/Extreme)", "Download your optimized PDF"]
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -233,6 +245,10 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                         </button>
                         <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/compress-pdf" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

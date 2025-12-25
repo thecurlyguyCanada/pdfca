@@ -3,6 +3,8 @@ import { Scissors, Shield, Zap, HelpCircle } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -151,6 +153,16 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 canonicalPath="/guides/crop-pdf"
                 faqs={t.faq}
                 lang={lang}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment rogner un PDF gratuitement?" : "How do I crop a PDF for free?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
+                        : "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser.",
+                    tool: "PDF Crop Tool",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Définissez les marges de rognage", "Téléchargez votre PDF recadré"]
+                        : ["Upload your PDF file", "Set crop margins", "Download your cropped PDF"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -199,6 +211,10 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             ))}
                         </div>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/crop-pdf" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

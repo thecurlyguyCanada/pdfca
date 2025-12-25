@@ -46,6 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-600">
+          <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('ABOUT'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{lang === 'en' ? 'About' : 'À Propos'}</a>
           <a href="/howto" onClick={(e) => { e.preventDefault(); handleNavigate('HOW_TO'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navHowTo}</a>
           <a href="/support" onClick={(e) => { e.preventDefault(); handleNavigate('SUPPORT'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navSupport}</a>
           <a href="/pricing" onClick={(e) => { e.preventDefault(); handleNavigate('PRICING'); }} className="hover:text-canada-red active:text-canada-red transition-colors py-2">{t.navPricing}</a>
@@ -82,6 +83,12 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-white z-40 animate-fade-in" style={{ paddingBottom: 'var(--safe-area-inset-bottom)' }}>
           <nav className="flex flex-col p-4 gap-1">
+            <button
+              onClick={() => handleNavigate('ABOUT')}
+              className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"
+            >
+              {lang === 'en' ? 'About Us' : 'À Propos'}
+            </button>
             <button
               onClick={() => handleNavigate('HOW_TO')}
               className="text-left text-lg font-medium text-gray-800 py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-colors min-h-[56px]"

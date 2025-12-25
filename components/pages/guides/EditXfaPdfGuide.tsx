@@ -3,6 +3,8 @@ import { FileText, Shield, Zap, HelpCircle, Printer, Edit3, Trash2, ArrowRight }
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -209,6 +211,16 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 lang={lang}
                 datePublished="2024-04-01"
                 dateModified="2025-12-24"
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment éditer un PDF XFA?" : "How do I edit an XFA PDF?",
+                    answer: lang === 'fr'
+                        ? "Les PDF XFA sont des formulaires dynamiques qui ne peuvent pas être édités directement. La solution: ouvrez le PDF dans Adobe Acrobat, faites Ctrl+P, sélectionnez 'Adobe PDF' comme imprimante, et imprimez. Cela 'aplatit' le formulaire en un PDF standard éditable."
+                        : "XFA PDFs are dynamic forms that can't be edited directly. The solution: open the PDF in Adobe Acrobat, press Ctrl+P, select 'Adobe PDF' as the printer, and print. This 'flattens' the form into a standard editable PDF.",
+                    tool: "PDF Flattening Tool",
+                    steps: lang === 'fr'
+                        ? ["Ouvrez dans Adobe Acrobat", "Faites Ctrl+P pour imprimer", "Sélectionnez 'Adobe PDF' comme imprimante", "Enregistrez le nouveau fichier aplati"]
+                        : ["Open in Adobe Acrobat", "Press Ctrl+P to print", "Select 'Adobe PDF' as printer", "Save the new flattened file"]
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -288,6 +300,10 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             ))}
                         </div>
                     </section>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/edit-xfa-pdf" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

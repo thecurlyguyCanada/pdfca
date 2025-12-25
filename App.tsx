@@ -39,6 +39,7 @@ const CompressPdfGuide = React.lazy(() => import('./components/pages/guides/Comp
 const MergePdfGuide = React.lazy(() => import('./components/pages/guides/MergePdfGuide').then(module => ({ default: module.MergePdfGuide })));
 const EditXfaPdfGuide = React.lazy(() => import('./components/pages/guides/EditXfaPdfGuide').then(module => ({ default: module.EditXfaPdfGuide })));
 const InsertPictureGuide = React.lazy(() => import('./components/pages/guides/InsertPictureGuide').then(module => ({ default: module.InsertPictureGuide })));
+const AboutPage = React.lazy(() => import('./components/pages/AboutPage').then(module => ({ default: module.AboutPage })));
 
 
 enum AppState {
@@ -49,7 +50,7 @@ enum AppState {
   ERROR
 }
 
-type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' |
+type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' | 'ABOUT' |
   'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
   'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE';
 
@@ -250,6 +251,7 @@ function App() {
     else if (path === '/support') setView('SUPPORT');
     else if (path === '/how-to-make-a-pdf-fillable') setView('MAKE_FILLABLE_INFO');
     else if (path === '/sorry') setView('SORRY');
+    else if (path === '/about') setView('ABOUT');
     else if (path === '/guides/ultimate-pdf-guide') setView('GUIDE_ULTIMATE');
     else if (path === '/guides/delete-pdf-pages') setView('GUIDE_DELETE_PAGES');
     else if (path === '/guides/rotate-pdf') setView('GUIDE_ROTATE');
@@ -1245,6 +1247,7 @@ function App() {
           {view === 'HOW_TO' && <HowToPage lang={lang} />}
           {view === 'SUPPORT' && <SupportLocalPage lang={lang} />}
           {view === 'MAKE_FILLABLE_INFO' && <MakePdfFillablePage lang={lang} />}
+          {view === 'ABOUT' && <AboutPage lang={lang} onNavigate={handleNavigation} />}
 
           {/* Guides */}
           {view === 'GUIDE_ULTIMATE' && <UltimatePdfGuide lang={lang} onNavigate={handleNavigation} />}

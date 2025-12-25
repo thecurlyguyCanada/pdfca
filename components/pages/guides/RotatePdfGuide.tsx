@@ -3,6 +3,8 @@ import { RotateCw, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Mon
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 
 interface GuideProps {
     lang: Language;
@@ -221,6 +223,16 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment faire pivoter un PDF de façon permanente?" : "How do I rotate a PDF permanently?",
+                    answer: lang === 'fr'
+                        ? "Utilisez l'outil de rotation PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les boutons de rotation des pages individuelles ou utilisez 'Tout pivoter', puis téléchargez. L'orientation est fixée définitivement dans le fichier, pas seulement dans l'affichage."
+                        : "Use pdfcanada.ca's Rotate PDF tool. Upload your PDF, click rotate buttons on individual pages or use 'Rotate All', then download. The orientation is fixed permanently in the file, not just in the view.",
+                    tool: "PDF Rotation Tool",
+                    steps: lang === 'fr'
+                        ? ["Téléchargez votre fichier PDF", "Pivotez les pages individuellement ou toutes", "Téléchargez le PDF corrigé"]
+                        : ["Upload your PDF file", "Rotate pages individually or all", "Download corrected PDF"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -293,6 +305,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             </div>
                         </section>
                     )}
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/rotate-pdf" category="edit" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </>

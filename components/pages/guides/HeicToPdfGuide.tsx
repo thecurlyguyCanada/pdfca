@@ -3,6 +3,8 @@ import { Image, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartp
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
+import { AuthorBio } from '../../AuthorBio';
+import { RelatedTools } from '../../RelatedTools';
 import { MarkdownContent } from '../../MarkdownContent';
 
 interface GuideProps {
@@ -152,6 +154,16 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
+                quickAnswer={{
+                    question: lang === 'fr' ? "Comment convertir HEIC en PDF sur iPhone?" : "How do I convert HEIC to PDF on iPhone?",
+                    answer: lang === 'fr'
+                        ? "Ouvrez Safari sur votre iPhone, allez sur pdfcanada.ca, sélectionnez vos photos HEIC depuis votre bibliothèque, et nous générerons un PDF automatiquement. Vous pouvez l'enregistrer dans Fichiers ou l'envoyer par email. Pas d'application requise."
+                        : "Open Safari on your iPhone, go to pdfcanada.ca, select your HEIC photos from your library, and we'll generate a PDF on the fly. You can save it to Files or send via email. No app needed.",
+                    tool: "HEIC to PDF Converter",
+                    steps: lang === 'fr'
+                        ? ["Sélectionnez vos photos HEIC", "Organisez les pages", "Téléchargez votre PDF"]
+                        : ["Select your HEIC photos", "Organize the pages", "Download your PDF"]
+                }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
@@ -232,6 +244,10 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             {t.ctaButton}
                         </button>
                     </div>
+
+                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/heic-to-pdf" category="convert" />
+
+                    <AuthorBio lang={lang} onNavigate={onNavigate} />
                 </div>
             </PageLayout>
         </div>

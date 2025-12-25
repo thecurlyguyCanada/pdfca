@@ -70,6 +70,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   <p className="font-bold text-gray-900 dark:text-white mb-4">{t.footerGuidesGroup}</p>
                   <ul className="space-y-3 text-sm">
                      <li><a href="/guides/ultimate-pdf-guide" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide'); }} className="text-canada-red font-bold hover:underline transition-colors focus:outline-none">{t.ultimateGuide}</a></li>
+                     <li><a href="/about" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('ABOUT', '/about'); }} className="hover:text-canada-red transition-colors focus:outline-none">{lang === 'fr' ? 'À Propos' : 'About Us'}</a></li>
                      <li><a href="/guides/edit-xfa-pdf" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('GUIDE_EDIT_XFA', '/guides/edit-xfa-pdf'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.editXfaGuide}</a></li>
                      <li><a href="/howto" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('HOW_TO', '/howto'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navHowTo}</a></li>
                      <li><a href="/support" onClick={(e) => { e.preventDefault(); triggerHaptic('light'); onNavigate('SUPPORT', '/support'); }} className="hover:text-canada-red transition-colors focus:outline-none">{t.navSupport}</a></li>
