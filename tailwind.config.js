@@ -46,11 +46,11 @@ export default {
         'bento-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
       },
       boxShadow: {
-        'glass': '0 4px 16px 0 rgba(0, 0, 0, 0.03)',
-        'glass-hover': '0 8px 32px 0 rgba(227, 24, 55, 0.05)',
-        'premium': '0 10px 15px -3px rgba(0, 0, 0, 0.02), 0 4px 6px -2px rgba(0, 0, 0, 0.01)',
-        'bento': '0 0 0 1px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.02)',
-        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.05), 0 8px 16px rgba(227, 24, 55, 0.04)',
+        'glass': '0 2px 8px 0 rgba(0, 0, 0, 0.02)',
+        'glass-hover': '0 4px 16px 0 rgba(227, 24, 55, 0.04)',
+        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005)',
+        'bento': '0 0 0 1px rgba(0,0,0,0.01), 0 1px 3px rgba(0,0,0,0.01)',
+        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.03), 0 4px 12px rgba(227, 24, 55, 0.03)',
       },
       animation: {
         'fade-in': 'fadeIn 0.4s ease-out forwards',

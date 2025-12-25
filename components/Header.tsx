@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         Skip to main content
       </a>
       <header
-        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white/98 sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header will-change-[box-shadow]"
+        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header will-change-[box-shadow]"
         style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
       >
         <a
@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         </a>
 
         {/* Desktop Nav - High End */}
-        <nav className="hidden md:flex gap-1 items-center bg-gray-100/50 p-1 rounded-full border border-gray-200/50 backdrop-blur-sm">
+        <nav className="hidden md:flex gap-1 items-center bg-gray-100 p-1 rounded-full border border-gray-200/50">
           <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('HOME'); }} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
               triggerHaptic('light');
               setLang(lang === 'en' ? 'fr' : 'en');
             }}
-            className="text-[11px] font-black bg-white/40 hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
+            className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
             aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
           >
             <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>EN</span>

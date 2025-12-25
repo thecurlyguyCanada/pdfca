@@ -962,7 +962,7 @@ function App() {
 
       {/* Hero Section - Premium 2026 Typography */}
       <div className="w-full max-w-5xl mx-auto text-center space-y-8 md:space-y-12">
-        <div className="inline-flex items-center gap-2.5 bg-white/40 backdrop-blur-sm border border-red-100/30 text-canada-darkRed px-6 py-2.5 rounded-full text-[10px] font-black shadow-sm mx-auto hover:scale-105 transition-all cursor-default tracking-[0.2em] uppercase">
+        <div className={`inline-flex items-center gap-2.5 ${isDesktop ? 'bg-white border-red-100/30' : 'bg-white/40 backdrop-blur-sm border-red-100/30'} text-canada-darkRed px-6 py-2.5 rounded-full text-[10px] font-black shadow-sm mx-auto hover:scale-105 transition-all cursor-default tracking-[0.2em] uppercase`}>
           <Sparkles className="w-3.5 h-3.5 text-red-500 animate-pulse" />
           <span>{t.builtIn}</span>
         </div>
@@ -1075,13 +1075,13 @@ function App() {
         ) : (
           /* Tool Interface Wrapper */
           <div className="w-full max-w-2xl mx-auto">
-            <div className="bg-white/90 backdrop-blur-xl rounded-[3rem] shadow-bento border border-white/60 overflow-hidden relative min-h-[500px] flex flex-col animate-slide-up">
+            <div className={`bg-white/${isDesktop ? '95' : '90'} ${isDesktop ? '' : 'backdrop-blur-xl'} rounded-[3rem] shadow-bento border border-white/60 overflow-hidden relative min-h-[500px] flex flex-col animate-slide-up`}>
               {/* Tool navigation can go here if needed */}
               {appState === AppState.SELECTING && renderToolInterface()}
 
               {/* Rendering Logic remains similarly structured */}
               {appState === AppState.PROCESSING && (
-                <div className="absolute inset-0 bg-white/70 backdrop-blur-2xl z-30 flex flex-col items-center justify-center p-8 animate-fade-in">
+                <div className={`absolute inset-0 bg-white/${isDesktop ? '95' : '70'} ${isDesktop ? '' : 'backdrop-blur-2xl'} z-30 flex flex-col items-center justify-center p-8 animate-fade-in`}>
                   <div className="w-20 h-20 bg-canada-red rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                     <MapleLeaf className="w-12 h-12 text-white animate-pulse" />
                   </div>
@@ -1338,14 +1338,21 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-modern-neutral-800 selection:bg-red-100 selection:text-canada-red">
 
-      {/* Dynamic Mesh Background - Fixed for whole page */}
+      {/* Dynamic Mesh Background - Optimized for performance or disabled on desktop */}
       <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-mesh-gradient animate-mesh bg-[length:200%_200%] opacity-40 will-change-[background-position]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
+        {!isDesktop ? (
+          <>
+            <div className="absolute inset-0 bg-mesh-gradient animate-mesh bg-[length:200%_200%] opacity-40 will-change-[background-position]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
 
-        {/* Decorative Floating Orbs */}
-        <div className="absolute top-[20%] left-[10%] w-[30rem] h-[30rem] bg-red-400/5 rounded-full blur-[80px] animate-float mix-blend-multiply will-change-transform" />
-        <div className="absolute bottom-[20%] right-[10%] w-[25rem] h-[25rem] bg-orange-400/5 rounded-full blur-[80px] animate-float opacity-50 mix-blend-multiply will-change-transform" style={{ animationDelay: '-2s' }} />
+            {/* Decorative Floating Orbs */}
+            <div className="absolute top-[20%] left-[10%] w-[30rem] h-[30rem] bg-red-400/5 rounded-full blur-[80px] animate-float mix-blend-multiply will-change-transform" />
+            <div className="absolute bottom-[20%] right-[10%] w-[25rem] h-[25rem] bg-orange-400/5 rounded-full blur-[80px] animate-float opacity-50 mix-blend-multiply will-change-transform" style={{ animationDelay: '-2s' }} />
+          </>
+        ) : (
+          /* Solid, high-performance background for desktop */
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-red-50/20 to-orange-50/10" />
+        )}
       </div>
 
       <Header lang={lang} setLang={setLang} onNavigate={handleNavigation} />
