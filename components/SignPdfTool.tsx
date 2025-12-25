@@ -35,12 +35,14 @@ import { useSwipe } from '../hooks/useSwipe';
 
 interface PageRendererProps {
     pageIndex: number;
+    pageCount: number;
     pdfJsDoc: any;
     zoom: number;
     displayZoom: number;
     entries: SignatureEntry[];
     onEntryUpdate: (id: string, updates: Partial<SignatureEntry>) => void;
     onEntryDelete: (id: string) => void;
+    onMoveToPage: (id: string, newPageIndex: number) => void;
     onHistoryCommit: () => void;
     activeTool: 'pan' | 'select';
     onVisibilityChange: (isVisible: boolean) => void;
@@ -53,12 +55,14 @@ interface PageRendererProps {
 
 const PageRendererBase: React.FC<PageRendererProps> = ({
     pageIndex,
+    pageCount,
     pdfJsDoc,
     zoom,
     displayZoom,
     entries,
     onEntryUpdate,
     onEntryDelete,
+    onMoveToPage,
     onHistoryCommit,
     activeTool,
     onVisibilityChange,
@@ -208,7 +212,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     className={`absolute ${selectedEntryId === entry.id ? 'z-30' : 'z-20'} ${activeTool === 'pan' ? 'pointer-events-none' : 'pointer-events-auto'}`}
                     disableDragging={activeTool !== 'select'}
                     dragHandleClassName="entry-drag-handle"
-                    enableResizing={activeTool === 'select' && selectedEntryId === entry.id ? {
+                    enableResizing={selectedEntryId === entry.id ? {
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
@@ -252,21 +256,52 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     </div>
 
                     {selectedEntryId === entry.id && (
-                        <button
-                            onPointerDown={(e) => e.stopPropagation()}
-                            onTouchStart={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                onEntryDelete(entry.id);
-                            }}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onEntryDelete(entry.id);
-                            }}
-                            className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all z-[100] min-h-[44px] whitespace-nowrap cursor-pointer`}
-                        >
-                            <Trash2 size={16} /> {t.btnDeleteEntry}
-                        </button>
+                        <div className={`absolute ${isMobile ? '-bottom-16' : '-top-14'} left-1/2 -translate-x-1/2 flex items-center gap-2 z-[100]`}>
+                            {/* Move to Previous Page */}
+                            {pageIndex > 0 && (
+                                <button
+                                    onPointerDown={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onMoveToPage(entry.id, pageIndex - 1);
+                                    }}
+                                    className="px-3 py-3 bg-blue-600 text-white rounded-xl shadow-lg flex items-center gap-1 text-sm font-bold active:scale-95 transition-all min-h-[44px] whitespace-nowrap cursor-pointer"
+                                    title="Move to previous page"
+                                >
+                                    <ChevronLeft size={16} />
+                                </button>
+                            )}
+                            {/* Delete Button */}
+                            <button
+                                onPointerDown={(e) => e.stopPropagation()}
+                                onTouchStart={(e) => {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    onEntryDelete(entry.id);
+                                }}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onEntryDelete(entry.id);
+                                }}
+                                className="px-4 py-3 bg-red-600 text-white rounded-xl shadow-lg flex items-center gap-2 text-sm font-bold active:scale-95 transition-all min-h-[44px] whitespace-nowrap cursor-pointer"
+                            >
+                                <Trash2 size={16} /> {t.btnDeleteEntry}
+                            </button>
+                            {/* Move to Next Page */}
+                            {pageIndex < pageCount - 1 && (
+                                <button
+                                    onPointerDown={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onMoveToPage(entry.id, pageIndex + 1);
+                                    }}
+                                    className="px-3 py-3 bg-blue-600 text-white rounded-xl shadow-lg flex items-center gap-1 text-sm font-bold active:scale-95 transition-all min-h-[44px] whitespace-nowrap cursor-pointer"
+                                    title="Move to next page"
+                                >
+                                    <ChevronRight size={16} />
+                                </button>
+                            )}
+                        </div>
                     )}
                 </Rnd>
             ))}
@@ -399,21 +434,15 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             const next = new Set(prev);
             if (isVisible) next.add(idx);
             else next.delete(idx);
+
+            // Update activePage to the smallest visible page (topmost on screen)
+            if (next.size > 0) {
+                const minVisiblePage = Math.min(...Array.from(next));
+                setActivePage(minVisiblePage);
+            }
+
             return next;
         });
-
-        // Update activePage for both mobile and desktop
-        if (isVisible && activePageRef.current !== idx) {
-            activePageRef.current = idx;
-
-            if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
-
-            visibilityTimerRef.current = setTimeout(() => {
-                if (activePageRef.current === idx) {
-                    setActivePage(idx);
-                }
-            }, 150);
-        }
     }, []);
 
     const addToHistory = (newEntries: SignatureEntry[]) => {
@@ -600,6 +629,29 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             return filtered;
         });
         setSelectedEntryId(null);
+    }, [vibrate]);
+
+    const moveToPage = useCallback((id: string, newPageIndex: number) => {
+        vibrate(15);
+        setEntries(prev => {
+            const updated = prev.map(e => e.id === id ? { ...e, pageIndex: newPageIndex } : e);
+            // Commit to history
+            setHistory(prevHistory => {
+                const step = historyStepRef.current;
+                const newHistory = prevHistory.slice(0, step + 1);
+                const updatedHistory = [...newHistory, updated].slice(-50);
+                setHistoryStep(updatedHistory.length - 1);
+                return updatedHistory;
+            });
+            return updated;
+        });
+        // Scroll to the new page
+        setTimeout(() => {
+            const pageElement = document.getElementById(`pdf-page-${newPageIndex}`);
+            if (pageElement) {
+                pageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
     }, [vibrate]);
 
     const handleSignatureSave = (dataUrl: string) => {
@@ -827,7 +879,7 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                         cursor: activeTool === 'pan' ? 'grab' : 'default',
                         scrollBehavior: isPinching ? 'auto' : 'smooth',
                         WebkitOverflowScrolling: 'touch',
-                        touchAction: activeTool === 'pan' ? 'pan-x pan-y' : 'auto'
+                        touchAction: 'pan-x pan-y'
                     }}
                 >
                     <div className="py-8 px-8 min-h-full flex flex-col items-center gap-6 mobile-content-inner">
@@ -839,12 +891,14 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                 </div>
                                 <PageRenderer
                                     pageIndex={idx}
+                                    pageCount={pageCount}
                                     pdfJsDoc={pdfJsDoc}
                                     zoom={debouncedZoom}
                                     displayZoom={previewZoom}
                                     entries={entries.filter(e => e.pageIndex === idx)}
                                     onEntryUpdate={updateEntry}
                                     onEntryDelete={removeEntry}
+                                    onMoveToPage={moveToPage}
                                     onHistoryCommit={commitToHistory}
                                     activeTool={activeTool}
                                     onVisibilityChange={(isVisible: boolean) => reportVisibility(idx, isVisible)}
