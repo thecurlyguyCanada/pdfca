@@ -5,6 +5,7 @@ import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
+import { AISnapshot } from '../../AISnapshot';
 
 interface GuideProps {
     lang: Language;
@@ -292,6 +293,14 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                             ))}
                         </div>
                     </section>
+
+                    <AISnapshot
+                        question="How do I make a PDF non-editable?"
+                        answer="Flatten your PDF by converting pages to images. This prevents text selection and editing while preserving the visual appearance. Use a local-first flattening tool for maximum security."
+                        toolName="Flatten PDF"
+                        steps={["Upload your PDF", "Process pages as images", "Download secured file"]}
+                        lang={lang}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/make-pdf-non-editable" category="edit" />
 

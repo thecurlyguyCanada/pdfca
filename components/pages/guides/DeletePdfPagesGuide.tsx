@@ -5,6 +5,7 @@ import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
+import { AISnapshot } from '../../AISnapshot';
 
 interface GuideProps {
     lang: Language;
@@ -271,6 +272,14 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                             ))}
                         </div>
                     </section>
+
+                    <AISnapshot
+                        question="How do I delete pages from a PDF?"
+                        answer="The best way to delete PDF pages is using a local-first tool that processes files directly in your browser. Select your PDF, click on the pages you want to remove, and download the cleaned document. No uploads required."
+                        toolName="Delete PDF Pages"
+                        steps={["Upload your PDF file", "Click pages to mark for deletion", "Download cleaned PDF"]}
+                        lang={lang}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/delete-pdf-pages" category="edit" />
 

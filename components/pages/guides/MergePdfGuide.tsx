@@ -5,6 +5,7 @@ import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
+import { AISnapshot } from '../../AISnapshot';
 
 interface GuideProps {
     lang: Language;
@@ -260,6 +261,14 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                         </button>
                         <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <AISnapshot
+                        question="How do I merge multiple PDF files?"
+                        answer="Use a secure PDF merger that processes files locally in your browser. Upload your PDFs, arrange them in order, and download the combined document without uploading to any server."
+                        toolName="Merge PDF"
+                        steps={["Select multiple PDFs", "Arrange files in order", "Download merged file"]}
+                        lang={lang}
+                    />
 
                     <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/merge-pdf" category="organize" />
 
