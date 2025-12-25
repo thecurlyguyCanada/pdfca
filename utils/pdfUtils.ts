@@ -104,7 +104,7 @@ export const initPdfWorker = async () => {
     if (pdfjs.GlobalWorkerOptions) {
       // Use the bundled worker from the CDN or a local path
       // Setting it to a local path that we know exists in public/
-      pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+      pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       workerInitialized = true;
     }
   }
