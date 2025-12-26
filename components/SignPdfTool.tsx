@@ -235,7 +235,11 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50/30'} flex items-center justify-center cursor-move transition-all duration-150`}
                         onPointerDown={(e) => {
                             if (activeTool !== 'select') return;
+                            e.stopPropagation();
                             onSelectEntry(entry.id);
+                        }}
+                        onClick={(e) => {
+                            e.stopPropagation();
                         }}
                     >
                         {entry.dataUrl ? (
