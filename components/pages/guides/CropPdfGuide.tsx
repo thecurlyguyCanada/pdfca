@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Scissors, Shield, Zap, HelpCircle } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -39,7 +42,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Select Your File</strong>: upload your PDF to our <button onClick={() => onNavigate('TOOL_PAGE', '/crop-pdf')} className="text-canada-red hover:underline font-medium">Crop PDF tool</button>.
+                                <strong>Select Your File</strong>: upload your PDF to our <Link href="/crop-pdf" className="text-canada-red hover:underline font-medium">Crop PDF tool</Link>.
                             </li>
                             <li className="pl-2">
                                 <strong>Set Your Margins</strong>: define the area you want to keep. Currently, our tool applies a professional 1-inch safe-crop automatically, with manual selectors coming soon!
@@ -233,3 +236,5 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

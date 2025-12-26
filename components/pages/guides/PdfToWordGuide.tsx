@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -29,7 +32,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 id: "how-to",
                 title: "Step-by-Step: Converting PDF to Editable Word",
                 content: `Follow these simple steps to unlock your PDF for editing:
-1. **Upload Your PDF File**: Click to browse or drag-and-drop your PDF document into our <button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-word')} className="text-canada-red hover:underline font-medium">PDF to Word converter</button>. The file stays on your device—never uploaded to our servers.
+1. **Upload Your PDF File**: Click to browse or drag-and-drop your PDF document into our <Link href="/pdf-to-word" className="text-canada-red hover:underline font-medium">PDF to Word converter</Link>. The file stays on your device—never uploaded to our servers.
 2. **Automatic Text Extraction**: Our browser-based engine immediately begins extracting text, formatting, and basic layout information from your PDF.
 3. **DOCX File Generation**: We construct a new Microsoft Word (.docx) file with the extracted content, preserving paragraph structure and basic styling where possible.
 4. **Preview Quality (Optional)**: Once generated, you can open the file to verify the extraction quality before proceeding with edits.
@@ -123,7 +126,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Conversion takes a very long time or fails</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Very large PDFs (100+ pages or 50+ MB) can overwhelm browser memory. Try splitting the PDF into smaller sections using our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">Organize PDF tool</button>, then convert each section separately.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Very large PDFs (100+ pages or 50+ MB) can overwhelm browser memory. Try splitting the PDF into smaller sections using our <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">Organize PDF tool</Link>, then convert each section separately.</p>
                         </div>
                     </div>
                 )
@@ -184,7 +187,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 id: "how-to",
                 title: "Étape par Étape : Conversion de PDF en Word Modifiable",
                 content: `Suivez ces étapes simples pour déverrouiller votre PDF et le rendre modifiable :
-1. **Téléchargez votre fichier PDF** : Cliquez pour parcourir ou glissez-déposez votre document PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-word')} className="text-canada-red hover:underline font-medium">convertisseur PDF vers Word</button>. Le fichier reste sur votre appareil—jamais téléchargé sur nos serveurs.
+1. **Téléchargez votre fichier PDF** : Cliquez pour parcourir ou glissez-déposez votre document PDF dans notre <Link href="/pdf-to-word" className="text-canada-red hover:underline font-medium">convertisseur PDF vers Word</Link>. Le fichier reste sur votre appareil—jamais téléchargé sur nos serveurs.
 2. **Extraction automatique du texte** : Notre moteur basé sur le navigateur commence immédiatement à extraire le texte, le formatage et les informations de mise en page de base de votre PDF.
 3. **Génération du fichier DOCX** : Nous construisons un nouveau fichier Microsoft Word (.docx) avec le contenu extrait, en préservant la structure des paragraphes et le style de base dans la mesure du possible.
 4. **Aperçu de la qualité (optionnel)** : Une fois généré, vous pouvez ouvrir le fichier pour vérifier la qualité de l'extraction avant de procéder aux modifications.
@@ -278,7 +281,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : La conversion prend très longtemps ou échoue</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (100+ pages ou 50+ Mo) peuvent submerger la mémoire du navigateur. Essayez de diviser le PDF en sections plus petites en utilisant notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</button>, puis convertissez chaque section séparément.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (100+ pages ou 50+ Mo) peuvent submerger la mémoire du navigateur. Essayez de diviser le PDF en sections plus petites en utilisant notre <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</Link>, puis convertissez chaque section séparément.</p>
                         </div>
                     </div>
                 )
@@ -361,9 +364,9 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<FileText size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'PDF to Word Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'PDF to Word Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -431,3 +434,5 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </div>
     );
 };
+
+

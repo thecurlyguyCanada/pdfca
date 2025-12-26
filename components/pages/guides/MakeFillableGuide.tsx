@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { PenTool, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, FileText, CheckSquare, PencilLine } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -123,7 +126,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-4">
-                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-fillable')} className="text-canada-red hover:underline font-medium">outil de création de formulaires</button>. Le fichier s'ouvre instantanément.</li>
+                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre <Link href="/make-fillable" className="text-canada-red hover:underline font-medium">outil de création de formulaires</Link>. Le fichier s'ouvre instantanément.</li>
                             <li><strong>Ajoutez des champs interactifs</strong> : Glissez-déposez des champs de texte, des cases à cocher, des menus déroulants et des zones de signature là où vous en avez besoin.</li>
                             <li><strong>Enregistrez et partagez</strong> : Cliquez sur "Traiter le PDF" pour télécharger votre version interactive, prête à être envoyée à vos clients.</li>
                         </ol>
@@ -262,9 +265,9 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
                 subtitle={t.subtitle}
                 icon={<PenTool size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'Make Fillable Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'Make Fillable Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto space-y-12">
@@ -347,3 +350,5 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =>
         </>
     );
 };
+
+

@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { BookOpen, FileText, Download, Shield, Zap, CheckCircle, Info, ArrowRight, MousePointer2 } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -84,7 +87,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                                 <div className="bg-canada-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
                                 <div>
                                     <h4 className="font-bold">Select Your Comic</h4>
-                                    <p>Go to our <button onClick={() => onNavigate('TOOL_PAGE', '/cbr-to-pdf')} className="text-canada-red hover:underline font-medium">CBR to PDF Tool</button> and choose your file.</p>
+                                    <p>Go to our <Link href="/cbr-to-pdf" className="text-canada-red hover:underline font-medium">CBR to PDF Tool</Link> and choose your file.</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -210,7 +213,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                                 <div className="bg-canada-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
                                 <div>
                                     <h4 className="font-bold">Sélectionnez votre BD</h4>
-                                    <p>Allez sur notre <button onClick={() => onNavigate('TOOL_PAGE', '/cbr-to-pdf')} className="text-canada-red hover:underline font-medium">Outil CBR en PDF</button> et choisissez votre fichier.</p>
+                                    <p>Allez sur notre <Link href="/cbr-to-pdf" className="text-canada-red hover:underline font-medium">Outil CBR en PDF</Link> et choisissez votre fichier.</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -318,9 +321,9 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<BookOpen size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide') },
-                    { name: 'CBR to PDF', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'CBR to PDF', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-12 px-6">
@@ -411,3 +414,5 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </div>
     );
 };
+
+

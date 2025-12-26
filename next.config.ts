@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
+  // Externalize heavy PDF libraries for server components (Next.js 15+)
+  // This prevents Edge Runtime issues and improves build performance
+  serverExternalPackages: [
+    'pdf-lib',
+    'pdfjs-dist',
+    'jspdf',
+    'jszip',
+    'docx',
+    'mammoth',
+    'exceljs',
+  ],
+
   // Headers (security headers moved here from vercel.json)
   async headers() {
     return [
@@ -75,6 +87,7 @@ const nextConfig: NextConfig = {
       'lucide-react',
       '@dnd-kit/core',
       '@dnd-kit/sortable',
+      '@dnd-kit/utilities',
     ],
   },
 

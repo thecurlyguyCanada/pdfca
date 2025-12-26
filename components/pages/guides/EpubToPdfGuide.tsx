@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { BookOpen, CheckCircle, Shield, Zap, ArrowRight } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -229,9 +232,9 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<BookOpen size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'EPUB to PDF Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'EPUB to PDF Guide', href: '#' }
                 ]}
             >
                 <div className="space-y-12 text-gray-700 dark:text-gray-300">
@@ -359,3 +362,5 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

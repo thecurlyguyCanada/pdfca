@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -347,9 +350,9 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<FileText size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'Word to PDF Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'Word to PDF Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -417,3 +420,5 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </div>
     );
 };
+
+

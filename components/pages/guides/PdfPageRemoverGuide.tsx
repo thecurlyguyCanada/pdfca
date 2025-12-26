@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Trash2, Shield, Zap, HelpCircle } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -40,7 +43,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Open the Remover</strong>: Use our <button onClick={() => onNavigate('HOME')} className="text-canada-red hover:underline font-medium">PDF Page Remover tool</button>. Since it's local-first, it loads your document without uploading it to any server.
+                                <strong>Open the Remover</strong>: Use our <Link href="/" className="text-canada-red hover:underline font-medium">PDF Page Remover tool</Link>. Since it's local-first, it loads your document without uploading it to any server.
                             </li>
                             <li className="pl-2">
                                 <strong>Select Pages</strong>: Click on the thumbnails representing the pages you want to remove. A trash icon will appear over the selected pages.
@@ -228,3 +231,5 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
 };
 
 export default PdfPageRemoverGuide;
+
+

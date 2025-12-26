@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -110,7 +113,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                             <li className="flex items-start gap-2">
                                 <span className="text-canada-red font-bold">•</span>
                                 <div>
-                                    <strong>Remove Blank Pages:</strong> Printers often add blank pages to emails. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-bold">Delete Pages Tool</button> to remove them.
+                                    <strong>Remove Blank Pages:</strong> Printers often add blank pages to emails. Use our <Link href="/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Delete Pages Tool</Link> to remove them.
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
@@ -236,7 +239,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                             <li className="flex items-start gap-2">
                                 <span className="text-canada-red font-bold">•</span>
                                 <div>
-                                    <strong>Supprimer les pages blanches :</strong> L'impression ajoute souvent des pages vides. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-bold">Outil de suppression de pages</button>.
+                                    <strong>Supprimer les pages blanches :</strong> L'impression ajoute souvent des pages vides. Utilisez notre <Link href="/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Outil de suppression de pages</Link>.
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
@@ -339,9 +342,9 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<Mail size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'Email to PDF', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'Email to PDF', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -425,3 +428,5 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </div>
     );
 };
+
+

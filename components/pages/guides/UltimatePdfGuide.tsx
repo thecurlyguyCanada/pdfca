@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -29,7 +32,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         In the rapidly evolving landscape of digital communication, the Portable Document Format (PDF) remains an unshakeable cornerstone. Created by Adobe in the early 1990s, the PDF was designed to solve a single, critical problem: how to share documents that look exactly the same on every device.
                         <br /><br />
-                        Today, billions of PDFs are created every year. However, while the format has remained stable, our requirements have grown. We need to <button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="text-canada-red hover:underline decoration-dashed">delete pages</button>, sign contracts, and convert formats.
+                        Today, billions of PDFs are created every year. However, while the format has remained stable, our requirements have grown. We need to <Link href="/guides/delete-pdf-pages" className="text-canada-red hover:underline decoration-dashed">delete pages</Link>, sign contracts, and convert formats.
                         <br /><br />
                         This guide serves as a beacon for anyone looking to navigate these tasks without falling into the "subscription trap." We'll explore how modern technology allows for <strong>free PDF tools online</strong> that are faster and more secure than their desktop ancestors.
                     </>
@@ -57,7 +60,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Whether it's a 200-page report where you only need the summary, or a scanned contract with ghost pages, knowing how to <strong>delete PDF pages</strong> is a massive time-saver.
                         <br /><br />
-                        Our <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-bold">Delete PDF Pages Tool</button> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
+                        Our <Link href="/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Delete PDF Pages Tool</Link> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
                     </>
                 )
             },
@@ -68,7 +71,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         We've all been there: you open a PDF, and it's sideways. Standard viewers might let you rotate the <em>view</em>, but they rarely let you save the change.
                         <br /><br />
-                        Using a dedicated <button onClick={() => onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf')} className="text-canada-red hover:underline font-bold">Rotate PDF Tool</button> fixes this permanently. This updates the file's metadata, ensuring the recipient sees exactly what you see.
+                        Using a dedicated <Link href="/guides/rotate-pdf" className="text-canada-red hover:underline font-bold">Rotate PDF Tool</Link> fixes this permanently. This updates the file's metadata, ensuring the recipient sees exactly what you see.
                     </>
                 )
             },
@@ -79,9 +82,9 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         The world of digital formats is messy. iPhones use HEIC, Kindles want EPUBs, and businesses demand PDFs.
                         <br /><br />
-                        <strong>HEIC to PDF</strong>: If you're struggling to open iPhone photos on Windows, our <button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf')} className="text-canada-red hover:underline font-bold">HEIC Converter</button> bridges that gap securely.
+                        <strong>HEIC to PDF</strong>: If you're struggling to open iPhone photos on Windows, our <Link href="/guides/heic-to-pdf" className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
                         <br /><br />
-                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-epub')} className="text-canada-red hover:underline">PDF to EPUB</button> allows the text to reflow comfortably on your e-reader.
+                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href="/pdf-to-epub" className="text-canada-red hover:underline">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
                     </>
                 )
             },
@@ -92,7 +95,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         A scanned PDF is often just a "container for images." The computer sees pixels, not words.
                         <br /><br />
-                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="text-canada-red hover:underline font-bold">OCR PDF Tool</button>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
+                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href="/guides/ocr-pdf" className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
                     </>
                 )
             },
@@ -103,7 +106,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Static documents are a relic. If you need a client to provide info, don't make them print and scan.
                         <br /><br />
-                        Learning to <button onClick={() => onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable')} className="text-canada-red hover:underline font-bold">make PDFs fillable</button> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
+                        Learning to <Link href="/guides/make-pdf-fillable" className="text-canada-red hover:underline font-bold">make PDFs fillable</Link> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
                     </>
                 )
             },
@@ -163,7 +166,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Dans le paysage numérique d'aujourd'hui, le format PDF reste une pierre angulaire inébranlable. Créé par Adobe au début des années 90, le PDF a été conçu pour résoudre un problème critique : comment partager des documents qui apparaissent exactement de la même manière sur n'importe quel appareil.
                         <br /><br />
-                        Aujourd'hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <button onClick={() => onNavigate('GUIDE_DELETE_PAGES', '/guides/delete-pdf-pages')} className="text-canada-red hover:underline decoration-dashed">supprimer des pages</button>, signer des contrats et convertir des formats.
+                        Aujourd'hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <Link href="/guides/delete-pdf-pages" className="text-canada-red hover:underline decoration-dashed">supprimer des pages</Link>, signer des contrats et convertir des formats.
                         <br /><br />
                         Ce guide sert de phare à quiconque cherche à naviguer dans ces tâches sans tomber dans le "piège de l'abonnement". Nous explorerons comment la technologie moderne permet des <strong>outils PDF gratuits en ligne</strong> qui sont plus rapides et plus sécurisés que leurs ancêtres de bureau.
                     </>
@@ -191,7 +194,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Que ce soit un rapport de 200 pages dont vous n'avez besoin que du résumé, ou un contrat scanné avec des pages fantômes, savoir comment <strong>supprimer des pages PDF</strong> est un gain de temps énorme.
                         <br /><br />
-                        Notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</button> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
+                        Notre <Link href="/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</Link> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
                     </>
                 )
             },
@@ -202,7 +205,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Nous y avons tous été confrontés : vous ouvrez un PDF et il est de côté. Les visionneuses standard peuvent vous laisser faire pivoter la <em>vue</em>, mais elles vous laissent rarement enregistrer le changement.
                         <br /><br />
-                        Utiliser un <button onClick={() => onNavigate('GUIDE_ROTATE', '/guides/rotate-pdf')} className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</button> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
+                        Utiliser un <Link href="/guides/rotate-pdf" className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</Link> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
                     </>
                 )
             },
@@ -213,9 +216,9 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Le monde des formats numériques est désordonné. Les iPhones utilisent HEIC, les Kindles veulent des EPUB, et les entreprises exigent des PDF.
                         <br /><br />
-                        <strong>HEIC vers PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <button onClick={() => onNavigate('GUIDE_HEIC_TO_PDF', '/guides/heic-to-pdf')} className="text-canada-red hover:underline font-bold">Convertisseur HEIC</button> comble cette lacune en toute sécurité.
+                        <strong>HEIC vers PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href="/guides/heic-to-pdf" className="text-canada-red hover:underline font-bold">Convertisseur HEIC</Link> comble cette lacune en toute sécurité.
                         <br /><br />
-                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <button onClick={() => onNavigate('TOOL_PAGE', '/pdf-to-epub')} className="text-canada-red hover:underline">PDF en EPUB</button> permet au texte de se redistribuer confortablement sur votre liseuse.
+                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href="/pdf-to-epub" className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de se redistribuer confortablement sur votre liseuse.
                     </>
                 )
             },
@@ -226,7 +229,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Un PDF scanné est souvent juste un "conteneur d'images". L'ordinateur voit des pixels, pas des mots.
                         <br /><br />
-                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <button onClick={() => onNavigate('GUIDE_OCR', '/guides/ocr-pdf')} className="text-canada-red hover:underline font-bold">Outil OCR PDF</button>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
+                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href="/guides/ocr-pdf" className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
                     </>
                 )
             },
@@ -237,7 +240,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         Les documents statiques sont une relique. Si vous avez besoin qu'un client fournisse des infos, ne les faites pas imprimer et scanner.
                         <br /><br />
-                        Apprendre à <button onClick={() => onNavigate('GUIDE_FILLABLE', '/guides/make-pdf-fillable')} className="text-canada-red hover:underline font-bold">créer des PDF remplissables</button> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
+                        Apprendre à <Link href="/guides/make-pdf-fillable" className="text-canada-red hover:underline font-bold">créer des PDF remplissables</Link> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
                     </>
                 )
             },
@@ -341,8 +344,8 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 subtitle={t.subtitle}
                 icon={<BookOpen size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Ultimate Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Ultimate Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -470,3 +473,4 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
         </div>
     );
 };
+

@@ -13,10 +13,11 @@ import type { ToolConfig } from '@/lib/toolConfig';
 
 interface ToolPageClientProps {
   toolConfig: ToolConfig;
+  lang: Language;
 }
 
-export function ToolPageClient({ toolConfig }: ToolPageClientProps) {
-  const [lang, setLang] = useState<Language>('en');
+export function ToolPageClient({ toolConfig, lang: initialLang }: ToolPageClientProps) {
+  const [lang, setLang] = useState<Language>(initialLang);
   const [appState, setAppState] = useState<AppState>(AppState.SELECTING);
   const [file, setFile] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]);

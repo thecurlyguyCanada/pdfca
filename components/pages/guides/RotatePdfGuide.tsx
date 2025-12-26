@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { RotateCw, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Monitor, RefreshCcw } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -23,7 +26,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         intro: (
             <>
-                We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">rotate PDF online free</button>, you've come to the right place.
+                We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to <Link href="/rotate-pdf" className="text-canada-red hover:underline font-bold">rotate PDF online free</Link>, you've come to the right place.
                 <br /><br />
                 Unlike a standard PDF viewer where rotation is only temporary (it resets when you close the file), our tool updates the file structure so the orientation is fixed <strong>permanently</strong> for everyone who opens it.
             </>
@@ -40,7 +43,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-medium">Rotate PDF tool</button>. Because we use <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</button>, processing begins instantly—no upload wait times.
+                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <Link href="/rotate-pdf" className="text-canada-red hover:underline font-medium">Rotate PDF tool</Link>. Because we use <Link href="/guides/ultimate-pdf-guide" className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link>, processing begins instantly—no upload wait times.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview Page Thumbnails</strong>: You'll see thumbnail previews of all pages. This makes it easy to identify which pages need rotation at a glance.
@@ -141,7 +144,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Landscape pages still look wrong after rotation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Some content is intentionally designed in landscape orientation (wide charts, tables). Before rotating, consider whether the page was meant to be landscape. You can use our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">Organize PDF tool</button> to group landscape pages separately if needed.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Some content is intentionally designed in landscape orientation (wide charts, tables). Before rotating, consider whether the page was meant to be landscape. You can use our <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">Organize PDF tool</Link> to group landscape pages separately if needed.</p>
                         </div>
                     </div>
                 )
@@ -197,7 +200,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
 
         intro: (
             <>
-                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Ou pire, tout le document est à l'envers. Si vous cherchez à <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</button>, vous êtes au bon endroit.
+                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Ou pire, tout le document est à l'envers. Si vous cherchez à <Link href="/rotate-pdf" className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</Link>, vous êtes au bon endroit.
                 <br /><br />
                 Contrairement à une visionneuse PDF standard où la rotation n'est que temporaire (elle se réinitialise à la fermeture du fichier), notre outil met à jour la structure du fichier afin que l'orientation soit fixée <strong>définitivement</strong> pour tous ceux qui l'ouvrent.
             </>
@@ -214,7 +217,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-medium">outil de rotation PDF</button>. Grâce à notre <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</button>, le traitement commence instantanément—aucun temps d'attente de téléchargement.
+                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <Link href="/rotate-pdf" className="text-canada-red hover:underline font-medium">outil de rotation PDF</Link>. Grâce à notre <Link href="/guides/ultimate-pdf-guide" className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</Link>, le traitement commence instantanément—aucun temps d'attente de téléchargement.
                             </li>
                             <li className="pl-2">
                                 <strong>Aperçu des miniatures de pages</strong> : Vous verrez des aperçus miniatures de toutes les pages. Cela facilite l'identification des pages nécessitant une rotation d'un coup d'œil.
@@ -315,7 +318,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les pages paysage semblent toujours incorrectes après rotation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Certains contenus sont intentionnellement conçus en orientation paysage (graphiques larges, tableaux). Avant de pivoter, considérez si la page était censée être en paysage. Vous pouvez utiliser notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</button> pour grouper les pages paysage séparément si nécessaire.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Certains contenus sont intentionnellement conçus en orientation paysage (graphiques larges, tableaux). Avant de pivoter, considérez si la page était censée être en paysage. Vous pouvez utiliser notre <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</Link> pour grouper les pages paysage séparément si nécessaire.</p>
                         </div>
                     </div>
                 )
@@ -431,9 +434,9 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<RotateCw size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'Rotate PDF Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'Rotate PDF Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto space-y-12">
@@ -513,3 +516,5 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

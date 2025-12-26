@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Lock, Shield, Zap, HelpCircle, FileText, CheckCircle } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -40,7 +43,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Select Your File</strong>: Drag your PDF into our <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">Non-Editable PDF tool</button>. You can select files directly from your computer, cloud storage, or even scan documents from your phone.
+                                <strong>Select Your File</strong>: Drag your PDF into our <Link href="/make-pdf-non-editable" className="text-canada-red hover:underline font-medium">Non-Editable PDF tool</Link>. You can select files directly from your computer, cloud storage, or even scan documents from your phone.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview Your Document</strong>: Before processing, you'll see a preview of your PDF to confirm it's the correct file. This prevents accidentally flattening the wrong document.
@@ -119,7 +122,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
                             <h3 className="font-bold text-orange-800 mb-2">Combine with Compression</h3>
-                            <p className="text-sm text-orange-700">Flattened PDFs can be large. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">Compress tool</button> afterwards to reduce file size for email.</p>
+                            <p className="text-sm text-orange-700">Flattened PDFs can be large. Use our <Link href="/compress-pdf" className="underline">Compress tool</Link> afterwards to reduce file size for email.</p>
                         </div>
                     </div>
                 )
@@ -131,7 +134,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <ul className="list-disc pl-5 space-y-3">
                         <li><strong>Verify Completeness</strong>: Ensure all required signatures, dates, and fields are filled before flattening. Missing information cannot be added later.</li>
                         <li><strong>Test Readability</strong>: After flattening, zoom to 200% and verify that small text remains crisp and readable, especially in contracts or legal documents.</li>
-                        <li><strong>Remove Sensitive Layers</strong>: If your PDF has hidden layers or comments, use our <button onClick={() => onNavigate('TOOL_PAGE', '/flatten-pdf')} className="text-canada-red hover:underline">redaction tools</button> before flattening to prevent information leakage.</li>
+                        <li><strong>Remove Sensitive Layers</strong>: If your PDF has hidden layers or comments, use our <Link href="/flatten-pdf" className="text-canada-red hover:underline">redaction tools</Link> before flattening to prevent information leakage.</li>
                         <li><strong>Consistent File Naming</strong>: Name flattened files clearly (e.g., "Contract_FINAL_NonEditable.pdf") to distinguish them from working copies.</li>
                         <li><strong>Archive Strategy</strong>: Store both editable and flattened versions in separate folders. Use the editable version for updates and the flat version for distribution.</li>
                         <li><strong>Accessibility Considerations</strong>: Remember that flattened PDFs lose text-to-speech capabilities. Keep an accessible version for users who need screen readers.</li>
@@ -149,7 +152,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: File size increased dramatically</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Flattening creates image layers which can be larger than text. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">Compress tool</button> with medium quality to reduce size by 40-60%.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Flattening creates image layers which can be larger than text. Use our <Link href="/compress-pdf" className="text-canada-red hover:underline font-semibold">Compress tool</Link> with medium quality to reduce size by 40-60%.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Colors look different after flattening</h4>
@@ -236,7 +239,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Sélectionnez Votre Fichier</strong> : Glissez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">outil PDF Non-Modifiable</button>. Vous pouvez sélectionner des fichiers directement depuis votre ordinateur, stockage cloud, ou même numériser des documents depuis votre téléphone.
+                                <strong>Sélectionnez Votre Fichier</strong> : Glissez votre PDF dans notre <Link href="/make-pdf-non-editable" className="text-canada-red hover:underline font-medium">outil PDF Non-Modifiable</Link>. Vous pouvez sélectionner des fichiers directement depuis votre ordinateur, stockage cloud, ou même numériser des documents depuis votre téléphone.
                             </li>
                             <li className="pl-2">
                                 <strong>Prévisualisez Votre Document</strong> : Avant le traitement, vous verrez un aperçu de votre PDF pour confirmer qu'il s'agit du bon fichier. Cela évite d'aplatir accidentellement le mauvais document.
@@ -315,7 +318,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
                             <h3 className="font-bold text-orange-800 mb-2">Combinez avec la Compression</h3>
-                            <p className="text-sm text-orange-700">Les PDF aplatis peuvent être volumineux. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">outil de compression</button> ensuite pour réduire la taille pour l'envoi par courriel.</p>
+                            <p className="text-sm text-orange-700">Les PDF aplatis peuvent être volumineux. Utilisez notre <Link href="/compress-pdf" className="underline">outil de compression</Link> ensuite pour réduire la taille pour l'envoi par courriel.</p>
                         </div>
                     </div>
                 )
@@ -327,7 +330,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <ul className="list-disc pl-5 space-y-3">
                         <li><strong>Vérifiez l'Exhaustivité</strong> : Assurez-vous que toutes les signatures, dates et champs requis sont remplis avant l'aplatissement. Les informations manquantes ne peuvent pas être ajoutées plus tard.</li>
                         <li><strong>Testez la Lisibilité</strong> : Après l'aplatissement, zoomez à 200% et vérifiez que le petit texte reste net et lisible, en particulier dans les contrats ou documents juridiques.</li>
-                        <li><strong>Supprimez les Calques Sensibles</strong> : Si votre PDF a des calques cachés ou des commentaires, utilisez nos <button onClick={() => onNavigate('TOOL_PAGE', '/flatten-pdf')} className="text-canada-red hover:underline">outils de caviardage</button> avant l'aplatissement pour empêcher les fuites d'informations.</li>
+                        <li><strong>Supprimez les Calques Sensibles</strong> : Si votre PDF a des calques cachés ou des commentaires, utilisez nos <Link href="/flatten-pdf" className="text-canada-red hover:underline">outils de caviardage</Link> avant l'aplatissement pour empêcher les fuites d'informations.</li>
                         <li><strong>Nommage de Fichier Cohérent</strong> : Nommez clairement les fichiers aplatis (par ex., "Contrat_FINAL_NonModifiable.pdf") pour les distinguer des copies de travail.</li>
                         <li><strong>Stratégie d'Archivage</strong> : Stockez les versions modifiables et aplaties dans des dossiers séparés. Utilisez la version modifiable pour les mises à jour et la version plate pour la distribution.</li>
                         <li><strong>Considérations d'Accessibilité</strong> : Rappelez-vous que les PDF aplatis perdent les capacités de synthèse vocale. Conservez une version accessible pour les utilisateurs qui ont besoin de lecteurs d'écran.</li>
@@ -345,7 +348,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : La taille du fichier a augmenté considérablement</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : L'aplatissement crée des calques d'image qui peuvent être plus volumineux que le texte. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">outil de compression</button> avec une qualité moyenne pour réduire la taille de 40-60%.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : L'aplatissement crée des calques d'image qui peuvent être plus volumineux que le texte. Utilisez notre <Link href="/compress-pdf" className="text-canada-red hover:underline font-semibold">outil de compression</Link> avec une qualité moyenne pour réduire la taille de 40-60%.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les couleurs semblent différentes après l'aplatissement</h4>
@@ -524,3 +527,5 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

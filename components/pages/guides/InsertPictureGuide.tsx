@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Image as ImageIcon, Shield, Zap, HelpCircle, FileText, CheckCircle, Upload } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -36,7 +39,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
                         <li className="pl-2">
-                            <strong>Open Your File</strong>: Upload your document to our <button onClick={() => onNavigate('TOOL_PAGE', '/sign-pdf')} className="text-canada-red hover:underline font-medium">PDF Sign & Edit tool</button>.
+                            <strong>Open Your File</strong>: Upload your document to our <Link href="/sign-pdf" className="text-canada-red hover:underline font-medium">PDF Sign & Edit tool</Link>.
                         </li>
                         <li className="pl-2">
                             <strong>Select 'Image'</strong>: Choose the option to add an image or signature from your device.
@@ -107,7 +110,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Étape par Étape : Comment Ajouter des Images",
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
-                        <li className="pl-2"><strong>Ouvrez votre fichier</strong> : Téléchargez votre document dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/sign-pdf')} className="text-canada-red hover:underline font-medium">outil de signature et d'édition</button>.</li>
+                        <li className="pl-2"><strong>Ouvrez votre fichier</strong> : Téléchargez votre document dans notre <Link href="/sign-pdf" className="text-canada-red hover:underline font-medium">outil de signature et d'édition</Link>.</li>
                         <li className="pl-2"><strong>Sélectionnez 'Image'</strong> : Choisissez l'option pour ajouter une image ou une signature depuis votre appareil.</li>
                         <li className="pl-2"><strong>Placez et Redimensionnez</strong> : Cliquez sur la page pour placer votre image, puis faites glisser les coins pour la redimensionner ou déplacez-la au bon endroit.</li>
                         <li className="pl-2"><strong>Enregistrez et Téléchargez</strong> : Une fois satisfait, cliquez sur 'Signer/Appliquer' et téléchargez votre PDF mis à jour.</li>
@@ -300,3 +303,5 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang, onNavigate }) =
         </>
     );
 };
+
+

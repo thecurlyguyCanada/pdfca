@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { FileText, Shield, Zap, HelpCircle, Printer, Edit3, Trash2, ArrowRight } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -59,7 +62,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                             </div>
                         </div>
                         <p className="text-sm italic">
-                            👉 Looking for a quick way to flatten standard PDFs? Try our <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-bold">PDF Flattening Tool</button>.
+                            👉 Looking for a quick way to flatten standard PDFs? Try our <Link href="/make-pdf-non-editable" className="text-canada-red hover:underline font-bold">PDF Flattening Tool</Link>.
                         </p>
                     </>
                 )
@@ -322,3 +325,5 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

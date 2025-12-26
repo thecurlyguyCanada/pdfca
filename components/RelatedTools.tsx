@@ -1,6 +1,4 @@
-'use client';
-
-import React from 'react';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Language } from '../utils/i18n';
 
@@ -12,7 +10,7 @@ interface RelatedTool {
 
 interface RelatedToolsProps {
     lang: Language;
-    onNavigate: (view: any, path?: string) => void;
+    onNavigate?: (view: any, path?: string) => void;
     currentPath?: string;
     category?: 'edit' | 'convert' | 'organize' | 'all';
 }
@@ -85,6 +83,12 @@ export const RelatedTools: React.FC<RelatedToolsProps> = ({ lang, onNavigate, cu
 
     const t = content[lang] || content.en;
 
+    const handleNavigate = (view: any, path?: string) => {
+        if (onNavigate) {
+            onNavigate(view, path);
+        }
+    };
+
     return (
         <section className="mt-20 pt-12 border-t border-gray-200 dark:border-gray-800">
             {/* Related Tools */}
@@ -94,26 +98,28 @@ export const RelatedTools: React.FC<RelatedToolsProps> = ({ lang, onNavigate, cu
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {filteredTools.map((tool, i) => (
-                        <button
+                        <Link
                             key={i}
-                            onClick={() => onNavigate(tool.view || 'TOOL_PAGE', tool.path)}
+                            href={tool.path}
+                            onClick={() => handleNavigate(tool.view || 'TOOL_PAGE', tool.path)}
                             className="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-canada-red hover:bg-red-50 dark:hover:bg-red-900/10 transition-all text-left group"
                         >
                             <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-canada-red text-sm flex items-center gap-2">
                                 {tool.name}
                                 <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                             </span>
-                        </button>
+                        </Link>
                     ))}
                 </div>
 
                 <div className="mt-6 text-center">
-                    <button
-                        onClick={() => onNavigate('HOME')}
+                    <Link
+                        href="/"
+                        onClick={() => handleNavigate('HOME')}
                         className="text-sm text-canada-red hover:text-canada-darkRed font-medium transition-colors"
                     >
                         {t.viewAll} →
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -122,13 +128,14 @@ export const RelatedTools: React.FC<RelatedToolsProps> = ({ lang, onNavigate, cu
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{t.guidesTitle}</h3>
                 <div className="flex flex-wrap gap-3">
                     {filteredGuides.map((guide, i) => (
-                        <button
+                        <Link
                             key={i}
-                            onClick={() => onNavigate(guide.view, guide.path)}
+                            href={guide.path}
+                            onClick={() => handleNavigate(guide.view, guide.path)}
                             className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 hover:border-canada-red text-sm text-gray-600 dark:text-gray-400 hover:text-canada-red transition-all"
                         >
                             {guide.name}
-                        </button>
+                        </Link>
                     ))}
                 </div>
             </div>

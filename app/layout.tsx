@@ -87,6 +87,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+
 export default function RootLayout({
   children,
 }: {
@@ -102,7 +104,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-inter">
-        {children}
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>

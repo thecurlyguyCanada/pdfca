@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { Trash2, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, MousePointer2, Smartphone, Monitor, Info, HelpCircle, FileText, MoveRight } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -27,7 +30,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 <br /><br />
                 In the past, solving this required expensive software like Adobe Acrobat or risky online tools that forced you to upload your private data to a remote server. <strong>That changes today.</strong>
                 <br /><br />
-                This guide will show you exactly how to remove pages from any PDF document using <button onClick={() => onNavigate('HOME')} className="text-canada-red hover:underline font-medium">modern, local-first tools</button> that keep your data safe on your own device.
+                This guide will show you exactly how to remove pages from any PDF document using <Link href="/" className="text-canada-red hover:underline font-medium">modern, local-first tools</Link> that keep your data safe on your own device.
             </>
         ),
 
@@ -42,7 +45,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your PDF</strong>: Drag your PDF directly onto the browser window or click to browse. Because we use <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</button>, the file opens instantly—no upload bar, no waiting for cloud processing.
+                                <strong>Upload Your PDF</strong>: Drag your PDF directly onto the browser window or click to browse. Because we use <Link href="/guides/ultimate-pdf-guide" className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link>, the file opens instantly—no upload bar, no waiting for cloud processing.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview All Pages</strong>: You'll see a grid of page thumbnails showing the entire document at a glance. This visual overview makes it easy to identify exactly which pages to remove.
@@ -111,7 +114,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         <li><strong>Keep Original Backups</strong>: Before deleting pages from important documents, save a copy of the original complete PDF. Once deleted, pages are permanently removed from the generated file.</li>
                         <li><strong>Delete in Logical Groups</strong>: If you're removing many pages, delete them in batches (e.g., all blank pages first, then all instruction pages) to stay organized.</li>
                         <li><strong>Check Page Numbering</strong>: Remember that deleting pages changes the physical page count but doesn't update printed page numbers in headers/footers. Page "5 of 10" will still say that even if the document is now only 8 pages.</li>
-                        <li><strong>Consider Organizing Instead</strong>: If you need pages in a different order rather than deleted, use our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline">Organize PDF tool</button> to rearrange them first.</li>
+                        <li><strong>Consider Organizing Instead</strong>: If you need pages in a different order rather than deleted, use our <Link href="/organize-pdf" className="text-canada-red hover:underline">Organize PDF tool</Link> to rearrange them first.</li>
                         <li><strong>Verify Content After Deletion</strong>: After deleting pages, open the resulting PDF and skim through to ensure the document still flows logically and no critical pages were removed by mistake.</li>
                     </ul>
                 )
@@ -135,7 +138,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Processing is very slow with large PDFs</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Very large PDFs (200+ pages or 100+ MB) can take time to load thumbnails and process. Close other browser tabs to free up memory. For extremely large files, consider splitting the PDF first using our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">Organize tool</button>.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Very large PDFs (200+ pages or 100+ MB) can take time to load thumbnails and process. Close other browser tabs to free up memory. For extremely large files, consider splitting the PDF first using our <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">Organize tool</Link>.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Can I undo a page deletion?</h4>
@@ -219,7 +222,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Téléchargez votre PDF</strong> : Glissez votre PDF directement dans la fenêtre du navigateur ou cliquez pour parcourir. Grâce à notre <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</button>, le fichier s'ouvre instantanément—pas de barre de téléchargement, pas d'attente pour le traitement cloud.
+                                <strong>Téléchargez votre PDF</strong> : Glissez votre PDF directement dans la fenêtre du navigateur ou cliquez pour parcourir. Grâce à notre <Link href="/guides/ultimate-pdf-guide" className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</Link>, le fichier s'ouvre instantanément—pas de barre de téléchargement, pas d'attente pour le traitement cloud.
                             </li>
                             <li className="pl-2">
                                 <strong>Aperçu de toutes les pages</strong> : Vous verrez une grille de miniatures de pages montrant l'ensemble du document d'un coup d'œil. Cet aperçu visuel facilite l'identification exacte des pages à supprimer.
@@ -288,7 +291,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         <li><strong>Conservez des sauvegardes originales</strong> : Avant de supprimer des pages de documents importants, enregistrez une copie du PDF complet original. Une fois supprimées, les pages sont définitivement retirées du fichier généré.</li>
                         <li><strong>Supprimez par groupes logiques</strong> : Si vous supprimez de nombreuses pages, supprimez-les par lots (par exemple, toutes les pages vierges d'abord, puis toutes les pages d'instructions) pour rester organisé.</li>
                         <li><strong>Vérifiez la numérotation des pages</strong> : Rappelez-vous que supprimer des pages change le nombre physique de pages mais ne met pas à jour les numéros de page imprimés dans les en-têtes/pieds de page. La page "5 de 10" dira toujours cela même si le document ne fait plus que 8 pages.</li>
-                        <li><strong>Considérez l'organisation plutôt</strong> : Si vous avez besoin de pages dans un ordre différent plutôt que supprimées, utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline">outil d'organisation PDF</button> pour les réarranger d'abord.</li>
+                        <li><strong>Considérez l'organisation plutôt</strong> : Si vous avez besoin de pages dans un ordre différent plutôt que supprimées, utilisez notre <Link href="/organize-pdf" className="text-canada-red hover:underline">outil d'organisation PDF</Link> pour les réarranger d'abord.</li>
                         <li><strong>Vérifiez le contenu après suppression</strong> : Après avoir supprimé des pages, ouvrez le PDF résultant et parcourez-le pour vous assurer que le document s'enchaîne toujours logiquement et qu'aucune page critique n'a été supprimée par erreur.</li>
                     </ul>
                 )
@@ -312,7 +315,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le traitement est très lent avec les gros PDF</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (200+ pages ou 100+ Mo) peuvent prendre du temps pour charger les miniatures et traiter. Fermez d'autres onglets du navigateur pour libérer de la mémoire. Pour les fichiers extrêmement volumineux, envisagez de diviser le PDF d'abord en utilisant notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">outil d'organisation</button>.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (200+ pages ou 100+ Mo) peuvent prendre du temps pour charger les miniatures et traiter. Fermez d'autres onglets du navigateur pour libérer de la mémoire. Pour les fichiers extrêmement volumineux, envisagez de diviser le PDF d'abord en utilisant notre <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">outil d'organisation</Link>.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Puis-je annuler une suppression de page ?</h4>
@@ -414,9 +417,9 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                 subtitle={t.subtitle}
                 icon={<Trash2 size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', onClick: () => onNavigate('HOME', '/') },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide') },
-                    { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', onClick: () => {} }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
@@ -490,3 +493,4 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
         </>
     );
 };
+

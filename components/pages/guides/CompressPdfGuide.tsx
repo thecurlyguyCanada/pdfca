@@ -1,4 +1,7 @@
+'use client';
 
+
+import Link from 'next/link';
 import React from 'react';
 import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
 import { translations, Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -38,7 +41,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your File</strong>: Drag and drop your large PDF into our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-medium">Compress PDF tool</button>, or click to browse. Files are processed entirely in your browser—never uploaded to a server.
+                                <strong>Upload Your File</strong>: Drag and drop your large PDF into our <Link href="/compress-pdf" className="text-canada-red hover:underline font-medium">Compress PDF tool</Link>, or click to browse. Files are processed entirely in your browser—never uploaded to a server.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview File Size</strong>: You'll see the current file size displayed. This helps you understand how much compression you might need.
@@ -135,7 +138,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Still too large after compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: If 'Extreme' mode still doesn't meet your size requirement, consider splitting the document using our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">Split PDF tool</button> or removing high-resolution images before compression.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: If 'Extreme' mode still doesn't meet your size requirement, consider splitting the document using our <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">Split PDF tool</Link> or removing high-resolution images before compression.</p>
                         </div>
                     </div>
                 )
@@ -205,7 +208,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Étape par Étape : Compression de votre PDF",
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
-                        <li className="pl-2"><strong>Téléchargez votre fichier</strong> : Glissez-déposez votre PDF volumineux dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-medium">outil de compression PDF</button>, ou cliquez pour parcourir. Les fichiers sont traités entièrement dans votre navigateur—jamais téléchargés sur un serveur.</li>
+                        <li className="pl-2"><strong>Téléchargez votre fichier</strong> : Glissez-déposez votre PDF volumineux dans notre <Link href="/compress-pdf" className="text-canada-red hover:underline font-medium">outil de compression PDF</Link>, ou cliquez pour parcourir. Les fichiers sont traités entièrement dans votre navigateur—jamais téléchargés sur un serveur.</li>
                         <li className="pl-2"><strong>Aperçu de la taille du fichier</strong> : Vous verrez la taille actuelle du fichier affichée. Cela vous aide à comprendre combien de compression vous pourriez avoir besoin.</li>
                         <li className="pl-2"><strong>Sélectionnez le niveau de compression</strong> : Choisissez entre <strong>Bon</strong> (sans perte), <strong>Équilibré</strong> (standard), ou <strong>Extrême</strong> (maximum) en fonction de vos exigences qualité vs. taille.</li>
                         <li className="pl-2"><strong>Traitement</strong> : Cliquez sur le bouton de compression. Le temps de traitement varie selon la taille du fichier et le niveau de compression sélectionné—généralement 2-10 secondes pour les documents standard.</li>
@@ -290,7 +293,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Toujours trop volumineux après compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Si le mode 'Extrême' ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">outil de division PDF</button> ou de supprimer les images haute résolution avant la compression.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Si le mode 'Extrême' ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <Link href="/organize-pdf" className="text-canada-red hover:underline font-semibold">outil de division PDF</Link> ou de supprimer les images haute résolution avant la compression.</p>
                         </div>
                     </div>
                 )
@@ -446,3 +449,5 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
         </div>
     );
 };
+
+

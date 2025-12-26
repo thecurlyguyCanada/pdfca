@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
 
 interface MarkdownContentProps {
     content: string;
@@ -93,13 +96,24 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
         // Link: [text](url)
         processPattern(parts, /\[(.*?)\]\((.*?)\)/g, (match, url) => {
             const safeUrl = url || '';
-            const isInternal = safeUrl.startsWith('/') || safeUrl.startsWith(window.location.origin);
+            const isInternal = safeUrl.startsWith('/') || safeUrl.includes('pdfcanada.ca');
+            if (isInternal) {
+                return (
+                    <Link
+                        key={Math.random()}
+                        href={safeUrl}
+                        className="text-canada-red hover:underline"
+                    >
+                        {match}
+                    </Link>
+                );
+            }
             return (
                 <a
                     key={Math.random()}
                     href={safeUrl}
-                    target={isInternal ? undefined : "_blank"}
-                    rel={isInternal ? undefined : "noopener noreferrer"}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-canada-red hover:underline"
                 >
                     {match}

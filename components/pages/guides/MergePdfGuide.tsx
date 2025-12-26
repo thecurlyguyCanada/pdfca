@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -36,7 +39,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
                         <li className="pl-2">
-                            <strong>Select Files</strong>: Click to upload or drag multiple PDF files into our <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline font-medium">Merge PDF tool</button>. You can select multiple files at once using Ctrl (Windows) or Cmd (Mac) when browsing.
+                            <strong>Select Files</strong>: Click to upload or drag multiple PDF files into our <Link href="/merge-pdf" className="text-canada-red hover:underline font-medium">Merge PDF tool</Link>. You can select multiple files at once using Ctrl (Windows) or Cmd (Mac) when browsing.
                         </li>
                         <li className="pl-2">
                             <strong>Preview Thumbnails</strong>: Once uploaded, you'll see thumbnail previews of each file's first page, making it easy to identify which document is which.
@@ -82,7 +85,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
                             <h3 className="font-bold text-green-800 mb-2">Compress After Merging</h3>
-                            <p className="text-sm text-green-700">Merging many files can create a large PDF. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">Compress tool</button> afterwards if the file is too big to email.</p>
+                            <p className="text-sm text-green-700">Merging many files can create a large PDF. Use our <Link href="/compress-pdf" className="underline">Compress tool</Link> afterwards if the file is too big to email.</p>
                         </div>
                         <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
                             <h3 className="font-bold text-purple-800 mb-2">Rename Before Uploading</h3>
@@ -100,7 +103,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Best Practices for Professional Results",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Consistent Orientation</strong>: Ensure all PDFs have the same orientation (portrait or landscape) before merging, or use our <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline">Rotate tool</button> first to standardize them.</li>
+                        <li><strong>Consistent Orientation</strong>: Ensure all PDFs have the same orientation (portrait or landscape) before merging, or use our <Link href="/rotate-pdf" className="text-canada-red hover:underline">Rotate tool</Link> first to standardize them.</li>
                         <li><strong>Similar Page Sizes</strong>: While you can merge PDFs of different sizes, having consistent page dimensions (like all Letter or all A4) creates a more professional-looking result.</li>
                         <li><strong>Quality Check</strong>: Review each source PDF individually before merging to ensure there are no blank pages, corrupted content, or unwanted materials.</li>
                         <li><strong>Logical Organization</strong>: Arrange documents in a logical flow - typically chronological order, or from general information to specific details.</li>
@@ -124,11 +127,11 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Merged PDF is too large to email</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">Compress PDF tool</button> to reduce the file size while maintaining reasonable quality.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Use our <Link href="/compress-pdf" className="text-canada-red hover:underline font-semibold">Compress PDF tool</Link> to reduce the file size while maintaining reasonable quality.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Pages are in wrong orientation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Use our <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-semibold">Rotate PDF tool</button> on the merged file or on individual source files before merging.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Use our <Link href="/rotate-pdf" className="text-canada-red hover:underline font-semibold">Rotate PDF tool</Link> on the merged file or on individual source files before merging.</p>
                         </div>
                     </div>
                 )
@@ -198,7 +201,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Étape par Étape : Comment Fusionner vos PDF",
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
-                        <li className="pl-2"><strong>Sélectionnez vos fichiers</strong> : Cliquez pour télécharger ou faites glisser plusieurs fichiers PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline font-medium">outil de fusion PDF</button>. Vous pouvez sélectionner plusieurs fichiers en une fois avec Ctrl (Windows) ou Cmd (Mac).</li>
+                        <li className="pl-2"><strong>Sélectionnez vos fichiers</strong> : Cliquez pour télécharger ou faites glisser plusieurs fichiers PDF dans notre <Link href="/merge-pdf" className="text-canada-red hover:underline font-medium">outil de fusion PDF</Link>. Vous pouvez sélectionner plusieurs fichiers en une fois avec Ctrl (Windows) ou Cmd (Mac).</li>
                         <li className="pl-2"><strong>Aperçus miniatures</strong> : Une fois téléchargés, vous verrez des miniatures de la première page de chaque fichier, facilitant l'identification de chaque document.</li>
                         <li className="pl-2"><strong>Réorganisez l'ordre</strong> : Glissez et déposez les fichiers pour les arranger dans l'ordre souhaité. Le fichier en haut deviendra les premières pages de votre document fusionné.</li>
                         <li className="pl-2"><strong>Retirez les fichiers indésirables</strong> : Erreur ? Cliquez sur le bouton X sur n'importe quel fichier pour le retirer de la file sans tout recommencer.</li>
@@ -233,7 +236,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
                             <h3 className="font-bold text-green-800 mb-2">Compressez après fusion</h3>
-                            <p className="text-sm text-green-700">Fusionner de nombreux fichiers peut créer un PDF volumineux. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">outil de compression</button> par la suite si le fichier est trop gros pour être envoyé par courriel.</p>
+                            <p className="text-sm text-green-700">Fusionner de nombreux fichiers peut créer un PDF volumineux. Utilisez notre <Link href="/compress-pdf" className="underline">outil de compression</Link> par la suite si le fichier est trop gros pour être envoyé par courriel.</p>
                         </div>
                         <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
                             <h3 className="font-bold text-purple-800 mb-2">Renommez avant de télécharger</h3>
@@ -251,7 +254,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 title: "Meilleures Pratiques pour des Résultats Professionnels",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Orientation cohérente</strong> : Assurez-vous que tous les PDF ont la même orientation (portrait ou paysage) avant de fusionner, ou utilisez d'abord notre <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline">outil de rotation</button> pour les standardiser.</li>
+                        <li><strong>Orientation cohérente</strong> : Assurez-vous que tous les PDF ont la même orientation (portrait ou paysage) avant de fusionner, ou utilisez d'abord notre <Link href="/rotate-pdf" className="text-canada-red hover:underline">outil de rotation</Link> pour les standardiser.</li>
                         <li><strong>Tailles de page similaires</strong> : Bien que vous puissiez fusionner des PDF de tailles différentes, avoir des dimensions de page cohérentes (comme tout Lettre ou tout A4) crée un résultat plus professionnel.</li>
                         <li><strong>Vérification de qualité</strong> : Examinez chaque PDF source individuellement avant de fusionner pour vous assurer qu'il n'y a pas de pages blanches, de contenu corrompu ou de matériaux indésirables.</li>
                         <li><strong>Organisation logique</strong> : Organisez les documents dans un flux logique - généralement par ordre chronologique, ou de l'information générale aux détails spécifiques.</li>
@@ -275,11 +278,11 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le PDF fusionné est trop volumineux pour être envoyé par courriel</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">outil de compression PDF</button> pour réduire la taille du fichier tout en maintenant une qualité raisonnable.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Utilisez notre <Link href="/compress-pdf" className="text-canada-red hover:underline font-semibold">outil de compression PDF</Link> pour réduire la taille du fichier tout en maintenant une qualité raisonnable.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les pages ont une mauvaise orientation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/rotate-pdf')} className="text-canada-red hover:underline font-semibold">outil de rotation PDF</button> sur le fichier fusionné ou sur les fichiers sources individuels avant de fusionner.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Utilisez notre <Link href="/rotate-pdf" className="text-canada-red hover:underline font-semibold">outil de rotation PDF</Link> sur le fichier fusionné ou sur les fichiers sources individuels avant de fusionner.</p>
                         </div>
                     </div>
                 )
@@ -444,3 +447,5 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
         </>
     );
 };
+
+

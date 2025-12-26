@@ -1,11 +1,11 @@
-import React from 'react';
+import Link from 'next/link';
 
 interface PageLayoutProps {
     title: string;
     subtitle?: string;
     icon: React.ReactNode;
     children: React.ReactNode;
-    breadcrumbs?: { name: string; onClick: () => void }[];
+    breadcrumbs?: { name: string; href: string }[];
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({ title, subtitle, icon, children, breadcrumbs }) => (
@@ -16,12 +16,12 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ title, subtitle, icon, c
                     {breadcrumbs.map((crumb, i) => (
                         <li key={i} className="inline-flex items-center">
                             {i > 0 && <span className="mx-2 text-gray-300">/</span>}
-                            <button
-                                onClick={crumb.onClick}
+                            <Link
+                                href={crumb.href}
                                 className={`hover:text-canada-red transition-colors ${i === breadcrumbs.length - 1 ? 'font-bold text-gray-900 dark:text-gray-200' : ''}`}
                             >
                                 {crumb.name}
-                            </button>
+                            </Link>
                         </li>
                     ))}
                 </ol>
@@ -34,7 +34,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ title, subtitle, icon, c
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">{title}</h1>
             {subtitle && <p className="text-xl text-gray-500 dark:text-gray-400">{subtitle}</p>}
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl shadow-gray-200/50 dark:shadow-black/20 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl shadow-gray-200/50 dark:shadow-black/20 border border-gray-101 dark:border-gray-700">
             {children}
         </div>
     </div>

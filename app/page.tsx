@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { HomePage } from '@/components/pages/HomePage';
+import { HomePageServer } from '@/components/pages/HomePageServer';
 import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/structuredData';
+import { Language } from '@/utils/i18n';
+
+export const runtime = 'edge';
 
 export const metadata: Metadata = {
   title: 'Free PDF Tools Canada | Online & Secure No-Upload Service',
@@ -12,8 +15,14 @@ export const metadata: Metadata = {
   },
 };
 
-// Server Component by default
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string }>;
+}) {
+  const { lang = 'en' } = await searchParams;
+  const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+
   const websiteSchema = generateWebsiteSchema();
   const orgSchema = generateOrganizationSchema();
   const businessSchema = generateLocalBusinessSchema();
@@ -35,7 +44,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
       />
-      <HomePage />
+      <HomePageServer lang={currentLang} />
     </>
   );
 }
