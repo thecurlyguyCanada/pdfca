@@ -23,6 +23,7 @@ import { formatFileSize } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
+import { ToolType, AppState, CurrentView } from './utils/types';
 // Lazy load all guide components individually for proper code splitting
 const UltimatePdfGuide = React.lazy(() => import('./components/pages/guides/UltimatePdfGuide').then(m => ({ default: m.UltimatePdfGuide })));
 const DeletePdfPagesGuide = React.lazy(() => import('./components/pages/guides/DeletePdfPagesGuide').then(m => ({ default: m.DeletePdfPagesGuide })));
@@ -44,43 +45,6 @@ const MergePdfGuide = React.lazy(() => import('./components/pages/guides/MergePd
 const EditXfaPdfGuide = React.lazy(() => import('./components/pages/guides/EditXfaPdfGuide').then(module => ({ default: module.EditXfaPdfGuide })));
 const InsertPictureGuide = React.lazy(() => import('./components/pages/guides/InsertPictureGuide').then(module => ({ default: module.InsertPictureGuide })));
 const AboutPage = React.lazy(() => import('./components/pages/AboutPage').then(module => ({ default: module.AboutPage })));
-
-
-enum AppState {
-  HOME,
-  SELECTING,
-  PROCESSING,
-  DONE,
-  ERROR
-}
-
-export type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' | 'ABOUT' |
-  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-  'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE';
-
-export enum ToolType {
-  DELETE = 'DELETE',
-  ROTATE = 'ROTATE',
-  HEIC_TO_PDF = 'HEIC_TO_PDF',
-  EPUB_TO_PDF = 'EPUB_TO_PDF',
-  PDF_TO_EPUB = 'PDF_TO_EPUB',
-  MAKE_FILLABLE = 'MAKE_FILLABLE',
-  CBR_TO_PDF = 'CBR_TO_PDF',
-  SIGN = 'SIGN',
-  ORGANIZE = 'ORGANIZE',
-  PDF_TO_WORD = 'PDF_TO_WORD',
-  WORD_TO_PDF = 'WORD_TO_PDF',
-  PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
-  FLATTEN = 'FLATTEN',
-  CROP = 'CROP',
-  COMPRESS = 'COMPRESS',
-  MERGE = 'MERGE',
-  SPLIT = 'SPLIT',
-  EXTRACT = 'EXTRACT',
-  PDF_TO_XML = 'PDF_TO_XML',
-  XML_TO_PDF = 'XML_TO_PDF',
-  EXCEL_TO_PDF = 'EXCEL_TO_PDF'
-}
 
 // Helper to safely update history without crashing in sandboxed environments
 const safePushState = (data: any, unused: string, url?: string | URL | null) => {

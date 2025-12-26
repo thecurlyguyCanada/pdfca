@@ -315,7 +315,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/guides/delete-pdf-pages</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/delete-pdf-pages"/>
@@ -325,7 +325,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/guides/rotate-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/rotate-pdf"/>
@@ -346,7 +346,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/guides/organize-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/organize-pdf"/>
@@ -417,7 +417,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/delete-pdf-pages</loc>
-    <lastmod>2025-12-24</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/delete-pdf-pages"/>
@@ -427,7 +427,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/rotate-pdf</loc>
-    <lastmod>2025-12-24</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/rotate-pdf"/>
@@ -448,7 +448,7 @@
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/organize-pdf</loc>
-    <lastmod>2025-12-24</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/organize-pdf"/>
@@ -923,7 +923,7 @@
   <!-- Guide Pages -->
   <url>
     <loc>https://www.pdfcanada.ca/guides/pdf-to-word</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/pdf-to-word"/>
@@ -932,7 +932,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/guides/word-to-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/word-to-pdf"/>
@@ -950,7 +950,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/guides/make-pdf-non-editable</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/make-pdf-non-editable"/>
@@ -968,7 +968,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/guides/compress-pdf</loc>
-    <lastmod>2025-12-21</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/compress-pdf"/>
@@ -977,7 +977,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/guides/merge-pdf</loc>
-    <lastmod>2025-12-21</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/merge-pdf"/>
@@ -1042,7 +1042,7 @@
   <!-- French Guide Pages -->
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/pdf-to-word</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/pdf-to-word"/>
@@ -1051,7 +1051,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/word-to-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/word-to-pdf"/>
@@ -1069,7 +1069,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/make-pdf-non-editable</loc>
-    <lastmod>2025-12-20</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/make-pdf-non-editable"/>
@@ -1087,7 +1087,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/compress-pdf</loc>
-    <lastmod>2025-12-21</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/compress-pdf"/>
@@ -1096,7 +1096,7 @@
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/merge-pdf</loc>
-    <lastmod>2025-12-21</lastmod>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/merge-pdf"/>

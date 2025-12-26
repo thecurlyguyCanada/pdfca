@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
 import { Language } from '../utils/i18n';
-import { CurrentView } from '../App';
+import { CurrentView } from '../utils/types';
 
 interface BreadcrumbItem {
     name: string;
@@ -26,7 +26,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, lang, onNavigate 
     return (
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm mb-6 flex-wrap">
             <button
-                onClick={(e) => onNavigate && handleClick({ name: 'Home', view: 'HOME', path: '/' }, e)}
+                onClick={(e) => onNavigate && handleClick({ name: 'Home', view: 'HOME' as CurrentView, path: '/' }, e)}
                 className="flex items-center gap-1 text-gray-500 hover:text-canada-red transition-colors group"
                 aria-label={lang === 'fr' ? 'Accueil' : 'Home'}
             >
