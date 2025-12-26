@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
-import { Language, CURRENT_YEAR } from '../utils/i18n';
+import { Language } from '../utils/i18n';
+import { URLS, getFullUrl, getAssetUrl } from '../config/urls';
+import { ORGANIZATION, getFormattedAddress } from '../config/organization';
 
 interface QuickAnswer {
   question: string;
@@ -39,25 +41,25 @@ interface SEOProps {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://www.pdfcanada.ca/#organization",
-  "name": "pdfcanada.ca",
-  "url": "https://www.pdfcanada.ca",
+  "@id": `${URLS.DOMAIN}/#organization`,
+  "name": ORGANIZATION.name,
+  "url": URLS.DOMAIN,
   "logo": {
     "@type": "ImageObject",
-    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png",
+    "url": getAssetUrl(URLS.ANDROID_ICON),
     "width": 512,
     "height": 512
   },
   "sameAs": [
-    "https://twitter.com/pdfcanada"
+    URLS.TWITTER
   ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Toronto",
-    "addressRegion": "Ontario",
+    "addressLocality": ORGANIZATION.location.city,
+    "addressRegion": ORGANIZATION.location.province,
     "addressCountry": "CA"
   },
-  "foundingDate": "2024",
+  "foundingDate": ORGANIZATION.foundingDate,
   "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser."
 };
 
@@ -65,44 +67,44 @@ const organizationSchema = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
-  "@id": "https://www.pdfcanada.ca/#localbusiness",
-  "name": "PDF Canada - Free PDF Tools",
-  "alternateName": "pdfcanada.ca",
-  "url": "https://www.pdfcanada.ca",
+  "@id": `${URLS.DOMAIN}/#localbusiness`,
+  "name": `${ORGANIZATION.name} - Free PDF Tools`,
+  "alternateName": ORGANIZATION.name,
+  "url": URLS.DOMAIN,
   "logo": {
     "@type": "ImageObject",
-    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png",
+    "url": getAssetUrl(URLS.ANDROID_ICON),
     "width": 512,
     "height": 512
   },
-  "image": "https://www.pdfcanada.ca/og-image.png",
+  "image": getAssetUrl(URLS.OG_IMAGE),
   "description": "Canada's premier free PDF tools service. Privacy-first, browser-based PDF processing for all Canadians. Merge, split, compress, convert, and sign PDFs - all locally in your browser.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "",
-    "addressLocality": "Toronto",
+    "streetAddress": ORGANIZATION.location.postalCode,
+    "addressLocality": ORGANIZATION.location.city,
     "addressRegion": "ON",
-    "postalCode": "",
+    "postalCode": ORGANIZATION.location.postalCode,
     "addressCountry": "CA"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "43.6532",
-    "longitude": "-79.3832"
+    "latitude": ORGANIZATION.coordinates.toronto.latitude,
+    "longitude": ORGANIZATION.coordinates.toronto.longitude
   },
   "telephone": "",
   "email": "",
-  "priceRange": "FREE",
+  "priceRange": ORGANIZATION.priceRange,
   "currenciesAccepted": "CAD",
   "paymentAccepted": "Not Applicable - Free Service",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
+    "dayOfWeek": ORGANIZATION.hours.dayOfWeek,
+    "opens": ORGANIZATION.hours.opensAt,
+    "closes": ORGANIZATION.hours.closesAt
   },
   "sameAs": [
-    "https://twitter.com/pdfcanada"
+    URLS.TWITTER
   ],
   "areaServed": [
     {
@@ -185,10 +187,10 @@ const localBusinessSchema = {
     "@type": "GeoCircle",
     "geoMidpoint": {
       "@type": "GeoCoordinates",
-      "latitude": "56.1304",
-      "longitude": "-106.3468"
+      "latitude": ORGANIZATION.coordinates.canadaCenter.latitude,
+      "longitude": ORGANIZATION.coordinates.canadaCenter.longitude
     },
-    "geoRadius": "5000000"
+    "geoRadius": ORGANIZATION.serviceArea.radius
   },
   "knowsAbout": [
     "PDF Tools",
@@ -199,13 +201,13 @@ const localBusinessSchema = {
   ],
   "knowsLanguage": ["en-CA", "fr-CA"],
   "slogan": "The Polite Canadian PDF Tools",
-  "foundingDate": "2024",
+  "foundingDate": ORGANIZATION.foundingDate,
   "foundingLocation": {
     "@type": "Place",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Toronto",
-      "addressRegion": "Ontario",
+      "addressLocality": ORGANIZATION.location.city,
+      "addressRegion": ORGANIZATION.location.province,
       "addressCountry": "CA"
     }
   },
@@ -281,12 +283,12 @@ const localBusinessSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://www.pdfcanada.ca/#website",
-  "name": "pdfcanada.ca",
-  "url": "https://www.pdfcanada.ca",
+  "@id": `${URLS.DOMAIN}/#website`,
+  "name": ORGANIZATION.name,
+  "url": URLS.DOMAIN,
   "description": "Free, secure PDF tools built in Canada. All processing happens locally in your browser.",
   "publisher": {
-    "@id": "https://www.pdfcanada.ca/#organization"
+    "@id": `${URLS.DOMAIN}/#organization`
   },
   "inLanguage": ["en-CA", "fr-CA"]
 };
@@ -295,7 +297,7 @@ export const SEO: React.FC<SEOProps> = ({
   title,
   description,
   canonicalPath = '/',
-  image = 'https://www.pdfcanada.ca/og-image.png',
+  image = getAssetUrl(URLS.OG_IMAGE),
   lang = 'en',
   schema,
   breadcrumbs,
@@ -336,21 +338,21 @@ export const SEO: React.FC<SEOProps> = ({
     setMeta('property', 'og:type', ogType);
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
-    setMeta('property', 'og:url', `https://www.pdfcanada.ca${canonicalPath}`);
+    setMeta('property', 'og:url', getFullUrl(canonicalPath));
     setMeta('property', 'og:image', image);
     setMeta('property', 'og:image:width', '1200');
     setMeta('property', 'og:image:height', '630');
     setMeta('property', 'og:image:type', 'image/png');
     setMeta('property', 'og:image:alt', title);
     setMeta('property', 'og:locale', lang === 'fr' ? 'fr_CA' : 'en_CA');
-    setMeta('property', 'og:site_name', 'pdfcanada.ca');
+    setMeta('property', 'og:site_name', ORGANIZATION.name);
 
     // 5. Update Twitter
     setMeta('name', 'twitter:title', title);
     setMeta('name', 'twitter:description', description);
-    setMeta('name', 'twitter:url', `https://www.pdfcanada.ca${canonicalPath}`);
+    setMeta('name', 'twitter:url', getFullUrl(canonicalPath));
     setMeta('name', 'twitter:image', image);
-    setMeta('name', 'twitter:image:alt', `${title} - pdfcanada.ca`);
+    setMeta('name', 'twitter:image:alt', `${title} - ${ORGANIZATION.name}`);
     setMeta('name', 'twitter:site', '@pdfcanada');
     setMeta('name', 'twitter:creator', '@pdfcanada');
 
@@ -371,11 +373,11 @@ export const SEO: React.FC<SEOProps> = ({
 
     let link = document.querySelector('link[rel="canonical"]');
     if (link) {
-      link.setAttribute('href', `https://www.pdfcanada.ca${finalCanonicalPath}`);
+      link.setAttribute('href', getFullUrl(finalCanonicalPath));
     } else {
       link = document.createElement('link');
       link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', `https://www.pdfcanada.ca${finalCanonicalPath}`);
+      link.setAttribute('href', getFullUrl(finalCanonicalPath));
       document.head.appendChild(link);
     }
 
@@ -393,9 +395,9 @@ export const SEO: React.FC<SEOProps> = ({
       }
     };
 
-    updateHreflang('en-CA', `https://www.pdfcanada.ca${enPath}`);
-    updateHreflang('fr-CA', `https://www.pdfcanada.ca${frPath}`);
-    updateHreflang('x-default', `https://www.pdfcanada.ca${enPath}`);
+    updateHreflang('en-CA', getFullUrl(enPath));
+    updateHreflang('fr-CA', getFullUrl(frPath));
+    updateHreflang('x-default', getFullUrl(enPath));
 
     // 7. Dynamic Favicons
     const setLink = (rel: string, href: string, sizes?: string, type?: string) => {
@@ -456,7 +458,7 @@ export const SEO: React.FC<SEOProps> = ({
       "@context": "https://schema.org",
       "@type": "SiteNavigationElement",
       "name": navNames,
-      "url": navUrls.map(url => `https://www.pdfcanada.ca${langPrefix}${url}`)
+      "url": navUrls.map(url => getFullUrl(`${langPrefix}${url}`))
     };
     allSchemas.push(siteNavSchema);
 
@@ -489,13 +491,13 @@ export const SEO: React.FC<SEOProps> = ({
         }),
         "featureList": "Local Processing, Privacy First, No Upload Required, Fast, Free",
         "softwareRequirements": "Modern Web Browser",
-        "screenshot": "https://www.pdfcanada.ca/og-image.png",
+        "screenshot": getAssetUrl(URLS.OG_IMAGE),
         "author": author ? {
           "@type": author.type || "Person",
           "name": author.name,
-          "url": author.url ? (author.url.startsWith('http') ? author.url : `https://www.pdfcanada.ca${author.url}`) : undefined
+          "url": author.url ? (author.url.startsWith('http') ? author.url : getFullUrl(author.url)) : undefined
         } : {
-          "@id": "https://www.pdfcanada.ca/#organization"
+          "@id": `${URLS.DOMAIN}/#organization`
         }
       });
     }
@@ -505,19 +507,19 @@ export const SEO: React.FC<SEOProps> = ({
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": `https://www.pdfcanada.ca${canonicalPath}#webpage`,
-      "url": `https://www.pdfcanada.ca${canonicalPath}`,
+      "@id": `${getFullUrl(canonicalPath)}#webpage`,
+      "url": getFullUrl(canonicalPath),
       "name": title,
       "description": description,
-      "isPartOf": { "@id": "https://www.pdfcanada.ca/#website" },
+      "isPartOf": { "@id": `${URLS.DOMAIN}/#website` },
       "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
       ...(datePublished && { "datePublished": datePublished }),
       ...(dateModified && { "dateModified": dateModified }),
       "author": author ? {
         "@type": author.type || "Person",
         "name": author.name,
-        "url": author.url ? (author.url.startsWith('http') ? author.url : `https://www.pdfcanada.ca${author.url}`) : undefined
-      } : { "@id": "https://www.pdfcanada.ca/#organization" },
+        "url": author.url ? (author.url.startsWith('http') ? author.url : getFullUrl(author.url)) : undefined
+      } : { "@id": `${URLS.DOMAIN}/#organization` },
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2", "[data-ai-summary]"],
@@ -576,7 +578,7 @@ export const SEO: React.FC<SEOProps> = ({
           "@type": "ListItem",
           "position": i + 1,
           "name": name,
-          "url": `https://www.pdfcanada.ca${langPrefix}${itemListUrls[i]}`
+          "url": getFullUrl(`${langPrefix}${itemListUrls[i]}`)
         }))
       });
     }
@@ -616,7 +618,7 @@ export const SEO: React.FC<SEOProps> = ({
         },
         "step": steps.map((step, index) => ({
           "@type": "HowToStep",
-          "url": `https://www.pdfcanada.ca${canonicalPath}#step${index + 1}`,
+          "url": `${getFullUrl(canonicalPath)}#step${index + 1}`,
           "name": step.name,
           "itemListElement": {
             "@type": "HowToDirection",
@@ -637,7 +639,7 @@ export const SEO: React.FC<SEOProps> = ({
           "@type": "ListItem",
           "position": index + 1,
           "name": crumb.name,
-          "item": crumb.path.startsWith('http') ? crumb.path : `https://www.pdfcanada.ca${crumb.path}`
+          "item": crumb.path.startsWith('http') ? crumb.path : getFullUrl(crumb.path)
         }))
       });
     }
@@ -655,7 +657,7 @@ export const SEO: React.FC<SEOProps> = ({
           "acceptedAnswer": {
             "@type": "Answer",
             "text": quickAnswer.answer,
-            "url": `https://www.pdfcanada.ca${canonicalPath}`,
+            "url": getFullUrl(canonicalPath),
             ...(quickAnswer.steps && quickAnswer.steps.length > 0 && {
               "step": quickAnswer.steps.map((step, i) => ({
                 "@type": "HowToStep",
@@ -684,15 +686,15 @@ export const SEO: React.FC<SEOProps> = ({
         "@type": "LearningResource",
         "name": title,
         "description": description,
-        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "url": getFullUrl(canonicalPath),
         "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
         "learningResourceType": "how-to guide",
         "educationalLevel": "beginner",
         "isAccessibleForFree": true,
         "timeRequired": "PT5M",
         "teaches": title.split('|')[0].trim(),
-        "author": { "@id": "https://www.pdfcanada.ca/#organization" },
-        "publisher": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "author": { "@id": `${URLS.DOMAIN}/#organization` },
+        "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
         "datePublished": datePublished || "2024-01-01",
         "dateModified": dateModified || new Date().toISOString().split('T')[0],
         "keywords": lang === 'fr'
@@ -711,15 +713,15 @@ export const SEO: React.FC<SEOProps> = ({
         "@type": "Article",
         "headline": title,
         "description": description,
-        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "url": getFullUrl(canonicalPath),
         "datePublished": datePublished || "2024-01-01",
         "dateModified": dateModified || new Date().toISOString().split('T')[0],
-        "author": { "@id": "https://www.pdfcanada.ca/#organization" },
-        "publisher": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "author": { "@id": `${URLS.DOMAIN}/#organization` },
+        "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
         "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://www.pdfcanada.ca${canonicalPath}`
+          "@id": getFullUrl(canonicalPath)
         },
         "image": {
           "@type": "ImageObject",
@@ -743,18 +745,18 @@ export const SEO: React.FC<SEOProps> = ({
         "@type": "Product",
         "name": title.split('|')[0].trim(),
         "description": description,
-        "url": `https://www.pdfcanada.ca${canonicalPath}`,
+        "url": getFullUrl(canonicalPath),
         "image": image,
-        "brand": { "@id": "https://www.pdfcanada.ca/#organization" },
-        "manufacturer": { "@id": "https://www.pdfcanada.ca/#organization" },
+        "brand": { "@id": `${URLS.DOMAIN}/#organization` },
+        "manufacturer": { "@id": `${URLS.DOMAIN}/#organization` },
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "CAD",
           "availability": "https://schema.org/InStock",
-          "priceValidUntil": `${CURRENT_YEAR + 1}-12-31`,
-          "url": `https://www.pdfcanada.ca${canonicalPath}`,
-          "seller": { "@id": "https://www.pdfcanada.ca/#organization" },
+          "priceValidUntil": "2026-12-31",
+          "url": getFullUrl(canonicalPath),
+          "seller": { "@id": `${URLS.DOMAIN}/#organization` },
           "itemCondition": "https://schema.org/NewCondition",
           "shippingDetails": {
             "@type": "OfferShippingDetails",

@@ -1,5 +1,6 @@
 import { get, set, del } from 'idb-keyval';
 import { FormField } from './pdfUtils';
+import { STORAGE_CONFIG } from '../config/storage';
 
 export interface AppSessionState {
     file: File;
@@ -12,7 +13,7 @@ export interface AppSessionState {
     timestamp: number;
 }
 
-const STORAGE_KEY = 'vacymax_session';
+const STORAGE_KEY = STORAGE_CONFIG.INDEXEDDB.SESSION_KEY;
 
 export const saveSession = async (state: AppSessionState): Promise<void> => {
     try {
