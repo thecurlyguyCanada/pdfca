@@ -154,6 +154,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         // Only deselect if clicking directly on the container, not bubbled from child
         if (e.target !== e.currentTarget) return;
 
+        // Additional check: only deselect if we're clicking on the container itself
+        const target = e.target as HTMLElement;
+        if (target.tagName !== 'DIV' && target.tagName !== 'CANVAS') return;
+
         onPageClick?.();
         if (activeTool === 'select') {
             onSelectEntry(null);
@@ -189,10 +193,12 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     onMouseDown={(e: MouseEvent) => {
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
+                        onSelectEntry(entry.id);
                     }}
                     onClick={(e: MouseEvent) => {
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
+                        onSelectEntry(entry.id);
                     }}
                     onDragStart={(e) => {
                         if (activeTool !== 'select') return;
@@ -232,10 +238,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, top: isMobile ? -24 : -8, left: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
-                        topRight: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, top: isMobile ? -24 : -8, right: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
-                        bottomLeft: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, bottom: isMobile ? -24 : -8, left: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
-                        bottomRight: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, bottom: isMobile ? -24 : -8, right: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        topLeft: { width: isMobile ? 48 : 24, height: isMobile ? 48 : 24, top: isMobile ? -24 : -12, left: isMobile ? -24 : -12, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        topRight: { width: isMobile ? 48 : 24, height: isMobile ? 48 : 24, top: isMobile ? -24 : -12, right: isMobile ? -24 : -12, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        bottomLeft: { width: isMobile ? 48 : 24, height: isMobile ? 48 : 24, bottom: isMobile ? -24 : -12, left: isMobile ? -24 : -12, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        bottomRight: { width: isMobile ? 48 : 24, height: isMobile ? 48 : 24, bottom: isMobile ? -24 : -12, right: isMobile ? -24 : -12, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
                         top: { display: 'none' },
                         right: { display: 'none' },
                         bottom: { display: 'none' },
