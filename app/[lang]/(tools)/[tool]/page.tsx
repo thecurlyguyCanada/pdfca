@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { Breadcrumb } from '@/components/Breadcrumb';
+import { RelatedTools } from '@/components/RelatedTools';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
 import { generateSoftwareApplicationSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { Language } from '@/utils/i18n';
@@ -87,20 +91,42 @@ export default async function ToolPage({
         { name: config.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
     ]);
 
-    // Server Component - renders static shell
     return (
         <>
             <Script
                 id={`schema-software-${config.slug}`}
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
             />
             <Script
                 id={`schema-breadcrumb-${config.slug}`}
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            <ToolPageClient toolConfig={config} lang={currentLang} />
+
+            <div className="mesh-bg" aria-hidden="true" />
+            <div className="min-h-screen flex flex-col">
+                <Header lang={currentLang} />
+
+                <main id="main-content" className="flex-grow">
+                    <Breadcrumb
+                        lang={currentLang}
+                        items={[{ name: config.title }]}
+                    />
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <ToolPageClient toolConfig={config} lang={currentLang} />
+
+                        <div className="mt-20">
+                            <RelatedTools lang={currentLang} currentPath={`/${config.slug}`} />
+                        </div>
+                    </div>
+                </main>
+
+                <Footer lang={currentLang} />
+            </div>
         </>
     );
 }

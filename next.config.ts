@@ -14,10 +14,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year cache for images
   },
 
   // Externalize heavy PDF libraries for server components (Next.js 15+)
-  // This prevents Edge Runtime issues and improves build performance
   serverExternalPackages: [
     'pdf-lib',
     'pdfjs-dist',
@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
     'exceljs',
   ],
 
-  // Headers (security headers moved here from vercel.json)
+  // Headers (security + caching)
   async headers() {
     return [
       {
@@ -52,15 +52,31 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), magnetometer=(), gyroscope=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), encrypted-media=(), picture-in-picture=(), screen-wake-lock=(), web-share=(), display-capture=(), browsing-topics=(), interest-cohort=()',
+            value: 'camera=(), microphone=(), geolocation=(), payment=()',
           },
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
+        ],
+      },
+      // Cache static assets aggressively
+      {
+        source: '/(.*)\\.(ico|png|jpg|jpeg|gif|webp|avif|svg|woff|woff2)',
+        headers: [
           {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' https://vercel.live https://*.vercel-scripts.com; script-src-elem 'self' 'unsafe-inline' https://vercel.live https://*.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://vercel.live https://*.pusher.com wss://*.pusher.com https://vitals.vercel-insights.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache JS/CSS with versioning
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
@@ -88,12 +104,9 @@ const nextConfig: NextConfig = {
       '@dnd-kit/core',
       '@dnd-kit/sortable',
       '@dnd-kit/utilities',
+      'date-fns',
     ],
   },
-
-  // Output configuration
-  // Remove standalone for Vercel default deployment
-  // output: 'standalone',
 
   // TypeScript
   typescript: {

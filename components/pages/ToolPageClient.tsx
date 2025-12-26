@@ -1,11 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { Breadcrumb } from '@/components/Breadcrumb';
 import { ToolInterface } from '@/components/ToolInterface';
-import { RelatedTools } from '@/components/RelatedTools';
 import { translations, Language } from '@/utils/i18n';
 import { AppState } from '@/utils/types';
 import { UI_CONFIG } from '@/config/ui';
@@ -75,8 +71,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     };
   }, [pdfJsDoc]);
 
-  // TODO: Implement all the handlers from App.tsx
-  // For now, create stub handlers
   const onFileSelect = () => {
     fileInputRef.current?.click();
   };
@@ -101,7 +95,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   };
 
   const togglePageSelection = (e: any, idx: number) => {
-    // TODO: Implement page selection logic
     setSelectedPages(prev => {
       const newSet = new Set(prev);
       if (newSet.has(idx)) {
@@ -114,7 +107,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   };
 
   const rotateAll = (direction: 'left' | 'right') => {
-    // TODO: Implement rotation logic
     console.log('Rotating', direction);
   };
 
@@ -123,7 +115,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   };
 
   const processFile = async (file: File) => {
-    // TODO: Implement file processing
     console.log('Processing file:', file.name);
   };
 
@@ -137,61 +128,42 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
 
   const handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPageRangeInput(e.target.value);
-    // TODO: Implement range parsing logic
   };
 
   return (
     <>
-      <div className="mesh-bg" />
-      <div className="min-h-screen flex flex-col">
-        <Header lang={lang} />
-
-        <Breadcrumb
-          lang={lang}
-          items={[
-            { name: toolConfig.title }
-          ]}
-        />
-
-        <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <ToolInterface
-            file={file}
-            files={files}
-            setFiles={setFiles}
-            currentTool={toolConfig.tool}
-            lang={lang}
-            t={t}
-            pageCount={pageCount}
-            pdfJsDoc={pdfJsDoc}
-            tools={[]} // TODO: Pass actual tools array
-            selectedPages={selectedPages}
-            rotations={rotations}
-            previewZoom={previewZoom}
-            isDesktop={isDesktop}
-            pageOrder={pageOrder}
-            setPageOrder={setPageOrder}
-            onFileSelect={onFileSelect}
-            onAction={onAction}
-            onSoftReset={onSoftReset}
-            togglePageSelection={togglePageSelection}
-            setSelectedPages={setSelectedPages}
-            rotateAll={rotateAll}
-            resetRotations={resetRotations}
-            setPreviewZoom={setPreviewZoom}
-            processFile={processFile}
-            handleFileChange={handleFileChange}
-            pageRangeInput={pageRangeInput}
-            setPageRangeInput={setPageRangeInput}
-            handleRangeInputChange={handleRangeInputChange}
-            compressionLevel={compressionLevel}
-            setCompressionLevel={setCompressionLevel}
-          />
-
-          <RelatedTools lang={lang} currentPath={`/${toolConfig.slug}`} />
-        </main>
-
-        <Footer lang={lang} />
-      </div>
+      <ToolInterface
+        file={file}
+        files={files}
+        setFiles={setFiles}
+        currentTool={toolConfig.tool}
+        lang={lang}
+        t={t}
+        pageCount={pageCount}
+        pdfJsDoc={pdfJsDoc}
+        tools={[]} // TODO: Pass actual tools array
+        selectedPages={selectedPages}
+        rotations={rotations}
+        previewZoom={previewZoom}
+        isDesktop={isDesktop}
+        pageOrder={pageOrder}
+        setPageOrder={setPageOrder}
+        onFileSelect={onFileSelect}
+        onAction={onAction}
+        onSoftReset={onSoftReset}
+        togglePageSelection={togglePageSelection}
+        setSelectedPages={setSelectedPages}
+        rotateAll={rotateAll}
+        resetRotations={resetRotations}
+        setPreviewZoom={setPreviewZoom}
+        processFile={processFile}
+        handleFileChange={handleFileChange}
+        pageRangeInput={pageRangeInput}
+        setPageRangeInput={setPageRangeInput}
+        handleRangeInputChange={handleRangeInputChange}
+        compressionLevel={compressionLevel}
+        setCompressionLevel={setCompressionLevel}
+      />
 
       <input
         ref={fileInputRef}

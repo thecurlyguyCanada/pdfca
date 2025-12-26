@@ -4,6 +4,7 @@ import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { constructMetadata } from '@/lib/metadata';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -15,26 +16,16 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = 'https://www.pdfcanada.ca';
-    const path = '/privacy';
 
-    const titles = {
-        en: 'Privacy Policy | pdfcanada.ca',
-        fr: 'Politique de confidentialité | pdfcanada.ca',
-    };
-
-    return {
-        title: titles[lang] || titles.en,
-        description: 'Learn how we protect your privacy and handle your data. Local-first processing means your files never leave your device.',
-        alternates: {
-            canonical: `${baseUrl}/${lang}${path}`,
-            languages: {
-                'en-CA': `${baseUrl}/en${path}`,
-                'fr-CA': `${baseUrl}/fr${path}`,
-                'x-default': `${baseUrl}/en${path}`,
-            },
-        },
-    };
+    return constructMetadata({
+        title: lang === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
+        description: lang === 'fr'
+            ? 'Découvrez comment nous protégeons votre vie privée. Le traitement local signifie que vos fichiers ne quittent jamais votre appareil.'
+            : 'Learn how we protect your privacy. Local-first processing means your files never leave your device.',
+        path: '/privacy',
+        lang,
+        keywords: ['privacy', 'security', 'PIPEDA', 'data protection']
+    });
 }
 
 export default async function PrivacyRoute({
@@ -47,10 +38,10 @@ export default async function PrivacyRoute({
 
     return (
         <>
-            <div className="mesh-bg" />
+            <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />
-                <main className="flex-grow">
+                <main id="main-content" className="flex-grow">
                     <PrivacyPage lang={currentLang} />
                 </main>
                 <Footer lang={currentLang} />

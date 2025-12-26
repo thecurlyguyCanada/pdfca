@@ -2,48 +2,39 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { i18n } from './lib/i18n-config';
 
+// Optimized middleware for i18n routing
 export function middleware(request: NextRequest) {
-    const pathname = request.nextUrl.pathname;
+    const { pathname } = request.nextUrl;
 
-    // Skip static files and internal requests
+    // Fast path: Skip all static files early
     if (
-        [
-            '/favicon.svg',
-            '/apple-touch-icon.png',
-            '/og-image.png',
-            '/site.webmanifest',
-            '/robots.txt',
-            '/sitemap.xml',
-            '/favicon.ico',
-            '/android-chrome-192x192.png',
-            '/android-chrome-512x512.png',
-        ].includes(pathname) ||
-        pathname.includes('.')
+        pathname.startsWith('/_next') ||
+        pathname.startsWith('/api') ||
+        pathname.includes('.') ||
+        pathname === '/favicon.ico'
     ) {
         return;
     }
 
-    // Check if there is any supported locale in the pathname
-    const pathnameIsMissingLocale = i18n.locales.every(
-        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    // Check if locale is present
+    const pathnameHasLocale = i18n.locales.some(
+        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    // Redirect if there is no locale
-    if (pathnameIsMissingLocale) {
-        const locale = i18n.defaultLocale;
-
-        // e.g. incoming is /products
-        // The new URL is now /en/products
-        return NextResponse.redirect(
-            new URL(
-                `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-                request.url
-            )
-        );
+    if (pathnameHasLocale) {
+        return;
     }
+
+    // Redirect to default locale
+    const url = request.nextUrl.clone();
+    url.pathname = `/${i18n.defaultLocale}${pathname}`;
+
+    return NextResponse.redirect(url, { status: 308 }); // Permanent redirect for SEO
 }
 
 export const config = {
-    // Matcher ignoring `/_next/` and `/api/`
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+    matcher: [
+        // Match all paths except static files
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff|woff2)).*)',
+    ],
 };

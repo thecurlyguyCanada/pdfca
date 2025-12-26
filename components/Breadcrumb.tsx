@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
 import { Language } from '../utils/i18n';
@@ -7,7 +5,7 @@ import Link from 'next/link';
 
 interface BreadcrumbItem {
     name: string;
-    path: string;
+    path?: string;
 }
 
 interface BreadcrumbProps {
@@ -15,22 +13,25 @@ interface BreadcrumbProps {
     lang: Language;
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, lang }) => {
+export function Breadcrumb({ items, lang }: BreadcrumbProps) {
     return (
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm mb-6 flex-wrap">
+        <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-2 text-sm mb-6 flex-wrap max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6"
+        >
             <Link
                 href={`/${lang}`}
-                className="flex items-center gap-1 text-gray-500 hover:text-canada-red transition-colors group"
+                className="flex items-center gap-1 text-gray-500 hover:text-canada-red transition-colors"
                 aria-label={lang === 'fr' ? 'Accueil' : 'Home'}
             >
-                <Home size={16} className="group-hover:scale-110 transition-transform" />
+                <Home size={16} aria-hidden="true" />
                 <span className="sr-only">{lang === 'fr' ? 'Accueil' : 'Home'}</span>
             </Link>
 
             {items.map((item, index) => (
                 <React.Fragment key={index}>
-                    <ChevronRight size={14} className="text-gray-400" />
-                    {index === items.length - 1 ? (
+                    <ChevronRight size={14} className="text-gray-400" aria-hidden="true" />
+                    {index === items.length - 1 || !item.path ? (
                         <span className="text-gray-900 dark:text-white font-semibold" aria-current="page">
                             {item.name}
                         </span>
@@ -46,6 +47,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, lang }) => {
             ))}
         </nav>
     );
-};
+}
 
 export default Breadcrumb;

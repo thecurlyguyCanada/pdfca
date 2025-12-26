@@ -1,16 +1,27 @@
 'use client';
 
 import React, { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
-import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
+
+// Lazy load large/interactive components
+const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
+const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), { ssr: false });
+const SignPdfTool = dynamic(() => import('./SignPdfTool').then(mod => mod.SignPdfTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
+const CropPdfTool = dynamic(() => import('./CropPdfTool').then(mod => mod.CropPdfTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
+
+import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
+import { arrayMove, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
-import { formatFileSize } from '../utils/pdfUtils';
+import { formatFileSize, signPdf, SignatureEntry, cropPdfPages } from '../utils/pdfUtils';
 import { ToolType } from '../utils/types';
-import { SignPdfTool } from './SignPdfTool';
-import { CropPdfTool } from './CropPdfTool';
-import { signPdf, SignatureEntry, cropPdfPages } from '../utils/pdfUtils';
 import { triggerHaptic } from '../utils/haptics';
 import { useSwipe } from '../hooks/useSwipe';
 

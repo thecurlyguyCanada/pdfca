@@ -4,6 +4,7 @@ import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { constructMetadata } from '@/lib/metadata';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -15,26 +16,15 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = 'https://www.pdfcanada.ca';
-    const path = '/support';
 
-    const titles = {
-        en: 'Support & Help | pdfcanada.ca',
-        fr: 'Support et Aide | pdfcanada.ca',
-    };
-
-    return {
-        title: titles[lang] || titles.en,
-        description: 'Get help with our PDF tools. Find answers to common questions and contact our support team.',
-        alternates: {
-            canonical: `${baseUrl}/${lang}${path}`,
-            languages: {
-                'en-CA': `${baseUrl}/en${path}`,
-                'fr-CA': `${baseUrl}/fr${path}`,
-                'x-default': `${baseUrl}/en${path}`,
-            },
-        },
-    };
+    return constructMetadata({
+        title: lang === 'fr' ? 'Support et Aide' : 'Support & Help',
+        description: lang === 'fr'
+            ? 'Obtenez de l aide pour nos outils PDF. Trouvez des réponses aux questions courantes et contactez notre équipe.'
+            : 'Get help with our PDF tools. Find answers to common questions and contact our support team.',
+        path: '/support',
+        lang
+    });
 }
 
 export default async function SupportRoute({
@@ -47,10 +37,10 @@ export default async function SupportRoute({
 
     return (
         <>
-            <div className="mesh-bg" />
+            <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />
-                <main className="flex-grow">
+                <main id="main-content" className="flex-grow">
                     <SupportPage lang={currentLang} />
                 </main>
                 <Footer lang={currentLang} />

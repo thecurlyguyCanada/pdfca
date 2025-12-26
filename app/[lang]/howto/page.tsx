@@ -4,6 +4,7 @@ import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { constructMetadata } from '@/lib/metadata';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -15,26 +16,15 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = 'https://www.pdfcanada.ca';
-    const path = '/howto';
 
-    const titles = {
-        en: 'How to Use PDF Tools | Step-by-Step Guide | pdfcanada.ca',
-        fr: 'Comment utiliser les outils PDF | Guide étape par étape | pdfcanada.ca',
-    };
-
-    return {
-        title: titles[lang] || titles.en,
-        description: 'Learn how to use our free, browser-based PDF tools with our step-by-step instructions.',
-        alternates: {
-            canonical: `${baseUrl}/${lang}${path}`,
-            languages: {
-                'en-CA': `${baseUrl}/en${path}`,
-                'fr-CA': `${baseUrl}/fr${path}`,
-                'x-default': `${baseUrl}/en${path}`,
-            },
-        },
-    };
+    return constructMetadata({
+        title: lang === 'fr' ? 'Comment utiliser les outils PDF' : 'How to Use PDF Tools',
+        description: lang === 'fr'
+            ? 'Apprenez à utiliser nos outils PDF gratuits basés sur le navigateur avec nos instructions étape par étape.'
+            : 'Learn how to use our free, browser-based PDF tools with our step-by-step instructions.',
+        path: '/howto',
+        lang
+    });
 }
 
 export default async function HowToRoute({
@@ -47,10 +37,10 @@ export default async function HowToRoute({
 
     return (
         <>
-            <div className="mesh-bg" />
+            <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />
-                <main className="flex-grow">
+                <main id="main-content" className="flex-grow">
                     <HowToPage lang={currentLang} />
                 </main>
                 <Footer lang={currentLang} />
