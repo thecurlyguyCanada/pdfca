@@ -154,6 +154,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         // Only deselect if clicking directly on the container, not bubbled from child
         if (e.target !== e.currentTarget) return;
 
+        // Additional check: only deselect if we're clicking on the container itself
+        const target = e.target as HTMLElement;
+        if (target.tagName !== 'DIV' && target.tagName !== 'CANVAS') return;
+
         onPageClick?.();
         if (activeTool === 'select') {
             onSelectEntry(null);
@@ -189,10 +193,12 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     onMouseDown={(e: MouseEvent) => {
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
+                        onSelectEntry(entry.id);
                     }}
                     onClick={(e: MouseEvent) => {
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
+                        onSelectEntry(entry.id);
                     }}
                     onDragStart={(e) => {
                         if (activeTool !== 'select') return;
