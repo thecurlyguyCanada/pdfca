@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
 import { RelatedTools } from './components/RelatedTools';
+import { Breadcrumb } from './components/Breadcrumb';
 import { ToolInterface } from './components/ToolInterface'; // Will use lazy loading for this, but first checking if we can import directly or lazy
 // Actually, we want code splitting, so:
 const PricingPage = React.lazy(() => import('./components/StaticPages').then(module => ({ default: module.PricingPage })));
@@ -1010,13 +1011,13 @@ function App() {
         </div>
       </div>
 
-      {/* Tools Section - Bento Grid Layout */}
+      {/* Tools Section - Bento Grid Layout with Categories */}
       <div className="w-full space-y-12">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-4">
             <div className="w-2 h-8 bg-canada-red rounded-full shadow-lg shadow-red-500/20" />
             <h2 className="text-3xl font-black text-modern-neutral-800 tracking-tight lowercase italic">
-              {searchTerm ? (lang === 'en' ? 'Results' : 'Résultats') : (lang === 'en' ? 'Quick Access' : 'Accès Rapide')}
+              {searchTerm ? (lang === 'en' ? 'Results' : 'Résultats') : (lang === 'en' ? 'All Tools' : 'Tous les Outils')}
             </h2>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-[10px] font-black tracking-widest text-gray-700 uppercase bg-gray-100/80 px-4 py-2 rounded-full border border-gray-200/50">
@@ -1026,53 +1027,143 @@ function App() {
         </div>
 
         {appState === AppState.HOME ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5">
-            {filteredTools.map((tool, idx) => (
-              <button
-                key={tool.id}
-                onClick={() => selectTool(tool.id)}
-                className={`
-                  flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem] 
-                  hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98] 
-                  transition-all duration-500 group relative overflow-hidden active:shadow-inner
-                  ${idx % 7 === 0 ? 'lg:col-span-2 lg:row-span-1 bg-gradient-to-br from-white to-red-50/30' : ''}
-                `}
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0 transition-transform duration-700" />
+          <>
+            {/* If searching, show flat results */}
+            {searchTerm ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5">
+                {filteredTools.map((tool, idx) => (
+                  <button
+                    key={tool.id}
+                    onClick={() => selectTool(tool.id)}
+                    className={`
+                      flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem]
+                      hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98]
+                      transition-all duration-500 group relative overflow-hidden active:shadow-inner
+                    `}
+                  >
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0 transition-transform duration-700" />
 
-                <div className={`
-                  p-4 rounded-2xl mb-6 shadow-sm group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative z-10
-                  ${idx % 7 === 0 ? 'bg-canada-red text-white shadow-red-500/20' : 'bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red'}
-                `}>
-                  <tool.icon size={idx % 7 === 0 ? 32 : 24} strokeWidth={2.5} />
+                    <div className="p-4 rounded-2xl mb-6 shadow-sm group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative z-10 bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red">
+                      <tool.icon size={24} strokeWidth={2.5} />
+                    </div>
+
+                    <div className="relative z-10 w-full">
+                      <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
+                      <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2 md:line-clamp-none">
+                        {tool.desc}
+                      </p>
+                    </div>
+
+                    <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                      <ArrowRight size={18} className="text-canada-red" />
+                    </div>
+                  </button>
+                ))}
+                {filteredTools.length === 0 && (
+                  <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white/40 backdrop-blur-xl rounded-[3rem] border-2 border-dashed border-gray-200 shadow-glass">
+                    <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-400">
+                      <Search size={40} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black text-modern-neutral-800 lowercase">{lang === 'en' ? 'No tools found...' : 'Aucun outil trouvé...'}</h3>
+                      <p className="text-modern-neutral-600 font-medium">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
+                    </div>
+                    <button onClick={() => setSearchTerm('')} className="bg-modern-neutral-800 text-white px-8 py-3 rounded-full font-bold hover:bg-black transition-all active:scale-95">Clear Search</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Categorized view when not searching */
+              <div className="space-y-16">
+                {/* Edit Tools Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-2xl font-bold text-gray-900">{lang === 'en' ? '✏️ Edit' : '✏️ Modifier'}</h3>
+                    <span className="text-sm text-gray-500">{lang === 'en' ? 'Modify and enhance your PDFs' : 'Modifiez et améliorez vos PDF'}</span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5">
+                    {tools.filter(t => [ToolType.DELETE, ToolType.PDF_PAGE_REMOVER, ToolType.ROTATE, ToolType.CROP, ToolType.COMPRESS, ToolType.FLATTEN].includes(t.id)).map((tool) => (
+                      <button
+                        key={tool.id}
+                        onClick={() => selectTool(tool.id)}
+                        className="flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem] hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98] transition-all duration-500 group relative overflow-hidden"
+                      >
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0 transition-transform duration-700" />
+                        <div className="p-4 rounded-2xl mb-6 shadow-sm group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative z-10 bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red">
+                          <tool.icon size={24} strokeWidth={2.5} />
+                        </div>
+                        <div className="relative z-10 w-full">
+                          <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
+                          <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2">{tool.desc}</p>
+                        </div>
+                        <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                          <ArrowRight size={18} className="text-canada-red" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="relative z-10 w-full">
-                  <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
-                  <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2 md:line-clamp-none">
-                    {tool.desc}
-                  </p>
+                {/* Organize Tools Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-2xl font-bold text-gray-900">{lang === 'en' ? '📁 Organize' : '📁 Organiser'}</h3>
+                    <span className="text-sm text-gray-500">{lang === 'en' ? 'Arrange and manage PDF pages' : 'Organisez et gérez les pages PDF'}</span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5">
+                    {tools.filter(t => [ToolType.MERGE, ToolType.SPLIT, ToolType.ORGANIZE, ToolType.EXTRACT, ToolType.SIGN, ToolType.MAKE_FILLABLE].includes(t.id)).map((tool) => (
+                      <button
+                        key={tool.id}
+                        onClick={() => selectTool(tool.id)}
+                        className="flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem] hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98] transition-all duration-500 group relative overflow-hidden"
+                      >
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0 transition-transform duration-700" />
+                        <div className="p-4 rounded-2xl mb-6 shadow-sm group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative z-10 bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red">
+                          <tool.icon size={24} strokeWidth={2.5} />
+                        </div>
+                        <div className="relative z-10 w-full">
+                          <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
+                          <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2">{tool.desc}</p>
+                        </div>
+                        <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                          <ArrowRight size={18} className="text-canada-red" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
-                  <ArrowRight size={18} className="text-canada-red" />
+                {/* Convert Tools Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-2xl font-bold text-gray-900">{lang === 'en' ? '🔄 Convert' : '🔄 Convertir'}</h3>
+                    <span className="text-sm text-gray-500">{lang === 'en' ? 'Transform files between formats' : 'Transformez les fichiers entre formats'}</span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5">
+                    {tools.filter(t => [ToolType.PDF_TO_WORD, ToolType.WORD_TO_PDF, ToolType.EXCEL_TO_PDF, ToolType.HEIC_TO_PDF, ToolType.EPUB_TO_PDF, ToolType.PDF_TO_EPUB, ToolType.CBR_TO_PDF, ToolType.PDF_TO_XML, ToolType.XML_TO_PDF].includes(t.id)).map((tool) => (
+                      <button
+                        key={tool.id}
+                        onClick={() => selectTool(tool.id)}
+                        className="flex flex-col items-start text-left p-6 bg-white border border-gray-100 rounded-[2rem] hover:border-red-100 shadow-bento hover:shadow-bento-hover active:scale-[0.98] transition-all duration-500 group relative overflow-hidden"
+                      >
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/5 to-transparent rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:-translate-y-0 transition-transform duration-700" />
+                        <div className="p-4 rounded-2xl mb-6 shadow-sm group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative z-10 bg-gray-50 text-modern-neutral-400 group-hover:bg-red-50 group-hover:text-canada-red">
+                          <tool.icon size={24} strokeWidth={2.5} />
+                        </div>
+                        <div className="relative z-10 w-full">
+                          <h3 className="font-black text-modern-neutral-800 text-lg mb-2 tracking-tight group-hover:text-canada-red transition-colors">{tool.title}</h3>
+                          <p className="text-xs text-modern-neutral-700 font-bold leading-relaxed group-hover:text-modern-neutral-800 transition-colors line-clamp-2">{tool.desc}</p>
+                        </div>
+                        <div className="mt-auto pt-6 w-full flex justify-end opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                          <ArrowRight size={18} className="text-canada-red" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </button>
-            ))}
-
-            {filteredTools.length === 0 && (
-              <div className="col-span-full py-24 flex flex-col items-center text-center space-y-6 bg-white/40 backdrop-blur-xl rounded-[3rem] border-2 border-dashed border-gray-200 shadow-glass">
-                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-modern-neutral-400">
-                  <Search size={40} />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black text-modern-neutral-800 lowercase">{lang === 'en' ? 'No tools found...' : 'Aucun outil trouvé...'}</h3>
-                  <p className="text-modern-neutral-600 font-medium">{lang === 'en' ? "Try searching for something else, eh?" : "Essayez une autre recherche, eh ?"}</p>
-                </div>
-                <button onClick={() => setSearchTerm('')} className="bg-modern-neutral-800 text-white px-8 py-3 rounded-full font-bold hover:bg-black transition-all active:scale-95">Clear Search</button>
               </div>
             )}
-          </div>
+          </>
         ) : (
           /* Tool Interface Wrapper */
           <div className="w-full max-w-2xl mx-auto">
@@ -1288,13 +1379,13 @@ function App() {
           />
 
           <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
-            <button
-              onClick={() => handleNavigation('HOME')}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-wider shadow-sm hover:text-canada-red hover:border-canada-red active:text-canada-red active:border-canada-red active:bg-red-50 active:scale-95 transition-all min-h-[44px]"
-            >
-              <ArrowLeft size={12} />
-              {t.backToHome}
-            </button>
+            <Breadcrumb
+              items={[
+                { name: tool?.title || 'Tool', path: tool?.path || '/', view: 'TOOL_PAGE' }
+              ]}
+              lang={lang}
+              onNavigate={handleNavigation}
+            />
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-gray-900">
               {content.h1}

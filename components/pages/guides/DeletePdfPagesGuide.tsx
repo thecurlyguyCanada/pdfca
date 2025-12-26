@@ -221,7 +221,16 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang, onNavigate }) 
                     { name: lang === 'fr' ? 'Supprimer des pages PDF' : 'Delete PDF Pages', path: lang === 'fr' ? '/fr/guides/delete-pdf-pages' : '/guides/delete-pdf-pages' }
                 ]}
             />
-            <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Trash2 size={32} />}>
+            <PageLayout
+                title={t.h1}
+                subtitle={t.subtitle}
+                icon={<Trash2 size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', onClick: () => onNavigate('HOME', '/') },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', onClick: () => {} }
+                ]}
+            >
                 <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
                     <div className="prose prose-lg dark:prose-invert max-w-none">
                         <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 italic border-l-4 border-canada-red pl-6 py-2">
