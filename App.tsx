@@ -75,6 +75,7 @@ export enum ToolType {
   COMPRESS = 'COMPRESS',
   MERGE = 'MERGE',
   SPLIT = 'SPLIT',
+  EXTRACT = 'EXTRACT',
   PDF_TO_XML = 'PDF_TO_XML',
   XML_TO_PDF = 'XML_TO_PDF',
   EXCEL_TO_PDF = 'EXCEL_TO_PDF'
@@ -245,6 +246,10 @@ function App() {
       setAppState(AppState.SELECTING);
     } else if (path === '/split-pdf') {
       setCurrentTool(ToolType.SPLIT);
+      setView('TOOL_PAGE');
+      setAppState(AppState.SELECTING);
+    } else if (path === '/extract-pdf-pages') {
+      setCurrentTool(ToolType.EXTRACT);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
     } else if (path === '/pdf-to-xml') {
@@ -459,6 +464,7 @@ function App() {
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress, desc: t.toolCompressDesc, accept: '.pdf', path: '/compress-pdf' },
     { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge, desc: t.toolMergeDesc, accept: '.pdf', path: '/merge-pdf' },
     { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit, desc: t.toolSplitDesc, accept: '.pdf', path: '/split-pdf' },
+    { id: ToolType.EXTRACT, icon: FileText, title: t.toolExtract, desc: t.toolExtractDesc, accept: '.pdf', path: '/extract-pdf-pages' },
     { id: ToolType.PDF_TO_XML, icon: FileText, title: t.toolPdfToXml, desc: t.toolPdfToXmlDesc, accept: '.pdf', path: '/pdf-to-xml' },
     { id: ToolType.XML_TO_PDF, icon: FileText, title: t.toolXmlToPdf, desc: t.toolXmlToPdfDesc, accept: '.xml', path: '/xml-to-pdf' },
     { id: ToolType.EXCEL_TO_PDF, icon: FileText, title: t.toolExcelToPdf, desc: t.toolExcelToPdfDesc, accept: '.xlsx,.xls', path: '/excel-to-pdf' },
@@ -518,7 +524,7 @@ function App() {
 
       const opId = ++operationIdRef.current; // Start new op
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML) {
         try {
           // Lazy load PDF utilities only when file is uploaded
           const { loadPdfDocument, getPdfJsDocument } = await import('./utils/corePdfUtils');
@@ -604,6 +610,7 @@ function App() {
           compressPdf,
           mergePdfs,
           splitPdf,
+          extractPdfPages,
           convertPdfToXml,
           convertXmlToPdf
         } = await import('./utils/corePdfUtils');
@@ -686,6 +693,11 @@ function App() {
             // Pass selected pages if any, otherwise it splits all
             resultBlob = await splitPdf(file, Array.from(selectedPages));
             outName = file.name.replace('.pdf', '_pages.zip');
+            break;
+          case ToolType.EXTRACT:
+            // Extract selected pages into a single PDF
+            resultBlob = await extractPdfPages(file, Array.from(selectedPages));
+            outName = file.name.replace('.pdf', '_extracted_eh.pdf');
             break;
           case ToolType.PDF_TO_XML:
             resultBlob = await convertPdfToXml(file);
