@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
-import { OcrTool } from './OcrTool';
 import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -335,7 +334,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML;
     const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
@@ -345,7 +344,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
     else if (currentTool === ToolType.ROTATE) headerText = t.toolRotateInfo || 'Click pages to rotate or use controls above.';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
-    else if (currentTool === ToolType.OCR) headerText = t.selectPagesForOcr;
     else if (currentTool === ToolType.SPLIT) headerText = t.toolSplitDesc || 'PDF will be split into individual pages.';
 
     return (
@@ -438,32 +436,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     </span>
                                 </div>
                             )}
-
-                            {currentTool === ToolType.OCR && (
-                                <div className="fixed inset-0 z-[100] bg-white pt-16 md:pt-0">
-                                    <div className="absolute top-4 left-4 md:hidden z-[110]">
-                                        <button onClick={onSoftReset} className="p-2 bg-gray-100 rounded-full">
-                                            <X size={20} />
-                                        </button>
-                                    </div>
-                                    <OcrTool
-                                        file={file}
-                                        pdfJsDoc={pdfJsDoc}
-                                        pageCount={pageCount}
-                                        t={t}
-                                        selectedPages={selectedPages}
-                                        setSelectedPages={setSelectedPages}
-                                        isMobile={!isDesktop}
-                                        onClose={onSoftReset}
-                                        onOcr={(mode: 'searchable' | 'text', langs: string[]) => {
-                                            console.log('[TOOL INTERFACE] onOcr called:', { mode, langs });
-                                            (window as any).__ocrParams = { mode, langs };
-                                            console.log('[TOOL INTERFACE] Calling onAction...');
-                                            onAction();
-                                        }}
-                                    />
-                                </div>
-                            )}
                         </div>
 
                         {/* Global Utilities (Zoom) */}
@@ -516,7 +488,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     mode={
                                         currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER
                                             ? 'delete'
-                                            : (currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.OCR)
+                                            : currentTool === ToolType.MAKE_FILLABLE
                                                 ? 'select'
                                                 : 'rotate'
                                     }
@@ -674,7 +646,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.FLATTEN && (t.btnFlatten || "Make Non-Editable")}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
-                        {currentTool === ToolType.OCR && (selectedPages.size === 0 ? (t.btnSearchablePdfAll || "Make Entire PDF Searchable") : (t.btnSearchablePdf || "Make Searchable PDF"))}
                         {currentTool === ToolType.SPLIT && (t.btnSplit || "Split PDF")}
                         {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}

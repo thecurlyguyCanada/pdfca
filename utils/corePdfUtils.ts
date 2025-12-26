@@ -25,6 +25,5 @@ export {
   mergePdfs,
   splitPdf,
   convertPdfToXml,
-  convertXmlToPdf,
-  type OcrProgress
+  convertXmlToPdf
 } from './pdfUtils';

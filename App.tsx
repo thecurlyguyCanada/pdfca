@@ -18,7 +18,6 @@ const LazyToolInterface = React.lazy(() => import('./components/ToolInterface').
 // Core PDF utilities are dynamically imported only when a file is uploaded
 // This prevents pdf-lib (178.60 KB gzipped) from loading on initial page load
 // Total bundle reduction: ~52% (343 KB → 165 KB gzipped)
-import type { OcrProgress } from './utils/pdfUtils';
 import { formatFileSize } from './utils/pdfUtils';
 import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
@@ -27,7 +26,6 @@ import { triggerHaptic } from './utils/haptics';
 const UltimatePdfGuide = React.lazy(() => import('./components/pages/guides/UltimatePdfGuide').then(m => ({ default: m.UltimatePdfGuide })));
 const DeletePdfPagesGuide = React.lazy(() => import('./components/pages/guides/DeletePdfPagesGuide').then(m => ({ default: m.DeletePdfPagesGuide })));
 const RotatePdfGuide = React.lazy(() => import('./components/pages/guides/RotatePdfGuide').then(m => ({ default: m.RotatePdfGuide })));
-const OcrPdfGuide = React.lazy(() => import('./components/pages/guides/OcrPdfGuide').then(m => ({ default: m.OcrPdfGuide })));
 const HeicToPdfGuide = React.lazy(() => import('./components/pages/guides/HeicToPdfGuide').then(m => ({ default: m.HeicToPdfGuide })));
 const EpubToPdfGuide = React.lazy(() => import('./components/pages/guides/EpubToPdfGuide').then(m => ({ default: m.EpubToPdfGuide })));
 const PdfToEpubGuide = React.lazy(() => import('./components/pages/guides/PdfToEpubGuide').then(m => ({ default: m.PdfToEpubGuide })));
@@ -56,7 +54,7 @@ enum AppState {
 }
 
 type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' | 'ABOUT' |
-  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_OCR' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
+  'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
   'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE';
 
 export enum ToolType {
@@ -218,10 +216,6 @@ function App() {
       setCurrentTool(ToolType.ORGANIZE);
       setView('TOOL_PAGE');
       setAppState(AppState.SELECTING);
-    } else if (path === '/ocr-pdf') {
-      setCurrentTool(ToolType.OCR);
-      setView('TOOL_PAGE');
-      setAppState(AppState.SELECTING);
     } else if (path === '/pdf-to-word') {
       setCurrentTool(ToolType.PDF_TO_WORD);
       setView('TOOL_PAGE');
@@ -277,7 +271,6 @@ function App() {
     else if (path === '/guides/ultimate-pdf-guide') setView('GUIDE_ULTIMATE');
     else if (path === '/guides/delete-pdf-pages') setView('GUIDE_DELETE_PAGES');
     else if (path === '/guides/rotate-pdf') setView('GUIDE_ROTATE');
-    else if (path === '/guides/ocr-pdf') setView('GUIDE_OCR');
     else if (path === '/guides/heic-to-pdf') setView('GUIDE_HEIC_TO_PDF');
     else if (path === '/guides/epub-to-pdf') setView('GUIDE_EPUB_TO_PDF');
     else if (path === '/guides/pdf-to-epub') setView('GUIDE_PDF_TO_EPUB');
@@ -464,7 +457,6 @@ function App() {
     { id: ToolType.SIGN, icon: PenTool, title: t.toolSign, desc: t.toolSignDesc, accept: '.pdf', path: '/sign-pdf' },
     { id: ToolType.PDF_TO_WORD, icon: FileText, title: t.toolPdfToWord, desc: t.toolPdfToWordDesc, accept: '.pdf', path: '/pdf-to-word' },
     { id: ToolType.WORD_TO_PDF, icon: FileText, title: t.toolWordToPdf, desc: t.toolWordToPdfDesc, accept: '.docx', path: '/word-to-pdf' },
-    { id: ToolType.OCR, icon: FileText, title: t.toolOcr, desc: t.toolOcrDesc, accept: '.pdf', path: '/ocr-pdf' },
     { id: ToolType.COMPRESS, icon: Scissors, title: t.toolCompress, desc: t.toolCompressDesc, accept: '.pdf', path: '/compress-pdf' },
     { id: ToolType.MERGE, icon: GripVertical, title: t.toolMerge, desc: t.toolMergeDesc, accept: '.pdf', path: '/merge-pdf' },
     { id: ToolType.SPLIT, icon: Scissors, title: t.toolSplit, desc: t.toolSplitDesc, accept: '.pdf', path: '/split-pdf' },
@@ -527,7 +519,7 @@ function App() {
 
       const opId = ++operationIdRef.current; // Start new op
 
-      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.OCR || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML) {
+      if (currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.SIGN || currentTool === ToolType.ORGANIZE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.CROP || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML) {
         try {
           // Lazy load PDF utilities only when file is uploaded
           const { loadPdfDocument, getPdfJsDocument } = await import('./utils/corePdfUtils');
@@ -660,28 +652,6 @@ function App() {
             resultBlob = await reorderPdfPages(file, pageOrder);
             outName = file.name.replace('.pdf', '_organized_eh.pdf');
             break;
-          case ToolType.OCR:
-            {
-              console.log('[OCR PROCESSING] Starting OCR...');
-              const { extractTextWithOcr, makeSearchablePdf } = await import('./utils/heavyConversions');
-              const ocrParams = (window as any).__ocrParams || { mode: 'searchable', langs: ['eng'] };
-              console.log('[OCR PROCESSING] OCR Params:', ocrParams);
-              console.log('[OCR PROCESSING] Selected pages:', Array.from(selectedPages));
-
-              if (ocrParams.mode === 'text') {
-                console.log('[OCR PROCESSING] Mode: text extraction');
-                const text = await extractTextWithOcr(file, Array.from(selectedPages), ocrParams.langs);
-                resultBlob = new Blob([text], { type: 'text/plain' });
-                outName = file.name.replace('.pdf', '_extracted_eh.txt');
-                console.log('[OCR PROCESSING] Text extraction complete');
-              } else {
-                console.log('[OCR PROCESSING] Mode: searchable PDF');
-                resultBlob = await makeSearchablePdf(file, Array.from(selectedPages), ocrParams.langs);
-                outName = file.name.replace('.pdf', '_searchable.pdf');
-                console.log('[OCR PROCESSING] Searchable PDF complete');
-              }
-            }
-            break;
           case ToolType.PDF_TO_WORD:
             {
               const { convertPdfToWord } = await import('./utils/heavyConversions');
@@ -768,7 +738,7 @@ function App() {
         setErrorKey('conversionErr');
         if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
           currentTool === ToolType.CBR_TO_PDF || currentTool === ToolType.WORD_TO_PDF ||
-          currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.OCR) {
+          currentTool === ToolType.PDF_TO_WORD) {
           setErrorKey('conversionErr');
         } else {
           setErrorKey('genericError');
@@ -785,7 +755,7 @@ function App() {
     triggerHaptic('light'); // Selection feedback
     const isRange = e.shiftKey;
 
-    if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.OCR) {
+    if (currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER) {
       setSelectedPages(prev => {
         const newSelection = new Set(prev);
 
@@ -916,7 +886,6 @@ function App() {
       case ToolType.ORGANIZE: return t.features.organizePdf;
       case ToolType.PDF_TO_WORD: return t.features.pdfToWord;
       case ToolType.WORD_TO_PDF: return t.features.wordToPdf;
-      case ToolType.OCR: return t.features.ocr;
       case ToolType.COMPRESS: return t.features.compress;
       case ToolType.MERGE: return t.features.merge;
       case ToolType.SPLIT: return t.features.split;
@@ -1174,7 +1143,7 @@ function App() {
     // List of tools that should use the full workspace layout when a file is currently active
     const isVisualTool = currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.ROTATE ||
       currentTool === ToolType.ORGANIZE || currentTool === ToolType.MAKE_FILLABLE ||
-      currentTool === ToolType.SIGN || currentTool === ToolType.OCR ||
+      currentTool === ToolType.SIGN ||
       currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
       currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.CBR_TO_PDF ||
       currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF ||
@@ -1409,7 +1378,6 @@ function App() {
           {view === 'GUIDE_ULTIMATE' && <UltimatePdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_DELETE_PAGES' && <DeletePdfPagesGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_ROTATE' && <RotatePdfGuide lang={lang} onNavigate={handleNavigation} />}
-          {view === 'GUIDE_OCR' && <OcrPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_HEIC_TO_PDF' && <HeicToPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_EPUB_TO_PDF' && <EpubToPdfGuide lang={lang} onNavigate={handleNavigation} />}
           {view === 'GUIDE_PDF_TO_EPUB' && <PdfToEpubGuide lang={lang} onNavigate={handleNavigation} />}
