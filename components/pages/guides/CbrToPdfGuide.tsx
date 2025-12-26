@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen, FileText, Download, Shield, Zap, CheckCircle, Info, ArrowRight, MousePointer2 } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Convert CBR to PDF | Free Comic Book Conversion Guide | pdfcanada.ca",
-            desc: "Read your comics on any device. Our 2026 guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device."
+            desc: `Read your comics on any device. Our ${CURRENT_YEAR} guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device."
         },
         h1: "How to Convert CBR/CBZ to PDF",
         subtitle: "The definitive guide to taking your digital comics anywhere.",
@@ -141,8 +141,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Convertir CBR en PDF | Guide BD 2026 | pdfcanada.ca",
-            desc: "Lisez vos bandes dessinées partout. Notre guide 2026 vous montre comment convertir CBR/CBZ en PDF en toute sécurité localement sans jamais les télécharger."
+            title: `Convertir CBR en PDF | Guide BD ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Lisez vos bandes dessinées partout. Notre guide ${CURRENT_YEAR} vous montre comment convertir CBR/CBZ en PDF en toute sécurité localement sans jamais les télécharger."
         },
         h1: "Comment Convertir CBR/CBZ en PDF",
         subtitle: "Le guide définitif pour emporter vos bandes dessinées partout.",

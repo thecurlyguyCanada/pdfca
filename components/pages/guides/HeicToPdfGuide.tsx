@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -17,9 +17,9 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Convert HEIC to PDF | Secure iPhone Photo Guide | pdfcanada.ca",
-            desc: "Make your iPhone photos compatible with everything. Our 2026 tutorial shows you how to convert HEIC to PDF securely in your browser without uploading photos."
+            desc: `Make your iPhone photos compatible with everything. Our ${CURRENT_YEAR} tutorial shows you how to convert HEIC to PDF securely in your browser without uploading photos."
         },
-        h1: "How to Convert HEIC to PDF: The Ultimate 2026 Guide",
+        h1: "How to Convert HEIC to PDF: The Ultimate ${CURRENT_YEAR} Guide",
         subtitle: "The simplest, most secure way to transform your iPhone photos into professional PDF documents without leaving your browser.",
 
         intro: "Are you struggling with **HEIC files**? High Efficiency Image Coding (HEIC) is the standard format for photos on modern iPhones, but it frequently causes compatibility headaches. Whether you're trying to share photos with Windows users, print receipts at a local shop, or upload proof of identity to Canadian government portals like the **CRA (Canada Revenue Agency)** or **IRCC**, the PDF format is a much safer bet. Our **HEIC to PDF converter** provides a free, secure, and local-first solution to these digital hurdles.",
@@ -75,8 +75,8 @@ While efficient for storage, HEIC is notorious for lack of support:
     },
     fr: {
         seo: {
-            title: "Convertir HEIC en PDF | Guide Photos iPhone 2026 | pdfcanada.ca",
-            desc: "Rendez vos photos iPhone compatibles partout. Notre tutoriel 2026 vous montre comment convertir HEIC en PDF en toute sécurité sans jamais télécharger vos photos."
+            title: `Convertir HEIC en PDF | Guide Photos iPhone ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Rendez vos photos iPhone compatibles partout. Notre tutoriel ${CURRENT_YEAR} vous montre comment convertir HEIC en PDF en toute sécurité sans jamais télécharger vos photos."
         },
         h1: "Comment Convertir HEIC en PDF : Le Guide Complet",
         subtitle: "Transformez vos photos iPhone en documents PDF universellement compatibles sans téléchargement ni perte de qualité.",

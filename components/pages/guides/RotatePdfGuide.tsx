@@ -1,6 +1,6 @@
 import React from 'react';
 import { RotateCw, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Monitor, RefreshCcw } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -15,10 +15,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Rotate PDF Pages | Free & Permanent 2026 Guide | pdfcanada.ca",
-            desc: "Fix upside-down PDFs forever. Our 2026 guide teaches you how to rotate pages permanently in your browser. Secure local-first processing ensures your privacy."
+            title: `How to Rotate PDF Pages | Free & Permanent ${CURRENT_YEAR} Guide | pdfcanada.ca`,
+            desc: `Fix upside-down PDFs forever. Our ${CURRENT_YEAR} guide teaches you how to rotate pages permanently in your browser. Secure local-first processing ensures your privacy."
         },
-        h1: "How to Rotate PDF Pages: The 2026 Guide",
+        h1: "How to Rotate PDF Pages: The ${CURRENT_YEAR} Guide",
         subtitle: "The simple guide to fixing incorrectly oriented documents permanently.",
 
         intro: (
@@ -189,8 +189,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Pivoter un PDF | Guide Orientation Permanente 2026 | pdfcanada.ca",
-            desc: "Corrigez l'orientation de vos PDF définitivement. Notre guide 2026 vous montre comment pivoter vos pages en toute sécurité localement sans jamais les télécharger."
+            title: `Comment Pivoter un PDF | Guide Orientation Permanente ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Corrigez l'orientation de vos PDF définitivement. Notre guide ${CURRENT_YEAR} vous montre comment pivoter vos pages en toute sécurité localement sans jamais les télécharger."
         },
         h1: "Comment faire pivoter et enregistrer l'orientation d'un PDF en ligne gratuitement",
         subtitle: "Le guide simple pour redresser vos documents mal orientés de façon permanente.",
