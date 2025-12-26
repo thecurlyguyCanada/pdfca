@@ -1,6 +1,10 @@
 // Dynamic imports for heavy libraries - only loaded when needed
 // This prevents loading ~2MB of JS on the landing page
 
+import { PDF_CONFIG, getHeadingFontSize, getLineHeight } from '../config/pdf';
+import { getCompressionScale, getCompressionQuality } from '../config/compression';
+import type { CompressionLevel } from '../config/compression';
+
 let pdfjsLib: any = null;
 let workerInitialized = false;
 
@@ -98,7 +102,7 @@ export const initPdfWorker = async () => {
     if (pdfjs.GlobalWorkerOptions) {
       // Use the bundled worker from the CDN or a local path
       // Setting it to a local path that we know exists in public/
-      pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+      pdfjs.GlobalWorkerOptions.workerSrc = PDF_CONFIG.WORKER.PATH;
       workerInitialized = true;
     }
   }
@@ -112,9 +116,9 @@ export const getPdfJsDocument = async (file: File) => {
 
     const loadingTask = pdfjs.getDocument({
       data: new Uint8Array(arrayBuffer),
-      cMapUrl: '/cmaps/',
+      cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
       cMapPacked: true,
-      standardFontDataUrl: '/standard_fonts/',
+      standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
     });
 
     return loadingTask.promise;
@@ -203,7 +207,7 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
 
   const pdfJsDoc = existingPdfJsDoc || await pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
-    cMapUrl: '/cmaps/',
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
     cMapPacked: true,
   }).promise;
 
@@ -271,7 +275,7 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
     }
 
     if (!pageHasFields) {
-      const margin = 50;
+      const margin = PDF_CONFIG.LAYOUT.MARGIN;
       const textField = form.createTextField(`notes_${pageIndex}_${timestamp}`);
 
       textField.addToPage(pdfLibPage, {
@@ -434,7 +438,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
     const convertedBlobOrBlobs = await heic2any({
       blob: file,
       toType: "image/jpeg",
-      quality: 0.8
+      quality: PDF_CONFIG.IMAGE.HEIC_CONVERSION_QUALITY
     });
 
     if (Array.isArray(convertedBlobOrBlobs)) {
@@ -591,8 +595,8 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
 
-  const fontSize = 11;
-  const margin = 50;
+  const fontSize = PDF_CONFIG.TYPOGRAPHY.DEFAULT_FONT_SIZE;
+  const margin = PDF_CONFIG.LAYOUT.MARGIN;
   const charsPerLine = 85;
 
   let page = doc.addPage();
@@ -607,7 +611,7 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
 
     const trimmedPara = paragraph.trim();
     if (!trimmedPara) {
-      y -= (fontSize + 2);
+      y -= getLineHeight(fontSize, PDF_CONFIG.LAYOUT.LINE_HEIGHT_OFFSET);
       continue;
     }
 
@@ -621,7 +625,7 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
           y = pageHeight - margin;
         }
         page.drawText(currentLine.trim(), { x: margin, y, size: fontSize, font });
-        y -= (fontSize + 4);
+        y -= getLineHeight(fontSize, PDF_CONFIG.LAYOUT.LINE_HEIGHT_OFFSET_LARGE);
 
         if (word.length > charsPerLine) {
           let remaining = word;
@@ -631,7 +635,7 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
               y = pageHeight - margin;
             }
             page.drawText(remaining.substring(0, charsPerLine), { x: margin, y, size: fontSize, font });
-            y -= (fontSize + 4);
+            y -= getLineHeight(fontSize, PDF_CONFIG.LAYOUT.LINE_HEIGHT_OFFSET_LARGE);
             remaining = remaining.substring(charsPerLine);
           }
           currentLine = remaining;
@@ -649,7 +653,7 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
         y = pageHeight - margin;
       }
       page.drawText(currentLine.trim(), { x: margin, y, size: fontSize, font });
-      y -= (fontSize + 4);
+      y -= getLineHeight(fontSize, PDF_CONFIG.LAYOUT.LINE_HEIGHT_OFFSET_LARGE);
     }
   }
 
@@ -737,12 +741,12 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
  * Improves searchability and attribution when users share generated PDFs
  */
 const addPdfMetadata = (doc: PDFDocument, title?: string) => {
-  doc.setTitle(title || 'Document processed by pdfcanada.ca');
-  doc.setAuthor('pdfcanada.ca');
-  doc.setSubject('PDF processed with free, privacy-focused Canadian PDF tools');
-  doc.setKeywords(['PDF', 'Canada', 'Free PDF Tools', 'Privacy', 'pdfcanada.ca']);
-  doc.setCreator('pdfcanada.ca - Free Canadian PDF Tools');
-  doc.setProducer('pdfcanada.ca');
+  doc.setTitle(title || PDF_CONFIG.METADATA.TITLE);
+  doc.setAuthor(PDF_CONFIG.METADATA.AUTHOR);
+  doc.setSubject(PDF_CONFIG.METADATA.SUBJECT);
+  doc.setKeywords(PDF_CONFIG.METADATA.KEYWORDS);
+  doc.setCreator(PDF_CONFIG.METADATA.CREATOR);
+  doc.setProducer(PDF_CONFIG.METADATA.PRODUCER);
 };
 
 // Re-export formatFileSize from lightweight utils for backward compatibility
@@ -756,9 +760,9 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
   const arrayBuffer = await file.arrayBuffer();
   const loadingTask = pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
-    cMapUrl: '/cmaps/',
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
     cMapPacked: true,
-    standardFontDataUrl: '/standard_fonts/',
+    standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
   });
 
   const pdf = await loadingTask.promise;
@@ -1120,9 +1124,9 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
   await initPdfWorker();
   const loadingTask = pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
-    cMapUrl: '/cmaps/',
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
     cMapPacked: true,
-    standardFontDataUrl: '/standard_fonts/',
+    standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
   });
   const pdf = await loadingTask.promise;
 
@@ -1238,16 +1242,16 @@ export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extr
   // Level 2 & 3: Re-rendering (Lossy)
   const loadingTask = pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
-    cMapUrl: '/cmaps/',
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
     cMapPacked: true,
-    standardFontDataUrl: '/standard_fonts/',
+    standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
   });
   const pdf = await loadingTask.promise;
   const newPdfDoc = await PDFDocument.create();
 
   // Settings based on level
-  const scale = level === 'extreme' ? 1.0 : 1.5; // 1.0 = ~72-96 DPI, 1.5 = ~108-144 DPI
-  const quality = level === 'extreme' ? 0.4 : 0.7;
+  const scale = getCompressionScale(level as CompressionLevel); // 1.0 = ~72-96 DPI, 1.5 = ~108-144 DPI
+  const quality = getCompressionQuality(level as CompressionLevel);
 
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);

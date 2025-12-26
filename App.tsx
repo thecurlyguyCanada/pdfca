@@ -24,6 +24,9 @@ import { translations, Language } from './utils/i18n';
 import { SEO } from './components/SEO';
 import { triggerHaptic } from './utils/haptics';
 import { ToolType, AppState, CurrentView } from './utils/types';
+import { ROUTES } from './config/routes';
+import { FILE_TYPES } from './config/fileTypes';
+import { UI_CONFIG } from './config/ui';
 // Lazy load all guide components individually for proper code splitting
 const UltimatePdfGuide = React.lazy(() => import('./components/pages/guides/UltimatePdfGuide').then(m => ({ default: m.UltimatePdfGuide })));
 const DeletePdfPagesGuide = React.lazy(() => import('./components/pages/guides/DeletePdfPagesGuide').then(m => ({ default: m.DeletePdfPagesGuide })));
@@ -90,7 +93,7 @@ function App() {
 
   useEffect(() => {
     const checkDesktop = () => {
-      setIsDesktop(window.innerWidth >= 1024);
+      setIsDesktop(window.innerWidth >= UI_CONFIG.BREAKPOINTS.LG);
     };
     checkDesktop();
     window.addEventListener('resize', checkDesktop);
@@ -279,11 +282,11 @@ function App() {
       if (e.ctrlKey || e.metaKey) {
         e.preventDefault();
         const delta = e.deltaY;
-        const zoomStep = 0.1;
+        const zoomStep = UI_CONFIG.ZOOM.STEP;
         if (delta > 0) {
-          setPreviewZoom(z => Math.max(0.5, z - zoomStep));
+          setPreviewZoom(z => Math.max(UI_CONFIG.ZOOM.MIN, z - zoomStep));
         } else {
-          setPreviewZoom(z => Math.min(5.0, z + zoomStep));
+          setPreviewZoom(z => Math.min(UI_CONFIG.ZOOM.MAX, z + zoomStep));
         }
       }
     };
@@ -292,13 +295,13 @@ function App() {
       if (e.ctrlKey || e.metaKey) {
         if (e.key === '=' || e.key === '+') {
           e.preventDefault();
-          setPreviewZoom(z => Math.min(5.0, z + 0.1));
+          setPreviewZoom(z => Math.min(UI_CONFIG.ZOOM.MAX, z + UI_CONFIG.ZOOM.STEP));
         } else if (e.key === '-' || e.key === '_') {
           e.preventDefault();
-          setPreviewZoom(z => Math.max(0.5, z - 0.1));
+          setPreviewZoom(z => Math.max(UI_CONFIG.ZOOM.MIN, z - UI_CONFIG.ZOOM.STEP));
         } else if (e.key === '0') {
           e.preventDefault();
-          setPreviewZoom(1.0);
+          setPreviewZoom(UI_CONFIG.ZOOM.DEFAULT);
         }
       }
     };
