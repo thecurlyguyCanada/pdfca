@@ -1,26 +1,26 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./utils/**/*.{js,ts,jsx,tsx}",
-    "./App.tsx",
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        'canada-red': '#E31837',
+        'canada-red-dark': '#8C031E',
         canada: {
-          // WCAG AA compliant colors (4.5:1 contrast ratio on white)
-          red: '#E31837', // Refined Canadian Red
+          red: '#E31837',
           darkRed: '#8C031E',
           leaf: '#E31837',
           accent: '#FF4D4D',
-          subtle: '#FFF1F2'
+          subtle: '#FFF1F2',
         },
         modern: {
           glass: 'rgba(255, 255, 255, 0.4)',
@@ -38,28 +38,35 @@ export default {
             700: '#334155',
             800: '#1E293B',
             900: '#0F172A',
-          }
-        }
+          },
+        },
       },
       backgroundImage: {
-        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(350, 100%, 92%, 1) 0, transparent 50%)',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1))',
-        'bento-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
+        'mesh-gradient':
+          'radial-gradient(at 0% 0%, hsla(0, 100%, 98%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(350, 100%, 92%, 1) 0, transparent 50%)',
+        'glass-gradient':
+          'linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1))',
+        'bento-gradient':
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
       },
       boxShadow: {
-        'glass': '0 2px 8px 0 rgba(0, 0, 0, 0.02)',
+        glass: '0 2px 8px 0 rgba(0, 0, 0, 0.02)',
         'glass-hover': '0 4px 16px 0 rgba(227, 24, 55, 0.04)',
-        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005)',
-        'bento': '0 0 0 1px rgba(0,0,0,0.01), 0 1px 3px rgba(0,0,0,0.01)',
-        'bento-hover': '0 0 0 1px rgba(227, 24, 55, 0.03), 0 4px 12px rgba(227, 24, 55, 0.03)',
+        premium:
+          '0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005)',
+        bento:
+          '0 0 0 1px rgba(0,0,0,0.01), 0 1px 3px rgba(0,0,0,0.01)',
+        'bento-hover':
+          '0 0 0 1px rgba(227, 24, 55, 0.03), 0 4px 12px rgba(227, 24, 55, 0.03)',
       },
       animation: {
         'fade-in': 'fadeIn 0.4s ease-out forwards',
         'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'slide-in-right': 'slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'mesh': 'mesh 30s ease infinite',
-        'float': 'float 8s ease-in-out infinite',
-        'glow': 'glow 4s ease-in-out infinite',
+        'slide-in-right':
+          'slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        mesh: 'mesh 30s ease infinite',
+        float: 'float 8s ease-in-out infinite',
+        glow: 'glow 4s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -85,9 +92,9 @@ export default {
         glow: {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '0.8' },
-        }
+        },
       },
-    }
+    },
   },
   plugins: [],
-}
+};
