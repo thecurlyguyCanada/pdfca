@@ -89,7 +89,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                   <FooterSection title={t.footerConvertGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><a href="/sign-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/sign-pdf'); }} className="hover:text-white transition-colors">{t.toolSign}</a></li>
-                        <li><a href="/ocr-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/ocr-pdf'); }} className="hover:text-white transition-colors">{t.toolOcr}</a></li>
                         <li><a href="/word-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/word-to-pdf'); }} className="hover:text-white transition-colors">{t.toolWordToPdf}</a></li>
                         <li><a href="/pdf-to-word" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/pdf-to-word'); }} className="hover:text-white transition-colors">{t.toolPdfToWord}</a></li>
                         <li><a href="/heic-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate('TOOL_PAGE', '/heic-to-pdf'); }} className="hover:text-white transition-colors">{t.toolHeic}</a></li>

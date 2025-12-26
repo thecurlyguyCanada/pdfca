@@ -39,7 +39,6 @@ const getTools = (lang: Language) => ({
         { name: lang === 'fr' ? 'PDF vers EPUB' : 'PDF to EPUB', path: '/pdf-to-epub', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'PDF vers XML' : 'PDF to XML', path: '/pdf-to-xml', view: 'TOOL_PAGE' },
         { name: lang === 'fr' ? 'XML vers PDF' : 'XML to PDF', path: '/xml-to-pdf', view: 'TOOL_PAGE' },
-        { name: lang === 'fr' ? 'OCR PDF' : 'OCR PDF', path: '/ocr-pdf', view: 'TOOL_PAGE' },
     ],
 });
 

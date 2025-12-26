@@ -67,7 +67,6 @@ export enum ToolType {
   CBR_TO_PDF = 'CBR_TO_PDF',
   SIGN = 'SIGN',
   ORGANIZE = 'ORGANIZE',
-  OCR = 'OCR',
   PDF_TO_WORD = 'PDF_TO_WORD',
   WORD_TO_PDF = 'WORD_TO_PDF',
   PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
@@ -1164,7 +1163,7 @@ function App() {
 
             {/* Processing Overlay within Workspace */}
             {appState === AppState.PROCESSING && (
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-8 animate-fade-in">
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl z-[200] flex flex-col items-center justify-center p-8 animate-fade-in">
                 <div className="w-24 h-24 bg-canada-red rounded-[3rem] flex items-center justify-center shadow-2xl shadow-red-500/30 animate-float">
                   <MapleLeaf className="w-14 h-14 text-white animate-pulse" />
                 </div>
@@ -1175,7 +1174,7 @@ function App() {
 
             {/* Error State within Workspace */}
             {appState === AppState.ERROR && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in z-50 bg-white">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center relative animate-fade-in z-[200] bg-white">
                 <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
                   <AlertCircle size={32} />
                 </div>
@@ -1192,7 +1191,7 @@ function App() {
 
             {/* Done State within Workspace */}
             {appState === AppState.DONE && downloadUrl && (
-              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in z-50">
+              <div className="flex flex-col h-full items-center justify-center p-10 text-center bg-gradient-to-br from-red-50/50 to-white animate-fade-in z-[200]">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                   <CheckCircle2 size={40} />
                 </div>

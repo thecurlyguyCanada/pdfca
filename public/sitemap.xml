@@ -159,35 +159,7 @@
     </image:image>
   </url>
 
-  <url>
-    <loc>https://www.pdfcanada.ca/ocr-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/ocr-pdf"/>
-    <image:image>
-      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
-      <image:title>OCR PDF - Free Online Tool</image:title>
-      <image:caption>Extract text from scanned documents. Make PDFs searchable and copyable.</image:caption>
-    </image:image>
-  </url>
 
-  <url>
-    <loc>https://www.pdfcanada.ca/fr/ocr-pdf</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/ocr-pdf"/>
-    <image:image>
-      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
-      <image:title>OCR PDF - Outil en ligne gratuit</image:title>
-      <image:caption>Extrayez le texte des documents numérisés. Rendez les PDF recherchables.</image:caption>
-    </image:image>
-  </url>
 
   <url>
     <loc>https://www.pdfcanada.ca/heic-to-pdf</loc>
@@ -371,15 +343,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/guides/heic-to-pdf"/>
   </url>
 
-  <url>
-    <loc>https://www.pdfcanada.ca/guides/ocr-pdf</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/guides/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/guides/ocr-pdf"/>
-  </url>
 
   <url>
     <loc>https://www.pdfcanada.ca/guides/organize-pdf</loc>
@@ -482,15 +445,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/guides/heic-to-pdf"/>
   </url>
 
-  <url>
-    <loc>https://www.pdfcanada.ca/fr/guides/ocr-pdf</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/guides/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/guides/ocr-pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/guides/ocr-pdf"/>
-  </url>
 
   <url>
     <loc>https://www.pdfcanada.ca/fr/guides/organize-pdf</loc>

@@ -56,7 +56,7 @@ export const translations = {
         },
         {
           q: "What tools do you offer?",
-          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, OCR (Make PDF Searchable), PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
         },
         {
           q: "Do I need to create an account or sign up?",
@@ -353,24 +353,6 @@ export const translations = {
           steps: ["Upload static PDF", "Scan for auto-detection", "Download interactive form"]
         }
       },
-      ocr: {
-        title: "OCR PDF Online - Make PDF Searchable for Free | No-Upload Service | pdfcanada.ca",
-        desc: "Convert scanned PDFs into searchable text for free in 2026. High-accuracy OCR processed 100% locally in your browser. Secure, fast, and no-upload required—keep your data private.",
-        h1: "OCR PDF & Searchable",
-        subtitle: "Unlock text in your scans securely and for free.",
-        content: "Turn those flat images and scans into real text you can search and copy. Our OCR tool runs right in your browser—private and secure.",
-        steps: ["Upload your scanned PDF.", "Select the languages in your document.", "Download your new searchable PDF."],
-        quickAnswer: {
-          question: "How do I make a scanned PDF searchable?",
-          answer: "Use Optical Character Recognition (OCR) to convert images of text into real, searchable content. Our tool processes your scans locally to keep your sensitive data private.",
-          tool: "OCR PDF",
-          steps: ["Upload scanned PDF", "Select OCR language", "Download searchable file"]
-        },
-        faq: [
-          { q: "What is OCR?", a: "OCR stands for Optical Character Recognition. It's the tech that turns pictures of words into actual digital words." },
-          { q: "Is it accurate?", a: "Pretty darn good! But handwriting can be tricky. Typed text works best." }
-        ]
-      },
       organizePdf: {
         title: "Organize PDF Online - Reorder & Rearrange PDF Pages for Free | pdfcanada.ca",
         desc: "Rearrange PDF pages easily with drag-and-drop in 2026. Reorder your PDF document securely in your browser. No uploads—your files remain 100% private on your device.",
@@ -653,8 +635,6 @@ export const translations = {
     toolPdfToEpubDesc: "Convert for e-readers.",
     toolMakeFillable: "Make PDF Fillable",
     toolMakeFillableDesc: "Auto-add fields to pages.",
-    toolOcr: "OCR PDF",
-    toolOcrDesc: "Extract text from scans.",
     toolCbrToPdf: "CBR to PDF",
     toolCbrToPdfDesc: "Convert comics to PDF.",
     toolSign: "Sign PDF",
@@ -699,8 +679,6 @@ export const translations = {
     rotateAllRight: "Rotate All Right",
     resetRotations: "Reset",
     selectPagesToFill: "Select pages to scan for fields:",
-    selectPagesForOcr: "Select pages to extract text from:",
-    ocrProgress: "Recognizing text...",
 
     // Tool Specific Inputs
     deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
@@ -750,9 +728,6 @@ export const translations = {
     btnCrop: "Crop PDF",
     btnConvert: "Convert File",
     btnMakeFillable: "Auto-Detect & Fill",
-    btnExtractText: "Extract Text",
-    btnSearchablePdf: "Make Searchable PDF",
-    btnSearchablePdfAll: "Make Entire PDF Searchable",
     btnPreviewCrop: "Preview Crop",
     btnFinalize: "Finalize Crop",
     cropPreview: "Crop Preview",
@@ -917,7 +892,7 @@ export const translations = {
         },
         {
           q: "Quels outils proposez-vous ?",
-          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, OCR, PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
+          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
         },
         {
           q: "Dois-je créer un compte ou m'inscrire ?",
@@ -1092,23 +1067,6 @@ export const translations = {
           tool: "Rendre PDF Remplissable",
           steps: ["Téléversez le PDF", "Détection automatique", "Téléchargez le formulaire"]
         }
-      },
-      ocr: {
-        title: "OCR PDF en Ligne - Rendre un PDF Cherchable | pdfcanada.ca",
-        desc: "Convertissez des PDF numérisés en texte sélectionnable et cherchable. OCR haute précision traité 100% localement. Sécurisé, rapide et sans envoi de fichier—vos données restent privées.",
-        h1: "OCR PDF et Recherche",
-        subtitle: "Extrayez le texte de vos numérisations grauitement et en toute sécurité.",
-        content: "Transformez vos images et documents scannés en vrai texte que vous pouvez copier et rechercher. Notre outil OCR fonctionne directement dans votre navigateur.",
-        steps: ["Téléversez votre PDF numérisé.", "Sélectionnez la langue du document.", "Téléchargez votre nouveau PDF cherchable."],
-        quickAnswer: {
-          question: "Comment rendre un PDF numérisé cherchable ?",
-          answer: "Utilisez la reconnaissance optique de caractères (OCR) pour convertir les images de texte en contenu numérique réel. Notre outil traite vos scans localement pour protéger vos données sensibles.",
-          tool: "OCR PDF",
-          steps: ["Téléversez le PDF scanné", "Choisissez la langue", "Téléchargez le fichier cherchable"]
-        },
-        faq: [
-          { q: "Qu'est-ce que l'OCR ?", a: "OCR signifie Reconnaissance Optique de Caractères. C'est la technologie qui transforme une image de texte en texte numérique éditable." }
-        ]
       },
       organizePdf: {
         title: "Organiser PDF en Ligne - Réorganiser les Pages Gratuitement | pdfcanada.ca",
@@ -1373,8 +1331,6 @@ export const translations = {
     toolPdfToEpubDesc: "Convertir pour liseuses.",
     toolMakeFillable: "Rendre PDF Remplissable",
     toolMakeFillableDesc: "Ajouter des zones de texte auto.",
-    toolOcr: "OCR PDF",
-    toolOcrDesc: "Extraire texte des scans.",
     toolCbrToPdf: "CBR en PDF",
     toolCbrToPdfDesc: "Convertir BD en PDF.",
     toolSign: "Signer le PDF",
@@ -1416,8 +1372,6 @@ export const translations = {
     rotateAllRight: "Tout Pivoter Droite",
     resetRotations: "Réinitialiser",
     selectPagesToFill: "Sélectionnez les pages à scanner :",
-    selectPagesForOcr: "Sélectionnez les pages pour l'OCR :",
-    ocrProgress: "Reconnaissance du texte...",
     toolRotateInfo: "Cliquez sur les pages pour les faire pivoter ou utilisez les contrôles ci-dessus.",
     btnSplit: "Diviser le PDF",
     processedSize: "Taille traitée",
@@ -1462,9 +1416,6 @@ export const translations = {
     btnConvert: "Convertir le fichier",
     btnMakeFillable: "Détecter et Remplir",
     btnCancel: "Annuler",
-    btnExtractText: "Extraire le Texte",
-    btnSearchablePdf: "Créer PDF Recherchable",
-    btnSearchablePdfAll: "Rendre Tout le PDF Recherchable",
     btnPreviewCrop: "Aperçu du recadrage",
     btnFinalize: "Finaliser le recadrage",
     cropPreview: "Aperçu du recadrage",
