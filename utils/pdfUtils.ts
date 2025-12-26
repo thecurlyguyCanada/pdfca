@@ -817,31 +817,31 @@ export const extractTextWithOcr = async (
     const coreUrl = `${origin}/tesseract/tesseract-core.wasm.js`;
     const langUrl = `${origin}/tesseract/`;
 
-    console.info(`[Neural Engine] Stage 1/3: Booting Worker (Local-First)...`);
+    console.info(`[Neural Engine] Initializing Tesseract.js v7 Worker (Local-First)...`);
+    console.info(`[Neural Engine] Language: ${langString}`);
+    console.info(`[Neural Engine] Worker Path: ${workerUrl}`);
+    console.info(`[Neural Engine] Core Path: ${coreUrl}`);
+    console.info(`[Neural Engine] Lang Path: ${langUrl}`);
+
     // Pre-flight verify local script is serving
     const check = await fetch(workerUrl, { method: 'HEAD' }).catch(() => ({ ok: false }));
-    if (!check.ok) console.warn("[Neural Engine] Local worker verify failed at", workerUrl);
+    if (!check.ok) {
+      throw new Error(`Worker script not available at ${workerUrl}`);
+    }
 
-    // v5+ Robust signature: langs + oem + options
+    // v7 API: createWorker(langs, oem, options) - language loading and initialization happen automatically
     worker = await (Tesseract as any).createWorker(langString, 1, {
       workerPath: workerUrl,
       corePath: coreUrl,
       langPath: langUrl,
-      workerBlobURL: false, // Strictly use the direct script path
-      logger: (img: any) => console.debug(`[Neural Engine Log]`, img)
+      logger: (m: any) => {
+        if (m.status === 'loading tesseract core' || m.status === 'initializing tesseract') {
+          console.info(`[Neural Engine] ${m.status}... ${Math.round(m.progress * 100)}%`);
+        }
+      }
     });
 
-    console.info(`[Neural Engine] Stage 2/3: Lexicon Check...`);
-    if (typeof worker.loadLanguage === 'function') {
-      await worker.loadLanguage(langString);
-    }
-
-    console.info(`[Neural Engine] Stage 3/3: API Check...`);
-    if (typeof worker.initialize === 'function') {
-      await worker.initialize(langString);
-    }
-
-    console.info(`[Neural Engine] System ready.`);
+    console.info(`[Neural Engine] Worker ready!`);
   } catch (err) {
     console.error("[Neural Engine] Critical startup failure:", err);
     let detail = "Neural bootstrapping failed.";
@@ -955,31 +955,31 @@ export const makeSearchablePdf = async (
     const coreUrl = `${origin}/tesseract/tesseract-core.wasm.js`;
     const langUrl = `${origin}/tesseract/`;
 
-    console.info(`[Neural Searchable] Stage 1/3: Booting Engine (Local-First)...`);
+    console.info(`[Neural Searchable] Initializing Tesseract.js v7 Worker (Local-First)...`);
+    console.info(`[Neural Searchable] Language: ${langString}`);
+    console.info(`[Neural Searchable] Worker Path: ${workerUrl}`);
+    console.info(`[Neural Searchable] Core Path: ${coreUrl}`);
+    console.info(`[Neural Searchable] Lang Path: ${langUrl}`);
+
     // Pre-flight verify local script is serving
     const check = await fetch(workerUrl, { method: 'HEAD' }).catch(() => ({ ok: false }));
-    if (!check.ok) console.warn("[Neural Searchable] Local worker verify failed at", workerUrl);
+    if (!check.ok) {
+      throw new Error(`Worker script not available at ${workerUrl}`);
+    }
 
-    // v5+ Robust signature: langs + oem + options
+    // v7 API: createWorker(langs, oem, options) - language loading and initialization happen automatically
     worker = await (Tesseract as any).createWorker(langString, 1, {
       workerPath: workerUrl,
       corePath: coreUrl,
       langPath: langUrl,
-      workerBlobURL: false, // Strictly use direct script path
-      logger: (img: any) => console.debug(`[Neural Searchable Log]`, img)
+      logger: (m: any) => {
+        if (m.status === 'loading tesseract core' || m.status === 'initializing tesseract') {
+          console.info(`[Neural Searchable] ${m.status}... ${Math.round(m.progress * 100)}%`);
+        }
+      }
     });
 
-    console.info(`[Neural Searchable] Stage 2/3: Lexicon Load...`);
-    if (typeof worker.loadLanguage === 'function') {
-      await worker.loadLanguage(langString);
-    }
-
-    console.info(`[Neural Searchable] Stage 3/3: API Boot...`);
-    if (typeof worker.initialize === 'function') {
-      await worker.initialize(langString);
-    }
-
-    console.info(`[Neural Searchable] System ready.`);
+    console.info(`[Neural Searchable] Worker ready!`);
   } catch (err) {
     console.error("[Neural Searchable] Critical startup failure:", err);
     let detail = "Searchable layer bootstrapping failed.";
