@@ -744,7 +744,7 @@ const addPdfMetadata = (doc: PDFDocument, title?: string) => {
   doc.setTitle(title || PDF_CONFIG.METADATA.TITLE);
   doc.setAuthor(PDF_CONFIG.METADATA.AUTHOR);
   doc.setSubject(PDF_CONFIG.METADATA.SUBJECT);
-  doc.setKeywords(PDF_CONFIG.METADATA.KEYWORDS);
+  doc.setKeywords([...PDF_CONFIG.METADATA.KEYWORDS]);
   doc.setCreator(PDF_CONFIG.METADATA.CREATOR);
   doc.setProducer(PDF_CONFIG.METADATA.PRODUCER);
 };
