@@ -95,18 +95,18 @@ export function HomePage() {
               {[
                 {
                   icon: Zap,
-                  title: t.fastTitle || 'Lightning Fast',
-                  desc: t.fastDesc || 'Process files instantly in your browser',
+                  title: 'Lightning Fast',
+                  desc: 'Process files instantly in your browser',
                 },
                 {
                   icon: Heart,
-                  title: t.freeTitle || '100% Free',
-                  desc: t.freeDesc || 'No hidden costs, no subscriptions',
+                  title: '100% Free',
+                  desc: 'No hidden costs, no subscriptions',
                 },
                 {
                   icon: Users,
-                  title: t.privateTitle || 'Privacy First',
-                  desc: t.privateDesc || 'Your files never leave your device',
+                  title: 'Privacy First',
+                  desc: 'Your files never leave your device',
                 },
               ].map(({ icon: Icon, title, desc }, idx) => (
                 <div
