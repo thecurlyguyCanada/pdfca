@@ -68,12 +68,11 @@ export default defineConfig({
       resolveDependencies: (filename, deps, { hostId, hostType }) => {
         // For HTML, preload all critical chunks to eliminate sequential waterfall
         // This includes: index, vendor-react, vendor-dom (react-dom), vendor-pdf-core
-        // Excludes heavy libs (docx, xlsx, tesseract, etc.) which are lazy-loaded
+        // Excludes heavy libs (docx, xlsx, heic, etc.) which are lazy-loaded
         if (hostType === 'html') {
           return deps.filter(dep =>
             !dep.includes('vendor-docx') &&
             !dep.includes('vendor-xlsx') &&
-            !dep.includes('vendor-ocr') &&
             !dep.includes('vendor-heic') &&
             !dep.includes('vendor-jszip') &&
             !dep.includes('vendor-unrar') &&
@@ -129,10 +128,6 @@ export default defineConfig({
           }
           if (id.includes('xlsx')) {
             return 'vendor-xlsx';
-          }
-          // Tesseract is very heavy - separate chunk, lazy load
-          if (id.includes('tesseract.js')) {
-            return 'vendor-ocr';
           }
           // CBR/CBZ handling - lazy load
           if (id.includes('unrar-js')) {
