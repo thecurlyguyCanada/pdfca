@@ -140,11 +140,15 @@ export function ToolPageClient({ toolConfig }: ToolPageClientProps) {
     // TODO: Implement range parsing logic
   };
 
+  const handleNavigate = () => {
+    // Navigation handled by Next.js routing
+  };
+
   return (
     <>
       <div className="mesh-bg" />
       <div className="min-h-screen flex flex-col">
-        <Header lang={lang} setLang={setLang} currentView="TOOL_PAGE" />
+        <Header lang={lang} setLang={setLang} onNavigate={handleNavigate} />
 
         <Breadcrumb
           lang={lang}

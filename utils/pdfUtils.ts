@@ -86,13 +86,13 @@ const getJsPdf = async () => {
   }
 };
 
-const getXlsx = async () => {
+const getExcelJs = async () => {
   try {
-    const xlsx = await import('xlsx');
-    return xlsx;
+    const ExcelJS = await import('exceljs');
+    return ExcelJS;
   } catch (error) {
-    console.error('Failed to load xlsx library:', error);
-    throw new Error('ERR_LIB_LOAD_FAILED_XLSX');
+    console.error('Failed to load exceljs library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_EXCELJS');
   }
 };
 
@@ -1555,11 +1555,13 @@ export const convertXmlToPdf = async (file: File): Promise<Uint8Array> => {
 };
 
 export const convertExcelToPdf = async (file: File): Promise<Blob> => {
-  const XLSX = await getXlsx();
+  const ExcelJS = await getExcelJs();
   const jsPDF = await getJsPdf();
   const arrayBuffer = await file.arrayBuffer();
 
-  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.load(arrayBuffer);
+
   const doc = new jsPDF();
   const margin = 10;
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -1567,12 +1569,19 @@ export const convertExcelToPdf = async (file: File): Promise<Blob> => {
   const cellPadding = 2;
   const fontSize = 10;
 
-  workbook.SheetNames.forEach((sheetName: string, index: number) => {
+  workbook.worksheets.forEach((worksheet: any, index: number) => {
     if (index > 0) doc.addPage();
 
-    const worksheet = workbook.Sheets[sheetName];
-    // raw: false ensures dates and numbers are formatted as text (e.g. "2023-12-25" instead of 45285)
-    const data: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false, dateNF: 'yyyy-mm-dd' });
+    const sheetName = worksheet.name;
+    // Convert worksheet to 2D array
+    const data: any[][] = [];
+    worksheet.eachRow((row: any) => {
+      const rowData: any[] = [];
+      row.eachCell({ includeEmpty: true }, (cell: any) => {
+        rowData.push(cell.text || cell.value || '');
+      });
+      data.push(rowData);
+    });
 
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');

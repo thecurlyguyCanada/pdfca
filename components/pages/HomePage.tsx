@@ -15,11 +15,15 @@ export function HomePage() {
 
   const toolSlugs = getAllToolSlugs();
 
+  const handleNavigate = () => {
+    // Navigation handled by Next.js Link components
+  };
+
   return (
     <>
       <div className="mesh-bg" />
       <div className="min-h-screen flex flex-col">
-        <Header lang={lang} setLang={setLang} currentView="HOME" />
+        <Header lang={lang} setLang={setLang} onNavigate={handleNavigate} />
 
         <main className="flex-grow">
           {/* Hero Section */}
