@@ -31,7 +31,7 @@ async function createOGImage() {
 
       <!-- Decorative maple leaves -->
       <g fill="rgba(255,255,255,0.08)" transform="translate(50, 80) scale(8)">
-        ${mapleLeafPath.replace('M', 'M').replace(/Z/, 'Z')}
+        ${mapleLeafPath}
       </g>
       <g fill="rgba(255,255,255,0.06)" transform="translate(1000, 400) scale(10)">
         ${mapleLeafPath}
