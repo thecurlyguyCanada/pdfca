@@ -17,10 +17,7 @@
 export {
   convertHeicToPdf,
   convertCbrToPdf,
-  extractTextWithOcr,
-  makeSearchablePdf,
   convertPdfToWord,
   convertWordToPdf,
-  convertExcelToPdf,
-  type OcrProgress
+  convertExcelToPdf
 } from './pdfUtils';
