@@ -151,6 +151,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
     }, [pdfJsDoc, pageIndex, zoom, isVisible]);
 
     const handleContainerClick = (e: React.MouseEvent) => {
+        // Only deselect if clicking directly on the container, not bubbled from child
+        if (e.target !== e.currentTarget) return;
+
         onPageClick?.();
         if (activeTool === 'select') {
             onSelectEntry(null);
@@ -182,6 +185,14 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     position={{
                         x: entry.x * pageSize.width,
                         y: entry.y * pageSize.height
+                    }}
+                    onMouseDown={(e: MouseEvent) => {
+                        if (activeTool !== 'select') return;
+                        e.stopPropagation();
+                    }}
+                    onClick={(e: MouseEvent) => {
+                        if (activeTool !== 'select') return;
+                        e.stopPropagation();
                     }}
                     onDragStart={(e) => {
                         if (activeTool !== 'select') return;
