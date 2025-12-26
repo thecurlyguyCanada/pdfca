@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Crop PDF Pages | Free Margin Adjustment Guide | pdfcanada.ca",
-            desc: `Trim white space and focus on what matters. Our ${CURRENT_YEAR} guide shows you how to crop PDF pages securely on your device. No uploads, fast, and 100% private."
+            desc: `Trim white space and focus on what matters. Our ${CURRENT_YEAR} guide shows you how to crop PDF pages securely on your device. No uploads, fast, and 100% private.`
         },
         h1: "How to Crop PDF Pages: The ${CURRENT_YEAR} Guide",
         subtitle: "Trim the fat and focus on your content—100% private and Canadian.",
@@ -75,7 +75,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Comment Recadrer un PDF | Guide Ajustement Marges ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Supprimez les marges inutiles et concentrez-vous sur l'essentiel. Notre guide ${CURRENT_YEAR} vous montre comment recadrer vos PDF en toute sécurité et sans téléchargement."
+            desc: `Supprimez les marges inutiles et concentrez-vous sur l'essentiel. Notre guide ${CURRENT_YEAR} vous montre comment recadrer vos PDF en toute sécurité et sans téléchargement.`
         },
         h1: "Comment Rogner un PDF : Guide Complet",
         subtitle: "Éliminez les marges indésirables et recadrez vos documents PDF avec précision.",

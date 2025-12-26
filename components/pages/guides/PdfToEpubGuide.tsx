@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Convertir PDF en EPUB | Guide E-Reader ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide ${CURRENT_YEAR} vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Conversion gratuite et sécurisée."
+            desc: `Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide ${CURRENT_YEAR} vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Conversion gratuite et sécurisée.`
         },
         h1: "Convertir PDF en EPUB",
         subtitle: "Transformez vos PDF en ebooks pour liseuses",
@@ -118,7 +118,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Convert PDF to EPUB | Free E-Reader Optimization Guide | pdfcanada.ca",
-            desc: `Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide ${CURRENT_YEAR} vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Free and secure conversion."
+            desc: `Rendez vos PDF fluides et faciles à lire sur Kindle ou Kobo. Notre guide ${CURRENT_YEAR} vous montre comment convertir PDF en EPUB sans jamais télécharger vos fichiers. Free and secure conversion.`
         },
         h1: "Convert PDF to EPUB",
         subtitle: "Transform your PDFs into ebooks for e-readers",

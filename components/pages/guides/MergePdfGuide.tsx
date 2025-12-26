@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: `How to Merge PDF Files | Free & Secure ${CURRENT_YEAR} Guide | pdfcanada.ca`,
-            desc: `Learn how to combine multiple PDF files into one securely. Our ${CURRENT_YEAR} guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private."
+            desc: `Learn how to combine multiple PDF files into one securely. Our ${CURRENT_YEAR} guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private.`
         },
         h1: "How to Merge PDF Files: The ${CURRENT_YEAR} Guide",
         subtitle: "Combine multiple documents into a single, organized PDF file.",
@@ -179,7 +179,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Comment Fusionner des PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Découvrez comment fusionner plusieurs PDF en toute sécurité dans votre navigateur avec notre guide ${CURRENT_YEAR}. Combinez vos documents sans téléchargement—100% privé."
+            desc: `Découvrez comment fusionner plusieurs PDF en toute sécurité dans votre navigateur avec notre guide ${CURRENT_YEAR}. Combinez vos documents sans téléchargement—100% privé.`
         },
         h1: "Comment Fusionner des Fichiers PDF : Le Guide Complet",
         subtitle: "Combinez plusieurs documents PDF en un seul fichier organisé et professionnel.",

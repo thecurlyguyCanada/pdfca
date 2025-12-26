@@ -17,7 +17,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: `How to Convert Word to PDF | Free & Secure ${CURRENT_YEAR} Tutorial | pdfcanada.ca`,
-            desc: `Learn how to transform DOCX to PDF instantly. Our secure ${CURRENT_YEAR} guide shows you how to convert Word to PDF locally on your device without uploading sensitive files. No uploads, 100% private Canadian tool."
+            desc: `Learn how to transform DOCX to PDF instantly. Our secure ${CURRENT_YEAR} guide shows you how to convert Word to PDF locally on your device without uploading sensitive files. No uploads, 100% private Canadian tool.`
         },
         h1: "How to Convert Word to PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "Create high-quality, locked-down PDF documents from your Word files instantly without leaving your browser.",
@@ -165,7 +165,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Convertir Word en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données. Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé."
+            desc: `Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données. Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé.`
         },
         h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",
