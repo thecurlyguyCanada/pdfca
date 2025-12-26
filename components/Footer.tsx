@@ -1,3 +1,5 @@
+'use client';
+
 
 import React, { useMemo, useState } from 'react';
 import { Heart, ShieldCheck, MapPin, ChevronDown } from 'lucide-react';
