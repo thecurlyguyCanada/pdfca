@@ -1361,6 +1361,46 @@ export const splitPdf = async (file: File, pageIndices?: number[]): Promise<Blob
   return await zip.generateAsync({ type: 'blob' });
 };
 
+// Extract PDF Pages: Extract selected pages into a new PDF
+export const extractPdfPages = async (file: File, pageIndices: number[]): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const sourceDoc = await PDFDocument.load(arrayBuffer);
+  const totalPages = sourceDoc.getPageCount();
+
+  if (totalPages === 0) {
+    throw new Error('PDF has no pages to extract.');
+  }
+
+  if (!pageIndices || pageIndices.length === 0) {
+    throw new Error('Please select at least one page to extract.');
+  }
+
+  // Validate and filter page indices
+  const validIndices = pageIndices
+    .filter(index => index >= 0 && index < totalPages)
+    .sort((a, b) => a - b);
+
+  if (validIndices.length === 0) {
+    throw new Error('No valid pages selected for extraction.');
+  }
+
+  const newDoc = await PDFDocument.create();
+
+  // Copy selected pages to new document
+  for (const pageIndex of validIndices) {
+    const [copiedPage] = await newDoc.copyPages(sourceDoc, [pageIndex]);
+    newDoc.addPage(copiedPage);
+
+    // Yield to avoid freezing
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  addPdfMetadata(newDoc, `Extracted Pages from ${file.name}`);
+  return await newDoc.save();
+};
+
 // PDF to XML: Extract PDF content into structured XML
 export const convertPdfToXml = async (file: File): Promise<Blob> => {
   await initPdfWorker();

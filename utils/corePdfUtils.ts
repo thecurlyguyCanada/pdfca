@@ -24,6 +24,7 @@ export {
   compressPdf,
   mergePdfs,
   splitPdf,
+  extractPdfPages,
   convertPdfToXml,
   convertXmlToPdf
 } from './pdfUtils';
