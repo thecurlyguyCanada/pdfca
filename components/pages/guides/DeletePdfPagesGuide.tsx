@@ -34,7 +34,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         sections: [
             {
                 id: "how-to",
-                title: "Step-by-Step: Removing Pages in Seconds",
+                title: "Step-by-Step: Removing Unwanted Pages from Your PDF",
                 content: (
                     <>
                         <p className="mb-4">
@@ -42,50 +42,142 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Select Your File</strong>: Drag your PDF directly onto the browser window. Because we use <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</button>, the file opens instantly—no upload bar, no waiting.
+                                <strong>Upload Your PDF</strong>: Drag your PDF directly onto the browser window or click to browse. Because we use <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</button>, the file opens instantly—no upload bar, no waiting for cloud processing.
                             </li>
                             <li className="pl-2">
-                                <strong>Identify the Culprits</strong>: You'll see a grid of page thumbnails. Simply click on the pages you want to remove. They will turn red, indicating they are marked for deletion.
+                                <strong>Preview All Pages</strong>: You'll see a grid of page thumbnails showing the entire document at a glance. This visual overview makes it easy to identify exactly which pages to remove.
                             </li>
                             <li className="pl-2">
-                                <strong>Export and Save</strong>: Once you've selected all the unwanted pages, click the <strong>"Delete Selected Pages"</strong> button. Your new, clean PDF will be generated immediately.
+                                <strong>Select Pages to Delete</strong>: Simply click on the pages you want to remove. Selected pages will be highlighted (often in red or with a visual indicator), marking them for deletion.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Review Your Selection</strong>: Double-check that you've selected the correct pages. If you accidentally selected the wrong page, click it again to deselect it.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Delete and Generate</strong>: Click the <strong>"Delete Selected Pages"</strong> button. The tool processes your request instantly, creating a new PDF without the removed pages.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Download Clean PDF</strong>: Your streamlined document is ready immediately. The deleted pages are completely removed from the file structure, not just hidden.
                             </li>
                         </ol>
-                        <p>
-                            <em><strong>Pro Tip:</strong> If you accidentally select the wrong page, just click it again to unselect it.</em>
+                        <p className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
+                            <em><strong>Pro Tip:</strong> If you accidentally select the wrong page, just click it again to unselect it. You can select and deselect as many times as needed before clicking Delete.</em>
                         </p>
                     </>
                 )
             },
             {
+                id: "use-cases",
+                title: "Common Scenarios for Deleting PDF Pages",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Removing Blank Pages from Scans</strong>: Double-sided scanning often creates blank pages when one side of a sheet is empty. Delete these unwanted blanks to create a cleaner, more professional document.</p>
+                        <p><strong>Extracting Relevant Sections from Long Reports</strong>: You received a 50-page board report but only need pages 1-5 (executive summary) for your team. Delete pages 6-50 to share just the relevant information.</p>
+                        <p><strong>Removing Confidential Pages Before Sharing</strong>: Your contract has salary information on page 7 that shouldn't be shared with certain stakeholders. Delete that page before distributing the rest of the contract.</p>
+                        <p><strong>Cleaning Up Government Forms for CRA/Service Canada</strong>: Many government PDF forms include lengthy instructions and terms of service. Delete the instruction pages, keeping only the completed form pages for submission.</p>
+                        <p><strong>Removing Cover Pages from Academic Papers</strong>: Journals often require submissions without cover pages. Delete the cover page while keeping your abstract, manuscript, and references intact.</p>
+                        <p><strong>Eliminating Duplicate Pages</strong>: Your scanner accidentally scanned page 3 twice. Delete the duplicate to fix the document flow without re-scanning everything.</p>
+                        <p><strong>Creating Custom Document Versions</strong>: You have a comprehensive proposal with optional add-on services. Create a basic version by deleting the add-on pages for clients who don't need them.</p>
+                    </div>
+                )
+            },
+            {
                 id: "privacy-matters",
-                title: "Why 'No Upload' Matters for Security",
+                title: "Why Local Processing Matters for Document Security",
                 content: (
                     <>
                         <p className="mb-4">
-                            When you search for "delete pdf pages online," most results require you to upload your document to a cloud server. For a cafeteria menu, that's fine. But for a <strong>legal contract, tax return, or medical record</strong>? It's a massive risk.
+                            When you search for "delete pdf pages online," most results require you to upload your document to a cloud server. For a public cafeteria menu, that's fine. But for a <strong>legal contract, tax return, medical record, or confidential business document</strong>? It's a significant privacy risk.
                         </p>
                         <p className="mb-4">
-                            <strong>pdfcanada.ca</strong> is different. We run the PDF processing engine <em>inside your web browser</em>. This means:
+                            <strong>pdfcanada.ca</strong> is fundamentally different. We run the PDF processing engine <em>inside your web browser</em> using modern JavaScript libraries. This local-first approach means:
                         </p>
-                        <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                            <li>Your file <strong>never leaves your computer</strong>.</li>
-                            <li>No temporary copies are created on our servers.</li>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li>Your file <strong>never leaves your computer or device</strong>—it's processed entirely in your browser's memory.</li>
+                            <li>No temporary copies are created on our servers. We literally can't see your documents.</li>
                             <li>You can even turn off your Wi-Fi after the page loads, and the tool will still work perfectly.</li>
+                            <li>Ideal for sensitive documents: tax returns (CRA submissions), medical records, legal contracts, NDAs, financial statements, and HR documents.</li>
+                            <li>No data retention, no server logs, no third-party access—complete privacy by design.</li>
                         </ul>
                     </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Best Practices for Deleting PDF Pages",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Preview Before Deleting</strong>: Always review the page thumbnails carefully to ensure you're deleting the correct pages. A quick double-check prevents accidentally removing important content.</li>
+                        <li><strong>Keep Original Backups</strong>: Before deleting pages from important documents, save a copy of the original complete PDF. Once deleted, pages are permanently removed from the generated file.</li>
+                        <li><strong>Delete in Logical Groups</strong>: If you're removing many pages, delete them in batches (e.g., all blank pages first, then all instruction pages) to stay organized.</li>
+                        <li><strong>Check Page Numbering</strong>: Remember that deleting pages changes the physical page count but doesn't update printed page numbers in headers/footers. Page "5 of 10" will still say that even if the document is now only 8 pages.</li>
+                        <li><strong>Consider Organizing Instead</strong>: If you need pages in a different order rather than deleted, use our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline">Organize PDF tool</button> to rearrange them first.</li>
+                        <li><strong>Verify Content After Deletion</strong>: After deleting pages, open the resulting PDF and skim through to ensure the document still flows logically and no critical pages were removed by mistake.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Common Issues and Solutions",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: I can't find the page I want to delete</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Zoom in on the thumbnail grid or scroll carefully through all pages. For very large PDFs, the thumbnails are small—use the page number labels to navigate. If needed, open the original PDF in a viewer to identify the exact page number first.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: I accidentally deleted the wrong pages</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Your original file remains unchanged on your computer. Simply upload the original file again and delete the correct pages. This is why keeping backups of important documents is crucial.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: The delete button is grayed out</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: You must select at least one page to delete before the button becomes active. Click on the pages you want to remove and they should highlight, then the delete button will enable.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Processing is very slow with large PDFs</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Very large PDFs (200+ pages or 100+ MB) can take time to load thumbnails and process. Close other browser tabs to free up memory. For extremely large files, consider splitting the PDF first using our <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">Organize tool</button>.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Can I undo a page deletion?</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Once you download the edited PDF, the deletion is permanent in that new file. However, your original PDF file remains untouched. If you need deleted pages back, simply work from the original file again.</p>
+                        </div>
+                    </div>
                 )
             }
         ],
 
         faq: [
             {
-                q: "Does this perform a 'destructive' delete?",
-                a: "Yes and no. The new file you download has the pages completely removed—they are not just hidden. However, your original file on your computer remains untouched."
+                q: "Does this perform a 'destructive' delete, or are pages just hidden?",
+                a: "The new PDF you download has the selected pages completely removed from the file structure—they are not just hidden or marked as deleted. However, your original file on your computer remains completely untouched, so you always have a backup."
             },
             {
-                q: "Can I undo a deletion?",
-                a: "Since the tool runs locally, you can simply refresh the page to start over with your original file."
+                q: "Can I undo a deletion after downloading the edited PDF?",
+                a: "Once you download the new PDF, the deleted pages are permanently removed from that file. However, since the tool runs locally, your original PDF file remains unchanged on your computer. You can always go back to the original if you need those pages again."
+            },
+            {
+                q: "Is there a limit to how many pages I can delete?",
+                a: "No limit! You can delete as many pages as you want, from a single page to hundreds. Just remember you need to keep at least one page—you can't delete everything and create an empty PDF."
+            },
+            {
+                q: "Will the quality of remaining pages be affected?",
+                a: "No. Deleting pages doesn't compress, re-render, or modify the remaining pages in any way. The pages you keep maintain 100% of their original quality, formatting, and content."
+            },
+            {
+                q: "Can I delete pages from password-protected PDFs?",
+                a: "You'll need to unlock the PDF first. If you know the password, use a PDF viewer to save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely delete pages. You can re-apply password protection to the edited file afterwards if needed."
+            },
+            {
+                q: "What happens to page numbers after deletion?",
+                a: "The physical page count changes (a 10-page document becomes 8 pages after deleting 2), but printed page numbers in headers/footers remain unchanged. If page 5 says \"Page 5 of 10\" in the footer, it will still display that text even after other pages are deleted."
+            },
+            {
+                q: "Can I delete non-consecutive pages (e.g., pages 2, 5, and 9)?",
+                a: "Absolutely! You can select any combination of pages to delete, whether they're consecutive or scattered throughout the document. Just click on each page you want to remove, and they'll all be deleted when you process the file."
+            },
+            {
+                q: "Does this work on mobile devices?",
+                a: "Yes! Our delete pages tool works on all modern browsers, including smartphones and tablets. The interface adapts to touchscreens, making it easy to tap and select pages for deletion. Processing happens locally on your device regardless of platform."
             }
         ],
 
@@ -119,54 +211,150 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         sections: [
             {
                 id: "how-to",
-                title: "Étape par Étape : Nettoyer Votre PDF en Secondes",
+                title: "Étape par Étape : Suppression des Pages Indésirables de Votre PDF",
                 content: (
                     <>
                         <p className="mb-4">
-                            Supprimer des pages ne devrait pas être compliqué. Notre outil est conçu pour être intuitif et rapide.
+                            Supprimer des pages ne devrait pas être compliqué. Notre <strong>outil de suppression de pages PDF</strong> est conçu pour être intuitif, fonctionnant un peu comme une table lumineuse physique où vous pouvez voir toutes vos pages à la fois.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Sélectionnez votre fichier</strong> : Téléchargez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline font-medium">outil de suppression de pages</button>.
+                                <strong>Téléchargez votre PDF</strong> : Glissez votre PDF directement dans la fenêtre du navigateur ou cliquez pour parcourir. Grâce à notre <button onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</button>, le fichier s'ouvre instantanément—pas de barre de téléchargement, pas d'attente pour le traitement cloud.
                             </li>
                             <li className="pl-2">
-                                <strong>Identifiez les pages à supprimer</strong> : Vous verrez des miniatures de toutes les pages. Cliquez sur celles que vous voulez retirer.
+                                <strong>Aperçu de toutes les pages</strong> : Vous verrez une grille de miniatures de pages montrant l'ensemble du document d'un coup d'œil. Cet aperçu visuel facilite l'identification exacte des pages à supprimer.
                             </li>
                             <li className="pl-2">
-                                <strong>Téléchargez votre PDF nettoyé</strong> : Cliquez sur "Supprimer" et téléchargez votre nouveau document sans les pages indésirables.
+                                <strong>Sélectionnez les pages à supprimer</strong> : Cliquez simplement sur les pages que vous voulez retirer. Les pages sélectionnées seront surlignées (souvent en rouge ou avec un indicateur visuel), les marquant pour suppression.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Vérifiez votre sélection</strong> : Vérifiez bien que vous avez sélectionné les bonnes pages. Si vous avez accidentellement sélectionné la mauvaise page, cliquez dessus à nouveau pour la désélectionner.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Supprimez et générez</strong> : Cliquez sur le bouton <strong>"Supprimer les pages sélectionnées"</strong>. L'outil traite votre demande instantanément, créant un nouveau PDF sans les pages supprimées.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Téléchargez le PDF nettoyé</strong> : Votre document allégé est prêt immédiatement. Les pages supprimées sont complètement retirées de la structure du fichier, pas seulement cachées.
                             </li>
                         </ol>
+                        <p className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
+                            <em><strong>Conseil Pro :</strong> Si vous sélectionnez accidentellement la mauvaise page, cliquez simplement dessus à nouveau pour la désélectionner. Vous pouvez sélectionner et désélectionner autant de fois que nécessaire avant de cliquer sur Supprimer.</em>
+                        </p>
                     </>
                 )
             },
             {
                 id: "use-cases",
-                title: "Cas d'Utilisation Courants",
+                title: "Scénarios Courants pour Supprimer des Pages PDF",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Suppression de pages vierges des scans</strong> : Le scan recto-verso crée souvent des pages vierges quand un côté d'une feuille est vide. Supprimez ces blancs indésirables pour créer un document plus propre et professionnel.</p>
+                        <p><strong>Extraction de sections pertinentes de longs rapports</strong> : Vous avez reçu un rapport de 50 pages mais n'avez besoin que des pages 1-5 (résumé exécutif) pour votre équipe. Supprimez les pages 6-50 pour partager uniquement les informations pertinentes.</p>
+                        <p><strong>Suppression de pages confidentielles avant partage</strong> : Votre contrat a des informations salariales à la page 7 qui ne devraient pas être partagées avec certaines parties prenantes. Supprimez cette page avant de distribuer le reste du contrat.</p>
+                        <p><strong>Nettoyage de formulaires gouvernementaux pour l'ARC/Service Canada</strong> : De nombreux formulaires PDF gouvernementaux incluent de longues instructions et conditions d'utilisation. Supprimez les pages d'instructions, en gardant uniquement les pages de formulaire complétées pour la soumission.</p>
+                        <p><strong>Suppression de pages de couverture de travaux académiques</strong> : Les revues exigent souvent des soumissions sans pages de couverture. Supprimez la page de couverture tout en gardant votre résumé, manuscrit et références intacts.</p>
+                        <p><strong>Élimination de pages en double</strong> : Votre scanner a accidentellement scanné la page 3 deux fois. Supprimez le doublon pour corriger le flux du document sans tout rescanner.</p>
+                        <p><strong>Création de versions personnalisées de documents</strong> : Vous avez une proposition complète avec des services optionnels supplémentaires. Créez une version de base en supprimant les pages supplémentaires pour les clients qui n'en ont pas besoin.</p>
+                    </div>
+                )
+            },
+            {
+                id: "privacy-matters",
+                title: "Pourquoi le Traitement Local Compte pour la Sécurité des Documents",
                 content: (
                     <>
-                        <ul className="list-disc pl-5 space-y-3 mb-6">
-                            <li><strong>Documents scannés</strong> : Retirez les pages vierges ou mal scannées de vos documents numérisés.</li>
-                            <li><strong>Rapports volumineux</strong> : Extrayez seulement les pages pertinentes d'un long rapport.</li>
-                            <li><strong>Formulaires gouvernementaux</strong> : Supprimez les pages d'instructions inutiles avant de soumettre à l'ARC ou IRCC.</li>
-                            <li><strong>Contrats</strong> : Retirez les annexes obsolètes ou les pages de signature vides.</li>
+                        <p className="mb-4">
+                            Lorsque vous recherchez "supprimer des pages PDF en ligne", la plupart des résultats exigent que vous téléchargiez votre document sur un serveur cloud. Pour un menu de cafétéria publique, c'est acceptable. Mais pour un <strong>contrat juridique, déclaration de revenus, dossier médical ou document commercial confidentiel</strong> ? C'est un risque significatif pour la confidentialité.
+                        </p>
+                        <p className="mb-4">
+                            <strong>pdfcanada.ca</strong> est fondamentalement différent. Nous exécutons le moteur de traitement PDF <em>à l'intérieur de votre navigateur web</em> en utilisant des bibliothèques JavaScript modernes. Cette approche locale signifie :
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li>Votre fichier <strong>ne quitte jamais votre ordinateur ou appareil</strong>—il est traité entièrement dans la mémoire de votre navigateur.</li>
+                            <li>Aucune copie temporaire n'est créée sur nos serveurs. Nous ne pouvons littéralement pas voir vos documents.</li>
+                            <li>Vous pouvez même éteindre votre Wi-Fi après le chargement de la page, et l'outil fonctionnera toujours parfaitement.</li>
+                            <li>Idéal pour les documents sensibles : déclarations de revenus (soumissions ARC), dossiers médicaux, contrats juridiques, accords de confidentialité, états financiers et documents RH.</li>
+                            <li>Aucune rétention de données, aucun journal de serveur, aucun accès tiers—confidentialité complète par conception.</li>
                         </ul>
                     </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Meilleures Pratiques pour Supprimer des Pages PDF",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Prévisualisez avant de supprimer</strong> : Examinez toujours attentivement les miniatures de pages pour vous assurer que vous supprimez les bonnes pages. Une double vérification rapide évite de supprimer accidentellement du contenu important.</li>
+                        <li><strong>Conservez des sauvegardes originales</strong> : Avant de supprimer des pages de documents importants, enregistrez une copie du PDF complet original. Une fois supprimées, les pages sont définitivement retirées du fichier généré.</li>
+                        <li><strong>Supprimez par groupes logiques</strong> : Si vous supprimez de nombreuses pages, supprimez-les par lots (par exemple, toutes les pages vierges d'abord, puis toutes les pages d'instructions) pour rester organisé.</li>
+                        <li><strong>Vérifiez la numérotation des pages</strong> : Rappelez-vous que supprimer des pages change le nombre physique de pages mais ne met pas à jour les numéros de page imprimés dans les en-têtes/pieds de page. La page "5 de 10" dira toujours cela même si le document ne fait plus que 8 pages.</li>
+                        <li><strong>Considérez l'organisation plutôt</strong> : Si vous avez besoin de pages dans un ordre différent plutôt que supprimées, utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline">outil d'organisation PDF</button> pour les réarranger d'abord.</li>
+                        <li><strong>Vérifiez le contenu après suppression</strong> : Après avoir supprimé des pages, ouvrez le PDF résultant et parcourez-le pour vous assurer que le document s'enchaîne toujours logiquement et qu'aucune page critique n'a été supprimée par erreur.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problèmes Courants et Solutions",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Je ne trouve pas la page que je veux supprimer</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Zoomez sur la grille de miniatures ou faites défiler soigneusement toutes les pages. Pour les très gros PDF, les miniatures sont petites—utilisez les étiquettes de numéro de page pour naviguer. Si nécessaire, ouvrez d'abord le PDF original dans un lecteur pour identifier le numéro de page exact.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : J'ai accidentellement supprimé les mauvaises pages</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Votre fichier original reste inchangé sur votre ordinateur. Téléchargez simplement le fichier original à nouveau et supprimez les bonnes pages. C'est pourquoi conserver des sauvegardes de documents importants est crucial.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le bouton de suppression est grisé</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Vous devez sélectionner au moins une page à supprimer avant que le bouton ne devienne actif. Cliquez sur les pages que vous voulez retirer et elles devraient se surligner, puis le bouton de suppression s'activera.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le traitement est très lent avec les gros PDF</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (200+ pages ou 100+ Mo) peuvent prendre du temps pour charger les miniatures et traiter. Fermez d'autres onglets du navigateur pour libérer de la mémoire. Pour les fichiers extrêmement volumineux, envisagez de diviser le PDF d'abord en utilisant notre <button onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')} className="text-canada-red hover:underline font-semibold">outil d'organisation</button>.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Puis-je annuler une suppression de page ?</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Une fois que vous téléchargez le PDF édité, la suppression est permanente dans ce nouveau fichier. Cependant, votre fichier PDF original reste intact. Si vous avez besoin des pages supprimées, travaillez simplement à nouveau à partir du fichier original.</p>
+                        </div>
+                    </div>
                 )
             }
         ],
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, absolument ! Comme tous nos outils, la suppression de pages est 100% gratuite sans aucune limite."
+                q: "Est-ce que cela effectue une suppression 'destructive', ou les pages sont-elles simplement cachées ?",
+                a: "Le nouveau PDF que vous téléchargez a les pages sélectionnées complètement retirées de la structure du fichier—elles ne sont pas simplement cachées ou marquées comme supprimées. Cependant, votre fichier original sur votre ordinateur reste complètement intact, donc vous avez toujours une sauvegarde."
             },
             {
-                q: "Puis-je récupérer les pages supprimées ?",
-                a: "Non. Une fois le nouveau PDF créé, les pages supprimées sont définitivement retirées. Votre fichier original reste intact sur votre ordinateur, donc conservez-le si vous pensez avoir besoin de ces pages plus tard."
+                q: "Puis-je annuler une suppression après avoir téléchargé le PDF édité ?",
+                a: "Une fois que vous téléchargez le nouveau PDF, les pages supprimées sont définitivement retirées de ce fichier. Cependant, puisque l'outil fonctionne localement, votre fichier PDF original reste inchangé sur votre ordinateur. Vous pouvez toujours revenir à l'original si vous avez besoin de ces pages à nouveau."
             },
             {
-                q: "Est-ce que mes fichiers sont envoyés sur un serveur ?",
-                a: "Jamais ! Tout le traitement se fait localement dans votre navigateur. Vos documents confidentiels ne quittent jamais votre appareil."
+                q: "Y a-t-il une limite au nombre de pages que je peux supprimer ?",
+                a: "Aucune limite ! Vous pouvez supprimer autant de pages que vous le souhaitez, d'une seule page à des centaines. Rappelez-vous simplement que vous devez conserver au moins une page—vous ne pouvez pas tout supprimer et créer un PDF vide."
+            },
+            {
+                q: "La qualité des pages restantes sera-t-elle affectée ?",
+                a: "Non. La suppression de pages ne compresse pas, ne refait pas le rendu ni ne modifie les pages restantes de quelque manière que ce soit. Les pages que vous conservez maintiennent 100% de leur qualité originale, formatage et contenu."
+            },
+            {
+                q: "Puis-je supprimer des pages de PDF protégés par mot de passe ?",
+                a: "Vous devrez d'abord déverrouiller le PDF. Si vous connaissez le mot de passe, utilisez un lecteur PDF pour enregistrer une copie non protégée, ou utilisez notre outil de déverrouillage PDF. Une fois déverrouillé, vous pouvez librement supprimer des pages. Vous pouvez réappliquer une protection par mot de passe au fichier édité par la suite si nécessaire."
+            },
+            {
+                q: "Qu'arrive-t-il aux numéros de page après suppression ?",
+                a: "Le nombre physique de pages change (un document de 10 pages devient 8 pages après suppression de 2), mais les numéros de page imprimés dans les en-têtes/pieds de page restent inchangés. Si la page 5 dit \"Page 5 de 10\" dans le pied de page, elle affichera toujours ce texte même après suppression d'autres pages."
+            },
+            {
+                q: "Puis-je supprimer des pages non consécutives (par exemple, les pages 2, 5 et 9) ?",
+                a: "Absolument ! Vous pouvez sélectionner n'importe quelle combinaison de pages à supprimer, qu'elles soient consécutives ou dispersées dans tout le document. Cliquez simplement sur chaque page que vous voulez retirer, et elles seront toutes supprimées lorsque vous traitez le fichier."
+            },
+            {
+                q: "Cela fonctionne-t-il sur les appareils mobiles ?",
+                a: "Oui ! Notre outil de suppression de pages fonctionne sur tous les navigateurs modernes, y compris les smartphones et tablettes. L'interface s'adapte aux écrans tactiles, facilitant l'appui et la sélection de pages pour suppression. Le traitement se fait localement sur votre appareil quelle que soit la plateforme."
             }
         ],
 

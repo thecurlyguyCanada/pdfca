@@ -40,16 +40,43 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Select Your File</strong>: drag your PDF into our <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">Non-Editable PDF tool</button>.
+                                <strong>Select Your File</strong>: Drag your PDF into our <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">Non-Editable PDF tool</button>. You can select files directly from your computer, cloud storage, or even scan documents from your phone.
                             </li>
                             <li className="pl-2">
-                                <strong>Automatic Processing</strong>: Our Canadian engine will render each page as a high-quality static image.
+                                <strong>Preview Your Document</strong>: Before processing, you'll see a preview of your PDF to confirm it's the correct file. This prevents accidentally flattening the wrong document.
                             </li>
                             <li className="pl-2">
-                                <strong>Download & Share</strong>: Once complete, download your flattened PDF. It will look exactly the same, but the text will be unselectable and uneditable.
+                                <strong>Choose Quality Settings</strong>: Our tool defaults to high-quality 2.0x resolution rendering, ensuring crisp text and sharp images even when printed or zoomed.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Automatic Processing</strong>: Our Canadian-made engine will render each page as a high-quality static image. The process typically takes 2-5 seconds per page depending on complexity.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Verify Results</strong>: Once flattened, preview the output to ensure all content appears correctly. Check that charts, tables, and images maintain their clarity.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Download & Share</strong>: Download your flattened PDF. It will look exactly the same, but the text will be unselectable and uneditable—perfect for protecting sensitive information.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Keep Your Original</strong>: Always save a copy of your original editable PDF before flattening, as the process cannot be reversed.
                             </li>
                         </ol>
                     </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Real-World Applications for Flattening PDFs",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Government Form Submissions</strong>: When submitting filled forms to Service Canada, CRA, or IRCC, flattening ensures your entered data cannot be altered by intermediaries or during transmission.</p>
+                        <p><strong>Legal Contracts and Agreements</strong>: Before sending final contracts to clients or partners, flatten them to prevent unauthorized modifications to terms, dates, or signatures.</p>
+                        <p><strong>Financial Reports and Invoices</strong>: Protect invoice amounts, payment terms, and financial data from tampering by converting editable fields into permanent images.</p>
+                        <p><strong>Academic Transcripts and Certificates</strong>: Universities and colleges can flatten official transcripts to prevent grade alterations or forgery attempts.</p>
+                        <p><strong>Architectural Drawings and Plans</strong>: Flatten technical drawings before sharing with contractors to prevent unauthorized modifications to measurements or specifications.</p>
+                        <p><strong>Medical Records and Prescriptions</strong>: Healthcare providers can flatten patient records to maintain data integrity and prevent unauthorized alterations to medical histories.</p>
+                        <p><strong>Employment Offer Letters</strong>: HR departments can flatten offer letters to ensure salary figures and job titles cannot be modified after sending.</p>
+                    </div>
                 )
             },
             {
@@ -58,17 +85,85 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Standard PDF "owner passwords" are easy to bypass with online password removers. However, <strong>rasterization</strong> (flattening to image) is irreversible. Once a page is an image, the underlying text data is gone.
+                            Standard PDF "owner passwords" are easy to bypass with online password removers and third-party tools. However, <strong>rasterization</strong> (flattening to image) is irreversible. Once a page is an image, the underlying text data is gone permanently.
                         </p>
                         <p className="mb-4">
                             This is the most reliable way to ensure:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                            <li>Your layout stays exactly the same on every device.</li>
-                            <li>Nobody can copy-paste your text easily.</li>
-                            <li>Sensitive metadata is stripped out.</li>
+                            <li>Your layout stays exactly the same on every device and PDF reader.</li>
+                            <li>Nobody can copy-paste your text easily using standard selection tools.</li>
+                            <li>Sensitive metadata (author names, edit history, document properties) is stripped out.</li>
+                            <li>Form fields become static images that cannot be re-edited or cleared.</li>
+                            <li>Digital signatures and stamps are permanently embedded into the page.</li>
                         </ul>
                     </>
+                )
+            },
+            {
+                id: "tips",
+                title: "Best Practices for Flattening PDFs",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
+                            <h3 className="font-bold text-blue-800 mb-2">Always Keep Originals</h3>
+                            <p className="text-sm text-blue-700">Never delete your source file. Flattening is permanent—you won't be able to edit text or correct typos later, so maintain an editable backup.</p>
+                        </div>
+                        <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
+                            <h3 className="font-bold text-green-800 mb-2">Check Before Flattening</h3>
+                            <p className="text-sm text-green-700">Proofread carefully before processing. Once flattened, correcting even simple spelling errors requires starting over with the original file.</p>
+                        </div>
+                        <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
+                            <h3 className="font-bold text-purple-800 mb-2">Quality for Print vs Screen</h3>
+                            <p className="text-sm text-purple-700">Use high-resolution settings if the document will be printed. Screen-only PDFs can use standard quality to reduce file size.</p>
+                        </div>
+                        <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
+                            <h3 className="font-bold text-orange-800 mb-2">Combine with Compression</h3>
+                            <p className="text-sm text-orange-700">Flattened PDFs can be large. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">Compress tool</button> afterwards to reduce file size for email.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Professional Document Security Tips",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Verify Completeness</strong>: Ensure all required signatures, dates, and fields are filled before flattening. Missing information cannot be added later.</li>
+                        <li><strong>Test Readability</strong>: After flattening, zoom to 200% and verify that small text remains crisp and readable, especially in contracts or legal documents.</li>
+                        <li><strong>Remove Sensitive Layers</strong>: If your PDF has hidden layers or comments, use our <button onClick={() => onNavigate('TOOL_PAGE', '/flatten-pdf')} className="text-canada-red hover:underline">redaction tools</button> before flattening to prevent information leakage.</li>
+                        <li><strong>Consistent File Naming</strong>: Name flattened files clearly (e.g., "Contract_FINAL_NonEditable.pdf") to distinguish them from working copies.</li>
+                        <li><strong>Archive Strategy</strong>: Store both editable and flattened versions in separate folders. Use the editable version for updates and the flat version for distribution.</li>
+                        <li><strong>Accessibility Considerations</strong>: Remember that flattened PDFs lose text-to-speech capabilities. Keep an accessible version for users who need screen readers.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Common Issues and Solutions",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Text looks blurry after flattening</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Increase the resolution quality setting to 3.0x or higher. Lower quality settings may make small fonts appear fuzzy when viewed at high zoom levels.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: File size increased dramatically</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Flattening creates image layers which can be larger than text. Use our <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">Compress tool</button> with medium quality to reduce size by 40-60%.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Colors look different after flattening</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: This can happen with specific color profiles. Ensure your original PDF uses standard RGB or CMYK color spaces for consistent rendering.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Processing is taking a long time</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Large documents (50+ pages) or complex graphics may take several minutes. Close other browser tabs to free up memory. Consider flattening in smaller batches if urgent.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Can't search text in flattened PDF</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: This is expected—flattening removes searchable text. If you need searchability, consider password protection instead. Or use OCR after flattening to restore search capability.</p>
+                        </div>
+                    </div>
                 )
             }
         ],
@@ -76,15 +171,35 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
         faq: [
             {
                 q: "Will my PDF still look high quality?",
-                a: "Yes! We use a high-resolution rendering engine (2.0x scale) to ensure that your flat PDF looks crisp and professional when printed or viewed on a screen."
+                a: "Yes! We use a high-resolution rendering engine (2.0x scale by default, adjustable up to 4.0x) to ensure that your flattened PDF looks crisp and professional when printed or viewed on a screen. Text, charts, and images maintain their clarity. For documents that will be printed at large sizes or professional quality, consider using the highest quality setting."
             },
             {
                 q: "Is this tool free?",
-                a: "Absolutely, eh! Like all tools on pdfcanada.ca, this is 100% free with no limits."
+                a: "Absolutely, eh! Like all tools on pdfcanada.ca, this is 100% free with no limits, no watermarks, and no signup required. You can flatten unlimited PDFs of any size, and all processing happens locally on your device for maximum privacy."
             },
             {
                 q: "Can I undo the flattening?",
-                a: "No. Because the tool converts text to pixels, you cannot 'un-flatten' it later. Always keep a copy of your original editable file just in case."
+                a: "No. Because the tool converts text to pixels, you cannot 'un-flatten' it later. Flattening is a one-way, irreversible process. Always keep a copy of your original editable file before flattening. We recommend creating a backup folder with both the original and flattened versions clearly labeled."
+            },
+            {
+                q: "How large of a file can I flatten?",
+                a: "There's no artificial file size limit since all processing happens on your device. The practical limit depends on your computer's available memory (RAM). Most modern computers can handle PDFs up to 100-200MB easily. Very large documents may take longer to process or require closing other applications to free up memory."
+            },
+            {
+                q: "Can I flatten password-protected PDFs?",
+                a: "You'll need to remove the password first before flattening. If you own the PDF and know the password, use our Unlock PDF tool first, then flatten the unprotected version. This ensures you can open and process the document properly."
+            },
+            {
+                q: "Is my data safe when using this tool?",
+                a: "Yes—absolutely! Unlike cloud-based PDF services, our flattening tool processes everything locally in your browser using WebAssembly technology. Your sensitive documents never leave your device, are never uploaded to our servers, and are never stored anywhere. When you close your browser tab, all traces of your PDF are gone. This is the safest way to protect confidential Canadian government forms, legal contracts, or financial documents."
+            },
+            {
+                q: "Does flattening work on mobile devices?",
+                a: "Yes! Our tool works on modern mobile browsers including Safari (iOS), Chrome, and Firefox on Android. However, processing speed depends on your device's capabilities. Smartphones may take longer for large documents compared to desktop computers due to limited processing power and memory."
+            },
+            {
+                q: "What's the difference between flattening and password protection?",
+                a: "Password protection locks the file but the underlying text remains selectable and can be unlocked with password-removal tools available online. Flattening converts content to images, making it permanently non-editable and non-selectable—much more secure. For maximum security, you can flatten a PDF and then add password protection as well."
             }
         ],
 
@@ -121,16 +236,43 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Sélectionnez Votre Fichier</strong> : Glissez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">outil PDF Non-Modifiable</button>.
+                                <strong>Sélectionnez Votre Fichier</strong> : Glissez votre PDF dans notre <button onClick={() => onNavigate('TOOL_PAGE', '/make-pdf-non-editable')} className="text-canada-red hover:underline font-medium">outil PDF Non-Modifiable</button>. Vous pouvez sélectionner des fichiers directement depuis votre ordinateur, stockage cloud, ou même numériser des documents depuis votre téléphone.
                             </li>
                             <li className="pl-2">
-                                <strong>Traitement Automatique</strong> : Notre moteur canadien rendra chaque page en une image statique de haute qualité.
+                                <strong>Prévisualisez Votre Document</strong> : Avant le traitement, vous verrez un aperçu de votre PDF pour confirmer qu'il s'agit du bon fichier. Cela évite d'aplatir accidentellement le mauvais document.
                             </li>
                             <li className="pl-2">
-                                <strong>Téléchargez et Partagez</strong> : Une fois terminé, téléchargez votre PDF aplati. Il aura exactement la même apparence, mais le texte sera insélectionnable et non-modifiable.
+                                <strong>Choisissez les Paramètres de Qualité</strong> : Notre outil utilise par défaut un rendu haute qualité 2.0x, garantissant un texte net et des images claires même lors de l'impression ou du zoom.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Traitement Automatique</strong> : Notre moteur canadien rendra chaque page en une image statique de haute qualité. Le processus prend généralement 2-5 secondes par page selon la complexité.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Vérifiez les Résultats</strong> : Une fois aplati, prévisualisez la sortie pour vous assurer que tout le contenu apparaît correctement. Vérifiez que les graphiques, tableaux et images conservent leur clarté.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Téléchargez et Partagez</strong> : Téléchargez votre PDF aplati. Il aura exactement la même apparence, mais le texte sera insélectionnable et non-modifiable—parfait pour protéger les informations sensibles.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Conservez Votre Original</strong> : Sauvegardez toujours une copie de votre PDF original modifiable avant l'aplatissement, car le processus ne peut pas être inversé.
                             </li>
                         </ol>
                     </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Applications Réelles pour l'Aplatissement de PDF",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Soumissions de Formulaires Gouvernementaux</strong> : Lors de la soumission de formulaires remplis à Service Canada, l'ARC ou IRCC, l'aplatissement garantit que vos données saisies ne peuvent pas être modifiées par des intermédiaires ou pendant la transmission.</p>
+                        <p><strong>Contrats et Accords Juridiques</strong> : Avant d'envoyer des contrats finaux à des clients ou partenaires, aplatissez-les pour empêcher les modifications non autorisées des termes, dates ou signatures.</p>
+                        <p><strong>Rapports Financiers et Factures</strong> : Protégez les montants de factures, les conditions de paiement et les données financières contre la falsification en convertissant les champs modifiables en images permanentes.</p>
+                        <p><strong>Relevés Académiques et Certificats</strong> : Les universités et collèges peuvent aplatir les relevés officiels pour empêcher les modifications de notes ou les tentatives de falsification.</p>
+                        <p><strong>Plans et Dessins Architecturaux</strong> : Aplatissez les dessins techniques avant de les partager avec les entrepreneurs pour empêcher les modifications non autorisées des mesures ou spécifications.</p>
+                        <p><strong>Dossiers Médicaux et Ordonnances</strong> : Les prestataires de soins de santé peuvent aplatir les dossiers des patients pour maintenir l'intégrité des données et empêcher les modifications non autorisées des historiques médicaux.</p>
+                        <p><strong>Lettres d'Offre d'Emploi</strong> : Les départements RH peuvent aplatir les lettres d'offre pour garantir que les chiffres de salaire et les titres de poste ne peuvent pas être modifiés après l'envoi.</p>
+                    </div>
                 )
             },
             {
@@ -139,17 +281,85 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Les « mots de passe propriétaire » PDF standard sont faciles à contourner avec des outils de suppression de mots de passe en ligne. Cependant, la <strong>rastérisation</strong> (aplatissement en image) est irréversible. Une fois qu'une page est une image, les données textuelles sous-jacentes ont disparu.
+                            Les « mots de passe propriétaire » PDF standard sont faciles à contourner avec des outils de suppression de mots de passe en ligne et des outils tiers. Cependant, la <strong>rastérisation</strong> (aplatissement en image) est irréversible. Une fois qu'une page est une image, les données textuelles sous-jacentes ont disparu définitivement.
                         </p>
                         <p className="mb-4">
                             C'est le moyen le plus fiable pour garantir :
                         </p>
                         <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                            <li>Votre mise en page reste exactement la même sur tous les appareils.</li>
-                            <li>Personne ne peut facilement copier-coller votre texte.</li>
-                            <li>Les métadonnées sensibles sont supprimées.</li>
+                            <li>Votre mise en page reste exactement la même sur tous les appareils et lecteurs PDF.</li>
+                            <li>Personne ne peut facilement copier-coller votre texte à l'aide d'outils de sélection standard.</li>
+                            <li>Les métadonnées sensibles (noms d'auteurs, historique d'édition, propriétés du document) sont supprimées.</li>
+                            <li>Les champs de formulaire deviennent des images statiques qui ne peuvent pas être réédités ou effacés.</li>
+                            <li>Les signatures numériques et tampons sont définitivement intégrés dans la page.</li>
                         </ul>
                     </>
+                )
+            },
+            {
+                id: "tips",
+                title: "Meilleures Pratiques pour l'Aplatissement de PDF",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
+                            <h3 className="font-bold text-blue-800 mb-2">Conservez Toujours les Originaux</h3>
+                            <p className="text-sm text-blue-700">Ne supprimez jamais votre fichier source. L'aplatissement est permanent—vous ne pourrez pas éditer le texte ou corriger les fautes plus tard, donc maintenez une sauvegarde modifiable.</p>
+                        </div>
+                        <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
+                            <h3 className="font-bold text-green-800 mb-2">Vérifiez Avant d'Aplatir</h3>
+                            <p className="text-sm text-green-700">Relisez attentivement avant le traitement. Une fois aplati, corriger même de simples fautes d'orthographe nécessite de recommencer avec le fichier original.</p>
+                        </div>
+                        <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
+                            <h3 className="font-bold text-purple-800 mb-2">Qualité pour Impression vs Écran</h3>
+                            <p className="text-sm text-purple-700">Utilisez des paramètres haute résolution si le document sera imprimé. Les PDF uniquement pour écran peuvent utiliser une qualité standard pour réduire la taille du fichier.</p>
+                        </div>
+                        <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
+                            <h3 className="font-bold text-orange-800 mb-2">Combinez avec la Compression</h3>
+                            <p className="text-sm text-orange-700">Les PDF aplatis peuvent être volumineux. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="underline">outil de compression</button> ensuite pour réduire la taille pour l'envoi par courriel.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Conseils Professionnels de Sécurité des Documents",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Vérifiez l'Exhaustivité</strong> : Assurez-vous que toutes les signatures, dates et champs requis sont remplis avant l'aplatissement. Les informations manquantes ne peuvent pas être ajoutées plus tard.</li>
+                        <li><strong>Testez la Lisibilité</strong> : Après l'aplatissement, zoomez à 200% et vérifiez que le petit texte reste net et lisible, en particulier dans les contrats ou documents juridiques.</li>
+                        <li><strong>Supprimez les Calques Sensibles</strong> : Si votre PDF a des calques cachés ou des commentaires, utilisez nos <button onClick={() => onNavigate('TOOL_PAGE', '/flatten-pdf')} className="text-canada-red hover:underline">outils de caviardage</button> avant l'aplatissement pour empêcher les fuites d'informations.</li>
+                        <li><strong>Nommage de Fichier Cohérent</strong> : Nommez clairement les fichiers aplatis (par ex., "Contrat_FINAL_NonModifiable.pdf") pour les distinguer des copies de travail.</li>
+                        <li><strong>Stratégie d'Archivage</strong> : Stockez les versions modifiables et aplaties dans des dossiers séparés. Utilisez la version modifiable pour les mises à jour et la version plate pour la distribution.</li>
+                        <li><strong>Considérations d'Accessibilité</strong> : Rappelez-vous que les PDF aplatis perdent les capacités de synthèse vocale. Conservez une version accessible pour les utilisateurs qui ont besoin de lecteurs d'écran.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problèmes Courants et Solutions",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le texte semble flou après l'aplatissement</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Augmentez le paramètre de qualité de résolution à 3.0x ou plus. Les paramètres de qualité inférieure peuvent rendre les petites polices floues lors d'un zoom élevé.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : La taille du fichier a augmenté considérablement</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : L'aplatissement crée des calques d'image qui peuvent être plus volumineux que le texte. Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/compress-pdf')} className="text-canada-red hover:underline font-semibold">outil de compression</button> avec une qualité moyenne pour réduire la taille de 40-60%.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Les couleurs semblent différentes après l'aplatissement</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Cela peut se produire avec des profils de couleur spécifiques. Assurez-vous que votre PDF original utilise des espaces colorimétriques RVB ou CMJN standard pour un rendu cohérent.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le traitement prend beaucoup de temps</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les documents volumineux (50+ pages) ou les graphiques complexes peuvent prendre plusieurs minutes. Fermez d'autres onglets du navigateur pour libérer de la mémoire. Envisagez l'aplatissement par lots plus petits si urgent.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Impossible de rechercher du texte dans le PDF aplati</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : C'est normal—l'aplatissement supprime le texte recherchable. Si vous avez besoin de la recherche, envisagez la protection par mot de passe à la place. Ou utilisez l'OCR après l'aplatissement pour restaurer la capacité de recherche.</p>
+                        </div>
+                    </div>
                 )
             }
         ],
