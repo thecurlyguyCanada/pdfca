@@ -5,7 +5,8 @@ import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusines
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
-export const runtime = 'edge';
+// Static generation with ISR
+export const revalidate = 3600;
 
 // Pre-generate for both locales
 export function generateStaticParams() {
