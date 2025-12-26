@@ -6,16 +6,16 @@ import { Menu, X } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
 import { MapleLeaf } from './MapleLeaf';
+import { usePathname } from 'next/navigation';
 
 interface HeaderProps {
   lang: Language;
-  setLang?: (lang: Language) => void;
-  onNavigate?: (view: any) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ lang }) => {
   const t = translations[lang];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -29,17 +29,21 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
     };
   }, [mobileMenuOpen]);
 
-  const handleNavigate = (view: string) => {
-    if (onNavigate) {
-      triggerHaptic('light');
-      onNavigate(view);
+  // Strip current locale from pathname to generate the link to the other language
+  const getLanguageSwitchPath = (targetLang: string) => {
+    if (!pathname) return `/${targetLang}`;
+    const segments = pathname.split('/');
+    // Check if the first segment is a locale
+    if (segments[1] === 'en' || segments[1] === 'fr') {
+      segments[1] = targetLang;
+    } else {
+      segments.splice(1, 0, targetLang);
     }
-    setMobileMenuOpen(false);
+    return segments.join('/');
   };
 
   return (
     <>
-      {/* Skip to main content - Accessibility */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-canada-red focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
@@ -51,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
         style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
       >
         <Link
-          href="/"
+          href={`/${lang}`}
           className="flex items-center gap-3 cursor-pointer group transition-transform active:scale-95"
           aria-label="pdfcanada.ca Home"
         >
@@ -64,61 +68,43 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
           </span>
         </Link>
 
-        {/* Desktop Nav - High End */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex gap-1 items-center bg-gray-100 p-1 rounded-full border border-gray-200/50">
-          <Link href="/" className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href="/about" className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'About' : 'À Propos'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href="/howto" className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/howto`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {t.navHowTo}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href="/support" className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/support`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {t.navSupport}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* Language Toggle - Premium Glass Pill */}
-          {setLang ? (
-            <button
-              onClick={() => {
-                triggerHaptic('light');
-                setLang(lang === 'en' ? 'fr' : 'en');
-              }}
-              className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
-              aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
-            >
-              <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>EN</span>
-              <div className="w-px h-3 bg-gray-300 group-hover/lang:h-4 transition-all" />
-              <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>FR</span>
-            </button>
-          ) : (
-            <Link
-              href={`/?lang=${lang === 'en' ? 'fr' : 'en'}`}
-              className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
-              aria-label={lang === 'en' ? "Changer la langue en français" : "Switch language to English"}
-            >
-              <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>EN</span>
-              <div className="w-px h-3 bg-gray-300 group-hover/lang:h-4 transition-all" />
-              <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-600'} transition-colors`}>FR</span>
-            </Link>
-          )}
+          <Link
+            href={getLanguageSwitchPath(lang === 'en' ? 'fr' : 'en')}
+            onClick={() => triggerHaptic('light')}
+            className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
+          >
+            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'}`}>EN</span>
+            <div className="w-px h-3 bg-gray-300" />
+            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-600'}`}>FR</span>
+          </Link>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => {
               triggerHaptic('light');
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="md:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass transition-[background-color,transform] duration-150 active:scale-95"
-            aria-label="Toggle menu"
+            className="md:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass active:scale-95"
           >
             {mobileMenuOpen ? <X size={20} className="text-canada-red" /> : <Menu size={20} className="text-gray-900" />}
           </button>
@@ -128,14 +114,10 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <>
-          {/* Backdrop */}
           <div
             className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fade-in"
             onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
           />
-
-          {/* Menu Panel */}
           <div
             className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
             style={{
@@ -145,29 +127,29 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onNavigate }) => 
           >
             <nav className="flex flex-col p-6 gap-2">
               <Link
-                href="/"
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+                href={`/${lang}`}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
               </Link>
               <Link
-                href="/about"
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+                href={`/${lang}/about`}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {lang === 'en' ? 'About Us' : 'À Propos'}
               </Link>
               <Link
-                href="/howto"
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+                href={`/${lang}/howto`}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t.navHowTo}
               </Link>
               <Link
-                href="/support"
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 active:bg-red-50 active:text-canada-red transition-all min-h-[60px] flex items-center border border-transparent hover:border-gray-200"
+                href={`/${lang}/support`}
+                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t.navSupport}

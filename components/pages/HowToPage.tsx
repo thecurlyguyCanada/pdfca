@@ -26,11 +26,18 @@ export const HowToPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 steps={steps}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'How To', path: '/howto' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Comment Utiliser' : 'How To', path: `/${lang}/howto` }
                 ]}
             />
-            <PageLayout title={t.howtoTitle} icon={<HelpCircle size={32} />}>
+            <PageLayout
+                title={t.howtoTitle}
+                icon={<HelpCircle size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Guide' : 'How To', href: '#' }
+                ]}
+            >
                 <div className="grid gap-6">
                     {[t.howtoStep1, t.howtoStep2, t.howtoStep3, t.howtoStep4].map((step, i) => (
                         <div key={i} className="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600">

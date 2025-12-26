@@ -1,0 +1,106 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Script from 'next/script';
+import { ToolPageClient } from '@/components/pages/ToolPageClient';
+import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
+import { generateSoftwareApplicationSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
+import { Language } from '@/utils/i18n';
+import { Locale, i18n } from '@/lib/i18n-config';
+
+// Static generation with ISR - revalidate every hour
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    const slugs = getAllToolSlugs();
+    const params: { lang: Locale; tool: string }[] = [];
+
+    i18n.locales.forEach(lang => {
+        slugs.forEach(tool => {
+            params.push({ lang, tool });
+        });
+    });
+
+    return params;
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: Locale; tool: string }>;
+}): Promise<Metadata> {
+    const { lang, tool } = await params;
+    const config = getToolConfig(tool);
+
+    if (!config) {
+        return {
+            title: 'Tool Not Found',
+        };
+    }
+
+    const baseUrl = 'https://www.pdfcanada.ca';
+    const path = `/${tool}`;
+
+    return {
+        title: config.title,
+        description: config.description,
+        keywords: config.keywords,
+        alternates: {
+            canonical: `${baseUrl}/${lang}${path}`,
+            languages: {
+                'en-CA': `${baseUrl}/en${path}`,
+                'fr-CA': `${baseUrl}/fr${path}`,
+                'x-default': `${baseUrl}/en${path}`,
+            },
+        },
+        openGraph: {
+            title: `${config.title} | pdfcanada.ca`,
+            description: config.description,
+            url: `${baseUrl}/${lang}${path}`,
+            type: 'website',
+            locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${config.title} | pdfcanada.ca`,
+            description: config.description,
+        },
+    };
+}
+
+export default async function ToolPage({
+    params,
+}: {
+    params: Promise<{ lang: Locale; tool: string }>;
+}) {
+    const { lang, tool } = await params;
+    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const config = getToolConfig(tool);
+
+    if (!config) {
+        notFound();
+    }
+
+    // Generate structured data
+    const softwareSchema = generateSoftwareApplicationSchema(config);
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.pdfcanada.ca/${lang}` },
+        { name: config.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
+    ]);
+
+    // Server Component - renders static shell
+    return (
+        <>
+            <Script
+                id={`schema-software-${config.slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+            />
+            <Script
+                id={`schema-breadcrumb-${config.slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <ToolPageClient toolConfig={config} lang={currentLang} />
+        </>
+    );
+}

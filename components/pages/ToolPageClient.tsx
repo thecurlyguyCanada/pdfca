@@ -16,8 +16,7 @@ interface ToolPageClientProps {
   lang: Language;
 }
 
-export function ToolPageClient({ toolConfig, lang: initialLang }: ToolPageClientProps) {
-  const [lang, setLang] = useState<Language>(initialLang);
+export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [appState, setAppState] = useState<AppState>(AppState.SELECTING);
   const [file, setFile] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]);
@@ -141,22 +140,17 @@ export function ToolPageClient({ toolConfig, lang: initialLang }: ToolPageClient
     // TODO: Implement range parsing logic
   };
 
-  const handleNavigate = () => {
-    // Navigation handled by Next.js routing
-  };
-
   return (
     <>
       <div className="mesh-bg" />
       <div className="min-h-screen flex flex-col">
-        <Header lang={lang} setLang={setLang} onNavigate={handleNavigate} />
+        <Header lang={lang} />
 
         <Breadcrumb
           lang={lang}
           items={[
             { name: toolConfig.title }
           ]}
-          onNavigate={handleNavigate}
         />
 
         <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -193,10 +187,10 @@ export function ToolPageClient({ toolConfig, lang: initialLang }: ToolPageClient
             setCompressionLevel={setCompressionLevel}
           />
 
-          <RelatedTools lang={lang} onNavigate={handleNavigate} currentPath={`/${toolConfig.slug}`} />
+          <RelatedTools lang={lang} currentPath={`/${toolConfig.slug}`} />
         </main>
 
-        <Footer lang={lang} onNavigate={handleNavigate} />
+        <Footer lang={lang} />
       </div>
 
       <input

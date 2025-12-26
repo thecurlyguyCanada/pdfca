@@ -37,15 +37,9 @@ const FooterSection = ({ title, children }: { title: string, children: React.Rea
    );
 };
 
-const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
+const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
    const t = translations[lang];
    const year = useMemo(() => new Date().getFullYear(), []);
-
-   const handleNavigate = (view: any, path: string) => {
-      if (onNavigate) {
-         onNavigate(view, path);
-      }
-   };
 
    return (
       <footer className="mt-20 bg-modern-neutral-900 text-white selection:bg-red-500/30 selection:text-white relative overflow-hidden">
@@ -59,7 +53,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                {/* Column 1: Brand & Purpose */}
                <div className="space-y-6 lg:col-span-2 pr-0 md:pr-12">
                   <div className="space-y-4">
-                     <Link href="/" className="inline-block group" onClick={() => handleNavigate('HOME', '/')}>
+                     <Link href={`/${lang}`} className="inline-block group">
                         <div className="flex items-center gap-3">
                            <div className="w-10 h-10 bg-canada-red rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform">
                               <MapleLeaf className="w-6 h-6 text-white" />
@@ -82,12 +76,12 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerEditGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href="/delete-pdf-pages" className="hover:text-white transition-colors">{t.toolDelete}</Link></li>
-                        <li><Link href="/rotate-pdf" className="hover:text-white transition-colors">{t.toolRotate}</Link></li>
-                        <li><Link href="/compress-pdf" className="hover:text-white transition-colors">{t.toolCompress}</Link></li>
-                        <li><Link href="/merge-pdf" className="hover:text-white transition-colors">{t.toolMerge}</Link></li>
-                        <li><Link href="/split-pdf" className="hover:text-white transition-colors">{t.toolSplit}</Link></li>
-                        <li><Link href="/make-pdf-fillable" className="hover:text-white transition-colors">{t.toolMakeFillable}</Link></li>
+                        <li><Link href={`/${lang}/delete-pdf-pages`} className="hover:text-white transition-colors">{t.toolDelete}</Link></li>
+                        <li><Link href={`/${lang}/rotate-pdf`} className="hover:text-white transition-colors">{t.toolRotate}</Link></li>
+                        <li><Link href={`/${lang}/compress-pdf`} className="hover:text-white transition-colors">{t.toolCompress}</Link></li>
+                        <li><Link href={`/${lang}/merge-pdf`} className="hover:text-white transition-colors">{t.toolMerge}</Link></li>
+                        <li><Link href={`/${lang}/split-pdf`} className="hover:text-white transition-colors">{t.toolSplit}</Link></li>
+                        <li><Link href={`/${lang}/make-pdf-fillable`} className="hover:text-white transition-colors">{t.toolMakeFillable}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -96,11 +90,11 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerConvertGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href="/sign-pdf" className="hover:text-white transition-colors">{t.toolSign}</Link></li>
-                        <li><Link href="/word-to-pdf" className="hover:text-white transition-colors">{t.toolWordToPdf}</Link></li>
-                        <li><Link href="/pdf-to-word" className="hover:text-white transition-colors">{t.toolPdfToWord}</Link></li>
-                        <li><Link href="/heic-to-pdf" className="hover:text-white transition-colors">{t.toolHeic}</Link></li>
-                        <li><Link href="/pdf-to-epub" className="hover:text-white transition-colors">{t.toolPdfToEpub}</Link></li>
+                        <li><Link href={`/${lang}/sign-pdf`} className="hover:text-white transition-colors">{t.toolSign}</Link></li>
+                        <li><Link href={`/${lang}/word-to-pdf`} className="hover:text-white transition-colors">{t.toolWordToPdf}</Link></li>
+                        <li><Link href={`/${lang}/pdf-to-word`} className="hover:text-white transition-colors">{t.toolPdfToWord}</Link></li>
+                        <li><Link href={`/${lang}/heic-to-pdf`} className="hover:text-white transition-colors">{t.toolHeic}</Link></li>
+                        <li><Link href={`/${lang}/pdf-to-epub`} className="hover:text-white transition-colors">{t.toolPdfToEpub}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -109,11 +103,11 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={lang === 'fr' ? 'Ressources' : 'Resources'}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href="/guides/ultimate-pdf-guide" className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</Link></li>
-                        <li><Link href="/about" className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : 'About Us'}</Link></li>
-                        <li><Link href="/howto" className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
-                        <li><Link href="/support" className="hover:text-white transition-colors">{t.navSupport}</Link></li>
-                        <li><Link href="/privacy" className="hover:text-white transition-colors">{t.privacy}</Link></li>
+                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</Link></li>
+                        <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : 'About Us'}</Link></li>
+                        <li><Link href={`/${lang}/howto`} className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
+                        <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
+                        <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -137,9 +131,9 @@ const FooterComponent: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                </div>
 
                <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-400">
-                  <Link href="/terms" className="hover:text-white transition-colors">{t.termsService}</Link>
+                  <Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link>
                   <div className="w-1 h-1 bg-white/20 rounded-full" />
-                  <Link href="/privacy" className="hover:text-white transition-colors">{t.privacy}</Link>
+                  <Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link>
                   <div className="w-1 h-1 bg-white/20 rounded-full" />
                   <span className="flex items-center gap-2 group">
                      {t.footerMade} <MapleLeaf className="w-3.5 h-3.5 text-canada-red group-hover:animate-pulse" />

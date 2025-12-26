@@ -4,7 +4,6 @@ import { Language } from '../utils/i18n';
 
 interface AuthorBioProps {
     lang: Language;
-    onNavigate?: (view: any, path?: string) => void;
 }
 
 const getContent = () => ({
@@ -28,15 +27,9 @@ const getContent = () => ({
     }
 });
 
-export const AuthorBio: React.FC<AuthorBioProps> = ({ lang, onNavigate }) => {
+export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
     const content = getContent();
     const t = content[lang] || content.en;
-
-    const handleNavigate = () => {
-        if (onNavigate) {
-            onNavigate('ABOUT', '/about');
-        }
-    };
 
     return (
         <section className="mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
@@ -78,8 +71,7 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang, onNavigate }) => {
                             </div>
 
                             <Link
-                                href="/about"
-                                onClick={handleNavigate}
+                                href={`/${lang}/about`}
                                 className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-medium transition-colors group text-sm"
                             >
                                 {t.learnMore}
