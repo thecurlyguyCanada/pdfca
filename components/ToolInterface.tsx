@@ -436,7 +436,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                     </span>
                                 </div>
                             )}
-
                         </div>
 
                         {/* Global Utilities (Zoom) */}

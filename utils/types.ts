@@ -8,7 +8,6 @@ export enum ToolType {
     CBR_TO_PDF = 'CBR_TO_PDF',
     SIGN = 'SIGN',
     ORGANIZE = 'ORGANIZE',
-    OCR = 'OCR',
     PDF_TO_WORD = 'PDF_TO_WORD',
     WORD_TO_PDF = 'WORD_TO_PDF',
     PDF_PAGE_REMOVER = 'PDF_PAGE_REMOVER',
@@ -24,7 +23,6 @@ export enum AppState {
     PROCESSING,
     DONE,
     ERROR,
-    EDITING_OCR,
     EDITING_FORM
 }
 

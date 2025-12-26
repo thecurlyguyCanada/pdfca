@@ -735,7 +735,8 @@ function App() {
         setErrorKey('passwordErr');
       } else if (errMsg.includes('no images found') || errMsg.includes('could not process')) {
         setErrorKey('conversionErr');
-        if (currentTool === ToolType.CBR_TO_PDF || currentTool === ToolType.WORD_TO_PDF ||
+        if (currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.EPUB_TO_PDF ||
+          currentTool === ToolType.CBR_TO_PDF || currentTool === ToolType.WORD_TO_PDF ||
           currentTool === ToolType.PDF_TO_WORD) {
           setErrorKey('conversionErr');
         } else {

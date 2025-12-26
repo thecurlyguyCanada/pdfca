@@ -49,7 +49,6 @@ const getHeic2Any = async () => {
   return heic2any.default;
 };
 
-
 // Lazy load docx
 const getDocx = async () => {
   try {
@@ -734,7 +733,6 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
   addPdfMetadata(doc, 'CBR/CBZ to PDF Conversion');
   return await doc.save();
 };
-
 
 /**
  * Add SEO-friendly metadata to PDF documents
