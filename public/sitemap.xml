@@ -777,6 +777,20 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.pdfcanada.ca/extract-pdf-pages</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/extract-pdf-pages"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/extract-pdf-pages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/extract-pdf-pages"/>
+    <image:image>
+      <image:loc>https://www.pdfcanada.ca/og-image.png</image:loc>
+      <image:title>Extract PDF Pages - Free Online Tool</image:title>
+      <image:caption>Extract selected pages from PDF into a new document.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.pdfcanada.ca/pdf-to-xml</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -877,6 +891,15 @@
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/split-pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/split-pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/split-pdf"/>
+  </url>
+  <url>
+    <loc>https://www.pdfcanada.ca/fr/extract-pdf-pages</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.pdfcanada.ca/extract-pdf-pages"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.pdfcanada.ca/fr/extract-pdf-pages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pdfcanada.ca/extract-pdf-pages"/>
   </url>
   <url>
     <loc>https://www.pdfcanada.ca/fr/pdf-to-xml</loc>
