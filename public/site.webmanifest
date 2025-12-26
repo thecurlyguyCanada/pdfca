@@ -1,11 +1,17 @@
 {
   "name": "pdfcanada.ca - Free PDF Tools",
   "short_name": "PDF Canada",
-  "description": "Proudly Canadian. The polite PDF editor that processes files locally on your device.",
+  "description": "Proudly Canadian. The polite PDF editor that processes files locally on your device. PIPEDA compliant, serving all Canadian provinces.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8f9fa",
   "theme_color": "#dc2626",
+  "lang": "en-CA",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "scope": "/",
+  "orientation": "any",
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "icons": [
     {
       "src": "/favicon.svg",

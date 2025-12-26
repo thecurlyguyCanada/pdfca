@@ -61,6 +61,222 @@ const organizationSchema = {
   "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser."
 };
 
+// LocalBusiness schema - Enhanced for local SEO across Canada
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "@id": "https://www.pdfcanada.ca/#localbusiness",
+  "name": "PDF Canada - Free PDF Tools",
+  "alternateName": "pdfcanada.ca",
+  "url": "https://www.pdfcanada.ca",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png",
+    "width": 512,
+    "height": 512
+  },
+  "image": "https://www.pdfcanada.ca/og-image.png",
+  "description": "Canada's premier free PDF tools service. Privacy-first, browser-based PDF processing for all Canadians. Merge, split, compress, convert, and sign PDFs - all locally in your browser.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "",
+    "addressLocality": "Toronto",
+    "addressRegion": "ON",
+    "postalCode": "",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "43.6532",
+    "longitude": "-79.3832"
+  },
+  "telephone": "",
+  "email": "",
+  "priceRange": "FREE",
+  "currenciesAccepted": "CAD",
+  "paymentAccepted": "Not Applicable - Free Service",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "sameAs": [
+    "https://twitter.com/pdfcanada"
+  ],
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Canada",
+      "geo": {
+        "@type": "GeoShape",
+        "addressCountry": "CA"
+      }
+    },
+    // All 10 Canadian Provinces
+    {
+      "@type": "State",
+      "name": "Ontario",
+      "alternateName": "ON"
+    },
+    {
+      "@type": "State",
+      "name": "Quebec",
+      "alternateName": "QC"
+    },
+    {
+      "@type": "State",
+      "name": "British Columbia",
+      "alternateName": "BC"
+    },
+    {
+      "@type": "State",
+      "name": "Alberta",
+      "alternateName": "AB"
+    },
+    {
+      "@type": "State",
+      "name": "Manitoba",
+      "alternateName": "MB"
+    },
+    {
+      "@type": "State",
+      "name": "Saskatchewan",
+      "alternateName": "SK"
+    },
+    {
+      "@type": "State",
+      "name": "Nova Scotia",
+      "alternateName": "NS"
+    },
+    {
+      "@type": "State",
+      "name": "New Brunswick",
+      "alternateName": "NB"
+    },
+    {
+      "@type": "State",
+      "name": "Newfoundland and Labrador",
+      "alternateName": "NL"
+    },
+    {
+      "@type": "State",
+      "name": "Prince Edward Island",
+      "alternateName": "PE"
+    },
+    // All 3 Canadian Territories
+    {
+      "@type": "State",
+      "name": "Northwest Territories",
+      "alternateName": "NT"
+    },
+    {
+      "@type": "State",
+      "name": "Yukon",
+      "alternateName": "YT"
+    },
+    {
+      "@type": "State",
+      "name": "Nunavut",
+      "alternateName": "NU"
+    }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "56.1304",
+      "longitude": "-106.3468"
+    },
+    "geoRadius": "5000000"
+  },
+  "knowsAbout": [
+    "PDF Tools",
+    "Document Processing",
+    "Privacy-First Software",
+    "Browser-Based Applications",
+    "Canadian Web Services"
+  ],
+  "knowsLanguage": ["en-CA", "fr-CA"],
+  "slogan": "The Polite Canadian PDF Tools",
+  "foundingDate": "2024",
+  "foundingLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toronto",
+      "addressRegion": "Ontario",
+      "addressCountry": "CA"
+    }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "PDF Tools Services",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Document Manipulation",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Merge PDF",
+              "description": "Combine multiple PDF files into one"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Split PDF",
+              "description": "Split PDF into multiple files"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Compress PDF",
+              "description": "Reduce PDF file size"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Document Conversion",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "PDF to Word",
+              "description": "Convert PDF to Word document"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Word to PDF",
+              "description": "Convert Word to PDF"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Canadians",
+    "geographicArea": {
+      "@type": "Country",
+      "name": "Canada"
+    }
+  }
+};
+
 // WebSite schema (SearchAction removed - site doesn't have search functionality)
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -211,6 +427,7 @@ export const SEO: React.FC<SEOProps> = ({
     if (!noOrganization) {
       allSchemas.push(organizationSchema);
       allSchemas.push(websiteSchema);
+      allSchemas.push(localBusinessSchema);
     }
 
     // SiteNavigationElement Schema - Complete tool list with translations
