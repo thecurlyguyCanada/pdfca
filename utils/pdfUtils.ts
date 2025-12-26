@@ -400,7 +400,6 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
           y,
           width,
           height,
-          rotate: degrees(rotation),
         });
       } catch (e) {
         console.error("Failed to embed signature image", e);
@@ -416,7 +415,6 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
         size: fontSize,
         font: helveticaFont,
         color: rgb(0, 0, 0),
-        rotate: degrees(rotation),
       });
     }
   }
