@@ -5,7 +5,7 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, r
 import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { formatFileSize } from '../utils/pdfUtils';
-import { ToolType } from '../App';
+import { ToolType } from '../utils/types';
 import { SignPdfTool } from './SignPdfTool';
 import { CropPdfTool } from './CropPdfTool';
 import { signPdf, SignatureEntry, cropPdfPages } from '../utils/pdfUtils';
