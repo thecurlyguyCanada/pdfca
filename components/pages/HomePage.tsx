@@ -95,18 +95,18 @@ export function HomePage() {
               {[
                 {
                   icon: Zap,
-                  title: 'Lightning Fast',
-                  desc: 'Process files instantly in your browser',
+                  title: t.hpFastTitle || 'Lightning Fast',
+                  desc: t.hpFastDesc || 'Process files instantly in your browser',
                 },
                 {
                   icon: Heart,
-                  title: '100% Free',
-                  desc: 'No hidden costs, no subscriptions',
+                  title: t.hpFreeTitle || '100% Free',
+                  desc: t.hpFreeDesc || 'No hidden costs, no subscriptions',
                 },
                 {
                   icon: Users,
-                  title: 'Privacy First',
-                  desc: 'Your files never leave your device',
+                  title: t.hpPrivacyTitle || 'Privacy First',
+                  desc: t.hpPrivacyDesc || 'Your files never leave your device',
                 },
               ].map(({ icon: Icon, title, desc }, idx) => (
                 <div
@@ -124,7 +124,7 @@ export function HomePage() {
           </section>
         </main>
 
-        <Footer lang={lang} />
+        <Footer lang={lang} onNavigate={handleNavigate} />
       </div>
     </>
   );

@@ -152,8 +152,10 @@ export function ToolPageClient({ toolConfig }: ToolPageClientProps) {
 
         <Breadcrumb
           lang={lang}
-          currentView="TOOL_PAGE"
-          currentToolName={toolConfig.title}
+          items={[
+            { name: toolConfig.title }
+          ]}
+          onNavigate={handleNavigate}
         />
 
         <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -190,10 +192,10 @@ export function ToolPageClient({ toolConfig }: ToolPageClientProps) {
             setCompressionLevel={setCompressionLevel}
           />
 
-          <RelatedTools currentTool={toolConfig.tool} lang={lang} />
+          <RelatedTools lang={lang} onNavigate={handleNavigate} currentPath={`/${toolConfig.slug}`} />
         </main>
 
-        <Footer lang={lang} />
+        <Footer lang={lang} onNavigate={handleNavigate} />
       </div>
 
       <input
