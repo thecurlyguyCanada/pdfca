@@ -79,7 +79,8 @@ const nextConfig: NextConfig = {
   },
 
   // Output configuration
-  output: 'standalone',
+  // Remove standalone for Vercel default deployment
+  // output: 'standalone',
 
   // TypeScript
   typescript: {

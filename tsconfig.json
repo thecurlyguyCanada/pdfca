@@ -38,10 +38,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".next",
-    "vite.config.ts",
-    "vite-env.d.ts",
-    "App.tsx",
-    "src"
+    ".next"
   ]
 }
