@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen, CheckCircle, Shield, Zap, ArrowRight } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -16,8 +16,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
-            title: "Convertir EPUB en PDF | Guide Ebook 2026 | pdfcanada.ca",
-            desc: "Transformez vos ebooks en PDF pour une lecture facile. Notre guide 2026 vous montre comment convertir EPUB localement. Sécurisé, rapide et 100% privé."
+            title: `Convertir EPUB en PDF | Guide Ebook ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Transformez vos ebooks en PDF pour une lecture facile. Notre guide ${CURRENT_YEAR} vous montre comment convertir EPUB localement. Sécurisé, rapide et 100% privé."
         },
         h1: "Le Guide Ultime : Convertir un EPUB en PDF",
         subtitle: "Transformez vos livres numériques en documents universels, sécurisés et prêts pour l'impression.",
@@ -93,7 +93,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Convert EPUB to PDF | Free & Secure Ebook Guide | pdfcanada.ca",
-            desc: "Turn your ebooks into PDFs for easy reading and printing. Our 2026 guide shows you how to convert EPUB locally in your browser. Secure, fast, and 100% private."
+            desc: `Turn your ebooks into PDFs for easy reading and printing. Our ${CURRENT_YEAR} guide shows you how to convert EPUB locally in your browser. Secure, fast, and 100% private."
         },
         h1: "The Definitive Guide: Converting EPUB to PDF",
         subtitle: "Transform your digital library into a stable, printable, and universally accessible format.",

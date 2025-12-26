@@ -1,6 +1,6 @@
 import React from 'react';
 import { PenTool, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, FileText, CheckSquare, PencilLine } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Make a PDF Fillable | Free Interactive Form Guide | pdfcanada.ca",
-            desc: "Create professional fillable forms for free. Our 2026 guide shows you how to add text fields to any PDF securely without uploading to a server or signup."
+            desc: `Create professional fillable forms for free. Our ${CURRENT_YEAR} guide shows you how to add text fields to any PDF securely without uploading to a server or signup."
         },
         h1: "How to Make a PDF Fillable Online for Free",
         subtitle: "The definitive guide to transforming flat documents into interactive, professional PDF forms.",
@@ -102,8 +102,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Créer des PDF Remplissables | Guide Formulaire Interactif 2026 | pdfcanada.ca",
-            desc: "Créez des formulaires remplissables gratuitement. Notre guide 2026 vous montre comment ajouter des champs de texte en toute sécurité sans aucun téléchargement."
+            title: `Créer des PDF Remplissables | Guide Formulaire Interactif ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Créez des formulaires remplissables gratuitement. Notre guide ${CURRENT_YEAR} vous montre comment ajouter des champs de texte en toute sécurité sans aucun téléchargement."
         },
         h1: "Comment Rendre un PDF Remplissable en Ligne Gratuitement",
         subtitle: "Le guide définitif pour transformer vos documents statiques en formulaires PDF interactifs et professionnels.",

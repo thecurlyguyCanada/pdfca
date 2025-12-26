@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -16,8 +16,8 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Convert PDF to Word | Free & Editable 2026 Guide | pdfcanada.ca",
-            desc: "Learn how to make PDFs editable again. Our 2026 guide shows you how to convert PDF to Word securely and accurately using local-first tools. No signup needed."
+            title: `How to Convert PDF to Word | Free & Editable ${CURRENT_YEAR} Guide | pdfcanada.ca`,
+            desc: `Learn how to make PDFs editable again. Our ${CURRENT_YEAR} guide shows you how to convert PDF to Word securely and accurately using local-first tools. No signup needed.`
         },
         h1: "How to Convert PDF to Word: The Polite Guide",
         subtitle: "Turn those read-only PDFs into editable documents without any software installation or data privacy concerns.",
@@ -171,8 +171,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Convertir PDF en Word | Guide Modifiable 2026 | pdfcanada.ca",
-            desc: "Apprenez à rendre vos PDF modifiables. Notre guide 2026 vous montre comment convertir localement vos PDF en Word de manière précise et sécurisée sans inscription."
+            title: `Convertir PDF en Word | Guide Modifiable ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Apprenez à rendre vos PDF modifiables. Notre guide ${CURRENT_YEAR} vous montre comment convertir localement vos PDF en Word de manière précise et sécurisée sans inscription.`
         },
         h1: "Comment Convertir un PDF en Word : Le Guide Pratique",
         subtitle: "Transformez vos PDF en lecture seule en documents modifiables sans installation de logiciel ni compromis sur la confidentialité.",

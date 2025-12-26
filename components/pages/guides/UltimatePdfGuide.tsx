@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -15,10 +15,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "Ultimate 2026 Guide to PDF Tools | Master Your Documents | pdfcanada.ca",
-            desc: "Master PDF management with our definitive 2026 guide. Learn how to edit, merge, and convert PDFs securely using local-first tools. No uploads, 100% private."
+            title: `Ultimate ${CURRENT_YEAR} Guide to PDF Tools | Master Your Documents | pdfcanada.ca`,
+            desc: `Master PDF management with our definitive ${CURRENT_YEAR} guide. Learn how to edit, merge, and convert PDFs securely using local-first tools. No uploads, 100% private."
         },
-        h1: "The Ultimate Guide to Modern PDF Management (2026 Edition)",
+        h1: "The Ultimate Guide to Modern PDF Management (${CURRENT_YEAR} Edition)",
         subtitle: "A comprehensive deep-dive into editing, converting, and securing your PDF documents without expensive software.",
 
         sections: [
@@ -149,10 +149,10 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Guide Ultime 2026 des Outils PDF | Maîtrisez vos Documents | pdfcanada.ca",
-            desc: "Maîtrisez la gestion des PDF avec notre guide définitif 2026. Apprenez à éditer, fusionner et convertir vos PDF en toute sécurité sans jamais les télécharger."
+            title: `Guide Ultime ${CURRENT_YEAR} des Outils PDF | Maîtrisez vos Documents | pdfcanada.ca`,
+            desc: `Maîtrisez la gestion des PDF avec notre guide définitif ${CURRENT_YEAR}. Apprenez à éditer, fusionner et convertir vos PDF en toute sécurité sans jamais les télécharger."
         },
-        h1: "Le Guide Ultime de la Gestion Moderne des PDF (Édition 2026)",
+        h1: "Le Guide Ultime de la Gestion Moderne des PDF (Édition ${CURRENT_YEAR})",
         subtitle: "Un plongeon complet dans l'édition, la conversion et la sécurisation de vos documents PDF sans logiciel coûteux.",
 
         sections: [

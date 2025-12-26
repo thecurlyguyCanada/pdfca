@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileText, Shield, Zap, HelpCircle, Printer, Edit3, Trash2, ArrowRight } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -15,7 +15,7 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Edit XFA PDFs | Free 2026 Technical Guide | pdfcanada.ca",
+            title: `How to Edit XFA PDFs | Free ${CURRENT_YEAR} Technical Guide | pdfcanada.ca`,
             desc: "Unlock and edit XFA-based PDF forms securely. Our technical guide shows you how to manage dynamic forms locally on your device without uploading private data."
         },
         h1: "How to Edit an XFA PDF: The Adobe PDF Printer Guide",
@@ -149,7 +149,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Éditer un PDF XFA | Guide Technique 2026 | pdfcanada.ca",
+            title: `Comment Éditer un PDF XFA | Guide Technique ${CURRENT_YEAR} | pdfcanada.ca`,
             desc: "Déverrouillez et modifiez les formulaires PDF basés sur XFA en toute sécurité. Notre guide technique vous montre comment gérer les formulaires dynamiques localement."
         },
         h1: "Éditer un PDF XFA : Guide de l'imprimante Adobe PDF",
