@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useCallback } from 'react';
 import { Language } from '../utils/i18n';
 import { URLS, getFullUrl, getAssetUrl } from '../config/urls';
