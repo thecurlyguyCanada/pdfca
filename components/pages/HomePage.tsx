@@ -23,7 +23,7 @@ export function HomePage() {
     <>
       <div className="mesh-bg" />
       <div className="min-h-screen flex flex-col">
-        <Header lang={lang} setLang={setLang} onNavigate={handleNavigate} />
+        <Header lang={lang} />
 
         <main className="flex-grow">
           {/* Hero Section */}
