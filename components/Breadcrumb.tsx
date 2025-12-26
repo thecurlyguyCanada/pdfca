@@ -1,17 +1,18 @@
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
 import { Language } from '../utils/i18n';
+import { CurrentView } from '../App';
 
 interface BreadcrumbItem {
     name: string;
     path?: string;
-    view?: string;
+    view?: CurrentView;
 }
 
 interface BreadcrumbProps {
     items: BreadcrumbItem[];
     lang: Language;
-    onNavigate?: (view: string, path?: string) => void;
+    onNavigate?: (view: CurrentView, path?: string) => void;
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, lang, onNavigate }) => {
