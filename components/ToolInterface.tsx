@@ -456,7 +456,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                         isMobile={!isDesktop}
                                         onClose={onSoftReset}
                                         onOcr={(mode: 'searchable' | 'text', langs: string[]) => {
+                                            console.log('[TOOL INTERFACE] onOcr called:', { mode, langs });
                                             (window as any).__ocrParams = { mode, langs };
+                                            console.log('[TOOL INTERFACE] Calling onAction...');
                                             onAction();
                                         }}
                                     />

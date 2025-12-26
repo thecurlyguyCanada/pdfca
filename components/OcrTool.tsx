@@ -227,7 +227,10 @@ export const OcrTool: React.FC<OcrToolProps> = ({
                         </div>
 
                         <button
-                            onClick={() => onOcr(mode, selectedLangs)}
+                            onClick={() => {
+                                console.log('[OCR BUTTON] Clicked! Mode:', mode, 'Langs:', selectedLangs);
+                                onOcr(mode, selectedLangs);
+                            }}
                             className="w-full py-5 bg-canada-red text-white rounded-2xl font-black text-lg shadow-xl shadow-red-500/30 hover:shadow-red-500/40 hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-3 group relative overflow-hidden"
                         >
                             <Sparkles size={24} className="animate-pulse" />

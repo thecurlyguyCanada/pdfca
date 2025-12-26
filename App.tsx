@@ -585,9 +585,14 @@ function App() {
   };
 
   const handleAction = async (processedBlob?: any) => {
-    if (!file) return;
+    console.log('[HANDLE ACTION] Called with file:', file, 'processedBlob:', processedBlob);
+    if (!file) {
+      console.error('[HANDLE ACTION] NO FILE! Returning early.');
+      return;
+    }
 
     try {
+      console.log('[HANDLE ACTION] Setting state to PROCESSING for tool:', currentTool);
       setAppState(AppState.PROCESSING);
 
       const opId = ++operationIdRef.current; // Start new op
@@ -657,16 +662,23 @@ function App() {
             break;
           case ToolType.OCR:
             {
+              console.log('[OCR PROCESSING] Starting OCR...');
               const { extractTextWithOcr, makeSearchablePdf } = await import('./utils/heavyConversions');
               const ocrParams = (window as any).__ocrParams || { mode: 'searchable', langs: ['eng'] };
+              console.log('[OCR PROCESSING] OCR Params:', ocrParams);
+              console.log('[OCR PROCESSING] Selected pages:', Array.from(selectedPages));
 
               if (ocrParams.mode === 'text') {
+                console.log('[OCR PROCESSING] Mode: text extraction');
                 const text = await extractTextWithOcr(file, Array.from(selectedPages), ocrParams.langs);
                 resultBlob = new Blob([text], { type: 'text/plain' });
                 outName = file.name.replace('.pdf', '_extracted_eh.txt');
+                console.log('[OCR PROCESSING] Text extraction complete');
               } else {
+                console.log('[OCR PROCESSING] Mode: searchable PDF');
                 resultBlob = await makeSearchablePdf(file, Array.from(selectedPages), ocrParams.langs);
                 outName = file.name.replace('.pdf', '_searchable.pdf');
+                console.log('[OCR PROCESSING] Searchable PDF complete');
               }
             }
             break;
