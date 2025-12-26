@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
-import { translations, Language } from '../../../utils/i18n';
+import { translations, Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -17,7 +17,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Compress PDF Size | Free & Secure Size Reduction Guide | pdfcanada.ca",
-            desc: `Make your files smaller without losing quality. Our ${CURRENT_YEAR} guide shows you how to optimize PDFs locally in your browser. No uploads, no loss of clarity, eh?"
+            desc: `Make your files smaller without losing quality. Our ${CURRENT_YEAR} guide shows you how to optimize PDFs locally in your browser. No uploads, no loss of clarity, eh?`
         },
         h1: "How to Compress PDF Files: 3 Levels",
         subtitle: "Reduce file size without losing important details. Local, secure, and adjustable.",
@@ -186,7 +186,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Comment Compresser un PDF | Guide Réduction Taille ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Réduisez la taille de vos fichiers sans perte de qualité. Notre guide ${CURRENT_YEAR} vous montre comment optimiser vos PDF localement. Pas de téléchargement, pas de perte, eh ?"
+            desc: `Réduisez la taille de vos fichiers sans perte de qualité. Notre guide ${CURRENT_YEAR} vous montre comment optimiser vos PDF localement. Pas de téléchargement, pas de perte, eh ?`
         },
         h1: "Comment compresser des fichiers PDF : 3 Niveaux",
         subtitle: "Réduisez la taille sans perdre les détails importants.",

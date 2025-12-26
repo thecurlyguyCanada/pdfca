@@ -17,7 +17,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: "How to Organize PDF Pages | Free Drag-and-Drop Guide | pdfcanada.ca",
-            desc: `Reorder your PDF document exactly how you want. Our ${CURRENT_YEAR} guide shows you how to rearrange pages securely on your device. No uploads, fast, and 100% private."
+            desc: `Reorder your PDF document exactly how you want. Our ${CURRENT_YEAR} guide shows you how to rearrange pages securely on your device. No uploads, fast, and 100% private.`
         },
         h1: "How to Organize and Reorder PDF Pages: The ${CURRENT_YEAR} Guide",
         subtitle: "The easiest, most secure way to shuffle and move pages in your PDF document with drag-and-drop simplicity.",
@@ -164,7 +164,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Comment Organiser vos PDF | Guide Glisser-Déposer ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Réorganisez les pages de vos PDF exactement comme vous le souhaitez. Notre guide ${CURRENT_YEAR} vous montre comment faire en toute sécurité et localement sans téléchargement."
+            desc: `Réorganisez les pages de vos PDF exactement comme vous le souhaitez. Notre guide ${CURRENT_YEAR} vous montre comment faire en toute sécurité et localement sans téléchargement.`
         },
         h1: "Comment Réorganiser les Pages PDF : Le Guide Complet",
         subtitle: "Glisser-déposer pour réarranger, reordonner et perfectionner la structure de vos documents PDF.",

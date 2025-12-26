@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: `How to Save Email as PDF | Free & Secure ${CURRENT_YEAR} Guide | pdfcanada.ca`,
-            desc: `Keep important emails as secure PDF files. Our ${CURRENT_YEAR} guide shows you how to convert Outlook, Gmail, and Windows Mail to PDF locally and for free. Secure & Private."
+            desc: `Keep important emails as secure PDF files. Our ${CURRENT_YEAR} guide shows you how to convert Outlook, Gmail, and Windows Mail to PDF locally and for free. Secure & Private.`
         },
         h1: "How to Save Email as PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "The complete guide to archiving your important correspondence instantly.",
@@ -145,7 +145,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Enregistrer Courriel en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Conservez vos courriels importants sous forme de fichiers PDF sécurisés. Notre guide ${CURRENT_YEAR} vous montre comment convertir sans risque vos courriels Outlook ou Gmail."
+            desc: `Conservez vos courriels importants sous forme de fichiers PDF sécurisés. Notre guide ${CURRENT_YEAR} vous montre comment convertir sans risque vos courriels Outlook ou Gmail.`
         },
         h1: "Comment Enregistrer un Courriel en PDF",
         subtitle: "Le guide complet pour archiver instantanément votre correspondance importante.",

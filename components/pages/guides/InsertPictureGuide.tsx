@@ -16,7 +16,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
             title: `How to Insert Picture in PDF | Free ${CURRENT_YEAR} Guide | pdfcanada.ca`,
-            desc: `Add images to your PDFs for free. Our ${CURRENT_YEAR} guide shows you how to insert pictures securely in your browser without uploads. Fast, private, and Canadian."
+            desc: `Add images to your PDFs for free. Our ${CURRENT_YEAR} guide shows you how to insert pictures securely in your browser without uploads. Fast, private, and Canadian.`
         },
         h1: "How to Insert a Picture in a PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "Enhance your documents by adding photos, logos, and illustrations securely.",
@@ -88,7 +88,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     fr: {
         seo: {
             title: `Comment Insérer une Image dans un PDF | Guide Gratuit ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Ajoutez des images à vos PDF gratuitement. Notre guide ${CURRENT_YEAR} vous montre comment insérer des photos en toute sécurité sans téléchargement. Rapide, privé et canadien."
+            desc: `Ajoutez des images à vos PDF gratuitement. Notre guide ${CURRENT_YEAR} vous montre comment insérer des photos en toute sécurité sans téléchargement. Rapide, privé et canadien.`
         },
         h1: "Comment Insérer une Image dans un PDF : Le Guide ${CURRENT_YEAR}",
         subtitle: "Améliorez vos documents en ajoutant des photos, logos et illustrations en toute sécurité.",
