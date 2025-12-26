@@ -221,10 +221,10 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     } : false}
                     enableUserSelectHack={false}
                     resizeHandleStyles={{
-                        topLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
-                        topRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, top: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
-                        bottomLeft: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, left: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none' },
-                        bottomRight: { width: isMobile ? 48 : 12, height: isMobile ? 48 : 12, bottom: isMobile ? -24 : -6, right: isMobile ? -24 : -6, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none' },
+                        topLeft: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, top: isMobile ? -24 : -8, left: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        topRight: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, top: isMobile ? -24 : -8, right: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        bottomLeft: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, bottom: isMobile ? -24 : -8, left: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },
+                        bottomRight: { width: isMobile ? 48 : 16, height: isMobile ? 48 : 16, bottom: isMobile ? -24 : -8, right: isMobile ? -24 : -8, background: '#3b82f6', borderRadius: '50%', border: '3px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
                         top: { display: 'none' },
                         right: { display: 'none' },
                         bottom: { display: 'none' },
@@ -232,7 +232,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                     }}
                 >
                     <div
-                        className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-transparent hover:border-blue-300'} flex items-center justify-center cursor-move transition-all duration-150 touch-none`}
+                        className={`entry-drag-handle w-full h-full border-2 ${selectedEntryId === entry.id ? 'border-blue-500 bg-blue-500/5 shadow-md' : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50/30'} flex items-center justify-center cursor-move transition-all duration-150`}
                         onPointerDown={(e) => {
                             if (activeTool !== 'select') return;
                             onSelectEntry(entry.id);
