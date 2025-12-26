@@ -75,7 +75,7 @@
       ]
     },
     {
-      "source": "/(.*).png",
+      "source": "/(.*)\\.png",
       "headers": [
         {
           "key": "Cache-Control",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "source": "/(.*).svg",
+      "source": "/(.*)\\.svg",
       "headers": [
         {
           "key": "Cache-Control",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "source": "/(.*).ico",
+      "source": "/(.*)\\.ico",
       "headers": [
         {
           "key": "Cache-Control",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "source": "/(.*).js",
+      "source": "/(.*)\\.js",
       "headers": [
         {
           "key": "Cache-Control",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "source": "/(.*).css",
+      "source": "/(.*)\\.css",
       "headers": [
         {
           "key": "Cache-Control",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "source": "/(.*).woff2",
+      "source": "/(.*)\\.woff2",
       "headers": [
         {
           "key": "Cache-Control",
