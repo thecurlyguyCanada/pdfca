@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, ArrowRight, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors, Search, Sparkles, Zap, Heart } from 'lucide-react';
+import { Download, FileText, X, AlertCircle, CheckCircle2, Shield, Trash2, RotateCw, Image, BookOpen, ArrowLeft, ArrowRight, PenTool, RotateCcw, RefreshCcw, Info, ZoomIn, ZoomOut, GripVertical, Lock, Scissors, Search, Sparkles, Zap, Heart, Users, DollarSign, CloudOff, Laptop, Award, CheckCircle, ArrowUpRight } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MapleLeaf } from './components/MapleLeaf';
@@ -1194,6 +1194,181 @@ function App() {
                 ))}
               </div>
               <span className="text-xs font-black uppercase tracking-widest text-modern-neutral-600">10k+ Canadians</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Keep Your Simple Tasks Simple Section */}
+      {appState === AppState.HOME && (
+        <div className="w-full max-w-5xl mx-auto text-center space-y-6 px-4">
+          <h2 className="text-4xl md:text-5xl font-black text-modern-neutral-900 tracking-tight">
+            {t.landingPage.simpleTasksTitle}
+          </h2>
+          <p className="text-xl text-modern-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            {t.landingPage.simpleTasksDesc}
+          </p>
+        </div>
+      )}
+
+      {/* Feature Benefits Grid */}
+      {appState === AppState.HOME && (
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+          {/* Work Directly */}
+          <div className="p-8 bg-white border border-gray-100 rounded-[2rem] shadow-bento hover:shadow-bento-hover transition-all duration-500 group">
+            <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
+              <Laptop className="text-white" size={28} />
+            </div>
+            <h3 className="text-2xl font-black text-modern-neutral-800 mb-4 tracking-tight">
+              {t.landingPage.workDirectlyTitle}
+            </h3>
+            <p className="text-modern-neutral-600 leading-relaxed font-medium">
+              {t.landingPage.workDirectlyDesc}
+            </p>
+          </div>
+
+          {/* Perfect Document */}
+          <div className="p-8 bg-white border border-gray-100 rounded-[2rem] shadow-bento hover:shadow-bento-hover transition-all duration-500 group">
+            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
+              <CheckCircle className="text-white" size={28} />
+            </div>
+            <h3 className="text-2xl font-black text-modern-neutral-800 mb-4 tracking-tight">
+              {t.landingPage.perfectDocTitle}
+            </h3>
+            <p className="text-modern-neutral-600 leading-relaxed font-medium">
+              {t.landingPage.perfectDocDesc}
+            </p>
+          </div>
+
+          {/* Privacy First */}
+          <div className="p-8 bg-white border border-gray-100 rounded-[2rem] shadow-bento hover:shadow-bento-hover transition-all duration-500 group">
+            <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
+              <CloudOff className="text-white" size={28} />
+            </div>
+            <h3 className="text-2xl font-black text-modern-neutral-800 mb-4 tracking-tight">
+              {t.landingPage.privacyFirstTitle}
+            </h3>
+            <p className="text-modern-neutral-600 leading-relaxed font-medium">
+              {t.landingPage.privacyFirstDesc}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Why Choose Section */}
+      {appState === AppState.HOME && (
+        <div className="w-full max-w-6xl mx-auto space-y-12 px-4">
+          <div className="text-center space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black text-modern-neutral-900 tracking-tight">
+              {t.landingPage.whyChooseTitle}
+            </h2>
+          </div>
+
+          {/* Trust Badges Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Canadians Trust Us */}
+            <div className="p-8 bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                <Users className="text-canada-red" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.trustedByTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.trustedByDesc}
+              </p>
+            </div>
+
+            {/* Free Forever */}
+            <div className="p-8 bg-gradient-to-br from-green-50 to-white border border-green-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                <DollarSign className="text-green-600" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.freeForeverTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.freeForeverDesc}
+              </p>
+            </div>
+
+            {/* No Uploads Required */}
+            <div className="p-8 bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                <CloudOff className="text-blue-600" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.noUploadsTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.noUploadsDesc}
+              </p>
+            </div>
+
+            {/* Built with Love */}
+            <div className="p-8 bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                <Heart className="text-orange-600 fill-orange-600" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.openSourceTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.openSourceDesc}
+              </p>
+            </div>
+
+            {/* Lightning Fast */}
+            <div className="p-8 bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                <Zap className="text-purple-600" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.fastSecureTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.fastSecureDesc}
+              </p>
+            </div>
+
+            {/* PIPEDA Compliant */}
+            <div className="p-8 bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+              <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                <Award className="text-indigo-600" size={24} />
+              </div>
+              <h3 className="text-xl font-black text-modern-neutral-800 mb-2">
+                {t.landingPage.pipedaTitle}
+              </h3>
+              <p className="text-modern-neutral-600 text-sm leading-relaxed">
+                {t.landingPage.pipedaDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Final CTA Section */}
+      {appState === AppState.HOME && (
+        <div className="w-full max-w-4xl mx-auto px-4">
+          <div className="relative overflow-hidden p-12 md:p-16 bg-gradient-to-br from-canada-red to-red-700 rounded-[3rem] shadow-2xl shadow-red-500/20 text-center">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
+
+            <div className="relative z-10 space-y-6">
+              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                {t.landingPage.ctaTitle}
+              </h2>
+              <p className="text-xl text-red-100 max-w-2xl mx-auto leading-relaxed">
+                {t.landingPage.ctaDesc}
+              </p>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-flex items-center gap-3 bg-white text-canada-red px-8 py-4 rounded-full font-black text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all active:scale-95"
+              >
+                {t.landingPage.ctaButton}
+                <ArrowUpRight size={20} />
+              </button>
             </div>
           </div>
         </div>
