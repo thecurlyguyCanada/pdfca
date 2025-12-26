@@ -41,6 +41,51 @@ export const translations = {
     compressExtremeInfo: "Aggressive re-rendering at 96 DPI. Max compression.",
     selectCompressionLevel: "Select Compression Level",
 
+    // Landing Page Sections
+    landingPage: {
+      // Keep Your Simple Tasks Simple
+      simpleTasksTitle: "Keep Your Simple Tasks Simple",
+      simpleTasksDesc: "pdfcanada.ca is the first and only PDF software you'll love. We have all the tools you'll need to start, manage, and finish your work with digital documents—all without leaving your browser.",
+
+      // Work Directly on Files
+      workDirectlyTitle: "Work Directly in Your Browser",
+      workDirectlyDesc: "Do more than just view PDFs. Merge, compress, split, rotate, and convert your documents—all directly in your browser. With over 20 powerful tools, you can enhance and transform your files without ever uploading them to a server.",
+
+      // Perfect Document
+      perfectDocTitle: "Create the Perfect Document",
+      perfectDocDesc: "File too big? Compress it. Need a specific format? Convert it. Things getting chaotic? Merge and split files, or remove excess pages. pdfcanada.ca has everything you need to make your documents just right.",
+
+      // Privacy First
+      privacyFirstTitle: "Your Privacy is Our Priority",
+      privacyFirstDesc: "Unlike other PDF tools, we process everything locally in your browser. Your files never leave your device. No cloud uploads, no data collection, no tracking. What happens on your computer, stays on your computer—eh?",
+
+      // Why Choose Us section
+      whyChooseTitle: "Why Choose pdfcanada.ca?",
+
+      trustedByTitle: "Canadians Trust Us",
+      trustedByDesc: "Over 10,000 Canadians have used our service to simplify their work with digital documents. From Toronto to Vancouver, we're the polite choice for PDF tools.",
+
+      freeForeverTitle: "Free Forever",
+      freeForeverDesc: "Every tool on pdfcanada.ca is 100% free with no hidden fees, no watermarks, and no signup required. Just honest, Canadian service.",
+
+      noUploadsTitle: "No Uploads Required",
+      noUploadsDesc: "All processing happens locally in your browser using WebAssembly technology. Your files never touch our servers, ensuring maximum privacy and security.",
+
+      openSourceTitle: "Built with Love in Canada",
+      openSourceDesc: "Made by a small team in Toronto, Ontario. We believe in privacy-first technology and keeping things simple—the Canadian way.",
+
+      fastSecureTitle: "Lightning Fast & Secure",
+      fastSecureDesc: "Powered by your own device, our tools process files instantly without network delays. Plus, with local processing, your documents stay 100% secure.",
+
+      pipedaTitle: "PIPEDA Compliant",
+      pipedaDesc: "We take Canadian privacy laws seriously. Our local-first approach means we don't collect, store, or process your personal information.",
+
+      // Final CTA
+      ctaTitle: "Ready to Get Started?",
+      ctaDesc: "Join thousands of Canadians who trust pdfcanada.ca for their document needs. Select a tool above and start working—no signup required.",
+      ctaButton: "Explore All Tools",
+    },
+
     // SEO General
     seo: {
       homeTitle: "Free PDF Tools Canada | Online & Secure No-Upload Service | pdfcanada.ca",
@@ -879,6 +924,51 @@ export const translations = {
     compressBalancedInfo: "Re-rendu à 150 DPI. Le texte devient non-sélectionnable.",
     compressExtremeInfo: "Re-rendu agressif à 96 DPI. Compression maximale.",
     selectCompressionLevel: "Choisir le niveau de compression",
+
+    // Landing Page Sections
+    landingPage: {
+      // Keep Your Simple Tasks Simple
+      simpleTasksTitle: "Gardez Vos Tâches Simples",
+      simpleTasksDesc: "pdfcanada.ca est le premier et seul logiciel PDF que vous aimerez. Nous avons tous les outils dont vous avez besoin pour démarrer, gérer et terminer votre travail avec des documents numériques—le tout sans quitter votre navigateur.",
+
+      // Work Directly on Files
+      workDirectlyTitle: "Travaillez Directement dans Votre Navigateur",
+      workDirectlyDesc: "Faites plus que simplement visualiser des PDF. Fusionnez, compressez, divisez, faites pivoter et convertissez vos documents—le tout directement dans votre navigateur. Avec plus de 20 outils puissants, vous pouvez améliorer et transformer vos fichiers sans jamais les télécharger sur un serveur.",
+
+      // Perfect Document
+      perfectDocTitle: "Créez le Document Parfait",
+      perfectDocDesc: "Fichier trop volumineux ? Compressez-le. Besoin d'un format spécifique ? Convertissez-le. Les choses deviennent chaotiques ? Fusionnez et divisez les fichiers, ou supprimez les pages excédentaires. pdfcanada.ca a tout ce dont vous avez besoin pour rendre vos documents parfaits.",
+
+      // Privacy First
+      privacyFirstTitle: "Votre Confidentialité est Notre Priorité",
+      privacyFirstDesc: "Contrairement à d'autres outils PDF, nous traitons tout localement dans votre navigateur. Vos fichiers ne quittent jamais votre appareil. Pas de téléchargement cloud, pas de collecte de données, pas de suivi. Ce qui se passe sur votre ordinateur, reste sur votre ordinateur—hein ?",
+
+      // Why Choose Us section
+      whyChooseTitle: "Pourquoi Choisir pdfcanada.ca ?",
+
+      trustedByTitle: "Les Canadiens Nous Font Confiance",
+      trustedByDesc: "Plus de 10 000 Canadiens ont utilisé notre service pour simplifier leur travail avec des documents numériques. De Toronto à Vancouver, nous sommes le choix poli pour les outils PDF.",
+
+      freeForeverTitle: "Gratuit pour Toujours",
+      freeForeverDesc: "Chaque outil sur pdfcanada.ca est 100% gratuit sans frais cachés, sans filigranes et sans inscription requise. Juste un service canadien honnête.",
+
+      noUploadsTitle: "Aucun Téléchargement Requis",
+      noUploadsDesc: "Tout le traitement se fait localement dans votre navigateur grâce à la technologie WebAssembly. Vos fichiers ne touchent jamais nos serveurs, garantissant un maximum de confidentialité et de sécurité.",
+
+      openSourceTitle: "Fait avec Amour au Canada",
+      openSourceDesc: "Créé par une petite équipe à Toronto, Ontario. Nous croyons en une technologie axée sur la confidentialité et en gardant les choses simples—à la canadienne.",
+
+      fastSecureTitle: "Ultra Rapide & Sécurisé",
+      fastSecureDesc: "Alimenté par votre propre appareil, nos outils traitent les fichiers instantanément sans délais de réseau. De plus, avec le traitement local, vos documents restent 100% sécurisés.",
+
+      pipedaTitle: "Conforme à la LPRPDE",
+      pipedaDesc: "Nous prenons les lois canadiennes sur la vie privée au sérieux. Notre approche locale signifie que nous ne collectons, ne stockons ni ne traitons vos informations personnelles.",
+
+      // Final CTA
+      ctaTitle: "Prêt à Commencer ?",
+      ctaDesc: "Rejoignez des milliers de Canadiens qui font confiance à pdfcanada.ca pour leurs besoins documentaires. Sélectionnez un outil ci-dessus et commencez à travailler—aucune inscription requise.",
+      ctaButton: "Explorer Tous les Outils",
+    },
 
     seo: {
       homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
