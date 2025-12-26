@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { AISnapshot } from '../../AISnapshot';
 import { PageLayout } from '../../PageLayout';
@@ -15,10 +15,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Save Email as PDF | Free & Secure 2026 Guide | pdfcanada.ca",
-            desc: "Keep important emails as secure PDF files. Our 2026 guide shows you how to convert Outlook, Gmail, and Windows Mail to PDF locally and for free. Secure & Private."
+            title: `How to Save Email as PDF | Free & Secure ${CURRENT_YEAR} Guide | pdfcanada.ca`,
+            desc: `Keep important emails as secure PDF files. Our ${CURRENT_YEAR} guide shows you how to convert Outlook, Gmail, and Windows Mail to PDF locally and for free. Secure & Private."
         },
-        h1: "How to Save Email as PDF: The 2026 Guide",
+        h1: "How to Save Email as PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "The complete guide to archiving your important correspondence instantly.",
         intro: (
             <>
@@ -144,8 +144,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Enregistrer Courriel en PDF | Guide Sécurisé 2026 | pdfcanada.ca",
-            desc: "Conservez vos courriels importants sous forme de fichiers PDF sécurisés. Notre guide 2026 vous montre comment convertir sans risque vos courriels Outlook ou Gmail."
+            title: `Enregistrer Courriel en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Conservez vos courriels importants sous forme de fichiers PDF sécurisés. Notre guide ${CURRENT_YEAR} vous montre comment convertir sans risque vos courriels Outlook ou Gmail."
         },
         h1: "Comment Enregistrer un Courriel en PDF",
         subtitle: "Le guide complet pour archiver instantanément votre correspondance importante.",

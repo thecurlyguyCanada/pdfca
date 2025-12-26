@@ -1,6 +1,6 @@
 import React from 'react';
 import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -15,10 +15,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Merge PDF Files | Free & Secure 2026 Guide | pdfcanada.ca",
-            desc: "Learn how to combine multiple PDF files into one securely. Our 2026 guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private."
+            title: `How to Merge PDF Files | Free & Secure ${CURRENT_YEAR} Guide | pdfcanada.ca`,
+            desc: `Learn how to combine multiple PDF files into one securely. Our ${CURRENT_YEAR} guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private."
         },
-        h1: "How to Merge PDF Files: The 2026 Guide",
+        h1: "How to Merge PDF Files: The ${CURRENT_YEAR} Guide",
         subtitle: "Combine multiple documents into a single, organized PDF file.",
 
         intro: (
@@ -178,8 +178,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Fusionner des PDF | Guide Sécurisé 2026 | pdfcanada.ca",
-            desc: "Découvrez comment fusionner plusieurs PDF en toute sécurité dans votre navigateur avec notre guide 2026. Combinez vos documents sans téléchargement—100% privé."
+            title: `Comment Fusionner des PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Découvrez comment fusionner plusieurs PDF en toute sécurité dans votre navigateur avec notre guide ${CURRENT_YEAR}. Combinez vos documents sans téléchargement—100% privé."
         },
         h1: "Comment Fusionner des Fichiers PDF : Le Guide Complet",
         subtitle: "Combinez plusieurs documents PDF en un seul fichier organisé et professionnel.",

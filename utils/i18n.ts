@@ -1,5 +1,8 @@
 export type Language = 'en' | 'fr';
 
+// Dynamic current year - updates automatically
+export const CURRENT_YEAR = new Date().getFullYear();
+
 export const translations = {
   en: {
     builtIn: "Built in Canada",
@@ -89,7 +92,7 @@ export const translations = {
     // SEO General
     seo: {
       homeTitle: "Free PDF Tools Canada | Online & Secure No-Upload Service | pdfcanada.ca",
-      homeDesc: "The Polite Canadian PDF Tools. 100% free & secure in 2026. Merge, compress, and convert PDFs directly in your browser. No uploads—your files never leave your device.",
+      homeDesc: `The Polite Canadian PDF Tools. 100% free & secure in ${CURRENT_YEAR}. Merge, compress, and convert PDFs directly in your browser. No uploads—your files never leave your device.`,
       homeFaq: [
         {
           q: "Is pdfcanada.ca really free?",
@@ -119,9 +122,9 @@ export const translations = {
       pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
       pricingDesc: "Unbelievably free PDF tools. $0 CAD for unlimited file conversions, merges, and edits. No hidden fees, no subscriptions, just polite Canadian service.",
       privacyTitle: "Privacy Policy & Data Security | pdfcanada.ca",
-      privacyDesc: "Our 2026 privacy commitment: All PDF processing happens locally in your browser via WebAssembly. Your files are never uploaded, ensuring maximum security and trust.",
+      privacyDesc: `Our ${CURRENT_YEAR} privacy commitment: All PDF processing happens locally in your browser via WebAssembly. Your files are never uploaded, ensuring maximum security and trust.`,
       termsTitle: "Terms of Service - Friendly & Secure | pdfcanada.ca",
-      termsDesc: "Read our polite 2026 terms of service. We focus on document privacy and user-friendly tools that keep your files safe on your device. Free to use for everyone.",
+      termsDesc: `Read our polite ${CURRENT_YEAR} terms of service. We focus on document privacy and user-friendly tools that keep your files safe on your device. Free to use for everyone.`,
       howtoTitle: "How to Use pdfcanada.ca | PDF Tutorials",
       howtoDesc: "Easy instructions on how to delete PDF pages, rotate documents, and convert files using pdfcanada.ca.",
       supportTitle: "Support Local Canadian Developers | Donate | pdfcanada.ca",
@@ -400,7 +403,7 @@ export const translations = {
       },
       organizePdf: {
         title: "Organize PDF Online - Reorder & Rearrange PDF Pages for Free | pdfcanada.ca",
-        desc: "Rearrange PDF pages easily with drag-and-drop in 2026. Reorder your PDF document securely in your browser. No uploads—your files remain 100% private on your device.",
+        desc: `Rearrange PDF pages easily with drag-and-drop in ${CURRENT_YEAR}. Reorder your PDF document securely in your browser. No uploads—your files remain 100% private on your device.`,
         h1: "Organize PDF Pages",
         subtitle: "Get your document's pages in the perfect order.",
         content: "Need to fix the page order of your PDF? Our Organize PDF tool lets you drag and drop pages to rearrange them exactly how you want.",
@@ -423,7 +426,7 @@ export const translations = {
       },
       cbrToPdf: {
         title: "CBR to PDF Converter - Convert Comic Books Online | pdfcanada.ca",
-        desc: "Read your comics on any device. Our 2026 guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device.",
+        desc: `Read your comics on any device. Our ${CURRENT_YEAR} guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device.`,
         h1: "Convert CBR to PDF",
         subtitle: "The definitive guide to digital comic conversion.",
         content: "Got a collection of digital comics in CBR or CBZ format? While these are great for specialized readers, sometimes you just want a PDF to read on your tablet or share with a friend. Our CBR to PDF converter makes it easy to change comic book archives into standard PDF documents. We support both CBR (RAR-based) and CBZ (ZIP-based) files. \n\nMost online converters make you upload your comics to their servers. But digital comics can be large, and your privacy matters. That's why pdfcanada.ca processes your comics right in your browser. No uploading, no waiting for a queue, just fast and secure conversion. Whether you're looking for how to convert cbr to pdf for free or need a bulk cbr to pdf tool, we've got you covered with our Canadian-made tool.",
@@ -455,7 +458,7 @@ export const translations = {
       },
       sign: {
         title: "E-Sign PDF Online - Secure & Free Digital Signatures | pdfcanada.ca",
-        desc: "Sign PDF documents online securely in 2026. Add signatures, initials, and dates locally in your browser. Your sensitive documents never leave your computer. Fast & Free.",
+        desc: `Sign PDF documents online securely in ${CURRENT_YEAR}. Add signatures, initials, and dates locally in your browser. Your sensitive documents never leave your computer. Fast & Free.`,
         h1: "E-sign PDF Documents",
         subtitle: "The most secure way to sign contracts and forms.",
         content: "Need to sign a contract, lease, or form? Our e-sign tool lets you add professional signatures, initials, and dates to any PDF. Everything happens locally on your device, so your sensitive documents and signatures never leave your browser.",
@@ -475,7 +478,7 @@ export const translations = {
       },
       pdfToWord: {
         title: "PDF to Word Online - Convert PDF to Editable DOCX | Free & Secure",
-        desc: "Convert PDF to editable Word documents for free in 2026. Our local-first converter keeps your data secure on your device. Fast, accurate, and 100% private—no signup.",
+        desc: `Convert PDF to editable Word documents for free in ${CURRENT_YEAR}. Our local-first converter keeps your data secure on your device. Fast, accurate, and 100% private—no signup.`,
         h1: "Convert PDF to Word",
         subtitle: "Make your PDFs editable again—accurately & securely.",
         content: "Need to edit a PDF? Convert it to a Word document (.docx) effortlessly. Our local processing ensures your sensitive data never leaves your device.",
@@ -493,7 +496,7 @@ export const translations = {
       },
       wordToPdf: {
         title: "Word to PDF Online - Convert DOCX to PDF for Free | pdfcanada.ca",
-        desc: "Create high-quality PDFs from Word documents instantly in 2026. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.",
+        desc: `Create high-quality PDFs from Word documents instantly in ${CURRENT_YEAR}. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.`,
         h1: "Convert Word to PDF",
         subtitle: "Professional PDFs from your DOCX files instantly.",
         content: "Turn your Word documents into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
@@ -972,7 +975,7 @@ export const translations = {
 
     seo: {
       homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
-      homeDesc: "Outils PDF canadiens polis. 100% gratuit et sécurisé en 2026. Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.",
+      homeDesc: `Outils PDF canadiens polis. 100% gratuit et sécurisé en ${CURRENT_YEAR}. Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.`,
       homeFaq: [
         {
           q: "Est-ce vraiment gratuit ?",
@@ -1002,7 +1005,7 @@ export const translations = {
       pricingTitle: "Tarifs - pdfcanada.ca | Toujours Gratuit",
       pricingDesc: "Nos prix sont simples : 0 $ CAD pour tout le monde. Conversions illimitées et traitement local.",
       privacyTitle: "Politique de Confidentialité et Sécurité des Données | pdfcanada.ca",
-      privacyDesc: "Notre engagement 2026 : tout le traitement PDF se fait localement dans votre navigateur. Vos fichiers ne sont jamais téléchargés, garantissant une sécurité maximale.",
+      privacyDesc: `Notre engagement ${CURRENT_YEAR} : tout le traitement PDF se fait localement dans votre navigateur. Vos fichiers ne sont jamais téléchargés, garantissant une sécurité maximale.`,
       termsTitle: "Conditions d'utilisation - pdfcanada.ca",
       termsDesc: "Nos conditions d'utilisation polies. Soyez gentil, utilisez les outils librement.",
       howtoTitle: "Mode d'emploi - pdfcanada.ca",

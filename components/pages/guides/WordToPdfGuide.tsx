@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -16,10 +16,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Convert Word to PDF | Free & Secure 2026 Tutorial | pdfcanada.ca",
-            desc: "Learn how to transform DOCX to PDF instantly. Our secure 2026 guide shows you how to convert Word to PDF locally on your device without uploading sensitive files. No uploads, 100% private Canadian tool."
+            title: `How to Convert Word to PDF | Free & Secure ${CURRENT_YEAR} Tutorial | pdfcanada.ca`,
+            desc: `Learn how to transform DOCX to PDF instantly. Our secure ${CURRENT_YEAR} guide shows you how to convert Word to PDF locally on your device without uploading sensitive files. No uploads, 100% private Canadian tool."
         },
-        h1: "How to Convert Word to PDF: The 2026 Guide",
+        h1: "How to Convert Word to PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "Create high-quality, locked-down PDF documents from your Word files instantly without leaving your browser.",
 
         intro: "Need to turn your **Word doc** into a professional-looking PDF? Whether you're sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. Our **Word to PDF converter** handles the transition smoothly, and because it runs locally, you don't have to worry about your business or personal data being stored on a random server.",
@@ -164,8 +164,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Convertir Word en PDF | Guide Sécurisé 2026 | pdfcanada.ca",
-            desc: "Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé 2026 vous montre comment convertir localement sans risque pour vos données. Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé."
+            title: `Convertir Word en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données. Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé."
         },
         h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",

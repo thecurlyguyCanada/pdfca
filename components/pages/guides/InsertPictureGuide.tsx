@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image as ImageIcon, Shield, Zap, HelpCircle, FileText, CheckCircle, Upload } from 'lucide-react';
-import { Language } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { AISnapshot } from '../../AISnapshot';
 import { PageLayout } from '../../PageLayout';
@@ -15,10 +15,10 @@ interface GuideProps {
 const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     en: {
         seo: {
-            title: "How to Insert Picture in PDF | Free 2026 Guide | pdfcanada.ca",
-            desc: "Add images to your PDFs for free. Our 2026 guide shows you how to insert pictures securely in your browser without uploads. Fast, private, and Canadian."
+            title: `How to Insert Picture in PDF | Free ${CURRENT_YEAR} Guide | pdfcanada.ca`,
+            desc: `Add images to your PDFs for free. Our ${CURRENT_YEAR} guide shows you how to insert pictures securely in your browser without uploads. Fast, private, and Canadian."
         },
-        h1: "How to Insert a Picture in a PDF: The 2026 Guide",
+        h1: "How to Insert a Picture in a PDF: The ${CURRENT_YEAR} Guide",
         subtitle: "Enhance your documents by adding photos, logos, and illustrations securely.",
 
         intro: (
@@ -87,10 +87,10 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     },
     fr: {
         seo: {
-            title: "Comment Insérer une Image dans un PDF | Guide Gratuit 2026 | pdfcanada.ca",
-            desc: "Ajoutez des images à vos PDF gratuitement. Notre guide 2026 vous montre comment insérer des photos en toute sécurité sans téléchargement. Rapide, privé et canadien."
+            title: `Comment Insérer une Image dans un PDF | Guide Gratuit ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Ajoutez des images à vos PDF gratuitement. Notre guide ${CURRENT_YEAR} vous montre comment insérer des photos en toute sécurité sans téléchargement. Rapide, privé et canadien."
         },
-        h1: "Comment Insérer une Image dans un PDF : Le Guide 2026",
+        h1: "Comment Insérer une Image dans un PDF : Le Guide ${CURRENT_YEAR}",
         subtitle: "Améliorez vos documents en ajoutant des photos, logos et illustrations en toute sécurité.",
 
         intro: (

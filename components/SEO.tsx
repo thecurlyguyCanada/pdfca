@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Language } from '../utils/i18n';
+import { Language, CURRENT_YEAR } from '../utils/i18n';
 
 interface QuickAnswer {
   question: string;
@@ -752,7 +752,7 @@ export const SEO: React.FC<SEOProps> = ({
           "price": "0",
           "priceCurrency": "CAD",
           "availability": "https://schema.org/InStock",
-          "priceValidUntil": "2026-12-31",
+          "priceValidUntil": `${CURRENT_YEAR + 1}-12-31`,
           "url": `https://www.pdfcanada.ca${canonicalPath}`,
           "seller": { "@id": "https://www.pdfcanada.ca/#organization" },
           "itemCondition": "https://schema.org/NewCondition",
