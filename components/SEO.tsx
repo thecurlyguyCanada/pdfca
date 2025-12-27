@@ -36,6 +36,7 @@ interface SEOProps {
   steps?: { name: string; text: string; image?: string }[];
   quickAnswer?: QuickAnswer;
   author?: Author;
+  mentions?: { name: string; url?: string; sameAs?: string }[];
 }
 
 // Fixed schemas
@@ -129,7 +130,8 @@ export function SEO({
   reviewCount,
   steps,
   quickAnswer,
-  author
+  author,
+  mentions
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
 
@@ -156,23 +158,38 @@ export function SEO({
 
   // 3. Page Specific Schemas
   if (canonicalPath !== '/' && !canonicalPath.startsWith('/guides')) {
-    allSchemas.push({
+    const swSchema: Record<string, any> = {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": schemaName,
-      "operatingSystem": "Web Browser",
+      "operatingSystem": "Any",
       "applicationCategory": "BusinessApplication",
+      "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
+      "permissions": "Local file access only",
+      "featureList": "Local PDF processing, No server uploads",
       "offers": {
         "@type": "Offer",
         "price": price || "0",
         "priceCurrency": "CAD",
         "availability": "https://schema.org/InStock"
       }
-    });
+    };
+
+    if (rating) {
+      swSchema["aggregateRating"] = {
+        "@type": "AggregateRating",
+        "ratingValue": rating,
+        "reviewCount": reviewCount || 100,
+        "bestRating": "5",
+        "worstRating": "1"
+      };
+    }
+
+    allSchemas.push(swSchema);
   }
 
-  // 4. WebPage Schema (Speakable & Accessibility)
-  allSchemas.push({
+  // 4. WebPage Schema (Speakable & Accessibility & Entity SEO)
+  const webPageSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${getFullUrl(canonicalPath)}#webpage`,
@@ -185,7 +202,18 @@ export function SEO({
       "@type": "SpeakableSpecification",
       "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2", "[data-ai-summary]"]
     }
-  });
+  };
+
+  if (mentions && mentions.length > 0) {
+    webPageSchema["mentions"] = mentions.map(m => ({
+      "@type": "Thing",
+      "name": m.name,
+      "url": m.url,
+      "sameAs": m.sameAs
+    }));
+  }
+
+  allSchemas.push(webPageSchema);
 
   // 5. FAQ Schema
   if (faqs && faqs.length > 0) {
