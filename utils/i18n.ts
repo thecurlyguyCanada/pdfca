@@ -27,6 +27,7 @@ export const translations = {
     cropPdfGuide: "Crop PDF Guide",
     splitPdfGuide: "Split PDF Guide",
     flattenPdfGuide: "Flatten PDF Guide",
+    invoiceOcrGuide: "Invoice OCR Guide",
     wordToPdfGuide: "Word to PDF Guide",
     pdfToWordGuide: "PDF to Word Guide",
     heicToPdfGuide: "HEIC to PDF Guide",
@@ -721,6 +722,8 @@ export const translations = {
     toolCropDesc: "Adjust page margins.",
     toolOrganize: "Organize PDF",
     toolOrganizeDesc: "Reorder or remove pages.",
+    toolInvoiceOcr: "Invoice OCR",
+    toolInvoiceOcrDesc: "Extract data to Excel.",
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
@@ -916,7 +919,26 @@ export const translations = {
     fillableStep4: "Download and share. Your recipients can now type directly on the page.",
     fillableProTip: "Pro Tip: Use standard underscores for the best detection results.",
     fillableWhy: "Why use our tool?",
-    fillableWhyText: "Most software that does this costs an arm and a leg. We do it for free, locally on your device, because that's the neighbourly thing to do."
+    fillableWhyText: "Most software that does this costs an arm and a leg. We do it for free, locally on your device, because that's the neighbourly thing to do.",
+
+    invoiceOcr: {
+      dragDrop: "Drag & Drop Invoice Here",
+      clickUpload: "or Click to Upload",
+      scanBtn: "Scan Invoice",
+      scanning: "Scanning...",
+      results: "Payment Details",
+      fieldId: "Invoice Number",
+      fieldDate: "Invoice Date",
+      fieldTotal: "Total Amount",
+      fieldVendor: "Vendor Name",
+      visualConfidence: "Confidence Score",
+      exportExcel: "Export to Excel",
+      exportCsv: "Export to CSV",
+      copyData: "Copy Data",
+      newScan: "Scan Another",
+      fallbackAlert: "Scanned image detected. Using Tesseract (slower)...",
+      successMsg: "Invoice data extracted successfully!"
+    }
   },
   fr: {
     builtIn: "Fait au Canada",
@@ -941,6 +963,7 @@ export const translations = {
     cropPdfGuide: "Guide Recadrer PDF",
     splitPdfGuide: "Guide Diviser PDF",
     flattenPdfGuide: "Guide Aplatir PDF",
+    invoiceOcrGuide: "Guide OCR Factures",
     wordToPdfGuide: "Guide Word vers PDF",
     pdfToWordGuide: "Guide PDF vers Word",
     heicToPdfGuide: "Guide HEIC vers PDF",
@@ -1470,6 +1493,9 @@ export const translations = {
     toolFlattenDesc: "Aplatir le PDF.",
     toolPdfPageRemover: "Suppresseur de pages PDF online",
     toolPdfPageRemoverDesc: "Enlever des pages du PDF en ligne.",
+    toolOrganizeDesc: "Réorganisez ou supprimez des pages.",
+    toolInvoiceOcr: "OCR Factures",
+    toolInvoiceOcrDesc: "Extraire vers Excel.",
     toolRotate: "Pivoter PDF",
     toolRotateDesc: "Arranger les pages à l'envers.",
     toolHeic: "HEIC en PDF",
@@ -1728,6 +1754,24 @@ export const translations = {
           answer: "Pour les petits dons, généralement non, mais contactez-nous en cas d'erreur."
         }
       ]
+    },
+    invoiceOcr: {
+      dragDrop: "Glissez la facture ici",
+      clickUpload: "ou cliquez pour télécharger",
+      scanBtn: "Scanner la facture",
+      scanning: "Analyse en cours...",
+      results: "Détails du paiement",
+      fieldId: "Numéro de facture",
+      fieldDate: "Date de la facture",
+      fieldTotal: "Montant Total",
+      fieldVendor: "Nom du Vendeur",
+      visualConfidence: "Score de confiance",
+      exportExcel: "Exporter vers Excel",
+      exportCsv: "Exporter vers CSV",
+      copyData: "Copier",
+      newScan: "Scanner une autre",
+      fallbackAlert: "Image détectée. Utilisation de Tesseract (plus lent)...",
+      successMsg: "Données extraites avec succès !"
     }
   }
 };

@@ -244,6 +244,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['Excel vers PDF', 'XLSX vers PDF', 'convertir feuille de calcul en PDF'],
     accept: '.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
   },
+  {
+    slug: 'invoice-ocr',
+    tool: ToolType.INVOICE_OCR,
+    title: 'Invoice OCR',
+    titleFr: 'OCR Factures',
+    description: 'Extract text, dates, and amounts from PDF invoices automatically. Export data to Excel/CSV. Private, local processing using AI.',
+    descriptionFr: 'Extrayez automatiquement le texte, les dates et les montants des factures PDF. Exportez les données vers Excel/CSV. Traitement privé et local utilisant l\'IA.',
+    keywords: ['invoice OCR', 'PDF invoice to Excel', 'extract invoice data', 'free invoice scanner'],
+    keywordsFr: ['OCR facture', 'facture PDF vers Excel', 'extraire données facture', 'scanner facture gratuit'],
+    accept: '.pdf,application/pdf'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

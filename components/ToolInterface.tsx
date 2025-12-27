@@ -15,6 +15,11 @@ const CropPdfTool = dynamic(() => import('./CropPdfTool').then(mod => mod.CropPd
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
+const InvoiceOcrTool = dynamic(() => import('./tools/InvoiceOcrTool').then(mod => mod.InvoiceOcrTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
+
 
 import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
@@ -352,8 +357,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
     const isCompressTool = currentTool === ToolType.COMPRESS;
+    const isInvoiceTool = currentTool === ToolType.INVOICE_OCR;
 
     let headerText = '';
+
     if (currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) headerText = t.selectPagesHeader;
     else if (currentTool === ToolType.ROTATE) headerText = t.toolRotateInfo || 'Click pages to rotate or use controls above.';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
@@ -361,9 +368,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
-        <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
+        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
-            {!isSignTool && (
+            {!isSignTool && !isInvoiceTool && (
                 <div
                     className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
                     {...swipeHandlers} // Attach swipe to header specifically
@@ -386,8 +393,14 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
-                {isPageSelectionTool ? (
+            <div className={`flex-grow ${isSignTool || isInvoiceTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
+                {isInvoiceTool && file ? (
+                    <InvoiceOcrTool
+                        file={file}
+                        pdfJsDoc={pdfJsDoc}
+                        t={t}
+                    />
+                ) : isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
                             {(currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) && (

@@ -87,6 +87,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/organize-pdf`} className="hover:text-white transition-colors">{t.toolOrganize}</Link></li>
                         <li><Link href={`/${lang}/flatten-pdf`} className="hover:text-white transition-colors">{t.toolFlatten}</Link></li>
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
+                        <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -105,6 +106,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/crop-pdf`} className="hover:text-white transition-colors">{t.cropPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/flatten-pdf`} className="hover:text-white transition-colors">{t.flattenPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/invoice-ocr`} className="hover:text-white transition-colors">{t.invoiceOcrGuide}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

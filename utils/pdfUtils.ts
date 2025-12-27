@@ -1,9 +1,9 @@
-// Dynamic imports for heavy libraries - only loaded when needed
-// This prevents loading ~2MB of JS on the landing page
-
 import { PDF_CONFIG, getHeadingFontSize, getLineHeight } from '../config/pdf';
 import { getCompressionScale, getCompressionQuality } from '../config/compression';
 import type { CompressionLevel } from '../config/compression';
+import { InvoiceData } from './types';
+import { parseInvoiceText } from './invoiceParsers';
+
 
 let pdfjsLib: any = null;
 let workerInitialized = false;
@@ -1643,4 +1643,62 @@ export const convertExcelToPdf = async (file: File): Promise<Blob> => {
   });
 
   return doc.output('blob');
+};
+
+export const extractInvoiceData = async (file: File): Promise<InvoiceData> => {
+  try {
+    // 1. Try Text Extraction with PDF.js
+    const pdfJs = await getPdfJs();
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfJs.getDocument({ data: arrayBuffer }).promise;
+
+    // Parse first page only for invoice data usually
+    const page = await pdf.getPage(1);
+    const textContent = await page.getTextContent();
+    const textItems = textContent.items.map((item: any) => item.str).join(' ');
+
+    if (textItems.length > 50) {
+      // Sufficient text found, use it
+      return parseInvoiceText(textItems);
+    } else {
+      // 2. Scanned PDF -> OCR with Tesseract
+      console.log('Text extraction insufficient, falling back to Tesseract OCR...');
+
+      // Render page to canvas for image input
+      const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Failed to create canvas context');
+
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+      const imageBlob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve));
+      if (!imageBlob) throw new Error("Failed to render PDF page for OCR");
+
+      // Load Tesseract dynamically
+      const Tesseract = await import('tesseract.js');
+
+      // Use createWorker for better lifecycle control
+      const worker = await Tesseract.createWorker('eng');
+
+      try {
+        const ret = await worker.recognize(imageBlob);
+        const ocrText = ret.data.text;
+
+        // Always terminate worker to prevent memory leaks
+        await worker.terminate();
+
+        return parseInvoiceText(ocrText);
+      } catch (err) {
+        await worker.terminate();
+        throw err;
+      }
+    }
+  } catch (error) {
+    console.error('Invoice extraction failed:', error);
+    throw new Error('Failed to extract invoice data');
+  }
 };

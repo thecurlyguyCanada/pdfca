@@ -39,6 +39,7 @@ const getTools = (lang: Language) => ({
         { name: lang === 'fr' ? 'PDF vers EPUB' : 'PDF to EPUB', path: '/pdf-to-epub', entity: lang === 'fr' ? 'Convertisseur PDF en ebook EPUB' : 'PDF to EPUB ebook converter' },
         { name: lang === 'fr' ? 'PDF vers XML' : 'PDF to XML', path: '/pdf-to-xml', entity: lang === 'fr' ? 'Extracteur de données PDF en XML' : 'PDF to XML data extractor' },
         { name: lang === 'fr' ? 'XML vers PDF' : 'XML to PDF', path: '/xml-to-pdf', entity: lang === 'fr' ? 'Convertisseur XML en PDF' : 'XML to PDF converter' },
+        { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', path: '/invoice-ocr', entity: lang === 'fr' ? 'Extracteur de données de facturation PDF' : 'PDF invoice data extractor' },
     ],
 });
 
@@ -48,6 +49,7 @@ const getGuides = (lang: Language) => [
     { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: '/guides/compress-pdf' },
     { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: '/guides/merge-pdf' },
     { name: lang === 'fr' ? 'Pivoter PDF' : 'Rotate PDF', path: '/guides/rotate-pdf' },
+    { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', path: '/guides/invoice-ocr' },
 ];
 
 const content = {

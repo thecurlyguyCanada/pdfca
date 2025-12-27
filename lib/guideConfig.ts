@@ -18,6 +18,7 @@ import { EditXfaPdfGuide } from '@/components/pages/guides/EditXfaPdfGuide';
 import { InsertPictureGuide } from '@/components/pages/guides/InsertPictureGuide';
 import { FlattenPdfGuide } from '@/components/pages/guides/FlattenPdfGuide';
 import { SplitPdfGuide } from '@/components/pages/guides/SplitPdfGuide';
+import { InvoiceOcrGuide } from '@/components/pages/guides/InvoiceOcrGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -40,6 +41,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'edit-xfa-pdf': EditXfaPdfGuide,
     'insert-picture-in-pdf': InsertPictureGuide,
     'flatten-pdf': FlattenPdfGuide,
+    'invoice-ocr': InvoiceOcrGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

@@ -19,7 +19,8 @@ export enum ToolType {
     EXTRACT = 'EXTRACT',
     PDF_TO_XML = 'PDF_TO_XML',
     XML_TO_PDF = 'XML_TO_PDF',
-    EXCEL_TO_PDF = 'EXCEL_TO_PDF'
+    EXCEL_TO_PDF = 'EXCEL_TO_PDF',
+    INVOICE_OCR = 'INVOICE_OCR'
 }
 
 export enum AppState {
@@ -35,4 +36,13 @@ export enum AppState {
 
 export type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | 'HOW_TO' | 'SUPPORT' | 'MAKE_FILLABLE_INFO' | 'TOOL_PAGE' | 'ABOUT' |
     'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
-    'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE' | 'GUIDE_SPLIT' | 'GUIDE_SIGN' | 'GUIDE_EXCEL_TO_PDF';
+    'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE' | 'GUIDE_SPLIT' | 'GUIDE_SIGN' | 'GUIDE_EXCEL_TO_PDF' | 'GUIDE_INVOICE_OCR';
+
+export interface InvoiceData {
+    id?: string;
+    date?: string; // Standard format YYYY-MM-DD
+    total?: number;
+    vendor?: string;
+    currency?: string;
+    confidence: number;
+}
