@@ -21,7 +21,7 @@ const getGuideContent = (lang: Language) => ({
             title: "How to Organize PDF Pages | Free Drag-and-Drop Guide | pdfcanada.ca",
             desc: `Reorder your PDF document exactly how you want. Our ${CURRENT_YEAR} guide shows you how to rearrange pages securely on your device. No uploads, fast, and 100% private.`
         },
-        h1: "How to Organize and Reorder PDF Pages: The ${CURRENT_YEAR} Guide",
+        h1: `How to Organize and Reorder PDF Pages: The ${CURRENT_YEAR} Guide`,
         subtitle: "The easiest, most secure way to shuffle and move pages in your PDF document with drag-and-drop simplicity.",
 
         intro: "Got a document that's all out of order? Maybe you scanned pages in the wrong sequence, or you need to move an appendix to the front of a report. Knowing how to **organize PDF pages online** is a critical skill for creating professional documents. Our **free PDF page organizer** allows you to visually **reorder PDF pages** using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it, processed locally on your device for maximum privacy.",

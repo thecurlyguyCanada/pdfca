@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
+
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -93,16 +93,12 @@ export default async function ToolPage({
 
     return (
         <>
-            <Script
-                id={`schema-software-${config.slug}`}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
             />
-            <Script
-                id={`schema-breadcrumb-${config.slug}`}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
 

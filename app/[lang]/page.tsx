@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+
 import { HomePageServer } from '@/components/pages/HomePageServer';
 import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/structuredData';
 import { Language } from '@/utils/i18n';
@@ -106,22 +106,16 @@ export default async function Page({
 
     return (
         <>
-            <Script
-                id="schema-website"
+            <script
                 type="application/ld+json"
-                strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
             />
-            <Script
-                id="schema-organization"
+            <script
                 type="application/ld+json"
-                strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
-            <Script
-                id="schema-business"
+            <script
                 type="application/ld+json"
-                strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
             />
             <HomePageServer lang={currentLang} />
