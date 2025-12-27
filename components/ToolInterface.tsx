@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/utils/logger';
 
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
@@ -532,7 +533,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const signedPdf = await signPdf(file, entries);
                                 onAction(signedPdf);
                             } catch (e) {
-                                console.error("Signing failed", e);
+                                logger.error("Signing failed", e);
                             }
                         }}
                     />
@@ -579,7 +580,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const croppedPdf = await cropPdfPages(file, margins, pageIndices);
                                 onAction(croppedPdf);
                             } catch (e) {
-                                console.error("Cropping failed", e);
+                                logger.error("Cropping failed", e);
                             }
                         }}
 

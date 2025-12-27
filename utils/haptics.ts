@@ -1,3 +1,5 @@
+import { logger } from '@/utils/logger';
+
 /**
  * Haptic Feedback Utility
  * Provides a consistent interface for triggering haptic feedback on supported devices.
@@ -33,7 +35,7 @@ export const triggerHaptic = (pattern: HapticPattern = 'light') => {
             }
         } catch (e) {
             // Ignore errors (some browsers might block vibration without user interaction)
-            console.debug('Haptic feedback failed', e);
+            logger.debug('Haptic feedback failed', e);
         }
     }
 };
