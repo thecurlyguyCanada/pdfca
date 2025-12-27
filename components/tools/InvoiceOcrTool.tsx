@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Scan, FileSpreadsheet, Copy, Check, Loader2, RefreshCw, AlertTriangle } from 'lucide-react';
+import { Scan, FileSpreadsheet, Copy, Check, Loader2, RefreshCw, AlertTriangle, FileText, FileJson } from 'lucide-react';
 import { InvoiceData } from '@/utils/types';
 import { extractInvoiceData, initPdfWorker } from '@/utils/pdfUtils';
 import { triggerHaptic } from '@/utils/haptics';
@@ -18,7 +18,7 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
     const [error, setError] = useState<string | null>(null);
     const [canvasRef, setCanvasRef] = useState<HTMLCanvasElement | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [selectedFields, setSelectedFields] = useState<Set<string>>(new Set(['vendor', 'id', 'date', 'total']));
+    const [selectedFields, setSelectedFields] = useState<Set<string>>(new Set(['vendor', 'id', 'date', 'total', 'subtotal', 'tax', 'dueDate', 'poNumber']));
 
     // Initial Scan
     useEffect(() => {
@@ -86,10 +86,11 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
     };
 
     const toggleAllFields = () => {
-        if (selectedFields.size === 4) {
+        const allFields = ['vendor', 'id', 'date', 'total', 'subtotal', 'tax', 'dueDate', 'poNumber'];
+        if (selectedFields.size === allFields.length) {
             setSelectedFields(new Set());
         } else {
-            setSelectedFields(new Set(['vendor', 'id', 'date', 'total']));
+            setSelectedFields(new Set(allFields));
         }
     };
 
@@ -99,6 +100,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
         if (selectedFields.has('vendor') && data.vendor) fields.push(`Vendor: ${data.vendor}`);
         if (selectedFields.has('id') && data.id) fields.push(`Invoice ID: ${data.id}`);
         if (selectedFields.has('date') && data.date) fields.push(`Date: ${data.date}`);
+        if (selectedFields.has('dueDate') && data.dueDate) fields.push(`Due Date: ${data.dueDate}`);
+        if (selectedFields.has('poNumber') && data.poNumber) fields.push(`PO Number: ${data.poNumber}`);
+        if (selectedFields.has('subtotal') && data.subtotal) fields.push(`Subtotal: ${data.currency || '$'}${data.subtotal}`);
+        if (selectedFields.has('tax') && data.tax) fields.push(`Tax: ${data.currency || '$'}${data.tax}`);
         if (selectedFields.has('total') && data.total) fields.push(`Total: ${data.currency || '$'}${data.total}`);
 
         if (fields.length === 0) {
@@ -130,22 +135,42 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             const columns: any[] = [];
             const rowData: any = {};
 
-            if (selectedFields.has('date')) {
-                columns.push({ header: 'Date', key: 'date', width: 15 });
-                rowData.date = data.date;
+            if (selectedFields.has('vendor')) {
+                columns.push({ header: 'Vendor', key: 'vendor', width: 30 });
+                rowData.vendor = data.vendor;
             }
             if (selectedFields.has('id')) {
                 columns.push({ header: 'Invoice ID', key: 'id', width: 20 });
                 rowData.id = data.id;
             }
-            if (selectedFields.has('vendor')) {
-                columns.push({ header: 'Vendor', key: 'vendor', width: 30 });
-                rowData.vendor = data.vendor;
+            if (selectedFields.has('date')) {
+                columns.push({ header: 'Invoice Date', key: 'date', width: 15 });
+                rowData.date = data.date;
+            }
+            if (selectedFields.has('dueDate')) {
+                columns.push({ header: 'Due Date', key: 'dueDate', width: 15 });
+                rowData.dueDate = data.dueDate;
+            }
+            if (selectedFields.has('poNumber')) {
+                columns.push({ header: 'PO Number', key: 'poNumber', width: 20 });
+                rowData.poNumber = data.poNumber;
+            }
+            if (selectedFields.has('subtotal')) {
+                columns.push({ header: 'Subtotal', key: 'subtotal', width: 15 });
+                rowData.subtotal = data.subtotal;
+            }
+            if (selectedFields.has('tax')) {
+                columns.push({ header: 'Tax', key: 'tax', width: 15 });
+                rowData.tax = data.tax;
             }
             if (selectedFields.has('total')) {
                 columns.push({ header: 'Total', key: 'total', width: 15 });
-                columns.push({ header: 'Currency', key: 'currency', width: 10 });
                 rowData.total = data.total;
+            }
+
+            // Always include currency if any monetary field is selected
+            if (selectedFields.has('total') || selectedFields.has('subtotal') || selectedFields.has('tax')) {
+                columns.push({ header: 'Currency', key: 'currency', width: 10 });
                 rowData.currency = data.currency;
             }
 
@@ -172,6 +197,109 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             triggerHaptic('success');
         } catch (e) {
             console.error("Excel export failed", e);
+            alert("Export failed. Please try again.");
+        }
+    };
+
+    const handleExportCSV = () => {
+        if (!data) return;
+
+        if (selectedFields.size === 0) {
+            alert("Please select at least one field to export!");
+            return;
+        }
+
+        try {
+            const headers: string[] = [];
+            const values: string[] = [];
+
+            if (selectedFields.has('vendor')) {
+                headers.push('Vendor');
+                values.push(data.vendor || '');
+            }
+            if (selectedFields.has('id')) {
+                headers.push('Invoice ID');
+                values.push(data.id || '');
+            }
+            if (selectedFields.has('date')) {
+                headers.push('Invoice Date');
+                values.push(data.date || '');
+            }
+            if (selectedFields.has('dueDate')) {
+                headers.push('Due Date');
+                values.push(data.dueDate || '');
+            }
+            if (selectedFields.has('poNumber')) {
+                headers.push('PO Number');
+                values.push(data.poNumber || '');
+            }
+            if (selectedFields.has('subtotal')) {
+                headers.push('Subtotal');
+                values.push(data.subtotal?.toString() || '');
+            }
+            if (selectedFields.has('tax')) {
+                headers.push('Tax');
+                values.push(data.tax?.toString() || '');
+            }
+            if (selectedFields.has('total')) {
+                headers.push('Total');
+                values.push(data.total?.toString() || '');
+            }
+
+            // Always include currency if any monetary field is selected
+            if (selectedFields.has('total') || selectedFields.has('subtotal') || selectedFields.has('tax')) {
+                headers.push('Currency');
+                values.push(data.currency || '$');
+            }
+
+            const csv = [headers.join(','), values.join(',')].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `invoice_${data.id || 'scan'}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            triggerHaptic('success');
+        } catch (e) {
+            console.error("CSV export failed", e);
+            alert("Export failed. Please try again.");
+        }
+    };
+
+    const handleExportJSON = () => {
+        if (!data) return;
+
+        if (selectedFields.size === 0) {
+            alert("Please select at least one field to export!");
+            return;
+        }
+
+        try {
+            const exportData: any = {};
+
+            if (selectedFields.has('vendor') && data.vendor) exportData.vendor = data.vendor;
+            if (selectedFields.has('id') && data.id) exportData.invoiceId = data.id;
+            if (selectedFields.has('date') && data.date) exportData.invoiceDate = data.date;
+            if (selectedFields.has('dueDate') && data.dueDate) exportData.dueDate = data.dueDate;
+            if (selectedFields.has('poNumber') && data.poNumber) exportData.poNumber = data.poNumber;
+            if (selectedFields.has('subtotal') && data.subtotal) exportData.subtotal = data.subtotal;
+            if (selectedFields.has('tax') && data.tax) exportData.tax = data.tax;
+            if (selectedFields.has('total') && data.total) exportData.total = data.total;
+            exportData.currency = data.currency;
+            exportData.confidence = data.confidence;
+
+            const jsonString = JSON.stringify(exportData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `invoice_${data.id || 'scan'}.json`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            triggerHaptic('success');
+        } catch (e) {
+            console.error("JSON export failed", e);
             alert("Export failed. Please try again.");
         }
     };
@@ -230,7 +358,7 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                             onClick={toggleAllFields}
                             className="text-xs font-bold text-canada-red hover:text-canada-darkRed transition-colors px-2 py-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20"
                         >
-                            {selectedFields.size === 4 ? 'Deselect All' : 'Select All'}
+                            {selectedFields.size === 8 ? 'Deselect All' : 'Select All'}
                         </button>
                     </div>
 
@@ -283,7 +411,7 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                         onChange={() => toggleFieldSelection('date')}
                                         className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
                                     />
-                                    {t.invoiceOcr?.fieldDate || "Date"}
+                                    Invoice Date
                                 </label>
                                 <input
                                     type="text"
@@ -297,17 +425,99 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
                                     <input
                                         type="checkbox"
+                                        checked={selectedFields.has('dueDate')}
+                                        onChange={() => toggleFieldSelection('dueDate')}
+                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                    />
+                                    Due Date
+                                </label>
+                                <input
+                                    type="text"
+                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
+                                    value={data?.dueDate || ''}
+                                    onChange={(e) => setData(prev => prev ? ({ ...prev, dueDate: e.target.value }) : null)}
+                                    placeholder="YYYY-MM-DD"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedFields.has('poNumber')}
+                                    onChange={() => toggleFieldSelection('poNumber')}
+                                    className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                />
+                                PO Number
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-mono"
+                                value={data?.poNumber || ''}
+                                onChange={(e) => setData(prev => prev ? ({ ...prev, poNumber: e.target.value }) : null)}
+                                placeholder="PO-12345"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-3">
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedFields.has('subtotal')}
+                                        onChange={() => toggleFieldSelection('subtotal')}
+                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                    />
+                                    Subtotal
+                                </label>
+                                <div className="relative">
+                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
+                                    <input
+                                        type="number"
+                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
+                                        value={data?.subtotal || ''}
+                                        onChange={(e) => setData(prev => prev ? ({ ...prev, subtotal: parseFloat(e.target.value) }) : null)}
+                                        placeholder="0.00"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedFields.has('tax')}
+                                        onChange={() => toggleFieldSelection('tax')}
+                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                    />
+                                    Tax
+                                </label>
+                                <div className="relative">
+                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
+                                    <input
+                                        type="number"
+                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
+                                        value={data?.tax || ''}
+                                        onChange={(e) => setData(prev => prev ? ({ ...prev, tax: parseFloat(e.target.value) }) : null)}
+                                        placeholder="0.00"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                    <input
+                                        type="checkbox"
                                         checked={selectedFields.has('total')}
                                         onChange={() => toggleFieldSelection('total')}
                                         className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
                                     />
-                                    {t.invoiceOcr?.fieldTotal || "Total"}
+                                    Total
                                 </label>
                                 <div className="relative">
-                                    <span className="absolute left-3 top-3 text-gray-400">{data?.currency || '$'}</span>
+                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
                                     <input
                                         type="number"
-                                        className="w-full p-3 pl-8 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-lg text-green-600"
+                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-green-600"
                                         value={data?.total || ''}
                                         onChange={(e) => setData(prev => prev ? ({ ...prev, total: parseFloat(e.target.value) }) : null)}
                                         placeholder="0.00"
@@ -319,18 +529,47 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
 
                     {/* Actions */}
                     <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <button
-                            onClick={handleExportExcel}
-                            disabled={selectedFields.size === 0}
-                            className={`w-full py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${
-                                selectedFields.size === 0
-                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
-                                    : 'bg-green-600 hover:bg-green-700 text-white hover:shadow-lg active:scale-95'
-                            }`}
-                        >
-                            <FileSpreadsheet size={20} />
-                            {t.invoiceOcr?.exportExcel || "Export to Excel"}
-                        </button>
+                        <div className="grid grid-cols-3 gap-2">
+                            <button
+                                onClick={handleExportExcel}
+                                disabled={selectedFields.size === 0}
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
+                                    selectedFields.size === 0
+                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                        : 'bg-green-600 hover:bg-green-700 text-white hover:shadow-lg active:scale-95'
+                                }`}
+                                title="Export to Excel"
+                            >
+                                <FileSpreadsheet size={18} />
+                                <span className="hidden sm:inline">Excel</span>
+                            </button>
+                            <button
+                                onClick={handleExportCSV}
+                                disabled={selectedFields.size === 0}
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
+                                    selectedFields.size === 0
+                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                        : 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-lg active:scale-95'
+                                }`}
+                                title="Export to CSV"
+                            >
+                                <FileText size={18} />
+                                <span className="hidden sm:inline">CSV</span>
+                            </button>
+                            <button
+                                onClick={handleExportJSON}
+                                disabled={selectedFields.size === 0}
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
+                                    selectedFields.size === 0
+                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                        : 'bg-purple-600 hover:bg-purple-700 text-white hover:shadow-lg active:scale-95'
+                                }`}
+                                title="Export to JSON"
+                            >
+                                <FileJson size={18} />
+                                <span className="hidden sm:inline">JSON</span>
+                            </button>
+                        </div>
 
                         <div className="flex gap-3">
                             <button

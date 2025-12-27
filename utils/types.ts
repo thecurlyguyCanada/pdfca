@@ -38,11 +38,34 @@ export type CurrentView = 'HOME' | 'PRICING' | 'PRIVACY' | 'TERMS' | 'SORRY' | '
     'GUIDE_ULTIMATE' | 'GUIDE_DELETE_PAGES' | 'GUIDE_ROTATE' | 'GUIDE_HEIC_TO_PDF' | 'GUIDE_EPUB_TO_PDF' | 'GUIDE_PDF_TO_EPUB' | 'GUIDE_ORGANIZE' | 'GUIDE_FILLABLE' | 'GUIDE_EMAIL_TO_PDF' | 'GUIDE_CBR_TO_PDF' |
     'GUIDE_PDF_TO_WORD' | 'GUIDE_WORD_TO_PDF' | 'GUIDE_PDF_PAGE_REMOVER' | 'GUIDE_FLATTEN' | 'GUIDE_CROP' | 'GUIDE_COMPRESS' | 'GUIDE_MERGE' | 'GUIDE_EDIT_XFA' | 'GUIDE_INSERT_PICTURE' | 'GUIDE_SPLIT' | 'GUIDE_SIGN' | 'GUIDE_EXCEL_TO_PDF' | 'GUIDE_INVOICE_OCR';
 
+export interface InvoiceLineItem {
+    description?: string;
+    quantity?: number;
+    unitPrice?: number;
+    amount?: number;
+}
+
 export interface InvoiceData {
     id?: string;
     date?: string; // Standard format YYYY-MM-DD
     total?: number;
     vendor?: string;
     currency?: string;
+    subtotal?: number;
+    tax?: number;
+    dueDate?: string;
+    poNumber?: string; // Purchase Order Number
+    paymentTerms?: string;
+    lineItems?: InvoiceLineItem[];
     confidence: number;
+    fieldConfidence?: {
+        vendor?: number;
+        id?: number;
+        date?: number;
+        total?: number;
+        subtotal?: number;
+        tax?: number;
+        dueDate?: number;
+        poNumber?: number;
+    };
 }
