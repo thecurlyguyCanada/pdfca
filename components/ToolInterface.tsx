@@ -233,7 +233,16 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
-    if (!file && (!files || files.length === 0)) {
+    // Tool type checks - must be declared before use
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML;
+    const isSignTool = currentTool === ToolType.SIGN;
+    const isCropTool = currentTool === ToolType.CROP;
+    const isOrganizeTool = currentTool === ToolType.ORGANIZE;
+    const isCompressTool = currentTool === ToolType.COMPRESS;
+    const isInvoiceTool = currentTool === ToolType.INVOICE_OCR;
+    const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
+
+    if (!file && (!files || files.length === 0) && !isBarcodeTool) {
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
@@ -355,14 +364,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
         );
     }
-
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML;
-    const isSignTool = currentTool === ToolType.SIGN;
-    const isCropTool = currentTool === ToolType.CROP;
-    const isOrganizeTool = currentTool === ToolType.ORGANIZE;
-    const isCompressTool = currentTool === ToolType.COMPRESS;
-    const isInvoiceTool = currentTool === ToolType.INVOICE_OCR;
-    const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
 
     let headerText = '';
 
