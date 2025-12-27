@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { X, Type, PenTool, Upload, Check, Trash2 } from 'lucide-react';
 
 interface SignatureModalProps {
@@ -267,8 +268,8 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
                                 </div>
                             ) : (
                                 <div className="relative group h-full max-h-64">
-                                    <div className="border-2 border-gray-200 rounded-2xl overflow-hidden bg-url-grid flex items-center justify-center p-4 h-full bg-white">
-                                        <img src={uploadedImage} alt="Uploaded signature image" className="max-w-full max-h-full object-contain" loading="lazy" />
+                                    <div className="border-2 border-gray-200 rounded-2xl overflow-hidden bg-url-grid flex items-center justify-center p-4 h-full bg-white relative">
+                                        <Image src={uploadedImage} alt="Uploaded signature image" className="max-w-full max-h-full object-contain" fill unoptimized />
                                     </div>
                                     <button
                                         onClick={() => setUploadedImage(null)}

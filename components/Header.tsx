@@ -70,19 +70,19 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-1 items-center bg-gray-100 p-1 rounded-full border border-gray-200/50">
-          <Link href={`/${lang}`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'About' : 'À Propos'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/howto`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/howto`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {t.navHowTo}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/support`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/support`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {t.navSupport}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
@@ -94,9 +94,9 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             onClick={() => triggerHaptic('light')}
             className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
           >
-            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-600'}`}>EN</span>
+            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-700'}`}>EN</span>
             <div className="w-px h-3 bg-gray-300" />
-            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-600'}`}>FR</span>
+            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-700'}`}>FR</span>
           </Link>
 
           <button
@@ -105,6 +105,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
               setMobileMenuOpen(!mobileMenuOpen);
             }}
             className="md:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass active:scale-95"
+            aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
           >
             {mobileMenuOpen ? <X size={20} className="text-canada-red" /> : <Menu size={20} className="text-gray-900" />}
           </button>

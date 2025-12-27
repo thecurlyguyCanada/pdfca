@@ -25,8 +25,8 @@ const FooterSection = ({ title, children }: { title: string, children: React.Rea
             className="flex items-center justify-between w-full py-4 md:py-0 md:mb-6 md:cursor-default md:pointer-events-none group"
             aria-expanded={isOpen}
          >
-            <p className="font-bold text-white group-active:text-canada-red transition-colors text-base md:text-sm md:text-modern-neutral-500 md:uppercase md:tracking-widest">{title}</p>
-            <ChevronDown className={`w-5 h-5 text-modern-neutral-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
+            <p className="font-bold text-white group-active:text-canada-red transition-colors text-base md:text-sm md:text-modern-neutral-300 md:uppercase md:tracking-widest">{title}</p>
+            <ChevronDown className={`w-5 h-5 text-modern-neutral-300 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`} />
          </button>
          <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] mb-6' : 'grid-rows-[0fr] md:grid-rows-[1fr] md:mb-0'}`}>
             <div className="overflow-hidden">
@@ -61,12 +61,12 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                            <span className="text-2xl font-black tracking-tighter lowercase italic">pdfcanada.ca</span>
                         </div>
                      </Link>
-                     <p className="text-modern-neutral-400 text-lg leading-relaxed font-medium max-w-sm">
+                     <p className="text-modern-neutral-300 text-lg leading-relaxed font-medium max-w-sm">
                         {t.footerBuilt}
                      </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.2em] text-modern-neutral-300 uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full w-fit">
+                  <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.2em] text-modern-neutral-200 uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full w-fit">
                      <MapPin size={12} className="text-canada-red" />
                      <span>Toronto &bull; Ontario &bull; Canada</span>
                   </div>
@@ -116,7 +116,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
             {/* Bottom Bar - Minimalist */}
             <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <p className="text-xs text-modern-neutral-400 font-bold">&copy; {year} pdfcanada.ca</p>
+                  <p className="text-xs text-modern-neutral-300 font-bold">&copy; {year} pdfcanada.ca</p>
 
                   <div className="flex items-center gap-4">
                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">
@@ -130,7 +130,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                   </div>
                </div>
 
-               <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-400">
+               <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-widest text-modern-neutral-300">
                   <Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link>
                   <div className="w-1 h-1 bg-white/20 rounded-full" />
                   <Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link>

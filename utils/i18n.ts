@@ -727,6 +727,8 @@ export const translations = {
     terms: "By uploading, you agree to our polite Terms of Service.",
     pages: "pages",
     local: "Local",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
 
     // Selection View
     selectPagesHeader: "Select pages:",
@@ -1479,6 +1481,8 @@ export const translations = {
     terms: "En téléversant, vous acceptez nos conditions polies.",
     pages: "pages",
     local: "Local",
+    menuOpen: "Ouvrir le menu",
+    menuClose: "Fermer le menu",
 
     selectPagesHeader: "Sélectionnez les pages :",
     selected: "sélectionnées",
