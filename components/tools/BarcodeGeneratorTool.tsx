@@ -593,6 +593,287 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     <li>• Customizable colors, sizes, and fonts</li>
                 </ul>
             </div>
+
+            {/* SEO Content Sections */}
+            <div className="mt-8 space-y-8">
+                {/* What is Code 128 */}
+                <section className="bg-white border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">What is a Code 128 Barcode?</h2>
+                    <p className="text-gray-700 mb-4">
+                        Code 128 is a high-density linear barcode symbology defined in ISO/IEC 15417:2007 that can encode all 128 ASCII characters, including uppercase and lowercase letters, numbers, symbols, and control codes. Developed in 1981 by Computer Identics Corporation, Code 128 has become one of the most versatile and widely-used barcode formats in the world.
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                        Unlike simpler barcode formats, Code 128 is structured into three character sets—Code 128A, Code 128B, and Code 128C—each optimized for different types of data. This unique structure allows Code 128 to automatically select the most efficient encoding method, making it ideal for applications requiring compact barcodes with diverse character requirements.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        <div className="bg-blue-50 p-4 rounded">
+                            <h3 className="font-semibold mb-2 text-blue-900">Code 128A</h3>
+                            <p className="text-sm text-gray-700">Uppercase letters, digits, and control characters. Ideal for industrial applications.</p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded">
+                            <h3 className="font-semibold mb-2 text-green-900">Code 128B</h3>
+                            <p className="text-sm text-gray-700">Full ASCII including upper/lowercase letters and symbols. Perfect for general use.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded">
+                            <h3 className="font-semibold mb-2 text-purple-900">Code 128C</h3>
+                            <p className="text-sm text-gray-700">Numeric pairs only. Most compact format for number-heavy data like serial numbers.</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Use Cases */}
+                <section className="bg-white border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">Code 128 Barcode Use Cases & Applications</h2>
+                    <p className="text-gray-700 mb-6">
+                        Code 128 barcodes are used across numerous industries worldwide due to their versatility, high data density, and reliability. Here are the most common applications:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="border-l-4 border-blue-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Shipping & Logistics</h3>
+                            <p className="text-gray-700 text-sm">
+                                Code 128 barcodes are essential in supply chain management for tracking shipping containers, packages, and pallets. They enable automated sorting, real-time tracking, and efficient delivery management. Major carriers like UPS, FedEx, and DHL rely on Code 128 for their shipment tracking systems.
+                            </p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Healthcare & Pharmaceuticals</h3>
+                            <p className="text-gray-700 text-sm">
+                                Hospitals and medical facilities use Code 128 barcodes to track medications, medical equipment, and patient information. This helps minimize medication errors, verify patient identity, improve safety, and maintain accurate inventory of medical supplies and devices.
+                            </p>
+                        </div>
+                        <div className="border-l-4 border-purple-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Retail & Inventory Management</h3>
+                            <p className="text-gray-700 text-sm">
+                                Retail stores utilize Code 128 for inventory control, stock level monitoring, product pricing, and faster checkout processes. The compact nature of Code 128 makes it perfect for labels on smaller items and allows retailers to encode detailed product information.
+                            </p>
+                        </div>
+                        <div className="border-l-4 border-orange-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Manufacturing & Warehouse</h3>
+                            <p className="text-gray-700 text-sm">
+                                Manufacturing facilities use Code 128 for asset tracking, quality control, work-in-progress monitoring, and finished goods management. Warehouses rely on them for bin locations, picking operations, and inventory accuracy.
+                            </p>
+                        </div>
+                        <div className="border-l-4 border-red-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Government & Document Management</h3>
+                            <p className="text-gray-700 text-sm">
+                                Government agencies use Code 128 for document tracking, public service identification, license management, and secure data encoding. The ability to encode diverse character sets makes it ideal for official documents.
+                            </p>
+                        </div>
+                        <div className="border-l-4 border-indigo-500 pl-4">
+                            <h3 className="font-semibold text-lg mb-2">Transportation & Ticketing</h3>
+                            <p className="text-gray-700 text-sm">
+                                Transportation systems use Code 128 for boarding passes, event tickets, parking permits, and access control. The high-density encoding allows storing passenger details, seat assignments, and validation codes efficiently.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* How to Use */}
+                <section className="bg-white border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">How to Use This Code 128 Barcode Generator</h2>
+                    <div className="space-y-4">
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h3 className="font-semibold mb-1">Choose Your Generation Mode</h3>
+                                <p className="text-gray-700 text-sm">Select between <strong>Single/Manual</strong> mode for individual barcodes or <strong>Bulk Generation</strong> for creating multiple barcodes at once from sequences or uploaded files (CSV/Excel).</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h3 className="font-semibold mb-1">Configure Barcode Settings</h3>
+                                <p className="text-gray-700 text-sm">Adjust format (CODE128/A/B/C), bar width, height, colors, and font size to match your requirements. The generator will auto-preview your changes in real-time.</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h3 className="font-semibold mb-1">Enter Your Barcode Data</h3>
+                                <p className="text-gray-700 text-sm">Type or paste your data into the input field. The barcode will generate automatically as you type. For bulk mode, use the sequence generator or upload a file.</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                            <div>
+                                <h3 className="font-semibold mb-1">Download or Copy</h3>
+                                <p className="text-gray-700 text-sm">Choose your export format (PNG, SVG, or PDF) and click Download. You can also copy individual barcodes to clipboard or export all barcodes as a multi-page PDF.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Benefits */}
+                <section className="bg-gradient-to-br from-blue-50 to-indigo-50 border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">Benefits & Advantages of Code 128 Barcodes</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">🎯 High Data Density</h3>
+                            <p className="text-sm text-gray-700">Code 128 is the most compact 1D barcode format, encoding more data in less space compared to Code 39 or other legacy formats. This makes it ideal for small labels and space-constrained applications.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">🔤 Complete ASCII Support</h3>
+                            <p className="text-sm text-gray-700">Encode all 128 ASCII characters including letters (upper/lowercase), numbers, symbols, and control codes. This versatility supports diverse data requirements from simple numbers to complex alphanumeric strings.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">✅ Industry Standard</h3>
+                            <p className="text-sm text-gray-700">Widely adopted across shipping, healthcare, retail, and manufacturing industries. Compatible with virtually all barcode scanners and reading systems worldwide, ensuring reliable data capture.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">⚡ Automatic Optimization</h3>
+                            <p className="text-sm text-gray-700">Code 128 Auto mode automatically selects the most efficient character set (A, B, or C) for your data, minimizing barcode length while maximizing readability and scan reliability.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">🔒 Built-in Error Detection</h3>
+                            <p className="text-sm text-gray-700">Includes mandatory check digits for data validation, reducing scanning errors and improving accuracy. This is critical for applications where data integrity is essential.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded shadow-sm">
+                            <h3 className="font-semibold text-blue-900 mb-2">🌐 Global Supply Chain Ready</h3>
+                            <p className="text-sm text-gray-700">Forms the basis of GS1-128 (used in global supply chains), making it compatible with international shipping standards and logistics systems used by major carriers worldwide.</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* FAQ Section */}
+                <section className="bg-white border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-6 text-gray-900">Frequently Asked Questions (FAQ)</h2>
+                    <div className="space-y-4">
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                What is a Code 128 barcode?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Code 128 is a high-density linear barcode symbology that can encode all 128 ASCII characters. Developed in 1981, it's one of the most versatile 1D barcode formats available and is widely used in shipping, healthcare, retail, and manufacturing for its ability to store diverse data types efficiently.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                How many characters can a Code 128 barcode hold?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                A Code 128 barcode can theoretically encode unlimited characters, but practical limits exist based on scanner capabilities and label size. Most applications use between 10-40 characters. The barcode length increases with more data, so very long strings may become difficult to print or scan reliably.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                What's the difference between Code 128, Code 128A, Code 128B, and Code 128C?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                <strong>Code 128 (Auto)</strong> automatically selects the best character set for your data. <strong>Code 128A</strong> encodes uppercase letters, digits, and control characters. <strong>Code 128B</strong> encodes the full ASCII character set including upper/lowercase letters and symbols. <strong>Code 128C</strong> encodes only numeric pairs and is the most compact for number-only data.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Can I use Code 128 barcodes for shipping labels?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Yes! Code 128 is the industry standard for shipping labels and is used by major carriers like UPS, FedEx, USPS, and DHL. Its high data density and ability to encode alphanumeric tracking numbers make it perfect for logistics and supply chain applications. GS1-128 (based on Code 128) is specifically designed for shipping applications.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                What file formats can I download the barcodes in?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Our generator supports three formats: <strong>PNG</strong> (raster image, great for digital use), <strong>SVG</strong> (vector format, scalable without quality loss, ideal for professional printing), and <strong>PDF</strong> (multi-page documents for bulk barcodes, perfect for printing multiple labels).
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Is this Code 128 barcode generator free to use?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Yes, our Code 128 barcode generator is completely free to use for personal and commercial purposes. You can generate unlimited barcodes, download them in multiple formats, and use them in your projects without any restrictions or watermarks.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Can I generate barcodes in bulk?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Absolutely! Switch to <strong>Bulk Generation</strong> mode to create multiple barcodes at once. You can generate sequential barcodes (e.g., 1-1000 with custom prefixes/suffixes) or upload an Excel/CSV file containing your barcode data. Export all barcodes as a single multi-page PDF for easy printing.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                What scanners can read Code 128 barcodes?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Code 128 barcodes are readable by virtually all modern barcode scanners including handheld laser scanners, CCD scanners, 2D imagers, and smartphone apps with barcode scanning capability. The widespread support makes Code 128 one of the most reliable choices for barcode applications.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                How do I choose the right bar width and height?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Bar width (X-dimension) affects how much space the barcode occupies—use 2-3px for standard applications. Height should be at least 15% of the barcode width, typically 100px or higher. For industrial/warehouse scanning from a distance, use wider bars (3-5px) and greater height (150-200px). Always test with your scanner before printing large quantities.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Can I customize the colors of the barcode?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Yes! You can customize both the background color and bar color. However, for maximum scan reliability, maintain high contrast—black bars on white background is recommended. Avoid light-colored bars or dark backgrounds as they may reduce scanner readability. Always test colored barcodes with your scanning equipment.
+                            </p>
+                        </details>
+
+                        <details className="group border-b pb-4">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Why should I use Code 128 instead of Code 39?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Code 128 is more compact and efficient than Code 39, encoding the same data in approximately half the space. It also supports the full ASCII character set (128 characters) while Code 39 is limited to 43 characters. For modern applications, Code 128 is the superior choice due to its high density and versatility.
+                            </p>
+                        </details>
+
+                        <details className="group">
+                            <summary className="font-semibold cursor-pointer text-lg hover:text-blue-600 transition">
+                                Do Code 128 barcodes work with Excel and inventory systems?
+                            </summary>
+                            <p className="mt-3 text-gray-700 text-sm pl-4">
+                                Yes! You can upload Excel (.xlsx, .xls) or CSV files to generate barcodes in bulk. Most inventory management systems, warehouse management systems (WMS), and enterprise resource planning (ERP) software support Code 128 barcodes for tracking assets, products, and shipments.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                {/* Additional SEO Content */}
+                <section className="bg-white border rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">Technical Specifications</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 className="font-semibold text-lg mb-3">Barcode Type</h3>
+                            <ul className="text-sm space-y-2 text-gray-700">
+                                <li><strong>Symbology:</strong> Code 128 (Linear/1D)</li>
+                                <li><strong>Standard:</strong> ISO/IEC 15417:2007</li>
+                                <li><strong>Year Developed:</strong> 1981</li>
+                                <li><strong>Developer:</strong> Computer Identics Corporation</li>
+                                <li><strong>Character Sets:</strong> Code Set A, B, and C</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="font-semibold text-lg mb-3">Data Capacity</h3>
+                            <ul className="text-sm space-y-2 text-gray-700">
+                                <li><strong>Character Support:</strong> All 128 ASCII characters</li>
+                                <li><strong>Maximum Length:</strong> Variable (limited by physical size)</li>
+                                <li><strong>Typical Length:</strong> 10-40 characters</li>
+                                <li><strong>Check Digit:</strong> Mandatory (built-in error detection)</li>
+                                <li><strong>Density:</strong> High-density linear barcode</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     );
 };
