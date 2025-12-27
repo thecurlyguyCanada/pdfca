@@ -18,9 +18,9 @@ const STORAGE_KEY = STORAGE_CONFIG.INDEXEDDB.SESSION_KEY;
 export const saveSession = async (state: AppSessionState): Promise<void> => {
     try {
         await set(STORAGE_KEY, state);
-        console.debug('Session saved to IndexedDB');
+        logger.debug('Session saved to IndexedDB');
     } catch (e) {
-        console.warn('Failed to save session', e);
+        logger.warn('Failed to save session', e);
     }
 };
 
@@ -33,7 +33,7 @@ export const loadSession = async (): Promise<AppSessionState | null> => {
         // Let's keep it simple: if it exists, return it.
         return session;
     } catch (e) {
-        console.warn('Failed to load session', e);
+        logger.warn('Failed to load session', e);
         return null;
     }
 };
@@ -41,8 +41,8 @@ export const loadSession = async (): Promise<AppSessionState | null> => {
 export const clearSession = async (): Promise<void> => {
     try {
         await del(STORAGE_KEY);
-        console.debug('Session cleared');
+        logger.debug('Session cleared');
     } catch (e) {
-        console.warn('Failed to clear session', e);
+        logger.warn('Failed to clear session', e);
     }
 };

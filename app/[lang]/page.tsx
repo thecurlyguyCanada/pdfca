@@ -30,7 +30,7 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = 'https://www.pdfcanada.ca';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
     const content = metadata[lang] || metadata.en;
 
     return {
@@ -109,25 +109,21 @@ export default async function Page({
             <Script
                 id="schema-website"
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
             />
             <Script
                 id="schema-organization"
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
             <Script
                 id="schema-business"
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
             />
             <Script
                 id="schema-breadcrumb"
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <HomePageServer lang={currentLang} />

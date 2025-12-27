@@ -41,7 +41,7 @@ export async function generateMetadata({
         };
     }
 
-    const baseUrl = 'https://www.pdfcanada.ca';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
     const path = `/${tool}`;
 
     return {
@@ -109,20 +109,17 @@ export default async function ToolPage({
             <Script
                 id={`schema-software-${config.slug}`}
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
             />
             <Script
                 id={`schema-breadcrumb-${config.slug}`}
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             {faqSchema && (
                 <Script
                     id={`schema-faq-${config.slug}`}
                     type="application/ld+json"
-                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
                 />
             )}

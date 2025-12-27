@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { logger } from '@/utils/logger';
 import { ToolInterface } from '@/components/ToolInterface';
 import { translations, Language } from '@/utils/i18n';
 import { AppState, ToolType } from '@/utils/types';
@@ -67,7 +68,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           docToCleanup.cleanup?.();
           docToCleanup.destroy?.();
         } catch (e) {
-          console.debug('PDF.js cleanup failed', e);
+          logger.debug('PDF.js cleanup failed', e);
         }
       }
     };
@@ -78,14 +79,14 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   };
 
   const onAction = async (processedBlob?: Blob | Uint8Array) => {
-    console.log('[HANDLE ACTION] Called with file:', file, 'processedBlob:', processedBlob);
+    logger.log('[HANDLE ACTION] Called with file:', file, 'processedBlob:', processedBlob);
     if (!file) {
-      console.error('[HANDLE ACTION] NO FILE! Returning early.');
+      logger.error('[HANDLE ACTION] NO FILE! Returning early.');
       return;
     }
 
     try {
-      console.log('[HANDLE ACTION] Setting state to PROCESSING for tool:', currentTool);
+      logger.log('[HANDLE ACTION] Setting state to PROCESSING for tool:', currentTool);
       setAppState(AppState.PROCESSING);
 
       const opId = ++operationIdRef.current;
@@ -219,7 +220,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         triggerHaptic('success');
       }
     } catch (error: any) {
-      console.error("Action execution failed:", error);
+      logger.error("Action execution failed:", error);
       triggerHaptic('error');
 
       const errMsg = error?.message?.toLowerCase() || '';
@@ -328,7 +329,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           if (pdfJsResult.status === 'fulfilled') {
             setPdfJsDoc(pdfJsResult.value);
           } else {
-            console.warn("Preview failed (PDF.js)", pdfJsResult.reason);
+            logger.warn("Preview failed (PDF.js)", pdfJsResult.reason);
             setPdfJsDoc(null);
           }
 
@@ -341,7 +342,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           setAppState(AppState.SELECTING);
         } catch (e: any) {
           if (opId !== operationIdRef.current) return;
-          console.error("Failed to load PDF structure:", e);
+          logger.error("Failed to load PDF structure:", e);
           triggerHaptic('error');
           if (e?.message?.toLowerCase().includes('password') || e?.name === 'PasswordException' || e?.message?.includes('encrypted')) {
             setErrorKey('passwordErr');
@@ -356,7 +357,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         setAppState(AppState.SELECTING);
       }
     } catch (error: any) {
-      console.error("General file processing error:", error);
+      logger.error("General file processing error:", error);
       triggerHaptic('error');
       setErrorKey('readErr');
       setAppState(AppState.ERROR);
