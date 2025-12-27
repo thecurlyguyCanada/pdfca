@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
+import { Split, BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -438,6 +438,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                 { name: 'Fillable Form Creation', path: '/guides/make-pdf-fillable', icon: PenTool, view: 'GUIDE_FILLABLE' },
                                 { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
                                 { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },
+                                { name: 'Split PDF Pages', path: '/guides/split-pdf', icon: Split, view: 'GUIDE_SPLIT' },
                                 { name: 'Convert Comics to PDF', path: '/guides/cbr-to-pdf', icon: BookOpen, view: 'GUIDE_CBR_TO_PDF' },
                                 { name: 'Insert Picture in PDF', path: '/guides/insert-picture-in-pdf', icon: Image, view: 'GUIDE_INSERT_PICTURE' }
                             ].map((guide: any, i: number) => (

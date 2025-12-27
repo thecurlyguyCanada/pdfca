@@ -17,9 +17,11 @@ import { MergePdfGuide } from '@/components/pages/guides/MergePdfGuide';
 import { EditXfaPdfGuide } from '@/components/pages/guides/EditXfaPdfGuide';
 import { InsertPictureGuide } from '@/components/pages/guides/InsertPictureGuide';
 import { FlattenPdfGuide } from '@/components/pages/guides/FlattenPdfGuide';
+import { SplitPdfGuide } from '@/components/pages/guides/SplitPdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
+    'split-pdf': SplitPdfGuide,
     'delete-pdf-pages': DeletePdfPagesGuide,
     'rotate-pdf': RotatePdfGuide,
     'heic-to-pdf': HeicToPdfGuide,
