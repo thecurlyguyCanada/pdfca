@@ -118,7 +118,7 @@ export default async function ToolPage({
                 <main id="main-content" className="flex-grow">
                     <Breadcrumb
                         lang={currentLang}
-                        items={[{ name: config.title }]}
+                        items={[{ name: localizedConfig.title }]}
                     />
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
