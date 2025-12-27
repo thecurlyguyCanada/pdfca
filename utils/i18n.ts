@@ -1493,7 +1493,6 @@ export const translations = {
     toolFlattenDesc: "Aplatir le PDF.",
     toolPdfPageRemover: "Suppresseur de pages PDF online",
     toolPdfPageRemoverDesc: "Enlever des pages du PDF en ligne.",
-    toolOrganizeDesc: "Réorganisez ou supprimez des pages.",
     toolInvoiceOcr: "OCR Factures",
     toolInvoiceOcrDesc: "Extraire vers Excel.",
     toolRotate: "Pivoter PDF",
