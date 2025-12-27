@@ -122,11 +122,25 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
           <div
             className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-[70] shadow-2xl animate-slide-in-right overflow-y-auto"
             style={{
-              paddingTop: 'max(88px, calc(var(--safe-area-inset-top) + 88px))',
+              paddingTop: 'max(24px, var(--safe-area-inset-top))',
               paddingBottom: 'var(--safe-area-inset-bottom)',
             }}
           >
-            <nav className="flex flex-col p-6 gap-2">
+            {/* Close Button at the top of mobile menu */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+              <span className="text-lg font-bold text-gray-900">{lang === 'en' ? 'Menu' : 'Menu'}</span>
+              <button
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
+                className="p-3 rounded-2xl bg-gray-100 hover:bg-gray-200 active:scale-95 transition-all"
+                aria-label={t.menuClose}
+              >
+                <X size={20} className="text-gray-700" />
+              </button>
+            </div>
+            <nav className="flex flex-col p-6 gap-2 pt-4">
               <Link
                 href={`/${lang}`}
                 className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
@@ -154,6 +168,13 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t.navSupport}
+              </Link>
+              <Link
+                href={`/${lang}/guides/ultimate-pdf-guide`}
+                className="text-left text-lg font-semibold text-canada-red py-4 px-5 rounded-2xl hover:bg-red-50 flex items-center border border-transparent"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {lang === 'en' ? '📚 PDF Guides' : '📚 Guides PDF'}
               </Link>
             </nav>
           </div>

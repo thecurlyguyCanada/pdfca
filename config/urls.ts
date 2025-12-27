@@ -12,9 +12,11 @@ export const URLS = {
   GITHUB: 'https://github.com/thecurlyguyCanada/pdfca',
 
   // sameAs array for Knowledge Graph entity recognition
+  // These links help establish entity identity in search engines
   SAME_AS: [
     'https://twitter.com/pdfcanada',
     'https://github.com/thecurlyguyCanada/pdfca',
+    'https://www.pdfcanada.ca',
   ],
 
   // Assets

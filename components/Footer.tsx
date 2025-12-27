@@ -48,7 +48,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
          <div className="absolute -top-24 -left-24 w-96 h-96 bg-canada-red/10 blur-[120px] rounded-full pointer-events-none" />
 
          <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 mb-20">
 
                {/* Column 1: Brand & Purpose */}
                <div className="space-y-6 lg:col-span-2 pr-0 md:pr-12">
@@ -99,7 +99,20 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                   </FooterSection>
                </div>
 
-               {/* Column 4: Resources */}
+               {/* Column 4: Guides */}
+               <div className="lg:col-span-1">
+                  <FooterSection title={lang === 'fr' ? 'Guides' : 'Guides'}>
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
+                        <li><Link href={`/${lang}/guides/merge-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Fusionner PDF' : 'Merge PDF Guide'}</Link></li>
+                        <li><Link href={`/${lang}/guides/compress-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Compresser PDF' : 'Compress PDF Guide'}</Link></li>
+                        <li><Link href={`/${lang}/guides/rotate-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Pivoter PDF' : 'Rotate PDF Guide'}</Link></li>
+                        <li><Link href={`/${lang}/guides/delete-pdf-pages`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Supprimer Pages' : 'Delete Pages Guide'}</Link></li>
+                        <li><Link href={`/${lang}/guides/word-to-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Word vers PDF' : 'Word to PDF Guide'}</Link></li>
+                     </ul>
+                  </FooterSection>
+               </div>
+
+               {/* Column 5: Resources */}
                <div className="lg:col-span-1">
                   <FooterSection title={lang === 'fr' ? 'Ressources' : 'Resources'}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
