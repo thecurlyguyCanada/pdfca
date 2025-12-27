@@ -84,7 +84,7 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
     const t = content[lang] || content.en;
 
     return (
-        <section className="mt-20 pt-12 border-t border-gray-200 dark:border-gray-800">
+        <section className="mt-20 pt-12 border-t border-gray-200 dark:border-gray-800" style={{ minHeight: '400px' }}>
             <div className="mb-12">
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">{t.toolsTitle}</h2>
                 <p className="text-gray-500 dark:text-gray-400 mb-6">{t.toolsSubtitle}</p>
