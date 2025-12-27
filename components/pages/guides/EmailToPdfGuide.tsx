@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor } from 'lucide-react';

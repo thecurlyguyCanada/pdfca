@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { HomePageServer } from '@/components/pages/HomePageServer';
-import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/structuredData';
+import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
@@ -85,9 +85,6 @@ export async function generateMetadata({
             images: [`${baseUrl}/og-image.png`],
             creator: '@pdfcanada',
         },
-        verification: {
-            google: 'your-google-verification-code',
-        },
         category: 'technology',
     };
 }
@@ -103,26 +100,35 @@ export default async function Page({
     const websiteSchema = generateWebsiteSchema();
     const orgSchema = generateOrganizationSchema();
     const businessSchema = generateLocalBusinessSchema();
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.pdfcanada.ca/${lang}` }
+    ]);
 
     return (
         <>
             <Script
                 id="schema-website"
                 type="application/ld+json"
-                strategy="beforeInteractive"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
             />
             <Script
                 id="schema-organization"
                 type="application/ld+json"
-                strategy="beforeInteractive"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
             <Script
                 id="schema-business"
                 type="application/ld+json"
-                strategy="beforeInteractive"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+            />
+            <Script
+                id="schema-breadcrumb"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <HomePageServer lang={currentLang} />
         </>

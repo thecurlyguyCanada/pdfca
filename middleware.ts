@@ -5,19 +5,22 @@ import { i18n } from './lib/i18n-config';
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
-    // Check if the pathname is missing a locale
-    const pathnameIsMissingLocale = i18n.locales.every(
-        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    // Early return for root path
+    if (pathname === '/') {
+        const locale = getLocale(request) || i18n.defaultLocale;
+        return NextResponse.redirect(new URL(`/${locale}`, request.url));
+    }
+
+    // Check if the pathname already has a locale (more efficient check)
+    const pathnameHasLocale = i18n.locales.some(
+        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    // Redirect if there is no locale
-    if (pathnameIsMissingLocale) {
-        // Get the preferred locale from the Accept-Language header
+    // Only redirect if locale is missing
+    if (!pathnameHasLocale) {
         const locale = getLocale(request) || i18n.defaultLocale;
-
-        // Redirect to the locale-prefixed path
         return NextResponse.redirect(
-            new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
+            new URL(`/${locale}${pathname}`, request.url)
         );
     }
 }

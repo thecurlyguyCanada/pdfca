@@ -1,19 +1,18 @@
 import type { Metadata, Viewport } from 'next';
-// Font disabled for build (network access issue)
-// import { Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import '../globals.css';
 import { i18n, type Locale } from '@/lib/i18n-config';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 // Optimized font loading with next/font - no render blocking
-// const inter = Inter({
-//     subsets: ['latin'],
-//     display: 'swap',
-//     variable: '--font-inter',
-//     preload: true,
-//     fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-// });
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
+    preload: true,
+    fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+});
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -137,10 +136,14 @@ export default async function RootLayout({
             <head>
                 {/* DNS prefetch for external resources */}
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+                <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
                 {/* Preconnect for critical third parties */}
                 <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             </head>
-            <body className="antialiased font-sans">
+            <body className={`${inter.variable} antialiased font-sans`}>
                 <ErrorBoundary>
                     {children}
                 </ErrorBoundary>

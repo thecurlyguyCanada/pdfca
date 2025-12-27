@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
