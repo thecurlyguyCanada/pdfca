@@ -105,6 +105,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
               setMobileMenuOpen(!mobileMenuOpen);
             }}
             className="md:hidden p-3.5 rounded-2xl bg-white/60 border border-white/50 hover:bg-white shadow-glass active:scale-95"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X size={20} className="text-canada-red" /> : <Menu size={20} className="text-gray-900" />}
           </button>
