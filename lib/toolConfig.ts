@@ -255,6 +255,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['OCR facture', 'facture PDF vers Excel', 'extraire données facture', 'scanner facture gratuit'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'barcode-generator',
+    tool: ToolType.BARCODE_GENERATOR,
+    title: 'Code 128 Barcode Generator',
+    titleFr: 'Générateur Code-Barres Code 128',
+    description: 'Generate professional Code 128 barcodes instantly. Bulk barcode creation from Excel/CSV, add to PDFs, export as PNG/SVG. Support for Code 128A/B/C. Free, fast, and secure.',
+    descriptionFr: 'Générez des codes-barres Code 128 professionnels instantanément. Création en masse depuis Excel/CSV, ajout aux PDF, export PNG/SVG. Support Code 128A/B/C. Gratuit et sécurisé.',
+    keywords: ['code 128 barcode generator', 'bulk barcode generator', 'free barcode maker', 'barcode to pdf', 'excel to barcode', 'generate barcode online', 'code 128a', 'code 128b', 'code 128c'],
+    keywordsFr: ['générateur code-barres code 128', 'générateur code-barres en masse', 'créateur code-barres gratuit', 'code-barres vers pdf', 'excel vers code-barres'],
+    accept: '.xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

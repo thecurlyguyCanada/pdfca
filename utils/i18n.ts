@@ -37,6 +37,7 @@ export const translations = {
     emailToPdfGuide: "Email to PDF Guide",
     insertPictureGuide: "Insert Picture Guide",
     pageRemoverGuide: "PDF Page Remover Guide",
+    barcodeGeneratorGuide: "Barcode Generator Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -973,6 +974,7 @@ export const translations = {
     emailToPdfGuide: "Guide Email vers PDF",
     insertPictureGuide: "Guide Insérer Image",
     pageRemoverGuide: "Guide Suppresseur Pages",
+    barcodeGeneratorGuide: "Guide Générateur Code-Barres",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",
