@@ -6,8 +6,8 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { RelatedTools } from '@/components/RelatedTools';
+import { SEO } from '@/components/SEO';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
-import { generateSoftwareApplicationSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
@@ -94,22 +94,21 @@ export default async function ToolPage({
         description: lang === 'fr' ? config.descriptionFr : config.description,
     };
 
-    // Generate structured data
-    const softwareSchema = generateSoftwareApplicationSchema(localizedConfig);
-    const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.pdfcanada.ca/${lang}` },
-        { name: localizedConfig.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
-    ]);
+    // Breadcrumbs for SEO component
+    const breadcrumbs = [
+        { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: localizedConfig.title, path: `/${lang}/${config.slug}` },
+    ];
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            <SEO
+                title={localizedConfig.title}
+                description={localizedConfig.description}
+                lang={currentLang}
+                canonicalPath={`/${lang}/${config.slug}`}
+                breadcrumbs={breadcrumbs}
+                price="0"
             />
 
             <div className="mesh-bg" aria-hidden="true" />
@@ -136,3 +135,4 @@ export default async function ToolPage({
         </>
     );
 }
+

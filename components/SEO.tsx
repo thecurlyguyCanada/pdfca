@@ -52,7 +52,7 @@ const organizationSchema = {
     "width": 512,
     "height": 512
   },
-  "sameAs": [URLS.TWITTER],
+  "sameAs": URLS.SAME_AS,
   "address": {
     "@type": "PostalAddress",
     "addressLocality": ORGANIZATION.location.city,

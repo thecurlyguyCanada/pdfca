@@ -7,8 +7,15 @@ export const URLS = {
   // Domain and base URLs
   DOMAIN: 'https://www.pdfcanada.ca',
 
-  // Social media
+  // Social media & Knowledge Graph sameAs links
   TWITTER: 'https://twitter.com/pdfcanada',
+  GITHUB: 'https://github.com/thecurlyguyCanada/pdfca',
+
+  // sameAs array for Knowledge Graph entity recognition
+  SAME_AS: [
+    'https://twitter.com/pdfcanada',
+    'https://github.com/thecurlyguyCanada/pdfca',
+  ],
 
   // Assets
   OG_IMAGE: '/og-image.png',
