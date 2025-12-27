@@ -224,7 +224,6 @@ export function SEO({
           key={`schema-${index}`}
           id={`schema-${index}-${canonicalPath.replace(/\//g, '-')}`}
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaItem) }}
         />
       ))}

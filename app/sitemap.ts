@@ -6,13 +6,14 @@ import { i18n, Locale } from '@/lib/i18n-config';
 // Use Edge Runtime for fastest sitemap delivery to crawlers
 export const runtime = 'edge';
 
-const baseUrl = 'https://www.pdfcanada.ca';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
 
-// Fixed lastModified dates for stable sitemap
-const LAST_MODIFIED_HOMEPAGE = new Date('2024-12-20');
-const LAST_MODIFIED_TOOLS = new Date('2024-12-15');
-const LAST_MODIFIED_GUIDES = new Date('2024-12-10');
-const LAST_MODIFIED_STATIC = new Date('2024-12-01');
+// Dynamic lastModified dates - updates with each build for freshness signals to crawlers
+const BUILD_DATE = new Date();
+const LAST_MODIFIED_HOMEPAGE = BUILD_DATE;
+const LAST_MODIFIED_TOOLS = BUILD_DATE;
+const LAST_MODIFIED_GUIDES = BUILD_DATE;
+const LAST_MODIFIED_STATIC = BUILD_DATE;
 
 // Static pages that should be in sitemap
 const staticPages = ['about', 'howto', 'support', 'privacy', 'terms'];

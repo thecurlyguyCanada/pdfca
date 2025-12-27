@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/utils/logger';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Rnd } from 'react-rnd';
@@ -99,7 +100,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 await renderTask.promise;
             } catch (error: any) {
                 if (error?.name !== 'RenderingCancelledException') {
-                    console.error("Error rendering page for crop:", error);
+                    logger.error("Error rendering page for crop:", error);
                 }
             }
         };
@@ -171,7 +172,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 );
             } catch (error: any) {
                 if (error?.name !== 'RenderingCancelledException') {
-                    console.error("Error rendering cropped preview:", error);
+                    logger.error("Error rendering cropped preview:", error);
                 }
             }
         };

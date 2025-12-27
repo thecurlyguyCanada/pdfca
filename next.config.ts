@@ -101,6 +101,12 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  // Turbopack configuration (Next.js 16+)
+  turbopack: {
+    // Empty config to silence Turbopack warning
+    // Webpack config above is for backwards compatibility
+  },
+
   // Experimental features for performance
   experimental: {
     optimizePackageImports: [
@@ -115,11 +121,6 @@ const nextConfig: NextConfig = {
   // TypeScript
   typescript: {
     ignoreBuildErrors: false,
-  },
-
-  // ESLint
-  eslint: {
-    ignoreDuringBuilds: false,
   },
 };
 

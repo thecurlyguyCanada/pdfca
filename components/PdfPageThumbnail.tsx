@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/utils/logger';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Trash2, FileText, RotateCw } from 'lucide-react';
@@ -129,7 +130,7 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
 
         if (mounted) setLoading(false);
       } catch (err) {
-        console.error(`Error rendering page ${pageIndex + 1}:`, err);
+        logger.error(`Error rendering page ${pageIndex + 1}:`, err);
         if (mounted) {
           setError(true);
           setLoading(false);

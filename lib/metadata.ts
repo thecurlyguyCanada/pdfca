@@ -11,7 +11,7 @@ interface MetadataOptions {
     noIndex?: boolean;
 }
 
-const BASE_URL = 'https://www.pdfcanada.ca';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
 
 /**
  * Enhanced Metadata Generator for pdfcanada.ca
