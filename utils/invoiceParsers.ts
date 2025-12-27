@@ -15,6 +15,21 @@ const PATTERNS = {
     // Enhanced to handle more variations including "incl. VAT", "excl. VAT"
     total: /(?:Total|Amount|Balance|Montant|Sum|Net|Grand Total|Gross Amount|Invoice Amount)\s*(?:Due|TTC|HT|incl\.?\s*VAT|excl\.?\s*VAT)?\s*[:.]?\s*(?:[$€£¥]\s*)?(\d{1,3}(?:[.,\s]\d{3})*(?:[.,]\d{2}))/i,
 
+    // Subtotal: Amount before tax
+    subtotal: /(?:Subtotal|Sub-Total|Net Amount|Amount excl\.?\s*VAT|HT)\s*[:.]?\s*(?:[$€£¥]\s*)?(\d{1,3}(?:[.,\s]\d{3})*(?:[.,]\d{2}))/i,
+
+    // Tax: VAT, Sales Tax, GST
+    tax: /(?:VAT|Tax|Sales Tax|GST|MwSt|TVA|IVA)\s*(?:\d+%|\(\d+%\))?\s*[:.]?\s*(?:[$€£¥]\s*)?(\d{1,3}(?:[.,\s]\d{3})*(?:[.,]\d{2}))/i,
+
+    // Due Date: Payment due date
+    dueDate: /(?:Due Date|Payment Due|Due By|Pay By|Fällig)\s*[:.]?\s*(\d{4}[-.]\d{2}[-.]\d{2}|\d{1,2}[./-]\d{1,2}[./-]\d{2,4})/i,
+
+    // Purchase Order Number
+    poNumber: /(?:PO|P\.O\.?|Purchase Order|Order)[\s\-]?(?:No\.?|Number|#)?\s*[:.]?\s*([A-Za-z0-9\-\/]+)/i,
+
+    // Payment Terms
+    paymentTerms: /(?:Payment Terms|Terms|Net)\s*[:.]?\s*([^\n]{3,50})/i,
+
     // Currency Symbols - expanded to include more currencies
     currency: /[$€£¥₹₽]/,
 
@@ -119,7 +134,7 @@ const extractVendorName = (lines: string[], cleanText: string): string | undefin
 };
 
 export const parseInvoiceText = (text: string): InvoiceData => {
-    const data: InvoiceData = { confidence: 0 };
+    const data: InvoiceData = { confidence: 0, fieldConfidence: {} };
 
     if (!text || text.trim().length === 0) {
         return data;
@@ -127,12 +142,15 @@ export const parseInvoiceText = (text: string): InvoiceData => {
 
     // Preprocess text and extract lines
     const { cleanText, lines } = preprocessText(text);
+    let fieldsFound = 0;
+    const totalFields = 8; // vendor, id, date, total, subtotal, tax, dueDate, poNumber
 
     // ID Parsing - Try to find the most specific invoice ID
     const idMatch = cleanText.match(PATTERNS.id);
     if (idMatch && idMatch[1]) {
         data.id = idMatch[1].trim();
-        data.confidence += 0.25; // +25% confidence
+        if (data.fieldConfidence) data.fieldConfidence.id = 0.9;
+        fieldsFound++;
     }
 
     // Date Parsing - Find the most relevant date (usually invoice date, not due date)
@@ -141,7 +159,8 @@ export const parseInvoiceText = (text: string): InvoiceData => {
     if (dates.length > 0) {
         // Use the first date found (usually the invoice date)
         data.date = dates[0][1];
-        data.confidence += 0.25; // +25% confidence
+        if (data.fieldConfidence) data.fieldConfidence.date = 0.85;
+        fieldsFound++;
     }
 
     // Total Parsing - Find all matches and use the largest amount (likely the grand total)
@@ -160,7 +179,53 @@ export const parseInvoiceText = (text: string): InvoiceData => {
     if (amounts.length > 0) {
         // Take the largest amount as it's usually the grand total
         data.total = Math.max(...amounts);
-        data.confidence += 0.25; // +25% confidence
+        if (data.fieldConfidence) data.fieldConfidence.total = 0.9;
+        fieldsFound++;
+    }
+
+    // Subtotal Parsing
+    const subtotalMatch = cleanText.match(PATTERNS.subtotal);
+    if (subtotalMatch && subtotalMatch[1]) {
+        const normalized = normalizeAmount(subtotalMatch[1]);
+        if (!isNaN(normalized)) {
+            data.subtotal = normalized;
+            if (data.fieldConfidence) data.fieldConfidence.subtotal = 0.85;
+            fieldsFound++;
+        }
+    }
+
+    // Tax Parsing
+    const taxMatch = cleanText.match(PATTERNS.tax);
+    if (taxMatch && taxMatch[1]) {
+        const normalized = normalizeAmount(taxMatch[1]);
+        if (!isNaN(normalized)) {
+            data.tax = normalized;
+            if (data.fieldConfidence) data.fieldConfidence.tax = 0.8;
+            fieldsFound++;
+        }
+    }
+
+    // Due Date Parsing
+    const dueDateMatch = cleanText.match(PATTERNS.dueDate);
+    if (dueDateMatch && dueDateMatch[1]) {
+        data.dueDate = dueDateMatch[1].trim();
+        if (data.fieldConfidence) data.fieldConfidence.dueDate = 0.85;
+        fieldsFound++;
+    }
+
+    // PO Number Parsing
+    const poMatch = cleanText.match(PATTERNS.poNumber);
+    if (poMatch && poMatch[1] && !data.id?.includes(poMatch[1])) {
+        // Make sure we don't confuse PO with Invoice ID
+        data.poNumber = poMatch[1].trim();
+        if (data.fieldConfidence) data.fieldConfidence.poNumber = 0.75;
+        fieldsFound++;
+    }
+
+    // Payment Terms Parsing
+    const termsMatch = cleanText.match(PATTERNS.paymentTerms);
+    if (termsMatch && termsMatch[1]) {
+        data.paymentTerms = termsMatch[1].trim();
     }
 
     // Detect Currency - Look for currency symbols throughout the document
@@ -182,11 +247,12 @@ export const parseInvoiceText = (text: string): InvoiceData => {
     const vendor = extractVendorName(lines, cleanText);
     if (vendor) {
         data.vendor = vendor;
-        data.confidence += 0.25; // +25% confidence
+        if (data.fieldConfidence) data.fieldConfidence.vendor = 0.8;
+        fieldsFound++;
     }
 
-    // Cap confidence at 100%
-    data.confidence = Math.min(data.confidence, 1.0);
+    // Calculate overall confidence based on fields found
+    data.confidence = fieldsFound / totalFields;
 
     return data;
 };
