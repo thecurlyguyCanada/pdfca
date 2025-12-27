@@ -30,6 +30,7 @@ export const translations = {
     invoiceOcrGuide: "Invoice OCR Guide",
     wordToPdfGuide: "Word to PDF Guide",
     pdfToWordGuide: "PDF to Word Guide",
+    rtfToPdfGuide: "RTF to PDF Guide",
     heicToPdfGuide: "HEIC to PDF Guide",
     epubToPdfGuide: "EPUB to PDF Guide",
     pdfToEpubGuide: "PDF to EPUB Guide",
@@ -538,6 +539,24 @@ export const translations = {
           steps: ["Select .docx document", "Generate professional PDF", "Download your file"]
         }
       },
+      rtfToPdf: {
+        title: "RTF to PDF Online - Convert Rich Text Format to PDF for Free | pdfcanada.ca",
+        desc: `Convert RTF (Rich Text Format) documents to PDF instantly in ${CURRENT_YEAR}. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.`,
+        h1: "Convert RTF to PDF",
+        subtitle: "Professional PDFs from your RTF files instantly.",
+        content: "Turn your RTF documents into high-quality PDFs. Perfect for sharing and archiving, with local security you can trust.",
+        steps: [
+          "Upload your .rtf file.",
+          "We process the document and generate a professional PDF.",
+          "Download your new PDF file."
+        ],
+        quickAnswer: {
+          question: "What's the best way to convert RTF to PDF?",
+          answer: "The best way is to use a secure local converter that preserves your formatting. Our tool turns your .rtf files into professional PDFs instantly without requiring an upload to a server.",
+          tool: "RTF to PDF",
+          steps: ["Select .rtf document", "Generate professional PDF", "Download your file"]
+        }
+      },
       crop: {
         title: "Crop PDF Online - Trim PDF Margins & Resize Pages for Free | pdfcanada.ca",
         desc: "Crop PDF pages instantly to remove white space or focus on content. Adjust margins securely in your browser. No uploads, processed entirely on your device.",
@@ -717,6 +736,8 @@ export const translations = {
     toolPdfToWordDesc: "Convert PDF to editable Docx.",
     toolWordToPdf: "Word to PDF",
     toolWordToPdfDesc: "Convert Word docx to PDF.",
+    toolRtfToPdf: "RTF to PDF",
+    toolRtfToPdfDesc: "Convert RTF to PDF.",
     toolExcelToPdf: "Excel to PDF",
     toolExcelToPdfDesc: "Convert Excel sheets to PDF.",
     toolCrop: "Crop PDF",
@@ -1026,6 +1047,7 @@ export const translations = {
     invoiceOcrGuide: "Guide OCR Factures",
     wordToPdfGuide: "Guide Word vers PDF",
     pdfToWordGuide: "Guide PDF vers Word",
+    rtfToPdfGuide: "Guide RTF vers PDF",
     heicToPdfGuide: "Guide HEIC vers PDF",
     epubToPdfGuide: "Guide EPUB vers PDF",
     pdfToEpubGuide: "Guide PDF vers EPUB",
@@ -1410,6 +1432,24 @@ export const translations = {
           steps: ["Sélectionnez le docx", "Générez le PDF", "Téléchargez votre fichier"]
         }
       },
+      rtfToPdf: {
+        title: "RTF vers PDF en Ligne - Convertir Rich Text Format en PDF | pdfcanada.ca",
+        desc: "Convertissez les documents RTF (Rich Text Format) en PDF instantanément. Convertisseur sécurisé traitant les fichiers localement—aucun envoi sur serveur, juste un service rapide et gratuit.",
+        h1: "Convertir RTF en PDF",
+        subtitle: "Des PDF professionnels à partir de vos fichiers RTF.",
+        content: "Transformez vos documents RTF en PDF de qualité. Idéal pour le partage et l'archivage, avec une sécurité locale totale.",
+        steps: [
+          "Téléversez votre fichier .rtf.",
+          "Nous convertissons le document en un PDF standard.",
+          "Téléchargez votre nouveau fichier PDF."
+        ],
+        quickAnswer: {
+          question: "Quelle est la meilleure façon de convertir RTF en PDF ?",
+          answer: "Utilisez un convertisseur local qui préserve votre formatage. Notre outil transforme vos fichiers .rtf en PDF instantanément sans jamais envoyer votre fichier sur le 'cloud'.",
+          tool: "RTF en PDF",
+          steps: ["Sélectionnez le fichier .rtf", "Générez le PDF", "Téléchargez votre fichier"]
+        }
+      },
       crop: {
         title: "Recadrer PDF en Ligne - Ajuster les Marges Gratuitement | pdfcanada.ca",
         desc: "Recadrez vos pages PDF instantanément pour supprimer les espaces blancs. Ajustez les marges en toute sécurité dans votre navigateur sans téléversement.",
@@ -1574,6 +1614,8 @@ export const translations = {
     toolPdfToWordDesc: "Convertir PDF en Docx modifiable.",
     toolWordToPdf: "Word en PDF",
     toolWordToPdfDesc: "Convertir Word docx en PDF.",
+    toolRtfToPdf: "RTF vers PDF",
+    toolRtfToPdfDesc: "Convertir RTF en PDF.",
     toolExcelToPdf: "Excel vers PDF",
     toolExcelToPdfDesc: "Convertir Excel doc en PDF.",
     toolCrop: "Recadrer PDF",
