@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import '../globals.css';
 import { i18n, type Locale } from '@/lib/i18n-config';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -144,6 +145,7 @@ export default async function RootLayout({
                     {children}
                 </ErrorBoundary>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
