@@ -167,6 +167,7 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
 }
 
 export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
+  if (!faqs || faqs.length === 0) return null;
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -179,4 +180,92 @@ export function generateFAQSchema(faqs: { question: string; answer: string }[]) 
       },
     })),
   };
+}
+
+export function generateHowToSchema(tool: {
+  name: string;
+  description: string;
+  steps: { text: string; image?: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to Use ${tool.name}`,
+    description: tool.description,
+    step: tool.steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: `Step ${index + 1}`,
+      text: step.text,
+      ...(step.image && { image: step.image }),
+    })),
+    tool: {
+      '@type': 'HowToTool',
+      name: tool.name,
+    },
+    totalTime: 'PT2M',
+  };
+}
+
+// Generate generic tool FAQs for SEO
+export function generateToolFAQs(toolSlug: string, toolTitle: string) {
+  const baseFAQs: Record<string, { question: string; answer: string }[]> = {
+    'delete-pdf-pages': [
+      {
+        question: 'How do I delete pages from a PDF?',
+        answer: 'Upload your PDF file, select the pages you want to delete by clicking on them, and click the delete button. Your file is processed locally in your browser for complete privacy.',
+      },
+      {
+        question: 'Is it free to delete PDF pages?',
+        answer: 'Yes, our PDF page deletion tool is 100% free with no limits on file size or number of pages.',
+      },
+      {
+        question: 'Are my files safe when deleting PDF pages?',
+        answer: 'Absolutely. All processing happens locally in your browser. Your files never leave your device, ensuring complete privacy and security.',
+      },
+    ],
+    'compress-pdf': [
+      {
+        question: 'How much can I compress my PDF?',
+        answer: 'You can choose from three compression levels: Good (minor reduction), Balanced (moderate reduction), or Extreme (maximum reduction). The amount of compression depends on your PDF content.',
+      },
+      {
+        question: 'Does compressing PDF reduce quality?',
+        answer: 'Our balanced compression maintains good quality while reducing file size. Extreme compression may reduce quality but significantly decreases file size.',
+      },
+      {
+        question: 'Is PDF compression free?',
+        answer: 'Yes, our PDF compression tool is completely free with unlimited usage.',
+      },
+    ],
+    'merge-pdf': [
+      {
+        question: 'How many PDFs can I merge?',
+        answer: 'You can merge unlimited PDF files into a single document. Simply upload multiple files and arrange them in your desired order.',
+      },
+      {
+        question: 'Can I reorder pages before merging?',
+        answer: 'Yes, you can drag and drop files to reorder them before merging into a single PDF.',
+      },
+      {
+        question: 'Is merging PDFs free?',
+        answer: 'Yes, our PDF merge tool is 100% free with no file limits.',
+      },
+    ],
+  };
+
+  return baseFAQs[toolSlug] || [
+    {
+      question: `Is ${toolTitle} free to use?`,
+      answer: `Yes, ${toolTitle} is completely free with unlimited usage. All processing happens locally in your browser for maximum privacy and security.`,
+    },
+    {
+      question: `Are my files safe when using ${toolTitle}?`,
+      answer: 'Absolutely. All file processing happens locally in your browser. Your files never leave your device, ensuring complete privacy and PIPEDA compliance.',
+    },
+    {
+      question: `Do I need to create an account to use ${toolTitle}?`,
+      answer: 'No account needed. Simply visit the page, upload your file, and start processing immediately.',
+    },
+  ];
 }
