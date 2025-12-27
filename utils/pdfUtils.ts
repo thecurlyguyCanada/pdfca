@@ -4,6 +4,7 @@
 import { PDF_CONFIG, getHeadingFontSize, getLineHeight } from '../config/pdf';
 import { getCompressionScale, getCompressionQuality } from '../config/compression';
 import type { CompressionLevel } from '../config/compression';
+import { logger, logError } from './logger';
 
 let pdfjsLib: any = null;
 let workerInitialized = false;

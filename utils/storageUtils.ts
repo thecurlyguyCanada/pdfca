@@ -1,6 +1,7 @@
 import { get, set, del } from 'idb-keyval';
 import { FormField } from './pdfUtils';
 import { STORAGE_CONFIG } from '../config/storage';
+import { logger } from './logger';
 
 export interface AppSessionState {
     file: File;
