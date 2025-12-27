@@ -22,18 +22,18 @@ const getGuideContent = (lang: Language) => ({
             desc: `Transformez vos ebooks en PDF pour une lecture facile. Notre guide ${CURRENT_YEAR} vous montre comment convertir EPUB localement. Sécurisé, rapide et 100% privé.`
         },
         h1: "Le Guide Ultime : Convertir un EPUB en PDF",
-        subtitle: "Transformez vos livres numériques en documents universels, sécurisés et prêts pour l&apos;impression.",
+        subtitle: "Transformez vos livres numériques en documents universels, sécurisés et prêts pour l'impression.",
         intro: "Vous cherchez comment convertir un fichier **EPUB en PDF**? Notre outil gratuit vous permet de transformer vos livres numériques en format PDF universel en quelques clics. Que vous soyez un étudiant devant imprimer un manuel numérique pour ses cours ou un professionnel ayant besoin de partager un rapport au format ebook avec des collègues, nous avons la solution. Contrairement aux services basés sur le cloud, notre **convertisseur EPUB vers PDF** traite tout localement, garantissant une confidentialité totale.",
         whyTitle: "Pourquoi convertir un ebook en PDF ?",
         whyReasons: [
-            "Compatibilité universelle : Les PDF s&apos;ouvrent sur tous les appareils sans application spéciale.",
+            "Compatibilité universelle : Les PDF s'ouvrent sur tous les appareils sans application spéciale.",
             "Impression parfaite : Contrairement aux EPUB, les PDF conservent une mise en page fixe adaptée au papier (Lettre ou A4).",
             "Annotation facilitée : Les outils de commentaires sont plus robustes sur PDF pour le travail collaboratif.",
             "Conservation de la mise en page : Vos polices, images et tableaux resteront exactement là où vous les avez placés.",
             "Partage sécurisé : Idéal pour les soumissions académiques ou gouvernementales au Canada."
         ],
         howTitle: "Anatomie de la Conversion : Du Reflowable au Fixe",
-        howDescription: "Le format EPUB est « reflowable », ce qui signifie que le texte s&apos;ajuste à la taille de l&apos;écran. Le PDF est un format « fixe ». Notre moteur de conversion effectue un rendu virtuel de votre livre pour créer une mise en page élégante et lisible sur n&apos;importe quel support.",
+        howDescription: "Le format EPUB est « reflowable », ce qui signifie que le texte s'ajuste à la taille de l'écran. Le PDF est un format « fixe ». Notre moteur de conversion effectue un rendu virtuel de votre livre pour créer une mise en page élégante et lisible sur n'importe quel support.",
         sections: [
             {
                 id: "formatting",
@@ -41,34 +41,34 @@ const getGuideContent = (lang: Language) => ({
                 content: `Lors de la conversion de **EPUB à PDF**, nous utilisons des algorithmes avancés pour :
 - **Optimiser les marges** : Pour une lecture confortable sur tablette ou papier.
 - **Convertir les liens** : Vos tables des matières numériques deviennent des index PDF cliquables.
-- **Gérer les images** : Les illustrations sont intégrées en haute résolution pour ne pas perdre en qualité lors d&apos;un zoom.`
+- **Gérer les images** : Les illustrations sont intégrées en haute résolution pour ne pas perdre en qualité lors d'un zoom.`
             },
             {
                 id: "printing",
-                title: "Optimisation pour l&apos;impression",
-                content: `Si vous prévoyez d&apos;imprimer votre ebook, le passage par le format PDF est indispensable. Nos fichiers sont compatibles avec les standards d&apos;impression canadiens, garantissant que vos têtes de chapitre et numéros de page ne bougeront pas.`
+                title: "Optimisation pour l'impression",
+                content: `Si vous prévoyez d'imprimer votre ebook, le passage par le format PDF est indispensable. Nos fichiers sont compatibles avec les standards d'impression canadiens, garantissant que vos têtes de chapitre et numéros de page ne bougeront pas.`
             }
         ],
         steps: [
             {
                 title: "Sélectionnez votre fichier EPUB",
-                desc: "Glissez-déposez votre fichier .epub. Nous supportons les fichiers jusqu&apos;à 100 Mo pour vos manuscrits les plus volumineux."
+                desc: "Glissez-déposez votre fichier .epub. Nous supportons les fichiers jusqu'à 100 Mo pour vos manuscrits les plus volumineux."
             },
             {
                 title: "Transformation locale",
-                desc: "Notre technologie WebAssembly analyse le code HTML interne de l&apos;EPUB et génère un PDF haute-fidélité directement dans votre navigateur."
+                desc: "Notre technologie WebAssembly analyse le code HTML interne de l'EPUB et génère un PDF haute-fidélité directement dans votre navigateur."
             },
             {
                 title: "Téléchargez votre PDF",
-                desc: "Récupérez votre document instantanément. Il est prêt pour le partage, l&apos;archivage ou l&apos;impression."
+                desc: "Récupérez votre document instantanément. Il est prêt pour le partage, l'archivage ou l'impression."
             }
         ],
         securityTitle: "Confidentialité et Propriété Intellectuelle",
-        securityText: "Vos œuvres littéraires sont précieuses. En utilisant pdfcanada.ca, votre livre ne quitte jamais votre appareil. C&apos;est la solution la plus sûre pour les auteurs et chercheurs soucieux de la protection de leurs données personnelles au Canada.",
+        securityText: "Vos œuvres littéraires sont précieuses. En utilisant pdfcanada.ca, votre livre ne quitte jamais votre appareil. C'est la solution la plus sûre pour les auteurs et chercheurs soucieux de la protection de leurs données personnelles au Canada.",
         faq: [
             {
                 q: "Comment convertir un fichier EPUB en PDF gratuitement ?",
-                a: "Il suffit d&apos;utiliser notre outil en ligne. Le processus est 100% gratuit, sans filigrane et sans limite de pages. Tout le traitement se fait sur votre ordinateur."
+                a: "Il suffit d'utiliser notre outil en ligne. Le processus est 100% gratuit, sans filigrane et sans limite de pages. Tout le traitement se fait sur votre ordinateur."
             },
             {
                 q: "Est-ce que la conversion conserve les images ?",
@@ -80,7 +80,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Quelle taille de papier est utilisée ?",
-                a: "Par défaut, notre convertisseur utilise le format Lettre (standard au Canada et aux États-Unis), ce qui est idéal pour l&apos;impression locale."
+                a: "Par défaut, notre convertisseur utilise le format Lettre (standard au Canada et aux États-Unis), ce qui est idéal pour l'impression locale."
             }
         ],
         ctaTitle: "Prêt à transformer votre livre ?",
@@ -122,7 +122,7 @@ const getGuideContent = (lang: Language) => ({
             {
                 id: "professional-use",
                 title: "Legal and Academic Submissions",
-                content: `Many institutional portals in Canada do not accept EPUB files due to their variable page counts. Converting to PDF provides a fixed reference (e.g., &apos;See page 42&apos;) that is essential for citations, legal filings, and government forms.`
+                content: `Many institutional portals in Canada do not accept EPUB files due to their variable page counts. Converting to PDF provides a fixed reference (e.g., 'See page 42') that is essential for citations, legal filings, and government forms.`
             },
             {
                 id: "media-handling",
@@ -145,7 +145,7 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
         securityTitle: "Secure Local Processing (No Uploads)",
-        securityText: "At pdfcanada.ca, we believe in &apos;Data Sovereignty&apos;. Most online converters sell your reading data or keep copies of your manuscripts. Our tool runs strictly in your computer&apos;s RAM. When you close the tab, your file is gone. This is the **most secure way to convert EPUB to PDF** in Canada.",
+        securityText: "At pdfcanada.ca, we believe in 'Data Sovereignty'. Most online converters sell your reading data or keep copies of your manuscripts. Our tool runs strictly in your computer's RAM. When you close the tab, your file is gone. This is the **most secure way to convert EPUB to PDF** in Canada.",
         faq: [
             {
                 q: "Why do some images look blurry after conversion?",
@@ -157,11 +157,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Is there a limit on file size?",
-                a: "We support files up to 100MB. Larger files may take a few more seconds to process as they require more of your device&apos;s CPU and RAM."
+                a: "We support files up to 100MB. Larger files may take a few more seconds to process as they require more of your device's CPU and RAM."
             },
             {
                 q: "Does it work with reMarkable or Kindle Scribe?",
-                a: "Yes! Converting EPUB to PDF is the primary way to get a stable layout for writing notes or &apos;inking&apos; on devices like the reMarkable paper tablet."
+                a: "Yes! Converting EPUB to PDF is the primary way to get a stable layout for writing notes or 'inking' on devices like the reMarkable paper tablet."
             }
         ],
         ctaTitle: "Upgrade Your Library Today",
@@ -170,7 +170,7 @@ const getGuideContent = (lang: Language) => ({
         relatedTools: [
             { name: "PDF to EPUB", desc: "Turn fixed documents into reflowable ebooks", path: "/pdf-to-epub" },
             { name: "OCR PDF", desc: "Extract text from image-based scans", path: "/ocr-pdf" },
-            { name: "Organize PDF", desc: "Rearrange your book&apos;s page order", path: "/organize-pdf" }
+            { name: "Organize PDF", desc: "Rearrange your book's page order", path: "/organize-pdf" }
         ]
     }
 });

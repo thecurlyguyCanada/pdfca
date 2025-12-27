@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Searching for a reliable <strong>PDF page remover</strong>? We&apos;ve all been there: you scan a contract and realize page 3 is upside down, or you need to remove pages from a PDF to share only the executive summary with your team.
+                Searching for a reliable <strong>PDF page remover</strong>? We've all been there: you scan a contract and realize page 3 is upside down, or you need to remove pages from a PDF to share only the executive summary with your team.
                 <br /><br />
                 In the past, knowing <strong>how to remove pages from a PDF</strong> required expensive software. Today, you can use our local-first tool to delete pages in seconds without risky uploads.
             </>
@@ -38,17 +38,17 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Using a <strong>PDF page remover</strong> doesn&apos;t need to be complicated. Our tool is designed to be intuitive, letting you see all your pages and remove them with a single click.
+                            Using a <strong>PDF page remover</strong> doesn't need to be complicated. Our tool is designed to be intuitive, letting you see all your pages and remove them with a single click.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Open the Remover</strong>: Use our <Link href={`/${lang}/pdf-page-remover`} className="text-canada-red hover:underline font-medium">PDF Page Remover tool</Link>. Since it&apos;s local-first, it loads your document without uploading it to any server.
+                                <strong>Open the Remover</strong>: Use our <Link href={`/${lang}/pdf-page-remover`} className="text-canada-red hover:underline font-medium">PDF Page Remover tool</Link>. Since it's local-first, it loads your document without uploading it to any server.
                             </li>
                             <li className="pl-2">
                                 <strong>Select Pages</strong>: Click on the thumbnails representing the pages you want to remove. A trash icon will appear over the selected pages.
                             </li>
                             <li className="pl-2">
-                                <strong>Download result</strong>: Click &apos;Remove Pages&apos; and your updated PDF will be saved to your device immediately.
+                                <strong>Download result</strong>: Click 'Remove Pages' and your updated PDF will be saved to your device immediately.
                             </li>
                         </ol>
                     </>
@@ -95,9 +95,9 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Vous cherchez un <strong>suppresseur de pages PDF</strong> fiable ? Nous sommes tous passés par là : vous scannez un contrat et réalisez que la page 3 est à l&apos;envers.
+                Vous cherchez un <strong>suppresseur de pages PDF</strong> fiable ? Nous sommes tous passés par là : vous scannez un contrat et réalisez que la page 3 est à l'envers.
                 <br /><br />
-                Auparavant, savoir <strong>comment supprimer des pages d&apos;un PDF</strong> nécessitait des logiciels coûteux. Aujourd&apos;hui, vous pouvez le faire en quelques secondes.
+                Auparavant, savoir <strong>comment supprimer des pages d'un PDF</strong> nécessitait des logiciels coûteux. Aujourd'hui, vous pouvez le faire en quelques secondes.
             </>
         ),
 
@@ -111,7 +111,7 @@ const getGuideContent = (lang: Language) => ({
                             Utiliser un <strong>suppresseur de pages PDF</strong> ne devrait pas être compliqué. Notre outil est conçu pour être intuitif.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li className="pl-2"><strong>Ouvrez l&apos;outil</strong></li>
+                            <li className="pl-2"><strong>Ouvrez l'outil</strong></li>
                             <li className="pl-2"><strong>Sélectionnez les pages</strong></li>
                             <li className="pl-2"><strong>Téléchargez</strong></li>
                         </ol>
@@ -148,10 +148,10 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                 datePublished="2024-01-20"
                 dateModified="2025-12-24"
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment supprimer des pages d&apos;un PDF gratuitement?" : "How do I remove pages from a PDF for free?",
+                    question: lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement?" : "How do I remove pages from a PDF for free?",
                     answer: lang === 'fr'
-                        ? "Utilisez le suppresseur de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les miniatures des pages à supprimer, puis cliquez &apos;Supprimer les pages&apos;. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
-                        : "Use pdfcanada.ca&apos;s PDF Page Remover. Upload your PDF, click on the thumbnails of pages to remove, then click &apos;Remove Pages&apos;. All processing happens locally in your browser - your files never leave your device.",
+                        ? "Utilisez le suppresseur de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les miniatures des pages à supprimer, puis cliquez 'Supprimer les pages'. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
+                        : "Use pdfcanada.ca's PDF Page Remover. Upload your PDF, click on the thumbnails of pages to remove, then click 'Remove Pages'. All processing happens locally in your browser - your files never leave your device.",
                     tool: "PDF Page Remover",
                     steps: lang === 'fr'
                         ? ["Téléchargez votre fichier PDF", "Sélectionnez les pages à supprimer", "Téléchargez votre PDF nettoyé"]
@@ -219,10 +219,10 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment supprimer des pages d&apos;un PDF gratuitement?" : "How do I remove pages from a PDF for free?"}
+                        question={lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement?" : "How do I remove pages from a PDF for free?"}
                         answer={lang === 'fr'
-                            ? "Utilisez le suppresseur de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les miniatures des pages à supprimer, puis cliquez &apos;Supprimer les pages&apos;. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
-                            : "Use pdfcanada.ca&apos;s PDF Page Remover. Upload your PDF, click on the thumbnails of pages to remove, then click &apos;Remove Pages&apos;. All processing happens locally in your browser - your files never leave your device."}
+                            ? "Utilisez le suppresseur de pages PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les miniatures des pages à supprimer, puis cliquez 'Supprimer les pages'. Tout se fait localement dans votre navigateur - vos fichiers ne quittent jamais votre appareil."
+                            : "Use pdfcanada.ca's PDF Page Remover. Upload your PDF, click on the thumbnails of pages to remove, then click 'Remove Pages'. All processing happens locally in your browser - your files never leave your device."}
                         toolName="PDF Page Remover"
                         steps={lang === 'fr'
                             ? ["Téléchargez votre fichier PDF", "Sélectionnez les pages à supprimer", "Téléchargez votre PDF nettoyé"]

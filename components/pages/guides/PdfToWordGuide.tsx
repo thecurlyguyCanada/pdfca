@@ -109,11 +109,11 @@ const getGuideContent = (lang: Language) => ({
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Text is garbled or has strange characters</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: The PDF may use custom font encoding or embedded fonts that don&apos;t translate cleanly. Try copying and pasting the text manually, or use a different conversion tool for specialized documents.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: The PDF may use custom font encoding or embedded fonts that don't translate cleanly. Try copying and pasting the text manually, or use a different conversion tool for specialized documents.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Images are missing or pixelated</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Low-resolution images in the PDF will remain low-resolution in Word. If images are missing entirely, they may be vector graphics that didn&apos;t convert—you&apos;ll need to re-insert them manually.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Low-resolution images in the PDF will remain low-resolution in Word. If images are missing entirely, they may be vector graphics that didn't convert—you'll need to re-insert them manually.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Layout is completely broken with text scattered everywhere</h4>
@@ -268,11 +268,11 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les images sont manquantes ou pixelisées</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les images basse résolution dans le PDF resteront basse résolution dans Word. Si les images sont complètement manquantes, elles peuvent être des graphiques vectoriels qui n&apos;ont pas converti—vous devrez les réinsérer manuellement.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les images basse résolution dans le PDF resteront basse résolution dans Word. Si les images sont complètement manquantes, elles peuvent être des graphiques vectoriels qui n'ont pas converti—vous devrez les réinsérer manuellement.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : La mise en page est complètement cassée avec du texte éparpillé partout</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Le PDF utilise probablement un positionnement complexe ou des zones de texte. C&apos;est courant dans les brochures et magazines. Envisagez de retaper manuellement le contenu ou utilisez le PDF comme référence visuelle tout en reconstruisant dans Word.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Le PDF utilise probablement un positionnement complexe ou des zones de texte. C'est courant dans les brochures et magazines. Envisagez de retaper manuellement le contenu ou utilisez le PDF comme référence visuelle tout en reconstruisant dans Word.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les tableaux sont malformés ou les bordures sont manquantes</h4>
@@ -280,7 +280,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : La conversion prend très longtemps ou échoue</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (100+ pages ou 50+ Mo) peuvent submerger la mémoire du navigateur. Essayez de diviser le PDF en sections plus petites en utilisant notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil d&apos;organisation PDF</Link>, puis convertissez chaque section séparément.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les très gros PDF (100+ pages ou 50+ Mo) peuvent submerger la mémoire du navigateur. Essayez de diviser le PDF en sections plus petites en utilisant notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</Link>, puis convertissez chaque section séparément.</p>
                         </div>
                     </div>
                 )

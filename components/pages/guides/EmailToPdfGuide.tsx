@@ -24,7 +24,7 @@ const getGuideContent = (lang: Language) => ({
         subtitle: "The complete guide to archiving your important correspondence instantly.",
         intro: (
             <>
-                Saving an email as a PDF is more than just a tech trick; it&apos;s a necessity for legal records, expense reports, and offline backups. Unlike taking a screenshot, converting an email to a PDF preserves the text, links, and formatting in a professional document that anyone can open.
+                Saving an email as a PDF is more than just a tech trick; it's a necessity for legal records, expense reports, and offline backups. Unlike taking a screenshot, converting an email to a PDF preserves the text, links, and formatting in a professional document that anyone can open.
                 <br /><br />
                 Whether you use <strong>Gmail</strong>, <strong>Outlook</strong>, or an <strong>iPhone</strong>, this guide will show you exactly how to turn that message into a permanent portable document file.
             </>
@@ -40,8 +40,8 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2"><strong>Open the Email</strong>: Click on the email you wish to save.</li>
-                            <li className="pl-2"><strong>Click the &apos;More&apos; Icon</strong>: Look for the three dots (⋮) in the top-right corner of the email container (not the browser window).</li>
-                            <li className="pl-2"><strong>Select &apos;Print&apos;</strong>: This will open a print dialog preview.</li>
+                            <li className="pl-2"><strong>Click the 'More' Icon</strong>: Look for the three dots (⋮) in the top-right corner of the email container (not the browser window).</li>
+                            <li className="pl-2"><strong>Select 'Print'</strong>: This will open a print dialog preview.</li>
                             <li className="pl-2"><strong>Change Destination</strong>: In the print window, change the printer from your physical printer to <strong>&quot;Save as PDF&quot;</strong>.</li>
                             <li className="pl-2"><strong>Save</strong>: Click save and choose a location on your computer.</li>
                         </ol>
@@ -129,19 +129,19 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Can I save multiple emails as one PDF?",
-                a: "Directly from Gmail or Outlook, no. You would need to save each email as a PDF individually, and then use a &apos;Merge PDF&apos; tool to combine them."
+                a: "Directly from Gmail or Outlook, no. You would need to save each email as a PDF individually, and then use a 'Merge PDF' tool to combine them."
             },
             {
                 q: "Do attachments get saved in the PDF?",
-                a: "No. The &apos;Print to PDF&apos; function only captures the body of the email. Attachments remain separate files."
+                a: "No. The 'Print to PDF' function only captures the body of the email. Attachments remain separate files."
             },
             {
                 q: "Is this secure?",
-                a: "Yes. Using the &apos;Print to PDF&apos; feature on your computer keeps the data entirely local. No content is sent to any third-party conversion server."
+                a: "Yes. Using the 'Print to PDF' feature on your computer keeps the data entirely local. No content is sent to any third-party conversion server."
             }
         ],
-        ctaTitle: "Need to Clean Up Your Saved Emails?",
-        ctaButton: "Remove Unwanted Pages",
+        ctaTitle: "Need to Clean Up Your Saved Emails? Use Our Free Tool!",
+        ctaButton: "Remove Pages Now",
         ctaSubtext: "Free, Local, and Private."
     },
     fr: {
@@ -153,7 +153,7 @@ const getGuideContent = (lang: Language) => ({
         subtitle: "Le guide complet pour archiver instantanément votre correspondance importante.",
         intro: (
             <>
-                Enregistrer un courriel en PDF est plus qu&apos;une simple astuce technique; c&apos;est une nécessité pour les dossiers juridiques, les notes de frais et les sauvegardes hors ligne. Contrairement à une capture d&apos;écran, la conversion d&apos;un courriel en PDF préserve le texte, les liens et la mise en forme dans un document professionnel.
+                Enregistrer un courriel en PDF est plus qu'une simple astuce technique; c'est une nécessité pour les dossiers juridiques, les notes de frais et les sauvegardes hors ligne. Contrairement à une capture d'écran, la conversion d'un courriel en PDF préserve le texte, les liens et la mise en forme dans un document professionnel.
                 <br /><br />
                 Que vous utilisiez <strong>Gmail</strong>, <strong>Outlook</strong> ou un <strong>iPhone</strong>, ce guide vous montrera exactement comment transformer ce message en fichier portable permanent.
             </>
@@ -165,14 +165,14 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Gmail dispose d&apos;une fonction « Imprimer au format PDF » rapide et universelle.
+                            Gmail dispose d'une fonction « Imprimer au format PDF » rapide et universelle.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2"><strong>Ouvrez le courriel</strong> : Cliquez sur le message à sauvegarder.</li>
-                            <li className="pl-2"><strong>Cliquez sur l&apos;icône « Plus »</strong> : Cherchez les trois points (⋮) dans le coin supérieur droit du courriel.</li>
+                            <li className="pl-2"><strong>Cliquez sur l'icône « Plus »</strong> : Cherchez les trois points (⋮) dans le coin supérieur droit du courriel.</li>
                             <li className="pl-2"><strong>Sélectionnez « Imprimer »</strong> : Cela ouvrira un aperçu.</li>
-                            <li className="pl-2"><strong>Changez la destination</strong> : Dans la fenêtre d&apos;impression, remplacez l&apos;imprimante par <strong>« Enregistrer au format PDF »</strong>.</li>
-                            <li className="pl-2"><strong>Enregistrez</strong> : Choisissez l&apos;emplacement sur votre ordinateur.</li>
+                            <li className="pl-2"><strong>Changez la destination</strong> : Dans la fenêtre d'impression, remplacez l'imprimante par <strong>« Enregistrer au format PDF »</strong>.</li>
+                            <li className="pl-2"><strong>Enregistrez</strong> : Choisissez l'emplacement sur votre ordinateur.</li>
                         </ol>
                     </>
                 )
@@ -183,7 +183,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Pour les utilisateurs Outlook, le processus repose sur le pilote d&apos;impression.
+                            Pour les utilisateurs Outlook, le processus repose sur le pilote d'impression.
                         </p>
                         <div className="space-y-6">
                             <div>
@@ -215,13 +215,13 @@ const getGuideContent = (lang: Language) => ({
                             Votre iPhone possède un « geste » caché qui convertit instantanément les courriels.
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li className="pl-2">Ouvrez l&apos;app <strong>Mail</strong> et touchez le courriel.</li>
+                            <li className="pl-2">Ouvrez l'app <strong>Mail</strong> et touchez le courriel.</li>
                             <li className="pl-2">Touchez le <strong>bouton Répondre/Transférer</strong> (flèche courbe) en bas.</li>
                             <li className="pl-2">Faites défiler et touchez <strong>Imprimer</strong>.</li>
                             <li className="pl-2">
-                                <strong>L&apos;astuce secrète :</strong> Sur l&apos;écran des options, vous verrez un aperçu. <strong>Écartez deux doigts</strong> (zoom avant) sur l&apos;image de l&apos;aperçu.
+                                <strong>L'astuce secrète :</strong> Sur l'écran des options, vous verrez un aperçu. <strong>Écartez deux doigts</strong> (zoom avant) sur l'image de l'aperçu.
                             </li>
-                            <li className="pl-2">C&apos;est maintenant un PDF ! Touchez l&apos;icône <strong>Partager</strong> et choisissez « Enregistrer dans Fichiers ».</li>
+                            <li className="pl-2">C'est maintenant un PDF ! Touchez l'icône <strong>Partager</strong> et choisissez « Enregistrer dans Fichiers ».</li>
                         </ol>
                     </>
                 )
@@ -238,7 +238,7 @@ const getGuideContent = (lang: Language) => ({
                             <li className="flex items-start gap-2">
                                 <span className="text-canada-red font-bold">•</span>
                                 <div>
-                                    <strong>Supprimer les pages blanches :</strong> L&apos;impression ajoute souvent des pages vides. Utilisez notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Outil de suppression de pages</Link>.
+                                    <strong>Supprimer les pages blanches :</strong> L'impression ajoute souvent des pages vides. Utilisez notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Outil de suppression de pages</Link>.
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
@@ -263,11 +263,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Est-ce sécurisé ?",
-                a: "Oui. L&apos;utilisation de la fonction native de votre ordinateur garde les données entièrement locales."
+                a: "Oui. L'utilisation de la fonction native de votre ordinateur garde les données entièrement locales."
             }
         ],
-        ctaTitle: "Besoin de nettoyer vos PDF ?",
-        ctaButton: "Supprimer les pages inutiles",
+        ctaTitle: "Besoin de nettoyer vos PDF ? Utilisez notre outil gratuit !",
+        ctaButton: "Supprimer les pages maintenant",
         ctaSubtext: "Gratuit, Local et Privé."
     }
 });
@@ -279,8 +279,8 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const quickAnswerData = {
         question: lang === 'fr' ? "Comment enregistrer un courriel en PDF?" : "How do I save an email as PDF?",
         answer: lang === 'fr'
-            ? "Gmail/Outlook: Ouvrez le courriel → Cliquez sur les trois points → Sélectionnez &apos;Imprimer&apos; → Changez la destination en &apos;Enregistrer au format PDF&apos; → Sauvegardez. iPhone: Ouvrez le courriel → Appuyez sur Répondre → Imprimer → Écartez deux doigts sur l&apos;aperçu → Partagez et sauvegardez."
-            : "Gmail/Outlook: Open email → Click three dots → Select &apos;Print&apos; → Change destination to &apos;Save as PDF&apos; → Save. iPhone: Open email → Tap Reply → Print → Pinch outward on preview → Share and save.",
+            ? "Gmail/Outlook: Ouvrez le courriel → Cliquez sur les trois points → Sélectionnez 'Imprimer' → Changez la destination en 'Enregistrer au format PDF' → Sauvegardez. iPhone: Ouvrez le courriel → Appuyez sur Répondre → Imprimer → Écartez deux doigts sur l'aperçu → Partagez et sauvegardez."
+            : "Gmail/Outlook: Open email → Click three dots → Select 'Print' → Change destination to 'Save as PDF' → Save. iPhone: Open email → Tap Reply → Print → Pinch outward on preview → Share and save.",
         steps: lang === 'fr'
             ? ["Ouvrez le courriel dans Gmail/Outlook/Mail", "Sélectionnez Imprimer", "Choisissez 'Enregistrer au format PDF'", "Sauvegardez le fichier"]
             : ["Open the email in Gmail/Outlook/Mail", "Select Print", "Choose 'Save as PDF'", "Save the file"]
@@ -294,7 +294,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             "step": [
                 { "@type": "HowToStep", "position": 1, "name": "Open Email", "text": "Open the email in Gmail, Outlook, or Apple Mail." },
                 { "@type": "HowToStep", "position": 2, "name": "Select Print", "text": "Navigate to the print options." },
-                { "@type": "HowToStep", "position": 3, "name": "Choose Save as PDF", "text": "Select &apos;Save as PDF&apos; from the printer list and save the file." }
+                { "@type": "HowToStep", "position": 3, "name": "Choose Save as PDF", "text": "Select 'Save as PDF' from the printer list and save the file." }
             ]
         },
         {
@@ -401,10 +401,10 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red p-12 rounded-[3.5rem] text-center shadow-2xl shadow-red-500/20 text-white">
-                        <h2 className="text-3xl font-black mb-6">{t.ctaTitle}</h2>
+                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] text-center shadow-2xl shadow-red-500/20 text-white">
+                        <h2 className="text-2xl md:text-3xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
                         <Link href={`/${lang}/delete-pdf-pages`}
-                            className="bg-white text-canada-red px-12 py-4 rounded-full font-black text-lg shadow-lg hover:scale-105 transition-all text-wrap"
+                            className="inline-block bg-white text-canada-red px-8 md:px-12 py-4 rounded-full font-black text-lg shadow-lg hover:scale-105 transition-all"
                         >
                             {t.ctaButton}
                         </Link>

@@ -158,11 +158,11 @@ const getGuideContent = (lang: Language) => ({
         sections: [
             {
                 id: "what-is-cbr",
-                title: "Qu&apos;est-ce que les fichiers CBR et CBZ ?",
+                title: "Qu'est-ce que les fichiers CBR et CBZ ?",
                 content: (
                     <>
                         <p className="mb-4">
-                            Avant de convertir, il est utile de comprendre ce que sont réellement ces fichiers. Ce sont essentiellement des collections d&apos;images (généralement JPG ou PNG) regroupées dans une archive.
+                            Avant de convertir, il est utile de comprendre ce que sont réellement ces fichiers. Ce sont essentiellement des collections d'images (généralement JPG ou PNG) regroupées dans une archive.
                         </p>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border border-gray-100 dark:border-gray-800">
@@ -185,11 +185,11 @@ const getGuideContent = (lang: Language) => ({
                         <ul className="space-y-3">
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
-                                <span><strong>Compatibilité Universelle :</strong> Les PDF s&apos;ouvrent sur n&apos;importe quel appareil sans applications supplémentaires.</span>
+                                <span><strong>Compatibilité Universelle :</strong> Les PDF s'ouvrent sur n'importe quel appareil sans applications supplémentaires.</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
-                                <span><strong>Partage Simplifié :</strong> Envoyer un PDF est plus simple que d&apos;expliquer comment installer un lecteur CBR à vos amis.</span>
+                                <span><strong>Partage Simplifié :</strong> Envoyer un PDF est plus simple que d'expliquer comment installer un lecteur CBR à vos amis.</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
@@ -205,7 +205,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-6">
-                            Utiliser notre outil local est plus sûr que les convertisseurs « cloud » car vos BD ne quittent jamais votre ordinateur. C&apos;est important car les fichiers BD sont souvent volumineux.
+                            Utiliser notre outil local est plus sûr que les convertisseurs « cloud » car vos BD ne quittent jamais votre ordinateur. C'est important car les fichiers BD sont souvent volumineux.
                         </p>
                         <div className="space-y-6">
                             <div className="flex gap-4">
@@ -218,7 +218,7 @@ const getGuideContent = (lang: Language) => ({
                             <div className="flex gap-4">
                                 <div className="bg-canada-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
                                 <div>
-                                    <h4 className="font-bold">Attendez l&apos;extraction</h4>
+                                    <h4 className="font-bold">Attendez l'extraction</h4>
                                     <p>Notre outil décompressera les images (JPG/PNG) directement dans la mémoire de votre navigateur.</p>
                                 </div>
                             </div>
@@ -237,11 +237,11 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Y a-t-il une limite de taille ?",
-                a: "Comme la conversion se fait sur votre matériel, nous n&apos;imposons pas de limites de serveur. Si votre navigateur peut gérer la mémoire, nous pouvons convertir."
+                a: "Comme la conversion se fait sur votre matériel, nous n'imposons pas de limites de serveur. Si votre navigateur peut gérer la mémoire, nous pouvons convertir."
             },
             {
                 q: "La qualité va-t-elle baisser ?",
-                a: "Non. Notre outil intègre les images originales de l&apos;archive directement dans le PDF sans les compresser à nouveau."
+                a: "Non. Notre outil intègre les images originales de l'archive directement dans le PDF sans les compresser à nouveau."
             }
         ],
         ctaTitle: "Prêt à convertir vos BD ?",
@@ -367,15 +367,14 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </div>
                     </div>
 
-                    {/* CTA */}
-                    <div className="mt-24 bg-canada-red rounded-[3rem] p-12 text-center text-white relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white relative overflow-hidden group shadow-2xl shadow-red-500/20">
+                        <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform hidden md:block">
                             <Zap size={120} />
                         </div>
-                        <h2 className="text-4xl font-black mb-4 relative z-10">{t.ctaTitle}</h2>
-                        <p className="text-red-100 mb-8 text-xl relative z-10">{t.ctaSubtext}</p>
+                        <h2 className="text-3xl md:text-4xl font-black mb-4 relative z-10 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-red-100 mb-8 text-lg md:text-xl relative z-10">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/cbr-to-pdf`}
-                            className="bg-white text-canada-red px-12 py-4 rounded-full font-black text-xl shadow-xl hover:bg-gray-50 transition-all hover:-translate-y-1 relative z-10"
+                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 rounded-full font-black text-lg md:text-xl shadow-xl hover:bg-gray-50 transition-all hover:scale-105 active:scale-95 relative z-10"
                         >
                             {t.ctaButton}
                         </Link>

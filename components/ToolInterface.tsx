@@ -347,7 +347,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         );
     }
 
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.COMPRESS || currentTool === ToolType.PDF_TO_XML;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML;
     const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
@@ -358,6 +358,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.ROTATE) headerText = t.toolRotateInfo || 'Click pages to rotate or use controls above.';
     else if (currentTool === ToolType.MAKE_FILLABLE) headerText = t.selectPagesToFill;
     else if (currentTool === ToolType.SPLIT) headerText = t.toolSplitDesc || 'PDF will be split into individual pages.';
+    else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
         <div className={`flex flex-col overflow-hidden ${isSignTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
@@ -719,10 +720,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             triggerHaptic('medium'); // Haptic for primary action
                             onAction();
                         }}
-                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER) && selectedPages.size === 0}
+                        disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.EXTRACT) && selectedPages.size === 0}
                         className={`
                   w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
-                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER) && selectedPages.size === 0
+                  ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.EXTRACT) && selectedPages.size === 0
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
                                 : 'bg-canada-red text-white hover:bg-canada-darkRed hover:shadow-red-500/30 active:bg-canada-darkRed active:shadow-red-500/40'
                             }
@@ -735,6 +736,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.SPLIT && (t.btnSplit || "Split PDF")}
+                        {currentTool === ToolType.EXTRACT && (t.btnExtract || "Extract Pages")}
                         {currentTool === ToolType.COMPRESS && (t.btnCompress || "Compress PDF")}
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
                         {currentTool === ToolType.XML_TO_PDF && (t.btnConvert || "Convert to PDF")}

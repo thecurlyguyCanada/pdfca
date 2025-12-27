@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Need to add a logo to an invoice, a photo to a report, or an illustration to a brochure? <strong>Inserting a picture into a PDF</strong> shouldn&apos;t be complicated or expensive.
+                Need to add a logo to an invoice, a photo to a report, or an illustration to a brochure? <strong>Inserting a picture into a PDF</strong> shouldn't be complicated or expensive.
                 <br /><br />
                 Our interactive tools allow you to place images exactly where you need them, all while ensuring your documents never leave your device.
             </>
@@ -41,13 +41,13 @@ const getGuideContent = (lang: Language) => ({
                             <strong>Open Your File</strong>: Upload your document to our <Link href={`/${lang}/sign-pdf`} className="text-canada-red hover:underline font-medium">PDF Sign & Edit tool</Link>.
                         </li>
                         <li className="pl-2">
-                            <strong>Select &apos;Image&apos;</strong>: Choose the option to add an image or signature from your device.
+                            <strong>Select 'Image'</strong>: Choose the option to add an image or signature from your device.
                         </li>
                         <li className="pl-2">
                             <strong>Place & Resize</strong>: Click on the page to place your picture, then drag the corners to resize it or move it to the perfect spot.
                         </li>
                         <li className="pl-2">
-                            <strong>Save & Download</strong>: Once you&apos;re happy with the placement, click &apos;Sign/Apply&apos; and download your updated PDF.
+                            <strong>Save & Download</strong>: Once you're happy with the placement, click 'Sign/Apply' and download your updated PDF.
                         </li>
                     </ol>
                 )
@@ -97,7 +97,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Besoin d&apos;ajouter un logo à une facture, une photo à un rapport ou une illustration à une brochure ? <strong>Insérer une image dans un PDF</strong> ne devrait pas être compliqué ou coûteux.
+                Besoin d'ajouter un logo à une facture, une photo à un rapport ou une illustration à une brochure ? <strong>Insérer une image dans un PDF</strong> ne devrait pas être compliqué ou coûteux.
                 <br /><br />
                 Nos outils interactifs vous permettent de placer des images exactement là où vous en avez besoin, tout en garantissant que vos documents ne quittent jamais votre appareil.
             </>
@@ -109,10 +109,10 @@ const getGuideContent = (lang: Language) => ({
                 title: "Étape par Étape : Comment Ajouter des Images",
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
-                        <li className="pl-2"><strong>Ouvrez votre fichier</strong> : Téléchargez votre document dans notre <Link href={`/${lang}/sign-pdf`} className="text-canada-red hover:underline font-medium">outil de signature et d&apos;édition</Link>.</li>
-                        <li className="pl-2"><strong>Sélectionnez &apos;Image&apos;</strong> : Choisissez l&apos;option pour ajouter une image ou une signature depuis votre appareil.</li>
+                        <li className="pl-2"><strong>Ouvrez votre fichier</strong> : Téléchargez votre document dans notre <Link href={`/${lang}/sign-pdf`} className="text-canada-red hover:underline font-medium">outil de signature et d'édition</Link>.</li>
+                        <li className="pl-2"><strong>Sélectionnez 'Image'</strong> : Choisissez l'option pour ajouter une image ou une signature depuis votre appareil.</li>
                         <li className="pl-2"><strong>Placez et Redimensionnez</strong> : Cliquez sur la page pour placer votre image, puis faites glisser les coins pour la redimensionner ou déplacez-la au bon endroit.</li>
-                        <li className="pl-2"><strong>Enregistrez et Téléchargez</strong> : Une fois satisfait, cliquez sur &apos;Signer/Appliquer&apos; et téléchargez votre PDF mis à jour.</li>
+                        <li className="pl-2"><strong>Enregistrez et Téléchargez</strong> : Une fois satisfait, cliquez sur 'Signer/Appliquer' et téléchargez votre PDF mis à jour.</li>
                     </ol>
                 )
             },
@@ -123,11 +123,11 @@ const getGuideContent = (lang: Language) => ({
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
                         <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
                             <h3 className="font-bold text-red-800 mb-2">100 % Privé</h3>
-                            <p className="text-sm text-red-700">Vos images et PDF sont traités localement. Personne d&apos;autre ne voit jamais vos clichés sensibles.</p>
+                            <p className="text-sm text-red-700">Vos images et PDF sont traités localement. Personne d'autre ne voit jamais vos clichés sensibles.</p>
                         </div>
                         <div className="p-4 border border-gray-200 bg-gray-50 rounded-xl">
                             <h3 className="font-bold text-gray-800 mb-2">Haute Résolution</h3>
-                            <p className="text-sm text-gray-700">Nous maintenons la qualité de vos images pour qu&apos;elles restent nettes et professionnelles.</p>
+                            <p className="text-sm text-gray-700">Nous maintenons la qualité de vos images pour qu'elles restent nettes et professionnelles.</p>
                         </div>
                     </div>
                 )
@@ -136,16 +136,16 @@ const getGuideContent = (lang: Language) => ({
 
         faq: [
             {
-                q: "Quels formats d&apos;image sont supportés ?",
-                a: "Vous pouvez insérer des formats d&apos;image standards comme JPG, PNG et HEIC (photos iPhone)."
+                q: "Quels formats d'image sont supportés ?",
+                a: "Vous pouvez insérer des formats d'image standards comme JPG, PNG et HEIC (photos iPhone)."
             },
             {
-                q: "Puis-je déplacer l&apos;image après l&apos;avoir placée ?",
-                a: "Oui ! Notre éditeur vous permet de faire glisser, redimensionner et même supprimer des images avant d&apos;enregistrer le document final."
+                q: "Puis-je déplacer l'image après l'avoir placée ?",
+                a: "Oui ! Notre éditeur vous permet de faire glisser, redimensionner et même supprimer des images avant d'enregistrer le document final."
             }
         ],
 
-        ctaTitle: "Améliorez votre PDF aujourd&apos;hui",
+        ctaTitle: "Améliorez votre PDF aujourd'hui",
         ctaButton: "Ajouter une Image Maintenant",
         ctaSubtext: "Gratuit, Sécurisé et Fièrement Canadien.",
         whyTitle: "Insertion d'Images Privée",
@@ -160,12 +160,12 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
     const quickAnswerData = {
         question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",
         answer: lang === 'fr'
-            ? "Utilisez l&apos;outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur &apos;Ajouter une image&apos;, placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
-            : "Use pdfcanada.ca&apos;s Sign PDF tool. Upload your PDF, click &apos;Add Image&apos;, place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
+            ? "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
+            : "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
         tool: "PDF Sign & Edit Tool",
         steps: lang === 'fr'
-            ? ["Téléchargez votre PDF", "Sélectionnez &apos;Ajouter une image&apos;", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
-            : ["Upload your PDF", "Select &apos;Add Image&apos;", "Place and resize", "Download updated PDF"]
+            ? ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
+            : ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
     };
 
     const schema = [
@@ -176,7 +176,7 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
             "description": t.seo.desc,
             "step": [
                 { "@type": "HowToStep", "position": 1, "name": "Open Tool", "text": "Upload PDF to the Sign & Edit tool." },
-                { "@type": "HowToStep", "position": 2, "name": "Select Image", "text": "Choose &apos;Add Image&apos; from the options." },
+                { "@type": "HowToStep", "position": 2, "name": "Select Image", "text": "Choose 'Add Image' from the options." },
                 { "@type": "HowToStep", "position": 3, "name": "Place Image", "text": "Click on the page to place and drag to resize." },
                 { "@type": "HowToStep", "position": 4, "name": "Download", "text": "Apply changes and download your updated PDF." }
             ]

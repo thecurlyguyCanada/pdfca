@@ -307,6 +307,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = `split_${primaryFile.name.replace('.pdf', '')}.zip`;
             break;
 
+          case ToolType.EXTRACT:
+            resultBlob = await extractPdfPages(primaryFile, Array.from(selectedPages));
+            outputName = `extracted_${primaryFile.name}`;
+            break;
+
           case ToolType.COMPRESS:
             resultBlob = await compressPdf(primaryFile, compressionLevel);
             outputName = `compressed_${primaryFile.name}`;

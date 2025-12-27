@@ -26,7 +26,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Trying to email a large PDF only to have it bounce back? We&apos;ve all been there. Whether it&apos;s a government application, a job submission, or a heavy report, large files are a hassle. Learning <strong>how to compress PDF online</strong> is the solution to file size limits and slow uploads.
+                Trying to email a large PDF only to have it bounce back? We've all been there. Whether it's a government application, a job submission, or a heavy report, large files are a hassle. Learning <strong>how to compress PDF online</strong> is the solution to file size limits and slow uploads.
                 <br /><br />
                 Our tool offers three smart levels of compression: <strong>Good</strong> (lossless optimization), <strong>Balanced</strong> (standard compression), and <strong>Extreme</strong> (maximum reduction). Best of all, it happens 100% on your device.
             </>
@@ -43,7 +43,7 @@ const getGuideContent = (lang: Language) => ({
                                 <strong>Upload Your PDF</strong>: Drag and drop your file into our <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium">Compress PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link>, your file never leaves your device.
                             </li>
                             <li className="pl-2">
-                                <strong>Preview File Size</strong>: You&apos;ll see the current file size displayed. This helps you understand how much compression you might need.
+                                <strong>Preview File Size</strong>: You'll see the current file size displayed. This helps you understand how much compression you might need.
                             </li>
                             <li className="pl-2">
                                 <strong>Select Compression Level</strong>: Choose between <strong>Good</strong> (lossless), <strong>Balanced</strong> (standard), or <strong>Extreme</strong> (maximum) based on your quality vs. size requirements.
@@ -66,7 +66,7 @@ const getGuideContent = (lang: Language) => ({
                 title: "Which Compression Level Should You Choose?",
                 content: (
                     <div className="space-y-6">
-                        <p>Different documents require different types of compression. Here&apos;s how to choose the right setting:</p>
+                        <p>Different documents require different types of compression. Here's how to choose the right setting:</p>
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
                                 <h3 className="font-bold text-blue-800 mb-2">Recommended Compression</h3>
@@ -92,7 +92,7 @@ const getGuideContent = (lang: Language) => ({
                         <p><strong>Email Attachment Limits</strong>: Most email providers limit attachments to 10-25MB. Compress oversized reports, presentations, or scanned documents to fit within these limits.</p>
                         <p><strong>Website Upload Requirements</strong>: Many government portals (like Service Canada, CRA), university applications, and job portals have strict file size limits (often 5-10MB). Compression ensures your documents meet these requirements.</p>
                         <p><strong>Cloud Storage Optimization</strong>: Reduce your cloud storage footprint by compressing archived documents, old invoices, and reference materials you need to keep but rarely access.</p>
-                        <p><strong>Faster Page Loading</strong>: If you&apos;re hosting PDFs on a website, smaller files mean faster loading times and better user experience, especially on mobile devices.</p>
+                        <p><strong>Faster Page Loading</strong>: If you're hosting PDFs on a website, smaller files mean faster loading times and better user experience, especially on mobile devices.</p>
                         <p><strong>Bandwidth Savings</strong>: When sharing documents with colleagues or clients, smaller files download faster and use less data—particularly important for remote teams or mobile users.</p>
                         <p><strong>Large Scan Batches</strong>: Scanned documents (especially color scans at high DPI) can be enormous. Compression makes them manageable without noticeable quality loss for on-screen viewing.</p>
                     </div>
@@ -103,12 +103,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "Best Practices for PDF Compression",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Start with &apos;Balanced&apos; for Most Uses</strong>: This level provides the best trade-off between file size reduction and maintained quality for typical business and personal documents.</li>
-                        <li><strong>Use &apos;Good&apos; for Legal or Archival Documents</strong>: When document integrity is critical (contracts, legal filings, official records), stick with lossless compression to preserve every detail.</li>
-                        <li><strong>Reserve &apos;Extreme&apos; for Size-Critical Situations</strong>: Only use maximum compression when you absolutely must meet a file size limit and quality is secondary.</li>
+                        <li><strong>Start with 'Balanced' for Most Uses</strong>: This level provides the best trade-off between file size reduction and maintained quality for typical business and personal documents.</li>
+                        <li><strong>Use 'Good' for Legal or Archival Documents</strong>: When document integrity is critical (contracts, legal filings, official records), stick with lossless compression to preserve every detail.</li>
+                        <li><strong>Reserve 'Extreme' for Size-Critical Situations</strong>: Only use maximum compression when you absolutely must meet a file size limit and quality is secondary.</li>
                         <li><strong>Test Before Mass Processing</strong>: Compress one sample document at different levels and review the quality before batch-processing similar files.</li>
-                        <li><strong>Keep Original Copies</strong>: Always retain uncompressed originals of important documents. Compression is generally one-way—you can&apos;t restore lost quality later.</li>
-                        <li><strong>Consider Your Audience&apos;s Needs</strong>: Will recipients print the document? View on mobile? Quality requirements vary by use case.</li>
+                        <li><strong>Keep Original Copies</strong>: Always retain uncompressed originals of important documents. Compression is generally one-way—you can't restore lost quality later.</li>
+                        <li><strong>Consider Your Audience's Needs</strong>: Will recipients print the document? View on mobile? Quality requirements vary by use case.</li>
                     </ul>
                 )
             },
@@ -118,8 +118,8 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <h4 className="font-bold text-yellow-900 mb-2">Problem: The file didn&apos;t shrink enough</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: If your PDF is mainly text, it might already be as small as it can get. If it contains images, try the &quot;Extreme Compression&quot; setting. Some PDFs are already optimized and won&apos;t shrink significantly further.</p>
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: The file didn't shrink enough</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: If your PDF is mainly text, it might already be as small as it can get. If it contains images, try the &quot;Extreme Compression&quot; setting. Some PDFs are already optimized and won't shrink significantly further.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Images look blurry after compression</h4>
@@ -131,7 +131,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Still too large after compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: If &apos;Extreme&apos; mode still doesn&apos;t meet your size requirement, consider splitting the document using our <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">Split PDF tool</Link> or removing high-resolution images before compression.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: If 'Extreme' mode still doesn't meet your size requirement, consider splitting the document using our <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">Split PDF tool</Link> or removing high-resolution images before compression.</p>
                         </div>
                     </div>
                 )
@@ -153,7 +153,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Can I compress password-protected PDFs?",
-                a: "You&apos;ll need to unlock the PDF first. If you have the password, use a PDF viewer to open and save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely compress it. You can re-apply password protection after compression if needed."
+                a: "You'll need to unlock the PDF first. If you have the password, use a PDF viewer to open and save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely compress it. You can re-apply password protection after compression if needed."
             },
             {
                 q: "Will compression reduce print quality?",
@@ -173,11 +173,16 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
 
-        ctaTitle: "Ready to Shrink That File?",
-        ctaButton: "Compress PDF Now",
+        ctaTitle: "Ready to Optimize Your PDF?",
+        ctaButton: "Optimize PDF Now",
         ctaSubtext: "Free, Secure, and Canadian.",
-        whyTitle: "Why Local Compression?",
-        whyDesc: "It&apos;s faster and safer."
+        whyTitle: "Why Local Processing?",
+        whyDesc: "It's faster, safer, and more private.",
+        whyList: [
+            "No upload required",
+            "Data stays on device",
+            "Adjustable compression"
+        ]
     },
     fr: {
         seo: {
@@ -189,9 +194,9 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Vous essayez d&apos;envoyer un gros PDF par courriel et il vous revient ? Nous sommes tous passés par là. Qu&apos;il s&apos;agisse d&apos;une demande gouvernementale, d&apos;une candidature ou d&apos;un rapport lourd, les gros fichiers sont un problème. Apprendre <strong>comment compresser un PDF en ligne</strong> est la solution aux limites de taille de fichier et aux téléchargements lents.
+                Vous essayez d'envoyer un gros PDF par courriel et il vous revient ? Nous sommes tous passés par là. Qu'il s'agisse d'une demande gouvernementale, d'une candidature ou d'un rapport lourd, les gros fichiers sont un problème. Apprendre <strong>comment compresser un PDF en ligne</strong> est la solution aux limites de taille de fichier et aux téléchargements lents.
                 <br /><br />
-                Notre outil propose trois niveaux intelligents de compression : <strong>Bon</strong> (optimisation sans perte), <strong>Équilibré</strong> (compression standard) et <strong>Extrême</strong> (réduction maximale). Le meilleur de tout, c&apos;est que cela se passe à 100 % sur votre appareil.
+                Notre outil propose trois niveaux intelligents de compression : <strong>Bon</strong> (optimisation sans perte), <strong>Équilibré</strong> (compression standard) et <strong>Extrême</strong> (réduction maximale). Le meilleur de tout, c'est que cela se passe à 100 % sur votre appareil.
             </>
         ),
 
@@ -208,7 +213,7 @@ const getGuideContent = (lang: Language) => ({
                         <li className="pl-2"><strong>Sélectionnez le niveau de compression</strong> : Choisissez entre <strong>Bon</strong> (sans perte), <strong>Équilibré</strong> (standard), ou <strong>Extrême</strong> (maximum) en fonction de vos exigences qualité vs. taille.</li>
                         <li className="pl-2"><strong>Traitement</strong> : Cliquez sur le bouton de compression. Le temps de traitement varie selon la taille du fichier et le niveau de compression sélectionné—généralement 2-10 secondes pour les documents standard.</li>
                         <li className="pl-2"><strong>Examinez les résultats</strong> : Voyez la nouvelle taille de fichier et le pourcentage de compression atteint avant de télécharger.</li>
-                        <li className="pl-2"><strong>Téléchargez votre PDF</strong> : Enregistrez votre PDF optimisé et léger instantanément. Comparez avec l&apos;original pour vous assurer que la qualité répond à vos besoins.</li>
+                        <li className="pl-2"><strong>Téléchargez votre PDF</strong> : Enregistrez votre PDF optimisé et léger instantanément. Comparez avec l'original pour vous assurer que la qualité répond à vos besoins.</li>
                     </ol>
                 )
             },
@@ -221,7 +226,7 @@ const getGuideContent = (lang: Language) => ({
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
                                 <h3 className="font-bold text-blue-800 mb-2">Compression Recommandée</h3>
-                                <p className="text-sm text-blue-700">Le meilleur équilibre. Réduit considérablement la taille du fichier sans perte de qualité visible. Idéal pour les courriels et l&apos;utilisation quotidienne.</p>
+                                <p className="text-sm text-blue-700">Le meilleur équilibre. Réduit considérablement la taille du fichier sans perte de qualité visible. Idéal pour les courriels et l'utilisation quotidienne.</p>
                             </div>
                             <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
                                 <h3 className="font-bold text-red-800 mb-2">Compression Extrême</h3>
@@ -229,7 +234,7 @@ const getGuideContent = (lang: Language) => ({
                             </div>
                             <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
                                 <h3 className="font-bold text-green-800 mb-2">Faible Compression</h3>
-                                <p className="text-sm text-green-700">Réduction minimale de la taille mais qualité d&apos;image parfaite. Idéal pour les documents avec des graphiques haute résolution ou des photos détaillées.</p>
+                                <p className="text-sm text-green-700">Réduction minimale de la taille mais qualité d'image parfaite. Idéal pour les documents avec des graphiques haute résolution ou des photos détaillées.</p>
                             </div>
                         </div>
                     </div>
@@ -241,11 +246,11 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p><strong>Limites de pièces jointes par courriel</strong> : La plupart des fournisseurs de courriel limitent les pièces jointes à 10-25 Mo. Compressez les rapports surdimensionnés, présentations ou documents scannés pour respecter ces limites.</p>
-                        <p><strong>Exigences de téléchargement de sites Web</strong> : De nombreux portails gouvernementaux (comme Service Canada, ARC), candidatures universitaires et portails d&apos;emploi ont des limites strictes de taille de fichier (souvent 5-10 Mo). La compression garantit que vos documents répondent à ces exigences.</p>
+                        <p><strong>Exigences de téléchargement de sites Web</strong> : De nombreux portails gouvernementaux (comme Service Canada, ARC), candidatures universitaires et portails d'emploi ont des limites strictes de taille de fichier (souvent 5-10 Mo). La compression garantit que vos documents répondent à ces exigences.</p>
                         <p><strong>Optimisation du stockage cloud</strong> : Réduisez votre empreinte de stockage cloud en compressant les documents archivés, anciennes factures et matériaux de référence que vous devez conserver mais rarement consulter.</p>
                         <p><strong>Chargement de page plus rapide</strong> : Si vous hébergez des PDF sur un site Web, des fichiers plus petits signifient des temps de chargement plus rapides et une meilleure expérience utilisateur, surtout sur les appareils mobiles.</p>
                         <p><strong>Économies de bande passante</strong> : Lors du partage de documents avec des collègues ou clients, des fichiers plus petits se téléchargent plus rapidement et utilisent moins de données—particulièrement important pour les équipes à distance ou les utilisateurs mobiles.</p>
-                        <p><strong>Lots de scans volumineux</strong> : Les documents scannés (en particulier les scans couleur à haute résolution) peuvent être énormes. La compression les rend gérables sans perte de qualité notable pour la visualisation à l&apos;écran.</p>
+                        <p><strong>Lots de scans volumineux</strong> : Les documents scannés (en particulier les scans couleur à haute résolution) peuvent être énormes. La compression les rend gérables sans perte de qualité notable pour la visualisation à l'écran.</p>
                     </div>
                 )
             },
@@ -254,12 +259,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "Meilleures pratiques pour la compression PDF",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Commencez avec &apos;Équilibré&apos; pour la plupart des usages</strong> : Ce niveau offre le meilleur compromis entre réduction de taille de fichier et maintien de la qualité pour les documents commerciaux et personnels typiques.</li>
-                        <li><strong>Utilisez &apos;Bon&apos; pour les documents juridiques ou d&apos;archives</strong> : Lorsque l&apos;intégrité du document est critique (contrats, dépôts juridiques, dossiers officiels), restez avec la compression sans perte pour préserver chaque détail.</li>
-                        <li><strong>Réservez &apos;Extrême&apos; pour les situations critiques de taille</strong> : N&apos;utilisez la compression maximale que lorsque vous devez absolument respecter une limite de taille de fichier et que la qualité est secondaire.</li>
+                        <li><strong>Commencez avec 'Équilibré' pour la plupart des usages</strong> : Ce niveau offre le meilleur compromis entre réduction de taille de fichier et maintien de la qualité pour les documents commerciaux et personnels typiques.</li>
+                        <li><strong>Utilisez 'Bon' pour les documents juridiques ou d'archives</strong> : Lorsque l'intégrité du document est critique (contrats, dépôts juridiques, dossiers officiels), restez avec la compression sans perte pour préserver chaque détail.</li>
+                        <li><strong>Réservez 'Extrême' pour les situations critiques de taille</strong> : N'utilisez la compression maximale que lorsque vous devez absolument respecter une limite de taille de fichier et que la qualité est secondaire.</li>
                         <li><strong>Testez avant le traitement de masse</strong> : Compressez un document échantillon à différents niveaux et examinez la qualité avant de traiter par lot des fichiers similaires.</li>
                         <li><strong>Conservez les copies originales</strong> : Conservez toujours les originaux non compressés de documents importants. La compression est généralement à sens unique—vous ne pouvez pas restaurer la qualité perdue plus tard.</li>
-                        <li><strong>Considérez les besoins de votre audience</strong> : Les destinataires imprimeront-ils le document ? Visualiseront-ils sur mobile ? Les exigences de qualité varient selon le cas d&apos;usage.</li>
+                        <li><strong>Considérez les besoins de votre audience</strong> : Les destinataires imprimeront-ils le document ? Visualiseront-ils sur mobile ? Les exigences de qualité varient selon le cas d'usage.</li>
                     </ul>
                 )
             },
@@ -269,20 +274,20 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le fichier n&apos;a pas assez rétréci</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Si votre PDF contient principalement du texte, il est peut-être déjà aussi petit qu&apos;il peut l&apos;être. S&apos;il contient des images, essayez le réglage « Compression Extrême ». Certains PDF sont déjà optimisés et n&apos;auront pas de gain significatif.</p>
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le fichier n'a pas assez rétréci</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Si votre PDF contient principalement du texte, il est peut-être déjà aussi petit qu'il peut l'être. S'il contient des images, essayez le réglage « Compression Extrême ». Certains PDF sont déjà optimisés et n'auront pas de gain significatif.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les images sont floues après compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Vous avez probablement utilisé la « Compression Extrême ». Passez à la « Compression Recommandée » pour équilibrer la taille et la clarté visuelle. Si la qualité d&apos;image est critique, utilisez la « Faible Compression ».</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Vous avez probablement utilisé la « Compression Extrême ». Passez à la « Compression Recommandée » pour équilibrer la taille et la clarté visuelle. Si la qualité d'image est critique, utilisez la « Faible Compression ».</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le traitement prend très longtemps</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou scans haute résolution) peuvent prendre du temps. Fermez d&apos;autres onglets du navigateur pour libérer de la mémoire. Pour de très gros fichiers, envisagez de diviser et compresser par parties.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou scans haute résolution) peuvent prendre du temps. Fermez d'autres onglets du navigateur pour libérer de la mémoire. Pour de très gros fichiers, envisagez de diviser et compresser par parties.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Toujours trop volumineux après compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Si le mode &apos;Extrême&apos; ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil de division PDF</Link> ou de supprimer les images haute résolution avant la compression.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Si le mode 'Extrême' ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil de division PDF</Link> ou de supprimer les images haute résolution avant la compression.</p>
                         </div>
                     </div>
                 )
@@ -292,43 +297,48 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Le texte restera-t-il sélectionnable après la compression ?",
-                a: "Seulement en mode &apos;Bon&apos; (sans perte). En modes &apos;Équilibré&apos; et &apos;Extrême&apos;, nous restituons les pages sous forme d&apos;images pour obtenir une compression plus élevée, ce qui aplatit le texte dans l&apos;image. Choisissez le mode &apos;Bon&apos; si vous devez préserver la sélection de texte et la fonctionnalité copier-coller."
+                a: "Seulement en mode 'Bon' (sans perte). En modes 'Équilibré' et 'Extrême', nous restituons les pages sous forme d'images pour obtenir une compression plus élevée, ce qui aplatit le texte dans l'image. Choisissez le mode 'Bon' si vous devez préserver la sélection de texte et la fonctionnalité copier-coller."
             },
             {
                 q: "Est-il sûr de compresser des documents sensibles ici ?",
-                a: "Non ! C&apos;est l&apos;avantage principal de notre outil. La compression se fait entièrement dans votre navigateur. Votre document n&apos;est jamais téléchargé sur un serveur, gardant vos données sensibles privées sur votre propre appareil."
+                a: "Non ! C'est l'avantage principal de notre outil. La compression se fait entièrement dans votre navigateur. Votre document n'est jamais téléchargé sur un serveur, gardant vos données sensibles privées sur votre propre appareil."
             },
             {
                 q: "De combien mon PDF sera-t-il réduit ?",
-                a: "Cela dépend du niveau choisi. La compression « Recommandée » est conçue pour être invisible à l&apos;œil humain. La compression « Extrême » réduira considérablement la taille mais pourra donner des images plus douces. Le texte n&apos;est généralement pas affecté."
+                a: "Cela dépend du niveau choisi. La compression « Recommandée » est conçue pour être invisible à l'œil humain. La compression « Extrême » réduira considérablement la taille mais pourra donner des images plus douces. Le texte n'est généralement pas affecté."
             },
             {
                 q: "Puis-je compresser des PDF protégés par mot de passe ?",
-                a: "Vous devrez d&apos;abord déverrouiller le PDF. Si vous avez le mot de passe, utilisez un lecteur PDF pour enregistrer une copie sans mot de passe avant de compresser, ou utilisez notre outil de déverrouillage PDF. Une fois déverrouillé, vous pouvez le compresser librement. Vous pouvez réappliquer la protection par mot de passe après la compression si nécessaire."
+                a: "Vous devrez d'abord déverrouiller le PDF. Si vous avez le mot de passe, utilisez un lecteur PDF pour enregistrer une copie sans mot de passe avant de compresser, ou utilisez notre outil de déverrouillage PDF. Une fois déverrouillé, vous pouvez le compresser librement. Vous pouvez réappliquer la protection par mot de passe après la compression si nécessaire."
             },
             {
-                q: "La compression réduira-t-elle la qualité d&apos;impression ?",
-                a: "Le mode &apos;Bon&apos; préserve la qualité d&apos;impression complète. Le mode &apos;Équilibré&apos; (150 DPI) convient pour l&apos;impression de bureau standard. Le mode &apos;Extrême&apos; (96 DPI) peut montrer une dégradation lors de l&apos;impression, en particulier pour les images et les détails fins. Pour l&apos;impression professionnelle, restez avec le mode &apos;Bon&apos; ou les fichiers originaux."
+                q: "La compression réduira-t-elle la qualité d'impression ?",
+                a: "Le mode 'Bon' préserve la qualité d'impression complète. Le mode 'Équilibré' (150 DPI) convient pour l'impression de bureau standard. Le mode 'Extrême' (96 DPI) peut montrer une dégradation lors de l'impression, en particulier pour les images et les détails fins. Pour l'impression professionnelle, restez avec le mode 'Bon' ou les fichiers originaux."
             },
             {
                 q: "Puis-je compresser un PDF plusieurs fois ?",
-                a: "Oui, mais avec des rendements décroissants et une perte de qualité. Chaque cycle de compression (surtout en modes &apos;Équilibré&apos; ou &apos;Extrême&apos;) réduit davantage la qualité. Il vaut mieux utiliser un niveau de compression plus élevé une fois plutôt que de compresser plusieurs fois."
+                a: "Oui, mais avec des rendements décroissants et une perte de qualité. Chaque cycle de compression (surtout en modes 'Équilibré' ou 'Extrême') réduit davantage la qualité. Il vaut mieux utiliser un niveau de compression plus élevé une fois plutôt que de compresser plusieurs fois."
             },
             {
                 q: "Quelle est la taille maximale de fichier que je peux compresser ?",
-                a: "La plupart des PDF peuvent être réduits de 40 % à 80 % s&apos;ils contiennent beaucoup d&apos;images. Les documents texte seuls verront des gains plus faibles car le texte est déjà très efficace."
+                a: "La plupart des PDF peuvent être réduits de 40 % à 80 % s'ils contiennent beaucoup d'images. Les documents texte seuls verront des gains plus faibles car le texte est déjà très efficace."
             },
             {
                 q: "La compression supprime-t-elle les métadonnées ou données cachées ?",
-                a: "Oui ! Bien que la taille du fichier change, la structure du PDF reste standard. Le fichier compressé s&apos;ouvrira dans n&apos;importe quel lecteur PDF (Acrobat, Aperçu, Chrome, etc.) sur n&apos;importe quel appareil sans problème."
+                a: "Oui ! Bien que la taille du fichier change, la structure du PDF reste standard. Le fichier compressé s'ouvrira dans n'importe quel lecteur PDF (Acrobat, Aperçu, Chrome, etc.) sur n'importe quel appareil sans problème."
             }
         ],
 
-        ctaTitle: "Prêt à réduire ce fichier ?",
-        ctaButton: "Compresser PDF Maintenant",
+        ctaTitle: "Prêt à optimiser votre PDF ?",
+        ctaButton: "Optimiser PDF maintenant",
         ctaSubtext: "Gratuit, sûr et canadien.",
-        whyTitle: "Pourquoi local ?",
-        whyDesc: "Le traitement local signifie aucun temps d&apos;attente et aucun risque pour la confidentialité."
+        whyTitle: "Pourquoi le traitement local ?",
+        whyDesc: "Le traitement local est plus rapide, plus sûr et plus privé.",
+        whyList: [
+            "Aucun téléchargement requis",
+            "Les données restent sur l'appareil",
+            "Compression ajustable"
+        ]
     }
 });
 
@@ -401,18 +411,16 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                             </div>
                             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
                                 <ul className="space-y-4">
-                                    <li className="flex items-start gap-3">
-                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
-                                        <span>No upload required</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
-                                        <span>Data stays on device</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <BarChart className="text-canada-red mt-1 shrink-0" size={20} />
-                                        <span>Adjustable compression</span>
-                                    </li>
+                                    {t.whyList.map((item: string, i: number) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            {i === 2 ? (
+                                                <BarChart className="text-canada-red mt-1 shrink-0" size={20} />
+                                            ) : (
+                                                <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                            )}
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>

@@ -24,13 +24,13 @@ const getGuideContent = (lang: Language) => ({
         h1: `How to Convert HEIC to PDF: The Ultimate ${CURRENT_YEAR} Guide`,
         subtitle: "The simplest, most secure way to transform your iPhone photos into professional PDF documents without leaving your browser.",
 
-        intro: "Are you struggling with **HEIC files**? High Efficiency Image Coding (HEIC) is the standard format for photos on modern iPhones, but it frequently causes compatibility headaches. Whether you&apos;re trying to share photos with Windows users, print receipts at a local shop, or upload proof of identity to Canadian government portals like the **CRA (Canada Revenue Agency)** or **IRCC**, the PDF format is a much safer bet. Our **HEIC to PDF converter** provides a free, secure, and local-first solution to these digital hurdles.",
+        intro: "Are you struggling with **HEIC files**? High Efficiency Image Coding (HEIC) is the standard format for photos on modern iPhones, but it frequently causes compatibility headaches. Whether you're trying to share photos with Windows users, print receipts at a local shop, or upload proof of identity to Canadian government portals like the **CRA (Canada Revenue Agency)** or **IRCC**, the PDF format is a much safer bet. Our **HEIC to PDF converter** provides a free, secure, and local-first solution to these digital hurdles.",
 
         sections: [
             {
                 id: "what-is-heic",
                 title: "What is HEIC and Why Does it Exist?",
-                content: `HEIC is Apple&apos;s implementation of the HEIF (High Efficiency Image File) standard. It was designed to replace JPEG by offering better image quality at roughly half the file size. 
+                content: `HEIC is Apple's implementation of the HEIF (High Efficiency Image File) standard. It was designed to replace JPEG by offering better image quality at roughly half the file size. 
  
 While efficient for storage, HEIC is notorious for lack of support:
 - **Windows Limitation**: Most PCs cannot open HEIC files without purchasing a $1.29 extension from the Microsoft Store.
@@ -48,14 +48,14 @@ While efficient for storage, HEIC is notorious for lack of support:
             {
                 id: "privacy",
                 title: "Maximum Privacy for Personal Photos",
-                content: `Your photo gallery contains sensitive life moments. When you use a random &apos;cloud&apos; converter, your photos are uploaded to a remote server. pdfcanada.ca is different. We use **WebAssembly and local processing** to convert your images within your browser&apos;s RAM. Your photos NEVER leave your computer or smartphone, ensuring that your private data stays private.`
+                content: `Your photo gallery contains sensitive life moments. When you use a random 'cloud' converter, your photos are uploaded to a remote server. pdfcanada.ca is different. We use **WebAssembly and local processing** to convert your images within your browser's RAM. Your photos NEVER leave your computer or smartphone, ensuring that your private data stays private.`
             }
         ],
 
         faq: [
             {
                 q: "How to convert HEIC to PDF on iPhone without an app?",
-                a: "You don&apos;t need a dedicated app. Open Safari on your iPhone, go to pdfcanada.ca, select your photos from the library, and we will generate a PDF &apos;on the fly&apos; that you can save to your Files or send via email."
+                a: "You don't need a dedicated app. Open Safari on your iPhone, go to pdfcanada.ca, select your photos from the library, and we will generate a PDF 'on the fly' that you can save to your Files or send via email."
             },
             {
                 q: "Is converting to PDF better than converting to JPG?",
@@ -63,11 +63,11 @@ While efficient for storage, HEIC is notorious for lack of support:
             },
             {
                 q: "Does pdfcanada.ca store my photos?",
-                a: "No. Unlike other websites, we have zero server-side storage for files. The conversion happens entirely on your device&apos;s CPU. As soon as you close the tab, all traces of your images are gone."
+                a: "No. Unlike other websites, we have zero server-side storage for files. The conversion happens entirely on your device's CPU. As soon as you close the tab, all traces of your images are gone."
             },
             {
                 q: "Can I convert large batches of 50+ photos?",
-                a: "Yes. Because the processing is local, the only limit is your device&apos;s memory. Desktop users can easily convert massive batches in seconds."
+                a: "Yes. Because the processing is local, the only limit is your device's memory. Desktop users can easily convert massive batches in seconds."
             }
         ],
 
@@ -83,15 +83,15 @@ While efficient for storage, HEIC is notorious for lack of support:
         h1: "Comment Convertir HEIC en PDF : Le Guide Complet",
         subtitle: "Transformez vos photos iPhone en documents PDF universellement compatibles sans téléchargement ni perte de qualité.",
 
-        intro: "Vous avez déjà essayé d&apos;ouvrir une photo de votre iPhone sur un PC Windows pour découvrir qu&apos;elle est dans un format **.heic** étrange que rien ne peut lire ? C&apos;est frustrant. Notre **convertisseur HEIC en PDF** résout ce problème en transformant vos photos Apple en documents PDF universellement compatibles. Le meilleur ? Tout se passe localement dans votre navigateur, donc vos photos de famille ne sont jamais téléchargées sur un serveur aléatoire.",
+        intro: "Vous avez déjà essayé d'ouvrir une photo de votre iPhone sur un PC Windows pour découvrir qu'elle est dans un format **.heic** étrange que rien ne peut lire ? C'est frustrant. Notre **convertisseur HEIC en PDF** résout ce problème en transformant vos photos Apple en documents PDF universellement compatibles. Le meilleur ? Tout se passe localement dans votre navigateur, donc vos photos de famille ne sont jamais téléchargées sur un serveur aléatoire.",
 
         sections: [
             {
                 id: "what-is-heic",
-                title: "Qu&apos;est-ce que HEIC et Pourquoi Apple l&apos;Utilise",
+                title: "Qu'est-ce que HEIC et Pourquoi Apple l'Utilise",
                 content: `HEIC (High Efficiency Image Container) est le format d'image par défaut d'Apple depuis iOS 11. Il offre une meilleure compression que JPEG, ce qui signifie que vos photos occupent moins d'espace de stockage tout en conservant une qualité élevée.
 
-Le problème ? Windows, Android et la plupart des navigateurs web ne le supportent pas nativement. C&apos;est pourquoi la conversion en **PDF** (ou JPEG) est souvent nécessaire pour le partage.`
+Le problème ? Windows, Android et la plupart des navigateurs web ne le supportent pas nativement. C'est pourquoi la conversion en **PDF** (ou JPEG) est souvent nécessaire pour le partage.`
             },
             {
                 id: "how-it-works",
@@ -99,12 +99,12 @@ Le problème ? Windows, Android et la plupart des navigateurs web ne le supporte
                 content: `Notre convertisseur HEIC en PDF est conçu pour être intuitif et efficace :
 1. **Sélectionnez Vos Photos** : Téléchargez un ou plusieurs fichiers .heic depuis votre iPhone, iCloud ou ordinateur.
 2. **Conversion Automatique** : Notre outil décode le format HEIC et génère un PDF de haute qualité.
-3. **Téléchargez** : Enregistrez votre nouveau PDF, prêt à être partagé avec n&apos;importe qui sur n&apos;importe quel appareil.`
+3. **Téléchargez** : Enregistrez votre nouveau PDF, prêt à être partagé avec n'importe qui sur n'importe quel appareil.`
             },
             {
                 id: "privacy",
                 title: "Pourquoi la Conversion Locale est Importante",
-                content: `Les photos contiennent souvent des informations sensibles : visages de famille, documents personnels, captures d&apos;écran de comptes bancaires. Les télécharger sur un site de conversion aléatoire est un risque de confidentialité.
+                content: `Les photos contiennent souvent des informations sensibles : visages de famille, documents personnels, captures d'écran de comptes bancaires. Les télécharger sur un site de conversion aléatoire est un risque de confidentialité.
  
 **pdfcanada.ca** traite vos fichiers HEIC entièrement dans votre navigateur. Vos photos ne quittent **jamais** votre appareil.`
             }
@@ -113,7 +113,7 @@ Le problème ? Windows, Android et la plupart des navigateurs web ne le supporte
         faq: [
             {
                 q: "La qualité de l'image sera-t-elle réduite ?",
-                a: "Non. Nous conservons la résolution et la qualité d&apos;image d&apos;origine lors de la conversion en PDF."
+                a: "Non. Nous conservons la résolution et la qualité d'image d'origine lors de la conversion en PDF."
             },
             {
                 q: "Puis-je convertir plusieurs fichiers HEIC à la fois ?",
@@ -121,7 +121,7 @@ Le problème ? Windows, Android et la plupart des navigateurs web ne le supporte
             },
             {
                 q: "Cela fonctionne-t-il sur Android ?",
-                a: "Absolument. Bien que HEIC soit un format Apple, notre convertisseur fonctionne sur n&apos;importe quel navigateur moderne, y compris Chrome sur Android."
+                a: "Absolument. Bien que HEIC soit un format Apple, notre convertisseur fonctionne sur n'importe quel navigateur moderne, y compris Chrome sur Android."
             }
         ],
 
@@ -241,11 +241,11 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red rounded-[3rem] p-12 text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-4xl font-black mb-6">{t.ctaTitle}</h2>
-                        <p className="text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-lg md:text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/heic-to-pdf`}
-                            className="bg-white text-canada-red px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
+                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>

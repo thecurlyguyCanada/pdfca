@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Tired of asking clients to print, hand-sign, and scan documents back to you? You need to <strong>make your PDF fillable</strong>. Whether you&apos;re a small business owner in Toronto or a student in Vancouver, creating <strong>interactive PDF forms</strong> is essential for a modern workflow. Our <strong>free PDF form creator</strong> allows you to add text fields, checkboxes, and signature placeholders to any document without needing expensive software like Adobe Acrobat.
+                Tired of asking clients to print, hand-sign, and scan documents back to you? You need to <strong>make your PDF fillable</strong>. Whether you're a small business owner in Toronto or a student in Vancouver, creating <strong>interactive PDF forms</strong> is essential for a modern workflow. Our <strong>free PDF form creator</strong> allows you to add text fields, checkboxes, and signature placeholders to any document without needing expensive software like Adobe Acrobat.
             </>
         ),
 
@@ -57,7 +57,7 @@ const getGuideContent = (lang: Language) => ({
                         <ol className="list-decimal pl-5 space-y-4 mb-4">
                             <li><strong>Upload Your File</strong>: Select the PDF you want to make interactive using our local-first uploader.</li>
                             <li><strong>Add Fields</strong>: Drag and drop text fields and checkboxes onto the document. Our tool is optimized for <strong>Canadian government forms</strong> and business contracts.</li>
-                            <li><strong>Save and Share</strong>: Click &apos;Process PDF&apos; to download your new, interactive version.</li>
+                            <li><strong>Save and Share</strong>: Click 'Process PDF' to download your new, interactive version.</li>
                         </ol>
                         <p>
                             This is the most <strong>secure way to make a PDF fillable</strong> because we process all edits locally in your browser.
@@ -112,7 +112,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Vous en avez assez de demander à vos clients d&apos;imprimer, de remplir à la main et de numériser des documents ? Il est temps de <strong>rendre votre PDF remplissable</strong>. Notre outil gratuit vous permet d&apos;ajouter des champs de texte, des cases à cocher et même des zones de signature directement sur vos PDF existants.
+                Vous en avez assez de demander à vos clients d'imprimer, de remplir à la main et de numériser des documents ? Il est temps de <strong>rendre votre PDF remplissable</strong>. Notre outil gratuit vous permet d'ajouter des champs de texte, des cases à cocher et même des zones de signature directement sur vos PDF existants.
                 <br /><br />
                 Le meilleur ? Tout le traitement se fait localement dans votre navigateur. Vos formulaires confidentiels ne sont jamais téléchargés sur des serveurs externes.
             </>
@@ -125,7 +125,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-4">
-                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre <Link href={`/${lang}/make-fillable`} className="text-canada-red hover:underline font-medium">outil de création de formulaires</Link>. Le fichier s&apos;ouvre instantanément.</li>
+                            <li><strong>Téléversez votre fichier</strong> : Sélectionnez le PDF via notre <Link href={`/${lang}/make-fillable`} className="text-canada-red hover:underline font-medium">outil de création de formulaires</Link>. Le fichier s'ouvre instantanément.</li>
                             <li><strong>Ajoutez des champs interactifs</strong> : Glissez-déposez des champs de texte, des cases à cocher, des menus déroulants et des zones de signature là où vous en avez besoin.</li>
                             <li><strong>Enregistrez et partagez</strong> : Cliquez sur &quot;Traiter le PDF&quot; pour télécharger votre version interactive, prête à être envoyée à vos clients.</li>
                         </ol>
@@ -134,14 +134,14 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 id: "use-cases",
-                title: "Cas d&apos;Utilisation Courants pour les Formulaires PDF",
+                title: "Cas d'Utilisation Courants pour les Formulaires PDF",
                 content: (
                     <>
                         <ul className="list-disc pl-5 space-y-3 mb-6">
                             <li><strong>Contrats clients</strong> : Ajoutez des champs de signature et de date pour une signature numérique facile.</li>
-                            <li><strong>Formulaires d&apos;inscription</strong> : Créez des formulaires que vos clients peuvent remplir sans imprimer.</li>
-                            <li><strong>Demandes d&apos;emploi</strong> : Transformez vos formulaires RH en documents interactifs.</li>
-                            <li><strong>Formulaires gouvernementaux</strong> : Rendez vos PDF conformes aux standards de l&apos;ARC et IRCC.</li>
+                            <li><strong>Formulaires d'inscription</strong> : Créez des formulaires que vos clients peuvent remplir sans imprimer.</li>
+                            <li><strong>Demandes d'emploi</strong> : Transformez vos formulaires RH en documents interactifs.</li>
+                            <li><strong>Formulaires gouvernementaux</strong> : Rendez vos PDF conformes aux standards de l'ARC et IRCC.</li>
                         </ul>
                     </>
                 )
@@ -185,7 +185,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je protéger mon formulaire par mot de passe ?",
-                a: "Pas encore, mais c&apos;est sur notre liste de fonctionnalités à venir. Pour l&apos;instant, vous pouvez utiliser notre outil d&apos;aplatissement après remplissage pour verrouiller les réponses."
+                a: "Pas encore, mais c'est sur notre liste de fonctionnalités à venir. Pour l'instant, vous pouvez utiliser notre outil d'aplatissement après remplissage pour verrouiller les réponses."
             }
         ],
 
@@ -303,11 +303,11 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <section className="bg-canada-red p-12 rounded-[2.5rem] text-center text-white shadow-2xl">
-                        <h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2>
+                    <section className="bg-canada-red p-8 md:p-12 rounded-[2.5rem] text-center text-white shadow-2xl">
+                        <h2 className="text-2xl md:text-3xl font-black mb-4 leading-tight">{t.ctaTitle}</h2>
                         <p className="mb-8 text-white/80 font-medium">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/make-pdf-fillable`}
-                            className="bg-white text-canada-red px-12 py-4 rounded-full font-black text-xl hover:scale-105 transition-all shadow-lg"
+                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg"
                         >
                             {t.ctaButton}
                         </Link>

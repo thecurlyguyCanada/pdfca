@@ -72,7 +72,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                   </div>
                </div>
 
-               {/* Column 2: Edit Group */}
+               {/* Column 2: All PDF Tools */}
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerEditGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
@@ -81,33 +81,47 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/compress-pdf`} className="hover:text-white transition-colors">{t.toolCompress}</Link></li>
                         <li><Link href={`/${lang}/merge-pdf`} className="hover:text-white transition-colors">{t.toolMerge}</Link></li>
                         <li><Link href={`/${lang}/split-pdf`} className="hover:text-white transition-colors">{t.toolSplit}</Link></li>
+                        <li><Link href={`/${lang}/extract-pdf-pages`} className="hover:text-white transition-colors">{t.toolExtract}</Link></li>
                         <li><Link href={`/${lang}/make-pdf-fillable`} className="hover:text-white transition-colors">{t.toolMakeFillable}</Link></li>
-                     </ul>
-                  </FooterSection>
-               </div>
-
-               {/* Column 3: Convert Group */}
-               <div className="lg:col-span-1">
-                  <FooterSection title={t.footerConvertGroup}>
-                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><Link href={`/${lang}/sign-pdf`} className="hover:text-white transition-colors">{t.toolSign}</Link></li>
-                        <li><Link href={`/${lang}/word-to-pdf`} className="hover:text-white transition-colors">{t.toolWordToPdf}</Link></li>
-                        <li><Link href={`/${lang}/pdf-to-word`} className="hover:text-white transition-colors">{t.toolPdfToWord}</Link></li>
-                        <li><Link href={`/${lang}/heic-to-pdf`} className="hover:text-white transition-colors">{t.toolHeic}</Link></li>
-                        <li><Link href={`/${lang}/pdf-to-epub`} className="hover:text-white transition-colors">{t.toolPdfToEpub}</Link></li>
+                        <li><Link href={`/${lang}/organize-pdf`} className="hover:text-white transition-colors">{t.toolOrganize}</Link></li>
+                        <li><Link href={`/${lang}/flatten-pdf`} className="hover:text-white transition-colors">{t.toolFlatten}</Link></li>
+                        <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
 
-               {/* Column 4: Guides */}
+               {/* Column 3: Editing Guides */}
                <div className="lg:col-span-1">
-                  <FooterSection title={lang === 'fr' ? 'Guides' : 'Guides'}>
+                  <FooterSection title={t.footerGuidesGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/merge-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Fusionner PDF' : 'Merge PDF Guide'}</Link></li>
-                        <li><Link href={`/${lang}/guides/compress-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Compresser PDF' : 'Compress PDF Guide'}</Link></li>
-                        <li><Link href={`/${lang}/guides/rotate-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Pivoter PDF' : 'Rotate PDF Guide'}</Link></li>
-                        <li><Link href={`/${lang}/guides/delete-pdf-pages`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Supprimer Pages' : 'Delete Pages Guide'}</Link></li>
-                        <li><Link href={`/${lang}/guides/word-to-pdf`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Guide Word vers PDF' : 'Word to PDF Guide'}</Link></li>
+                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/merge-pdf`} className="hover:text-white transition-colors">{t.mergePdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/compress-pdf`} className="hover:text-white transition-colors">{t.compressPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/rotate-pdf`} className="hover:text-white transition-colors">{t.rotatePdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/delete-pdf-pages`} className="hover:text-white transition-colors">{t.deletePdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/organize-pdf`} className="hover:text-white transition-colors">{t.organizePdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/make-pdf-fillable`} className="hover:text-white transition-colors">{t.makeFillableGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/crop-pdf`} className="hover:text-white transition-colors">{t.cropPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/flatten-pdf`} className="hover:text-white transition-colors">{t.flattenPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
+                     </ul>
+                  </FooterSection>
+               </div>
+
+               {/* Column 4: Format Guides */}
+               <div className="lg:col-span-1">
+                  <FooterSection title={t.footerFormatGroup}>
+                     <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
+                        <li><Link href={`/${lang}/guides/word-to-pdf`} className="hover:text-white transition-colors">{t.wordToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-to-word`} className="hover:text-white transition-colors">{t.pdfToWordGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/heic-to-pdf`} className="hover:text-white transition-colors">{t.heicToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-to-epub`} className="hover:text-white transition-colors">{t.pdfToEpubGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/epub-to-pdf`} className="hover:text-white transition-colors">{t.epubToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/cbr-to-pdf`} className="hover:text-white transition-colors">{t.cbrToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/email-to-pdf`} className="hover:text-white transition-colors">{t.emailToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/insert-picture-in-pdf`} className="hover:text-white transition-colors">{t.insertPictureGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-page-remover`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -116,11 +130,11 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={lang === 'fr' ? 'Ressources' : 'Resources'}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</Link></li>
                         <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : 'About Us'}</Link></li>
                         <li><Link href={`/${lang}/howto`} className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
                         <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
+                        <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

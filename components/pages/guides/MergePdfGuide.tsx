@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Keeping track of multiple related PDF files can be a nightmare. Whether it&apos;s invoices, receipts, or chapters of a report, <strong>merging them into a single PDF</strong> keeps everything organized and professional.
+                Keeping track of multiple related PDF files can be a nightmare. Whether it's invoices, receipts, or chapters of a report, <strong>merging them into a single PDF</strong> keeps everything organized and professional.
                 <br /><br />
                 Our merge tool lets you combine unlimited files, reorder them exactly how you want, and save them as one document—all without uploading anything to a server.
             </>
@@ -41,7 +41,7 @@ const getGuideContent = (lang: Language) => ({
                             <strong>Select Files</strong>: Click to upload or drag multiple PDF files into our <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-medium">Merge PDF tool</Link>. You can select multiple files at once using Ctrl (Windows) or Cmd (Mac) when browsing.
                         </li>
                         <li className="pl-2">
-                            <strong>Preview Thumbnails</strong> : Once uploaded, you&apos;ll see thumbnail previews of each file&apos;s first page, making it easy to identify which document is which.
+                            <strong>Preview Thumbnails</strong> : Once uploaded, you'll see thumbnail previews of each file's first page, making it easy to identify which document is which.
                         </li>
                         <li className="pl-2">
                             <strong>Reorder</strong>: Drag and drop the files to arrange them in the correct order. The file at the top will become the first pages of your merged document.
@@ -69,7 +69,7 @@ const getGuideContent = (lang: Language) => ({
                         <p><strong>Academic Work</strong>: Combine research papers, bibliography, appendices, and supporting charts into a single thesis or dissertation document.</p>
                         <p><strong>Business Proposals</strong>: Merge executive summary, project timeline, budget breakdown, and team bios into one cohesive proposal document.</p>
                         <p><strong>Real Estate Transactions</strong>: Consolidate inspection reports, property disclosures, appraisals, and closing documents into one comprehensive file.</p>
-                        <p><strong>Medical Records</strong> : Combine test results, doctor&apos;s notes, prescription history, and insurance forms for complete medical documentation.</p>
+                        <p><strong>Medical Records</strong> : Combine test results, doctor's notes, prescription history, and insurance forms for complete medical documentation.</p>
                     </div>
                 )
             },
@@ -144,7 +144,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Can I merge password-protected files?",
-                a: "You&apos;ll need to unlock them first. If you have the password, you can use a PDF viewer to save a copy without the password before merging, or use our Unlock PDF tool to remove the password protection."
+                a: "You'll need to unlock them first. If you have the password, you can use a PDF viewer to save a copy without the password before merging, or use our Unlock PDF tool to remove the password protection."
             },
             {
                 q: "Will merging reduce the quality of my PDFs?",
@@ -160,7 +160,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "How large can my merged PDF be?",
-                a: "The size limit depends on your device&apos;s available memory. Most modern computers can handle merged PDFs up to several hundred megabytes. If you&apos;re experiencing issues with very large files, try merging fewer files at once."
+                a: "The size limit depends on your device's available memory. Most modern computers can handle merged PDFs up to several hundred megabytes. If you're experiencing issues with very large files, try merging fewer files at once."
             },
             {
                 q: "Can I merge PDFs on my phone or tablet?",
@@ -188,7 +188,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Gérer plusieurs fichiers PDF peut être un cauchemar. Qu&apos;il s&apos;agisse de factures pour votre déclaration de revenus, de reçus de dépenses, ou de chapitres d&apos;un rapport, <strong>les fusionner en un seul PDF</strong> permet de rester organisé et professionnel.
+                Gérer plusieurs fichiers PDF peut être un cauchemar. Qu'il s'agisse de factures pour votre déclaration de revenus, de reçus de dépenses, ou de chapitres d'un rapport, <strong>les fusionner en un seul PDF</strong> permet de rester organisé et professionnel.
                 <br /><br />
                 Notre outil de fusion vous permet de combiner un nombre illimité de fichiers, de les réorganiser exactement comme vous le souhaitez, et de les enregistrer en un seul document — le tout sans jamais télécharger vos fichiers sur un serveur externe.
             </>
@@ -201,9 +201,9 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
                         <li className="pl-2"><strong>Sélectionnez vos fichiers</strong> : Cliquez pour télécharger ou faites glisser plusieurs fichiers PDF dans notre <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-medium">outil de fusion PDF</Link>. Vous pouvez sélectionner plusieurs fichiers en une fois avec Ctrl (Windows) ou Cmd (Mac).</li>
-                        <li className="pl-2"><strong>Aperçus miniatures</strong> : Une fois téléchargés, vous verrez des miniatures de la première page de chaque fichier, facilitant l&apos;identification de chaque document.</li>
-                        <li className="pl-2"><strong>Réorganisez l&apos;ordre</strong> : Glissez et déposez les fichiers pour les arranger dans l&apos;ordre souhaité. Le fichier en haut deviendra les premières pages de votre document fusionné.</li>
-                        <li className="pl-2"><strong>Retirez les fichiers indésirables</strong> : Erreur ? Cliquez sur le bouton X sur n&apos;importe quel fichier pour le retirer de la file sans tout recommencer.</li>
+                        <li className="pl-2"><strong>Aperçus miniatures</strong> : Une fois téléchargés, vous verrez des miniatures de la première page de chaque fichier, facilitant l'identification de chaque document.</li>
+                        <li className="pl-2"><strong>Réorganisez l'ordre</strong> : Glissez et déposez les fichiers pour les arranger dans l'ordre souhaité. Le fichier en haut deviendra les premières pages de votre document fusionné.</li>
+                        <li className="pl-2"><strong>Retirez les fichiers indésirables</strong> : Erreur ? Cliquez sur le bouton X sur n'importe quel fichier pour le retirer de la file sans tout recommencer.</li>
                         <li className="pl-2"><strong>Fusionnez</strong> : Cliquez sur le bouton &quot;Fusionner PDF&quot; pour combiner instantanément tous vos fichiers. Le traitement se fait dans votre navigateur, donc les fichiers volumineux peuvent prendre quelques secondes.</li>
                         <li className="pl-2"><strong>Téléchargez</strong> : Enregistrez votre nouveau document unique. Le fichier fusionné conservera la qualité originale de tous les documents sources.</li>
                     </ol>
@@ -211,16 +211,16 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 id: "use-cases",
-                title: "Cas d&apos;Utilisation Réels pour la Fusion de PDF",
+                title: "Cas d'Utilisation Réels pour la Fusion de PDF",
                 content: (
                     <div className="space-y-4">
-                        <p><strong>Préparation de la Saison des Impôts</strong> : Combinez tous vos feuillets T4, reçus, reçus de dons de charité et rapports de dépenses en un seul PDF organisé pour une soumission facile à l&apos;ARC (Agence du revenu du Canada) ou à votre comptable.</p>
-                        <p><strong>Candidatures d&apos;Emploi</strong> : Fusionnez votre CV, lettre de motivation, lettres de référence et échantillons de portfolio en un seul dossier professionnel que les recruteurs peuvent facilement consulter.</p>
+                        <p><strong>Préparation de la Saison des Impôts</strong> : Combinez tous vos feuillets T4, reçus, reçus de dons de charité et rapports de dépenses en un seul PDF organisé pour une soumission facile à l'ARC (Agence du revenu du Canada) ou à votre comptable.</p>
+                        <p><strong>Candidatures d'Emploi</strong> : Fusionnez votre CV, lettre de motivation, lettres de référence et échantillons de portfolio en un seul dossier professionnel que les recruteurs peuvent facilement consulter.</p>
                         <p><strong>Documentation Juridique</strong> : Assemblez tous les contrats, amendements, documents justificatifs et correspondance en un seul dossier juridique complet pour les soumissions au tribunal ou la tenue de dossiers.</p>
                         <p><strong>Travaux Académiques</strong> : Combinez articles de recherche, bibliographie, annexes et graphiques de support en un seul document de thèse ou de mémoire.</p>
-                        <p><strong>Propositions Commerciales</strong> : Fusionnez le résumé exécutif, le calendrier du projet, la répartition budgétaire et les biographies de l&apos;équipe en un seul document de proposition cohérent.</p>
-                        <p><strong>Transactions Immobilières</strong> : Consolidez rapports d&apos;inspection, divulgations de propriété, évaluations et documents de clôture en un seul fichier complet.</p>
-                        <p><strong>Dossiers Médicaux</strong> : Combinez résultats de tests, notes du médecin, historique de prescriptions et formulaires d&apos;assurance pour une documentation médicale complète.</p>
+                        <p><strong>Propositions Commerciales</strong> : Fusionnez le résumé exécutif, le calendrier du projet, la répartition budgétaire et les biographies de l'équipe en un seul document de proposition cohérent.</p>
+                        <p><strong>Transactions Immobilières</strong> : Consolidez rapports d'inspection, divulgations de propriété, évaluations et documents de clôture en un seul fichier complet.</p>
+                        <p><strong>Dossiers Médicaux</strong> : Combinez résultats de tests, notes du médecin, historique de prescriptions et formulaires d'assurance pour une documentation médicale complète.</p>
                     </div>
                 )
             },
@@ -230,7 +230,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
                         <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
-                            <h3 className="font-bold text-blue-800 mb-2">L&apos;ordre compte</h3>
+                            <h3 className="font-bold text-blue-800 mb-2">L'ordre compte</h3>
                             <p className="text-sm text-blue-700">Le fichier en haut de la liste sera les premières pages de votre nouveau PDF. Assurez-vous de les organiser de manière chronologique ou logique avant de fusionner.</p>
                         </div>
                         <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
@@ -243,7 +243,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
                             <h3 className="font-bold text-orange-800 mb-2">Prévisualisez les premières pages</h3>
-                            <p className="text-sm text-orange-700">Utilisez les aperçus miniatures pour vérifier que chaque fichier est correct avant de fusionner. Cela économise du temps comparé à l&apos;ouverture de chaque section PDF fusionnée séparément.</p>
+                            <p className="text-sm text-orange-700">Utilisez les aperçus miniatures pour vérifier que chaque fichier est correct avant de fusionner. Cela économise du temps comparé à l'ouverture de chaque section PDF fusionnée séparément.</p>
                         </div>
                     </div>
                 )
@@ -253,10 +253,10 @@ const getGuideContent = (lang: Language) => ({
                 title: "Meilleures Pratiques pour des Résultats Professionnels",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Orientation cohérente</strong> : Assurez-vous que tous les PDF ont la même orientation (portrait ou paysage) avant de fusionner, ou utilisez d&apos;abord notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline">outil de rotation</Link> pour les standardiser.</li>
+                        <li><strong>Orientation cohérente</strong> : Assurez-vous que tous les PDF ont la même orientation (portrait ou paysage) avant de fusionner, ou utilisez d'abord notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline">outil de rotation</Link> pour les standardiser.</li>
                         <li><strong>Tailles de page similaires</strong> : Bien que vous puissiez fusionner des PDF de tailles différentes, avoir des dimensions de page cohérentes (comme tout Lettre ou tout A4) crée un résultat plus professionnel.</li>
-                        <li><strong>Vérification de qualité</strong> : Examinez chaque PDF source individuellement avant de fusionner pour vous assurer qu&apos;il n&apos;y a pas de pages blanches, de contenu corrompu ou de matériaux indésirables.</li>
-                        <li><strong>Organisation logique</strong> : Organisez les documents dans un flux logique - généralement par ordre chronologique, ou de l&apos;information générale aux détails spécifiques.</li>
+                        <li><strong>Vérification de qualité</strong> : Examinez chaque PDF source individuellement avant de fusionner pour vous assurer qu'il n'y a pas de pages blanches, de contenu corrompu ou de matériaux indésirables.</li>
+                        <li><strong>Organisation logique</strong> : Organisez les documents dans un flux logique - généralement par ordre chronologique, ou de l'information générale aux détails spécifiques.</li>
                         <li><strong>Conscience de la taille du fichier</strong> : Soyez conscient des limites de pièces jointes par courriel (généralement 10-25 Mo). Si votre fichier fusionné dépasse cette limite, envisagez la compression ou la division en plusieurs fichiers.</li>
                         <li><strong>Sauvegarde des originaux</strong> : Conservez toujours des copies de vos PDF séparés originaux avant de fusionner, au cas où vous devriez apporter des modifications ultérieurement.</li>
                     </ul>
@@ -269,11 +269,11 @@ const getGuideContent = (lang: Language) => ({
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le bouton de fusion est grisé</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Vous avez besoin d&apos;au moins 2 fichiers PDF pour fusionner. Téléchargez des fichiers supplémentaires et le bouton s&apos;activera.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Vous avez besoin d'au moins 2 fichiers PDF pour fusionner. Téléchargez des fichiers supplémentaires et le bouton s'activera.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le traitement est très lent</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les fichiers volumineux ou nombreux peuvent prendre du temps à traiter localement. Essayez de fermer d&apos;autres onglets du navigateur pour libérer de la mémoire, ou fusionnez par plus petits lots.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les fichiers volumineux ou nombreux peuvent prendre du temps à traiter localement. Essayez de fermer d'autres onglets du navigateur pour libérer de la mémoire, ou fusionnez par plus petits lots.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le PDF fusionné est trop volumineux pour être envoyé par courriel</h4>
@@ -295,7 +295,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je fusionner des fichiers protégés par mot de passe ?",
-                a: "Vous devrez d&apos;abord les déverrouiller. Si vous avez le mot de passe, vous pouvez utiliser un lecteur PDF pour enregistrer une copie sans mot de passe avant de fusionner, ou utilisez notre outil de déverrouillage PDF pour retirer la protection."
+                a: "Vous devrez d'abord les déverrouiller. Si vous avez le mot de passe, vous pouvez utiliser un lecteur PDF pour enregistrer une copie sans mot de passe avant de fusionner, ou utilisez notre outil de déverrouillage PDF pour retirer la protection."
             },
             {
                 q: "La fusion réduira-t-elle la qualité de mes PDF ?",
@@ -307,7 +307,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Qu'advient-il des signets et des liens lorsque je fusionne ?",
-                a: "Les signets et les liens internes des PDF originaux sont préservés dans le fichier fusionné. Cependant, l&apos;organisation des signets peut nécessiter un ajustement car tous les signets sont combinés au niveau racine."
+                a: "Les signets et les liens internes des PDF originaux sont préservés dans le fichier fusionné. Cependant, l'organisation des signets peut nécessiter un ajustement car tous les signets sont combinés au niveau racine."
             },
             {
                 q: "Quelle peut être la taille de mon PDF fusionné ?",
@@ -319,7 +319,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Y a-t-il un moyen d'ajouter des numéros de page au PDF fusionné ?",
-                a: "Notre outil de fusion combine les fichiers tels quels. Pour ajouter des numéros de page, vous auriez besoin d&apos;utiliser un outil d&apos;édition PDF séparé après la fusion. Envisagez d&apos;ajouter des numéros de page aux fichiers individuels avant de fusionner pour un meilleur contrôle."
+                a: "Notre outil de fusion combine les fichiers tels quels. Pour ajouter des numéros de page, vous auriez besoin d'utiliser un outil d'édition PDF séparé après la fusion. Envisagez d'ajouter des numéros de page aux fichiers individuels avant de fusionner pour un meilleur contrôle."
             }
         ],
 
@@ -348,8 +348,8 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 quickAnswer={{
                     question: lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?",
                     answer: lang === 'fr'
-                        ? "Utilisez l&apos;outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l&apos;ordre souhaité, puis cliquez sur &apos;Fusionner&apos;. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
-                        : "Use pdfcanada.ca&apos;s Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click &apos;Merge&apos;. Your files are combined locally - never sent to a server.",
+                        ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
+                        : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server.",
                     tool: "PDF Merger",
                     steps: lang === 'fr'
                         ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]
@@ -437,8 +437,8 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <AISnapshot
                         question={lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?"}
                         answer={lang === 'fr'
-                            ? "Utilisez l&apos;outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l&apos;ordre souhaité, puis cliquez sur &apos;Fusionner&apos;. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
-                            : "Use pdfcanada.ca&apos;s Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click &apos;Merge&apos;. Your files are combined locally - never sent to a server."}
+                            ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
+                            : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server."}
                         toolName="PDF Merger"
                         steps={lang === 'fr'
                             ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]

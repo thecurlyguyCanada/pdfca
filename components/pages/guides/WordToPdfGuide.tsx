@@ -24,7 +24,7 @@ const getGuideContent = (lang: Language) => ({
         h1: `How to Convert Word to PDF: The ${CURRENT_YEAR} Guide`,
         subtitle: "Create high-quality, locked-down PDF documents from your Word files instantly without leaving your browser.",
 
-        intro: "Need to turn your **Word doc** into a professional-looking PDF? Whether you&apos;re sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. Our **Word to PDF converter** handles the transition smoothly, and because it runs locally, you don&apos;t have to worry about your business or personal data being stored on a random server.",
+        intro: "Need to turn your **Word doc** into a professional-looking PDF? Whether you're sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. Our **Word to PDF converter** handles the transition smoothly, and because it runs locally, you don't have to worry about your business or personal data being stored on a random server.",
 
         sections: [
             {
@@ -43,7 +43,7 @@ const getGuideContent = (lang: Language) => ({
                 content: `Word files are editable and their appearance can change depending on which version of Office the recipient is using, their operating system, or their installed fonts. PDFs eliminate these problems:
 - **Format Locking**: What you see is exactly what they see. No shifting layouts, missing fonts, or broken formatting.
 - **Universal Access**: Everyone can open a PDF on any device—Windows, Mac, Linux, iOS, Android—without needing Microsoft Office. Free PDF readers are built into modern browsers.
-- **Security & Integrity**: It&apos;s much harder for someone to accidentally (or intentionally) change your text in a PDF. Great for contracts, resumes, and official documents.
+- **Security & Integrity**: It's much harder for someone to accidentally (or intentionally) change your text in a PDF. Great for contracts, resumes, and official documents.
 - **Professional Appearance**: PDFs are the standard for business communications, job applications, and formal submissions. Sending a Word file can appear unprofessional in many contexts.
 - **File Size Control**: PDFs are often smaller than Word documents, especially for image-heavy files, making them easier to email and faster to download.
 - **Print Consistency**: PDFs ensure what you see on screen is exactly what prints, avoiding frustrating layout shifts during printing.`
@@ -57,7 +57,7 @@ const getGuideContent = (lang: Language) => ({
 - **Privacy Protection**: Your confidential documents never leave your computer. No server logs, no data retention, no third-party access.
 - **Faster Processing**: No upload/download wait times. Conversion happens instantly since it's all local.
 - **Offline Capable**: Once loaded, our tool can work without an internet connection (though initial page load requires internet).
-- **No File Size Limits**: Server-based tools often limit file sizes. Ours is only limited by your device&apos;s memory.
+- **No File Size Limits**: Server-based tools often limit file sizes. Ours is only limited by your device's memory.
 
 **Ideal For Sensitive Documents:**
 - Legal Contracts & NDAs
@@ -92,7 +92,7 @@ const getGuideContent = (lang: Language) => ({
 - Ensure all images are high-quality and properly positioned.
 - Check that headers, footers, and page numbers appear correctly.
 - Verify hyperlinks work and point to the correct destinations.
-- Remove track changes, comments, and hidden metadata that you don&apos;t want in the final PDF.
+- Remove track changes, comments, and hidden metadata that you don't want in the final PDF.
 
 **For Best Results:**
 - Use standard fonts (Arial, Times New Roman, Calibri) that convert reliably. Decorative or custom fonts may not embed properly.
@@ -120,7 +120,7 @@ const getGuideContent = (lang: Language) => ({
 **Problem: Conversion fails or takes a very long time**
 **Solution**: Very large files (50+ MB) or those with hundreds of high-res images can overwhelm browser memory. Try compressing images in Word first, or split into smaller documents.
 
-**Problem: Hyperlinks don&apos;t work in the PDF**
+**Problem: Hyperlinks don't work in the PDF**
 **Solution**: Ensure hyperlinks are properly formatted in Word. Right-click and verify the link address is correct before converting.`
             }
         ],
@@ -148,11 +148,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "What's the maximum file size I can convert?",
-                a: "Since conversion happens locally in your browser, the limit depends on your device&apos;s RAM. Most modern computers easily handle files up to 50-100MB. Phones may have lower limits. Very large documents may take longer to process."
+                a: "Since conversion happens locally in your browser, the limit depends on your device's RAM. Most modern computers easily handle files up to 50-100MB. Phones may have lower limits. Very large documents may take longer to process."
             },
             {
                 q: "Can I convert password-protected Word documents?",
-                a: "You&apos;ll need to remove the password first. Open the document in Word, enter the password, then save a copy without password protection before converting to PDF. You can re-protect the PDF afterwards if needed."
+                a: "You'll need to remove the password first. Open the document in Word, enter the password, then save a copy without password protection before converting to PDF. You can re-protect the PDF afterwards if needed."
             },
             {
                 q: "Will the PDF be searchable and have selectable text?",
@@ -172,7 +172,7 @@ const getGuideContent = (lang: Language) => ({
         h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",
 
-        intro: "Besoin de transformer votre **document Word** en PDF professionnel ? Que vous envoyiez un CV, une facture ou un rapport formel, le PDF est la norme pour garantir que votre formatage reste exactement comme prévu. Notre **convertisseur Word en PDF** gère la transition en douceur, et parce qu&apos;il fonctionne localement, vous n&apos;avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
+        intro: "Besoin de transformer votre **document Word** en PDF professionnel ? Que vous envoyiez un CV, une facture ou un rapport formel, le PDF est la norme pour garantir que votre formatage reste exactement comme prévu. Notre **convertisseur Word en PDF** gère la transition en douceur, et parce qu'il fonctionne localement, vous n'avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
 
         sections: [
             {
@@ -205,7 +205,7 @@ const getGuideContent = (lang: Language) => ({
 - **Protection de la Confidentialité** : Vos documents confidentiels ne quittent jamais votre ordinateur. Aucun journal de serveur, aucune rétention de données, aucun accès tiers.
 - **Traitement Plus Rapide** : Aucun temps d'attente de téléchargement/téléversement. La conversion se fait instantanément puisque tout est local.
 - **Capable Hors Ligne** : Une fois chargé, notre outil peut fonctionner sans connexion Internet (bien que le chargement initial de la page nécessite Internet).
-- **Aucune Limite de Taille de Fichier** : Les outils basés sur serveur limitent souvent les tailles de fichiers. Le nôtre n&apos;est limité que par la mémoire de votre appareil.
+- **Aucune Limite de Taille de Fichier** : Les outils basés sur serveur limitent souvent les tailles de fichiers. Le nôtre n'est limité que par la mémoire de votre appareil.
 
 **Idéal Pour les Documents Sensibles :**
 - Contrats Juridiques et Accords de Confidentialité
@@ -251,7 +251,7 @@ const getGuideContent = (lang: Language) => ({
 - Ouvrez et examinez toujours le PDF résultant avant de le partager pour garantir la qualité.
 - Vérifiez que les sauts de page se produisent aux endroits appropriés.
 - Vérifiez que toutes les images, graphiques et tableaux se sont rendus correctement.
-- Testez tous les hyperliens intégrés pour vous assurer qu&apos;ils fonctionnent toujours.`
+- Testez tous les hyperliens intégrés pour vous assurer qu'ils fonctionnent toujours.`
             },
             {
                 id: "troubleshooting",
@@ -269,7 +269,7 @@ const getGuideContent = (lang: Language) => ({
 **Solution** : Les fichiers très volumineux (50+ Mo) ou ceux avec des centaines d'images haute résolution peuvent submerger la mémoire du navigateur. Essayez de compresser les images dans Word d'abord, ou divisez en documents plus petits.
 
 **Problème : Les hyperliens ne fonctionnent pas dans le PDF**
-**Solution** : Assurez-vous que les hyperliens sont correctement formatés dans Word. Cliquez avec le bouton droit et vérifiez que l&apos;adresse du lien est correcte avant de convertir.`
+**Solution** : Assurez-vous que les hyperliens sont correctement formatés dans Word. Cliquez avec le bouton droit et vérifiez que l'adresse du lien est correcte avant de convertir.`
             }
         ],
 

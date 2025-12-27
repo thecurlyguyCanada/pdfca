@@ -24,7 +24,7 @@ const getGuideContent = (lang: Language) => ({
         subtitle: "Transformez vos PDF en ebooks pour liseuses",
         intro: (
             <>
-                Vous souhaitez lire vos documents PDF sur votre liseuse Kindle ou Kobo? Notre convertisseur gratuit transforme vos fichiers PDF en format EPUB, le standard des livres numériques. Profitez d&apos;une meilleure expérience de lecture avec un texte qui s&apos;adapte automatiquement à la taille de votre écran.
+                Vous souhaitez lire vos documents PDF sur votre liseuse Kindle ou Kobo? Notre convertisseur gratuit transforme vos fichiers PDF en format EPUB, le standard des livres numériques. Profitez d'une meilleure expérience de lecture avec un texte qui s'adapte automatiquement à la taille de votre écran.
             </>
         ),
         whyTitle: "Pourquoi convertir PDF en EPUB?",
@@ -65,7 +65,7 @@ const getGuideContent = (lang: Language) => ({
         securityTitle: "Vos documents restent privés",
         securityText: (
             <>
-                La confidentialité de vos documents est notre priorité. Tout le traitement s&apos;effectue localement sur votre appareil. Aucun fichier n&apos;est envoyé sur nos serveurs. Vos PDF personnels, professionnels ou confidentiels restent entre vos mains.
+                La confidentialité de vos documents est notre priorité. Tout le traitement s'effectue localement sur votre appareil. Aucun fichier n'est envoyé sur nos serveurs. Vos PDF personnels, professionnels ou confidentiels restent entre vos mains.
             </>
         ),
         compatTitle: "Compatible avec toutes les liseuses",
@@ -151,7 +151,7 @@ const getGuideContent = (lang: Language) => ({
                 title: "Intelligent content analysis",
                 desc: (
                     <>
-                        Our system analyzes your document&apos;s structure: paragraphs, headings, images. Conversion happens entirely in your browser.
+                        Our system analyzes your document's structure: paragraphs, headings, images. Conversion happens entirely in your browser.
                     </>
                 )
             },

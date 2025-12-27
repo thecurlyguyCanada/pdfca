@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                XFA (XML Forms Architecture) PDFs are a specialized format designed for Adobe&apos;s proprietary engine. Because they are dynamic and XML-driven, they often cannot be edited or even opened by standard PDF tools.
+                XFA (XML Forms Architecture) PDFs are a specialized format designed for Adobe's proprietary engine. Because they are dynamic and XML-driven, they often cannot be edited or even opened by standard PDF tools.
                 <br /><br />
                 The most reliable way to <strong>edit an XFA PDF</strong> is to &quot;flatten&quot; it by printing it to a virtual PDF printer. This converts the dynamic structure into a standard, static PDF that can be modified like any other document.
             </>
@@ -96,7 +96,7 @@ const getGuideContent = (lang: Language) => ({
                 title: "Step-by-Step Instructions (macOS)",
                 content: (
                     <>
-                        <p className="mb-4">macOS uses the system&apos;s built-in PDF engine instead of a dedicated &quot;Adobe PDF&quot; printer entry.</p>
+                        <p className="mb-4">macOS uses the system's built-in PDF engine instead of a dedicated &quot;Adobe PDF&quot; printer entry.</p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li><strong>Open the PDF</strong> as usual in your viewer.</li>
                             <li>Press <code>Command + P</code> to open the Print dialog.</li>
@@ -158,15 +158,15 @@ const getGuideContent = (lang: Language) => ({
         subtitle: "Aplatissez les formulaires dynamiques en PDF standard modifiables.",
         intro: (
             <>
-                Les PDF XFA (XML Forms Architecture) sont un format spécialisé conçu pour le moteur propriétaire d&apos;Adobe. Parce qu&apos;ils sont dynamiques et pilotés par XML, ils ne peuvent souvent pas être modifiés ou même ouverts par des outils PDF standards.
+                Les PDF XFA (XML Forms Architecture) sont un format spécialisé conçu pour le moteur propriétaire d'Adobe. Parce qu'ils sont dynamiques et pilotés par XML, ils ne peuvent souvent pas être modifiés ou même ouverts par des outils PDF standards.
                 <br /><br />
-                La méthode la plus fiable pour <strong>éditer un PDF XFA</strong> est de l&apos;« aplatir » en l&apos;imprimant vers une imprimante virtuelle PDF. Cela convertit la structure dynamique en un PDF statique standard qui peut être modifié comme n&apos;importe quel autre document.
+                La méthode la plus fiable pour <strong>éditer un PDF XFA</strong> est de l'« aplatir » en l'imprimant vers une imprimante virtuelle PDF. Cela convertit la structure dynamique en un PDF statique standard qui peut être modifié comme n'importe quel autre document.
             </>
         ),
         sections: [
             {
                 id: "concept",
-                title: "Qu&apos;est-ce que l&apos;aplatissement ?",
+                title: "Qu'est-ce que l'aplatissement ?",
                 content: (
                     <>
                         <p className="mb-4">
@@ -174,7 +174,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <div className="grid md:grid-cols-2 gap-6 bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl mb-4">
                             <div>
-                                <h4 className="font-bold text-canada-red mb-2 uppercase text-xs tracking-widest">L&apos;aplatissement supprime</h4>
+                                <h4 className="font-bold text-canada-red mb-2 uppercase text-xs tracking-widest">L'aplatissement supprime</h4>
                                 <ul className="text-sm space-y-1 list-disc pl-4 opacity-80">
                                     <li>Les champs de formulaire interactifs</li>
                                     <li>Les calculs et validations</li>
@@ -183,7 +183,7 @@ const getGuideContent = (lang: Language) => ({
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-bold text-green-600 mb-2 uppercase text-xs tracking-widest">L&apos;aplatissement préserve</h4>
+                                <h4 className="font-bold text-green-600 mb-2 uppercase text-xs tracking-widest">L'aplatissement préserve</h4>
                                 <ul className="text-sm space-y-1 list-disc pl-4 opacity-80">
                                     <li>La mise en page visuelle et le texte</li>
                                     <li>Les valeurs saisies</li>
@@ -193,7 +193,7 @@ const getGuideContent = (lang: Language) => ({
                             </div>
                         </div>
                         <p className="text-sm italic text-gray-700 dark:text-gray-300">
-                            👉 Vous cherchez un moyen rapide d&apos;aplatir des PDF standards ? Essayez notre <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">outil d&apos;aplatissement PDF</Link>.
+                            👉 Vous cherchez un moyen rapide d'aplatir des PDF standards ? Essayez notre <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">outil d'aplatissement PDF</Link>.
                         </p>
                     </>
                 )
@@ -205,13 +205,13 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li>
-                                <strong>Ouvrir dans Acrobat</strong> : Lancez votre PDF XFA dans Adobe Acrobat Desktop. Vous pourriez voir un message indiquant « L&apos;édition n&apos;est pas prise en charge » — c&apos;est normal.
+                                <strong>Ouvrir dans Acrobat</strong> : Lancez votre PDF XFA dans Adobe Acrobat Desktop. Vous pourriez voir un message indiquant « L'édition n'est pas prise en charge » — c'est normal.
                             </li>
                             <li>
-                                <strong>Ouvrir le dialogue d&apos;impression</strong> : Appuyez sur <code>Ctrl + P</code> ou allez dans <code>Fichier → Imprimer</code>.
+                                <strong>Ouvrir le dialogue d'impression</strong> : Appuyez sur <code>Ctrl + P</code> ou allez dans <code>Fichier → Imprimer</code>.
                             </li>
                             <li>
-                                <strong>Sélectionner l&apos;imprimante</strong> : Dans le menu déroulant, choisissez <strong>Adobe PDF</strong>.
+                                <strong>Sélectionner l'imprimante</strong> : Dans le menu déroulant, choisissez <strong>Adobe PDF</strong>.
                             </li>
                             <li>
                                 <strong>Vérifier les réglages</strong> : Assurez-vous que « Pages à imprimer » est sur « Tout » et « Taille » sur « Taille réelle ». Évitez « Imprimer comme image » sauf en cas de problème de rendu.
@@ -228,10 +228,10 @@ const getGuideContent = (lang: Language) => ({
                 title: "Instructions étape par étape (macOS)",
                 content: (
                     <>
-                        <p className="mb-4">macOS utilise le moteur PDF intégré au système plutôt qu&apos;une entrée d&apos;imprimante « Adobe PDF » dédiée.</p>
+                        <p className="mb-4">macOS utilise le moteur PDF intégré au système plutôt qu'une entrée d'imprimante « Adobe PDF » dédiée.</p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
-                            <li><strong>Ouvrez le PDF</strong> comme d&apos;habitude dans votre visionneuse.</li>
-                            <li>Appuyez sur <code>Command + P</code> pour ouvrir le dialogue d&apos;impression.</li>
+                            <li><strong>Ouvrez le PDF</strong> comme d'habitude dans votre visionneuse.</li>
+                            <li>Appuyez sur <code>Command + P</code> pour ouvrir le dialogue d'impression.</li>
                             <li>Cherchez le <strong>menu déroulant PDF</strong> en bas à gauche du dialogue.</li>
                             <li>Sélectionnez <strong>Enregistrer au format PDF</strong>.</li>
                         </ol>
@@ -240,13 +240,13 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 id: "post-flattening",
-                title: "Que faire après l&apos;aplatissement",
+                title: "Que faire après l'aplatissement",
                 content: (
                     <>
                         <p className="mb-4">Une fois votre fichier aplati, il se comporte comme un PDF standard. Vous pouvez maintenant utiliser divers outils pour le perfectionner :</p>
                         <div className="flex flex-wrap gap-3">
                             <Link href={`/${lang}/ocr-pdf`} className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl text-sm font-medium hover:border-canada-red transition-colors">
-                                <Zap size={14} className="text-canada-red" /> Exécuter l&apos;OCR pour rendre le texte modifiable
+                                <Zap size={14} className="text-canada-red" /> Exécuter l'OCR pour rendre le texte modifiable
                             </Link>
                             <Link href={`/${lang}/sign-pdf`} className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl text-sm font-medium hover:border-canada-red transition-colors">
                                 <Edit3 size={14} className="text-canada-red" /> Ajouter une signature sécurisée
@@ -261,22 +261,22 @@ const getGuideContent = (lang: Language) => ({
         ],
         faq: [
             {
-                q: "Pourquoi ne puis-je pas simplement utiliser &apos;Modifier le PDF&apos; directement ?",
-                a: "Les formulaires XFA sont des structures XML dynamiques. Les éditeurs PDF standards sont conçus pour la norme statique &apos;Acroform&apos;. Le contournement par l&apos;imprimante contourne cela en créant un instantané statique."
+                q: "Pourquoi ne puis-je pas simplement utiliser 'Modifier le PDF' directement ?",
+                a: "Les formulaires XFA sont des structures XML dynamiques. Les éditeurs PDF standards sont conçus pour la norme statique 'Acroform'. Le contournement par l'imprimante contourne cela en créant un instantané statique."
             },
             {
                 q: "Le texte sera-t-il modifiable immédiatement ?",
-                a: "Parfois. Selon le créateur du formulaire, le texte peut être converti en contours. Si vous constatez que vous ne pouvez pas sélectionner de mots après l&apos;aplatissement, utilisez notre outil d&apos;OCR pour récupérer le texte."
+                a: "Parfois. Selon le créateur du formulaire, le texte peut être converti en contours. Si vous constatez que vous ne pouvez pas sélectionner de mots après l'aplatissement, utilisez notre outil d'OCR pour récupérer le texte."
             },
             {
                 q: "Et si certains champs apparaissent vides ?",
-                a: "Assurez-vous que le formulaire est entièrement rendu et rempli avant l&apos;impression. Certains champs dynamiques n&apos;apparaissent que lorsque certaines conditions sont remplies."
+                a: "Assurez-vous que le formulaire est entièrement rendu et rempli avant l'impression. Certains champs dynamiques n'apparaissent que lorsque certaines conditions sont remplies."
             }
         ],
         whyTitle: "Pourquoi ça marche ?",
-        whyDesc: "L&apos;impression vers PDF capture l&apos;« état visuel » du formulaire XFA, convertissant la logique XML complexe en instructions géométriques PDF simples que n&apos;importe quel éditeur peut comprendre.",
-        ctaTitle: "Besoin d&apos;aplatir votre PDF maintenant ?",
-        ctaButton: "Utiliser notre outil d&apos;aplatissement",
+        whyDesc: "L'impression vers PDF capture l'« état visuel » du formulaire XFA, convertissant la logique XML complexe en instructions géométriques PDF simples que n'importe quel éditeur peut comprendre.",
+        ctaTitle: "Besoin d'aplatir votre PDF maintenant ?",
+        ctaButton: "Utiliser notre outil d'aplatissement",
         ctaSubtext: "Gratuit, sécurisé et canadien."
     }
 });
