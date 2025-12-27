@@ -58,7 +58,7 @@ export function constructMetadata({
             type: 'website',
             images: [
                 {
-                    url: image,
+                    url: image.startsWith('http') ? image : `${BASE_URL}${image}`,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -69,7 +69,7 @@ export function constructMetadata({
             card: 'summary_large_image',
             title: `${title} | pdfcanada.ca`,
             description,
-            images: [image],
+            images: [image.startsWith('http') ? image : `${BASE_URL}${image}`],
             site: '@pdfcanada',
             creator: '@pdfcanada',
         },
