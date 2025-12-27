@@ -233,7 +233,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
-    if (!file && (!files || files.length === 0)) {
+    // Check if current tool is barcode generator (which doesn't require file upload)
+    const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
+
+    if (!file && (!files || files.length === 0) && !isBarcodeTool) {
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
@@ -362,7 +365,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
     const isCompressTool = currentTool === ToolType.COMPRESS;
     const isInvoiceTool = currentTool === ToolType.INVOICE_OCR;
-    const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
 
     let headerText = '';
 

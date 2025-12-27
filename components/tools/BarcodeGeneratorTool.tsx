@@ -9,6 +9,10 @@ import { PDFDocument, rgb } from 'pdf-lib';
 interface BarcodeItem {
     id: string;
     text: string;
+    title1?: string;
+    title2?: string;
+    footer?: string;
+    printQty?: number;
     error?: string;
 }
 
@@ -39,6 +43,25 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
     const [sequenceEnd, setSequenceEnd] = useState<string>('');
     const [sequencePrefix, setSequencePrefix] = useState<string>('');
     const [sequenceSuffix, setSequenceSuffix] = useState<string>('');
+    const [sequenceTitle1, setSequenceTitle1] = useState<string>('');
+    const [sequenceTitle2, setSequenceTitle2] = useState<string>('');
+    const [sequenceFooter, setSequenceFooter] = useState<string>('');
+    const [sequenceStep, setSequenceStep] = useState<string>('1');
+    const [sequenceRepeat, setSequenceRepeat] = useState<string>('1');
+
+    // Label configuration for printing
+    const [showLabelConfig, setShowLabelConfig] = useState(false);
+    const [labelColumns, setLabelColumns] = useState<number>(3);
+    const [labelRows, setLabelRows] = useState<number>(8);
+    const [pageTopMargin, setPageTopMargin] = useState<number>(1.27);
+    const [pageLeftMargin, setPageLeftMargin] = useState<number>(0.90);
+    const [labelTopMargin, setLabelTopMargin] = useState<number>(0);
+    const [labelLeftMargin, setLabelLeftMargin] = useState<number>(0);
+    const [rowSpacing, setRowSpacing] = useState<number>(0.37);
+    const [columnSpacing, setColumnSpacing] = useState<number>(0.90);
+    const [paperWidth, setPaperWidth] = useState<number>(21.59); // Letter size in cm
+    const [paperHeight, setPaperHeight] = useState<number>(27.94);
+
     const canvasRefs = useRef<{ [key: string]: HTMLCanvasElement }>({});
     const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -55,10 +78,17 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             if (file.name.endsWith('.csv')) {
                 const text = await file.text();
                 const lines = text.split('\n').filter(line => line.trim());
-                const items: BarcodeItem[] = lines.map((line, idx) => ({
-                    id: `${idx + 1}`,
-                    text: line.split(',')[0].trim() // First column
-                }));
+                const items: BarcodeItem[] = lines.slice(1).map((line, idx) => {
+                    const columns = line.split(',').map(c => c.trim());
+                    return {
+                        id: `${idx + 1}`,
+                        text: columns[0] || '',
+                        printQty: columns[1] ? parseInt(columns[1]) : 1,
+                        title1: columns[2] || '',
+                        title2: columns[3] || '',
+                        footer: columns[4] || '',
+                    };
+                });
                 setBarcodeItems(items.length > 0 ? items : [{ id: '1', text: '' }]);
             } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
                 const ExcelJS = (await import('exceljs')).default;
@@ -70,10 +100,16 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
 
                 worksheet.eachRow((row, rowNumber) => {
                     if (rowNumber > 1) { // Skip header
-                        const firstCell = row.getCell(1);
-                        const value = firstCell.value?.toString().trim();
-                        if (value) {
-                            items.push({ id: `${rowNumber - 1}`, text: value });
+                        const barcodeValue = row.getCell(1).value?.toString().trim();
+                        if (barcodeValue) {
+                            items.push({
+                                id: `${rowNumber - 1}`,
+                                text: barcodeValue,
+                                printQty: parseInt(row.getCell(2).value?.toString() || '1'),
+                                title1: row.getCell(3).value?.toString().trim() || '',
+                                title2: row.getCell(4).value?.toString().trim() || '',
+                                footer: row.getCell(5).value?.toString().trim() || '',
+                            });
                         }
                     }
                 });
@@ -152,21 +188,42 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
         ));
     };
 
+    const updateBarcodeItem = (id: string, field: keyof BarcodeItem, value: any) => {
+        setBarcodeItems(barcodeItems.map(item =>
+            item.id === id ? { ...item, [field]: value } : item
+        ));
+    };
+
     const generateSequence = () => {
         const start = parseInt(sequenceStart);
         const end = parseInt(sequenceEnd);
+        const step = parseInt(sequenceStep) || 1;
+        const repeat = parseInt(sequenceRepeat) || 1;
 
         if (isNaN(start) || isNaN(end) || start > end) {
             alert('Please enter valid start and end numbers (start ≤ end)');
             return;
         }
 
+        if (step <= 0) {
+            alert('Step must be greater than 0');
+            return;
+        }
+
         const items: BarcodeItem[] = [];
-        for (let i = start; i <= end; i++) {
-            items.push({
-                id: `${i}`,
-                text: `${sequencePrefix}${i}${sequenceSuffix}`
-            });
+        for (let i = start; i <= end; i += step) {
+            // Generate 'repeat' copies of each barcode
+            for (let r = 0; r < repeat; r++) {
+                const paddedNumber = String(i).padStart(sequenceStart.length, '0');
+                items.push({
+                    id: `${i}-${r}`,
+                    text: `${sequencePrefix}${paddedNumber}${sequenceSuffix}`,
+                    title1: sequenceTitle1,
+                    title2: sequenceTitle2,
+                    footer: sequenceFooter,
+                    printQty: 1
+                });
+            }
         }
         setBarcodeItems(items);
         setBulkMode(false);
@@ -230,7 +287,37 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
 
             const pdfDoc = await PDFDocument.create();
 
-            for (const item of validItems) {
+            // Convert cm to points (1 cm = 28.35 points)
+            const cmToPoints = (cm: number) => cm * 28.35;
+
+            const pageWidthPt = cmToPoints(paperWidth);
+            const pageHeightPt = cmToPoints(paperHeight);
+            const topMarginPt = cmToPoints(pageTopMargin);
+            const leftMarginPt = cmToPoints(pageLeftMargin);
+            const rowSpacingPt = cmToPoints(rowSpacing);
+            const columnSpacingPt = cmToPoints(columnSpacing);
+
+            // Calculate label dimensions
+            const availableWidth = pageWidthPt - (2 * leftMarginPt) - ((labelColumns - 1) * columnSpacingPt);
+            const availableHeight = pageHeightPt - (2 * topMarginPt) - ((labelRows - 1) * rowSpacingPt);
+            const labelWidth = availableWidth / labelColumns;
+            const labelHeight = availableHeight / labelRows;
+
+            let currentPage = pdfDoc.addPage([pageWidthPt, pageHeightPt]);
+            let currentRow = 0;
+            let currentCol = 0;
+
+            // Expand items based on printQty
+            const expandedItems: BarcodeItem[] = [];
+            validItems.forEach(item => {
+                const qty = item.printQty || 1;
+                for (let i = 0; i < qty; i++) {
+                    expandedItems.push(item);
+                }
+            });
+
+            for (const item of expandedItems) {
+                // Generate barcode image
                 const canvas = document.createElement('canvas');
                 const tempId = `temp-${item.id}`;
                 canvasRefs.current[tempId] = canvas;
@@ -240,16 +327,73 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
 
                 const imgData = canvas.toDataURL('image/png');
                 const pngImage = await pdfDoc.embedPng(imgData);
-                const page = pdfDoc.addPage([canvas.width + 40, canvas.height + 40]);
 
-                page.drawImage(pngImage, {
-                    x: 20,
-                    y: 20,
-                    width: canvas.width,
-                    height: canvas.height,
+                // Calculate position on page
+                const x = leftMarginPt + (currentCol * (labelWidth + columnSpacingPt)) + cmToPoints(labelLeftMargin);
+                const y = pageHeightPt - topMarginPt - (currentRow + 1) * (labelHeight + rowSpacingPt) + cmToPoints(labelTopMargin);
+
+                // Scale barcode to fit label
+                const barcodeMaxWidth = labelWidth - (2 * cmToPoints(labelLeftMargin));
+                const barcodeMaxHeight = labelHeight * 0.6; // Reserve space for titles/footer
+                const scale = Math.min(barcodeMaxWidth / canvas.width, barcodeMaxHeight / canvas.height);
+                const barcodeWidth = canvas.width * scale;
+                const barcodeHeight = canvas.height * scale;
+
+                // Center barcode in label
+                const barcodeX = x + (labelWidth - barcodeWidth) / 2;
+                let currentY = y + labelHeight - barcodeHeight - 20;
+
+                // Draw titles above barcode
+                if (item.title1) {
+                    currentPage.drawText(item.title1, {
+                        x: x + labelWidth / 2 - (item.title1.length * 3),
+                        y: currentY + barcodeHeight + 25,
+                        size: 10,
+                        color: rgb(0, 0, 0),
+                    });
+                }
+                if (item.title2) {
+                    currentPage.drawText(item.title2, {
+                        x: x + labelWidth / 2 - (item.title2.length * 3),
+                        y: currentY + barcodeHeight + 12,
+                        size: 8,
+                        color: rgb(0, 0, 0),
+                    });
+                }
+
+                // Draw barcode
+                currentPage.drawImage(pngImage, {
+                    x: barcodeX,
+                    y: currentY,
+                    width: barcodeWidth,
+                    height: barcodeHeight,
                 });
 
+                // Draw footer below barcode
+                if (item.footer) {
+                    currentPage.drawText(item.footer, {
+                        x: x + labelWidth / 2 - (item.footer.length * 3),
+                        y: currentY - 15,
+                        size: 8,
+                        color: rgb(0, 0, 0),
+                    });
+                }
+
                 delete canvasRefs.current[tempId];
+
+                // Move to next position
+                currentCol++;
+                if (currentCol >= labelColumns) {
+                    currentCol = 0;
+                    currentRow++;
+                }
+
+                // Create new page if needed
+                if (currentRow >= labelRows) {
+                    currentPage = pdfDoc.addPage([pageWidthPt, pageHeightPt]);
+                    currentRow = 0;
+                    currentCol = 0;
+                }
             }
 
             const pdfBytes = await pdfDoc.save();
@@ -257,7 +401,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `barcodes-${validItems.length}.pdf`;
+            a.download = `barcodes-labels-${expandedItems.length}.pdf`;
             a.click();
             URL.revokeObjectURL(url);
             triggerHaptic('success');
@@ -340,42 +484,94 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-sm font-medium mb-1">Prefix (Optional)</label>
+                            <label className="block text-sm font-medium mb-1">Seq From *</label>
+                            <input
+                                type="text"
+                                value={sequenceStart}
+                                onChange={(e) => setSequenceStart(e.target.value)}
+                                placeholder="01"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Seq To *</label>
+                            <input
+                                type="text"
+                                value={sequenceEnd}
+                                onChange={(e) => setSequenceEnd(e.target.value)}
+                                placeholder="16"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Prefix Code (Optional)</label>
                             <input
                                 type="text"
                                 value={sequencePrefix}
                                 onChange={(e) => setSequencePrefix(e.target.value)}
-                                placeholder="e.g., BC"
+                                placeholder="e.g., 3212345"
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Suffix (Optional)</label>
+                            <label className="block text-sm font-medium mb-1">Suffix Code (Optional)</label>
                             <input
                                 type="text"
                                 value={sequenceSuffix}
                                 onChange={(e) => setSequenceSuffix(e.target.value)}
-                                placeholder="e.g., -A"
+                                placeholder="e.g., B"
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Start Number *</label>
+                            <label className="block text-sm font-medium mb-1">Barcode Title 1 (Optional)</label>
+                            <input
+                                type="text"
+                                value={sequenceTitle1}
+                                onChange={(e) => setSequenceTitle1(e.target.value)}
+                                placeholder="Title A01"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Barcode Title 2 (Optional)</label>
+                            <input
+                                type="text"
+                                value={sequenceTitle2}
+                                onChange={(e) => setSequenceTitle2(e.target.value)}
+                                placeholder="Title B01"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Step</label>
                             <input
                                 type="number"
-                                value={sequenceStart}
-                                onChange={(e) => setSequenceStart(e.target.value)}
+                                value={sequenceStep}
+                                onChange={(e) => setSequenceStep(e.target.value)}
                                 placeholder="1"
+                                min="1"
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">End Number *</label>
+                            <label className="block text-sm font-medium mb-1">Repeat</label>
                             <input
                                 type="number"
-                                value={sequenceEnd}
-                                onChange={(e) => setSequenceEnd(e.target.value)}
-                                placeholder="100"
+                                value={sequenceRepeat}
+                                onChange={(e) => setSequenceRepeat(e.target.value)}
+                                placeholder="1"
+                                min="1"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label className="block text-sm font-medium mb-1">Barcode Footer (Optional)</label>
+                            <input
+                                type="text"
+                                value={sequenceFooter}
+                                onChange={(e) => setSequenceFooter(e.target.value)}
+                                placeholder="Footer text"
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
@@ -388,7 +584,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         Generate Sequence
                     </button>
                     <p className="text-sm text-gray-600 mt-2">
-                        Example: Prefix "BC" + Numbers 1-100 + Suffix "A" = BC1A, BC2A, ... BC100A
+                        Example: Prefix "3212345" + Numbers 01-16 (Step 1, Repeat 1) + Suffix "B" = 321234501B, 321234502B, ... 321234516B
                     </p>
                 </div>
             )}
@@ -492,31 +688,190 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                 </div>
             </div>
 
+            {/* Label Configuration Panel */}
+            <div className="bg-white border rounded-lg p-6 mb-6">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                        <Settings className="w-5 h-5" />
+                        Print Label Settings
+                    </h3>
+                    <button
+                        onClick={() => setShowLabelConfig(!showLabelConfig)}
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition text-sm font-medium"
+                    >
+                        {showLabelConfig ? 'Hide' : 'Show'} Settings
+                    </button>
+                </div>
+
+                {showLabelConfig && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Columns</label>
+                            <input
+                                type="number"
+                                value={labelColumns}
+                                onChange={(e) => setLabelColumns(parseInt(e.target.value))}
+                                min="1"
+                                max="10"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Rows</label>
+                            <input
+                                type="number"
+                                value={labelRows}
+                                onChange={(e) => setLabelRows(parseInt(e.target.value))}
+                                min="1"
+                                max="20"
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Paper Width (cm)</label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                value={paperWidth}
+                                onChange={(e) => setPaperWidth(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Paper Height (cm)</label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                value={paperHeight}
+                                onChange={(e) => setPaperHeight(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Page Top Margin (cm)</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                value={pageTopMargin}
+                                onChange={(e) => setPageTopMargin(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Page Left Margin (cm)</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                value={pageLeftMargin}
+                                onChange={(e) => setPageLeftMargin(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Row Spacing (cm)</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                value={rowSpacing}
+                                onChange={(e) => setRowSpacing(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Column Spacing (cm)</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                value={columnSpacing}
+                                onChange={(e) => setColumnSpacing(parseFloat(e.target.value))}
+                                className="w-full border rounded px-3 py-2"
+                            />
+                        </div>
+                        <div className="sm:col-span-2 lg:col-span-4 mt-2 p-3 bg-blue-50 rounded border border-blue-100">
+                            <p className="text-xs text-gray-600">
+                                <strong>Current Layout:</strong> {labelColumns} columns × {labelRows} rows = {labelColumns * labelRows} labels per page
+                            </p>
+                        </div>
+                    </div>
+                )}
+            </div>
+
             {/* Barcode Items */}
             <div className="space-y-4 mb-6">
                 {barcodeItems.map((item, index) => (
                     <div key={item.id} className="bg-white border rounded-lg p-4">
                         <div className="flex items-start gap-4">
                             <div className="flex-1">
-                                <div className="flex gap-2 mb-3">
-                                    <input
-                                        type="text"
-                                        value={item.text}
-                                        onChange={(e) => updateBarcodeText(item.id, e.target.value)}
-                                        placeholder="Enter barcode data (e.g., BC123456789)"
-                                        className="flex-1 border rounded px-3 py-2"
-                                    />
-                                    {!bulkMode && barcodeItems.length > 1 && (
-                                        <button
-                                            onClick={() => removeBarcodeItem(item.id)}
-                                            className="px-3 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
-                                        >
-                                            <Trash2 className="w-5 h-5" />
-                                        </button>
-                                    )}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                    <div className="sm:col-span-2">
+                                        <label className="block text-xs font-medium mb-1 text-gray-600">Barcode Value *</label>
+                                        <div className="flex gap-2">
+                                            <input
+                                                type="text"
+                                                value={item.text}
+                                                onChange={(e) => updateBarcodeText(item.id, e.target.value)}
+                                                placeholder="Enter barcode data (e.g., BC123456789)"
+                                                className="flex-1 border rounded px-3 py-2"
+                                            />
+                                            {!bulkMode && barcodeItems.length > 1 && (
+                                                <button
+                                                    onClick={() => removeBarcodeItem(item.id)}
+                                                    className="px-3 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
+                                                >
+                                                    <Trash2 className="w-5 h-5" />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium mb-1 text-gray-600">Title 1 (Optional)</label>
+                                        <input
+                                            type="text"
+                                            value={item.title1 || ''}
+                                            onChange={(e) => updateBarcodeItem(item.id, 'title1', e.target.value)}
+                                            placeholder="e.g., Title A01"
+                                            className="w-full border rounded px-3 py-2"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium mb-1 text-gray-600">Title 2 (Optional)</label>
+                                        <input
+                                            type="text"
+                                            value={item.title2 || ''}
+                                            onChange={(e) => updateBarcodeItem(item.id, 'title2', e.target.value)}
+                                            placeholder="e.g., Title B01"
+                                            className="w-full border rounded px-3 py-2"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium mb-1 text-gray-600">Footer (Optional)</label>
+                                        <input
+                                            type="text"
+                                            value={item.footer || ''}
+                                            onChange={(e) => updateBarcodeItem(item.id, 'footer', e.target.value)}
+                                            placeholder="Footer text"
+                                            className="w-full border rounded px-3 py-2"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium mb-1 text-gray-600">Print Qty</label>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            value={item.printQty || 1}
+                                            onChange={(e) => updateBarcodeItem(item.id, 'printQty', parseInt(e.target.value))}
+                                            className="w-full border rounded px-3 py-2"
+                                        />
+                                    </div>
                                 </div>
                                 {item.text && (
                                     <div className="flex flex-col items-center p-4 bg-gray-50 rounded">
+                                        {item.title1 && (
+                                            <div className="text-sm font-semibold text-gray-900 mb-1">{item.title1}</div>
+                                        )}
+                                        {item.title2 && (
+                                            <div className="text-xs font-medium text-gray-700 mb-2">{item.title2}</div>
+                                        )}
                                         <canvas
                                             ref={(el) => {
                                                 if (el) {
@@ -525,6 +880,14 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                                 }
                                             }}
                                         />
+                                        {item.footer && (
+                                            <div className="text-xs text-gray-600 mt-2">{item.footer}</div>
+                                        )}
+                                        {item.printQty && item.printQty > 1 && (
+                                            <div className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded mt-2 font-medium">
+                                                Print Qty: {item.printQty}
+                                            </div>
+                                        )}
                                         <div className="flex gap-2 mt-4">
                                             <button
                                                 onClick={() => handleExportSingle(item)}
