@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Trash2, FileText, RotateCw } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';

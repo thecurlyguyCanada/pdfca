@@ -4,9 +4,10 @@ import { Language } from '../../utils/i18n';
 import { SEO } from '../SEO';
 import { PageLayout } from '../PageLayout';
 
+import Link from 'next/link';
+
 interface AboutPageProps {
     lang: Language;
-    onNavigate: (view: any, path?: string) => void;
 }
 
 const getContent = () => ({
@@ -174,9 +175,11 @@ const getIcon = (iconName: string) => {
     }
 };
 
-export const AboutPage: React.FC<AboutPageProps> = ({ lang, onNavigate }) => {
+export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
     const content = getContent();
     const t = content[lang] || content.en;
+    const baseUrl = 'https://www.pdfcanada.ca';
+    const path = `/${lang}/about`;
 
     const schema = {
         "@context": "https://schema.org",
@@ -219,8 +222,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang, onNavigate }) => {
                 subtitle={t.subtitle}
                 icon={<Leaf size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', onClick: () => onNavigate('HOME') },
-                    { name: lang === 'fr' ? 'À Propos' : 'About', onClick: () => { } }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'À Propos' : 'About', href: lang === 'fr' ? '/fr/about' : '/about' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -353,37 +356,37 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang, onNavigate }) => {
                                 { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: '/pdf-to-word' },
                                 { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: '/word-to-pdf' },
                             ].map((tool, i) => (
-                                <button
+                                <Link
                                     key={i}
-                                    onClick={() => onNavigate('TOOL_PAGE', tool.path)}
+                                    href={`/${lang}${tool.path}`}
                                     className="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-canada-red hover:bg-red-50 dark:hover:bg-red-900/10 transition-all text-center group"
                                 >
                                     <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-canada-red text-sm">
                                         {tool.name}
                                     </span>
-                                </button>
+                                </Link>
                             ))}
                         </div>
                         <div className="text-center mt-8">
-                            <button
-                                onClick={() => onNavigate('GUIDE_ULTIMATE', '/guides/ultimate-pdf-guide')}
+                            <Link
+                                href={`/${lang}/guides/ultimate-pdf-guide`}
                                 className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-bold transition-colors"
                             >
                                 {lang === 'fr' ? 'Voir le Guide Ultime PDF →' : 'View Ultimate PDF Guide →'}
-                            </button>
+                            </Link>
                         </div>
                     </section>
 
                     {/* CTA */}
                     <section className="text-center">
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t.ctaTitle}</h2>
-                        <button
-                            onClick={() => onNavigate('HOME')}
+                        <Link
+                            href={`/${lang}`}
                             className="inline-flex items-center gap-3 bg-canada-red hover:bg-canada-darkRed text-white px-10 py-4 rounded-full font-bold text-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
                         >
                             {t.ctaButton}
                             <ArrowRight size={24} />
-                        </button>
+                        </Link>
                     </section>
                 </div>
             </PageLayout>

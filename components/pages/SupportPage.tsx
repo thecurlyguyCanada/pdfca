@@ -31,11 +31,18 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                 schema={supportSchema}
                 faqs={t.supportPage.faq.map(item => ({ q: item.question, a: item.answer }))}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Support', path: '/support' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Support' : 'Support', path: `/${lang}/support` }
                 ]}
             />
-            <PageLayout title={translations[lang].navSupport} icon={<Coffee size={32} />}>
+            <PageLayout
+                title={translations[lang].navSupport}
+                icon={<Coffee size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Support' : 'Support', href: '#' }
+                ]}
+            >
                 <div className="text-center text-gray-600 dark:text-gray-400 space-y-8">
                     <p className="text-lg leading-relaxed max-w-2xl mx-auto">
                         {t.supportPage.content}
