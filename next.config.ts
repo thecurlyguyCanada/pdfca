@@ -113,10 +113,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
   },
 
-  // ESLint
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
+
 };
 
 export default nextConfig;
