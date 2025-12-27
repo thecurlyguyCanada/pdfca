@@ -133,6 +133,9 @@ export function SEO({
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
 
+  const safeTitle = typeof title === 'string' ? title : '';
+  const schemaName = safeTitle.includes('|') ? safeTitle.split('|')[0].trim() : safeTitle;
+
   // 1. Add Core Schemas
   if (!noOrganization) {
     allSchemas.push(organizationSchema);
@@ -156,7 +159,7 @@ export function SEO({
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": title.split('|')[0].trim(),
+      "name": schemaName,
       "operatingSystem": "Web Browser",
       "applicationCategory": "BusinessApplication",
       "offers": {
@@ -204,7 +207,7 @@ export function SEO({
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": title.split('|')[0].trim(),
+      "name": schemaName,
       "description": description,
       "step": howToSteps.map((step, index) => ({
         "@type": "HowToStep",

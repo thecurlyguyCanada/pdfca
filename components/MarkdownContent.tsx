@@ -161,6 +161,10 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
         }
     };
 
+    if (typeof content !== 'string') {
+        return <div className={className}>{content}</div>;
+    }
+
     return (
         <div className={`markdown-content ${className}`}>
             {parseMarkdown(content)}
