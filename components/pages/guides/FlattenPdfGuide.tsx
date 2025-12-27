@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { Lock, Shield, Zap, HelpCircle, FileText, CheckCircle } from 'lucide-react';

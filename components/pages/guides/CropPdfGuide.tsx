@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { Scissors, Shield, Zap, HelpCircle } from 'lucide-react';

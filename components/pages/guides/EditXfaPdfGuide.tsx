@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { FileText, Shield, Zap, HelpCircle, Printer, Edit3, Trash2, ArrowRight } from 'lucide-react';

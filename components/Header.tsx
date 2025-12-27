@@ -70,19 +70,19 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-1 items-center bg-gray-100 p-1 rounded-full border border-gray-200/50">
-          <Link href={`/${lang}`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}`} className="px-6 py-3 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group min-h-[44px] flex items-center">
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/about`} className="px-6 py-3 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group min-h-[44px] flex items-center">
             {lang === 'en' ? 'About' : 'À Propos'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/howto`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/howto`} className="px-6 py-3 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group min-h-[44px] flex items-center">
             {t.navHowTo}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/support`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+          <Link href={`/${lang}/support`} className="px-6 py-3 rounded-full text-[11px] font-black text-gray-600 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group min-h-[44px] flex items-center">
             {t.navSupport}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>

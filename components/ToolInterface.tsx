@@ -5,8 +5,14 @@ import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
 
 // Lazy load large/interactive components
-const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
-const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), { ssr: false });
+const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-4"><RefreshCcw className="animate-spin text-canada-red" size={20} /></div>
+});
+const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-4"><RefreshCcw className="animate-spin text-canada-red" size={20} /></div>
+});
 const SignPdfTool = dynamic(() => import('./SignPdfTool').then(mod => mod.SignPdfTool), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>

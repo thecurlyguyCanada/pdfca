@@ -415,6 +415,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         className="hidden"
         onChange={handleFileChange}
         accept="*/*"
+        aria-label={t.selectFile || 'Select file to process'}
       />
     </>
   );
