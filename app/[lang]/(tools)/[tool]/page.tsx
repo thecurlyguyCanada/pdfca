@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { RelatedTools } from '@/components/RelatedTools';
 import { SEO } from '@/components/SEO';
+import { BarcodeGeneratorFAQ } from '@/components/BarcodeGeneratorFAQ';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
@@ -123,6 +124,9 @@ export default async function ToolPage({
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <ToolPageClient toolConfig={config} lang={currentLang} />
+
+                        {/* Barcode Generator FAQ and SEO Content */}
+                        {config.slug === 'barcode-generator' && <BarcodeGeneratorFAQ />}
 
                         <div className="mt-20">
                             <RelatedTools lang={currentLang} currentPath={`/${config.slug}`} />

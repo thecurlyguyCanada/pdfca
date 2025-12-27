@@ -41,6 +41,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
     const [sequenceSuffix, setSequenceSuffix] = useState<string>('');
     const canvasRefs = useRef<{ [key: string]: HTMLCanvasElement }>({});
     const [copiedId, setCopiedId] = useState<string | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Parse Excel/CSV file if provided
     useEffect(() => {
@@ -306,7 +307,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             </div>
 
             {/* Bulk Mode Toggle */}
-            <div className="mb-6 flex gap-4">
+            <div className="mb-6 flex flex-wrap gap-4">
                 <button
                     onClick={() => setBulkMode(false)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
@@ -329,6 +330,26 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     <Grid3x3 className="w-5 h-5" />
                     Bulk Generation
                 </button>
+                <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-green-600 text-white hover:bg-green-700 transition"
+                >
+                    <FileSpreadsheet className="w-5 h-5" />
+                    Upload Excel/CSV
+                </button>
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".xlsx,.xls,.csv"
+                    className="hidden"
+                    onChange={(e) => {
+                        const uploadedFile = e.target.files?.[0];
+                        if (uploadedFile) {
+                            parseUploadedFile(uploadedFile);
+                            setBulkMode(true);
+                        }
+                    }}
+                />
             </div>
 
             {/* Bulk Sequence Generator */}

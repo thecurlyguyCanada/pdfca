@@ -233,7 +233,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
-    if (!file && (!files || files.length === 0)) {
+    // Barcode tool doesn't require an initial file upload
+    if (!file && (!files || files.length === 0) && !isBarcodeTool) {
         const tool = tools.find(t => t.id === currentTool);
         return (
             <div
