@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
+import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image as ImageIcon, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
 
 // Lazy load large/interactive components
 const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
@@ -619,7 +619,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
-                            {currentTool === ToolType.HEIC_TO_PDF && <Image size={32} />}
+                            {currentTool === ToolType.HEIC_TO_PDF && <ImageIcon size={32} />}
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}

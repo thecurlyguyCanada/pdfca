@@ -45,7 +45,7 @@ export class ErrorBoundary extends Component<Props, State> {
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Something went wrong</h2>
                     <p className="text-gray-600 max-w-md mb-8">
-                        We've encountered an unexpected error. Don't worry, your files are safe as everything runs locally on your device.
+                        We&apos;ve encountered an unexpected error. Don&apos;t worry, your files are safe as everything runs locally on your device.
                     </p>
                     <button
                         onClick={this.handleReset}

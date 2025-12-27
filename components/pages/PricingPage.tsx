@@ -110,7 +110,7 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
                             ))}
                         </ul>
                         <button className="w-full mt-8 bg-canada-red text-white py-3 rounded-xl font-bold hover:bg-canada-darkRed transition-all focus:outline-none focus:ring-2 focus:ring-canada-red focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-                            Contact Sales (Jk it's free)
+                            Contact Sales (Jk it&apos;s free)
                         </button>
                     </div>
                 </div>

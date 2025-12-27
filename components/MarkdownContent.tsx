@@ -20,6 +20,9 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
 
     const parseMarkdown = (text: string) => {
         // Process line by line
+        // Defensive check: ensure text is a string
+        if (typeof text !== 'string') return [];
+
         const lines = text.split('\n');
         const result: React.ReactNode[] = [];
 

@@ -25,14 +25,13 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Whether you need to remove white space from a scan or adjust margins for printing, knowing <strong>how to crop PDF pages</strong> is a handy skill. Most professional editors charge a subscription for this, but at pdfcanada.ca, it's free, fast, and stays on your device.
+                Whether you need to remove white space from a scan or adjust margins for printing, knowing <strong>how to crop PDF pages</strong> is a handy skill. Most professional editors charge a subscription for this, but at pdfcanada.ca, it&apos;s free, fast, and stays on your device.
             </>
         ),
 
         sections: [
             {
                 id: "step-by-step",
-                "dateModified": "2025-12-24",
                 title: "Step-by-Step: Cropping Your PDF",
                 content: (
                     <>
@@ -41,13 +40,13 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Select Your File</strong>: upload your PDF to our <Link href="/${lang}/crop-pdf" className="text-canada-red hover:underline font-medium">Crop PDF tool</Link>.
+                                <strong>Select Your File</strong>: Upload your PDF to our <Link href={`/${lang}/crop-pdf`} className="text-canada-red hover:underline font-medium">Crop PDF tool</Link>.
                             </li>
                             <li className="pl-2">
-                                <strong>Set Your Margins</strong>: define the area you want to keep. Currently, our tool applies a professional 1-inch safe-crop automatically, with manual selectors coming soon!
+                                <strong>Set Your Margins</strong>: Define the area you want to keep. Currently, our tool applies a professional 1-inch safe-crop automatically, with manual selectors coming soon!
                             </li>
                             <li className="pl-2">
-                                <strong>Download</strong>: click the button to save your new, perfectly-sized PDF.
+                                <strong>Download</strong>: Click the button to save your new, perfectly-sized PDF.
                             </li>
                         </ol>
                     </>
@@ -84,7 +83,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Vous avez déjà eu un PDF avec d'énormes marges blanches qui gaspillent de l'espace à l'impression ? Ou peut-être avez-vous besoin de <strong>rogner un PDF</strong> pour vous concentrer sur une section spécifique d'un diagramme ou d'une carte.
+                Vous avez déjà eu un PDF avec d&apos;énormes marges blanches qui gaspillent de l&apos;espace à l&apos;impression ? Ou peut-être avez-vous besoin de <strong>rogner un PDF</strong> pour vous concentrer sur une section spécifique d&apos;un diagramme ou d&apos;une carte.
                 <br /><br />
                 Notre <strong>outil de rognage PDF</strong> vous permet de définir des marges personnalisées ou de recadrer visuellement des zones spécifiques, le tout traité localement dans votre navigateur pour une confidentialité maximale.
             </>
@@ -104,7 +103,7 @@ const getGuideContent = (lang: Language) => ({
                                 <strong>Définissez les Marges</strong> : Ajustez les valeurs de rognage pour le haut, le bas, la gauche et la droite, ou utilisez notre outil de sélection visuelle.
                             </li>
                             <li className="pl-2">
-                                <strong>Appliquez et Téléchargez</strong> : Cliquez sur "Rogner le PDF" et enregistrez votre document optimisé.
+                                <strong>Appliquez et Téléchargez</strong> : Cliquez sur &quot;Rogner le PDF&quot; et enregistrez votre document optimisé.
                             </li>
                         </ol>
                     </>
@@ -116,9 +115,9 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <ul className="list-disc pl-5 space-y-2 mt-4">
-                            <li><strong>Supprimer les Marges Blanches</strong> : Parfait pour les documents scannés avec trop d'espace blanc.</li>
-                            <li><strong>Extraire des Diagrammes</strong> : Isolez des graphiques ou des tableaux spécifiques d'un rapport plus large.</li>
-                            <li><strong>Optimiser pour l'Impression</strong> : Réduisez la taille de la page pour économiser du papier et de l'encre.</li>
+                            <li><strong>Supprimer les Marges Blanches</strong> : Parfait pour les documents scannés avec trop d&apos;espace blanc.</li>
+                            <li><strong>Extraire des Diagrammes</strong> : Isolez des graphiques ou des tableaux spécifiques d&apos;un rapport plus large.</li>
+                            <li><strong>Optimiser pour l&apos;Impression</strong> : Réduisez la taille de la page pour économiser du papier et de l&apos;encre.</li>
                         </ul>
                     </>
                 )
@@ -159,7 +158,7 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 quickAnswer={{
                     question: lang === 'fr' ? "Comment rogner un PDF gratuitement?" : "How do I crop a PDF for free?",
                     answer: lang === 'fr'
-                        ? "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
+                        ? "Utilisez l&apos;outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
                         : "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser.",
                     tool: "PDF Crop Tool",
                     steps: lang === 'fr'
@@ -192,7 +191,7 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <section className="bg-canada-red rounded-3xl p-12 text-center text-white shadow-xl">
                         <h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2>
-                        <Link href="/${lang}/crop-pdf"
+                        <Link href={`/${lang}/crop-pdf`}
                             className="bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-lg"
                         >
                             {t.ctaButton}

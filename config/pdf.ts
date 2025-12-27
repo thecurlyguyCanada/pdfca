@@ -6,7 +6,7 @@
 export const PDF_CONFIG = {
   // PDF.js Worker and Resources
   WORKER: {
-    PATH: '/pdf.worker.min.mjs',
+    PATH: '/pdf.worker.min.js',
   },
 
   RESOURCES: {

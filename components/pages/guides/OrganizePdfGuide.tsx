@@ -24,7 +24,7 @@ const getGuideContent = (lang: Language) => ({
         h1: `How to Organize and Reorder PDF Pages: The ${CURRENT_YEAR} Guide`,
         subtitle: "The easiest, most secure way to shuffle and move pages in your PDF document with drag-and-drop simplicity.",
 
-        intro: "Got a document that's all out of order? Maybe you scanned pages in the wrong sequence, or you need to move an appendix to the front of a report. Knowing how to **organize PDF pages online** is a critical skill for creating professional documents. Our **free PDF page organizer** allows you to visually **reorder PDF pages** using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it, processed locally on your device for maximum privacy.",
+        intro: "Got a document that&apos;s all out of order? Maybe you scanned pages in the wrong sequence, or you need to move an appendix to the front of a report. Knowing how to **organize PDF pages online** is a critical skill for creating professional documents. Our **free PDF page organizer** allows you to visually **reorder PDF pages** using a simple drag-and-drop interface. No complicated menus, just your document, exactly how you want it, processed locally on your device for maximum privacy.",
 
         sections: [
             {
@@ -33,11 +33,11 @@ const getGuideContent = (lang: Language) => ({
                 content: `Using our **reorder PDF pages free** tool is intuitive, designed to feel just like moving physical papers on a desk:
 
 1. **Upload Your PDF File**: Select your PDF document by clicking to browse or dragging it onto the browser window. Our local engine opens it instantly—no waiting for cloud uploads, no progress bars.
-2. **Preview Page Thumbnails**: You'll see a visual grid of all page thumbnails, displaying the entire document at a glance. This overview makes it easy to identify which pages need rearranging.
+2. **Preview Page Thumbnails**: You&apos;ll see a visual grid of all page thumbnails, displaying the entire document at a glance. This overview makes it easy to identify which pages need rearranging.
 3. **Drag and Drop to Reorder**: Click and hold any page thumbnail, then drag it to its new position in the sequence. Other pages automatically shift to make room. You can move pages one at a time or rearrange multiple sections.
-4. **Visual Feedback**: As you drag, you'll see real-time indicators showing where the page will be placed when you release. This prevents accidental misplacements.
+4. **Visual Feedback**: As you drag, you&apos;ll see real-time indicators showing where the page will be placed when you release. This prevents accidental misplacements.
 5. **Review the New Order**: Double-check that the sequence is correct. Page numbers update dynamically as you reorder, making it easy to verify the final arrangement.
-6. **Save Organized PDF**: Once the order is perfect, click **'Save Organized PDF'** or **'Process PDF'**. A new copy with your custom page sequence is generated immediately and ready to download.`
+6. **Save Organized PDF**: Once the order is perfect, click **&apos;Save Organized PDF&apos;** or **&apos;Process PDF&apos;**. A new copy with your custom page sequence is generated immediately and ready to download.`
             },
             {
                 id: "use-cases",
@@ -46,8 +46,8 @@ const getGuideContent = (lang: Language) => ({
                     <div className="space-y-4">
                         <p><strong>Fixing Scanner Mistakes</strong>: You scanned a stack of papers but some pages went through in the wrong order. Reorder them to match the original sequence without rescanning everything.</p>
                         <p><strong>Repositioning Cover Pages</strong>: Your scan started with page 1 instead of the cover page. Move the cover page to the front where it belongs.</p>
-                        <p><strong>Organizing Merged Documents</strong>: You merged multiple PDFs using our <Link href="/${lang}/merge-pdf" className="text-canada-red hover:underline">Merge PDF tool</Link>, but the sections are out of order. Rearrange them into a logical flow.</p>
-                        <p><strong>Academic Paper Structure</strong>: Your thesis requires a specific order: abstract, acknowledgments, table of contents, chapters, appendices, references. Reorder scanned sections to match your university's formatting requirements.</p>
+                        <p><strong>Organizing Merged Documents</strong>: You merged multiple PDFs using our <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline">Merge PDF tool</Link>, but the sections are out of order. Rearrange them into a logical flow.</p>
+                        <p><strong>Academic Paper Structure</strong>: Your thesis requires a specific order: abstract, acknowledgments, table of contents, chapters, appendices, references. Reorder scanned sections to match your university&apos;s formatting requirements.</p>
                         <p><strong>Legal Document Exhibits</strong>: Court submissions often require exhibits in a specific numbered order (Exhibit A, B, C). Reorder pages to match the required sequence for filing.</p>
                         <p><strong>Business Proposal Customization</strong>: You want the executive summary and pricing at the front for some clients, but at the back for others. Reorder pages to create custom versions without recreating the entire proposal.</p>
                         <p><strong>Tax Return Organization for CRA</strong>: Assemble receipts, T4 slips, and forms in the order required by the CRA for easier processing and faster assessment.</p>
@@ -61,11 +61,11 @@ const getGuideContent = (lang: Language) => ({
 
 **Why This Matters:**
 - **No Uploads**: Your sensitive documents never touch our servers. Everything stays on your device.
-- **Secure Processing**: All page reordering happens in your device's RAM. No temporary files created on remote servers.
+- **Secure Processing**: All page reordering happens in your device&apos;s RAM. No temporary files created on remote servers.
 - **Instant Speed**: No network latency, no queue times, no bandwidth limitations. Processing is immediate.
 - **Offline Capable**: Once the page loads, you can even disconnect from the internet and continue working.
 - **Ideal for Confidential Documents**: Perfect for legal contracts, medical records, financial statements, tax returns, HR documents, and any sensitive materials.
-- **No Data Retention**: Since we never receive your files, there's nothing to store, log, or potentially leak.`
+- **No Data Retention**: Since we never receive your files, there&apos;s nothing to store, log, or potentially leak.`
             },
             {
                 id: "mobile",
@@ -88,9 +88,9 @@ const getGuideContent = (lang: Language) => ({
                         <li><strong>Plan the Structure First</strong>: Before reordering, write down or mentally map out the desired sequence. This prevents confusion with large documents containing many pages.</li>
                         <li><strong>Work in Sections</strong>: For long documents, organize related pages into logical sections first (intro, body, conclusion, appendices), then arrange within each section.</li>
                         <li><strong>Keep Original Backups</strong>: Save a copy of the original page order before reorganizing, especially for important documents. This lets you reference or restore the original if needed.</li>
-                        <li><strong>Use Page Content Previews</strong>: Click on thumbnails to enlarge them if you're unsure what content is on each page. This prevents accidentally moving the wrong pages.</li>
-                        <li><strong>Check Page Numbering</strong>: Remember that reordering changes physical sequence but doesn't update printed page numbers in headers/footers. Page "5" will still say "5" even if you move it to position 10.</li>
-                        <li><strong>Combine with Other Tools</strong>: Use our <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline">Delete Pages tool</Link> to remove unwanted pages before organizing, creating a cleaner final document.</li>
+                        <li><strong>Use Page Content Previews</strong>: Click on thumbnails to enlarge them if you&apos;re unsure what content is on each page. This prevents accidentally moving the wrong pages.</li>
+                        <li><strong>Check Page Numbering</strong>: Remember that reordering changes physical sequence but doesn&apos;t update printed page numbers in headers/footers. Page &quot;5&quot; will still say &quot;5&quot; even if you move it to position 10.</li>
+                        <li><strong>Combine with Other Tools</strong>: Use our <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline">Delete Pages tool</Link> to remove unwanted pages before organizing, creating a cleaner final document.</li>
                     </ul>
                 )
             },
@@ -100,20 +100,20 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Pages won't drag or move</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Ensure you're clicking and holding on the page thumbnail itself, not the surrounding white space. On mobile, try a long-press gesture. If the issue persists, refresh the page and reload your PDF.</p>
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Pages won&apos;t drag or move</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Ensure you&apos;re clicking and holding on the page thumbnail itself, not the surrounding white space. On mobile, try a long-press gesture. If the issue persists, refresh the page and reload your PDF.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Pages moved to the wrong position</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Simply drag the page again to the correct position. You can reorder as many times as needed before clicking "Save". The interface allows unlimited adjustments before finalizing.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Simply drag the page again to the correct position. You can reorder as many times as needed before clicking &quot;Save&quot;. The interface allows unlimited adjustments before finalizing.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Can't see page content clearly in thumbnails</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Use your browser's zoom feature (Ctrl/Cmd +) to enlarge thumbnails, or on mobile, use pinch-to-zoom. Some tools also offer a preview mode—click a thumbnail to see a larger version.</p>
+                            <h4 className="font-bold text-yellow-900 mb-2">Problem: Can&apos;t see page content clearly in thumbnails</h4>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Use your browser&apos;s zoom feature (Ctrl/Cmd +) to enlarge thumbnails, or on mobile, use pinch-to-zoom. Some tools also offer a preview mode—click a thumbnail to see a larger version.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Organized PDF downloads with pages still in wrong order</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Make sure you clicked "Save" or "Process" after reordering. The changes only apply when you generate the new PDF. Also verify you're opening the newly downloaded file, not the original.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Make sure you clicked &quot;Save&quot; or &quot;Process&quot; after reordering. The changes only apply when you generate the new PDF. Also verify you&apos;re opening the newly downloaded file, not the original.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Very large PDFs are slow to reorder</h4>
@@ -135,15 +135,15 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Does this work with large documents?",
-                a: "Yes! Since processing happens locally in your browser, the limit is simply your device's available memory. You can organize PDFs with dozens or even hundreds of pages without the timeouts and file size restrictions common in cloud-based tools. Most modern computers handle large documents easily."
+                a: "Yes! Since processing happens locally in your browser, the limit is simply your device&apos;s available memory. You can organize PDFs with dozens or even hundreds of pages without the timeouts and file size restrictions common in cloud-based tools. Most modern computers handle large documents easily."
             },
             {
                 q: "Will reordering affect the quality of my pages?",
-                a: "No. Reordering only changes the sequence of pages—it doesn't compress, re-render, or modify the actual page content. Every page maintains 100% of its original quality, formatting, images, and text."
+                a: "No. Reordering only changes the sequence of pages—it doesn&apos;t compress, re-render, or modify the actual page content. Every page maintains 100% of its original quality, formatting, images, and text."
             },
             {
                 q: "Can I reorder password-protected PDFs?",
-                a: "You'll need to unlock the PDF first before reordering. If you know the password, use a PDF viewer to open and save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely reorganize pages. You can re-apply password protection after organizing if needed."
+                a: "You&apos;ll need to unlock the PDF first before reordering. If you know the password, use a PDF viewer to open and save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely reorganize pages. You can re-apply password protection after organizing if needed."
             },
             {
                 q: "Does the tool work on mobile devices?",
@@ -151,11 +151,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "What happens to page numbers after I reorder?",
-                a: "Physical page positions change (page 5 might move to position 2), but printed page numbers in headers/footers remain unchanged. If a page has \"5\" printed on it, it will still display \"5\" even if you move it to a different position in the document sequence."
+                a: "Physical page positions change (page 5 might move to position 2), but printed page numbers in headers/footers remain unchanged. If a page has &quot;5&quot; printed on it, it will still display &quot;5&quot; even if you move it to a different position in the document sequence."
             },
             {
                 q: "Can I undo changes if I make a mistake?",
-                a: "Before clicking 'Save' or 'Process', you can drag pages as many times as needed to correct mistakes. Once you download the reorganized PDF, that order is permanent in the new file. However, your original file remains unchanged, so you can always start over from the original if needed."
+                a: "Before clicking &apos;Save&apos; or &apos;Process&apos;, you can drag pages as many times as needed to correct mistakes. Once you download the reorganized PDF, that order is permanent in the new file. However, your original file remains unchanged, so you can always start over from the original if needed."
             }
         ],
 
@@ -179,45 +179,45 @@ const getGuideContent = (lang: Language) => ({
                 title: "Étape par Étape : Réorganisation des Pages PDF par Glisser-Déposer",
                 content: `Utiliser notre **outil gratuit de réorganisation de pages PDF** est intuitif, conçu pour ressembler au déplacement de feuilles de papier physiques sur un bureau :
 
-1. **Téléchargez votre fichier PDF** : Sélectionnez votre document PDF en cliquant pour parcourir ou en le glissant dans la fenêtre du navigateur. Notre moteur local l'ouvre instantanément—pas d'attente pour les téléchargements cloud, pas de barres de progression.
-2. **Aperçu des miniatures de pages** : Vous verrez une grille visuelle de toutes les miniatures de pages, affichant l'ensemble du document d'un coup d'œil. Cet aperçu facilite l'identification des pages nécessitant un réarrangement.
-3. **Glissez-déposez pour réorganiser** : Cliquez et maintenez n'importe quelle miniature de page, puis faites-la glisser vers sa nouvelle position dans la séquence. Les autres pages se décalent automatiquement pour faire de la place. Vous pouvez déplacer les pages une à la fois ou réarranger plusieurs sections.
+1. **Téléchargez votre fichier PDF** : Sélectionnez votre document PDF en cliquant pour parcourir ou en le glissant dans la fenêtre du navigateur. Notre moteur local l&apos;ouvre instantanément—pas d&apos;attente pour les téléchargements cloud, pas de barres de progression.
+2. **Aperçu des miniatures de pages** : Vous verrez une grille visuelle de toutes les miniatures de pages, affichant l&apos;ensemble du document d&apos;un coup d&apos;œil. Cet aperçu facilite l&apos;identification des pages nécessitant un réarrangement.
+3. **Glissez-déposez pour réorganiser** : Cliquez et maintenez n&apos;importe quelle miniature de page, puis faites-la glisser vers sa nouvelle position dans la séquence. Les autres pages se décalent automatiquement pour faire de la place. Vous pouvez déplacer les pages une à la fois ou réarranger plusieurs sections.
 4. **Retour visuel** : Pendant que vous faites glisser, vous verrez des indicateurs en temps réel montrant où la page sera placée lorsque vous la relâcherez. Cela évite les erreurs de placement accidentelles.
-5. **Vérifiez le nouvel ordre** : Vérifiez bien que la séquence est correcte. Les numéros de page se mettent à jour dynamiquement pendant que vous réorganisez, facilitant la vérification de l'arrangement final.
-6. **Enregistrez le PDF organisé** : Une fois l'ordre parfait, cliquez sur **'Enregistrer le PDF organisé'** ou **'Traiter le PDF'**. Une nouvelle copie avec votre séquence de pages personnalisée est générée immédiatement et prête à télécharger.`
+5. **Vérifiez le nouvel ordre** : Vérifiez bien que la séquence est correcte. Les numéros de page se mettent à jour dynamiquement pendant que vous réorganisez, facilitant la vérification de l&apos;arrangement final.
+6. **Enregistrez le PDF organisé** : Une fois l&apos;ordre parfait, cliquez sur **&apos;Enregistrer le PDF organisé&apos;** ou **&apos;Traiter le PDF&apos;**. Une nouvelle copie avec votre séquence de pages personnalisée est générée immédiatement et prête à télécharger.`
             },
             {
                 id: "use-cases",
                 title: "Scénarios Courants pour Réorganiser les Pages PDF",
                 content: (
                     <div className="space-y-4">
-                        <p><strong>Correction d'erreurs de scanner</strong> : Vous avez scanné une pile de papiers mais certaines pages sont passées dans le mauvais ordre. Réorganisez-les pour correspondre à la séquence originale sans tout rescanner.</p>
-                        <p><strong>Repositionnement des pages de couverture</strong> : Votre scan a commencé avec la page 1 au lieu de la page de couverture. Déplacez la page de couverture à l'avant où elle devrait être.</p>
-                        <p><strong>Organisation de documents fusionnés</strong> : Vous avez fusionné plusieurs PDF en utilisant notre <Link href="/${lang}/merge-pdf" className="text-canada-red hover:underline">outil de fusion PDF</Link>, mais les sections sont dans le désordre. Réarrangez-les dans un flux logique.</p>
+                        <p><strong>Correction d&apos;erreurs de scanner</strong> : Vous avez scanné une pile de papiers mais certaines pages sont passées dans le mauvais ordre. Réorganisez-les pour correspondre à la séquence originale sans tout rescanner.</p>
+                        <p><strong>Repositionnement des pages de couverture</strong> : Votre scan a commencé avec la page 1 au lieu de la page de couverture. Déplacez la page de couverture à l&apos;avant où elle devrait être.</p>
+                        <p><strong>Organisation de documents fusionnés</strong> : Vous avez fusionné plusieurs PDF en utilisant notre <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline">outil de fusion PDF</Link>, mais les sections sont dans le désordre. Réarrangez-les dans un flux logique.</p>
                         <p><strong>Structure de travaux académiques</strong> : Votre thèse nécessite un ordre spécifique : résumé, remerciements, table des matières, chapitres, annexes, références. Réorganisez les sections scannées pour correspondre aux exigences de formatage de votre université.</p>
                         <p><strong>Pièces de documents juridiques</strong> : Les soumissions judiciaires exigent souvent des pièces dans un ordre numéroté spécifique (Pièce A, B, C). Réorganisez les pages pour correspondre à la séquence requise pour le dépôt.</p>
-                        <p><strong>Personnalisation de propositions commerciales</strong> : Vous voulez le résumé exécutif et la tarification au début pour certains clients, mais à la fin pour d'autres. Réorganisez les pages pour créer des versions personnalisées sans recréer toute la proposition.</p>
-                        <p><strong>Organisation de déclaration de revenus pour l'ARC</strong> : Assemblez les reçus, feuillets T4 et formulaires dans l'ordre requis par l'ARC pour un traitement plus facile et une évaluation plus rapide.</p>
+                        <p><strong>Personnalisation de propositions commerciales</strong> : Vous voulez le résumé exécutif et la tarification au début pour certains clients, mais à la fin pour d&apos;autres. Réorganisez les pages pour créer des versions personnalisées sans recréer toute la proposition.</p>
+                        <p><strong>Organisation de déclaration de revenus pour l&apos;ARC</strong> : Assemblez les reçus, feuillets T4 et formulaires dans l&apos;ordre requis par l&apos;ARC pour un traitement plus facile et une évaluation plus rapide.</p>
                     </div>
                 )
             },
             {
                 id: "privacy",
                 title: "Sécurité Locale Prioritaire : Vos Fichiers Ne Quittent Jamais Votre Navigateur",
-                content: `Chez pdfcanada.ca, nous croyons que vos documents sont privés. Contrairement à d'autres outils qui téléchargent vos fichiers sur des serveurs distants pour traitement, notre organisateur fonctionne entièrement **à l'intérieur de votre navigateur web** en utilisant des bibliothèques PDF JavaScript modernes.
+                content: `Chez pdfcanada.ca, nous croyons que vos documents sont privés. Contrairement à d&apos;autres outils qui téléchargent vos fichiers sur des serveurs distants pour traitement, notre organisateur fonctionne entièrement **à l&apos;intérieur de votre navigateur web** en utilisant des bibliothèques PDF JavaScript modernes.
 
-**Pourquoi C'est Important :**
+**Pourquoi C&apos;est Important :**
 - **Pas de Téléchargements** : Vos documents sensibles ne touchent jamais nos serveurs. Tout reste sur votre appareil.
 - **Traitement Sécurisé** : Toute réorganisation de pages se fait dans la RAM de votre appareil. Aucun fichier temporaire créé sur des serveurs distants.
-- **Vitesse Instantanée** : Pas de latence réseau, pas de temps d'attente, pas de limitations de bande passante. Le traitement est immédiat.
-- **Capable Hors Ligne** : Une fois la page chargée, vous pouvez même vous déconnecter d'Internet et continuer à travailler.
+- **Vitesse Instantanée** : Pas de latence réseau, pas de temps d&apos;attente, pas de limitations de bande passante. Le traitement est immédiat.
+- **Capable Hors Ligne** : Une fois la page chargée, vous pouvez même vous déconnecter d&apos;Internet et continuer à travailler.
 - **Idéal pour les Documents Confidentiels** : Parfait pour les contrats juridiques, dossiers médicaux, états financiers, déclarations de revenus, documents RH et tout matériel sensible.
-- **Aucune Rétention de Données** : Puisque nous ne recevons jamais vos fichiers, il n'y a rien à stocker, enregistrer ou potentiellement divulguer.`
+- **Aucune Rétention de Données** : Puisque nous ne recevons jamais vos fichiers, il n&apos;y a rien à stocker, enregistrer ou potentiellement divulguer.`
             },
             {
                 id: "mobile",
                 title: "Organisez les PDF en Déplacement : Support iPhone et Android",
-                content: `Besoin de corriger l'ordre d'un document pendant un trajet ou en travaillant à distance ? Notre site est entièrement responsive et optimisé pour les interfaces tactiles. Vous pouvez **glisser-déposer des pages PDF** sur votre smartphone ou tablette aussi facilement que sur un ordinateur de bureau.
+                content: `Besoin de corriger l&apos;ordre d&apos;un document pendant un trajet ou en travaillant à distance ? Notre site est entièrement responsive et optimisé pour les interfaces tactiles. Vous pouvez **glisser-déposer des pages PDF** sur votre smartphone ou tablette aussi facilement que sur un ordinateur de bureau.
 
 **Fonctionnalités Mobiles :**
 - Interface tactile avec de grandes zones tactiles pour sélectionner et déplacer les pages
@@ -232,12 +232,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "Meilleures Pratiques pour Organiser les Pages PDF",
                 content: (
                     <ul className="list-disc pl-5 space-y-3">
-                        <li><strong>Planifiez d'abord la structure</strong> : Avant de réorganiser, notez ou cartographiez mentalement la séquence désirée. Cela évite la confusion avec les gros documents contenant de nombreuses pages.</li>
-                        <li><strong>Travaillez par sections</strong> : Pour les longs documents, organisez d'abord les pages liées en sections logiques (intro, corps, conclusion, annexes), puis arrangez au sein de chaque section.</li>
-                        <li><strong>Conservez des sauvegardes originales</strong> : Enregistrez une copie de l'ordre de pages original avant de réorganiser, surtout pour les documents importants. Cela vous permet de référencer ou restaurer l'original si nécessaire.</li>
-                        <li><strong>Utilisez les aperçus de contenu de page</strong> : Cliquez sur les miniatures pour les agrandir si vous n'êtes pas sûr du contenu de chaque page. Cela évite de déplacer accidentellement les mauvaises pages.</li>
-                        <li><strong>Vérifiez la numérotation des pages</strong> : Rappelez-vous que la réorganisation change la séquence physique mais ne met pas à jour les numéros de page imprimés dans les en-têtes/pieds de page. La page "5" dira toujours "5" même si vous la déplacez en position 10.</li>
-                        <li><strong>Combinez avec d'autres outils</strong> : Utilisez notre <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline">outil de suppression de pages</Link> pour retirer les pages indésirables avant d'organiser, créant un document final plus propre.</li>
+                        <li><strong>Planifiez d&apos;abord la structure</strong> : Avant de réorganiser, notez ou cartographiez mentalement la séquence désirée. Cela évite la confusion avec les gros documents contenant de nombreuses pages.</li>
+                        <li><strong>Travaillez par sections</strong> : Pour les longs documents, organisez d&apos;abord les pages liées en sections logiques (intro, corps, conclusion, annexes), puis arrangez au sein de chaque section.</li>
+                        <li><strong>Conservez des sauvegardes originales</strong> : Enregistrez une copie de l&apos;ordre de pages original avant de réorganiser, surtout pour les documents importants. Cela vous permet de référencer ou restaurer l&apos;original si nécessaire.</li>
+                        <li><strong>Utilisez les aperçus de contenu de page</strong> : Cliquez sur les miniatures pour les agrandir si vous n&apos;êtes pas sûr du contenu de chaque page. Cela évite de déplacer accidentellement les mauvaises pages.</li>
+                        <li><strong>Vérifiez la numérotation des pages</strong> : Rappelez-vous que la réorganisation change la séquence physique mais ne met pas à jour les numéros de page imprimés dans les en-têtes/pieds de page. La page &quot;5&quot; dira toujours &quot;5&quot; même si vous la déplacez en position 10.</li>
+                        <li><strong>Combine avec d&apos;autres outils</strong> : Utilisez notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline">outil de suppression de pages</Link> pour retirer les pages indésirables avant d&apos;organiser, créant un document final plus propre.</li>
                     </ul>
                 )
             },
@@ -248,23 +248,23 @@ const getGuideContent = (lang: Language) => ({
                     <div className="space-y-4">
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les pages ne se font pas glisser ou déplacer</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Assurez-vous de cliquer et maintenir sur la miniature de page elle-même, pas sur l'espace blanc environnant. Sur mobile, essayez un geste d'appui prolongé. Si le problème persiste, rafraîchissez la page et rechargez votre PDF.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Assurez-vous de cliquer et maintenir sur la miniature de page elle-même, pas sur l&apos;espace blanc environnant. Sur mobile, essayez un geste d&apos;appui prolongé. Si le problème persiste, rafraîchissez la page et rechargez votre PDF.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les pages se sont déplacées vers la mauvaise position</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Faites simplement glisser la page à nouveau vers la position correcte. Vous pouvez réorganiser autant de fois que nécessaire avant de cliquer sur "Enregistrer". L'interface permet des ajustements illimités avant finalisation.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Faites simplement glisser la page à nouveau vers la position correcte. Vous pouvez réorganiser autant de fois que nécessaire avant de cliquer sur &quot;Enregistrer&quot;. L&apos;interface permet des ajustements illimités avant finalisation.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le contenu des pages n'est pas clairement visible dans les miniatures</h4>
+                            <h4 className="font-bold text-yellow-900 mb-2">Problème : Le contenu des pages n&apos;est pas clairement visible dans les miniatures</h4>
                             <p className="text-yellow-800"><strong>Solution</strong> : Utilisez la fonction de zoom de votre navigateur (Ctrl/Cmd +) pour agrandir les miniatures, ou sur mobile, utilisez le pincement pour zoomer. Certains outils offrent également un mode aperçu—cliquez sur une miniature pour voir une version plus grande.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Le PDF organisé se télécharge avec des pages toujours dans le mauvais ordre</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Assurez-vous d'avoir cliqué sur "Enregistrer" ou "Traiter" après la réorganisation. Les modifications ne s'appliquent que lorsque vous générez le nouveau PDF. Vérifiez également que vous ouvrez le fichier nouvellement téléchargé, pas l'original.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Assurez-vous d&apos;avoir cliqué sur &quot;Enregistrer&quot; ou &quot;Traiter&quot; après la réorganisation. Les modifications ne s&apos;appliquent que lorsque vous générez le nouveau PDF. Vérifiez également que vous ouvrez le fichier nouvellement téléchargé, pas l&apos;original.</p>
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les très gros PDF sont lents à réorganiser</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou 50+ Mo) peuvent être gourmands en mémoire. Fermez d'autres onglets du navigateur pour libérer de la RAM. Envisagez de diviser les très gros fichiers en sections plus petites, d'organiser chacune séparément, puis de les fusionner à nouveau.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou 50+ Mo) peuvent être gourmands en mémoire. Fermez d&apos;autres onglets du navigateur pour libérer de la RAM. Envisagez de diviser les très gros fichiers en sections plus petites, d&apos;organiser chacune séparément, puis de les fusionner à nouveau.</p>
                         </div>
                     </div>
                 )
@@ -278,11 +278,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Qu'arrive-t-il à mon fichier original lorsque je réorganise les pages ?",
-                a: "Rien ! Votre fichier original reste complètement intact sur votre machine. Nous créons un PDF complètement nouveau avec les pages réorganisées que vous téléchargez. L'original reste exactement comme il était, donc vous avez toujours une sauvegarde."
+                a: "Rien ! Votre fichier original reste complètement intact sur votre machine. Nous créons un PDF complètement nouveau avec les pages réorganisées que vous téléchargez. L&apos;original reste exactement comme il était, donc vous avez toujours une sauvegarde."
             },
             {
                 q: "Cela fonctionne-t-il avec les gros documents ?",
-                a: "Oui ! Puisque le traitement se fait localement dans votre navigateur, la limite est simplement la mémoire disponible de votre appareil. Vous pouvez organiser des PDF avec des dizaines ou même des centaines de pages sans les délais d'attente et restrictions de taille de fichier communs aux outils basés sur le cloud. La plupart des ordinateurs modernes gèrent facilement les gros documents."
+                a: "Oui ! Puisque le traitement se fait localement dans votre navigateur, la limite est simplement la mémoire disponible de votre appareil. Vous pouvez organiser des PDF avec des dizaines ou même des centaines de pages sans les délais d&apos;attente et restrictions de taille de fichier communs aux outils basés sur le cloud. La plupart des ordinateurs modernes gèrent facilement les gros documents."
             },
             {
                 q: "La réorganisation affectera-t-elle la qualité de mes pages ?",
@@ -294,15 +294,15 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "L'outil fonctionne-t-il sur les appareils mobiles ?",
-                a: "Absolument ! Notre outil d'organisation est entièrement optimisé pour les écrans tactiles. Vous pouvez glisser-déposer des pages sur iPhone, iPad et appareils Android aussi facilement que sur ordinateur de bureau. L'interface s'adapte aux écrans mobiles pour une manipulation facile des pages en déplacement."
+                a: "Absolument ! Notre outil d&apos;organisation est entièrement optimisé pour les écrans tactiles. Vous pouvez glisser-déposer des pages sur iPhone, iPad et appareils Android aussi facilement que sur ordinateur de bureau. L&apos;interface s&apos;adapte aux écrans mobiles pour une manipulation facile des pages en déplacement."
             },
             {
-                q: "Qu'arrive-t-il aux numéros de page après réorganisation ?",
-                a: "Les positions physiques des pages changent (la page 5 peut se déplacer en position 2), mais les numéros de page imprimés dans les en-têtes/pieds de page restent inchangés. Si une page a \"5\" imprimé dessus, elle affichera toujours \"5\" même si vous la déplacez vers une position différente dans la séquence du document."
+                q: "Qu&apos;arrive-t-il aux numéros de page après réorganisation ?",
+                a: "Les positions physiques des pages changent (la page 5 peut se déplacer en position 2), mais les numéros de page imprimés dans les en-têtes/pieds de page restent inchangés. Si une page a &quot;5&quot; imprimé dessus, elle affichera toujours &quot;5&quot; même si vous la déplacez vers une position différente dans la séquence du document."
             },
             {
                 q: "Puis-je annuler les modifications si je fais une erreur ?",
-                a: "Avant de cliquer sur 'Enregistrer' ou 'Traiter', vous pouvez faire glisser les pages autant de fois que nécessaire pour corriger les erreurs. Une fois que vous téléchargez le PDF réorganisé, cet ordre est permanent dans le nouveau fichier. Cependant, votre fichier original reste inchangé, donc vous pouvez toujours recommencer à partir de l'original si nécessaire."
+                a: "Avant de cliquer sur &apos;Enregistrer&apos; ou &apos;Traiter&apos;, vous pouvez faire glisser les pages autant de fois que nécessaire pour corriger les erreurs. Une fois que vous téléchargez le PDF réorganisé, cet ordre est permanent dans le nouveau fichier. Cependant, votre fichier original reste inchangé, donc vous pouvez toujours recommencer à partir de l&apos;original si nécessaire."
             }
         ],
 
@@ -398,7 +398,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="bg-amber-50 dark:bg-amber-900/10 p-8 rounded-[2rem] border border-amber-200 dark:border-amber-800 flex gap-6 mb-16">
                         <Zap className="text-amber-600 shrink-0" size={28} />
                         <p className="text-lg text-amber-900 dark:text-amber-300">
-                            <strong>Insider Tip:</strong> You can combine this tool with our <Link href="/${lang}/delete-pdf-pages" className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">'Delete Pages' tool</Link> to perfectly curate your final document before sharing. Perfect for clean board reports!
+                            <strong>Insider Tip:</strong> You can combine this tool with our <Link href={`/${lang}/delete-pdf-pages`} className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">&apos;Delete Pages&apos; tool</Link> to perfectly curate your final document before sharing. Perfect for clean board reports!
                         </p>
                     </div>
 
@@ -460,7 +460,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <section className="bg-canada-red p-16 rounded-[3.5rem] text-center text-white shadow-2xl shadow-red-500/20">
                         <h2 className="text-4xl font-black mb-6">{t.ctaTitle}</h2>
                         <p className="text-xl mb-12 opacity-90">{t.ctaSubtext}</p>
-                        <Link href="/${lang}/organize-pdf"
+                        <Link href={`/${lang}/organize-pdf`}
                             className="bg-white text-canada-red px-14 py-5 rounded-full font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl"
                         >
                             {t.ctaButton}

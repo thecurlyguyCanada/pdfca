@@ -32,8 +32,12 @@ export async function generateMetadata({
     const baseUrl = 'https://www.pdfcanada.ca';
     const path = `/guides/${slug}`;
 
+    // Defensive check: ensure slug is a string before splitting
+    const safeSlug = typeof slug === 'string' ? slug : '';
+    const displayTitle = safeSlug ? safeSlug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ') : 'Guide';
+
     return {
-        title: `${slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')} | pdfcanada.ca Guide`,
+        title: `${displayTitle} | pdfcanada.ca Guide`,
         description: `Learn more about ${slug.replace(/-/g, ' ')} with our comprehensive guide on pdfcanada.ca.`,
         alternates: {
             canonical: `${baseUrl}/${lang}${path}`,

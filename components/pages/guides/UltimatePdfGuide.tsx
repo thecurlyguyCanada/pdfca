@@ -31,9 +31,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         In the rapidly evolving landscape of digital communication, the Portable Document Format (PDF) remains an unshakeable cornerstone. Created by Adobe in the early 1990s, the PDF was designed to solve a single, critical problem: how to share documents that look exactly the same on every device.
                         <br /><br />
-                        Today, billions of PDFs are created every year. However, while the format has remained stable, our requirements have grown. We need to <Link href="/${lang}/guides/delete-pdf-pages" className="text-canada-red hover:underline decoration-dashed">delete pages</Link>, sign contracts, and convert formats.
+                        Today, billions of PDFs are created every year. However, while the format has remained stable, our requirements have grown. We need to <Link href={`/${lang}/guides/delete-pdf-pages`} className="text-canada-red hover:underline decoration-dashed">delete pages</Link>, sign contracts, and convert formats.
                         <br /><br />
-                        This guide serves as a beacon for anyone looking to navigate these tasks without falling into the "subscription trap." We'll explore how modern technology allows for <strong>free PDF tools online</strong> that are faster and more secure than their desktop ancestors.
+                        This guide serves as a beacon for anyone looking to navigate these tasks without falling into the &quot;subscription trap.&quot; We&apos;ll explore how modern technology allows for <strong>free PDF tools online</strong> that are faster and more secure than their desktop ancestors.
                     </>
                 )
             },
@@ -42,9 +42,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "The Privacy Revolution: Local-First Processing",
                 content: (
                     <>
-                        For years, using an "online PDF editor" meant uploading your private files to a stranger's server. This created a massive vulnerability for sensitive documents like tax filings or medical records.
+                        For years, using an &quot;online PDF editor&quot; meant uploading your private files to a stranger&apos;s server. This created a massive vulnerability for sensitive documents like tax filings or medical records.
                         <br /><br />
-                        <strong>pdfcanada.ca</strong> is built on a "Local-First" philosophy. We use WebAssembly to run the PDF engine <em>inside your browser</em>.
+                        <strong>pdfcanada.ca</strong> is built on a &quot;Local-First&quot; philosophy. We use WebAssembly to run the PDF engine <em>inside your browser</em>.
                         <ul className="list-disc pl-5 mt-4 space-y-2">
                             <li><strong>Zero Uploading</strong>: Your document never leaves your RAM.</li>
                             <li><strong>Physical Isolation</strong>: Even if our servers vanished, the tool would still work on your loaded page.</li>
@@ -57,9 +57,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Efficiency 101: Deleting and Reordering Pages",
                 content: (
                     <>
-                        Whether it's a 200-page report where you only need the summary, or a scanned contract with ghost pages, knowing how to <strong>delete PDF pages</strong> is a massive time-saver.
+                        Whether it&apos;s a 200-page report where you only need the summary, or a scanned contract with ghost pages, knowing how to <strong>delete PDF pages</strong> is a massive time-saver.
                         <br /><br />
-                        Our <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Delete PDF Pages Tool</Link> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
+                        Our <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Delete PDF Pages Tool</Link> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
                     </>
                 )
             },
@@ -68,9 +68,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "The Scan Struggle: Mastering PDF Rotation",
                 content: (
                     <>
-                        We've all been there: you open a PDF, and it's sideways. Standard viewers might let you rotate the <em>view</em>, but they rarely let you save the change.
+                        We&apos;ve all been there: you open a PDF, and it&apos;s sideways. Standard viewers might let you rotate the <em>view</em>, but they rarely let you save the change.
                         <br /><br />
-                        Using a dedicated <Link href="/${lang}/guides/rotate-pdf" className="text-canada-red hover:underline font-bold">Rotate PDF Tool</Link> fixes this permanently. This updates the file's metadata, ensuring the recipient sees exactly what you see.
+                        Using a dedicated <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Rotate PDF Tool</Link> fixes this permanently. This updates the file&apos;s metadata, ensuring the recipient sees exactly what you see.
                     </>
                 )
             },
@@ -81,9 +81,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         The world of digital formats is messy. iPhones use HEIC, Kindles want EPUBs, and businesses demand PDFs.
                         <br /><br />
-                        <strong>HEIC to PDF</strong>: If you're struggling to open iPhone photos on Windows, our <Link href="/${lang}/guides/heic-to-pdf" className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
+                        <strong>HEIC to PDF</strong>: If you&apos;re struggling to open iPhone photos on Windows, our <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
                         <br /><br />
-                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href="/${lang}/pdf-to-epub" className="text-canada-red hover:underline">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
+                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
                     </>
                 )
             },
@@ -92,9 +92,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Unlocking Text: The Power of OCR",
                 content: (
                     <>
-                        A scanned PDF is often just a "container for images." The computer sees pixels, not words.
+                        A scanned PDF is often just a &quot;container for images.&quot; The computer sees pixels, not words.
                         <br /><br />
-                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href="/${lang}/guides/ocr-pdf" className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
+                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href={`/${lang}/guides/ocr-pdf`} className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
                     </>
                 )
             },
@@ -103,9 +103,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "Interactive Documents: Fillable Forms",
                 content: (
                     <>
-                        Static documents are a relic. If you need a client to provide info, don't make them print and scan.
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                            <h4 className="font-bold text-canada-red mb-2 italic">Pro Tip:</h4>
+                            Static documents are a relic. If you need a client to provide info, don&apos;t make them print and scan.
+                        </div>
                         <br /><br />
-                        Learning to <Link href="/${lang}/guides/make-pdf-fillable" className="text-canada-red hover:underline font-bold">make PDFs fillable</Link> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
+                        Learning to <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">make PDFs fillable</Link> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
                     </>
                 )
             },
@@ -114,7 +117,7 @@ const getGuideContent = (lang: Language) => ({
                 title: "The 'Polite Canadian' Philosophy",
                 content: (
                     <>
-                        Why "pdfcanada.ca"? In a world of global tech giants, there is value in local, niche services.
+                        Why &quot;pdfcanada.ca&quot;? In a world of global tech giants, there is value in local, niche services.
                         <br /><br />
                         We prioritize <strong>Utility over Profit</strong> and <strong>Privacy as a Right</strong>. By providing free Canadian PDF tools, we aim to support students and small businesses who just want to get their tasks done safely.
                     </>
@@ -137,11 +140,11 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "What makes pdfcanada.ca different?",
-                a: "Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser's memory."
+                a: "Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser&apos;s memory."
             },
             {
                 q: "Is there a limit to file size?",
-                a: "Since processing is done on your hardware, we don't enforce arbitrary server limits. You can process larger files than most cloud tools allow."
+                a: "Since processing is done on your hardware, we don&apos;t enforce arbitrary server limits. You can process larger files than most cloud tools allow."
             }
         ],
 
@@ -163,11 +166,11 @@ const getGuideContent = (lang: Language) => ({
                 title: "Introduction : Pourquoi le PDF domine toujours le monde",
                 content: (
                     <>
-                        Dans le paysage numérique d'aujourd'hui, le format PDF reste une pierre angulaire inébranlable. Créé par Adobe au début des années 90, le PDF a été conçu pour résoudre un problème critique : comment partager des documents qui apparaissent exactement de la même manière sur n'importe quel appareil.
+                        Dans le paysage numérique d&apos;aujourd&apos;hui, le format PDF reste une pierre angulaire inébranlable. Créé par Adobe au début des années 90, le PDF a été conçu pour résoudre un problème critique : how to share documents that appear exactly the same on any device.
                         <br /><br />
-                        Aujourd'hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <Link href="/${lang}/guides/delete-pdf-pages" className="text-canada-red hover:underline decoration-dashed">supprimer des pages</Link>, signer des contrats et convertir des formats.
+                        Aujourd&apos;hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <Link href={`/${lang}/guides/delete-pdf-pages`} className="text-canada-red hover:underline decoration-dashed">supprimer des pages</Link>, signer des contrats et convertir des formats.
                         <br /><br />
-                        Ce guide sert de phare à quiconque cherche à naviguer dans ces tâches sans tomber dans le "piège de l'abonnement". Nous explorerons comment la technologie moderne permet des <strong>outils PDF gratuits en ligne</strong> qui sont plus rapides et plus sécurisés que leurs ancêtres de bureau.
+                        Ce guide sert de phare à quiconque cherche à naviguer dans ces tâches sans tomber dans le &quot;piège de l&apos;abonnement&quot;. Nous explorerons comment la technologie moderne permet des <strong>outils PDF gratuits en ligne</strong> qui sont plus rapides et plus sécurisés que leurs ancêtres de bureau.
                     </>
                 )
             },
@@ -176,12 +179,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "La Révolution de la Confidentialité : Traitement Local",
                 content: (
                     <>
-                        Pendant des années, utiliser un "éditeur PDF en ligne" signifiait télécharger vos fichiers privés sur le serveur d'un inconnu. Cela créait une vulnérabilité massive pour des documents sensibles comme les déclarations fiscales ou les dossiers médicaux.
+                        Pendant des années, utiliser un &quot;éditeur PDF en ligne&quot; signifiait télécharger vos fichiers privés sur le serveur d&apos;un inconnu. Cela créait une vulnérabilité massive pour des documents sensibles comme les déclarations fiscales ou les dossiers médicaux.
                         <br /><br />
-                        <strong>pdfcanada.ca</strong> est construit sur une philosophie "Local-First". Nous utilisons WebAssembly pour faire tourner le moteur PDF <em>à l'intérieur de votre navigateur</em>.
+                        <strong>pdfcanada.ca</strong> est construit sur une philosophie &quot;Local-First&quot;. Nous utilisons WebAssembly pour faire tourner le moteur PDF <em>à l&apos;intérieur de votre navigateur</em>.
                         <ul className="list-disc pl-5 mt-4 space-y-2">
                             <li><strong>Zéro Téléchargement</strong> : Votre document ne quitte jamais votre RAM.</li>
-                            <li><strong>Isolation Physique</strong> : Même si nos serveurs disparaissaient, l'outil fonctionnerait toujours sur votre page chargée.</li>
+                            <li><strong>Isolation Physique</strong> : Même si nos serveurs disparaissaient, l&apos;outil fonctionnerait toujours sur votre page chargée.</li>
                         </ul>
                     </>
                 )
@@ -191,9 +194,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Efficacité 101 : Supprimer et Réorganiser des Pages",
                 content: (
                     <>
-                        Que ce soit un rapport de 200 pages dont vous n'avez besoin que du résumé, ou un contrat scanné avec des pages fantômes, savoir comment <strong>supprimer des pages PDF</strong> est un gain de temps énorme.
+                        Que ce soit un rapport de 200 pages dont vous n&apos;avez besoin que du résumé, ou un contrat scanné avec des pages fantômes, savoir comment <strong>supprimer des pages PDF</strong> est un gain de temps énorme.
                         <br /><br />
-                        Notre <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</Link> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
+                        Notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</Link> vous permet de voir toute la structure du document d&apos;un coup d&apos;œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
                     </>
                 )
             },
@@ -204,7 +207,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Nous y avons tous été confrontés : vous ouvrez un PDF et il est de côté. Les visionneuses standard peuvent vous laisser faire pivoter la <em>vue</em>, mais elles vous laissent rarement enregistrer le changement.
                         <br /><br />
-                        Utiliser un <Link href="/${lang}/guides/rotate-pdf" className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</Link> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
+                        Utiliser un <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</Link> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
                     </>
                 )
             },
@@ -215,9 +218,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Le monde des formats numériques est désordonné. Les iPhones utilisent HEIC, les Kindles veulent des EPUB, et les entreprises exigent des PDF.
                         <br /><br />
-                        <strong>HEIC vers PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href="/${lang}/guides/heic-to-pdf" className="text-canada-red hover:underline font-bold">Convertisseur HEIC</Link> comble cette lacune en toute sécurité.
+                        <strong>HEIC en PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">Convertisseur HEIC</Link> comble cet écart en toute sécurité.
                         <br /><br />
-                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href="/${lang}/pdf-to-epub" className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de se redistribuer confortablement sur votre liseuse.
+                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de s&apos;adapter confortablement sur votre liseuse.
                     </>
                 )
             },
@@ -226,9 +229,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Débloquer le Texte : La Puissance de l'OCR",
                 content: (
                     <>
-                        Un PDF scanné est souvent juste un "conteneur d'images". L'ordinateur voit des pixels, pas des mots.
+                        Un PDF scanné est souvent juste un &quot;conteneur d&apos;images&quot;. L&apos;ordinateur voit des pixels, pas des mots.
                         <br /><br />
-                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href="/${lang}/guides/ocr-pdf" className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
+                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href={`/${lang}/guides/ocr-pdf`} className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n&apos;importe quel document scanné consultable (Ctrl+F) et copiable.
                     </>
                 )
             },
@@ -237,9 +240,12 @@ const getGuideContent = (lang: Language) => ({
                 title: "Documents Interactifs : Formulaires Remplissables",
                 content: (
                     <>
-                        Les documents statiques sont une relique. Si vous avez besoin qu'un client fournisse des infos, ne les faites pas imprimer et scanner.
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                            <h4 className="font-bold text-canada-red mb-2 italic">Conseil Pro:</h4>
+                            Les documents statiques sont une relique. Si vous avez besoin qu&apos;un client fournisse des infos, ne les faites pas imprimer et scanner.
+                        </div>
                         <br /><br />
-                        Apprendre à <Link href="/${lang}/guides/make-pdf-fillable" className="text-canada-red hover:underline font-bold">créer des PDF remplissables</Link> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
+                        Apprendre à <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">créer des PDF remplissables</Link> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
                     </>
                 )
             },
@@ -248,9 +254,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "La Philosophie du 'Canadien Poli'",
                 content: (
                     <>
-                        Pourquoi "pdfcanada.ca" ? Dans un monde de géants technologiques mondiaux, il y a de la valeur dans les services locaux de niche.
+                        Pourquoi &quot;pdfcanada.ca&quot; ? Dans un monde de géants technologiques mondiaux, il y a de la valeur dans les services locaux de niche.
                         <br /><br />
-                        Nous privilégions <strong>l'Utilité sur le Profit</strong> et la <strong>Confidentialité comme un Droit</strong>. En fournissant des outils PDF canadiens gratuits, nous visons à soutenir les étudiants et les petites entreprises qui veulent juste accomplir leurs tâches en toute sécurité.
+                        Nous privilégions <strong>l&apos;Utilité sur le Profit</strong> et la <strong>Confidentialité comme un Droit</strong>. En fournissant des outils PDF canadiens gratuits, nous visons à soutenir les étudiants et les petites entreprises qui veulent juste accomplir leurs tâches en toute sécurité.
                     </>
                 )
             },
@@ -271,11 +277,11 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "Qu'est-ce qui rend pdfcanada.ca différent ?",
-                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur."
+                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l&apos;édition se fait entièrement dans la mémoire de votre navigateur."
             },
             {
                 q: "Y a-t-il une limite de taille de fichier ?",
-                a: "Puisque le traitement est effectué sur votre matériel, nous n'imposons pas de limites arbitraires de serveur. Vous pouvez traiter des fichiers plus volumineux que la plupart des outils cloud ne le permettent."
+                a: "Puisque le traitement est effectué sur votre matériel, nous n&apos;imposons pas de limites arbitraires de serveur. Vous pouvez traiter des fichiers plus volumineux que la plupart des outils cloud ne le permettent."
             }
         ],
 
@@ -394,6 +400,9 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                         {section.title}
                                     </h2>
                                 </div>
+                                <p className="text-gray-800 dark:text-gray-200">
+                                    <span className="font-bold">Conseil de pro :</span> Si vous manipulez des relevés bancaires ou des documents juridiques, utilisez toujours un outil qui traite les fichiers localement (comme le nôtre !) pour garantir le plus haut niveau de confidentialité.
+                                </p>
                                 <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {section.content}
                                 </div>
@@ -408,6 +417,9 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                             {t.faqs.map((faq: any, i: number) => (
                                 <div key={i} className="p-8 bg-gray-50 dark:bg-gray-900 rounded-3xl">
                                     <h5 className="text-xl font-bold mb-4">{faq.q}</h5>
+                                    <p className="text-gray-800 dark:text-gray-200">
+                                        <span className="font-bold">Pro Tip:</span> If you&apos;re dealing with bank statements or legal papers, always use a tool that processes files locally (like ours!) to ensure the highest level of privacy.
+                                    </p>
                                     <p className="text-gray-600 dark:text-gray-400">{faq.a}</p>
                                 </div>
                             ))}

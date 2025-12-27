@@ -9,6 +9,7 @@ export interface ToolConfig {
   descriptionFr: string;
   keywords: string[];
   keywordsFr: string[];
+  accept?: string;
 }
 
 export const TOOL_CONFIGS: ToolConfig[] = [
@@ -21,6 +22,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Supprimez facilement les pages indésirables de vos fichiers PDF. Sélectionnez plusieurs pages et supprimez-les instantanément. 100% gratuit et sécurisé.',
     keywords: ['delete PDF pages', 'remove PDF pages', 'PDF page remover'],
     keywordsFr: ['supprimer pages PDF', 'retirer pages PDF', 'suppresseur pages PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'rotate-pdf',
@@ -31,6 +33,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Faites pivoter les pages PDF dans le sens horaire ou antihoraire. Corrigez l\'orientation instantanément. Gratuit, rapide et sécurisé.',
     keywords: ['rotate PDF', 'PDF rotation', 'flip PDF pages'],
     keywordsFr: ['pivoter PDF', 'rotation PDF', 'tourner pages PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'compress-pdf',
@@ -41,6 +44,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Réduisez la taille des fichiers PDF tout en maintenant la qualité. Choisissez entre compression légère, équilibrée ou extrême. Gratuit et sécurisé.',
     keywords: ['compress PDF', 'reduce PDF size', 'PDF compressor'],
     keywordsFr: ['compresser PDF', 'réduire taille PDF', 'compresseur PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'merge-pdf',
@@ -51,6 +55,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Combinez plusieurs fichiers PDF en un seul document. Glissez-déposez pour réorganiser. Fusion PDF gratuite et sécurisée.',
     keywords: ['merge PDF', 'combine PDF', 'join PDF files'],
     keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'split-pdf',
@@ -61,6 +66,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Divisez un PDF en fichiers séparés par plage de pages. Extrayez des pages spécifiques. Gratuit et sécurisé.',
     keywords: ['split PDF', 'divide PDF', 'separate PDF pages'],
     keywordsFr: ['diviser PDF', 'séparer PDF', 'extraire pages PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'extract-pdf-pages',
@@ -71,6 +77,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Extrayez des pages spécifiques de documents PDF. Créez un nouveau PDF avec les pages sélectionnées. Gratuit et sécurisé.',
     keywords: ['extract PDF pages', 'PDF page extractor', 'pull PDF pages'],
     keywordsFr: ['extraire pages PDF', 'extracteur pages PDF', 'tirer pages PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'crop-pdf',
@@ -81,6 +88,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Recadrez les pages PDF pour supprimer les marges indésirables. Outils de recadrage précis. Gratuit et sécurisé.',
     keywords: ['crop PDF', 'trim PDF', 'cut PDF margins'],
     keywordsFr: ['recadrer PDF', 'rogner PDF', 'couper marges PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'heic-to-pdf',
@@ -91,6 +99,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez HEIC (photos iPhone) en format PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur.',
     keywords: ['HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF'],
     keywordsFr: ['HEIC vers PDF', 'convertir HEIC', 'photos iPhone en PDF'],
+    accept: '.heic,.heif,image/heic,image/heif'
   },
   {
     slug: 'epub-to-pdf',
@@ -101,6 +110,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les ebooks EPUB en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
     keywords: ['EPUB to PDF', 'convert ebook', 'EPUB converter'],
     keywordsFr: ['EPUB vers PDF', 'convertir ebook', 'convertisseur EPUB'],
+    accept: '.epub,application/epub+zip'
   },
   {
     slug: 'pdf-to-epub',
@@ -111,6 +121,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez des documents PDF en format ebook EPUB. Parfait pour les liseuses. Gratuit et sécurisé.',
     keywords: ['PDF to EPUB', 'convert PDF to ebook', 'PDF to ebook'],
     keywordsFr: ['PDF vers EPUB', 'convertir PDF en ebook', 'PDF en ebook'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'make-pdf-fillable',
@@ -121,6 +132,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Ajoutez des champs de formulaire modifiables aux PDF. Créez des champs texte, cases à cocher et signatures. Gratuit et sécurisé.',
     keywords: ['make PDF fillable', 'PDF form creator', 'add form fields'],
     keywordsFr: ['rendre PDF modifiable', 'créateur formulaire PDF', 'ajouter champs formulaire'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'sign-pdf',
@@ -131,6 +143,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Ajoutez votre signature aux documents PDF. Dessinez, tapez ou téléchargez votre signature. Gratuit et sécurisé.',
     keywords: ['sign PDF', 'PDF signature', 'digital signature'],
     keywordsFr: ['signer PDF', 'signature PDF', 'signature numérique'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'organize-pdf',
@@ -141,6 +154,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Réorganisez les pages PDF par glisser-déposer. Arrangez les pages dans n\'importe quel ordre. Gratuit et sécurisé.',
     keywords: ['organize PDF', 'reorder PDF pages', 'rearrange PDF'],
     keywordsFr: ['organiser PDF', 'réorganiser pages PDF', 'réarranger PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'pdf-to-word',
@@ -151,6 +165,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez PDF en documents Word modifiables (DOCX). Préservez le formatage et la mise en page. Gratuit et sécurisé.',
     keywords: ['PDF to Word', 'PDF to DOCX', 'convert PDF to Word'],
     keywordsFr: ['PDF vers Word', 'PDF vers DOCX', 'convertir PDF en Word'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'word-to-pdf',
@@ -161,6 +176,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les documents Word (DOCX) en format PDF. Maintenez le formatage. Gratuit et sécurisé.',
     keywords: ['Word to PDF', 'DOCX to PDF', 'convert Word to PDF'],
     keywordsFr: ['Word vers PDF', 'DOCX vers PDF', 'convertir Word en PDF'],
+    accept: '.docx,.doc,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword'
   },
   {
     slug: 'make-pdf-non-editable',
@@ -171,6 +187,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Aplatissez le PDF pour le rendre non modifiable. Supprimez les champs de formulaire et les calques. Gratuit et sécurisé.',
     keywords: ['flatten PDF', 'make PDF non-editable', 'lock PDF content'],
     keywordsFr: ['aplatir PDF', 'rendre PDF non modifiable', 'verrouiller contenu PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'pdf-page-remover',
@@ -181,6 +198,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Supprimez des pages spécifiques des fichiers PDF. Sélectionnez les pages à supprimer. Gratuit et sécurisé.',
     keywords: ['remove PDF pages', 'delete PDF pages', 'PDF page remover'],
     keywordsFr: ['supprimer pages PDF', 'effacer pages PDF', 'suppresseur pages PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'cbr-to-pdf',
@@ -191,6 +209,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les archives de bandes dessinées CBR/CBZ en PDF. Préservez la qualité d\'image. Gratuit et sécurisé.',
     keywords: ['CBR to PDF', 'comic book to PDF', 'CBZ to PDF'],
     keywordsFr: ['CBR vers PDF', 'bande dessinée vers PDF', 'CBZ vers PDF'],
+    accept: '.cbr,.cbz,.rar,.zip,application/x-cbr,application/x-cbz,application/vnd.comicbook+zip,application/vnd.comicbook+rar'
   },
   {
     slug: 'pdf-to-xml',
@@ -201,6 +220,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Extrayez le texte du PDF au format XML. Convertissez les données PDF en XML structuré. Gratuit et sécurisé.',
     keywords: ['PDF to XML', 'convert PDF to XML', 'extract PDF data'],
     keywordsFr: ['PDF vers XML', 'convertir PDF en XML', 'extraire données PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'xml-to-pdf',
@@ -211,6 +231,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les données XML en documents PDF. Créez des PDF formatés à partir de XML. Gratuit et sécurisé.',
     keywords: ['XML to PDF', 'convert XML', 'XML to document'],
     keywordsFr: ['XML vers PDF', 'convertir XML', 'XML vers document'],
+    accept: '.xml,text/xml,application/xml'
   },
   {
     slug: 'excel-to-pdf',
@@ -221,6 +242,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les feuilles de calcul Excel (XLSX) en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
     keywords: ['Excel to PDF', 'XLSX to PDF', 'convert spreadsheet to PDF'],
     keywordsFr: ['Excel vers PDF', 'XLSX vers PDF', 'convertir feuille de calcul en PDF'],
+    accept: '.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
   },
 ];
 

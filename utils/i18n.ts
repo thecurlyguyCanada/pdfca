@@ -798,6 +798,9 @@ export const translations = {
     processedSize: "Processed Size",
     toolRotateInfo: "Click pages to rotate or use global controls above.",
     readyToConvertDesc: "Ready to convert {fileName}. This might take a few moments depending on the file size, eh.",
+    btnTryAgain: "Try Again",
+    processing: "Processing...",
+    errorGeneric: "An error occurred while processing your file.",
 
     working: "Working on it...",
     workingDesc: "Scanning for fields and fixing that up for you, eh.",

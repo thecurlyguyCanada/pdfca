@@ -836,6 +836,10 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
               const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
 
               images.push({ data: bytes, width, height, x, y });
+
+              // Cleanup
+              canvas.width = 0;
+              canvas.height = 0;
             }
           }
         } catch (err) { console.warn("Image extraction failed", err); }

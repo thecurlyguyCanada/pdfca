@@ -41,13 +41,17 @@ export async function generateMetadata({
         };
     }
 
+    const title = lang === 'fr' ? config.titleFr : config.title;
+    const description = lang === 'fr' ? config.descriptionFr : config.description;
+    const keywords = lang === 'fr' ? config.keywordsFr : config.keywords;
+
     const baseUrl = 'https://www.pdfcanada.ca';
     const path = `/${tool}`;
 
     return {
-        title: config.title,
-        description: config.description,
-        keywords: config.keywords,
+        title: title,
+        description: description,
+        keywords: keywords,
         alternates: {
             canonical: `${baseUrl}/${lang}${path}`,
             languages: {
@@ -57,16 +61,16 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: `${config.title} | pdfcanada.ca`,
-            description: config.description,
+            title: `${title} | pdfcanada.ca`,
+            description: description,
             url: `${baseUrl}/${lang}${path}`,
             type: 'website',
             locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${config.title} | pdfcanada.ca`,
-            description: config.description,
+            title: `${title} | pdfcanada.ca`,
+            description: description,
         },
     };
 }
@@ -84,11 +88,17 @@ export default async function ToolPage({
         notFound();
     }
 
+    const localizedConfig = {
+        ...config,
+        title: lang === 'fr' ? config.titleFr : config.title,
+        description: lang === 'fr' ? config.descriptionFr : config.description,
+    };
+
     // Generate structured data
-    const softwareSchema = generateSoftwareApplicationSchema(config);
+    const softwareSchema = generateSoftwareApplicationSchema(localizedConfig);
     const breadcrumbSchema = generateBreadcrumbSchema([
         { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.pdfcanada.ca/${lang}` },
-        { name: config.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
+        { name: localizedConfig.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
     ]);
 
     return (
