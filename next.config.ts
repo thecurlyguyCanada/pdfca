@@ -1,9 +1,5 @@
 import type { NextConfig } from 'next';
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
 const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
@@ -101,12 +97,6 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  // Turbopack configuration (Next.js 16+)
-  turbopack: {
-    // Empty config to silence Turbopack warning
-    // Webpack config above is for backwards compatibility
-  },
-
   // Experimental features for performance
   experimental: {
     optimizePackageImports: [
@@ -122,6 +112,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+
+  // ESLint
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default nextConfig;

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
+
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { RelatedTools } from '@/components/RelatedTools';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
-import { generateSoftwareApplicationSchema, generateBreadcrumbSchema, generateFAQSchema, generateToolFAQs } from '@/lib/structuredData';
+import { generateSoftwareApplicationSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
@@ -41,7 +41,7 @@ export async function generateMetadata({
         };
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
+    const baseUrl = 'https://www.pdfcanada.ca';
     const path = `/${tool}`;
 
     return {
@@ -62,23 +62,11 @@ export async function generateMetadata({
             url: `${baseUrl}/${lang}${path}`,
             type: 'website',
             locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
-            siteName: 'pdfcanada.ca',
-            images: [
-                {
-                    url: `${baseUrl}/og-image.png`,
-                    width: 1200,
-                    height: 630,
-                    alt: `${config.title} - Free PDF Tool Canada`,
-                },
-            ],
         },
         twitter: {
             card: 'summary_large_image',
             title: `${config.title} | pdfcanada.ca`,
             description: config.description,
-            images: [`${baseUrl}/og-image.png`],
-            site: '@pdfcanada',
-            creator: '@pdfcanada',
         },
     };
 }
@@ -102,27 +90,17 @@ export default async function ToolPage({
         { name: lang === 'fr' ? 'Accueil' : 'Home', url: `https://www.pdfcanada.ca/${lang}` },
         { name: config.title, url: `https://www.pdfcanada.ca/${lang}/${config.slug}` },
     ]);
-    const faqSchema = generateFAQSchema(generateToolFAQs(config.slug, config.title));
 
     return (
         <>
-            <Script
-                id={`schema-software-${config.slug}`}
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
             />
-            <Script
-                id={`schema-breadcrumb-${config.slug}`}
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            {faqSchema && (
-                <Script
-                    id={`schema-faq-${config.slug}`}
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-                />
-            )}
 
             <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">

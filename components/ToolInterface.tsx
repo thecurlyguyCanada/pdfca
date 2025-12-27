@@ -1,19 +1,12 @@
 'use client';
-import { logger } from '@/utils/logger';
 
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
 
 // Lazy load large/interactive components
-const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), {
-    ssr: false,
-    loading: () => <div className="flex items-center justify-center p-4"><RefreshCcw className="animate-spin text-canada-red" size={20} /></div>
-});
-const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), {
-    ssr: false,
-    loading: () => <div className="flex items-center justify-center p-4"><RefreshCcw className="animate-spin text-canada-red" size={20} /></div>
-});
+const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
+const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), { ssr: false });
 const SignPdfTool = dynamic(() => import('./SignPdfTool').then(mod => mod.SignPdfTool), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
@@ -257,7 +250,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                 <div className="relative z-10 space-y-6">
                     <div className="space-y-2">
-                        <h1 className="text-3xl md:text-5xl font-[1000] text-modern-neutral-900 tracking-tighter lowercase italic leading-none">{tool?.title}</h1>
+                        <h3 className="text-3xl md:text-5xl font-[1000] text-modern-neutral-900 tracking-tighter lowercase italic leading-none">{tool?.title}</h3>
                         <p className="text-modern-neutral-600 font-bold max-w-sm mx-auto leading-relaxed text-sm md:text-base">
                             {t.uploadDesc} <br />
                             <span className="text-canada-red font-black text-[10px] tracking-[0.2em] uppercase mt-2 inline-block">({tool?.accept})</span>
@@ -533,7 +526,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const signedPdf = await signPdf(file, entries);
                                 onAction(signedPdf);
                             } catch (e) {
-                                logger.error("Signing failed", e);
+                                console.error("Signing failed", e);
                             }
                         }}
                     />
@@ -580,7 +573,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const croppedPdf = await cropPdfPages(file, margins, pageIndices);
                                 onAction(croppedPdf);
                             } catch (e) {
-                                logger.error("Cropping failed", e);
+                                console.error("Cropping failed", e);
                             }
                         }}
 

@@ -132,18 +132,14 @@ export default async function RootLayout({
     const { lang } = await params;
 
     return (
-        <html lang={lang}>
+        <html lang={lang} className={inter.variable}>
             <head>
                 {/* DNS prefetch for external resources */}
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
-                <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-                <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
                 {/* Preconnect for critical third parties */}
                 <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
-                <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             </head>
-            <body className={`${inter.variable} antialiased font-sans`}>
+            <body className={`${inter.className} antialiased`}>
                 <ErrorBoundary>
                     {children}
                 </ErrorBoundary>

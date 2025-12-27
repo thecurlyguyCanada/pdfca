@@ -1,8 +1,5 @@
 import { MetadataRoute } from 'next';
 
-// Use Edge Runtime for fastest delivery to crawlers
-export const runtime = 'edge';
-
 export default function robots(): MetadataRoute.Robots {
     return {
         rules: {

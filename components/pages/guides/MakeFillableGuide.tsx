@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import React from 'react';
 import { PenTool, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, FileText, CheckSquare, PencilLine } from 'lucide-react';

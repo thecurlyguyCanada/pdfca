@@ -2,58 +2,39 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { i18n } from './lib/i18n-config';
 
+// Optimized middleware for i18n routing
 export function middleware(request: NextRequest) {
-    const pathname = request.nextUrl.pathname;
+    const { pathname } = request.nextUrl;
 
-    // Early return for root path
-    if (pathname === '/') {
-        const locale = getLocale(request) || i18n.defaultLocale;
-        return NextResponse.redirect(new URL(`/${locale}`, request.url));
+    // Fast path: Skip all static files early
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.startsWith('/api') ||
+        pathname.includes('.') ||
+        pathname === '/favicon.ico'
+    ) {
+        return;
     }
 
-    // Check if the pathname already has a locale (more efficient check)
+    // Check if locale is present
     const pathnameHasLocale = i18n.locales.some(
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    // Only redirect if locale is missing
-    if (!pathnameHasLocale) {
-        const locale = getLocale(request) || i18n.defaultLocale;
-        return NextResponse.redirect(
-            new URL(`/${locale}${pathname}`, request.url)
-        );
-    }
-}
-
-function getLocale(request: NextRequest): string | undefined {
-    // Try to get locale from Accept-Language header
-    const acceptLanguage = request.headers.get('accept-language');
-
-    if (!acceptLanguage) {
-        return i18n.defaultLocale;
+    if (pathnameHasLocale) {
+        return;
     }
 
-    // Parse the Accept-Language header
-    const languages = acceptLanguage
-        .split(',')
-        .map((lang) => {
-            const [locale, q = 'q=1'] = lang.trim().split(';');
-            const quality = parseFloat(q.replace('q=', ''));
-            return { locale: locale.toLowerCase().split('-')[0], quality };
-        })
-        .sort((a, b) => b.quality - a.quality);
+    // Redirect to default locale
+    const url = request.nextUrl.clone();
+    url.pathname = `/${i18n.defaultLocale}${pathname}`;
 
-    // Find the first matching locale
-    for (const { locale } of languages) {
-        if (i18n.locales.includes(locale as any)) {
-            return locale;
-        }
-    }
-
-    return i18n.defaultLocale;
+    return NextResponse.redirect(url, { status: 308 }); // Permanent redirect for SEO
 }
 
 export const config = {
-    // Matcher ignoring `/_next/` and `/api/`
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)'],
+    matcher: [
+        // Match all paths except static files
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff|woff2)).*)',
+    ],
 };

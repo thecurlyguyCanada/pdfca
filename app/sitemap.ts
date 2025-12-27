@@ -3,17 +3,7 @@ import { getAllToolSlugs } from '@/lib/toolConfig';
 import { getAllGuideSlugs } from '@/lib/guideConfig';
 import { i18n, Locale } from '@/lib/i18n-config';
 
-// Use Edge Runtime for fastest sitemap delivery to crawlers
-export const runtime = 'edge';
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
-
-// Dynamic lastModified dates - updates with each build for freshness signals to crawlers
-const BUILD_DATE = new Date();
-const LAST_MODIFIED_HOMEPAGE = BUILD_DATE;
-const LAST_MODIFIED_TOOLS = BUILD_DATE;
-const LAST_MODIFIED_GUIDES = BUILD_DATE;
-const LAST_MODIFIED_STATIC = BUILD_DATE;
+const baseUrl = 'https://www.pdfcanada.ca';
 
 // Static pages that should be in sitemap
 const staticPages = ['about', 'howto', 'support', 'privacy', 'terms'];
@@ -38,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Homepage with alternates
     routes.push({
         url: `${baseUrl}/en`,
-        lastModified: LAST_MODIFIED_HOMEPAGE,
+        lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
         alternates: {
@@ -52,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     routes.push({
         url: `${baseUrl}/fr`,
-        lastModified: LAST_MODIFIED_HOMEPAGE,
+        lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
         alternates: {
@@ -69,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         locales.forEach((lang) => {
             routes.push({
                 url: `${baseUrl}/${lang}/${page}`,
-                lastModified: LAST_MODIFIED_STATIC,
+                lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.6,
                 alternates: {
@@ -88,7 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         locales.forEach((lang) => {
             routes.push({
                 url: `${baseUrl}/${lang}/${slug}`,
-                lastModified: LAST_MODIFIED_TOOLS,
+                lastModified: new Date(),
                 changeFrequency: 'weekly',
                 priority: 0.9,
                 alternates: {
@@ -107,7 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         locales.forEach((lang) => {
             routes.push({
                 url: `${baseUrl}/${lang}/guides/${slug}`,
-                lastModified: LAST_MODIFIED_GUIDES,
+                lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.8,
                 alternates: {

@@ -11,7 +11,7 @@ interface MetadataOptions {
     noIndex?: boolean;
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pdfcanada.ca';
+const BASE_URL = 'https://www.pdfcanada.ca';
 
 /**
  * Enhanced Metadata Generator for pdfcanada.ca
@@ -58,7 +58,7 @@ export function constructMetadata({
             type: 'website',
             images: [
                 {
-                    url: image.startsWith('http') ? image : `${BASE_URL}${image}`,
+                    url: image,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -69,7 +69,7 @@ export function constructMetadata({
             card: 'summary_large_image',
             title: `${title} | pdfcanada.ca`,
             description,
-            images: [image.startsWith('http') ? image : `${BASE_URL}${image}`],
+            images: [image],
             site: '@pdfcanada',
             creator: '@pdfcanada',
         },

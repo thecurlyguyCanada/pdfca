@@ -1,5 +1,5 @@
 import React from 'react';
-import Script from 'next/script';
+
 import { Language } from '../utils/i18n';
 import { URLS, getFullUrl, getAssetUrl } from '../config/urls';
 import { ORGANIZATION } from '../config/organization';
@@ -133,6 +133,9 @@ export function SEO({
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
 
+  const safeTitle = typeof title === 'string' ? title : '';
+  const schemaName = safeTitle.includes('|') ? safeTitle.split('|')[0].trim() : safeTitle;
+
   // 1. Add Core Schemas
   if (!noOrganization) {
     allSchemas.push(organizationSchema);
@@ -156,7 +159,7 @@ export function SEO({
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": title.split('|')[0].trim(),
+      "name": schemaName,
       "operatingSystem": "Web Browser",
       "applicationCategory": "BusinessApplication",
       "offers": {
@@ -197,7 +200,26 @@ export function SEO({
     });
   }
 
-  // 6. Breadcrumbs Schema
+  // 6. HowTo Schema (Expert Enhancement)
+  const howToSteps = steps || quickAnswer?.steps?.map(step => ({ name: step, text: step }));
+
+  if (howToSteps && howToSteps.length > 0) {
+    allSchemas.push({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": schemaName,
+      "description": description,
+      "step": howToSteps.map((step, index) => ({
+        "@type": "HowToStep",
+        "position": index + 1,
+        "name": step.name,
+        "text": step.text,
+        "url": `${getFullUrl(canonicalPath)}#step-${index + 1}`
+      }))
+    });
+  }
+
+  // 7. Breadcrumbs Schema
   if (breadcrumbs && breadcrumbs.length > 0) {
     allSchemas.push({
       "@context": "https://schema.org",
@@ -211,7 +233,7 @@ export function SEO({
     });
   }
 
-  // 7. Custom Schemas
+  // 8. Custom Schemas
   if (schema) {
     const pageSchemas = Array.isArray(schema) ? schema : [schema];
     allSchemas.push(...pageSchemas);
@@ -220,9 +242,8 @@ export function SEO({
   return (
     <>
       {allSchemas.map((schemaItem, index) => (
-        <Script
+        <script
           key={`schema-${index}`}
-          id={`schema-${index}-${canonicalPath.replace(/\//g, '-')}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaItem) }}
         />

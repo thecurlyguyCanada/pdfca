@@ -4,7 +4,6 @@
 import { PDF_CONFIG, getHeadingFontSize, getLineHeight } from '../config/pdf';
 import { getCompressionScale, getCompressionQuality } from '../config/compression';
 import type { CompressionLevel } from '../config/compression';
-import { logger, logError } from './logger';
 
 let pdfjsLib: any = null;
 let workerInitialized = false;
@@ -60,7 +59,7 @@ const getDocx = async () => {
     const docx = await import('docx');
     return docx;
   } catch (error) {
-    logger.error('Failed to load docx library:', error);
+    console.error('Failed to load docx library:', error);
     throw new Error('ERR_LIB_LOAD_FAILED_DOCX');
   }
 };
@@ -71,7 +70,7 @@ const getMammoth = async () => {
     const mammoth = await import('mammoth');
     return mammoth;
   } catch (error) {
-    logger.error('Failed to load mammoth library:', error);
+    console.error('Failed to load mammoth library:', error);
     throw new Error('ERR_LIB_LOAD_FAILED_MAMMOTH');
   }
 };
@@ -82,7 +81,7 @@ const getJsPdf = async () => {
     const mod = await import('jspdf');
     return (mod as any).jsPDF || mod.default || mod;
   } catch (error) {
-    logger.error('Failed to load jspdf library:', error);
+    console.error('Failed to load jspdf library:', error);
     throw new Error('ERR_LIB_LOAD_FAILED_JSPDF');
   }
 };
@@ -92,7 +91,7 @@ const getExcelJs = async () => {
     const ExcelJS = await import('exceljs');
     return ExcelJS;
   } catch (error) {
-    logger.error('Failed to load exceljs library:', error);
+    console.error('Failed to load exceljs library:', error);
     throw new Error('ERR_LIB_LOAD_FAILED_EXCELJS');
   }
 };
@@ -272,7 +271,7 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
         }
       }
     } catch (e) {
-      logger.warn(`Smart detection failed for page ${pageIndex}, falling back to manual mode.`, e);
+      console.warn(`Smart detection failed for page ${pageIndex}, falling back to manual mode.`, e);
     }
 
     if (!pageHasFields) {
@@ -394,7 +393,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
             try {
               image = await doc.embedJpg(imageBytes);
             } catch (e) {
-              logger.warn('Could not embed signature image - unsupported format');
+              console.warn('Could not embed signature image - unsupported format');
               continue;
             }
           }
@@ -407,7 +406,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
           height,
         });
       } catch (e) {
-        logger.error("Failed to embed signature image", e);
+        console.error("Failed to embed signature image", e);
       }
     } else if (entry.type === 'text' || entry.type === 'date') {
       const text = entry.text || '';
@@ -448,7 +447,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
       blobs.push(convertedBlobOrBlobs);
     }
   } catch (error) {
-    logger.error("HEIC conversion failed:", error);
+    console.error("HEIC conversion failed:", error);
     throw new Error("Could not process HEIC file. The file might be corrupted or in an unsupported format.");
   }
 
@@ -722,7 +721,7 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
         });
       }
     } catch (e) {
-      logger.warn(`Failed to embed image ${img.name}`, e);
+      console.warn(`Failed to embed image ${img.name}`, e);
     }
 
     // Yield to avoid freezing during large comic conversion
@@ -839,7 +838,7 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
               images.push({ data: bytes, width, height, x, y });
             }
           }
-        } catch (err) { logger.warn("Image extraction failed", err); }
+        } catch (err) { console.warn("Image extraction failed", err); }
       }
     }
 
@@ -1084,7 +1083,7 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
               img.onerror = () => resolve();
               img.src = src;
             });
-          } catch (e) { logger.warn("Failed to add image", e); }
+          } catch (e) { console.warn("Failed to add image", e); }
         }
       } else {
         // Recurse for non-images
@@ -1140,7 +1139,7 @@ export const flattenPdf = async (file: File): Promise<Uint8Array> => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (!context) {
-      logger.error(`Failed to get 2D context for page ${i}`);
+      console.error(`Failed to get 2D context for page ${i}`);
       continue;
     }
     canvas.height = viewport.height;
@@ -1321,7 +1320,7 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
     addPdfMetadata(mergedPdf, 'Merged PDF');
     return await mergedPdf.save();
   } catch (error) {
-    logger.error('Error in mergePdfs:', error);
+    console.error('Error in mergePdfs:', error);
     throw new Error('Failed to merge PDFs. One of the files might be corrupted or password protected.');
   }
 };

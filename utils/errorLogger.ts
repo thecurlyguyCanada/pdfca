@@ -1,5 +1,3 @@
-import { logger } from '@/utils/logger';
-
 /**
  * Error Logger Utility
  * Handles error reporting and tracking across the application.
@@ -15,7 +13,7 @@ export const logError = (error: Error | string, metadata?: ErrorMetadata) => {
 
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
-        logger.error(`[Error Logger] ${timestamp}:`, error, metadata);
+        console.error(`[Error Logger] ${timestamp}:`, error, metadata);
     }
 
     // Persistent logging for debugging (local storage for anonymous tracking)
@@ -41,7 +39,7 @@ export const logError = (error: Error | string, metadata?: ErrorMetadata) => {
 
     } catch (e) {
         // Fail silently to avoid infinite error loops
-        logger.error('Failed to log error:', e);
+        console.error('Failed to log error:', e);
     }
 };
 

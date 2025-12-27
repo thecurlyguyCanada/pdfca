@@ -4,16 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 
 interface MarkdownContentProps {
-    content: string | React.ReactNode;
+    content: string;
     className?: string;
 }
 
 export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, className = '' }) => {
-    // If content is not a string (e.g., it's already a React element), render it directly
-    if (typeof content !== 'string') {
-        return <div className={`markdown-content ${className}`}>{content}</div>;
-    }
-
     // Simple markdown parser for basic formatting
     // Supports:
     // - **Bold**
@@ -165,6 +160,10 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
             }
         }
     };
+
+    if (typeof content !== 'string') {
+        return <div className={className}>{content}</div>;
+    }
 
     return (
         <div className={`markdown-content ${className}`}>
