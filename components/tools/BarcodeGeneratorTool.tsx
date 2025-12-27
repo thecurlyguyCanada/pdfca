@@ -82,7 +82,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             triggerHaptic('success');
         } catch (err) {
             console.error('File parsing error:', err);
-            alert('Failed to parse file. Please check the format.');
+            alert(t.barcode?.errorFile || 'Failed to parse file. Please check the format.');
             triggerHaptic('error');
         } finally {
             setIsGenerating(false);
@@ -157,7 +157,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
         const end = parseInt(sequenceEnd);
 
         if (isNaN(start) || isNaN(end) || start > end) {
-            alert('Please enter valid start and end numbers (start ≤ end)');
+            alert(t.barcode?.errorInvalid || 'Please enter valid start and end numbers (start ≤ end)');
             return;
         }
 
@@ -179,7 +179,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
 
         const success = generateBarcode(item.text, item.id);
         if (!success) {
-            alert('Failed to generate barcode. Please check the input.');
+            alert(t.barcode?.errorGenerate || 'Failed to generate barcode. Please check the input.');
             return;
         }
 
@@ -224,7 +224,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
         try {
             const validItems = barcodeItems.filter(item => item.text.trim());
             if (validItems.length === 0) {
-                alert('Please add at least one barcode');
+                alert(t.barcode?.errorMinBarcodes || 'Please add at least one barcode');
                 return;
             }
 
@@ -263,7 +263,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             triggerHaptic('success');
         } catch (err) {
             console.error('PDF export error:', err);
-            alert('Failed to export PDF');
+            alert(t.barcode?.errorExport || 'Failed to export PDF');
             triggerHaptic('error');
         } finally {
             setIsGenerating(false);
@@ -298,10 +298,10 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 mb-6 text-white">
                 <div className="flex items-center gap-3 mb-2">
                     <Barcode className="w-8 h-8" />
-                    <h1 className="text-2xl sm:text-3xl font-bold">Code 128 Barcode Generator</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold">{t.barcode?.title || 'Code 128 Barcode Generator'}</h1>
                 </div>
                 <p className="text-blue-100">
-                    Professional barcode generation with bulk support, multiple formats, and advanced customization
+                    {t.barcode?.subtitle || 'Professional barcode generation with bulk support, multiple formats, and advanced customization'}
                 </p>
             </div>
 
@@ -316,7 +316,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     }`}
                 >
                     <Barcode className="w-5 h-5" />
-                    Single/Manual
+                    {t.barcode?.singleMode || 'Single/Manual'}
                 </button>
                 <button
                     onClick={() => setBulkMode(true)}
@@ -327,7 +327,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     }`}
                 >
                     <Grid3x3 className="w-5 h-5" />
-                    Bulk Generation
+                    {t.barcode?.bulkMode || 'Bulk Generation'}
                 </button>
             </div>
 
@@ -336,46 +336,46 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                 <div className="bg-white border-2 border-blue-200 rounded-lg p-6 mb-6">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                         <Grid3x3 className="w-5 h-5" />
-                        Generate Sequence
+                        {t.barcode?.sequenceTitle || 'Generate Sequence'}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-sm font-medium mb-1">Prefix (Optional)</label>
+                            <label className="block text-sm font-medium mb-1">{t.barcode?.prefixLabel || 'Prefix (Optional)'}</label>
                             <input
                                 type="text"
                                 value={sequencePrefix}
                                 onChange={(e) => setSequencePrefix(e.target.value)}
-                                placeholder="e.g., BC"
+                                placeholder={t.barcode?.prefixPlaceholder || 'e.g., BC'}
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Suffix (Optional)</label>
+                            <label className="block text-sm font-medium mb-1">{t.barcode?.suffixLabel || 'Suffix (Optional)'}</label>
                             <input
                                 type="text"
                                 value={sequenceSuffix}
                                 onChange={(e) => setSequenceSuffix(e.target.value)}
-                                placeholder="e.g., -A"
+                                placeholder={t.barcode?.suffixPlaceholder || 'e.g., -A'}
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Start Number *</label>
+                            <label className="block text-sm font-medium mb-1">{t.barcode?.startLabel || 'Start Number *'}</label>
                             <input
                                 type="number"
                                 value={sequenceStart}
                                 onChange={(e) => setSequenceStart(e.target.value)}
-                                placeholder="1"
+                                placeholder={t.barcode?.startPlaceholder || '1'}
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">End Number *</label>
+                            <label className="block text-sm font-medium mb-1">{t.barcode?.endLabel || 'End Number *'}</label>
                             <input
                                 type="number"
                                 value={sequenceEnd}
                                 onChange={(e) => setSequenceEnd(e.target.value)}
-                                placeholder="100"
+                                placeholder={t.barcode?.endPlaceholder || '100'}
                                 className="w-full border rounded px-3 py-2"
                             />
                         </div>
@@ -385,10 +385,10 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition flex items-center justify-center gap-2"
                     >
                         <Plus className="w-5 h-5" />
-                        Generate Sequence
+                        {t.barcode?.generateBtn || 'Generate Sequence'}
                     </button>
                     <p className="text-sm text-gray-600 mt-2">
-                        Example: Prefix "BC" + Numbers 1-100 + Suffix "A" = BC1A, BC2A, ... BC100A
+                        {t.barcode?.sequenceExample || 'Example: Prefix "BC" + Numbers 1-100 + Suffix "A" = BC1A, BC2A, ... BC100A'}
                     </p>
                 </div>
             )}
@@ -397,24 +397,24 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             <div className="bg-white border rounded-lg p-6 mb-6">
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <Settings className="w-5 h-5" />
-                    Barcode Settings
+                    {t.barcode?.settingsTitle || 'Barcode Settings'}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
-                        <label className="block text-sm font-medium mb-1">Format</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.formatLabel || 'Format'}</label>
                         <select
                             value={format}
                             onChange={(e) => setFormat(e.target.value as BarcodeFormat)}
                             className="w-full border rounded px-3 py-2"
                         >
-                            <option value="CODE128">CODE128 (Auto)</option>
-                            <option value="CODE128A">CODE128A (Uppercase)</option>
-                            <option value="CODE128B">CODE128B (Mixed Case)</option>
-                            <option value="CODE128C">CODE128C (Numeric Only)</option>
+                            <option value="CODE128">{t.barcode?.formatAuto || 'CODE128 (Auto)'}</option>
+                            <option value="CODE128A">{t.barcode?.formatA || 'CODE128A (Uppercase)'}</option>
+                            <option value="CODE128B">{t.barcode?.formatB || 'CODE128B (Mixed Case)'}</option>
+                            <option value="CODE128C">{t.barcode?.formatC || 'CODE128C (Numeric Only)'}</option>
                         </select>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Bar Width: {width}px</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.widthLabel || 'Bar Width'}: {width}px</label>
                         <input
                             type="range"
                             min="1"
@@ -426,7 +426,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Height: {height}px</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.heightLabel || 'Height'}: {height}px</label>
                         <input
                             type="range"
                             min="50"
@@ -437,7 +437,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Font Size: {fontSize}px</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.fontSizeLabel || 'Font Size'}: {fontSize}px</label>
                         <input
                             type="range"
                             min="10"
@@ -448,7 +448,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Background Color</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.bgColorLabel || 'Background Color'}</label>
                         <input
                             type="color"
                             value={background}
@@ -457,7 +457,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Bar Color</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.barColorLabel || 'Bar Color'}</label>
                         <input
                             type="color"
                             value={lineColor}
@@ -474,19 +474,19 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                             className="mr-2"
                         />
                         <label htmlFor="displayValue" className="text-sm font-medium">
-                            Show Text Below Barcode
+                            {t.barcode?.showTextLabel || 'Show Text Below Barcode'}
                         </label>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Export Format</label>
+                        <label className="block text-sm font-medium mb-1">{t.barcode?.exportFormatLabel || 'Export Format'}</label>
                         <select
                             value={exportFormat}
                             onChange={(e) => setExportFormat(e.target.value as ExportFormat)}
                             className="w-full border rounded px-3 py-2"
                         >
-                            <option value="PNG">PNG Image</option>
-                            <option value="SVG">SVG Vector</option>
-                            <option value="PDF">PDF Document</option>
+                            <option value="PNG">{t.barcode?.exportPNG || 'PNG Image'}</option>
+                            <option value="SVG">{t.barcode?.exportSVG || 'SVG Vector'}</option>
+                            <option value="PDF">{t.barcode?.exportPDF || 'PDF Document'}</option>
                         </select>
                     </div>
                 </div>
@@ -503,7 +503,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                         type="text"
                                         value={item.text}
                                         onChange={(e) => updateBarcodeText(item.id, e.target.value)}
-                                        placeholder="Enter barcode data (e.g., BC123456789)"
+                                        placeholder={t.barcode?.inputPlaceholder || 'Enter barcode data (e.g., BC123456789)'}
                                         className="flex-1 border rounded px-3 py-2"
                                     />
                                     {!bulkMode && barcodeItems.length > 1 && (
@@ -531,7 +531,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                                 className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition flex items-center gap-2"
                                             >
                                                 <Download className="w-4 h-4" />
-                                                Download {exportFormat}
+                                                {t.barcode?.downloadBtn || 'Download'} {exportFormat}
                                             </button>
                                             <button
                                                 onClick={() => copyToClipboard(item)}
@@ -542,7 +542,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                                 ) : (
                                                     <Copy className="w-4 h-4" />
                                                 )}
-                                                {copiedId === item.id ? 'Copied!' : 'Copy'}
+                                                {copiedId === item.id ? (t.barcode?.copiedBtn || 'Copied!') : (t.barcode?.copyBtn || 'Copy')}
                                             </button>
                                         </div>
                                     </div>
@@ -561,7 +561,7 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition flex items-center gap-2"
                     >
                         <Plus className="w-5 h-5" />
-                        Add Another Barcode
+                        {t.barcode?.addBtn || 'Add Another Barcode'}
                     </button>
                 )}
                 {barcodeItems.length > 1 && exportFormat === 'PDF' && (
@@ -575,22 +575,22 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         ) : (
                             <FilePdf className="w-5 h-5" />
                         )}
-                        Export All as PDF ({barcodeItems.filter(i => i.text).length} barcodes)
+                        {t.barcode?.exportAllBtn || 'Export All as PDF'} ({barcodeItems.filter(i => i.text).length} {t.barcode?.barcodes || 'barcodes'})
                     </button>
                 )}
             </div>
 
             {/* Info Section */}
             <div className="mt-8 bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
-                <h4 className="font-semibold mb-2">Code 128 Features:</h4>
+                <h4 className="font-semibold mb-2">{t.barcode?.infoTitle || 'Code 128 Features:'}</h4>
                 <ul className="text-sm space-y-1 text-gray-700">
-                    <li>• <strong>CODE128:</strong> Auto-selects best encoding for your data</li>
-                    <li>• <strong>CODE128A:</strong> Uppercase letters and control characters</li>
-                    <li>• <strong>CODE128B:</strong> Full ASCII (uppercase, lowercase, symbols)</li>
-                    <li>• <strong>CODE128C:</strong> Numeric only (most compact for numbers)</li>
-                    <li>• Bulk generation from sequences or Excel/CSV files</li>
-                    <li>• Export as PNG, SVG, or multi-page PDF</li>
-                    <li>• Customizable colors, sizes, and fonts</li>
+                    <li>• <strong>CODE128:</strong> {t.barcode?.infoAuto || 'Auto-selects best encoding for your data'}</li>
+                    <li>• <strong>CODE128A:</strong> {t.barcode?.infoA || 'Uppercase letters and control characters'}</li>
+                    <li>• <strong>CODE128B:</strong> {t.barcode?.infoB || 'Full ASCII (uppercase, lowercase, symbols)'}</li>
+                    <li>• <strong>CODE128C:</strong> {t.barcode?.infoC || 'Numeric only (most compact for numbers)'}</li>
+                    <li>• {t.barcode?.infoBulk || 'Bulk generation from sequences or Excel/CSV files'}</li>
+                    <li>• {t.barcode?.infoExport || 'Export as PNG, SVG, or multi-page PDF'}</li>
+                    <li>• {t.barcode?.infoCustom || 'Customizable colors, sizes, and fonts'}</li>
                 </ul>
             </div>
 
