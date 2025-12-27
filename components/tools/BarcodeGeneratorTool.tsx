@@ -414,54 +414,64 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         </select>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.widthLabel || 'Bar Width'}: {width}px</label>
+                        <label htmlFor="barcode-width" className="block text-sm font-medium mb-1">{t.barcode?.widthLabel || 'Bar Width'}: {width}px</label>
                         <input
+                            id="barcode-width"
                             type="range"
                             min="1"
                             max="5"
                             step="0.5"
                             value={width}
                             onChange={(e) => setWidth(parseFloat(e.target.value))}
+                            aria-label={`${t.barcode?.widthLabel || 'Bar Width'}: ${width} pixels`}
                             className="w-full"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.heightLabel || 'Height'}: {height}px</label>
+                        <label htmlFor="barcode-height" className="block text-sm font-medium mb-1">{t.barcode?.heightLabel || 'Height'}: {height}px</label>
                         <input
+                            id="barcode-height"
                             type="range"
                             min="50"
                             max="200"
                             value={height}
                             onChange={(e) => setHeight(parseInt(e.target.value))}
+                            aria-label={`${t.barcode?.heightLabel || 'Height'}: ${height} pixels`}
                             className="w-full"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.fontSizeLabel || 'Font Size'}: {fontSize}px</label>
+                        <label htmlFor="barcode-fontsize" className="block text-sm font-medium mb-1">{t.barcode?.fontSizeLabel || 'Font Size'}: {fontSize}px</label>
                         <input
+                            id="barcode-fontsize"
                             type="range"
                             min="10"
                             max="30"
                             value={fontSize}
                             onChange={(e) => setFontSize(parseInt(e.target.value))}
+                            aria-label={`${t.barcode?.fontSizeLabel || 'Font Size'}: ${fontSize} pixels`}
                             className="w-full"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.bgColorLabel || 'Background Color'}</label>
+                        <label htmlFor="barcode-bgcolor" className="block text-sm font-medium mb-1">{t.barcode?.bgColorLabel || 'Background Color'}</label>
                         <input
+                            id="barcode-bgcolor"
                             type="color"
                             value={background}
                             onChange={(e) => setBackground(e.target.value)}
+                            aria-label={t.barcode?.bgColorLabel || 'Background Color'}
                             className="w-full h-10 border rounded"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.barColorLabel || 'Bar Color'}</label>
+                        <label htmlFor="barcode-linecolor" className="block text-sm font-medium mb-1">{t.barcode?.barColorLabel || 'Bar Color'}</label>
                         <input
+                            id="barcode-linecolor"
                             type="color"
                             value={lineColor}
                             onChange={(e) => setLineColor(e.target.value)}
+                            aria-label={t.barcode?.barColorLabel || 'Bar Color'}
                             className="w-full h-10 border rounded"
                         />
                     </div>
@@ -504,11 +514,13 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                         value={item.text}
                                         onChange={(e) => updateBarcodeText(item.id, e.target.value)}
                                         placeholder={t.barcode?.inputPlaceholder || 'Enter barcode data (e.g., BC123456789)'}
+                                        aria-label={`Barcode data input ${index + 1}`}
                                         className="flex-1 border rounded px-3 py-2"
                                     />
                                     {!bulkMode && barcodeItems.length > 1 && (
                                         <button
                                             onClick={() => removeBarcodeItem(item.id)}
+                                            aria-label={`Remove barcode ${index + 1}`}
                                             className="px-3 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
                                         >
                                             <Trash2 className="w-5 h-5" />
