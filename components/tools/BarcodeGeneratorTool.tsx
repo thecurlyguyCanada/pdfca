@@ -294,6 +294,85 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
 
     return (
         <div className="max-w-7xl mx-auto p-4 sm:p-6">
+            {/* Structured Data for SEO */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'SoftwareApplication',
+                        name: 'Code 128 Barcode Generator',
+                        applicationCategory: 'BusinessApplication',
+                        offers: {
+                            '@type': 'Offer',
+                            price: '0',
+                            priceCurrency: 'CAD'
+                        },
+                        operatingSystem: 'Web Browser',
+                        description: 'Free online Code 128 barcode generator with bulk creation, multiple export formats (PNG, SVG, PDF), and advanced customization options',
+                        featureList: [
+                            'Generate Code 128, Code 128A, Code 128B, and Code 128C barcodes',
+                            'Bulk barcode generation from sequences or Excel/CSV files',
+                            'Export as PNG, SVG, or multi-page PDF',
+                            'Customizable colors, sizes, and fonts',
+                            '100% free with no watermarks'
+                        ],
+                        browserRequirements: 'Requires JavaScript. Works in Chrome, Firefox, Safari, Edge'
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: [
+                            {
+                                '@type': 'Question',
+                                name: 'What is a Code 128 barcode?',
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: 'Code 128 is a high-density linear barcode symbology that can encode all 128 ASCII characters. Developed in 1981, it\'s one of the most versatile 1D barcode formats available and is widely used in shipping, healthcare, retail, and manufacturing for its ability to store diverse data types efficiently.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                name: 'Is this Code 128 barcode generator free to use?',
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: 'Yes, our Code 128 barcode generator is completely free to use for personal and commercial purposes. You can generate unlimited barcodes, download them in multiple formats, and use them in your projects without any restrictions or watermarks.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                name: 'What file formats can I download the barcodes in?',
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: 'Our generator supports three formats: PNG (raster image, great for digital use), SVG (vector format, scalable without quality loss, ideal for professional printing), and PDF (multi-page documents for bulk barcodes, perfect for printing multiple labels).'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                name: 'Can I generate barcodes in bulk?',
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: 'Absolutely! Switch to Bulk Generation mode to create multiple barcodes at once. You can generate sequential barcodes (e.g., 1-1000 with custom prefixes/suffixes) or upload an Excel/CSV file containing your barcode data. Export all barcodes as a single multi-page PDF for easy printing.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                name: 'What\'s the difference between Code 128, Code 128A, Code 128B, and Code 128C?',
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: 'Code 128 (Auto) automatically selects the best character set for your data. Code 128A encodes uppercase letters, digits, and control characters. Code 128B encodes the full ASCII character set including upper/lowercase letters and symbols. Code 128C encodes only numeric pairs and is the most compact for number-only data.'
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
+
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 mb-6 text-white">
                 <div className="flex items-center gap-3 mb-2">
