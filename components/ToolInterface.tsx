@@ -391,18 +391,58 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div className="w-full mb-4 z-10 py-2">
                             {(currentTool === ToolType.DELETE || currentTool === ToolType.PDF_PAGE_REMOVER) && (
                                 <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
-                                    <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
+                                    <div className="bg-blue-50 text-blue-800 p-4 rounded-xl mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
                                         <Info size={18} className="mt-0.5 shrink-0" />
                                         <p>{t.deletePagesInfo}</p>
                                     </div>
 
-                                    <div className="flex items-center justify-between mb-2 px-1">
-                                        <span className="font-medium text-gray-700">{t.totalPages}: {pageCount}</span>
+                                    <div className="flex items-center justify-between mb-3 px-1">
+                                        <span className="font-bold text-gray-900">{t.totalPages}: <span className="text-canada-red">{pageCount}</span></span>
                                         {selectedPages.size > 0 && (
-                                            <span className="text-xs font-bold bg-canada-red text-white px-2 py-1 rounded-full shadow-sm">
+                                            <span className="text-xs font-bold bg-canada-red text-white px-3 py-1.5 rounded-full shadow-sm animate-pulse">
                                                 {selectedPages.size} {t.selected}
                                             </span>
                                         )}
+                                    </div>
+
+                                    {/* Quick Actions for Mobile */}
+                                    <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+                                        <button
+                                            onClick={() => {
+                                                triggerHaptic('light');
+                                                const allPages = new Set(Array.from({ length: pageCount }, (_, i) => i));
+                                                setSelectedPages(allPages);
+                                            }}
+                                            className="flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 active:scale-95 active:bg-red-50 transition-all text-xs font-bold text-gray-600 whitespace-nowrap min-h-[40px]"
+                                        >
+                                            {t.selectAll || 'All'}
+                                        </button>
+                                        <button
+                                            onClick={() => { triggerHaptic('light'); setSelectedPages(new Set()); }}
+                                            className="flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-400 active:scale-95 active:bg-gray-50 transition-all text-xs font-bold text-gray-600 whitespace-nowrap min-h-[40px]"
+                                        >
+                                            {t.selectNone || 'None'}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                triggerHaptic('light');
+                                                const oddPages = new Set(Array.from({ length: pageCount }, (_, i) => i).filter(i => i % 2 === 0));
+                                                setSelectedPages(oddPages);
+                                            }}
+                                            className="flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 active:scale-95 active:bg-red-50 transition-all text-xs font-bold text-gray-600 whitespace-nowrap min-h-[40px]"
+                                        >
+                                            {t.selectOdd || 'Odd'}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                triggerHaptic('light');
+                                                const evenPages = new Set(Array.from({ length: pageCount }, (_, i) => i).filter(i => i % 2 === 1));
+                                                setSelectedPages(evenPages);
+                                            }}
+                                            className="flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 active:scale-95 active:bg-red-50 transition-all text-xs font-bold text-gray-600 whitespace-nowrap min-h-[40px]"
+                                        >
+                                            {t.selectEven || 'Even'}
+                                        </button>
                                     </div>
 
                                     <div className="flex flex-col gap-2">
@@ -416,8 +456,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                             spellCheck="false"
                                             value={pageRangeInput}
                                             onChange={handleRangeInputChange}
-                                            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-canada-red focus:border-transparent outline-none transition-all shadow-sm text-base text-gray-800 placeholder-gray-400"
-                                            placeholder="e.g. 3-5, 8-9"
+                                            className="w-full border-2 border-gray-200 rounded-xl p-4 focus:ring-2 focus:ring-canada-red focus:border-canada-red outline-none transition-all shadow-sm text-base text-gray-800 placeholder-gray-400 min-h-[52px]"
+                                            placeholder="e.g. 1, 3-5, 8"
                                         />
                                     </div>
                                 </div>
@@ -579,40 +619,75 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                     />
                 ) : isCompressTool ? (
-                    <div className="flex-grow flex flex-col items-center justify-center p-6 w-full max-w-2xl mx-auto">
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 w-full">
-                            <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">{t.toolCompress || "Select Compression Level"}</h3>
+                    <div className="flex-grow flex flex-col items-center justify-center p-4 md:p-6 w-full max-w-2xl mx-auto">
+                        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-5 md:p-8 w-full">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-gradient-to-br from-canada-red to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-500/20">
+                                    <Search size={28} className="text-white" />
+                                </div>
+                                <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-2">{t.toolCompress || "Compression Level"}</h3>
+                                <p className="text-sm text-gray-500">{t.selectCompression || "Choose how much to reduce file size"}</p>
+                            </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 gap-3 md:gap-4">
                                 <button
-                                    onClick={() => setCompressionLevel && setCompressionLevel('good')}
-                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'good' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                    onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('good'); }}
+                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'good' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">{t.compressGood || 'Good'}</div>
-                                    <div className="text-xs text-gray-500">{t.compressGoodDesc || 'Best quality, selectable text.'}</div>
+                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'good' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                        <FileSearch size={24} />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="font-black text-gray-900 text-base md:text-lg">{t.compressGood || 'Good Quality'}</div>
+                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressGoodDesc || 'Best quality, selectable text preserved'}</div>
+                                        <div className="text-[10px] font-bold text-green-600 mt-1 uppercase tracking-wider">~10-30% smaller</div>
+                                    </div>
+                                    {compressionLevel === 'good' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
                                 </button>
 
                                 <button
-                                    onClick={() => setCompressionLevel && setCompressionLevel('balanced')}
-                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                    onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('balanced'); }}
+                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">{t.compressBalanced || 'Balanced'}</div>
-                                    <div className="text-xs text-gray-500">{t.compressBalancedDesc || 'Good quality, smaller size.'}</div>
+                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'balanced' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                        <FileSearch size={24} />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="font-black text-gray-900 text-base md:text-lg flex items-center gap-2">
+                                            {t.compressBalanced || 'Balanced'}
+                                            <span className="text-[10px] font-bold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full uppercase">Recommended</span>
+                                        </div>
+                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressBalancedDesc || 'Good quality, optimized for sharing'}</div>
+                                        <div className="text-[10px] font-bold text-orange-600 mt-1 uppercase tracking-wider">~40-60% smaller</div>
+                                    </div>
+                                    {compressionLevel === 'balanced' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
                                 </button>
 
                                 <button
-                                    onClick={() => setCompressionLevel && setCompressionLevel('extreme')}
-                                    className={`p-4 rounded-xl border-2 text-left transition-all ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}
+                                    onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('extreme'); }}
+                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
                                 >
-                                    <div className="font-bold text-gray-800 mb-1">{t.compressExtreme || 'Extreme'}</div>
-                                    <div className="text-xs text-gray-500">{t.compressExtremeDesc || 'Smallest size, lower quality.'}</div>
+                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'extreme' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                        <FileSearch size={24} />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="font-black text-gray-900 text-base md:text-lg">{t.compressExtreme || 'Maximum Compression'}</div>
+                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressExtremeDesc || 'Smallest size, images may lose detail'}</div>
+                                        <div className="text-[10px] font-bold text-red-600 mt-1 uppercase tracking-wider">~70-90% smaller</div>
+                                    </div>
+                                    {compressionLevel === 'extreme' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
                                 </button>
                             </div>
 
-                            <div className="mt-6 text-center text-sm text-gray-400">
-                                {compressionLevel === 'good' && (t.compressGoodInfo || "Optimizes metadata and streams. Text remains selectable.")}
-                                {compressionLevel === 'balanced' && (t.compressBalancedInfo || "Re-renders pages at 150 DPI. Text becomes non-selectable.")}
-                                {compressionLevel === 'extreme' && (t.compressExtremeInfo || "Aggressive re-rendering at 96 DPI. Max compression.")}
+                            <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                <div className="flex items-center gap-3">
+                                    <Info size={16} className="text-gray-400 shrink-0" />
+                                    <p className="text-xs text-gray-500">
+                                        {compressionLevel === 'good' && (t.compressGoodInfo || "Optimizes metadata and streams. Text remains selectable and searchable.")}
+                                        {compressionLevel === 'balanced' && (t.compressBalancedInfo || "Re-renders pages at 150 DPI. Great for email attachments and web sharing.")}
+                                        {compressionLevel === 'extreme' && (t.compressExtremeInfo || "Aggressive 96 DPI rendering. Best for archiving when file size matters most.")}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
