@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Rnd } from 'react-rnd';
 import { X, ChevronLeft, ChevronRight, Check, Crop, Eye, Undo2, ZoomIn, ZoomOut } from 'lucide-react';

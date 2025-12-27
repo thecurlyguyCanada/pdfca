@@ -21,6 +21,14 @@ export const translations = {
     organizePdfDesc: "Reorder pages",
     dragToReorder: "Drag pages to reorder",
 
+    // Value Propositions
+    hpFastTitle: "Lightning Fast",
+    hpFastDesc: "Process files instantly in your browser",
+    hpFreeTitle: "100% Free",
+    hpFreeDesc: "No hidden costs, no subscriptions",
+    hpPrivacyTitle: "Privacy First",
+    hpPrivacyDesc: "Your files never leave your device",
+
     // Sign Tool
     btnSign: "Finish & Download",
     drawTitle: "Draw",
@@ -904,6 +912,14 @@ export const translations = {
     editXfaGuide: "Guide d'édition PDF XFA 🖨️",
     organizePdfDesc: "Réorganiser les pages",
     dragToReorder: "Glissez les pages pour réorganiser",
+
+    // Propositions de valeur
+    hpFastTitle: "Ultra Rapide",
+    hpFastDesc: "Traitez vos fichiers instantanément dans le navigateur",
+    hpFreeTitle: "100 % Gratuit",
+    hpFreeDesc: "Sans frais cachés, sans abonnement",
+    hpPrivacyTitle: "Priorité Privée",
+    hpPrivacyDesc: "Vos fichiers ne quittent jamais votre appareil",
 
     // Sign Tool
     btnSign: "Terminer & Télécharger",

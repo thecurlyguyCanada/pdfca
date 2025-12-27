@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import React from 'react';
 import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Move, Smartphone, Monitor, MousePointer2, GripVertical } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -10,10 +13,9 @@ import { MarkdownContent } from '../../MarkdownContent';
 
 interface GuideProps {
     lang: Language;
-    onNavigate: (view: any, path?: string) => void;
 }
 
-const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
+const getGuideContent = (lang: Language) => ({
     en: {
         seo: {
             title: "How to Organize PDF Pages | Free Drag-and-Drop Guide | pdfcanada.ca",
@@ -44,7 +46,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <div className="space-y-4">
                         <p><strong>Fixing Scanner Mistakes</strong>: You scanned a stack of papers but some pages went through in the wrong order. Reorder them to match the original sequence without rescanning everything.</p>
                         <p><strong>Repositioning Cover Pages</strong>: Your scan started with page 1 instead of the cover page. Move the cover page to the front where it belongs.</p>
-                        <p><strong>Organizing Merged Documents</strong>: You merged multiple PDFs using our <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline">Merge PDF tool</button>, but the sections are out of order. Rearrange them into a logical flow.</p>
+                        <p><strong>Organizing Merged Documents</strong>: You merged multiple PDFs using our <Link href="/${lang}/merge-pdf" className="text-canada-red hover:underline">Merge PDF tool</Link>, but the sections are out of order. Rearrange them into a logical flow.</p>
                         <p><strong>Academic Paper Structure</strong>: Your thesis requires a specific order: abstract, acknowledgments, table of contents, chapters, appendices, references. Reorder scanned sections to match your university's formatting requirements.</p>
                         <p><strong>Legal Document Exhibits</strong>: Court submissions often require exhibits in a specific numbered order (Exhibit A, B, C). Reorder pages to match the required sequence for filing.</p>
                         <p><strong>Business Proposal Customization</strong>: You want the executive summary and pricing at the front for some clients, but at the back for others. Reorder pages to create custom versions without recreating the entire proposal.</p>
@@ -88,7 +90,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         <li><strong>Keep Original Backups</strong>: Save a copy of the original page order before reorganizing, especially for important documents. This lets you reference or restore the original if needed.</li>
                         <li><strong>Use Page Content Previews</strong>: Click on thumbnails to enlarge them if you're unsure what content is on each page. This prevents accidentally moving the wrong pages.</li>
                         <li><strong>Check Page Numbering</strong>: Remember that reordering changes physical sequence but doesn't update printed page numbers in headers/footers. Page "5" will still say "5" even if you move it to position 10.</li>
-                        <li><strong>Combine with Other Tools</strong>: Use our <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline">Delete Pages tool</button> to remove unwanted pages before organizing, creating a cleaner final document.</li>
+                        <li><strong>Combine with Other Tools</strong>: Use our <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline">Delete Pages tool</Link> to remove unwanted pages before organizing, creating a cleaner final document.</li>
                     </ul>
                 )
             },
@@ -191,7 +193,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                     <div className="space-y-4">
                         <p><strong>Correction d'erreurs de scanner</strong> : Vous avez scanné une pile de papiers mais certaines pages sont passées dans le mauvais ordre. Réorganisez-les pour correspondre à la séquence originale sans tout rescanner.</p>
                         <p><strong>Repositionnement des pages de couverture</strong> : Votre scan a commencé avec la page 1 au lieu de la page de couverture. Déplacez la page de couverture à l'avant où elle devrait être.</p>
-                        <p><strong>Organisation de documents fusionnés</strong> : Vous avez fusionné plusieurs PDF en utilisant notre <button onClick={() => onNavigate('TOOL_PAGE', '/merge-pdf')} className="text-canada-red hover:underline">outil de fusion PDF</button>, mais les sections sont dans le désordre. Réarrangez-les dans un flux logique.</p>
+                        <p><strong>Organisation de documents fusionnés</strong> : Vous avez fusionné plusieurs PDF en utilisant notre <Link href="/${lang}/merge-pdf" className="text-canada-red hover:underline">outil de fusion PDF</Link>, mais les sections sont dans le désordre. Réarrangez-les dans un flux logique.</p>
                         <p><strong>Structure de travaux académiques</strong> : Votre thèse nécessite un ordre spécifique : résumé, remerciements, table des matières, chapitres, annexes, références. Réorganisez les sections scannées pour correspondre aux exigences de formatage de votre université.</p>
                         <p><strong>Pièces de documents juridiques</strong> : Les soumissions judiciaires exigent souvent des pièces dans un ordre numéroté spécifique (Pièce A, B, C). Réorganisez les pages pour correspondre à la séquence requise pour le dépôt.</p>
                         <p><strong>Personnalisation de propositions commerciales</strong> : Vous voulez le résumé exécutif et la tarification au début pour certains clients, mais à la fin pour d'autres. Réorganisez les pages pour créer des versions personnalisées sans recréer toute la proposition.</p>
@@ -235,7 +237,7 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
                         <li><strong>Conservez des sauvegardes originales</strong> : Enregistrez une copie de l'ordre de pages original avant de réorganiser, surtout pour les documents importants. Cela vous permet de référencer ou restaurer l'original si nécessaire.</li>
                         <li><strong>Utilisez les aperçus de contenu de page</strong> : Cliquez sur les miniatures pour les agrandir si vous n'êtes pas sûr du contenu de chaque page. Cela évite de déplacer accidentellement les mauvaises pages.</li>
                         <li><strong>Vérifiez la numérotation des pages</strong> : Rappelez-vous que la réorganisation change la séquence physique mais ne met pas à jour les numéros de page imprimés dans les en-têtes/pieds de page. La page "5" dira toujours "5" même si vous la déplacez en position 10.</li>
-                        <li><strong>Combinez avec d'autres outils</strong> : Utilisez notre <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="text-canada-red hover:underline">outil de suppression de pages</button> pour retirer les pages indésirables avant d'organiser, créant un document final plus propre.</li>
+                        <li><strong>Combinez avec d'autres outils</strong> : Utilisez notre <Link href="/${lang}/delete-pdf-pages" className="text-canada-red hover:underline">outil de suppression de pages</Link> pour retirer les pages indésirables avant d'organiser, créant un document final plus propre.</li>
                     </ul>
                 )
             },
@@ -310,8 +312,8 @@ const getGuideContent = (onNavigate: (view: any, path?: string) => void) => ({
     }
 });
 
-export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => {
-    const guideContent = getGuideContent(onNavigate);
+export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
+    const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
 
     const schema = [
@@ -383,9 +385,9 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                 subtitle={t.subtitle}
                 icon={<Move size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', onClick: () => onNavigate('HOME') },
-                    { name: 'Guides', onClick: () => onNavigate('GUIDE_ULTIMATE') },
-                    { name: 'Organize PDF Guide', onClick: () => { } }
+                    { name: 'Home', href: '/' },
+                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
+                    { name: 'Organize PDF Guide', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -396,7 +398,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                     <div className="bg-amber-50 dark:bg-amber-900/10 p-8 rounded-[2rem] border border-amber-200 dark:border-amber-800 flex gap-6 mb-16">
                         <Zap className="text-amber-600 shrink-0" size={28} />
                         <p className="text-lg text-amber-900 dark:text-amber-300">
-                            <strong>Insider Tip:</strong> You can combine this tool with our <button onClick={() => onNavigate('TOOL_PAGE', '/delete-pdf-pages')} className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">'Delete Pages' tool</button> to perfectly curate your final document before sharing. Perfect for clean board reports!
+                            <strong>Insider Tip:</strong> You can combine this tool with our <Link href="/${lang}/delete-pdf-pages" className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">'Delete Pages' tool</Link> to perfectly curate your final document before sharing. Perfect for clean board reports!
                         </p>
                     </div>
 
@@ -408,7 +410,11 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                                     <CheckCircle size={24} className="text-canada-red" /> {section.title}
                                 </h3>
                                 <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
-                                    <MarkdownContent content={section.content} />
+                                    {typeof section.content === 'string' ? (
+                                        <MarkdownContent content={section.content} />
+                                    ) : (
+                                        section.content
+                                    )}
                                 </div>
                             </section>
                         ))}
@@ -454,12 +460,11 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                     <section className="bg-canada-red p-16 rounded-[3.5rem] text-center text-white shadow-2xl shadow-red-500/20">
                         <h2 className="text-4xl font-black mb-6">{t.ctaTitle}</h2>
                         <p className="text-xl mb-12 opacity-90">{t.ctaSubtext}</p>
-                        <button
-                            onClick={() => onNavigate('TOOL_PAGE', '/organize-pdf')}
+                        <Link href="/${lang}/organize-pdf"
                             className="bg-white text-canada-red px-14 py-5 rounded-full font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl"
                         >
                             {t.ctaButton}
-                        </button>
+                        </Link>
                     </section>
 
                     <AISnapshot
@@ -474,11 +479,13 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang, onNavigate }) => 
                         lang={lang}
                     />
 
-                    <RelatedTools lang={lang} onNavigate={onNavigate} currentPath="/guides/organize-pdf" category="organize" />
+                    <RelatedTools lang={lang} currentPath="/guides/organize-pdf" category="organize" />
 
-                    <AuthorBio lang={lang} onNavigate={onNavigate} />
+                    <AuthorBio lang={lang} />
                 </div>
             </PageLayout>
         </div>
     );
 };
+
+

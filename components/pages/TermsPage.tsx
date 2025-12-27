@@ -26,11 +26,18 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 schema={termsSchema}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Terms of Service', path: '/terms' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+                    { name: lang === 'fr' ? "Conditions d'utilisation" : 'Terms of Service', path: `/${lang}/terms` }
                 ]}
             />
-            <PageLayout title={t.termsTitle} icon={<FileText size={32} />}>
+            <PageLayout
+                title={t.termsTitle}
+                icon={<FileText size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Conditions' : 'Terms', href: '#' }
+                ]}
+            >
                 <div className="space-y-6 text-gray-600 dark:text-gray-400">
                     <div className="flex gap-4">
                         <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center font-bold text-gray-500 dark:text-gray-400 shrink-0">1</div>

@@ -26,11 +26,18 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 schema={privacySchema}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Privacy Policy', path: '/privacy' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Confidentialité' : 'Privacy Policy', path: `/${lang}/privacy` }
                 ]}
             />
-            <PageLayout title={t.privacyTitle} icon={<Shield size={32} />}>
+            <PageLayout
+                title={t.privacyTitle}
+                icon={<Shield size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Confidentialité' : 'Privacy', href: '#' }
+                ]}
+            >
                 <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-400">
                     <p className="mb-6">{t.privacyText1}</p>
                     <p className="mb-6">{t.privacyText2}</p>

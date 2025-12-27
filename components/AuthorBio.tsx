@@ -1,10 +1,9 @@
-import React from 'react';
+import Link from 'next/link';
 import { MapPin, ExternalLink, CheckCircle } from 'lucide-react';
 import { Language } from '../utils/i18n';
 
 interface AuthorBioProps {
     lang: Language;
-    onNavigate?: (view: any, path?: string) => void;
 }
 
 const getContent = () => ({
@@ -28,15 +27,9 @@ const getContent = () => ({
     }
 });
 
-export const AuthorBio: React.FC<AuthorBioProps> = ({ lang, onNavigate }) => {
+export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
     const content = getContent();
     const t = content[lang] || content.en;
-
-    const handleClick = () => {
-        if (onNavigate) {
-            onNavigate('ABOUT', '/about');
-        }
-    };
 
     return (
         <section className="mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
@@ -55,7 +48,7 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang, onNavigate }) => {
 
                     {/* Content */}
                     <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <div className="flex wrap items-center gap-3 mb-2">
                             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                                 {t.authorName}
                             </h3>
@@ -77,15 +70,13 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang, onNavigate }) => {
                                 {t.verified}
                             </div>
 
-                            {onNavigate && (
-                                <button
-                                    onClick={handleClick}
-                                    className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-medium transition-colors group text-sm"
-                                >
-                                    {t.learnMore}
-                                    <ExternalLink size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                                </button>
-                            )}
+                            <Link
+                                href={`/${lang}/about`}
+                                className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-medium transition-colors group text-sm"
+                            >
+                                {t.learnMore}
+                                <ExternalLink size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                            </Link>
                         </div>
                     </div>
                 </div>
