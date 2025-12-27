@@ -245,6 +245,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     accept: '.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
   },
   {
+    slug: 'rtf-to-pdf',
+    tool: ToolType.RTF_TO_PDF,
+    title: 'RTF to PDF',
+    titleFr: 'RTF vers PDF',
+    description: 'Convert RTF (Rich Text Format) documents to PDF format. Preserve text formatting, styles, and layout. Free, secure, browser-based conversion.',
+    descriptionFr: 'Convertissez les documents RTF (Rich Text Format) en format PDF. Préservez le formatage du texte, les styles et la mise en page. Gratuit et sécurisé.',
+    keywords: ['RTF to PDF', 'convert RTF to PDF', 'Rich Text to PDF', 'RTF converter'],
+    keywordsFr: ['RTF vers PDF', 'convertir RTF en PDF', 'texte enrichi vers PDF', 'convertisseur RTF'],
+    accept: '.rtf,text/rtf,application/rtf'
+  },
+  {
     slug: 'invoice-ocr',
     tool: ToolType.INVOICE_OCR,
     title: 'Invoice OCR',

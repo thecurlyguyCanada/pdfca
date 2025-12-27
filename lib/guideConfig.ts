@@ -10,6 +10,7 @@ import { EmailToPdfGuide } from '@/components/pages/guides/EmailToPdfGuide';
 import { CbrToPdfGuide } from '@/components/pages/guides/CbrToPdfGuide';
 import { PdfToWordGuide } from '@/components/pages/guides/PdfToWordGuide';
 import { WordToPdfGuide } from '@/components/pages/guides/WordToPdfGuide';
+import { RtfToPdfGuide } from '@/components/pages/guides/RtfToPdfGuide';
 import { PdfPageRemoverGuide } from '@/components/pages/guides/PdfPageRemoverGuide';
 import { CropPdfGuide } from '@/components/pages/guides/CropPdfGuide';
 import { CompressPdfGuide } from '@/components/pages/guides/CompressPdfGuide';
@@ -34,6 +35,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'cbr-to-pdf': CbrToPdfGuide,
     'pdf-to-word': PdfToWordGuide,
     'word-to-pdf': WordToPdfGuide,
+    'rtf-to-pdf': RtfToPdfGuide,
     'pdf-page-remover': PdfPageRemoverGuide,
     'crop-pdf': CropPdfGuide,
     'compress-pdf': CompressPdfGuide,

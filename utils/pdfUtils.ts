@@ -96,6 +96,17 @@ const getExcelJs = async () => {
   }
 };
 
+// Lazy load rtf.js
+const getRtfJs = async () => {
+  try {
+    const rtfjs = await import('rtf.js');
+    return rtfjs.RTFJS;
+  } catch (error) {
+    console.error('Failed to load rtf.js library:', error);
+    throw new Error('ERR_LIB_LOAD_FAILED_RTFJS');
+  }
+};
+
 export const initPdfWorker = async () => {
   if (!workerInitialized && typeof window !== 'undefined') {
     const pdfjs = await getPdfJs();
@@ -1065,6 +1076,152 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
         if (src && src.startsWith('data:image')) {
           try {
             // Create an image element to get dimensions
+            await new Promise<void>((resolve) => {
+              const img = new Image();
+              img.onload = () => {
+                let imgW = img.width * 0.264583; // px to mm approx (72dpi vs 96dpi)
+                let imgH = img.height * 0.264583;
+
+                // Constrain to page width
+                const maxWidth = pageWidth - (margin * 2);
+                if (imgW > maxWidth) {
+                  const ratio = maxWidth / imgW;
+                  imgW = maxWidth;
+                  imgH = imgH * ratio;
+                }
+
+                checkPageBreak(imgH + 10);
+                doc.addImage(src, 'JPEG', margin, y, imgW, imgH);
+                y += imgH + 10;
+                resolve();
+              };
+              img.onerror = () => resolve();
+              img.src = src;
+            });
+          } catch (e) { console.warn("Failed to add image", e); }
+        }
+      } else {
+        // Recurse for non-images
+        const childNodes = Array.from(el.childNodes);
+        for (const child of childNodes) {
+          await processNode(child);
+        }
+      }
+
+      // Restore Styles
+      doc.setFont(prevFont.fontName, prevFont.fontStyle);
+      doc.setFontSize(prevFontSize);
+
+      // Block spacing after
+      if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'li'].includes(tagName)) {
+        y += lineHeight * 0.5;
+      }
+    }
+  };
+
+  // Process all body children
+  const bodyNodes = Array.from(container.childNodes);
+  for (const node of bodyNodes) {
+    await processNode(node);
+    // Yield to UI
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  return doc.output('blob');
+};
+
+export const convertRtfToPdf = async (file: File): Promise<Blob> => {
+  const RTFJS = await getRtfJs();
+  const jsPDF = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+
+  // Parse RTF to HTML using rtf.js
+  RTFJS.loggingEnabled(false);
+  const rtfDoc = new RTFJS.Document(arrayBuffer, {});
+  const htmlElements = await rtfDoc.render();
+
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 20;
+  const lineHeight = 7;
+
+  let y = margin;
+  let currentX = margin;
+
+  // Convert HTML elements to container
+  const container = document.createElement('div');
+  container.append(...htmlElements);
+
+  // Helper to check page bounds
+  const checkPageBreak = (heightNeeded: number) => {
+    if (y + heightNeeded > pageHeight - margin) {
+      doc.addPage();
+      y = margin;
+      return true;
+    }
+    return false;
+  };
+
+  const processNode = async (node: Node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent || '';
+      if (!text.trim() && text !== ' ') return;
+
+      const words = text.split(/(\s+)/);
+      for (const word of words) {
+        if (!word) continue;
+        const wordWidth = doc.getTextWidth(word);
+
+        if (currentX + wordWidth > pageWidth - margin && word.trim()) {
+          y += lineHeight;
+          currentX = margin;
+          checkPageBreak(lineHeight);
+        }
+
+        doc.text(word, currentX, y);
+        currentX += wordWidth;
+      }
+
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node as HTMLElement;
+      const tagName = el.tagName.toLowerCase();
+
+      const prevFont = doc.getFont();
+      const prevFontSize = doc.getFontSize();
+
+      // Handle Blocks
+      if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'li'].includes(tagName)) {
+        if (currentX > margin) { // Finish previous line
+          y += lineHeight * 1.5;
+          currentX = margin;
+        }
+        checkPageBreak(lineHeight);
+      }
+
+      // Styles
+      if (tagName.startsWith('h')) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(Math.max(12, 24 - (parseInt(tagName[1]) * 2)));
+        y += 4; // Extra space before heading
+      } else if (tagName === 'strong' || tagName === 'b') {
+        doc.setFont("helvetica", "bold");
+      } else if (tagName === 'em' || tagName === 'i') {
+        doc.setFont("helvetica", "italic");
+      }
+
+      // Lists
+      if (tagName === 'li') {
+        currentX = margin + 10;
+        doc.text('•', margin, y);
+      }
+
+      // Images
+      if (tagName === 'img') {
+        const src = (el as HTMLImageElement).src;
+        if (src && src.startsWith('data:image')) {
+          try {
             await new Promise<void>((resolve) => {
               const img = new Image();
               img.onload = () => {

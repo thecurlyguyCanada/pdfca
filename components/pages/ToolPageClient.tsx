@@ -26,7 +26,8 @@ import {
   convertWordToPdf,
   convertPdfToXml,
   convertXmlToPdf,
-  convertExcelToPdf
+  convertExcelToPdf,
+  convertRtfToPdf
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -115,7 +116,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.CBR_TO_PDF,
         ToolType.WORD_TO_PDF,
         ToolType.XML_TO_PDF,
-        ToolType.EXCEL_TO_PDF
+        ToolType.EXCEL_TO_PDF,
+        ToolType.RTF_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -371,6 +373,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.EXCEL_TO_PDF:
             resultBlob = await convertExcelToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.(xlsx|xls)$/i, '.pdf');
+            break;
+
+          case ToolType.RTF_TO_PDF:
+            resultBlob = await convertRtfToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.rtf$/i, '.pdf');
             break;
 
           default:
