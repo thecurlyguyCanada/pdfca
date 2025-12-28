@@ -44,6 +44,47 @@ In this mega-guide, we'll cover everything you need to know about splitting PDFs
 **The Privacy-First Solution:** Our **free pdf document splitter** uses specialized WebAssembly technology. This allows your browser (Chrome, Safari, Edge) to act as the software. **No upload required.** You get a **pdf page splitter** that is faster, safer, and works even when you're offline.`
             },
             {
+                id: "privacy-audit",
+                title: "Privacy Audit: Where do your files go?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 not-prose">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Data Lifecycle Verification
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Local Loading</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Files are read from your disk into your browser&apos;s dedicated memory sandbox.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Client-Side Splitting</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine splits the PDF pages locally. <strong>0 bytes are sent to any server.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Automatic Wipe</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Once you close the tab, the sandbox is cleared. No trace of your document remains.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
                 id: "how-to",
                 title: "How to Use Our Free PDF Splitter Online",
                 content: `Using our **pdf file splitter** is incredibly simple. Here is a step-by-step guide to separating your pages:
@@ -165,6 +206,47 @@ Dans ce méga-guide, nous couvrirons tout ce que vous devez savoir, du choix du 
 **Le problème :** Votre fichier reste sur le serveur de quelqu'un d'autre. Pour des documents juridiques ou médicaux, c'est un risque majeur.
 
 **La solution :** Notre outil utilise la technologie WebAssembly. Votre navigateur agit comme le logiciel. **Aucun téléchargement requis.** C'est plus rapide, plus sûr et fonctionne même hors ligne.`
+            },
+            {
+                id: "privacy-audit",
+                title: "Audit de Confidentialité : Où vont vos fichiers ?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 not-prose">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Vérification du Cycle de Vie
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Chargement Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Les fichiers sont lus à partir de votre disque dans le bac à sable mémoire dédié de votre navigateur.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Division Client-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Notre moteur WebAssembly divise les pages localement. <strong>0 octets ne sont envoyés à aucun serveur.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Effacement Automatique</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Dès la fermeture de l&apos;onglet, tout est effacé. Aucune trace de votre document ne reste.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
             },
             {
                 id: "how-to",
@@ -343,7 +425,7 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                     {section.title}
                                 </h2>
                                 <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
-                                    <MarkdownContent content={section.content} />
+                                    {typeof section.content === 'string' ? <MarkdownContent content={section.content} /> : section.content}
                                 </div>
                             </section>
                         ))}

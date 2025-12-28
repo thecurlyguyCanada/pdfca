@@ -60,6 +60,47 @@ const getGuideContent = (lang: Language) => ({
                 )
             },
             {
+                id: "privacy-audit",
+                title: "Privacy Audit: Where do your files go?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Data Lifecycle Verification
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Local Loading</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Files are read from your disk into your browser&apos;s dedicated memory sandbox.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Client-Side Processing</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine executes the merge operation using your computer&apos;s CPU. <strong>0 bytes are sent to any server.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Automatic Wipe</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Once you close the tab, the browser&apos;s memory is cleared. No trace of your document remains.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
                 id: "use-cases",
                 title: "Real-World Use Cases for Merging PDFs",
                 content: (
@@ -208,6 +249,47 @@ const getGuideContent = (lang: Language) => ({
                         <li className="pl-2"><strong>Fusionnez</strong> : Cliquez sur le bouton &quot;Fusionner PDF&quot; pour combiner instantanément tous vos fichiers. Le traitement se fait dans votre navigateur, donc les fichiers volumineux peuvent prendre quelques secondes.</li>
                         <li className="pl-2"><strong>Téléchargez</strong> : Enregistrez votre nouveau document unique. Le fichier fusionné conservera la qualité originale de tous les documents sources.</li>
                     </ol>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Audit de Confidentialité : Où vont vos fichiers ?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Vérification du Cycle de Vie des Données
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Chargement Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Les fichiers sont lus à partir de votre disque dans le bac à sable mémoire dédié de votre navigateur.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Traitement Client-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Notre moteur WebAssembly exécute l&apos;opération de fusion en utilisant le CPU de votre ordinateur. <strong>0 octets ne sont envoyés à aucun serveur.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Effacement Automatique</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Une fois que vous fermez l&apos;onglet, la mémoire du navigateur est effacée. Aucune trace de votre document ne reste.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )
             },
             {

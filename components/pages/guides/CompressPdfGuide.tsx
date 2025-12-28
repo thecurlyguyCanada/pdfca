@@ -63,6 +63,47 @@ const getGuideContent = (lang: Language) => ({
                 )
             },
             {
+                id: "privacy-audit",
+                title: "Privacy Audit: Your Data Safety",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Data Lifecycle Verification
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Local Loading</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Files are read from your disk into your browser&apos;s dedicated memory sandbox.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Client-Side Compression</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine executes the compression algorithm locally. <strong>No data leaves your device.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Automatic Wipe</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Once you close the tab, the sandbox is destroyed. No trace remains.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
                 id: "levels",
                 title: "Which Compression Level Should You Choose?",
                 content: (
@@ -216,6 +257,47 @@ const getGuideContent = (lang: Language) => ({
                         <li className="pl-2"><strong>Examinez les résultats</strong> : Voyez la nouvelle taille de fichier et le pourcentage de compression atteint avant de télécharger.</li>
                         <li className="pl-2"><strong>Téléchargez votre PDF</strong> : Enregistrez votre PDF optimisé et léger instantanément. Comparez avec l'original pour vous assurer que la qualité répond à vos besoins.</li>
                     </ol>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Audit de Confidentialité : Sécurité des Données",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Vérification du Cycle de Vie
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Chargement Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Les fichiers sont chargés dans le bac à sable mémoire sécurisé du navigateur.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Compression Client-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Notre moteur WebAssembly compresse vos fichiers localement. <strong>Aucune donnée ne quitte votre appareil.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Effacement Automatique</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Dès la fermeture de l&apos;onglet, tout est effacé. Aucune trace ne subsiste.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )
             },
             {

@@ -20,9 +20,17 @@ import { InsertPictureGuide } from '@/components/pages/guides/InsertPictureGuide
 import { FlattenPdfGuide } from '@/components/pages/guides/FlattenPdfGuide';
 import { SplitPdfGuide } from '@/components/pages/guides/SplitPdfGuide';
 import { InvoiceOcrGuide } from '@/components/pages/guides/InvoiceOcrGuide';
+import { PrivatePdfToolsGuide } from '@/components/pages/guides/PrivatePdfToolsGuide';
+import { LegalPdfGuide } from '@/components/pages/guides/LegalPdfGuide';
+import { HealthcarePdfGuide } from '@/components/pages/guides/HealthcarePdfGuide';
+import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
+    'private-pdf-tools': PrivatePdfToolsGuide,
+    'legal-pdf-tools': LegalPdfGuide,
+    'healthcare-pdf-security': HealthcarePdfGuide,
+    'finance-pdf-security': FinancePdfGuide,
     'split-pdf': SplitPdfGuide,
     'delete-pdf-pages': DeletePdfPagesGuide,
     'rotate-pdf': RotatePdfGuide,
