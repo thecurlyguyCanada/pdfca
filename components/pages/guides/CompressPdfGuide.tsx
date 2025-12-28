@@ -26,6 +26,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
+                <img src="/images/guides/compress-pdf-guide.png" alt="Compressing PDF files illustration" className="w-full h-auto rounded-xl shadow-md mb-8" />
                 Trying to email a large PDF only to have it bounce back? We've all been there. Whether it's a government application, a job submission, or a heavy report, large files are a hassle. Learning <strong>how to compress PDF online</strong> is the solution to file size limits and slow uploads.
                 <br /><br />
                 Our tool offers three smart levels of compression: <strong>Good</strong> (lossless optimization), <strong>Balanced</strong> (standard compression), and <strong>Extreme</strong> (maximum reduction). Best of all, it happens 100% on your device.

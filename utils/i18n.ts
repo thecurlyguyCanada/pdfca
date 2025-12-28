@@ -1594,8 +1594,7 @@ export const translations = {
     toolFlattenDesc: "Aplatir le PDF.",
     toolPdfPageRemover: "Suppresseur de pages PDF online",
     toolPdfPageRemoverDesc: "Enlever des pages du PDF en ligne.",
-    toolInvoiceOcr: "OCR Factures",
-    toolInvoiceOcrDesc: "Extraire vers Excel.",
+
     toolRotate: "Pivoter PDF",
     toolRotateDesc: "Arranger les pages à l'envers.",
     toolHeic: "HEIC en PDF",
@@ -1622,6 +1621,8 @@ export const translations = {
     toolCropDesc: "Ajuster les marges.",
     toolOrganize: "Organiser PDF",
     toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
+    toolInvoiceOcr: "OCR Factures",
+    toolInvoiceOcrDesc: "Extraire les données vers Excel.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
     toolMerge: "Fusionner PDF",

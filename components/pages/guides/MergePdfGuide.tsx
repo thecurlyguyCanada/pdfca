@@ -25,6 +25,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
+                <img src="/images/guides/merge-pdf-guide.png" alt="Merging PDF files illustration" className="w-full h-auto rounded-xl shadow-md mb-8" />
                 Keeping track of multiple related PDF files can be a nightmare. Whether it's invoices, receipts, or chapters of a report, <strong>merging them into a single PDF</strong> keeps everything organized and professional.
                 <br /><br />
                 Our merge tool lets you combine unlimited files, reorder them exactly how you want, and save them as one document—all without uploading anything to a server.
