@@ -293,169 +293,188 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
     };
 
     return (
-        <div className="max-w-7xl mx-auto p-4 sm:p-6">
-            {/* Structured Data for SEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'SoftwareApplication',
-                        name: 'Code 128 Barcode Generator',
-                        applicationCategory: 'BusinessApplication',
-                        offers: {
-                            '@type': 'Offer',
-                            price: '0',
-                            priceCurrency: 'CAD'
-                        },
-                        operatingSystem: 'Web Browser',
-                        description: 'Free online Code 128 barcode generator with bulk creation, multiple export formats (PNG, SVG, PDF), and advanced customization options',
-                        featureList: [
-                            'Generate Code 128, Code 128A, Code 128B, and Code 128C barcodes',
-                            'Bulk barcode generation from sequences or Excel/CSV files',
-                            'Export as PNG, SVG, or multi-page PDF',
-                            'Customizable colors, sizes, and fonts',
-                            '100% free with no watermarks'
-                        ],
-                        browserRequirements: 'Requires JavaScript. Works in Chrome, Firefox, Safari, Edge'
-                    })
-                }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'FAQPage',
-                        mainEntity: [
-                            {
-                                '@type': 'Question',
-                                name: 'What is a Code 128 barcode?',
-                                acceptedAnswer: {
-                                    '@type': 'Answer',
-                                    text: 'Code 128 is a high-density linear barcode symbology that can encode all 128 ASCII characters. Developed in 1981, it\'s one of the most versatile 1D barcode formats available and is widely used in shipping, healthcare, retail, and manufacturing for its ability to store diverse data types efficiently.'
-                                }
-                            },
-                            {
-                                '@type': 'Question',
-                                name: 'Is this Code 128 barcode generator free to use?',
-                                acceptedAnswer: {
-                                    '@type': 'Answer',
-                                    text: 'Yes, our Code 128 barcode generator is completely free to use for personal and commercial purposes. You can generate unlimited barcodes, download them in multiple formats, and use them in your projects without any restrictions or watermarks.'
-                                }
-                            },
-                            {
-                                '@type': 'Question',
-                                name: 'What file formats can I download the barcodes in?',
-                                acceptedAnswer: {
-                                    '@type': 'Answer',
-                                    text: 'Our generator supports three formats: PNG (raster image, great for digital use), SVG (vector format, scalable without quality loss, ideal for professional printing), and PDF (multi-page documents for bulk barcodes, perfect for printing multiple labels).'
-                                }
-                            },
-                            {
-                                '@type': 'Question',
-                                name: 'Can I generate barcodes in bulk?',
-                                acceptedAnswer: {
-                                    '@type': 'Answer',
-                                    text: 'Absolutely! Switch to Bulk Generation mode to create multiple barcodes at once. You can generate sequential barcodes (e.g., 1-1000 with custom prefixes/suffixes) or upload an Excel/CSV file containing your barcode data. Export all barcodes as a single multi-page PDF for easy printing.'
-                                }
-                            },
-                            {
-                                '@type': 'Question',
-                                name: 'What\'s the difference between Code 128, Code 128A, Code 128B, and Code 128C?',
-                                acceptedAnswer: {
-                                    '@type': 'Answer',
-                                    text: 'Code 128 (Auto) automatically selects the best character set for your data. Code 128A encodes uppercase letters, digits, and control characters. Code 128B encodes the full ASCII character set including upper/lowercase letters and symbols. Code 128C encodes only numeric pairs and is the most compact for number-only data.'
-                                }
-                            }
-                        ]
-                    })
-                }}
-            />
-
-            {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 mb-6 text-white">
-                <div className="flex items-center gap-3 mb-2">
-                    <Barcode className="w-8 h-8" />
-                    <h1 className="text-2xl sm:text-3xl font-bold">{t.barcode?.title || 'Code 128 Barcode Generator'}</h1>
-                </div>
-                <p className="text-blue-100">
-                    {t.barcode?.subtitle || 'Professional barcode generation with bulk support, multiple formats, and advanced customization'}
-                </p>
+        <div className="min-h-screen w-full bg-[#f8fafc] dark:bg-gray-950 relative overflow-hidden">
+            {/* Mesh Gradients Background */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-purple-200/40 blur-[100px] animate-pulse" />
+                <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-200/40 blur-[120px]" />
+                <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-200/40 blur-[100px]" />
             </div>
 
-            {/* Bulk Mode Toggle */}
-            <div className="mb-6 flex gap-4">
-                <button
-                    onClick={() => setBulkMode(false)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-                        !bulkMode
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                >
-                    <Barcode className="w-5 h-5" />
-                    {t.barcode?.singleMode || 'Single/Manual'}
-                </button>
-                <button
-                    onClick={() => setBulkMode(true)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-                        bulkMode
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                >
-                    <Grid3x3 className="w-5 h-5" />
-                    {t.barcode?.bulkMode || 'Bulk Generation'}
-                </button>
+            <div className="max-w-7xl mx-auto p-4 sm:p-6 relative z-10">
+                {/* Structured Data for SEO */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'SoftwareApplication',
+                            name: 'Code 128 Barcode Generator',
+                            applicationCategory: 'BusinessApplication',
+                            offers: {
+                                '@type': 'Offer',
+                                price: '0',
+                                priceCurrency: 'CAD'
+                            },
+                            operatingSystem: 'Web Browser',
+                            description: 'Free online Code 128 barcode generator with bulk creation, multiple export formats (PNG, SVG, PDF), and advanced customization options',
+                            featureList: [
+                                'Generate Code 128, Code 128A, Code 128B, and Code 128C barcodes',
+                                'Bulk barcode generation from sequences or Excel/CSV files',
+                                'Export as PNG, SVG, or multi-page PDF',
+                                'Customizable colors, sizes, and fonts',
+                                '100% free with no watermarks'
+                            ],
+                            browserRequirements: 'Requires JavaScript. Works in Chrome, Firefox, Safari, Edge'
+                        })
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'FAQPage',
+                            mainEntity: [
+                                {
+                                    '@type': 'Question',
+                                    name: 'What is a Code 128 barcode?',
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: 'Code 128 is a high-density linear barcode symbology that can encode all 128 ASCII characters. Developed in 1981, it\'s one of the most versatile 1D barcode formats available and is widely used in shipping, healthcare, retail, and manufacturing for its ability to store diverse data types efficiently.'
+                                    }
+                                },
+                                {
+                                    '@type': 'Question',
+                                    name: 'Is this Code 128 barcode generator free to use?',
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: 'Yes, our Code 128 barcode generator is completely free to use for personal and commercial purposes. You can generate unlimited barcodes, download them in multiple formats, and use them in your projects without any restrictions or watermarks.'
+                                    }
+                                },
+                                {
+                                    '@type': 'Question',
+                                    name: 'What file formats can I download the barcodes in?',
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: 'Our generator supports three formats: PNG (raster image, great for digital use), SVG (vector format, scalable without quality loss, ideal for professional printing), and PDF (multi-page documents for bulk barcodes, perfect for printing multiple labels).'
+                                    }
+                                },
+                                {
+                                    '@type': 'Question',
+                                    name: 'Can I generate barcodes in bulk?',
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: 'Absolutely! Switch to Bulk Generation mode to create multiple barcodes at once. You can generate sequential barcodes (e.g., 1-1000 with custom prefixes/suffixes) or upload an Excel/CSV file containing your barcode data. Export all barcodes as a single multi-page PDF for easy printing.'
+                                    }
+                                },
+                                {
+                                    '@type': 'Question',
+                                    name: 'What\'s the difference between Code 128, Code 128A, Code 128B, and Code 128C?',
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: 'Code 128 (Auto) automatically selects the best character set for your data. Code 128A encodes uppercase letters, digits, and control characters. Code 128B encodes the full ASCII character set including upper/lowercase letters and symbols. Code 128C encodes only numeric pairs and is the most compact for number-only data.'
+                                    }
+                                }
+                            ]
+                        })
+                    }}
+                />
+
+                {/* Header */}
+                <div className="relative mb-8 p-8 rounded-3xl overflow-hidden bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border border-white/50 dark:border-gray-800 shadow-xl shadow-indigo-500/5 group hover:shadow-indigo-500/10 transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-center gap-6">
+                            <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/30 text-white">
+                                <Barcode className="w-10 h-10" />
+                            </div>
+                            <div>
+                                <h1 className="text-3xl sm:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-2">
+                                    {t.barcode?.title || 'Code 128 Barcode Generator'}
+                                </h1>
+                                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+                                    {t.barcode?.subtitle || 'Professional barcode generation with bulk support, multiple formats, and advanced customization'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex p-1 bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-md rounded-xl border border-gray-200/50 dark:border-gray-700/50">
+                    <button
+                        onClick={() => setBulkMode(false)}
+                        className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${!bulkMode
+                            ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5'
+                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            }`}
+                    >
+                        <Barcode className="w-5 h-5" />
+                        {t.barcode?.singleMode || 'Single/Manual'}
+                    </button>
+                    <button
+                        onClick={() => setBulkMode(true)}
+                        className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${bulkMode
+                            ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5'
+                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            }`}
+                    >
+                        <Grid3x3 className="w-5 h-5" />
+                        {t.barcode?.bulkMode || 'Bulk Generation'}
+                    </button>
+                </div>
             </div>
 
             {/* Bulk Sequence Generator */}
             {bulkMode && (
-                <div className="bg-white border-2 border-blue-200 rounded-lg p-6 mb-6">
-                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <Grid3x3 className="w-5 h-5" />
-                        {t.barcode?.sequenceTitle || 'Generate Sequence'}
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label className="block text-sm font-medium mb-1">{t.barcode?.prefixLabel || 'Prefix (Optional)'}</label>
+                <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/50 dark:border-gray-800 rounded-3xl p-8 mb-8 shadow-xl shadow-gray-200/50 dark:shadow-black/20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-2 bg-blue-100/50 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400">
+                            <Grid3x3 className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                            {t.barcode?.sequenceTitle || 'Generate Sequence'}
+                        </h3>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div className="group">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.prefixLabel || 'Prefix'}</label>
                             <input
                                 type="text"
                                 value={sequencePrefix}
                                 onChange={(e) => setSequencePrefix(e.target.value)}
                                 placeholder={t.barcode?.prefixPlaceholder || 'e.g., BC'}
-                                className="w-full border rounded px-3 py-2"
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-1">{t.barcode?.suffixLabel || 'Suffix (Optional)'}</label>
+                        <div className="group">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.suffixLabel || 'Suffix'}</label>
                             <input
                                 type="text"
                                 value={sequenceSuffix}
                                 onChange={(e) => setSequenceSuffix(e.target.value)}
                                 placeholder={t.barcode?.suffixPlaceholder || 'e.g., -A'}
-                                className="w-full border rounded px-3 py-2"
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-1">{t.barcode?.startLabel || 'Start Number *'}</label>
+                        <div className="group">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.startLabel || 'Start Number *'}</label>
                             <input
                                 type="number"
                                 value={sequenceStart}
                                 onChange={(e) => setSequenceStart(e.target.value)}
                                 placeholder={t.barcode?.startPlaceholder || '1'}
-                                className="w-full border rounded px-3 py-2"
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-1">{t.barcode?.endLabel || 'End Number *'}</label>
+                        <div className="group">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.endLabel || 'End Number *'}</label>
                             <input
                                 type="number"
                                 value={sequenceEnd}
                                 onChange={(e) => setSequenceEnd(e.target.value)}
                                 placeholder={t.barcode?.endPlaceholder || '100'}
-                                className="w-full border rounded px-3 py-2"
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -473,27 +492,34 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             )}
 
             {/* Settings Panel */}
-            <div className="bg-white border rounded-lg p-6 mb-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <Settings className="w-5 h-5" />
+            <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/50 dark:border-gray-800 rounded-3xl p-8 mb-8 shadow-xl shadow-gray-200/50 dark:shadow-black/20">
+                <h3 className="text-xl font-bold flex items-center gap-3 mb-6 text-gray-900 dark:text-white">
+                    <div className="p-2 bg-purple-100/50 dark:bg-purple-900/30 rounded-xl text-purple-600 dark:text-purple-400">
+                        <Settings className="w-6 h-6" />
+                    </div>
                     {t.barcode?.settingsTitle || 'Barcode Settings'}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.formatLabel || 'Format'}</label>
-                        <select
-                            value={format}
-                            onChange={(e) => setFormat(e.target.value as BarcodeFormat)}
-                            className="w-full border rounded px-3 py-2"
-                        >
-                            <option value="CODE128">{t.barcode?.formatAuto || 'CODE128 (Auto)'}</option>
-                            <option value="CODE128A">{t.barcode?.formatA || 'CODE128A (Uppercase)'}</option>
-                            <option value="CODE128B">{t.barcode?.formatB || 'CODE128B (Mixed Case)'}</option>
-                            <option value="CODE128C">{t.barcode?.formatC || 'CODE128C (Numeric Only)'}</option>
-                        </select>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="group">
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.formatLabel || 'Format'}</label>
+                        <div className="relative">
+                            <select
+                                value={format}
+                                onChange={(e) => setFormat(e.target.value as BarcodeFormat)}
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-purple-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none appearance-none cursor-pointer"
+                            >
+                                <option value="CODE128">{t.barcode?.formatAuto || 'CODE128 (Auto)'}</option>
+                                <option value="CODE128A">{t.barcode?.formatA || 'CODE128A (Uppercase)'}</option>
+                                <option value="CODE128B">{t.barcode?.formatB || 'CODE128B (Mixed Case)'}</option>
+                                <option value="CODE128C">{t.barcode?.formatC || 'CODE128C (Numeric Only)'}</option>
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <label htmlFor="barcode-width" className="block text-sm font-medium mb-1">{t.barcode?.widthLabel || 'Bar Width'}: {width}px</label>
+                        <label htmlFor="barcode-width" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.widthLabel || 'Bar Width'}: {width}px</label>
                         <input
                             id="barcode-width"
                             type="range"
@@ -502,12 +528,11 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                             step="0.5"
                             value={width}
                             onChange={(e) => setWidth(parseFloat(e.target.value))}
-                            aria-label={`${t.barcode?.widthLabel || 'Bar Width'}: ${width} pixels`}
-                            className="w-full"
+                            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600"
                         />
                     </div>
                     <div>
-                        <label htmlFor="barcode-height" className="block text-sm font-medium mb-1">{t.barcode?.heightLabel || 'Height'}: {height}px</label>
+                        <label htmlFor="barcode-height" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.heightLabel || 'Height'}: {height}px</label>
                         <input
                             id="barcode-height"
                             type="range"
@@ -515,12 +540,11 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                             max="200"
                             value={height}
                             onChange={(e) => setHeight(parseInt(e.target.value))}
-                            aria-label={`${t.barcode?.heightLabel || 'Height'}: ${height} pixels`}
-                            className="w-full"
+                            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600"
                         />
                     </div>
                     <div>
-                        <label htmlFor="barcode-fontsize" className="block text-sm font-medium mb-1">{t.barcode?.fontSizeLabel || 'Font Size'}: {fontSize}px</label>
+                        <label htmlFor="barcode-fontsize" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.fontSizeLabel || 'Font Size'}: {fontSize}px</label>
                         <input
                             id="barcode-fontsize"
                             type="range"
@@ -528,105 +552,130 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                             max="30"
                             value={fontSize}
                             onChange={(e) => setFontSize(parseInt(e.target.value))}
-                            aria-label={`${t.barcode?.fontSizeLabel || 'Font Size'}: ${fontSize} pixels`}
-                            className="w-full"
+                            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600"
                         />
                     </div>
-                    <div>
-                        <label htmlFor="barcode-bgcolor" className="block text-sm font-medium mb-1">{t.barcode?.bgColorLabel || 'Background Color'}</label>
-                        <input
-                            id="barcode-bgcolor"
-                            type="color"
-                            value={background}
-                            onChange={(e) => setBackground(e.target.value)}
-                            aria-label={t.barcode?.bgColorLabel || 'Background Color'}
-                            className="w-full h-10 border rounded"
-                        />
+                    <div className="group">
+                        <label htmlFor="barcode-bgcolor" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.bgColorLabel || 'Background Color'}</label>
+                        <div className="flex items-center gap-3">
+                            <input
+                                id="barcode-bgcolor"
+                                type="color"
+                                value={background}
+                                onChange={(e) => setBackground(e.target.value)}
+                                className="w-12 h-12 rounded-xl border-2 border-white ring-1 ring-gray-200 cursor-pointer shadow-sm transition-transform active:scale-95"
+                            />
+                            <span className="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md border border-gray-200 dark:border-gray-700">{background}</span>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="barcode-linecolor" className="block text-sm font-medium mb-1">{t.barcode?.barColorLabel || 'Bar Color'}</label>
-                        <input
-                            id="barcode-linecolor"
-                            type="color"
-                            value={lineColor}
-                            onChange={(e) => setLineColor(e.target.value)}
-                            aria-label={t.barcode?.barColorLabel || 'Bar Color'}
-                            className="w-full h-10 border rounded"
-                        />
+                    <div className="group">
+                        <label htmlFor="barcode-linecolor" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.barColorLabel || 'Bar Color'}</label>
+                        <div className="flex items-center gap-3">
+                            <input
+                                id="barcode-linecolor"
+                                type="color"
+                                value={lineColor}
+                                onChange={(e) => setLineColor(e.target.value)}
+                                className="w-12 h-12 rounded-xl border-2 border-white ring-1 ring-gray-200 cursor-pointer shadow-sm transition-transform active:scale-95"
+                            />
+                            <span className="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md border border-gray-200 dark:border-gray-700">{lineColor}</span>
+                        </div>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-700/50">
                         <input
                             type="checkbox"
                             id="displayValue"
                             checked={displayValue}
                             onChange={(e) => setDisplayValue(e.target.checked)}
-                            className="mr-2"
+                            className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500 transition-colors cursor-pointer mr-3"
                         />
-                        <label htmlFor="displayValue" className="text-sm font-medium">
+                        <label htmlFor="displayValue" className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer select-none">
                             {t.barcode?.showTextLabel || 'Show Text Below Barcode'}
                         </label>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-1">{t.barcode?.exportFormatLabel || 'Export Format'}</label>
-                        <select
-                            value={exportFormat}
-                            onChange={(e) => setExportFormat(e.target.value as ExportFormat)}
-                            className="w-full border rounded px-3 py-2"
-                        >
-                            <option value="PNG">{t.barcode?.exportPNG || 'PNG Image'}</option>
-                            <option value="SVG">{t.barcode?.exportSVG || 'SVG Vector'}</option>
-                            <option value="PDF">{t.barcode?.exportPDF || 'PDF Document'}</option>
-                        </select>
+                    <div className="group">
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1">{t.barcode?.exportFormatLabel || 'Export Format'}</label>
+                        <div className="relative">
+                            <select
+                                value={exportFormat}
+                                onChange={(e) => setExportFormat(e.target.value as ExportFormat)}
+                                className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-purple-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none appearance-none cursor-pointer"
+                            >
+                                <option value="PNG">{t.barcode?.exportPNG || 'PNG Image'}</option>
+                                <option value="SVG">{t.barcode?.exportSVG || 'SVG Vector'}</option>
+                                <option value="PDF">{t.barcode?.exportPDF || 'PDF Document'}</option>
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Barcode Items */}
-            <div className="space-y-4 mb-6">
+            <div className="space-y-6 mb-8">
                 {barcodeItems.map((item, index) => (
-                    <div key={item.id} className="bg-white border rounded-lg p-4">
-                        <div className="flex items-start gap-4">
-                            <div className="flex-1">
-                                <div className="flex gap-2 mb-3">
-                                    <input
-                                        type="text"
-                                        value={item.text}
-                                        onChange={(e) => updateBarcodeText(item.id, e.target.value)}
-                                        placeholder={t.barcode?.inputPlaceholder || 'Enter barcode data (e.g., BC123456789)'}
-                                        aria-label={`Barcode data input ${index + 1}`}
-                                        className="flex-1 border rounded px-3 py-2"
-                                    />
+                    <div key={item.id} className="group relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/50 dark:border-gray-800 rounded-3xl p-6 shadow-xl shadow-gray-200/50 dark:shadow-black/20 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 transition-all duration-300">
+                        <div className="flex flex-col md:flex-row items-center gap-6">
+                            <div className="w-full flex-1">
+                                <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1">
+                                    {t.barcode?.inputLabel || `Barcode Data #${index + 1}`}
+                                </label>
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="relative flex-1 group/input">
+                                        <input
+                                            type="text"
+                                            value={item.text}
+                                            onChange={(e) => updateBarcodeText(item.id, e.target.value)}
+                                            placeholder={t.barcode?.inputPlaceholder || 'Enter barcode data (e.g., BC123456789)'}
+                                            aria-label={`Barcode data input ${index + 1}`}
+                                            className="w-full bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-500/50 rounded-xl px-4 py-3 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none font-mono text-lg"
+                                        />
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 group-hover/input:opacity-100 transition-opacity">
+                                            <Barcode className="w-5 h-5 text-gray-400" />
+                                        </div>
+                                    </div>
                                     {!bulkMode && barcodeItems.length > 1 && (
                                         <button
                                             onClick={() => removeBarcodeItem(item.id)}
                                             aria-label={`Remove barcode ${index + 1}`}
-                                            className="px-3 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
+                                            className="p-3 bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 hover:scale-105 active:scale-95 transition-all shadow-sm ring-1 ring-red-100 dark:ring-red-900/50"
                                         >
-                                            <Trash2 className="w-5 h-5" />
+                                            <Trash2 className="w-6 h-6" />
                                         </button>
                                     )}
                                 </div>
-                                {item.text && (
-                                    <div className="flex flex-col items-center p-4 bg-gray-50 rounded">
-                                        <canvas
-                                            ref={(el) => {
-                                                if (el) {
-                                                    canvasRefs.current[item.id] = el;
-                                                    generateBarcode(item.text, item.id);
-                                                }
-                                            }}
-                                        />
-                                        <div className="flex gap-2 mt-4">
+                                {item.text ? (
+                                    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-dashed border-gray-200 dark:border-gray-700 p-8 flex flex-col items-center justify-center gap-6 group/canvas transition-colors hover:border-blue-300/50 dark:hover:border-blue-700/50">
+                                        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />
+
+                                        <div className="relative z-10 p-4 bg-white rounded-lg shadow-sm">
+                                            <canvas
+                                                ref={(el) => {
+                                                    if (el) {
+                                                        canvasRefs.current[item.id] = el;
+                                                        generateBarcode(item.text, item.id);
+                                                    }
+                                                }}
+                                                className="max-w-full h-auto"
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-wrap items-center justify-center gap-3 relative z-10 w-full sm:w-auto">
                                             <button
                                                 onClick={() => handleExportSingle(item)}
-                                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition flex items-center gap-2"
+                                                className="flex-1 sm:flex-none px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-100 hover:-translate-y-0.5 shadow-lg shadow-gray-200 dark:shadow-black/20 transition-all flex items-center justify-center gap-2"
                                             >
                                                 <Download className="w-4 h-4" />
                                                 {t.barcode?.downloadBtn || 'Download'} {exportFormat}
                                             </button>
                                             <button
                                                 onClick={() => copyToClipboard(item)}
-                                                className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition flex items-center gap-2"
+                                                className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-center gap-2 ${copiedId === item.id
+                                                        ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800'
+                                                        : 'bg-transparent text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
+                                                    }`}
                                             >
                                                 {copiedId === item.id ? (
                                                     <Check className="w-4 h-4" />
@@ -637,6 +686,13 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                             </button>
                                         </div>
                                     </div>
+                                ) : (
+                                    <div className="h-40 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center text-gray-400 group-hover:bg-gray-100/50 dark:group-hover:bg-gray-800/80 transition-colors">
+                                        <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full mb-3">
+                                            <Barcode className="w-6 h-6 opacity-50" />
+                                        </div>
+                                        <p className="text-sm font-medium">Enter text to generate preview</p>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -645,13 +701,15 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
                 {!bulkMode && (
                     <button
                         onClick={addBarcodeItem}
-                        className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition flex items-center gap-2"
+                        className="group flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-xl font-bold shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 hover:shadow-lg hover:-translate-y-0.5 hover:ring-blue-400 transition-all duration-300"
                     >
-                        <Plus className="w-5 h-5" />
+                        <div className="p-1 bg-gray-100 dark:bg-gray-700 rounded-lg group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
+                            <Plus className="w-5 h-5" />
+                        </div>
                         {t.barcode?.addBtn || 'Add Another Barcode'}
                     </button>
                 )}
@@ -659,30 +717,55 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     <button
                         onClick={handleExportAllPDF}
                         disabled={isGenerating}
-                        className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition flex items-center gap-2 disabled:opacity-50"
+                        className="ml-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:scale-95 disabled:opacity-50 disabled:hover:translate-y-0 transition-all duration-300 flex items-center gap-3"
                     >
                         {isGenerating ? (
                             <Loader2 className="w-5 h-5 animate-spin" />
                         ) : (
                             <FilePdf className="w-5 h-5" />
                         )}
-                        {t.barcode?.exportAllBtn || 'Export All as PDF'} ({barcodeItems.filter(i => i.text).length} {t.barcode?.barcodes || 'barcodes'})
+                        {t.barcode?.exportAllBtn || 'Export All as PDF'}
+                        <span className="px-2 py-0.5 bg-white/20 rounded-lg text-sm">
+                            {barcodeItems.filter(i => i.text).length}
+                        </span>
                     </button>
                 )}
             </div>
 
             {/* Info Section */}
-            <div className="mt-8 bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
-                <h4 className="font-semibold mb-2">{t.barcode?.infoTitle || 'Code 128 Features:'}</h4>
-                <ul className="text-sm space-y-1 text-gray-700">
-                    <li>• <strong>CODE128:</strong> {t.barcode?.infoAuto || 'Auto-selects best encoding for your data'}</li>
-                    <li>• <strong>CODE128A:</strong> {t.barcode?.infoA || 'Uppercase letters and control characters'}</li>
-                    <li>• <strong>CODE128B:</strong> {t.barcode?.infoB || 'Full ASCII (uppercase, lowercase, symbols)'}</li>
-                    <li>• <strong>CODE128C:</strong> {t.barcode?.infoC || 'Numeric only (most compact for numbers)'}</li>
-                    <li>• {t.barcode?.infoBulk || 'Bulk generation from sequences or Excel/CSV files'}</li>
-                    <li>• {t.barcode?.infoExport || 'Export as PNG, SVG, or multi-page PDF'}</li>
-                    <li>• {t.barcode?.infoCustom || 'Customizable colors, sizes, and fonts'}</li>
-                </ul>
+            <div className="mt-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/10 dark:to-indigo-900/10 border-l-4 border-blue-500 p-8 rounded-2xl">
+                <h4 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-blue-600 dark:text-blue-400">
+                        <FileImage className="w-6 h-6" />
+                    </div>
+                    {t.barcode?.infoTitle || 'Code 128 Features:'}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300"><strong>CODE128:</strong> {t.barcode?.infoAuto || 'Auto-selects best encoding'}</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300"><strong>CODE128A:</strong> {t.barcode?.infoA || 'Uppercase & control chars'}</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300"><strong>CODE128B:</strong> {t.barcode?.infoB || 'Full ASCII & lower/upper'}</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300"><strong>CODE128C:</strong> {t.barcode?.infoC || 'Numeric only (Compact)'}</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300">{t.barcode?.infoBulk || 'Bulk Seq / Excel Import'}</span>
+                    </div>
+                    <div className="flex gap-3">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300">{t.barcode?.infoExport || 'PNG, SVG, Multi-page PDF'}</span>
+                    </div>
+                </div>
             </div>
 
             {/* SEO Content Sections */}
