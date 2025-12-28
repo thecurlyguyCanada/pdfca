@@ -74,6 +74,10 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             {lang === 'en' ? 'Tools' : 'Outils'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
+          <Link href={`/${lang}/guides`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
+            {lang === 'en' ? 'Guides' : 'Guides'}
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
+          </Link>
           <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
             {lang === 'en' ? 'About' : 'À Propos'}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
@@ -170,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
                 {t.navSupport}
               </Link>
               <Link
-                href={`/${lang}/guides/ultimate-pdf-guide`}
+                href={`/${lang}/guides`}
                 className="text-left text-lg font-semibold text-canada-red py-4 px-5 rounded-2xl hover:bg-red-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
