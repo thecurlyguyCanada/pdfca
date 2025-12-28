@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 
 import { HomePageServer } from '@/components/pages/HomePageServer';
 import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/structuredData';
-import { Language } from '@/utils/i18n';
+import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
+import { SEO } from '@/components/SEO';
 
 // Static generation with ISR
 export const revalidate = 3600;
@@ -99,24 +100,40 @@ export default async function Page({
 }) {
     const { lang } = await params;
     const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const t = translations[currentLang];
 
-    const websiteSchema = generateWebsiteSchema();
-    const orgSchema = generateOrganizationSchema();
-    const businessSchema = generateLocalBusinessSchema();
+    // Prepare FAQs with enhanced schema
+    const faqs = t.seo.homeFaq.map(faq => ({
+        q: faq.q,
+        a: faq.a,
+        // Add HowTo steps for process-related FAQs
+        ...(faq.q.includes('merge') && {
+            howTo: [
+                { name: 'Select Files', text: 'Choose the PDF files you want to merge' },
+                { name: 'Arrange Order', text: 'Drag and drop files to set the merge order' },
+                { name: 'Download Result', text: 'Click merge and download your combined PDF' }
+            ]
+        }),
+        ...(faq.q.includes('convert') && {
+            howTo: [
+                { name: 'Upload PDF', text: 'Select the PDF file you want to convert' },
+                { name: 'Process Conversion', text: 'Our tool extracts text and structure automatically' },
+                { name: 'Download Word File', text: 'Save the converted .docx file to your device' }
+            ]
+        })
+    }));
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+            <SEO
+                title={t.seo.homeTitle}
+                description={t.seo.homeDesc}
+                lang={currentLang}
+                canonicalPath={`/${lang}`}
+                faqs={faqs}
+                breadcrumbs={[
+                    { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` }
+                ]}
             />
             <HomePageServer lang={currentLang} />
         </>

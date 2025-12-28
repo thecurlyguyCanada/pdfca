@@ -141,6 +141,21 @@ export function HomePageServer({ lang }: Props) {
                                 : 'pdfcanada.ca offers a complete suite of free PDF tools that work entirely in your browser. Merge, split, compress, convert, and sign PDFs without ever uploading your files to a server. All processing happens locally on your device, ensuring complete privacy of your documents. Compliant with Canadian PIPEDA standards.'}
                         </p>
                     </section>
+
+                    {/* FAQ Section */}
+                    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                        <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+                            {lang === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
+                        </h2>
+                        <div className="space-y-6">
+                            {t.seo.homeFaq.map((faq, i) => (
+                                <div key={i} className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <h3 className="font-bold text-lg text-gray-900 mb-3">{faq.q}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
                 </main>
 
                 <Footer lang={lang} />
