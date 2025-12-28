@@ -27,7 +27,7 @@ interface SEOProps {
   breadcrumbs?: { name: string; path: string }[];
   ogType?: 'website' | 'article' | 'product';
   noOrganization?: boolean;
-  faqs?: { q: string; a: any }[];
+  faqs?: { q: string; a: any; image?: string; video?: string; howTo?: { name: string; text: string }[] }[];
   datePublished?: string;
   dateModified?: string;
   price?: string;
@@ -215,16 +215,55 @@ export function SEO({
 
   allSchemas.push(webPageSchema);
 
-  // 5. FAQ Schema
+  // 5. Enhanced FAQ Schema with Images, Videos, and HowTo
   if (faqs && faqs.length > 0) {
     allSchemas.push({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.q,
-        "acceptedAnswer": { "@type": "Answer", "text": typeof faq.a === 'string' ? faq.a : title }
-      }))
+      "mainEntity": faqs.map(faq => {
+        const answer: Record<string, any> = {
+          "@type": "Answer",
+          "text": typeof faq.a === 'string' ? faq.a : title
+        };
+
+        // Add image to answer if provided
+        if (faq.image) {
+          answer["image"] = {
+            "@type": "ImageObject",
+            "url": faq.image.startsWith('http') ? faq.image : getAssetUrl(faq.image),
+            "contentUrl": faq.image.startsWith('http') ? faq.image : getAssetUrl(faq.image)
+          };
+        }
+
+        // Add video to answer if provided
+        if (faq.video) {
+          answer["video"] = {
+            "@type": "VideoObject",
+            "contentUrl": faq.video,
+            "thumbnailUrl": faq.image || getAssetUrl(URLS.OG_IMAGE),
+            "uploadDate": new Date().toISOString().split('T')[0],
+            "description": faq.q
+          };
+        }
+
+        const question: Record<string, any> = {
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": answer
+        };
+
+        // Add HowTo steps within FAQ if provided
+        if (faq.howTo && faq.howTo.length > 0) {
+          answer["itemListElement"] = faq.howTo.map((step, idx) => ({
+            "@type": "HowToStep",
+            "position": idx + 1,
+            "name": step.name,
+            "text": step.text
+          }));
+        }
+
+        return question;
+      })
     });
   }
 

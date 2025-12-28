@@ -8,7 +8,7 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { RelatedTools } from '@/components/RelatedTools';
 import { SEO } from '@/components/SEO';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
-import { Language } from '@/utils/i18n';
+import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
 // Static generation with ISR - revalidate every hour
@@ -100,6 +100,24 @@ export default async function ToolPage({
         { name: localizedConfig.title, path: `/${lang}/${config.slug}` },
     ];
 
+    // Get tool-specific FAQs from i18n
+    const t = translations[currentLang] as any;
+    const toolKey = tool.replace(/-/g, '');
+    const toolFaqs = t.features?.[toolKey]?.faq || [];
+
+    // Prepare FAQs with enhanced schema including HowTo steps
+    const faqs = toolFaqs.map((faq: any) => ({
+        q: faq.question,
+        a: faq.answer,
+        // Add HowTo steps for process-oriented FAQs
+        ...(t.features?.[toolKey]?.steps && {
+            howTo: t.features[toolKey].steps.map((step: string, idx: number) => ({
+                name: `Step ${idx + 1}`,
+                text: step
+            }))
+        })
+    }));
+
     return (
         <>
             <SEO
@@ -109,6 +127,7 @@ export default async function ToolPage({
                 canonicalPath={`/${lang}/${config.slug}`}
                 breadcrumbs={breadcrumbs}
                 price="0"
+                faqs={faqs}
             />
 
             <div className="mesh-bg" aria-hidden="true" />
@@ -123,6 +142,23 @@ export default async function ToolPage({
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <ToolPageClient toolConfig={config} lang={currentLang} />
+
+                        {/* Tool-specific FAQs */}
+                        {toolFaqs.length > 0 && (
+                            <div className="mt-16 max-w-3xl mx-auto">
+                                <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-10">
+                                    {currentLang === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
+                                </h2>
+                                <div className="space-y-6">
+                                    {toolFaqs.map((faq: any, i: number) => (
+                                        <div key={i} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-shadow">
+                                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-3">{faq.question}</h3>
+                                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         <div className="mt-20">
                             <RelatedTools lang={currentLang} currentPath={`/${config.slug}`} />
