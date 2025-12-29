@@ -50,7 +50,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             const loadingTask = pdfjs.getDocument({
                 data: arrayBuffer
                 // EnableScripting is handled in analyzePdfSecurity logic or default false. 
-            });
+            } as any);
             const pdf = await loadingTask.promise;
             setNumPages(pdf.numPages);
 
