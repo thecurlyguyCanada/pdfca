@@ -21,10 +21,10 @@ const getGuideContent = (lang: Language) => ({
             title: `How to Convert PDF to Word | Free & Editable ${CURRENT_YEAR} Guide | pdfcanada.ca`,
             desc: `Learn how to make PDFs editable again. Our ${CURRENT_YEAR} guide shows you how to convert PDF to Word securely and accurately using local-first tools. No signup needed.`
         },
-        h1: "How to Convert PDF to Word: The Polite Guide",
-        subtitle: "Turn those read-only PDFs into editable documents without any software installation or data privacy concerns.",
+        h1: "How to Convert and Transform PDF to Word (Free)",
+        subtitle: "The easiest way to change a PDF into an editable Word document without any software installation.",
 
-        intro: "Need to make changes to a **PDF document**? We've all been there: you have a contract, a resume, or a report that needs a quick update, but you only have the PDF version. Our **PDF to Word converter** allows you to extract text and basic formatting into a standard **.docx** file. Best of all, it happens entirely in your browser, keeping your sensitive Canadian documents safe and sound from foreign servers.",
+        intro: "Need to **transform a PDF to Word**? We've all been there: you have a contract, a resume, or a report that needs a quick update, but you only have the PDF version. **Can you convert a PDF to a word document** for free? Yes! Our **PDF to Word converter** allows you to **save a PDF as a Word document** (.docx) effortlessly. Best of all, it happens entirely in your browser, allowing you to **switch PDF to Word** or **turn a PDF document into a word document** without any data privacy concerns or foreign server uploads.",
 
         sections: [
             {
@@ -77,9 +77,34 @@ const getGuideContent = (lang: Language) => ({
 
 **Academic Paper Revisions**: Your thesis advisor marked up a PDF of your draft. Convert to Word, incorporate their feedback using Track Changes, and prepare the next version efficiently.
 
-**Legal Document Review**: Lawyers often need to extract clauses from PDF case law or precedents. Convert to Word, highlight relevant sections, and insert them into new legal briefs.
+**Legal Document Review**: Lawyers often need to extract clauses from PDF case law or precedents. When you **format PDF to Word**, you can surlhign relevant sections and insert them into new legal briefs easily.
 
-**Resume Rebuilding**: You only have your old resume as a PDF. Convert it to Word so you can update your work experience, skills, and contact information easily.`
+**Resume Rebuilding**: You only have your old resume as a PDF. **Can you change a PDF back to Word**? Absolutely. Use our tool to update your work experience, skills, and contact information without retyping.`
+            },
+            {
+                id: "mac-instructions",
+                title: "How to Convert PDF to Word on Mac",
+                content: `Mac users often wonder **how to convert PDF to Word using Mac** or a MacBook Air. While Preview is great for viewing, it doesn't always allow for full conversion. Here's the best way:
+1. **Open Safari or Chrome**: Navigate to our [PDF to Word tool](/${lang}/pdf-to-word).
+2. **Select your File**: Choose the document from your Finder or Desktop.
+3. **Convert Local**: Our engine handles the rest, allowing you to **convert PDF document to Word on Mac** without any software installation.
+4. **Open in Pages or Word**: Once downloaded, you can **edit a PDF document in Word** for Mac or the Apple Pages app.`
+            },
+            {
+                id: "search-find",
+                title: "How to Word Search in PDF",
+                content: `Many people ask **how to search for a word in a PDF**, **how to look for words in PDF**, or **how to look up words in a pdf**. Here's how to simplify your research:
+- **How to Word Search on a PDF**: Once your PDF is loaded in our tool, you can usually press **Cmd+F** (Mac) or **Ctrl+F** (Windows) to **look for a word in PDF** documents immediately.
+- **Advanced Search**: If you need to **search by word in PDF** across many pages, it's often easier to **export PDF to Word** first. This gives you Word's powerful search and replace functionality.
+- **Fixing Non-Searchable Files**: If you can't **find a word in PDF**, the file might be an image. Use our [OCR tool](/${lang}/invoice-ocr) to **search words in PDF** by making the text detectable.`
+            },
+            {
+                id: "add-insert",
+                title: "How to Copy, Paste, or Import PDF to Word",
+                content: `Many users want to know **how to copy a PDF document to Word** or **how to import PDF into Word** without losing formatting.
+- **Copy/Paste Method**: You can try to select text in a PDF and paste it, but formatting often breaks.
+- **Import Method**: In Word, use "Insert > Object" to **insert a PDF to Word** file.
+- **Best Solution**: To **copy a PDF into a word document** perfectly, use our tool to **export PDF to Word**. This turns the entire document into an editable format, allowing you to **paste PDF file in word** content as native text.`
             },
             {
                 id: "best-practices",
@@ -88,6 +113,7 @@ const getGuideContent = (lang: Language) => ({
 - Check if your PDF is text-based or scanned images. If scanned, use our OCR tool first to make the text selectable.
 - Understand that complex layouts (multi-column newspapers, heavily designed brochures) may require significant formatting adjustments after conversion.
 - Make a backup of your original PDF before converting, in case you need to reference the original layout.
+- If you need to **change wording on a PDF document**, converting to Word is the most robust method for maintaining the original font flow.
 
 **For Best Results:**
 - Simple, text-heavy PDFs (reports, essays, contracts) convert most accurately with minimal cleanup needed.
@@ -133,6 +159,18 @@ const getGuideContent = (lang: Language) => ({
         ],
 
         faq: [
+            {
+                q: "Can you convert a PDF to a Word document for free?",
+                a: "Yes! You can convert any PDF file to a Word doc for free by uploading it to our tool. It works in your browser, allowing you to export PDF to Word without charging you or requiring a subscription."
+            },
+            {
+                q: "How to edit a PDF document in Word?",
+                a: "To edit a PDF in Word, first convert it into a .docx file using our converter. Once you have the Word file, you can modify text, format paragraphs, and make changes as you normally would in any Word document."
+            },
+            {
+                q: "How do you convert PDF to Word on Mac or Phone?",
+                a: "On a Mac, you don't need special software. Just use pdfcanada.ca in your browser to transform your PDF document into an editable Word file. This also works if you need to know **how to convert word to pdf in phone** browsers like Safari or Chrome."
+            },
             {
                 q: "Is there a limit to the PDF file size I can convert?",
                 a: "Since the conversion happens locally in your browser, the limit depends on your computer's available RAM. Most standard documents up to 50-100MB convert smoothly in seconds. Very large files may take longer or require closing other browser tabs to free up memory."

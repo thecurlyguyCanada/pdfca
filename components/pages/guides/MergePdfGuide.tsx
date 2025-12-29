@@ -20,15 +20,15 @@ const getGuideContent = (lang: Language) => ({
             title: `How to Merge PDF Files | Free & Secure ${CURRENT_YEAR} Guide | pdfcanada.ca`,
             desc: `Learn how to combine multiple PDF files into one securely. Our ${CURRENT_YEAR} guide shows you how to merge PDFs locally in your browser without uploads. Fast & Private.`
         },
-        h1: `How to Merge PDF Files: The ${CURRENT_YEAR} Guide`,
-        subtitle: "Combine multiple documents into a single, organized PDF file.",
+        h1: `How to Merge PDF Files into One (${CURRENT_YEAR} Guide)`,
+        subtitle: "The easiest way to combine multiple documents into a single, organized PDF file.",
 
         intro: (
             <>
                 <img src="/images/guides/merge-pdf-guide.png" alt="Merging PDF files illustration" className="w-full h-auto rounded-xl shadow-md mb-8" />
-                Keeping track of multiple related PDF files can be a nightmare. Whether it's invoices, receipts, or chapters of a report, <strong>merging them into a single PDF</strong> keeps everything organized and professional.
+                Keeping track of multiple related PDF files can be a nightmare. Whether it's invoices, receipts, or chapters of a report, <strong>merging multiple PDF files into one</strong> keeps everything organized and professional.
                 <br /><br />
-                Our merge tool lets you combine unlimited files, reorder them exactly how you want, and save them as one document—all without uploading anything to a server.
+                Our merge tool lets you combine several PDFs into one, reorder them exactly how you want, and save them as a single document—all without needing Adobe Acrobat or uploading anything to a server.
             </>
         ),
 
@@ -140,6 +140,33 @@ const getGuideContent = (lang: Language) => ({
                 )
             },
             {
+                id: "platforms",
+                title: "How to Merge PDF Files on Mac and Windows",
+                content: (
+                    <div className="space-y-4">
+                        <p>One of the most common questions is how to merge files depending on your device. Whether you are using a <strong>Macbook Air</strong>, a <strong>Windows 10/11 desktop</strong>, or a mobile phone, our tool works universally.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white">On Windows:</h4>
+                        <p>No need to search for &quot;how to merge pdf files windows&quot; software. Just use our web-based tool. It uses your browser&apos;s local memory to process the merge, making it faster than many installed apps.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white">On Mac:</h4>
+                        <p>While you can use Preview, many people search for &quot;how to merge pdf files on a mac&quot; for a more intuitive drag-and-drop experience. Our tool provides a clear visual interface that works perfectly in Safari or Chrome on macOS.</p>
+                    </div>
+                )
+            },
+            {
+                id: "no-acrobat",
+                title: "How to Merge PDF Files Without Acrobat",
+                content: (
+                    <div className="space-y-4">
+                        <p>Many users want to know <strong>how to merge pdf documents without Adobe Acrobat</strong> because of the expensive subscription costs. Our tool is a 100% free alternative that preserves professional quality.</p>
+                        <ul className="list-disc pl-5">
+                            <li><strong>Free Forever:</strong> No &quot;Pro&quot; version required to combine files.</li>
+                            <li><strong>No Sign-up:</strong> Start merging immediately without an account.</li>
+                            <li><strong>Privacy:</strong> Unlike many &quot;Merge PDF Online&quot; tools, we don&apos;t ever see your files.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
                 id: "best-practices",
                 title: "Best Practices for Professional Results",
                 content: (
@@ -181,6 +208,14 @@ const getGuideContent = (lang: Language) => ({
 
         faq: [
             {
+                q: "How do I merge 2 pdf files into 1?",
+                a: "Simply upload both files to our tool, arrange them in the order you want, and click 'Merge PDF'. This is the fastest way to combine two documents into a single file for free."
+            },
+            {
+                q: "How to merge multiple pdf files into one pdf using this tool?",
+                a: "You can upload up to 50 files at once. Our grid view lets you see all your documents, reorder them by dragging, and then join them into one continuous PDF file with a single click."
+            },
+            {
                 q: "Is there a limit to how many files I can merge?",
                 a: "No! You can add as many files as your browser memory allows. We recommend doing 10-20 at a time for the best performance. For very large batches (50+ files), consider merging in groups and then combining those merged files."
             },
@@ -211,6 +246,10 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Is there a way to add page numbers to the merged PDF?",
                 a: "Our merge tool combines files as-is. To add page numbers, you would need to use a separate PDF editing tool after merging. Consider adding page numbers to individual files before merging for better control."
+            },
+            {
+                q: "Can I search for text across all merged files?",
+                a: "Yes! Once combined into a single PDF, you can use the standard search function (Ctrl+F or Cmd+F) to find words across all the merged pages instantly. Perfect for research and legal discovery."
             }
         ],
 
@@ -403,6 +442,10 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Y a-t-il un moyen d'ajouter des numéros de page au PDF fusionné ?",
                 a: "Notre outil de fusion combine les fichiers tels quels. Pour ajouter des numéros de page, vous auriez besoin d'utiliser un outil d'édition PDF séparé après la fusion. Envisagez d'ajouter des numéros de page aux fichiers individuels avant de fusionner pour un meilleur contrôle."
+            },
+            {
+                q: "Puis-je rechercher du texte dans l'ensemble des fichiers fusionnés ?",
+                a: "Oui ! Une fois combinés en un seul PDF, vous pouvez utiliser la fonction de recherche standard (Ctrl+F ou Cmd+F) pour trouver des mots dans toutes les pages instantanément. Idéal pour la recherche et les dossiers juridiques."
             }
         ],
 

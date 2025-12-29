@@ -21,107 +21,66 @@ const getGuideContent = (lang: Language) => ({
             title: `How to Convert Word to PDF | Free & Secure ${CURRENT_YEAR} Tutorial | pdfcanada.ca`,
             desc: `Learn how to transform DOCX to PDF instantly. Our secure ${CURRENT_YEAR} guide shows you how to convert Word to PDF locally on your device without uploading sensitive files. No uploads, 100% private Canadian tool.`
         },
-        h1: `How to Convert Word to PDF: The ${CURRENT_YEAR} Guide`,
-        subtitle: "Create high-quality, locked-down PDF documents from your Word files instantly without leaving your browser.",
+        h1: `How to Convert and Save Word as PDF (${CURRENT_YEAR})`,
+        subtitle: "The simplest way to transform any Word document into a high-quality PDF file instantly.",
 
-        intro: "Need to turn your **Word doc** into a professional-looking PDF? Whether you're sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. Our **Word to PDF converter** handles the transition smoothly, and because it runs locally, you don't have to worry about your business or personal data being stored on a random server.",
+        intro: "Need to **convert a Word to a PDF**? Whether you're sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. **How do you change a word document to a pdf** for free? Our **Word to PDF converter** allows you to **save a Word document as a PDF** effortlessly. Because it runs locally, you can **switch a Word document to PDF** or **turn a word doc into pdf** without worrying about your business or personal data being stored on a random server.",
 
         sections: [
             {
                 id: "how-to",
-                title: "Step-by-Step: Converting Word to PDF",
-                content: `Follow these simple steps to convert your Word document to PDF:
-1. **Upload Your .docx File**: Click to browse or drag-and-drop your Word document into our converter. The file stays on your device—never uploaded to our servers.
-2. **Automatic Conversion**: Our browser-based engine immediately begins processing your document, preserving formatting, fonts, images, and layout.
-3. **Preview (Optional)**: Some converters show a preview—ours focuses on speed, but you can always open the result to verify.
-4. **Download Your PDF**: Within seconds, your professional PDF is ready. Save it and share with confidence knowing the formatting is locked.
-5. **Compare Quality**: Open both files side-by-side to ensure everything converted correctly, especially complex elements like tables, charts, or headers/footers.`
+                title: "Step-by-Step: How to Turn a Word Document into a PDF",
+                content: `Follow these simple steps to **transform Word to PDF** securely:
+1. **Upload Your .docx File**: Click to browse or drag-and-drop your Word document into our converter. This works to **convert word doc to pdf on mac**, Windows, or Linux.
+2. **Automatic Conversion**: Our browser-based engine immediately begins processing your document. It will **save word as pdf** while preserving your fonts, images, and layout.
+3. **Preview (Optional)**: While some tools delay you, we focus on speed. Your **word to pdf conversion** happens in milliseconds.
+4. **Download Your PDF**: Within seconds, your professional PDF is ready. **Export word to pdf** successfully and share it with confidence.
+5. **Verify Formatting**: Open the file to ensure it looks exactly like your original. This is the best way to **make a word document a pdf** without losing quality.`
+            },
+            {
+                id: "mac-mobile",
+                title: "How to Convert Word to PDF on Mac, iPhone, and Android",
+                content: `Our tool is designed to be cross-platform. You don't need Microsoft Office to **save word document as pdf strength mac**.
+- **On Mac**: Simply open Safari or Chrome, visit our site, and drop your file. This is the fastest method to **convert word to pdf on mac** without installing software.
+- **On iPhone/iPad**: improved support for **how to convert word to pdf in phone**. Tap "Upload", select from your Files app, and download the PDF back to your device.
+- **On Android**: Works directly from Chrome. **Turn word into pdf** from your Google Drive or local downloads folder instantly.`
             },
             {
                 id: "why-pdf",
-                title: "Why You Should Always Send PDFs Instead of Word Files",
-                content: `Word files are editable and their appearance can change depending on which version of Office the recipient is using, their operating system, or their installed fonts. PDFs eliminate these problems:
-- **Format Locking**: What you see is exactly what they see. No shifting layouts, missing fonts, or broken formatting.
-- **Universal Access**: Everyone can open a PDF on any device—Windows, Mac, Linux, iOS, Android—without needing Microsoft Office. Free PDF readers are built into modern browsers.
-- **Security & Integrity**: It's much harder for someone to accidentally (or intentionally) change your text in a PDF. Great for contracts, resumes, and official documents.
-- **Professional Appearance**: PDFs are the standard for business communications, job applications, and formal submissions. Sending a Word file can appear unprofessional in many contexts.
-- **File Size Control**: PDFs are often smaller than Word documents, especially for image-heavy files, making them easier to email and faster to download.
-- **Print Consistency**: PDFs ensure what you see on screen is exactly what prints, avoiding frustrating layout shifts during printing.`
+                title: "Why Switch from Word to PDF?",
+                content: `When you **change word to pdf**, you gain several advantages over sending a raw .docx file:
+- **Universal Viewing**: A PDF looks the same on every device. If you **send a word document**, the formatting often breaks on mobile.
+- **Security**: It is harder to accidentally edit a PDF. **Make word in pdf** format to finalize contracts, invoices, and resumes.
+- **File Size**: **Exporting word to pdf** often reduces the file size, making it easier to email or upload.
+- **Professionalism**: Sending a PDF is the industry standard. **Converting word doc to pdf** shows you care about presentation.`
             },
             {
                 id: "local-first",
-                title: "Local Conversion: Better for Your Privacy & Speed",
-                content: `Most converters on the web are &quot;Cloud Based,&quot; meaning your document is uploaded to their servers, converted remotely, and sent back. Our tool works fundamentally differently. It uses **in-browser processing** powered by modern JavaScript libraries to transform your .docx file into a PDF right on your device.
-
-**Why This Matters:**
-- **Privacy Protection**: Your confidential documents never leave your computer. No server logs, no data retention, no third-party access.
-- **Faster Processing**: No upload/download wait times. Conversion happens instantly since it's all local.
-- **Offline Capable**: Once loaded, our tool can work without an internet connection (though initial page load requires internet).
-- **No File Size Limits**: Server-based tools often limit file sizes. Ours is only limited by your device's memory.
-
-**Ideal For Sensitive Documents:**
-- Legal Contracts & NDAs
-- Medical Records & Health Information
-- Confidential Resumes with Personal Details
-- Company Financial Statements
-- Tax Returns & CRA Submissions
-- **Academic Transcripts & Recommendation Letters`
+                title: "Private & Secure: Convert Word to PDF Locally",
+                content: `Unlike other tools that upload your data, we help you **convert word to pdf document free** and privately.
+- **Zero Uploads**: We **process the word document to pdf** purely in your browser.
+- **Confidential**: Perfect for legal docs, medical records, and bank statements.
+- **Fast**: No network lag. **change word doc into pdf** as fast as your computer can think.`
             },
             {
-                id: "use-cases",
-                title: "Common Use Cases for Word to PDF Conversion",
-                content: `**Job Applications**: Convert your resume and cover letter to PDF before submitting. This ensures hiring managers see your carefully formatted document exactly as intended, regardless of their system or software.
-
-**Client Proposals**: Business proposals look more professional and polished in PDF format. The locked format prevents accidental editing and maintains your branding.
-
-**Academic Submissions**: Many universities require PDF submissions for essays, theses, and dissertations. PDFs preserve citations, footnotes, and complex formatting.
-
-**Legal & Contracts**: Lawyers and legal departments universally prefer PDFs for agreements, contracts, and official correspondence due to their immutability.
-
-**Financial Reports**: Company reports, invoices, and financial statements should be in PDF to prevent tampering and ensure consistent viewing.
-
-**Government Forms**: Service Canada, CRA, and provincial agencies often require PDF uploads for applications, permits, and official documents.
-
-- **Archival & Records**: Converting Word documents to PDF ensures long-term readability, as PDF is an ISO standard that will remain accessible for decades.`
-            },
-            {
-                id: "best-practices",
-                title: "Best Practices for Word to PDF Conversion",
-                content: `**Before Converting:**
-- Review your Word document for errors—spelling, grammar, formatting issues are permanent once converted.
-- Ensure all images are high-quality and properly positioned.
-- Check that headers, footers, and page numbers appear correctly.
-- Verify hyperlinks work and point to the correct destinations.
-- Remove track changes, comments, and hidden metadata that you don't want in the final PDF.
-
-**For Best Results:**
-- Use standard fonts (Arial, Times New Roman, Calibri) that convert reliably. Decorative or custom fonts may not embed properly.
-- Keep formatting simple—complex layouts with text boxes and layered graphics can sometimes shift during conversion.
-- Test conversion with a sample page first if your document is very long or complex.
-
-**After Converting:**
-- Always open and review the resulting PDF before sharing to ensure quality.
-- Check that page breaks occur in appropriate places.
-- Verify all images, charts, and tables rendered correctly.
-- Test any embedded hyperlinks to ensure they still function.`
+                id: "fillable-forms",
+                title: "How to Create a Fillable PDF in Word",
+                content: `Many users ask **how to convert word to fillable pdf**. While Word has some form features, the best workflow is:
+1. **Design in Word**: Lay out your text and lines.
+2. **Convert to PDF**: Use this tool to **turn word into pdf**.
+3. **Add Fields**: Use our [Make Fillable](/${lang}/make-fillable) tool to auto-detect lines and add writeable boxes. This effectively lets you **make a writable pdf in word** designs.`
             },
             {
                 id: "troubleshooting",
-                title: "Troubleshooting Common Conversion Issues",
-                content: `**Problem: Fonts look different in the PDF**
-**Solution**: The Word doc may use fonts not available in the PDF rendering engine. Stick to common system fonts, or embed custom fonts in your Word doc before converting.
+                title: "Troubleshooting: Cannot Convert Word to PDF?",
+                content: `**Issue: Images are blurry.**
+**Fix**: **Save word doc as pdf** often compresses images. Ensure your source images are high-res before you **export pdf to word document** or vice versa.
 
-**Problem: Images appear blurry or low quality**
-**Solution**: Ensure images in your Word doc are high resolution. If images were compressed in Word (Compatibility Mode), save as a new .docx file in the latest format first.
+**Issue: Links not working.**
+**Fix**: When you **change word to pdf**, standard hyperlinks usually survive. Ensure they are active (blue/underlined) in Word before converting.
 
-**Problem: Page layout shifted or text wrapping changed**
-**Solution**: Complex layouts with floating objects can shift. Try simplifying the layout, or use "In Line with Text" positioning for images instead of "Wrap Text."
-
-**Problem: Conversion fails or takes a very long time**
-**Solution**: Very large files (50+ MB) or those with hundreds of high-res images can overwhelm browser memory. Try compressing images in Word first, or split into smaller documents.
-
-**Problem: Hyperlinks don't work in the PDF**
-**Solution**: Ensure hyperlinks are properly formatted in Word. Right-click and verify the link address is correct before converting.`
+**Issue: "How do I convert a word document into a pdf" on an old computer?**
+**Fix**: Our tool is lightweight. Even on older machines, you can **convert word file to pdf on mac** or PC without freezing your browser.`
             }
         ],
 
@@ -155,6 +114,26 @@ const getGuideContent = (lang: Language) => ({
                 a: "You'll need to remove the password first. Open the document in Word, enter the password, then save a copy without password protection before converting to PDF. You can re-protect the PDF afterwards if needed."
             },
             {
+                q: "How do I convert a Word document to PDF for free?",
+                a: "You can use our 100% free online converter. Simply upload your .docx file, and we will transform it into a professional PDF locally in your browser. This is perfect if you are wondering **how to export word to pdf** without paying."
+            },
+            {
+                q: "How to save a Word document as a PDF on Mac or Windows?",
+                a: "While both OSs have built-in 'Save As' options, our tool provides a consistent, high-quality output. It answers **how to convert word to pdf on mac** or **how to change word to pdf** on Windows without needing to install Microsoft Office."
+            },
+            {
+                q: "How do you change a word document to a pdf?",
+                a: "It's easy! Upload your document to our tool, and it will automatically transform the formatting into a high-quality PDF. This is the fastest way to turn a Word doc into a PDF without specialized software."
+            },
+            {
+                q: "How to make a word document PDF?",
+                a: "Simply use our local-first converter. By selecting your .docx file, our engine recreates the layout in a PDF format, effectively allowing you to make your Word file a PDF instantly."
+            },
+            {
+                q: "How to convert word to fillable PDF?",
+                a: "To create a fillable form, first use our tool to **convert word doc to pdf**. Then, open the resulting file in our 'Make Fillable' tool to add text boxes, checkboxes, and signatures."
+            },
+            {
                 q: "Will the PDF be searchable and have selectable text?",
                 a: "Yes! The PDF will contain searchable, selectable text just like your original Word document. This is different from scanning a printout—all text remains as text, not images."
             }
@@ -167,7 +146,7 @@ const getGuideContent = (lang: Language) => ({
     fr: {
         seo: {
             title: `Convertir Word en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données. Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur. Aucun téléchargement, outil canadien 100% privé.`
+            desc: `Découvrez comment transformer vos DOCX en PDF instantanément.Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données.Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur.Aucun téléchargement, outil canadien 100 % privé.`
         },
         h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",
@@ -177,99 +156,53 @@ const getGuideContent = (lang: Language) => ({
         sections: [
             {
                 id: "how-to",
-                title: "Étape par Étape : Conversion de Word en PDF",
-                content: `Suivez ces étapes simples pour convertir votre document Word en PDF :
-1. **Téléchargez votre fichier .docx** : Cliquez pour parcourir ou glissez-déposez votre document Word dans notre convertisseur. Le fichier reste sur votre appareil—jamais téléchargé sur nos serveurs.
-2. **Conversion automatique** : Notre moteur basé sur le navigateur commence immédiatement à traiter votre document, en préservant la mise en forme, les polices, les images et la mise en page.
-3. **Aperçu (optionnel)** : Certains convertisseurs affichent un aperçu—le nôtre se concentre sur la vitesse, mais vous pouvez toujours ouvrir le résultat pour vérifier.
-4. **Téléchargez votre PDF** : En quelques secondes, votre PDF professionnel est prêt. Enregistrez-le et partagez-le en toute confiance sachant que la mise en forme est verrouillée.
-5. **Comparez la qualité** : Ouvrez les deux fichiers côte à côte pour vous assurer que tout a été converti correctement, en particulier les éléments complexes comme les tableaux, graphiques ou en-têtes/pieds de page.`
+                title: "Étape par Étape : Comment Transformer un Document Word en PDF",
+                content: `Suivez ces étapes simples pour **convertir Word en PDF** en toute sécurité :
+1. **Téléchargez votre fichier .docx** : Cliquez pour parcourir ou glissez-déposez votre document Word. Cela fonctionne pour **convertir un fichier word en pdf sur mac**, PC ou Android.
+2. **Conversion Automatique** : Notre moteur commence immédiatement le traitement. Il va **enregistrer word en pdf** tout en préservant vos polices et votre mise en page.
+3. **Téléchargement** : En quelques secondes, votre PDF est prêt. **Exporter word en pdf** n'a jamais été aussi simple.
+4. **Vérification** : Ouvrez le fichier pour vous assurer qu'il ressemble exactement à l'original. C'est la meilleure façon de **faire un pdf avec word** sans perdre en qualité.`
+            },
+            {
+                id: "mac-mobile",
+                title: "Convertir Word en PDF sur Mac, iPhone et Android",
+                content: `Notre outil est multiplateforme. Pas besoin d'Office pour **enregistrer un document word en pdf sur mac**.
+- **Sur Mac** : Ouvrez Safari, visitez notre site et déposez votre fichier. Idéal pour **convertir word en pdf mac** sans logiciel.
+- **Sur mobile** : Parfait pour savoir **comment mettre un document word en pdf sur téléphone**. Utilisez Chrome ou Safari mobile.
+- **Sur Android** : **Transformer un document word en pdf** directement depuis vos téléchargements.`
             },
             {
                 id: "why-pdf",
-                title: "Pourquoi Toujours Envoyer des PDF au Lieu de Fichiers Word",
-                content: `Les fichiers Word sont modifiables et leur apparence peut changer selon la version d'Office utilisée par le destinataire, leur système d'exploitation ou leurs polices installées. Les PDF éliminent ces problèmes :
-- **Verrouillage du Format** : Ce que vous voyez est exactement ce qu'ils voient. Aucun décalage de mise en page, aucune police manquante ou formatage cassé.
-- **Accès Universel** : Tout le monde peut ouvrir un PDF sur n'importe quel appareil—Windows, Mac, Linux, iOS, Android—sans avoir besoin de Microsoft Office. Les lecteurs PDF gratuits sont intégrés aux navigateurs modernes.
-- **Sécurité et Intégrité** : Il est beaucoup plus difficile pour quelqu'un de modifier accidentellement (ou intentionnellement) votre texte dans un PDF. Idéal pour les contrats, CV et documents officiels.
-- **Apparence Professionnelle** : Les PDF sont la norme pour les communications d'affaires, les candidatures d'emploi et les soumissions formelles. Envoyer un fichier Word peut sembler non professionnel dans de nombreux contextes.
-- **Contrôle de la Taille du Fichier** : Les PDF sont souvent plus petits que les documents Word, en particulier pour les fichiers riches en images, ce qui les rend plus faciles à envoyer par courriel et plus rapides à télécharger.
-- **Cohérence d'Impression** : Les PDF garantissent que ce que vous voyez à l'écran est exactement ce qui s'imprime, évitant les décalages de mise en page frustrants lors de l'impression.`
+                title: "Pourquoi Passer de Word à PDF ?",
+                content: `Quand vous **transformez un doc en pdf**, vous gagnez en sécurité et en professionnalisme :
+- **Visibilité Universelle** : Un PDF s'affiche de la même manière partout. Si vous envoyez un Word, la mise en page peut casser.
+- **Sécurité** : Plus difficile à modifier accidentellement. **Mettre un word en pdf** fige le contenu.
+- **Taille de Fichier** : **Convertir un fichier word en pdf** réduit souvent la taille pour l'envoi par courriel.`
             },
             {
                 id: "local-first",
-                title: "Conversion Locale : Meilleure pour Votre Confidentialité et Vitesse",
-                content: `La plupart des convertisseurs sur le web sont &quot;basés sur le cloud&quot;, ce qui signifie que votre document est téléchargé sur leurs serveurs, converti à distance et renvoyé. Notre outil fonctionne fondamentalement différemment. Il utilise le **traitement dans le navigateur** alimenté par des bibliothèques JavaScript modernes pour transformer votre fichier .docx en PDF directement sur votre appareil.
-
-**Pourquoi C'est Important :**
-- **Protection de la Confidentialité** : Vos documents confidentiels ne quittent jamais votre ordinateur. Aucun journal de serveur, aucune rétention de données, aucun accès tiers.
-- **Traitement Plus Rapide** : Aucun temps d'attente de téléchargement/téléversement. La conversion se fait instantanément puisque tout est local.
-- **Capable Hors Ligne** : Une fois chargé, notre outil peut fonctionner sans connexion Internet (bien que le chargement initial de la page nécessite Internet).
-- **Aucune Limite de Taille de Fichier** : Les outils basés sur serveur limitent souvent les tailles de fichiers. Le nôtre n'est limité que par la mémoire de votre appareil.
-
-**Idéal Pour les Documents Sensibles :**
-- Contrats Juridiques et Accords de Confidentialité
-- Dossiers Médicaux et Informations de Santé
-- CV Confidentiels avec Détails Personnels
-- États Financiers d'Entreprise
-- Déclarations de Revenus et Soumissions à l'ARC
-- Relevés de Notes Académiques et Lettres de Recommandation`
+                title: "Privé et Sécurisé : Conversion Locale",
+                content: `Contrairement aux autres outils, nous vous aidons à **convertir un fichier pdf en word gratuit** (et vice versa) localement.
+- **Zéro Téléversement** : Nous traitons le document dans votre navigateur.
+- **Confidentiel** : Vos données ne quittent jamais votre appareil.
+- **Rapide** : **Changer word en pdf** instantanément.`
             },
             {
-                id: "use-cases",
-                title: "Cas d'Utilisation Courants pour la Conversion Word en PDF",
-                content: `**Candidatures d'Emploi** : Convertissez votre CV et lettre de motivation en PDF avant de les soumettre. Cela garantit que les responsables du recrutement voient votre document soigneusement formaté exactement comme prévu, quel que soit leur système ou logiciel.
-
-**Propositions Clients** : Les propositions commerciales paraissent plus professionnelles et soignées au format PDF. Le format verrouillé empêche les modifications accidentelles et maintient votre image de marque.
-
-**Soumissions Académiques** : De nombreuses universités exigent des soumissions en PDF pour les essais, thèses et mémoires. Les PDF préservent les citations, notes de bas de page et formatage complexe.
-
-**Documents Juridiques et Contrats** : Les avocats et départements juridiques préfèrent universellement les PDF pour les accords, contrats et correspondance officielle en raison de leur immuabilité.
-
-**Rapports Financiers** : Les rapports d'entreprise, factures et états financiers devraient être en PDF pour empêcher la falsification et garantir une visualisation cohérente.
-
-**Formulaires Gouvernementaux** : Service Canada, l'ARC et les agences provinciales exigent souvent des téléchargements PDF pour les demandes, permis et documents officiels.
-
-**Archivage et Dossiers** : Convertir les documents Word en PDF garantit la lisibilité à long terme, car le PDF est une norme ISO qui restera accessible pendant des décennies.`
-            },
-            {
-                id: "best-practices",
-                title: "Meilleures Pratiques pour la Conversion Word en PDF",
-                content: `**Avant de Convertir :**
-- Relisez votre document Word pour les erreurs—l'orthographe, la grammaire et les problèmes de formatage sont permanents une fois convertis.
-- Assurez-vous que toutes les images sont de haute qualité et correctement positionnées.
-- Vérifiez que les en-têtes, pieds de page et numéros de page apparaissent correctement.
-- Vérifiez que les hyperliens fonctionnent et pointent vers les bonnes destinations.
-- Supprimez le suivi des modifications, commentaires et métadonnées cachées que vous ne voulez pas dans le PDF final.
-
-**Pour de Meilleurs Résultats :**
-- Utilisez des polices standard (Arial, Times New Roman, Calibri) qui se convertissent de manière fiable. Les polices décoratives ou personnalisées peuvent ne pas s'intégrer correctement.
-- Gardez le formatage simple—les mises en page complexes avec des zones de texte et des graphiques superposés peuvent parfois se déplacer lors de la conversion.
-- Testez la conversion avec une page échantillon d'abord si votre document est très long ou complexe.
-
-**Après la Conversion :**
-- Ouvrez et examinez toujours le PDF résultant avant de le partager pour garantir la qualité.
-- Vérifiez que les sauts de page se produisent aux endroits appropriés.
-- Vérifiez que toutes les images, graphiques et tableaux se sont rendus correctement.
-- Testez tous les hyperliens intégrés pour vous assurer qu'ils fonctionnent toujours.`
+                id: "fillable-forms",
+                title: "Comment Créer un PDF Remplissable dans Word",
+                content: `Beaucoup demandent **comment faire un pdf remplissable avec word**. Voici la méthode :
+1. **Design dans Word** : Faites votre mise en page.
+2. **Convertir** : Utilisez cet outil pour **convertir le document word en pdf**.
+3. **Rendre Remplissable** : Utilisez notre outil [Rendre Remplissable](/${lang}/make-fillable).`
             },
             {
                 id: "troubleshooting",
-                title: "Dépannage des Problèmes de Conversion Courants",
-                content: `**Problème : Les polices semblent différentes dans le PDF**
-**Solution** : Le document Word peut utiliser des polices non disponibles dans le moteur de rendu PDF. Utilisez des polices système courantes, ou intégrez des polices personnalisées dans votre document Word avant de convertir.
+                title: "Dépannage : Problèmes de Conversion ?",
+                content: `**Problème : Images floues.**
+**Solution** : Quand vous **enregistrez word sous pdf**, la compression peut jouer. Utilisez des images haute résolution.
 
-**Problème : Les images apparaissent floues ou de mauvaise qualité**
-**Solution** : Assurez-vous que les images de votre document Word sont en haute résolution. Si les images ont été compressées dans Word (Mode Compatibilité), enregistrez d'abord comme nouveau fichier .docx dans le format le plus récent.
-
-**Problème : La mise en page a changé ou l'habillage du texte a changé**
-**Solution** : Les mises en page complexes avec des objets flottants peuvent se déplacer. Essayez de simplifier la mise en page, ou utilisez le positionnement "Aligné sur le texte" pour les images au lieu de "Habillage du texte".
-
-**Problème : La conversion échoue ou prend très longtemps**
-**Solution** : Les fichiers très volumineux (50+ Mo) ou ceux avec des centaines d'images haute résolution peuvent submerger la mémoire du navigateur. Essayez de compresser les images dans Word d'abord, ou divisez en documents plus petits.
-
-**Problème : Les hyperliens ne fonctionnent pas dans le PDF**
-**Solution** : Assurez-vous que les hyperliens sont correctement formatés dans Word. Cliquez avec le bouton droit et vérifiez que l'adresse du lien est correcte avant de convertir.`
+**Problème : Liens inactifs.**
+**Solution** : Vérifiez vos liens dans Word avant de **passer de word a pdf**.`
             }
         ],
 

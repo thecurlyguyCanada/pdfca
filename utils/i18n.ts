@@ -504,39 +504,39 @@ export const translations = {
         }
       },
       pdfToWord: {
-        title: "PDF to Word Online - Convert PDF to Editable DOCX | Free & Secure",
-        desc: `Convert PDF to editable Word documents for free in ${CURRENT_YEAR}. Our local-first converter keeps your data secure on your device. Fast, accurate, and 100% private—no signup.`,
+        title: "How to Convert and Transform PDF to Word | Free & Secure",
+        desc: `Convert PDF to Word on Mac, PC, or Mobile. Transform PDF to editable DOCX documents locally for free. Secure, private, and no signup needed.`,
         h1: "Convert PDF to Word",
-        subtitle: "Make your PDFs editable again—accurately & securely.",
-        content: "Need to edit a PDF? Convert it to a Word document (.docx) effortlessly. Our local processing ensures your sensitive data never leaves your device.",
+        subtitle: "Transform your PDFs into editable Word documents—accurately & securely.",
+        content: "Need to change a PDF to Word? Our tool lets you transform PDF to Word format effortlessly. Your local processing ensures you can switch PDF to Word without your sensitive data ever leaving your device.",
         steps: [
-          "Select the PDF you want to convert.",
-          "Our tool extracts the text and formatting into a Word document.",
-          "Download your editable .docx file."
+          "Select the PDF you want to transform into Word.",
+          "Our tool extracts the text and formatting into a .docx document.",
+          "Download your editable Word file instantly."
         ],
         quickAnswer: {
-          question: "How do I change a PDF to an editable Word document?",
-          answer: "You can convert PDF to Word (.docx) for free using our browser-based converter. It extracts text and basic structure, allowing you to edit the document in Microsoft Word or Google Docs.",
+          question: "How do I convert a PDF to an editable Word document for free?",
+          answer: "You can convert PDF to Word (.docx) for free using our browser-based converter. It allows you to save PDF as Word and extract layout information, so you can edit the document in Microsoft Word or Google Docs without Acrobat.",
           tool: "PDF to Word",
-          steps: ["Upload your PDF", "Extract text and layout", "Download Word file"]
+          steps: ["Upload your PDF", "Transform to Word format", "Download editable .docx"]
         }
       },
       wordToPdf: {
-        title: "Word to PDF Online - Convert DOCX to PDF for Free | pdfcanada.ca",
-        desc: `Create high-quality PDFs from Word documents instantly in ${CURRENT_YEAR}. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.`,
+        title: "How to Convert and Save Word as PDF | Free & Secure",
+        desc: `Convert Word to PDF on Mac, PC, or Mobile for free. Secure local tool to save DOCX as PDF instantly. No uploads, 100% private.`,
         h1: "Convert Word to PDF",
-        subtitle: "Professional PDFs from your DOCX files instantly.",
-        content: "Turn your Word documents into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
+        subtitle: "Professional PDFs from your Word documents instantly.",
+        content: "Need to convert a Word to a PDF? Turn your Word documents into high-quality PDFs while keeping your data 100% private. Perfect for sharing and printing.",
         steps: [
-          "Upload your .docx file.",
+          "Upload your .docx file to save as PDF.",
           "We process the document and generate a professional PDF.",
-          "Download your new PDF file."
+          "Download your new PDF file instantly."
         ],
         quickAnswer: {
-          question: "What's the best way to convert Word to PDF?",
-          answer: "The best way is to use a secure local converter that preserves your formatting. Our tool turns your .docx files into professional PDFs instantly without requiring an upload to a server.",
+          question: "What's the best way to convert from Word document to PDF?",
+          answer: "The best way is to use a secure local converter to save Word as PDF. Our tool turns your .docx files into professional PDFs instantly without requiring an upload to a server.",
           tool: "Word to PDF",
-          steps: ["Select .docx document", "Generate professional PDF", "Download your file"]
+          steps: ["Select .docx document", "Save Word as PDF", "Download your file"]
         }
       },
       rtfToPdf: {
@@ -599,26 +599,26 @@ export const translations = {
         ]
       },
       merge: {
-        title: "Merge PDF Online - Free & Secure No-Upload Tool | pdfcanada.ca",
-        desc: "Select & merge multiple PDF files in seconds securely in your browser. Combine PDFs online with 100% privacy—no files ever leave your device. Fast, free & Canadian.",
-        h1: "Merge PDF Files",
-        subtitle: "Combine multiple PDFs into one document securely.",
-        content: "Have multiple PDF files that should be one document? Our Merge PDF tool lets you combine them easily. Drag and drop to reorder, then merge them into a single file.",
+        title: "How to Merge PDF Files into One | Free & Secure Online Tool",
+        desc: `Combine multiple PDF files into one in seconds. Learn how to merge PDFs locally without Adobe Acrobat. 100% private, free, and proudly Canadian.`,
+        h1: "How to Merge PDF Files into One",
+        subtitle: "Combine two or more PDFs into a single document securely.",
+        content: "Need to merge multiple PDF files into one? Our free tool lets you combine several PDFs, reorder documents by dragging, and join them into a single file without any server uploads. Perfect for merging receipts, contracts, or reports into one professional package.",
         steps: [
-          "Select the PDF files you want to merge.",
-          "Drag and drop the files to rearrange the order.",
-          "Click 'Merge PDFs' to download your combined document."
+          "Select the multiple PDF files you want to merge together.",
+          "Drag and drop the documents to rearrange the order.",
+          "Click 'Merge PDFs' to download your combined PDF file into one."
         ],
         quickAnswer: {
-          question: "How do I combine multiple PDF files into one?",
-          answer: "Merging PDFs is easy with our local tool. Just upload your documents, arrange them in the correct order, and download the single combined file. Your data remains secure on your device.",
+          question: "How do I merge PDF files into one for free?",
+          answer: "Merging PDFs is easy with our local tool. Just upload your documents, arrange them in the correct order, and download the single combined file. It's the best way to merge pdf files into one without Adobe Acrobat.",
           tool: "Merge PDF",
-          steps: ["Select multiple PDFs", "Order files correctly", "Download merged file"]
+          steps: ["Select two or more PDFs", "Reorder files correctly", "Download merged file"]
         },
         faq: [
-          { question: "How many PDFs can I merge at once?", answer: "There's no limit! Merge as many PDF files as you need. All processing happens locally in your browser." },
-          { question: "Can I reorder pages before merging?", answer: "Yes! Drag and drop files to rearrange their order before merging into one document." },
-          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents." }
+          { question: "How to merge 2 pdf files into 1?", answer: "Simply upload both documents, arrange them, and click merge. It is the fastest way to combine two PDF files into one for free." },
+          { question: "How do I merge multiple PDF files without Acrobat?", answer: "Our tool processes everything locally in your browser, providing a free alternative to Adobe Acrobat for merging, reordering, and combining several PDF documents." },
+          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents, keeping text sharp and images clear." }
         ]
       },
       split: {
@@ -1456,7 +1456,7 @@ export const translations = {
       },
       wordToPdf: {
         title: "Word vers PDF en Ligne - Convertir DOCX en PDF | pdfcanada.ca",
-        desc: "Créez des PDF de qualité professionnelle à partir de vos documents Word. Convertisseur sécurisé traitant les fichiers localement—aucun envoi sur serveur, juste un service rapide et gratuit.",
+        desc: "Convertissez Word en PDF sur Mac, PC ou mobile. Convertisseur sécurisé de DOCX en PDF local. 100% privé, aucun envoi sur serveur.",
         h1: "Convertir Word en PDF",
         subtitle: "Des PDF professionnels à partir de vos DOCX.",
         content: "Transformez vos documents Word en PDF impeccables. Idéal pour le partage, l'impression et l'archivage, avec une sécurité locale totale.",
@@ -1532,26 +1532,26 @@ export const translations = {
         ]
       },
       merge: {
-        title: "Fusionner PDF en Ligne - Combiner des Fichiers Gratuitement | pdfcanada.ca",
-        desc: "Fusionnez plusieurs fichiers PDF en quelques secondes. Combinez vos documents en toute sécurité dans votre navigateur. 100% privé et gratuit.",
-        h1: "Fusionner des Fichiers PDF",
-        subtitle: "Combinez plusieurs PDF en un seul document.",
-        content: "Vous avez plusieurs fichiers éparpillés ? Notre outil de fusion vous permet de les rassembler en un seul PDF soigné. Glissez-déposez pour définir l'ordre, et c'est tout.",
+        title: "Fusionner PDF en Ligne - Combiner des Fichiers en un Seul | Gratuit",
+        desc: "Fusionnez plusieurs fichiers PDF en quelques secondes. Apprenez comment fusionner des PDF localement sans Adobe Acrobat. 100% privé et gratuit.",
+        h1: "Fusionner des Fichiers PDF en un Seul",
+        subtitle: "Combinez plusieurs PDF en un seul document soigné.",
+        content: "Besoin de rassembler plusieurs documents ? Notre outil de fusion vous permet de combiner plusieurs PDF, de les réordonner par glisser-déposer, et de les fusionner en un seul fichier sans téléversement sur serveur.",
         steps: [
-          "Sélectionnez les fichiers PDF à fusionner.",
+          "Sélectionnez les fichiers PDF à fusionner ensemble.",
           "Réorganisez-les par glisser-déposer.",
           "Cliquez sur 'Fusionner PDF' pour obtenir votre document unique."
         ],
         quickAnswer: {
           question: "Comment assembler plusieurs PDF en un seul ?",
-          answer: "C'est simple : téléversez vos documents, mettez-les dans l'ordre voulu, et notre outil local les fusionnera en un seul fichier instantanément.",
+          answer: "C'est simple : téléversez vos documents, mettez-les dans l'ordre voulu, et notre outil local les fusionnera en un seul fichier instantanément sans Adobe.",
           tool: "Fusionner PDF",
           steps: ["Sélectionnez les PDF", "Ordonnez les fichiers", "Téléchargez le fichier fusionné"]
         },
         faq: [
-          { question: "Combien de PDF puis-je fusionner ?", answer: "Il n'y a aucune limite ! Fusionnez autant de fichiers que nécessaire." },
-          { question: "Puis-je changer l'ordre ?", answer: "Absolument. Glissez simplement les vignettes pour réorganiser l'ordre avant la fusion." },
-          { question: "La qualité est-elle préservée ?", answer: "Oui, notre outil conserve la qualité originale de vos pages." }
+          { question: "Comment fusionner 2 fichiers PDF en 1 ?", answer: "Téléversez simplement vos deux documents, mettez-les dans l'ordre, et cliquez sur fusionner. C'est le moyen le plus rapide d'assembler deux PDF." },
+          { question: "Est-ce sécurisé ?", answer: "Oui ! Le traitement est entièrement local. Vos fichiers ne quittent jamais votre ordinateur, ce qui est idéal pour les documents confidentiels." },
+          { question: "La qualité est-elle préservée ?", answer: "Absolument, notre outil conserve la résolution originale de toutes vos pages." }
         ]
       },
       split: {
