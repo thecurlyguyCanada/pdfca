@@ -156,23 +156,43 @@ Need to split a file on the go? Most mobile apps are ad-heavy. Our **free pdf do
         faq: [
             {
                 q: "What is the best free PDF splitter?",
-                a: "For privacy and speed, a browser-based local tool like pdfcanada.ca is the best option. It combines the convenience of an online tool with the security of offline software."
+                a: "For privacy and speed, a browser-based local tool like pdfcanada.ca is the best option. It combines the convenience of an online tool with the security of offline software, running entirely in your browser without uploading files."
             },
             {
                 q: "Is there a PDF splitter software I can use offline?",
-                a: "Yes! Once you load our page, our application is cached in your browser. You can actually disconnect your internet and still use our **pdf splitter free** of connection issues."
+                a: "Yes! Once you load our page, our application is cached in your browser. You can actually disconnect your internet and still use our pdf splitter free of connection issues. It works like desktop software."
             },
             {
                 q: "Can I split PDF pages free without watermarks?",
-                a: "Absolutely. We do not add any watermarks to your documents. You get improved, professional-quality files."
+                a: "Absolutely. We do not add any watermarks to your documents. You get clean, professional-quality files every time, completely free with no 'Pro' upsells or hidden limitations."
             },
             {
                 q: "How do I separate PDF pages online on my phone?",
-                a: "Open pdfcanada.ca/split-pdf on your mobile browser. Select your file, tap the pages you want to extract, and tap split. It's the easiest way to **split pdf android** or iOS."
+                a: "Open pdfcanada.ca/split-pdf on your mobile browser. Select your file, tap the pages you want to extract, and tap split. It's the easiest way to split pdf on Android or iOS without installing any apps."
             },
             {
                 q: "Is it safe to use an online PDF splitter?",
-                a: "It depends. If the tool uploads your file to a server, there is always a risk. That's why we built a **local-first** tool. With us, 'Online' just means 'in the browser', not 'on a server'."
+                a: "It depends. If the tool uploads your file to a server, there is always a risk. That's why we built a local-first tool. With us, 'Online' just means 'in the browser', not 'on a server'. Your files never leave your device."
+            },
+            {
+                q: "Can I extract specific page ranges like pages 1, 5-10, 15?",
+                a: "Yes! Our splitter supports flexible page ranges. You can enter '1, 5-10, 15' to extract those exact pages into a single PDF, or split them into individual files. Perfect for grabbing specific sections from large documents."
+            },
+            {
+                q: "Why won't my password-protected PDF split?",
+                a: "Protected PDFs must be unlocked first. Use our Unlock PDF tool to remove the password (you'll need to know the password), then split the document. Some PDFs have restrictions even if they don't ask for a password when opening."
+            },
+            {
+                q: "How do I split a PDF into individual pages?",
+                a: "Select 'Split into Single Pages' mode. Our tool will automatically separate every page into its own PDF file. Great for invoices, receipts, or any scanned document stack that needs to be organized."
+            },
+            {
+                q: "What's the maximum file size I can split?",
+                a: "Since splitting happens locally in your browser, there's no server-imposed limit. Your limit is your device's RAM. Most computers handle 200MB+ files easily. For very large files (500MB+), close other browser tabs first."
+            },
+            {
+                q: "Will splitting affect the quality of my PDF?",
+                a: "No, splitting preserves 100% of the original quality. We don't re-compress or modify images. The extracted pages are byte-for-byte identical to the originals—just in separate files."
             }
         ],
 
@@ -319,19 +339,43 @@ La plupart des applis sont remplies de pubs. Notre site est réactif et fonction
         faq: [
             {
                 q: "Quel est le meilleur outil pour diviser un PDF ?",
-                a: "Pour la confidentialité et la vitesse, un outil local comme pdfcanada.ca est la meilleure option."
+                a: "Pour la confidentialité et la vitesse, un outil local comme pdfcanada.ca est la meilleure option. Il combine la commodité d'un outil en ligne avec la sécurité d'un logiciel hors ligne."
             },
             {
                 q: "Puis-je l'utiliser hors ligne ?",
-                a: "Oui ! Une fois la page chargée, notre application est en cache et fonctionne sans internet."
+                a: "Oui ! Une fois la page chargée, notre application est mise en cache dans votre navigateur et fonctionne sans connexion internet. C'est comme un logiciel de bureau."
             },
             {
                 q: "Est-ce gratuit et sans filigrane ?",
-                a: "Absolument. Nous n'ajoutons aucun filigrane à vos documents."
+                a: "Absolument. Nous n'ajoutons aucun filigrane à vos documents. Vous obtenez des fichiers de qualité professionnelle, complètement gratuits sans limitations cachées."
             },
             {
                 q: "Comment diviser un PDF sur téléphone ?",
-                a: "Ouvrez pdfcanada.ca/split-pdf sur votre mobile. C'est la méthode la plus simple sur Android et iOS."
+                a: "Ouvrez pdfcanada.ca/split-pdf sur votre navigateur mobile. Sélectionnez votre fichier, touchez les pages à extraire, et touchez diviser. C'est la méthode la plus simple sur Android et iOS."
+            },
+            {
+                q: "Puis-je extraire des plages de pages spécifiques ?",
+                a: "Oui ! Vous pouvez entrer '1, 5-10, 15' pour extraire ces pages exactes dans un seul PDF, ou les diviser en fichiers individuels. Parfait pour récupérer des sections spécifiques de longs documents."
+            },
+            {
+                q: "Pourquoi mon PDF protégé ne se divise pas ?",
+                a: "Les PDF protégés doivent d'abord être déverrouillés. Utilisez notre outil Déverrouiller PDF (vous devez connaître le mot de passe), puis divisez le document."
+            },
+            {
+                q: "Comment diviser un PDF en pages individuelles ?",
+                a: "Sélectionnez le mode 'Diviser en pages uniques'. Notre outil séparera automatiquement chaque page en son propre fichier PDF. Idéal pour les factures scannées."
+            },
+            {
+                q: "Quelle est la taille maximale de fichier ?",
+                a: "Puisque la division se fait localement, il n'y a pas de limite serveur. Votre limite est la RAM de votre appareil. La plupart des ordinateurs gèrent facilement des fichiers de 200 Mo+."
+            },
+            {
+                q: "La division affecte-t-elle la qualité ?",
+                a: "Non, la division préserve 100% de la qualité originale. Nous ne recompressons pas les images. Les pages extraites sont identiques aux originales."
+            },
+            {
+                q: "Est-ce sécuritaire d'utiliser un outil en ligne ?",
+                a: "Avec nous, 'en ligne' signifie 'dans le navigateur', pas 'sur un serveur'. Vos fichiers ne quittent jamais votre appareil, garantissant une confidentialité totale."
             }
         ],
 

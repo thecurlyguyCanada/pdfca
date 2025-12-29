@@ -139,12 +139,44 @@ const getGuideContent = (lang: Language) => ({
         faqTitle: "Frequently Asked Questions about PDF Tools",
         faqs: [
             {
-                q: "What makes pdfcanada.ca different?",
-                a: "Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser's memory."
+                q: "What makes pdfcanada.ca different from other PDF tools?",
+                a: "Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser's memory. This means faster processing, complete privacy, and no file size limits."
             },
             {
-                q: "Is there a limit to file size?",
-                a: "Since processing is done on your hardware, we don't enforce arbitrary server limits. You can process larger files than most cloud tools allow."
+                q: "Is there a limit to file size I can process?",
+                a: "Since processing is done on your hardware, we don't enforce arbitrary server limits. You can process larger files than most cloud tools allow—typically up to your device's available RAM (usually 100-500MB for most computers)."
+            },
+            {
+                q: "Do I need to create an account to use these tools?",
+                a: "No. No account, no email, no login required. Just visit the tool you need and start working immediately. We believe in friction-free productivity."
+            },
+            {
+                q: "Can I use these PDF tools on my phone or tablet?",
+                a: "Absolutely. All our tools are fully responsive and work on iOS (iPhone/iPad), Android phones and tablets. The mobile experience is optimized for touch with easy-to-tap buttons and drag-and-drop support."
+            },
+            {
+                q: "Are these tools really 100% free?",
+                a: "Yes, completely free with no hidden fees, no 'Pro' version upsells, no watermarks, and no daily usage limits. We're supported by minimal, non-intrusive ads and built on the 'Polite Canadian' philosophy of providing genuine value."
+            },
+            {
+                q: "How do I edit a scanned PDF that I can't select text from?",
+                a: "Use our OCR (Optical Character Recognition) tool. It analyzes the scanned images and creates a searchable, selectable text layer over your document. After OCR, you can copy text, search with Ctrl+F, and use other editing tools."
+            },
+            {
+                q: "Can I merge multiple PDFs into one document?",
+                a: "Yes, our Merge PDF tool lets you combine unlimited PDFs into a single file. Just drag and drop your files, arrange them in the order you want, and click merge. The result is a single, combined PDF document."
+            },
+            {
+                q: "What's the best format to convert my PDF to for e-readers?",
+                a: "For e-readers like Kindle or Kobo, convert to EPUB format. EPUB allows the text to reflow based on screen size and font preferences, providing a much better reading experience than viewing a fixed-layout PDF."
+            },
+            {
+                q: "Can I password-protect my PDF after editing?",
+                a: "Yes, use our Protect PDF tool to add password encryption to your document. You can set a password required to open the file and/or restrict printing, copying, and editing."
+            },
+            {
+                q: "How do I remove a password from a PDF I own?",
+                a: "Use our Unlock PDF tool. You'll need to know the current password. Once entered, we can remove the protection and save a new, unlocked version. This is useful when you've inherited old documents or forgotten your own passwords."
             }
         ],
 
@@ -276,12 +308,44 @@ const getGuideContent = (lang: Language) => ({
         faqTitle: "Questions Fréquentes sur les Outils PDF",
         faqs: [
             {
-                q: "Qu'est-ce qui rend pdfcanada.ca différent ?",
-                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur."
+                q: "Qu'est-ce qui rend pdfcanada.ca différent des autres outils PDF ?",
+                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur. Cela signifie un traitement plus rapide, une confidentialité totale et aucune limite de taille de fichier."
             },
             {
                 q: "Y a-t-il une limite de taille de fichier ?",
-                a: "Puisque le traitement est effectué sur votre matériel, nous n'imposons pas de limites arbitraires de serveur. Vous pouvez traiter des fichiers plus volumineux que la plupart des outils cloud ne le permettent."
+                a: "Puisque le traitement est effectué sur votre matériel, nous n'imposons pas de limites arbitraires de serveur. Vous pouvez traiter des fichiers plus volumineux que la plupart des outils cloud—généralement jusqu'à la RAM disponible de votre appareil."
+            },
+            {
+                q: "Dois-je créer un compte pour utiliser ces outils ?",
+                a: "Non. Aucun compte, aucun courriel, aucune connexion requis. Visitez simplement l'outil dont vous avez besoin et commencez à travailler immédiatement. Nous croyons en la productivité sans friction."
+            },
+            {
+                q: "Puis-je utiliser ces outils PDF sur mon téléphone ou tablette ?",
+                a: "Absolument. Tous nos outils sont entièrement réactifs et fonctionnent sur iOS (iPhone/iPad), téléphones et tablettes Android. L'expérience mobile est optimisée pour le tactile."
+            },
+            {
+                q: "Ces outils sont-ils vraiment 100% gratuits ?",
+                a: "Oui, complètement gratuits sans frais cachés, sans version 'Pro', sans filigranes et sans limites d'utilisation quotidienne. Nous sommes basés sur la philosophie du 'Canadien Poli' de fournir une valeur véritable."
+            },
+            {
+                q: "Comment éditer un PDF scanné dont je ne peux pas sélectionner le texte ?",
+                a: "Utilisez notre outil OCR (Reconnaissance Optique de Caractères). Il analyse les images scannées et crée une couche de texte consultable et sélectionnable sur votre document."
+            },
+            {
+                q: "Puis-je fusionner plusieurs PDF en un seul document ?",
+                a: "Oui, notre outil Fusionner PDF vous permet de combiner des PDF illimités en un seul fichier. Glissez-déposez vos fichiers, arrangez-les dans l'ordre souhaité, et cliquez fusionner."
+            },
+            {
+                q: "Quel est le meilleur format pour convertir mon PDF pour les liseuses ?",
+                a: "Pour les liseuses comme Kindle ou Kobo, convertissez en format EPUB. L'EPUB permet au texte de s'adapter en fonction de la taille de l'écran et des préférences de police."
+            },
+            {
+                q: "Puis-je protéger mon PDF par mot de passe après l'édition ?",
+                a: "Oui, utilisez notre outil Protéger PDF pour ajouter un chiffrement par mot de passe à votre document. Vous pouvez définir un mot de passe requis pour ouvrir le fichier."
+            },
+            {
+                q: "Comment supprimer un mot de passe d'un PDF que je possède ?",
+                a: "Utilisez notre outil Déverrouiller PDF. Vous devrez connaître le mot de passe actuel. Une fois entré, nous pouvons supprimer la protection et enregistrer une nouvelle version déverrouillée."
             }
         ],
 

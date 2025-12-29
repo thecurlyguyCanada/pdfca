@@ -128,18 +128,57 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
 
+        useCasesTitle: `Common XFA PDF Use Cases in ${CURRENT_YEAR}`,
+        useCases: [
+            "Government Tax Forms (CRA T1, T4, US IRS Forms)",
+            "Immigration Applications (IRCC forms)",
+            "Insurance Claim Forms",
+            "Legal Court Filing Documents",
+            "Healthcare Patient Intake Forms",
+            "Financial Loan Applications",
+            "University Application Forms"
+        ],
+
         faq: [
             {
                 q: "Why can't I just use 'Edit PDF' directly?",
-                a: "XFA forms are dynamic XML structures. Standard PDF editors are built for the static 'Acroform' standard. The printer workaround bypasses this by creating a static snapshot."
+                a: "XFA forms are dynamic XML structures that standard PDF editors can't interpret. They were designed specifically for Adobe's proprietary engine. The printer workaround bypasses this by creating a static visual snapshot that any PDF tool can understand."
             },
             {
-                q: "Will the text be editable immediately?",
-                a: "Sometimes. Depending on the form creator, text might be converted to outlines. If you find you can't select words after flattening, use our Searchable OCR tool to recover the text."
+                q: "Will the text be editable immediately after flattening?",
+                a: "Sometimes. Depending on how the form was created, text might be converted to vector outlines. If you find you can't select or copy words after flattening, use our Searchable OCR tool to recover editable text from the visual content."
             },
             {
-                q: "What if some fields appear blank?",
-                a: "Ensure the form is fully rendered and filled out before printing. Some dynamic fields only 'appear' when certain conditions are met."
+                q: "What if some fields appear blank in the flattened PDF?",
+                a: "Ensure the form is fully rendered and all required fields are filled out before printing. Some XFA dynamic fields only 'appear' when certain conditions are met—triggering dropdowns, checking boxes, or entering data in dependent fields."
+            },
+            {
+                q: "Can I flatten XFA PDFs without Adobe Acrobat?",
+                a: "Difficult but possible. Some alternatives include: 1) Online XFA converters (but privacy concerns apply), 2) LibreOffice Draw (limited success), 3) Foxit Reader with Print to PDF. Adobe Acrobat remains the most reliable option for XFA handling."
+            },
+            {
+                q: "Why do government agencies still use XFA forms?",
+                a: "XFA was created in the early 2000s when interactive PDFs were cutting-edge. Many government agencies invested heavily in XFA-based systems (CRA, IRCC, IRS) and haven't migrated to newer technologies yet. Modern AcroForms or web forms are gradually replacing them."
+            },
+            {
+                q: "What's the difference between XFA and AcroForms?",
+                a: "AcroForms are the standard, universally-supported PDF form format. XFA (XML Forms Architecture) is Adobe's proprietary extension that adds dynamic XML capabilities. AcroForms work everywhere; XFA only works fully in Adobe Acrobat and Reader."
+            },
+            {
+                q: "Can I edit an XFA PDF on my phone or tablet?",
+                a: "XFA PDFs typically don't render correctly on mobile devices. The forms appear blank or broken in most mobile PDF readers. Your best option is to flatten on a desktop computer first, then view the standard PDF result on your mobile device."
+            },
+            {
+                q: "Why does my XFA form look blank in Chrome or Firefox?",
+                a: "Browser PDF viewers don't support XFA. You'll see either a blank page or a message saying 'Please wait...' that never loads. You must download the file and open it in Adobe Reader or Acrobat to see the form content."
+            },
+            {
+                q: "Is there a batch way to flatten multiple XFA PDFs?",
+                a: "Yes, Adobe Acrobat Pro supports batch processing through Action Wizard. You can create an action that prints each PDF to Adobe PDF printer. For free alternatives, command-line tools like qpdf or pdftk can help, though XFA support varies."
+            },
+            {
+                q: "Will flattening affect the legal validity of my form?",
+                a: "Flattening preserves all visible content including filled data, so the information remains the same. However, if you need to submit an interactive form to an agency (like CRA), you may need to submit the original XFA. Check submission requirements first."
             }
         ],
 
@@ -262,15 +301,43 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Pourquoi ne puis-je pas simplement utiliser 'Modifier le PDF' directement ?",
-                a: "Les formulaires XFA sont des structures XML dynamiques. Les éditeurs PDF standards sont conçus pour la norme statique 'Acroform'. Le contournement par l'imprimante contourne cela en créant un instantané statique."
+                a: "Les formulaires XFA sont des structures XML dynamiques que les éditeurs PDF standards ne peuvent pas interpréter. Ils ont été conçus spécifiquement pour le moteur propriétaire d'Adobe. Le contournement par l'imprimante crée un instantané statique que tout outil peut comprendre."
             },
             {
-                q: "Le texte sera-t-il modifiable immédiatement ?",
-                a: "Parfois. Selon le créateur du formulaire, le texte peut être converti en contours. Si vous constatez que vous ne pouvez pas sélectionner de mots après l'aplatissement, utilisez notre outil d'OCR pour récupérer le texte."
+                q: "Le texte sera-t-il modifiable immédiatement après l'aplatissement ?",
+                a: "Parfois. Selon la création du formulaire, le texte peut être converti en contours vectoriels. Si vous ne pouvez pas sélectionner les mots après l'aplatissement, utilisez notre outil OCR pour récupérer le texte éditable."
             },
             {
-                q: "Et si certains champs apparaissent vides ?",
-                a: "Assurez-vous que le formulaire est entièrement rendu et rempli avant l'impression. Certains champs dynamiques n'apparaissent que lorsque certaines conditions sont remplies."
+                q: "Et si certains champs apparaissent vides dans le PDF aplati ?",
+                a: "Assurez-vous que le formulaire est entièrement rendu et que tous les champs requis sont remplis avant l'impression. Certains champs XFA dynamiques n'apparaissent que lorsque certaines conditions sont remplies."
+            },
+            {
+                q: "Puis-je aplatir des PDF XFA sans Adobe Acrobat ?",
+                a: "Difficile mais possible. Quelques alternatives : 1) Convertisseurs XFA en ligne (mais problèmes de confidentialité), 2) LibreOffice Draw (succès limité), 3) Foxit Reader avec Imprimer en PDF. Adobe Acrobat reste la solution la plus fiable."
+            },
+            {
+                q: "Pourquoi les agences gouvernementales utilisent-elles encore les formulaires XFA ?",
+                a: "XFA a été créé au début des années 2000 quand les PDF interactifs étaient à la pointe. De nombreuses agences gouvernementales (ARC, IRCC, IRS) ont investi massivement dans ces systèmes et n'ont pas encore migré."
+            },
+            {
+                q: "Quelle est la différence entre XFA et AcroForms ?",
+                a: "AcroForms sont le format de formulaire PDF standard, universellement supporté. XFA est l'extension propriétaire d'Adobe avec des capacités XML dynamiques. AcroForms fonctionne partout ; XFA ne fonctionne complètement que dans Adobe."
+            },
+            {
+                q: "Puis-je éditer un PDF XFA sur mon téléphone ou tablette ?",
+                a: "Les PDF XFA ne s'affichent généralement pas correctement sur les appareils mobiles. Les formulaires apparaissent vides ou cassés. Votre meilleure option est d'aplatir sur un ordinateur de bureau d'abord."
+            },
+            {
+                q: "Pourquoi mon formulaire XFA apparaît-il vide dans Chrome ou Firefox ?",
+                a: "Les visualiseurs PDF des navigateurs ne supportent pas XFA. Vous verrez soit une page blanche, soit un message 'Veuillez patienter...' qui ne charge jamais. Vous devez télécharger et ouvrir dans Adobe Reader."
+            },
+            {
+                q: "Existe-t-il un moyen d'aplatir plusieurs PDF XFA en lot ?",
+                a: "Oui, Adobe Acrobat Pro supporte le traitement par lots via l'Assistant d'Actions. Vous pouvez créer une action qui imprime chaque PDF vers l'imprimante Adobe PDF. Des outils en ligne de commande comme qpdf peuvent aussi aider."
+            },
+            {
+                q: "L'aplatissement affecte-t-il la validité légale de mon formulaire ?",
+                a: "L'aplatissement préserve tout le contenu visible incluant les données saisies. Cependant, si vous devez soumettre un formulaire interactif à une agence (comme l'ARC), vous devrez peut-être soumettre l'original XFA."
             }
         ],
         whyTitle: "Pourquoi ça marche ?",

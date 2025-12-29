@@ -154,15 +154,43 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "Is it safe to use free PDF tools for bank statements?",
-                a: "Only if the tool uses 'Local-Client-Side' processing. Traditional cloud converters upload your statement to a server, creating a potential security risk. Always verify that the tool says 'Runs Offline' or 'No Uploads'."
+                a: "Only if the tool uses 'Local-Client-Side' processing. Traditional cloud converters upload your statement to a server, creating a potential security risk. Always verify that the tool says 'Runs Offline' or 'No Uploads'. pdfcanada.ca is safe for sensitive documents."
             },
             {
                 q: "How can I tell if a PDF tool is private?",
-                a: "Turn off your WiFi. If the tool still works (like ours does after loading), it is processing locally. If it fails, it requires a server and is sending your data out."
+                a: "Turn off your WiFi. If the tool still works (like ours does after loading), it is processing locally. If it fails or shows an error, it requires a server and is sending your data out."
             },
             {
-                q: "Why is local processing faster?",
-                a: "It eliminates the 'Upload' and 'Download' steps. Merging ten 50MB files in the cloud requires transferring 500MB of data. Locally, it happens in seconds because the data is already there."
+                q: "Why is local processing faster than cloud tools?",
+                a: "It eliminates the 'Upload' and 'Download' steps. Merging ten 50MB files in the cloud requires transferring 500MB of data. Locally, it happens in seconds because the data is already there—no network latency."
+            },
+            {
+                q: "Can my employer or IT department see my files if I use pdfcanada.ca?",
+                a: "If you're using your work browser, your IT may see that you visited pdfcanada.ca, but they cannot see the content of your files because nothing is transmitted to any server. The processing happens entirely in your browser's memory."
+            },
+            {
+                q: "What is WebAssembly and why does it matter for privacy?",
+                a: "WebAssembly (Wasm) is a technology that runs near-native-speed code directly in your browser. It allows complex operations like PDF manipulation to happen locally without needing a server. This is the key technology enabling private, browser-based PDF tools."
+            },
+            {
+                q: "Are there any PDF operations that require a server?",
+                a: "For most operations—merge, split, compress, rotate, convert—local processing works perfectly. The only exception is advanced OCR, which may optionally use AI servers for best results (though we offer a local-only option too)."
+            },
+            {
+                q: "How long do my files stay in browser memory?",
+                a: "Only until you close the browser tab. Once you navigate away or close the tab, the browser automatically clears that memory sandbox. There's no residual data left on your device beyond what you explicitly download."
+            },
+            {
+                q: "Is pdfcanada.ca compliant with PIPEDA and GDPR?",
+                a: "Yes. Since we never receive or store your files, there's no personal data for us to manage or protect. Your documents stay on your device, making compliance straightforward. We're ideal for HIPAA, PIPEDA, and GDPR-sensitive workflows."
+            },
+            {
+                q: "Can I use these tools for confidential legal documents?",
+                a: "Absolutely. Local processing maintains attorney-client privilege since documents never leave your device. Many legal professionals prefer local-first tools for contracts, NDAs, and case files for this exact reason."
+            },
+            {
+                q: "What happens if pdfcanada.ca goes offline?",
+                a: "If you've already loaded the page, the tool continues to work even if our servers go down. The code is cached in your browser. This is the benefit of local-first architecture—server availability doesn't affect your productivity."
             }
         ],
 
@@ -309,15 +337,43 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "Est-il sûr d'utiliser des outils PDF gratuits pour des relevés bancaires ?",
-                a: "Seulement si l'outil utilise un traitement 'Local-Client-Side'. Les convertisseurs cloud traditionnels téléchargent votre relevé sur un serveur, créant un risque de sécurité. Vérifiez toujours que l'outil indique 'Fonctionne Hors Ligne' ou 'Pas de Téléchargement'."
+                a: "Seulement si l'outil utilise un traitement 'Local-Client-Side'. Les convertisseurs cloud traditionnels téléchargent votre relevé sur un serveur, créant un risque de sécurité. pdfcanada.ca est sûr pour les documents sensibles."
             },
             {
                 q: "Comment savoir si un outil PDF est privé ?",
-                a: "Coupez votre WiFi. Si l'outil fonctionne toujours (comme le nôtre après chargement), il traite localement. S'il échoue, il nécessite un serveur et envoie vos données."
+                a: "Coupez votre WiFi. Si l'outil fonctionne toujours (comme le nôtre après chargement), il traite localement. S'il échoue ou affiche une erreur, il nécessite un serveur et envoie vos données."
             },
             {
-                q: "Pourquoi le traitement local est-il plus rapide ?",
-                a: "Il élimine les étapes 'Téléchargement' et 'Envoi'. Fusionner dix fichiers de 50 Mo dans le cloud nécessite le transfert de 500 Mo de données. Localement, cela se fait en quelques secondes car les données sont déjà là."
+                q: "Pourquoi le traitement local est-il plus rapide que les outils cloud ?",
+                a: "Il élimine les étapes 'Téléchargement' et 'Envoi'. Fusionner dix fichiers de 50 Mo dans le cloud nécessite le transfert de 500 Mo de données. Localement, cela se fait en quelques secondes—aucune latence réseau."
+            },
+            {
+                q: "Mon employeur peut-il voir mes fichiers si j'utilise pdfcanada.ca ?",
+                a: "Si vous utilisez votre navigateur professionnel, votre service informatique peut voir que vous avez visité pdfcanada.ca, mais ils ne peuvent pas voir le contenu de vos fichiers car rien n'est transmis à un serveur."
+            },
+            {
+                q: "Qu'est-ce que WebAssembly et pourquoi est-ce important pour la confidentialité ?",
+                a: "WebAssembly (Wasm) est une technologie qui exécute du code à vitesse quasi-native directement dans votre navigateur. Elle permet des opérations complexes comme la manipulation de PDF sans serveur."
+            },
+            {
+                q: "Y a-t-il des opérations PDF qui nécessitent un serveur ?",
+                a: "Pour la plupart des opérations—fusionner, diviser, compresser, faire pivoter, convertir—le traitement local fonctionne parfaitement. La seule exception est l'OCR avancé, qui peut optionnellement utiliser des serveurs IA."
+            },
+            {
+                q: "Combien de temps mes fichiers restent-ils en mémoire du navigateur ?",
+                a: "Seulement jusqu'à ce que vous fermiez l'onglet. Une fois que vous naviguez ailleurs ou fermez l'onglet, le navigateur efface automatiquement cette mémoire sandbox."
+            },
+            {
+                q: "pdfcanada.ca est-il conforme à la LPRPDE et au RGPD ?",
+                a: "Oui. Puisque nous ne recevons ni ne stockons jamais vos fichiers, il n'y a pas de données personnelles à gérer. Vos documents restent sur votre appareil, rendant la conformité simple."
+            },
+            {
+                q: "Puis-je utiliser ces outils pour des documents juridiques confidentiels ?",
+                a: "Absolument. Le traitement local maintient le privilège avocat-client puisque les documents ne quittent jamais votre appareil. De nombreux professionnels du droit préfèrent les outils locaux."
+            },
+            {
+                q: "Que se passe-t-il si pdfcanada.ca est hors ligne ?",
+                a: "Si vous avez déjà chargé la page, l'outil continue de fonctionner même si nos serveurs tombent en panne. Le code est mis en cache dans votre navigateur. C'est l'avantage de l'architecture local-first."
             }
         ],
 

@@ -121,20 +121,102 @@ const getGuideContent = (lang: Language) => ({
                         </ul>
                     </>
                 )
+            },
+            {
+                id: "use-cases",
+                title: `Popular Use Cases for CBR to PDF Conversion in ${CURRENT_YEAR}`,
+                content: (
+                    <>
+                        <p className="mb-6">
+                            Converting comic archives to PDF opens up numerous possibilities for readers, collectors, and professionals:
+                        </p>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">E-Reader Compatibility</h4>
+                                <p className="text-sm">Read on Kindle, Kobo, or any tablet without special apps. Perfect for commutes and travel.</p>
+                            </div>
+                            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">Easy Sharing</h4>
+                                <p className="text-sm">Send comics to friends via email or messaging apps. No special software required to view.</p>
+                            </div>
+                            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">Digital Library Management</h4>
+                                <p className="text-sm">Organize collections with Calibre or standard file systems. Add metadata and tags easily.</p>
+                            </div>
+                            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">Professional Publishing</h4>
+                                <p className="text-sm">Self-publishers need PDFs for printing and digital distribution platforms.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Troubleshooting Common Issues",
+                content: (
+                    <>
+                        <div className="space-y-4">
+                            <div className="border-l-4 border-canada-red pl-4">
+                                <h4 className="font-bold mb-2">Problem: Conversion Failed</h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Cause:</strong> Corrupted archive or password protection.</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Solution:</strong> Verify file integrity. Remove password protection before converting.</p>
+                            </div>
+                            <div className="border-l-4 border-canada-red pl-4">
+                                <h4 className="font-bold mb-2">Problem: Pages in Wrong Order</h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Cause:</strong> Incorrect file naming (1.jpg, 10.jpg, 2.jpg).</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Solution:</strong> Rename with leading zeros (001.jpg, 002.jpg, 010.jpg).</p>
+                            </div>
+                            <div className="border-l-4 border-canada-red pl-4">
+                                <h4 className="font-bold mb-2">Problem: PDF Too Large</h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Cause:</strong> High-resolution source images.</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Solution:</strong> Use our <Link href={`/${lang}/compress-pdf`} className="text-canada-red underline">Compress PDF tool</Link> after conversion.</p>
+                            </div>
+                        </div>
+                    </>
+                )
             }
         ],
         faq: [
             {
-                q: "Is there a file size limit?",
-                a: "Since the conversion happens on your own hardware, we do not enforce arbitrary server limits. If your browser can handle the memory, we can convert it."
+                q: "Is there a file size limit for CBR to PDF conversion?",
+                a: "Since the conversion happens on your own hardware, we do not enforce arbitrary server limits. If your browser can handle the memory (typically up to 500MB-1GB depending on your device), we can convert it. For very large files, close other browser tabs to free up RAM."
             },
             {
-                q: "Will the image quality drop?",
-                a: "No. Our tool embeds the original images from the archive directly into the PDF without re-compressing them, preserving the original artwork quality."
+                q: "Will the image quality drop during conversion?",
+                a: "No. Our tool embeds the original images from the archive directly into the PDF without re-compressing them, preserving 100% of the original artwork quality. What you see in the CBR is exactly what you get in the PDF."
             },
             {
-                q: "Does this work for manga?",
-                a: "Yes! The tool extracts images in the order they appear in the archive, so whether it is a Western comic or Manga, the flow is preserved."
+                q: "Does this work for manga and right-to-left reading?",
+                a: "Yes! The tool extracts images in the order they appear in the archive, preserving the original page sequence. Whether it's Western comics, manga, or manhwa, the reading flow is maintained perfectly."
+            },
+            {
+                q: "Can I convert multiple CBR files at once?",
+                a: "Currently, our web tool processes one file at a time for optimal browser performance. However, you can queue multiple files by selecting them one after another. For batch conversion of entire collections, consider using desktop tools like Calibre."
+            },
+            {
+                q: "What's the difference between CBR and CBZ files?",
+                a: "CBR files are RAR archives (.rar renamed to .cbr), while CBZ files are ZIP archives (.zip renamed to .cbz). CBZ files are more common and easier to create since ZIP is supported natively by all operating systems. Both work equally well with our converter."
+            },
+            {
+                q: "How do I fix pages that are in the wrong order?",
+                a: "This happens when images inside the archive aren't named correctly (e.g., 1.jpg, 10.jpg, 2.jpg sorts as 1, 10, 2). Extract the CBR, rename all images with leading zeros (001.jpg, 002.jpg, etc.), re-zip as CBZ, and convert again."
+            },
+            {
+                q: "Can I password-protect the converted PDF?",
+                a: "Our CBR to PDF converter creates standard, unprotected PDFs. To add password protection, use a PDF security tool after conversion. Many free PDF editors (including Adobe Acrobat Reader) offer password protection features."
+            },
+            {
+                q: "Why is my converted PDF so large?",
+                a: "PDF file size directly reflects the total size of images in your CBR archive. High-resolution scans (4K, 300DPI) create large PDFs. To reduce size, use our Compress PDF tool after conversion, or resize source images to 1920px width before creating the CBR."
+            },
+            {
+                q: "Is this tool safe for my personal comic collection?",
+                a: "Absolutely. All conversion happens locally in your browser using WebAssembly. Your comic files never leave your device, never touch our servers, and are never uploaded anywhere. This ensures complete privacy for your personal collection."
+            },
+            {
+                q: "Can I convert CBR to EPUB instead of PDF?",
+                a: "For image-heavy content like comics, PDF is the better choice as it preserves the exact visual layout. EPUB is designed for reflowable text and doesn't handle sequential images as well. Stick with PDF for comics and graphic novels."
             }
         ],
         ctaTitle: "Ready to convert your comics?",
