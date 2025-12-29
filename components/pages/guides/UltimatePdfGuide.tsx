@@ -169,7 +169,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         A scanned PDF is often just a &quot;container for images.&quot; The computer sees pixels, not words.
                         <br /><br />
-                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href={`/${lang}/guides/ocr-pdf`} className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
+                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
                     </>
                 )
             },
@@ -349,7 +349,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Un PDF scanné est souvent juste un &quot;conteneur d'images&quot;. L'ordinateur voit des pixels, pas des mots.
                         <br /><br />
-                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href={`/${lang}/guides/ocr-pdf`} className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
+                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
                     </>
                 )
             },
@@ -584,7 +584,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                 { name: 'Delete PDF Pages', path: '/guides/delete-pdf-pages', icon: Trash2, view: 'GUIDE_DELETE_PAGES' },
                                 { name: 'Rotate PDF Guide', path: '/guides/rotate-pdf', icon: RotateCw, view: 'GUIDE_ROTATE' },
                                 { name: 'HEIC to PDF Transfer', path: '/guides/heic-to-pdf', icon: Image, view: 'GUIDE_HEIC_TO_PDF' },
-                                { name: 'OCR & Text Extraction', path: '/guides/ocr-pdf', icon: Search, view: 'GUIDE_OCR' },
+                                { name: 'OCR & Text Extraction', path: '/guides/invoice-ocr', icon: Search, view: 'GUIDE_OCR' },
                                 { name: 'Fillable Form Creation', path: '/guides/make-pdf-fillable', icon: PenTool, view: 'GUIDE_FILLABLE' },
                                 { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
                                 { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },

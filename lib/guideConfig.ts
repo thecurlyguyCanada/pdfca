@@ -55,6 +55,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'invoice-ocr': InvoiceOcrGuide,
     'pdf-to-csv': PdfToCsvGuide,
     'pdf-to-excel': PdfToCsvGuide, // Reuse the same rich guide as it covers both
+    'ocr-pdf': InvoiceOcrGuide, // Alias for legacy/general OCR links
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

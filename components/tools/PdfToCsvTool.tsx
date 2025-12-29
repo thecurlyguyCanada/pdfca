@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
     FileSpreadsheet,
     Table,
@@ -36,6 +36,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [originalData, setOriginalData] = useState<TableData | null>(null);
     const [processedData, setProcessedData] = useState<TableData | null>(null);
     const [isExtracting, setIsExtracting] = useState(false);
+    const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
 
     // UI States
@@ -44,33 +45,48 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [showOptions, setShowOptions] = useState(true);
     const [visibleRows, setVisibleRows] = useState(50); // Pagination for performance
 
+    // Cancellation
+    const abortController = useRef<AbortController | null>(null);
+
     useEffect(() => {
         handleExtraction();
+        return () => {
+            // Cleanup: Could cancel worker here if we implemented full abort signal in worker wrapper
+        };
     }, [file]);
 
     // Apply processing whenever options change
     useEffect(() => {
         if (!originalData) return;
 
-        let data = { ...originalData };
-        if (smartMerge) {
-            data = mergeMultilineRows(data);
-        }
-        if (normalizeData) {
-            data = normalizeFinancialData(data);
-        }
-        setProcessedData(data);
+        // Wrap heavy processing in timeout to let UI breathe or use another worker
+        // For now, these operations are fast enough on the main thread for mid-sized data
+        const timer = setTimeout(() => {
+            let data = { ...originalData };
+            if (smartMerge) {
+                data = mergeMultilineRows(data);
+            }
+            if (normalizeData) {
+                data = normalizeFinancialData(data);
+            }
+            setProcessedData(data);
+        }, 10);
+        return () => clearTimeout(timer);
     }, [originalData, smartMerge, normalizeData]);
 
     const handleExtraction = async () => {
         setIsExtracting(true);
         setError(null);
+        setProgress(0);
+
         try {
-            const data = await extractTableFromPdf(file);
+            const data = await extractTableFromPdf(file, (p) => {
+                setProgress(p);
+            });
             setOriginalData(data);
             triggerHaptic('success');
         } catch (err) {
-            setError("We couldn't extract the table from this PDF. It might be an image or have a highly complex layout.");
+            setError("We couldn't extract the table from this PDF. It might be an image, have a highly complex layout, or utilize unsupported fonts.");
             triggerHaptic('error');
         } finally {
             setIsExtracting(false);
@@ -87,10 +103,10 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = file.name.replace('.pdf', '.qbo');
+            link.download = file.name.replace(/\.pdf$/i, '.qbo');
             link.click();
         } else {
-            downloadAsExcel(processedData, file.name.replace('.pdf', `.${format}`), format);
+            downloadAsExcel(processedData, file.name.replace(/\.pdf$/i, `.${format}`), format);
         }
     };
 
@@ -103,9 +119,15 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                 </div>
                 <h3 className="text-2xl font-black text-gray-900 tracking-tighter italic lowercase">analyzing spatial layout...</h3>
                 <p className="text-gray-500 font-bold mt-2">mapping columns and rows locally</p>
-                <div className="mt-8 w-64 h-2 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-canada-red animate-progress" />
+
+                {/* Progress Bar */}
+                <div className="mt-8 w-64 h-2 bg-gray-100 rounded-full overflow-hidden relative">
+                    <div
+                        className="h-full bg-canada-red transition-all duration-300 ease-out"
+                        style={{ width: `${Math.round(progress * 100)}%` }}
+                    />
                 </div>
+                <p className="mt-2 text-xs font-mono text-gray-400">{Math.round(progress * 100)}%</p>
             </div>
         );
     }
@@ -121,6 +143,12 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                 <div className="bg-blue-50 p-4 rounded-xl text-xs text-blue-800 border border-blue-100 text-left">
                     <strong>Note:</strong> Some PDFs (like scanned receipts without OCR or graphical tables) are difficult to parse without manual intervention.
                 </div>
+                <button
+                    onClick={handleExtraction}
+                    className="mt-6 px-6 py-2 bg-gray-900 text-white rounded-full font-bold text-sm hover:scale-105 transition-transform"
+                >
+                    Try Again
+                </button>
             </div>
         );
     }
@@ -152,19 +180,22 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                     <div className="flex flex-wrap items-center gap-3">
                         <button
                             onClick={() => handleDownload('xlsx')}
-                            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95"
+                            disabled={!processedData || processedData.rows.length === 0}
+                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95"
                         >
                             <FileSpreadsheet size={18} /> Excel
                         </button>
                         <button
                             onClick={() => handleDownload('csv')}
-                            className="bg-modern-neutral-900 hover:bg-black text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95"
+                            disabled={!processedData || processedData.rows.length === 0}
+                            className="bg-modern-neutral-900 hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95"
                         >
                             <FileText size={18} /> CSV
                         </button>
                         <button
                             onClick={() => handleDownload('qbo')}
-                            className="bg-canada-red hover:bg-canada-darkRed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-red-500/20 transition-all active:scale-95"
+                            disabled={!processedData || processedData.rows.length === 0}
+                            className="bg-canada-red hover:bg-canada-darkRed disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-red-500/20 transition-all active:scale-95"
                         >
                             <Download size={18} /> QBO
                         </button>
@@ -252,7 +283,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                             <tr key={rowIdx} className="hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-colors group">
                                                 <td className="px-6 py-4 text-xs font-mono text-gray-400 border-r border-gray-50 dark:border-gray-800">{rowIdx + 1}</td>
                                                 {processedData.headers.map((header, colIdx) => (
-                                                    <td key={colIdx} className="px-6 py-4">
+                                                    <td key={colIdx} className="px-6 py-4 min-w-[120px]">
                                                         <span className={`text-sm ${header.toLowerCase().includes('amount') || header.toLowerCase().includes('balance')
                                                             ? 'font-mono font-bold text-gray-900 dark:text-gray-100'
                                                             : 'text-gray-600 dark:text-gray-400'
@@ -263,6 +294,13 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                                 ))}
                                             </tr>
                                         ))}
+                                        {(!processedData || processedData.rows.length === 0) && (
+                                            <tr>
+                                                <td colSpan={100} className="p-12 text-center text-gray-400 italic">
+                                                    Upload a PDF to see transactions here
+                                                </td>
+                                            </tr>
+                                        )}
                                     </tbody>
                                 </table>
                             </div>
