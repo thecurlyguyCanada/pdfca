@@ -145,9 +145,20 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         The world of digital formats is messy. iPhones use HEIC, Kindles want EPUBs, and businesses demand PDFs.
                         <br /><br />
-                        <strong>HEIC to PDF</strong>: If you're struggling to open iPhone photos on Windows, our <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
+                        <strong>HEIC to PDF</strong>: If you&apos;re struggling to open iPhone photos on Windows, our <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
                         <br /><br />
                         <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
+                    </>
+                )
+            },
+            {
+                id: "financial-data",
+                title: "Financial Data: PDF to CSV and Excel",
+                content: (
+                    <>
+                        For accountants and small business owners, the biggest hurdle is <strong>extracting bank statement data</strong>. Typing transactions manually is prone to error and incredibly slow.
+                        <br /><br />
+                        Our <Link href={`/${lang}/guides/pdf-to-csv`} className="text-canada-red hover:underline font-bold text-lg underline decoration-canada-red/30">PDF to CSV Guide</Link> explains how to use our spatial extraction engine to turn messy bank statements into structured data for QuickBooks or Excel. This is particularly useful for reconciling years of paper records in minutes.
                     </>
                 )
             },
@@ -316,7 +327,18 @@ const getGuideContent = (lang: Language) => ({
                         <br /><br />
                         <strong>HEIC en PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">Convertisseur HEIC</Link> comble cet écart en toute sécurité.
                         <br /><br />
-                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de s'adapter confortablement sur votre liseuse.
+                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de s&apos;adapter confortablement sur votre liseuse.
+                    </>
+                )
+            },
+            {
+                id: "financial-data",
+                title: "Données Financières : PDF en CSV et Excel",
+                content: (
+                    <>
+                        Pour les comptables et propriétaires d&apos;entreprise, le plus grand défi est l&apos;<strong>extraction des relevés bancaires</strong>. La saisie manuelle est source d&apos;erreurs et extrêmement lente.
+                        <br /><br />
+                        Notre <Link href={`/${lang}/guides/pdf-to-csv`} className="text-canada-red hover:underline font-bold text-lg underline decoration-canada-red/30">Guide PDF vers CSV</Link> explique comment utiliser notre moteur d&apos;extraction spatiale pour transformer des relevés bancaires PDF en données structurées pour QuickBooks ou Excel.
                     </>
                 )
             },
@@ -429,7 +451,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2024-01-15",
-        "dateModified": "2025-12-24",
+        "dateModified": "2025-12-29",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",
@@ -567,8 +589,8 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                 { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
                                 { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },
                                 { name: 'Split PDF Pages', path: '/guides/split-pdf', icon: Split, view: 'GUIDE_SPLIT' },
-                                { name: 'Convert Comics to PDF', path: '/guides/cbr-to-pdf', icon: BookOpen, view: 'GUIDE_CBR_TO_PDF' },
-                                { name: 'Insert Picture in PDF', path: '/guides/insert-picture-in-pdf', icon: Image, view: 'GUIDE_INSERT_PICTURE' }
+                                { name: lang === 'fr' ? 'PDF vers CSV / Relevés' : 'PDF to CSV / Bank Stats', path: '/guides/pdf-to-csv', icon: FileText, view: 'GUIDE_PDF_TO_CSV' },
+                                { name: lang === 'fr' ? 'Insérer Image dans PDF' : 'Insert Picture in PDF', path: '/guides/insert-picture-in-pdf', icon: Image, view: 'GUIDE_INSERT_PICTURE' }
                             ].map((guide: any, i: number) => (
                                 <Link
                                     key={i}

@@ -159,7 +159,9 @@ export const translations = {
       sorryTitle: "Sorry Policy - pdfcanada.ca",
       sorryDesc: "Our guarantee to apologize if anything goes wrong. The most Canadian policy on the web.",
       fillableTitle: "How to make a PDF fillable | pdfcanada.ca",
-      fillableDesc: "Learn how to make a PDF fillable for free using our Canadian tools. Add text fields to flat PDFs securely and locally."
+      fillableDesc: "Learn how to make a PDF fillable for free using our Canadian tools. Add text fields to flat PDFs securely and locally.",
+      aboutTitle: "About Us - Our Commitment to Privacy | pdfcanada.ca",
+      aboutDesc: "Learn more about pdfcanada.ca, our mission to provide secure, local-first PDF tools, and why we believe your data should stay on your device."
     },
 
     // Feature Pages SEO & Content
@@ -212,6 +214,21 @@ export const translations = {
           answer: "Since it's a small donation, we generally don't, but if you made a mistake, just reach out. We'll apologize and sort it out."
         }
       ]
+    },
+    aboutPage: {
+      title: "Built for Canadians, by Canadians",
+      subtitle: "Privacy-first PDF tools that respect your documents and your data.",
+      mission: "Our Mission",
+      missionText: "We believe that essential document tools should be free, secure, and accessible to everyone. Our goal is to provide a privacy-first alternative to cloud-based PDF processors, ensuring that sensitive Canadian data stays right here on your device.",
+      story: "The pdfcanada.ca Story",
+      storyText: "Started by a small team in Toronto, pdfcanada.ca was born out of a frustration with modern PDF tools. Most online converters force you to upload your sensitive documents to distant servers, often harvesting your data in the process. We knew there was a better, more 'polite' way. By leveraging modern browser technologies like WebAssembly, we've built a suite of tools that work entirely on your computer.",
+      values: "Our Core Values",
+      value1Title: "100% Privacy",
+      value1Text: "Your files never leave your device. Period. We use local processing to ensure your data stays private.",
+      value2Title: "No Paywalls",
+      value2Text: "No subscriptions, no hidden fees, and no watermarks. Essential tools should be free for everyone.",
+      value3Title: "User-First Service",
+      value3Text: "No signups, no complex interfaces, and no bloated software. Just simple tools that work."
     },
     features: {
       delete: {
@@ -709,21 +726,21 @@ export const translations = {
         }
       },
       pdftocsv: {
-        title: "PDF to CSV Online - Extract Bank Statement Data | Free & Private",
-        desc: `Convert PDF tables to CSV format instantly in ${CURRENT_YEAR}. Our secure local converter is perfect for bank statements and financial documents. 100% private.`,
-        h1: "Convert PDF to CSV",
-        subtitle: "Extract transactions & data from your PDFs securely.",
-        content: "Need to reconcile accounts? Our PDF to CSV tool extracts tabular data with high precision. All processing happens in your browser, keeping your data private.",
+        title: `Convert PDF to CSV & Excel | Extract Bank Statements Free ${CURRENT_YEAR}`,
+        desc: `Convert PDF to CSV, Excel, and QBO for free. Secure local extraction for bank statements (TD, RBC, BMO). PIPEDA compliant, no uploads, 100% private.`,
+        h1: "Extract Data from PDF to CSV & Excel",
+        subtitle: "Professional-grade bank statement extraction with zero uploads.",
+        content: "Stop manual data entry. Our AI-assisted spatial engine extracts tables from bank statements, invoices, and reports into clean CSV or Excel files. Everything is processed locally on your computer for maximum security.",
         steps: [
-          "Upload your PDF statement or document.",
-          "Review the extracted table in the interactive preview.",
-          "Download your cleaned CSV file."
+          "Choose your PDF bank statement or tabular document.",
+          "Use 'Smart Merge' to fix multi-line transaction rows.",
+          "Export as CSV, XLSX, or QBO for QuickBooks."
         ],
         quickAnswer: {
           question: "How do I convert a PDF bank statement to CSV for Excel?",
-          answer: "Use our local PDF extraction tool that preserves columns and handles multiline descriptions. It turns your PDF tables into clean CSV data Without ever uploading your files.",
+          answer: "The best way is to use a local-first converter like pdfcanada.ca that handles multi-line transaction descriptions. It extracts your bank data directly in the browser, ensuring your account details never hit a cloud server.",
           tool: "PDF to CSV",
-          steps: ["Upload PDF statement", "Audit extracted data", "Download CSV file"]
+          steps: ["Upload PDF", "Preview & Merge Rows", "Download CSV/Excel"]
         }
       },
       pdftoexcel: {
@@ -1215,7 +1232,24 @@ export const translations = {
       sorryTitle: "Politique d'Excuses - pdfcanada.ca",
       sorryDesc: "Notre garantie de nous excuser si quelque chose tourne mal.",
       fillableTitle: "Comment rendre un PDF remplissable | pdfcanada.ca",
-      fillableDesc: "Apprenez à rendre un PDF remplissable gratuitement avec nos outils canadiens."
+      fillableDesc: "Apprenez à rendre un PDF remplissable gratuitement avec nos outils canadiens.",
+      aboutTitle: "À propos de nous - Notre engagement envers la confidentialité | pdfcanada.ca",
+      aboutDesc: "Apprenez-en plus sur pdfcanada.ca, notre mission de fournir des outils PDF sécurisés et locaux, et pourquoi nous pensons que vos données doivent rester sur votre appareil."
+    },
+    aboutPage: {
+      title: "Fait pour les Canadiens, par des Canadiens",
+      subtitle: "Des outils PDF axés sur la confidentialité qui respectent vos documents et vos données.",
+      mission: "Notre mission",
+      missionText: "Nous pensons que les outils documentaires essentiels doivent être gratuits, sécurisés et accessibles à tous. Notre objectif est de fournir une alternative axée sur la confidentialité aux processeurs PDF basés sur le cloud, garantissant que les données canadiennes sensibles restent ici même, sur votre appareil.",
+      story: "L'histoire de pdfcanada.ca",
+      storyText: "Lancé par une petite équipe à Toronto, pdfcanada.ca est né d'une frustration face aux outils PDF modernes. La plupart des convertisseurs en ligne vous obligent à télécharger vos documents sensibles sur des serveurs distants, récoltant souvent vos données au passage. Nous savions qu'il existait une meilleure façon, plus 'polie'. En tirant parti des technologies de navigation modernes comme WebAssembly, nous avons créé une suite d'outils qui fonctionnent entièrement sur votre ordinateur.",
+      values: "Nos valeurs fondamentales",
+      value1Title: "100 % confidentialité",
+      value1Text: "Vos fichiers ne quittent jamais votre appareil. Point final. Nous utilisons le traitement local pour garantir la confidentialité de vos données.",
+      value2Title: "Pas de frais",
+      value2Text: "Pas d'abonnement, pas de frais cachés et pas de filigranes. Les outils essentiels doivent être gratuits pour tous.",
+      value3Title: "Service axé sur l'utilisateur",
+      value3Text: "Pas d'inscription, pas d'interfaces complexes et pas de logiciels lourds. Juste des outils simples qui fonctionnent."
     },
     features: {
       delete: {
@@ -1627,21 +1661,21 @@ export const translations = {
         }
       },
       pdftocsv: {
-        title: "PDF vers CSV en Ligne - Extraire Relevés Bancaires | Gratuit & Privé",
-        desc: `Convertissez les tableaux PDF en format CSV instantanément en ${CURRENT_YEAR}. Notre convertisseur local est parfait pour les relevés bancaires. 100% privé.`,
-        h1: "Convertir PDF en CSV",
-        subtitle: "Extrayez vos transactions et données en toute sécurité.",
-        content: "Besoin de rapprocher vos comptes ? Notre outil PDF vers CSV extrait les données tabulaires avec précision directement dans votre navigateur.",
+        title: `Convertir PDF en CSV et Excel | Extraction Relevés Bancaires ${CURRENT_YEAR}`,
+        desc: `Convertissez vos PDF en CSV, Excel et QBO gratuitement. Extraction locale sécurisée pour relevés bancaires (RBC, Desjardins, TD). Conforme LPRPDE, 100% privé.`,
+        h1: "Extraire des Données PDF en CSV et Excel",
+        subtitle: "Extraction de relevés bancaires de qualité professionnelle sans téléversement.",
+        content: "Fini la saisie manuelle. Notre moteur d'extraction spatiale extrait les tableaux des relevés bancaires et factures en fichiers CSV ou Excel propres, le tout traité localement sur votre ordinateur.",
         steps: [
-          "Téléversez votre relevé ou document PDF.",
-          "Vérifiez le tableau dans l'aperçu interactif.",
-          "Téléchargez votre fichier CSV nettoyé."
+          "Sélectionnez votre relevé bancaire PDF ou document tabulaire.",
+          "Utilisez la 'Fusion Intelligente' pour corriger les lignes multi-lignes.",
+          "Exportez en CSV, XLSX ou QBO pour QuickBooks."
         ],
         quickAnswer: {
-          question: "Comment convertir un relevé bancaire PDF en CSV ?",
-          answer: "Utilisez notre outil d'extraction locale qui préserve les colonnes et gère les descriptions multilignes pour transformer vos PDF en données CSV propres.",
+          question: "Comment convertir un relevé bancaire PDF en CSV pour Excel ?",
+          answer: "La meilleure façon est d'utiliser un convertisseur local comme pdfcanada.ca qui gère les descriptions de transactions sur plusieurs lignes. Il extrait vos données directement dans le navigateur pour une sécurité maximale.",
           tool: "PDF vers CSV",
-          steps: ["Téléversez le relevé", "Vérifiez les données", "Téléchargez le CSV"]
+          steps: ["Téléverser le PDF", "Fusionner les lignes", "Télécharger CSV/Excel"]
         }
       },
       pdftoexcel: {

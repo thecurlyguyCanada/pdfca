@@ -34,160 +34,219 @@ interface GuideProps {
 const getGuideContent = (lang: Language) => ({
     en: {
         seo: {
-            title: `Free PDF to CSV Converter | Convert Bank Statements to Excel ${CURRENT_YEAR}`,
-            desc: `Convert PDF to CSV and Excel for free. Our secure local converter extracts tables from bank statements and financial documents with 100% privacy. No uploads required.`
+            title: `Convert PDF Bank Statements to CSV & Excel | Free & Secure ${CURRENT_YEAR}`,
+            desc: `How to convert PDF bank statements to CSV, Excel, and QBO for free. Secure local extraction for TD, RBC, BMO, CIBC & more. PIPEDA compliant, no uploads.`
         },
-        h1: `Free PDF to CSV Converter (${CURRENT_YEAR})`,
-        subtitle: "The definitive guide to extracting tabular data from PDFs securely and accurately.",
+        h1: `How to Convert PDF to CSV and Excel (${CURRENT_YEAR} Guide)`,
+        subtitle: "The definitive guide to extracting bank statements and financial data without compromising privacy.",
 
-        intro: `Extracting data from PDF tables is notoriously frustrating. Whether you're dealing with **bank statements**, **invoices**, or **financial reports**, copying and pasting often leads to broken rows and misaligned columns. 
-
-At **pdfcanada.ca**, we've developed a high-fidelity **PDF to CSV engine** that operates entirely in your browser. Unlike other converters that upload your sensitive financial documents to the cloud, our tool processes everything locally. This means your data never leaves Canada—or even your computer. 
-
-In this guide, we'll explore how to use our **free PDF table extractor** to turn complex documents into clean, ready-to-use CSV and Excel files.`,
+        intro: (
+            <>
+                <div className="flex items-center gap-4 mb-8 p-6 bg-red-50 dark:bg-red-900/10 rounded-3xl border border-red-100 dark:border-red-800">
+                    <Database className="text-canada-red shrink-0" size={32} />
+                    <p className="text-gray-700 dark:text-gray-300 font-medium italic">
+                        &quot;Most tools upload your bank statements to the cloud. We don&apos;t. Everything is processed 100% locally on your computer.&quot;
+                    </p>
+                </div>
+                Extracting data from <strong>PDF tables</strong> is notorious for breaking formatting. Whether you are an accountant reconciling <strong>bank statements</strong> or a business owner managing invoices, the transition from PDF to CSV often results in &quot;messy data&quot; where rows don&apos;t line up.
+                <br /><br />
+                At <strong>pdfcanada.ca</strong>, we’ve built a specialized <strong>Spatial Extraction Engine</strong> designed specifically for financial documents. In this guide, we&apos;ll show you how to transform complex PDFs into clean <strong>Excel, CSV, or QBO</strong> files in seconds.
+            </>
+        ),
 
         sections: [
             {
-                id: "how-it-works",
-                title: "How Our Spatial Extraction Engine Works",
-                content: `Most PDF converters use simple text-stripping methods that fail when lines wrap or columns are close together. Our **Spatial Detection Engine 2.0** uses advanced heuristics to understand document layout:
-
-1.  **Coordinate Mapping:** We map the exact (X, Y) coordinates of every character on the page.
-2.  **Y-Axis Grouping:** We group text bits into rows based on vertical proximity, handling multi-line descriptions with "Smart Merge" logic.
-3.  **X-Axis Histogramming:** We detect vertical gutters (white space between columns) to accurately segment data even without visible table borders.
-4.  **Data Harmonization:** We automatically clean currency symbols ($), separators (,), and normalize date formats for seamless Excel import.
-
-### Why Logic-Based Extraction Beats OCR
-While **OCR (Optical Character Recognition)** is great for scanned images, most modern PDFs are "digitally born." Using spatial logic instead of raw OCR allows us to:
-- Preserve selectable text quality
-- Maintain 100% accuracy for numbers
-- Process files 10x faster than traditional AI vision models`
-            },
-            {
-                id: "step-by-step",
-                title: "How to Convert PDF to CSV in 3 Simple Steps",
-                content: `Converting your files is designed to be a "sorry-free" experience.
-
-### Step 1: Upload Your PDF
-Navigate to our [PDF to CSV Tool](/${lang}/pdf-to-csv). Select your bank statement or report. Since we use **local processing**, even 50-page documents load instantly because there is no upload wait time.
-
-### Step 2: Audit with Interactive Preview
-Once the engine analyzes your file, you'll see a live grid. 
-- **Smart Merge:** Toggle this to join multi-line transaction descriptions.
-- **Normalize Data:** Toggle this to strip currency symbols and fix date formats (e.g., converting "JAN 15" to "2025-01-15").
-
-### Step 3: Export to Your Format
-Choose your preferred output:
-- **CSV:** Best for simple data imports.
-- **Excel (.xlsx):** Best for analysis, pivot tables, and accounting.
-- **QBO (QuickBooks):** Optimized specifically for importing directly into accounting software.`
+                id: "how-to-convert",
+                title: "How to Convert PDF to CSV for Free (No Uploads)",
+                content: (
+                    <div className="space-y-4">
+                        <p>Follow these steps to turn your PDF documents into structured data using our local-first tool:</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Open the Tool:</strong> Navigate to the <Link href={`/${lang}/pdf-to-csv`} className="text-canada-red hover:underline font-bold">PDF to CSV converter</Link>.
+                            </li>
+                            <li>
+                                <strong>Select Your File:</strong> Choose your bank statement, invoice, or report. Because of <strong>local processing</strong>, the data is analyzed instantly without waiting for a server upload.
+                            </li>
+                            <li>
+                                <strong>Verify the Preview:</strong> Our engine shows you a real-time grid of the extracted rows. Use the <strong>&quot;Smart Merge&quot;</strong> toggle if your transaction descriptions span multiple lines.
+                            </li>
+                            <li>
+                                <strong>Download your CSV/Excel:</strong> Click export. Your file is generated directly in the browser.
+                            </li>
+                        </ol>
+                    </div>
+                )
             },
             {
                 id: "bank-statements",
-                title: "Optimized for Canadian Bank Statements",
-                content: `Canadian banks (TD, RBC, Scotiabank, BMO, CIBC) often use complex multi-line layouts for transaction descriptions. Our tool is specifically tuned for these formats.
-
-### Common Issues We Solve:
-*   **Wrapped Descriptions:** When a transaction description spans two lines, we merge them into one row.
-*   **Date Alignment:** We ensure the date stays associated with the correct transaction amount.
-*   **Header Removal:** We automatically strip out repeated page headers and footers to give you a clean list of data.
-
-> [!TIP]
-> If you are an accountant or bookkeeper, use the **QBO Export** feature. It converts your PDF bank statement into a format that QuickBooks and Xero can "read" as if it were a direct bank feed.`
+                title: "Optimized for Bank Statements (TD, RBC, BMO, CIBC)",
+                content: (
+                    <div className="space-y-4">
+                        <p>Canadian banks often use a &quot;multi-line&quot; transaction layout that is a nightmare for standard converters. If you’ve ever tried to <strong>save a PDF bank statement as CSV</strong> and ended up with dates on one row and amounts on another, you know the frustration.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-2">Why our tool is better for accountants:</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Smart Row Merging:</strong> We automatically detect when a transaction description (like &quot;AMAZON MKTPLACE TORONTO ON&quot;) wraps onto a second line and join them back together.</li>
+                            <li><strong>Normalization:</strong> We strip out currency symbols ($, -) and normalize date formats so you can import them directly into software like <strong>XERO</strong> or <strong>FreshBooks</strong>.</li>
+                            <li><strong>QBO (QuickBooks Online) Export:</strong> We are one of the few free tools that can export directly to <strong>WebConnect (.qbo)</strong> format, allowing you to &quot;feed&quot; your PDF history into QuickBooks as if it were a live bank link.</li>
+                        </ul>
+                    </div>
+                )
             },
             {
-                id: "privacy",
-                title: "100% Private: Your Data Stays on Your Device",
-                content: `In the world of finance, privacy isn't just a feature—it's a requirement. Most **online PDF converters** are data-harvesting machines.
-
-**At pdfcanada.ca:**
-- **No Cloud Storage:** We never see your files.
-- **PIPEDA Compliant:** Our "zero-upload" architecture exceeds Canadian privacy standards.
-- **Offline Capable:** Once the page loads, you can actually disconnect your internet and the conversion still works.
-
-### The Risk of Cloud Converters
-When you upload a bank statement to a standard cloud converter, you may be exposing:
-- Account numbers
-- Full names and home addresses
-- Spending habits and sensitive transactions
-- Balance information
-
-By using our **local PDF to Excel** tool, you eliminate these risks entirely.`
+                id: "privacy-audit",
+                title: "The Security Advantage: PIPEDA & Local Processing",
+                content: (
+                    <div className="bg-gray-900 text-white rounded-3xl p-8 mb-8 border-l-8 border-canada-red">
+                        <div className="flex items-center gap-3 mb-4">
+                            <Shield className="text-canada-red" size={24} />
+                            <h4 className="text-xl font-bold">Your Privacy is Un-uploadable</h4>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">
+                            Financial data is the most sensitive information you own. When you use a standard &quot;Online PDF Converter,&quot; your account numbers, balances, and identity are sent to a cloud server.
+                            <br /><br />
+                            <strong>Our Canadian Commitment:</strong> We use WebAssembly (WASM) to run the extraction logic inside your browser tab. Your files never hit our servers. This makes our tool fully compliant with <strong>PIPEDA</strong> and ideal for handling legal and financial records.
+                        </p>
+                    </div>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Troubleshooting: Fixing &quot;Messy&quot; PDF Extraction",
+                content: (
+                    <div className="space-y-4 font-normal">
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded-xl">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-400 mb-1">My columns are misaligned!</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300 text-sm">This usually happens if the PDF uses invisible table structures. Try toggling <strong>&quot;Normalize Data&quot;</strong> in our settings panel to re-calculate the column gutters.</p>
+                        </div>
+                        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 rounded-xl">
+                            <h4 className="font-bold text-blue-900 dark:text-blue-400 mb-1">Is this tool using OCR?</h4>
+                            <p className="text-blue-800 dark:text-blue-300 text-sm">No. We use <strong>Spatial Logic</strong>. This is 100% accurate for digital PDFs. If your PDF is a blurry scan from a physical printer, we recommend using our <Link href={`/${lang}/guides/invoice-ocr`} className="underline font-bold">OCR Tool</Link> instead.</p>
+                        </div>
+                    </div>
+                )
             }
         ],
 
         faq: [
             {
-                q: "Is there a limit on the number of rows I can extract?",
-                a: "No! Because we process files locally on your computer, there is no server-side limit. Whether your PDF has 10 transactions or 10,000, our engine can handle it."
+                q: "What is the best way to convert a PDF bank statement to Excel?",
+                a: "The best way is to use a converter like pdfcanada.ca that supports 'Smart Merge.' This ensures that transactions spanning multiple lines in the PDF are combined into a single row in Excel, saving you hours of manual cleanup."
             },
             {
-                q: "What bank formats are supported?",
-                a: "We support statements from all major Canadian and US banks, including TD, RBC, CIBC, RBC, Scotiabank, Tangerine, and HSBC. The tool also works for credit card statements (Visa, Mastercard, Amex)."
+                q: "How can I extract data from a PDF for free without software?",
+                a: "You can use our browser-based tool. It works on Mac, Windows, and Linux without installation. It leverages your device's own CPU to extract table data locally, making it free, fast, and private."
             },
             {
-                q: "Can this convert scanned PDFs?",
-                a: "This version is optimized for digital PDFs (non-scanned). For scanned documents, we recommend using our Invoice OCR tool which is designed for image-to-text conversion."
+                q: "Is it safe to convert bank statements online?",
+                a: "Only if the tool processes data locally. Standard online tools store your files on their servers. pdfcanada.ca uses local-only processing so your bank data never leaves your computer."
             },
             {
-                q: "Does it work with multi-page PDFs?",
-                a: "Yes. Our engine scans all pages in the document and compiles them into a single continuous table for export."
+                q: "How do I turn a PDF into a CSV file for QuickBooks?",
+                a: "Upload your PDF to our converter, audit the preview to ensure dates and amounts are correct, and then select the 'QBO' or 'CSV' export option. QBO is specifically designed for QuickBooks reconciliation."
+            },
+            {
+                q: "Can I convert multi-page PDF tables into a single CSV?",
+                a: "Yes! Our tool automatically scans every page of your PDF and compiles all detected table rows into one continuous CSV or XLSX file."
             }
         ],
 
-        ctaTitle: "Ready to Stop Manual Entry?",
-        ctaButton: "Convert PDF to CSV Now",
-        ctaSubtext: "100% Free. 100% Private. 100% Canadian."
+        ctaTitle: "Stop Copying and Pasting.",
+        ctaButton: "Extract PDF Data Now",
+        ctaSubtext: "Free, Secure, and Canadian. 📖"
     },
     fr: {
         seo: {
-            title: `Convertisseur PDF vers CSV Gratuit | Relevés Bancaires en Excel ${CURRENT_YEAR}`,
-            desc: `Convertissez vos PDF en CSV et Excel gratuitement. Notre moteur local sécurisé extrait les tableaux des relevés bancaires avec une confidentialité totale.`
+            title: `Convertir Relevés Bancaires PDF en CSV et Excel | Gratuit ${CURRENT_YEAR}`,
+            desc: `Comment convertir vos relevés bancaires PDF en CSV, Excel et QBO gratuitement. Extraction locale sécurisée pour banques canadiennes. Conforme à la LPRPDE.`
         },
-        h1: `Convertisseur PDF vers CSV Gratuit (${CURRENT_YEAR})`,
-        subtitle: "Le guide ultime pour extraire vos données tabulaires en toute sécurité.",
+        h1: `Comment Convertir un PDF en CSV et Excel (Guide ${CURRENT_YEAR})`,
+        subtitle: "Le guide définitif pour extraire vos relevés bancaires et données financières en toute sécurité.",
 
-        intro: `L'extraction de données à partir de tableaux PDF est souvent frustrante. Que ce soit pour des **relevés bancaires** ou des **rapports financiers**, le copier-coller brise souvent les lignes et décale les colonnes.
-
-Chez **pdfcanada.ca**, nous avons développé un moteur d'extraction local qui traite tout dans votre navigateur. Vos données financières ne quittent jamais votre ordinateur.`,
+        intro: (
+            <>
+                <div className="flex items-center gap-4 mb-8 p-6 bg-red-50 dark:bg-red-900/10 rounded-3xl border border-red-100 dark:border-red-800">
+                    <Database className="text-canada-red shrink-0" size={32} />
+                    <p className="text-gray-700 dark:text-gray-300 font-medium italic">
+                        &quot;La plupart des outils téléversent vos relevés bancaires sur le cloud. Pas nous. Tout est traité localement sur votre ordinateur.&quot;
+                    </p>
+                </div>
+                L&apos;extraction de données à partir de <strong>tableaux PDF</strong> est réputée pour briser le formatage. Que vous soyez comptable en train de rapprocher des <strong>relevés bancaires</strong> ou propriétaire d&apos;entreprise gérant des factures, le passage du PDF au CSV entraîne souvent des données &quot;désordonnées&quot;.
+                <br /><br />
+                Chez <strong>pdfcanada.ca</strong>, nous avons conçu un moteur d&apos;<strong>extraction spatiale</strong> spécifiquement pour les documents financiers. Dans ce guide, nous vous montrerons comment transformer des PDF complexes en fichiers <strong>Excel, CSV ou QBO</strong> propres en quelques secondes.
+            </>
+        ),
 
         sections: [
             {
-                id: "how-to",
-                title: "Comment convertir un PDF en CSV en 3 étapes",
-                content: `### Étape 1 : Téléversez le PDF
-Sélectionnez votre relevé bancaire. Le chargement est instantané car il n'y a pas de téléversement vers un serveur.
-
-### Étape 2 : Vérifiez l'aperçu
-Utilisez le "Smart Merge" pour fusionner les descriptions sur plusieurs lignes et la "Normalisation" pour nettoyer les montants.
-
-### Étape 3 : Exportez
-Choisissez entre **CSV**, **Excel** ou **QBO** (pour QuickBooks).`
+                id: "how-to-convert",
+                title: "Comment convertir un PDF en CSV gratuitement",
+                content: (
+                    <div className="space-y-4">
+                        <p>Suivez ces étapes pour transformer vos documents PDF en données structurées :</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Ouvrez l&apos;outil :</strong> Accédez au <Link href={`/${lang}/pdf-to-csv`} className="text-canada-red hover:underline font-bold">convertisseur PDF vers CSV</Link>.
+                            </li>
+                            <li>
+                                <strong>Sélectionnez votre fichier :</strong> Choisissez votre relevé ou rapport. Grâce au <strong>traitement local</strong>, les données sont analysées instantanément.
+                            </li>
+                            <li>
+                                <strong>Vérifiez l&apos;aperçu :</strong> Notre moteur affiche une grille en temps réel. Utilisez <strong>&quot;Smart Merge&quot;</strong> si les descriptions de vos transactions s&apos;étendent sur plusieurs lignes.
+                            </li>
+                            <li>
+                                <strong>Téléchargez :</strong> Cliquez sur exporter. Votre fichier est généré directement dans le navigateur.
+                            </li>
+                        </ol>
+                    </div>
+                )
             },
             {
-                id: "privacy",
-                title: "Confidentialité Totale",
-                content: `Pourquoi nous choisir ? 
-- **Aucun envoi sur le cloud** : Vos fichiers restent privés.
-- **Conformité LPRPDE** : Nous dépassons les normes de protection de la vie privée.
-- **Traitement local** : C'est votre ordinateur qui travaille, pas nos serveurs.`
+                id: "bank-statements",
+                title: "Optimisé pour les banques canadiennes (Desjardins, National, TD, RBC)",
+                content: (
+                    <div className="space-y-4">
+                        <p>Les banques utilisent souvent une mise en page &quot;multi-lignes&quot; qui est un cauchemar pour les convertisseurs standards. Si vous avez déjà essayé de <strong>sauvegarder un relevé PDF en CSV</strong> pour finir avec les dates sur une ligne et les montants sur une autre, vous connaissez la frustration.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-2">Pourquoi notre outil est meilleur pour la comptabilité :</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Fusion Intelligente :</strong> Nous détectons quand une description de transaction passe à la ligne et nous les fusionnons.</li>
+                            <li><strong>Normalisation :</strong> Nous nettoyons les symboles monétaires et standardisons les dates pour une importation directe dans <strong>XERO</strong> ou <strong>QuickBooks</strong>.</li>
+                            <li><strong>Export QBO :</strong> Un des rares outils gratuits capables d&apos;exporter directement au format <strong>QuickBooks (.qbo)</strong>.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Sécurité et Confidentialité : Certifié Local",
+                content: (
+                    <div className="bg-gray-900 text-white rounded-3xl p-8 mb-8 border-l-8 border-canada-red">
+                        <p className="text-gray-300 leading-relaxed">
+                            Les données financières sont les plus sensibles. En utilisant notre outil, vos numéros de compte et soldes ne quittent jamais votre ordinateur. Nous sommes entièrement conformes aux normes <strong>LPRPDE</strong> du Canada car aucun fichier n&apos;est téléversé sur nos serveurs.
+                        </p>
+                    </div>
+                )
             }
         ],
 
         faq: [
             {
-                q: "Est-ce gratuit ?",
-                a: "Oui, comme tous nos outils, c'est 100% gratuit et sans limites."
+                q: "Quelle est la meilleure façon de convertir un relevé bancaire PDF en Excel ?",
+                a: "D&apos;utiliser un convertisseur local comme pdfcanada.ca qui supporte la 'Fusion Intelligente' pour garder vos transactions sur une seule ligne."
             },
             {
-                q: "Quelles banques sont supportées ?",
-                a: "Toutes les grandes banques canadiennes (TD, RBC, Desjardins, etc.) et les cartes de crédit."
+                q: "Est-ce sécuritaire de convertir des relevés bancaires en ligne ?",
+                a: "Seulement si l&apos;outil traite les données localement. pdfcanada.ca n&apos;envoie jamais vos fichiers sur un serveur."
+            },
+            {
+                q: "Puis-je convertir des PDF de plusieurs pages ?",
+                a: "Oui, notre outil compile toutes les pages en un seul fichier CSV ou Excel continu."
             }
         ],
 
-        ctaTitle: "Prêt à gagner du temps ?",
-        ctaButton: "Essayer PDF vers CSV",
-        ctaSubtext: "Gratuit. Privé. Canadien."
+        ctaTitle: "Arrêtez le copier-coller.",
+        ctaButton: "Extraire les données PDF",
+        ctaSubtext: "Gratuit, sécurisé et canadien. 📖"
     }
 });
 
@@ -245,7 +304,7 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
             >
                 <div className="max-w-4xl mx-auto py-8">
                     <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
-                        <MarkdownContent content={t.intro} />
+                        {typeof t.intro === 'string' ? <MarkdownContent content={t.intro} /> : t.intro}
                     </div>
 
                     {/* Stats/Highlights */}
@@ -276,7 +335,11 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                                     {section.title}
                                 </h2>
                                 <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
-                                    <MarkdownContent content={section.content} />
+                                    {typeof section.content === 'string' ? (
+                                        <MarkdownContent content={section.content} />
+                                    ) : (
+                                        section.content
+                                    )}
                                 </div>
                             </section>
                         ))}

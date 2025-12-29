@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { FileText, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Smartphone, Monitor, MousePointer2 } from 'lucide-react';
+import { FileText, MousePointer2 } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -15,7 +15,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getGuideContent = (lang: string) => ({
     en: {
         seo: {
             title: `How to Convert Word to PDF | Free & Secure ${CURRENT_YEAR} Tutorial | pdfcanada.ca`,
@@ -23,7 +23,6 @@ const getGuideContent = (lang: Language) => ({
         },
         h1: `How to Convert and Save Word as PDF (${CURRENT_YEAR})`,
         subtitle: "The simplest way to transform any Word document into a high-quality PDF file instantly.",
-
         intro: "Need to **convert a Word to a PDF**? Whether you're sending a resume, an invoice, or a formal report, PDF is the standard for ensuring your formatting stays exactly as intended. **How do you change a word document to a pdf** for free? Our **Word to PDF converter** allows you to **save a Word document as a PDF** effortlessly. Because it runs locally, you can **switch a Word document to PDF** or **turn a word doc into pdf** without worrying about your business or personal data being stored on a random server.",
 
         sections: [
@@ -124,33 +123,21 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "How do you change a word document to a pdf?",
                 a: "It's easy! Upload your document to our tool, and it will automatically transform the formatting into a high-quality PDF. This is the fastest way to turn a Word doc into a PDF without specialized software."
-            },
-            {
-                q: "How to make a word document PDF?",
-                a: "Simply use our local-first converter. By selecting your .docx file, our engine recreates the layout in a PDF format, effectively allowing you to make your Word file a PDF instantly."
-            },
-            {
-                q: "How to convert word to fillable PDF?",
-                a: "To create a fillable form, first use our tool to **convert word doc to pdf**. Then, open the resulting file in our 'Make Fillable' tool to add text boxes, checkboxes, and signatures."
-            },
-            {
-                q: "Will the PDF be searchable and have selectable text?",
-                a: "Yes! The PDF will contain searchable, selectable text just like your original Word document. This is different from scanning a printout—all text remains as text, not images."
             }
         ],
 
         ctaTitle: "Convert Your Document Now",
         ctaButton: "Start Word to PDF Conversion",
-        ctaSubtext: "100% Free. Secure. Local."
+        ctaSubtext: "100% Free. Secure. Local.",
+        faqHeading: "Common Questions"
     },
     fr: {
         seo: {
             title: `Convertir Word en PDF | Guide Sécurisé ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Découvrez comment transformer vos DOCX en PDF instantanément.Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données.Convertissez vos PDF professionnels de manière sécurisée dans votre navigateur.Aucun téléchargement, outil canadien 100 % privé.`
+            desc: `Découvrez comment transformer vos DOCX en PDF instantanément. Notre guide sécurisé ${CURRENT_YEAR} vous montre comment convertir localement sans risque pour vos données. Aucun téléchargement, outil canadien 100 % privé.`
         },
         h1: "Comment Convertir Word en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers Word instantanément sans quitter votre navigateur.",
-
         intro: "Besoin de transformer votre **document Word** en PDF professionnel ? Que vous envoyiez un CV, une facture ou un rapport formel, le PDF est la norme pour garantir que votre formatage reste exactement comme prévu. Notre **convertisseur Word en PDF** gère la transition en douceur, et parce qu'il fonctionne localement, vous n'avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
 
         sections: [
@@ -175,14 +162,14 @@ const getGuideContent = (lang: Language) => ({
                 id: "why-pdf",
                 title: "Pourquoi Passer de Word à PDF ?",
                 content: `Quand vous **transformez un doc en pdf**, vous gagnez en sécurité et en professionnalisme :
-- **Visibilité Universelle** : Un PDF s'affiche de la même manière partout. Si vous envoyez un Word, la mise en page peut casser.
+- **Visibilité Universelle** : Un PDF s'affiche de la même manière partout. Si vous envoyiez un Word, la mise en page peut casser.
 - **Sécurité** : Plus difficile à modifier accidentellement. **Mettre un word en pdf** fige le contenu.
 - **Taille de Fichier** : **Convertir un fichier word en pdf** réduit souvent la taille pour l'envoi par courriel.`
             },
             {
                 id: "local-first",
                 title: "Privé et Sécurisé : Conversion Locale",
-                content: `Contrairement aux autres outils, nous vous aidons à **convertir un fichier pdf en word gratuit** (et vice versa) localement.
+                content: `Contrairement aux autres outils, nous vous aidons à **convertir un fichier Word en PDF gratuitement** localement.
 - **Zéro Téléversement** : Nous traitons le document dans votre navigateur.
 - **Confidentiel** : Vos données ne quittent jamais votre appareil.
 - **Rapide** : **Changer word en pdf** instantanément.`
@@ -226,32 +213,19 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "La conversion préserve-t-elle les hyperliens et signets ?",
                 a: "Oui ! Les hyperliens, table des matières et références croisées de votre document Word sont préservés comme liens cliquables dans le PDF résultant. Les signets et titres se convertissent également en signets PDF pour une navigation facile."
-            },
-            {
-                q: "Quelle est la taille maximale de fichier que je peux convertir ?",
-                a: "Puisque la conversion se fait localement dans votre navigateur, la limite dépend de la RAM de votre appareil. La plupart des ordinateurs modernes gèrent facilement des fichiers jusqu'à 50-100 Mo. Les téléphones peuvent avoir des limites inférieures. Les très gros documents peuvent prendre plus de temps à traiter."
-            },
-            {
-                q: "Puis-je convertir des documents Word protégés par mot de passe ?",
-                a: "Vous devrez d'abord retirer le mot de passe. Ouvrez le document dans Word, entrez le mot de passe, puis enregistrez une copie sans protection par mot de passe avant de convertir en PDF. Vous pouvez reprotéger le PDF par la suite si nécessaire."
-            },
-            {
-                q: "Le PDF sera-t-il consultable et aura-t-il du texte sélectionnable ?",
-                a: "Oui ! Le PDF contiendra du texte consultable et sélectionnable tout comme votre document Word original. C'est différent de scanner une impression—tout le texte reste du texte, pas des images."
             }
         ],
 
         ctaTitle: "Convertissez Votre Document Maintenant",
         ctaButton: "Commencer la Conversion Word en PDF",
         ctaSubtext: "100% Gratuit. Sécurisé. Local.",
-
         faqHeading: "Questions Courantes"
     }
 });
 
 export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = (guideContent as any)[lang] || (guideContent as any).en;
 
     return (
         <div className="bg-white dark:bg-gray-950">
@@ -272,9 +246,9 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Upload your Word file (.docx)", "Automatic local conversion", "Download your PDF"]
                 }}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'Word to PDF', path: '/guides/word-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: lang === 'fr' ? '/fr/guides/word-to-pdf' : '/guides/word-to-pdf' }
                 ]}
             />
             <PageLayout
@@ -282,9 +256,9 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<FileText size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', href: '/' },
-                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
-                    { name: 'Word to PDF Guide', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Guide Word vers PDF' : 'Word to PDF Guide', href: lang === 'fr' ? '/fr/guides/word-to-pdf' : '/guides/word-to-pdf' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -309,7 +283,9 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {/* FAQ */}
                     <div className="my-20">
-                        <h3 className="text-3xl font-black mb-10 text-gray-900 dark:text-white">Common Questions</h3>
+                        <h3 className="text-3xl font-black mb-10 text-gray-900 dark:text-white">
+                            {lang === 'fr' ? "Questions Fréquentes" : "Common Questions"}
+                        </h3>
                         <div className="grid gap-6">
                             {t.faq.map((item: any, i: number) => (
                                 <div key={i} className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm">
@@ -355,5 +331,3 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
         </div>
     );
 };
-
-
