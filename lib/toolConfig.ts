@@ -277,6 +277,28 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['générateur code-barres code 128', 'générateur code-barres en masse', 'créateur code-barres gratuit', 'code-barres vers pdf', 'excel vers code-barres'],
     accept: '.xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv'
   },
+  {
+    slug: 'pdf-to-csv',
+    tool: ToolType.PDF_TO_CSV,
+    title: 'PDF to CSV',
+    titleFr: 'PDF vers CSV',
+    description: 'Extract tables from bank statements and documents into CSV format. Smart multiline merging and local processing for maximum privacy.',
+    descriptionFr: 'Extrayez les tableaux des relevés bancaires et documents au format CSV. Fusion multiligne intelligente et traitement local pour une confidentialité maximale.',
+    keywords: ['PDF to CSV', 'bank statement to CSV', 'extract table from PDF', 'PDF to Excel converter'],
+    keywordsFr: ['PDF vers CSV', 'relevé bancaire vers CSV', 'extraire tableau PDF', 'convertisseur PDF vers Excel'],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'pdf-to-excel',
+    tool: ToolType.PDF_TO_EXCEL,
+    title: 'PDF to Excel',
+    titleFr: 'PDF vers Excel',
+    description: 'Convert PDF tables to Excel (XLSX) spreadsheets instantly. Preserve columns and formatting with local processing.',
+    descriptionFr: 'Convertissez instantanément les tableaux PDF en feuilles de calcul Excel (XLSX). Préservez les colonnes et le formatage avec un traitement local.',
+    keywords: ['PDF to Excel', 'PDF to XLSX', 'export PDF table to Excel'],
+    keywordsFr: ['PDF vers Excel', 'PDF vers XLSX', 'exporter tableau PDF vers Excel'],
+    accept: '.pdf,application/pdf'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

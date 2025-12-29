@@ -29,6 +29,28 @@ const getGuideContent = (lang: Language) => ({
                 The solution? <strong>Convert CBR to PDF</strong>. This guide will show you how to transform your comic archives into universal PDF documents without compromising your privacy or downloading bulky software.
             </>
         ),
+
+        // AEO Quick Answer Box - AI-optimized direct answer
+        quickAnswer: {
+            question: "How do I convert CBR to PDF?",
+            answer: "To convert CBR to PDF: 1) Open pdfcanada.ca/cbr-to-pdf, 2) Select your CBR or CBZ file, 3) Wait for automatic extraction (2-5 seconds), 4) Download your PDF. The conversion happens entirely in your browser—no file uploads, no software installation required.",
+            time: "10-30 seconds",
+            cost: "Free",
+            privacy: "100% local processing"
+        },
+
+        // At-a-Glance Summary for quick scanning
+        atGlance: {
+            title: "CBR to PDF Conversion: At a Glance",
+            items: [
+                { label: "What", value: "Convert comic book archives (CBR/CBZ) to universal PDF format" },
+                { label: "Why", value: "Read comics on any device without special apps" },
+                { label: "Time", value: "10-30 seconds for typical files" },
+                { label: "Cost", value: "100% free, no account required" },
+                { label: "Privacy", value: "Files never leave your device" },
+                { label: "Quality", value: "Lossless—original artwork preserved" }
+            ]
+        },
         sections: [
             {
                 id: "what-is-cbr",
@@ -177,6 +199,87 @@ const getGuideContent = (lang: Language) => ({
                 )
             }
         ],
+
+        // Comparison Table for AI/AEO - structured data
+        comparisonTable: {
+            title: "CBR to PDF Conversion Methods Compared",
+            headers: ["Method", "Privacy", "Speed", "Quality", "Cost", "Installation"],
+            rows: [
+                ["pdfcanada.ca (Browser)", "100% Local ✅", "Instant", "Lossless", "Free", "None"],
+                ["Calibre (Desktop)", "Local ✅", "Fast", "Lossless", "Free", "Required"],
+                ["Online Converters", "Upload ⚠️", "Slow", "Variable", "Freemium", "None"],
+                ["Adobe Acrobat", "Local ✅", "Fast", "Good", "$20+/mo", "Required"]
+            ]
+        },
+
+        // Reader Compatibility Table
+        readerCompatibility: {
+            title: "Comic Reader App Compatibility",
+            description: "How different reading apps handle CBR vs PDF formats",
+            apps: [
+                { name: "Kindle", cbr: "❌ Not supported", pdf: "✅ Full support", notes: "PDF is the only comic format on Kindle" },
+                { name: "Apple Books", cbr: "❌ Not supported", pdf: "✅ Full support", notes: "Perfect for iPad comic reading" },
+                { name: "Google Play Books", cbr: "❌ Not supported", pdf: "✅ Full support", notes: "Cloud sync across devices" },
+                { name: "CDisplayEx", cbr: "✅ Native", pdf: "✅ Supported", notes: "Best dedicated comic reader for Windows" },
+                { name: "Chunky (iOS)", cbr: "✅ Native", pdf: "✅ Supported", notes: "Popular iOS comic reader" },
+                { name: "Perfect Viewer (Android)", cbr: "✅ Native", pdf: "✅ Supported", notes: "Best Android comic reader" }
+            ]
+        },
+
+        // Best Practices Section
+        bestPractices: {
+            title: "Best Practices for CBR to PDF Conversion",
+            dos: [
+                "Use CBZ format when possible (better compatibility than CBR)",
+                "Verify page order before converting large collections",
+                "Keep original CBR files as backup",
+                "Use local tools to protect copyright and privacy",
+                "Compress PDFs if file size is a concern (after conversion)"
+            ],
+            donts: [
+                "Don't upload copyrighted comics to unknown servers",
+                "Don't delete originals until you've verified the PDF quality",
+                "Don't ignore file naming conventions (use 001, 002, not 1, 2)",
+                "Don't convert password-protected archives without unlocking first"
+            ]
+        },
+
+        // Technical Deep Dive for SEO
+        technicalSection: {
+            title: "Technical Deep Dive: How CBR to PDF Conversion Works",
+            content: `Understanding the conversion process helps you troubleshoot issues and optimize results.
+
+**Step 1: Archive Extraction**
+CBR files are RAR archives; CBZ files are ZIP archives. Our WebAssembly-based extractor runs in your browser's sandboxed environment, unpacking the compressed images into memory.
+
+**Step 2: Image Analysis**
+Each extracted image is analyzed for:
+- Dimensions (width × height in pixels)
+- Color space (RGB, CMYK, grayscale)
+- File format (JPEG, PNG, WebP)
+- Embedded metadata (EXIF data, color profiles)
+
+**Step 3: Page Ordering**
+Images are sorted alphanumerically based on filename. This is why proper naming (001.jpg, 002.jpg) is crucial for correct page order.
+
+**Step 4: PDF Assembly**
+Using pdf-lib (a JavaScript PDF library), images are:
+- Embedded directly without recompression (preserving quality)
+- Sized to fit standard page dimensions
+- Assembled into a multi-page PDF document
+
+**Step 5: Download Generation**
+The completed PDF is converted to a downloadable Blob, triggering your browser's download dialog. The file never touches any external server.
+
+**Why Local Processing Matters:**
+Comic files are often 50-500MB. Uploading to a server means:
+- Long wait times (limited by your upload speed)
+- Privacy risks (your files on unknown servers)
+- Potential copyright concerns
+
+Local processing eliminates all these issues.`
+        },
+
         faq: [
             {
                 q: "Is there a file size limit for CBR to PDF conversion?",

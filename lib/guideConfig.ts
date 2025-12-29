@@ -24,6 +24,7 @@ import { PrivatePdfToolsGuide } from '@/components/pages/guides/PrivatePdfToolsG
 import { LegalPdfGuide } from '@/components/pages/guides/LegalPdfGuide';
 import { HealthcarePdfGuide } from '@/components/pages/guides/HealthcarePdfGuide';
 import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
+import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -52,6 +53,8 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'insert-picture-in-pdf': InsertPictureGuide,
     'flatten-pdf': FlattenPdfGuide,
     'invoice-ocr': InvoiceOcrGuide,
+    'pdf-to-csv': PdfToCsvGuide,
+    'pdf-to-excel': PdfToCsvGuide, // Reuse the same rich guide as it covers both
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

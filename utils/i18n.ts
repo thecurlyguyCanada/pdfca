@@ -707,6 +707,42 @@ export const translations = {
           tool: "Excel to PDF",
           steps: ["Select Excel file", "Generate professional PDF", "Download your file"]
         }
+      },
+      pdftocsv: {
+        title: "PDF to CSV Online - Extract Bank Statement Data | Free & Private",
+        desc: `Convert PDF tables to CSV format instantly in ${CURRENT_YEAR}. Our secure local converter is perfect for bank statements and financial documents. 100% private.`,
+        h1: "Convert PDF to CSV",
+        subtitle: "Extract transactions & data from your PDFs securely.",
+        content: "Need to reconcile accounts? Our PDF to CSV tool extracts tabular data with high precision. All processing happens in your browser, keeping your data private.",
+        steps: [
+          "Upload your PDF statement or document.",
+          "Review the extracted table in the interactive preview.",
+          "Download your cleaned CSV file."
+        ],
+        quickAnswer: {
+          question: "How do I convert a PDF bank statement to CSV for Excel?",
+          answer: "Use our local PDF extraction tool that preserves columns and handles multiline descriptions. It turns your PDF tables into clean CSV data Without ever uploading your files.",
+          tool: "PDF to CSV",
+          steps: ["Upload PDF statement", "Audit extracted data", "Download CSV file"]
+        }
+      },
+      pdftoexcel: {
+        title: "PDF to Excel Online - Convert PDF Tables to XLSX for Free",
+        desc: "Convert PDF documents to editable Excel spreadsheets. Professional-grade table extraction with local security. 100% free with no signup.",
+        h1: "Convert PDF to Excel",
+        subtitle: "Turn tables into spreadsheets instantly.",
+        content: "Stop manually typing data. Convert your PDF tables into fully editable Excel (.xlsx) files while maintaining column structure and formatting.",
+        steps: [
+          "Select the PDF containing your table.",
+          "Our engine maps columns and rows locally.",
+          "Download your ready-to-use Excel file."
+        ],
+        quickAnswer: {
+          question: "How do I turn a PDF table into an Excel sheet?",
+          answer: "Our tool analyzes the spatial layout of your PDF locally to recreate the grid in an XLSX file, preserving rows and columns accurately.",
+          tool: "PDF to Excel",
+          steps: ["Upload PDF", "Analyze table structure", "Download Excel"]
+        }
       }
     },
 
@@ -746,6 +782,10 @@ export const translations = {
     toolOrganizeDesc: "Reorder or remove pages.",
     toolInvoiceOcr: "Invoice OCR",
     toolInvoiceOcrDesc: "Extract data to Excel.",
+    toolCsv: "PDF to CSV",
+    toolCsvDesc: "Extract tables from PDF.",
+    toolExcel: "PDF to Excel",
+    toolExcelDesc: "Convert tables to XLSX.",
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
@@ -1586,6 +1626,36 @@ export const translations = {
           steps: ["Sélectionnez le fichier Excel", "Générez le PDF", "Téléchargez le fichier"]
         }
       },
+      pdftocsv: {
+        title: "PDF vers CSV en Ligne - Extraire Relevés Bancaires | Gratuit & Privé",
+        desc: `Convertissez les tableaux PDF en format CSV instantanément en ${CURRENT_YEAR}. Notre convertisseur local est parfait pour les relevés bancaires. 100% privé.`,
+        h1: "Convertir PDF en CSV",
+        subtitle: "Extrayez vos transactions et données en toute sécurité.",
+        content: "Besoin de rapprocher vos comptes ? Notre outil PDF vers CSV extrait les données tabulaires avec précision directement dans votre navigateur.",
+        steps: [
+          "Téléversez votre relevé ou document PDF.",
+          "Vérifiez le tableau dans l'aperçu interactif.",
+          "Téléchargez votre fichier CSV nettoyé."
+        ],
+        quickAnswer: {
+          question: "Comment convertir un relevé bancaire PDF en CSV ?",
+          answer: "Utilisez notre outil d'extraction locale qui préserve les colonnes et gère les descriptions multilignes pour transformer vos PDF en données CSV propres.",
+          tool: "PDF vers CSV",
+          steps: ["Téléversez le relevé", "Vérifiez les données", "Téléchargez le CSV"]
+        }
+      },
+      pdftoexcel: {
+        title: "PDF vers Excel en Ligne - Convertir Tableaux PDF en XLSX",
+        desc: "Convertissez des documents PDF en feuilles de calcul Excel modifiables. Extraction de tableaux de qualité professionnelle avec sécurité locale.",
+        h1: "Convertir PDF en Excel",
+        subtitle: "Transformez vos tableaux en feuilles de calcul instantanément.",
+        content: "Arrêtez de saisir les données manuellement. Convertissez vos tableaux PDF en fichiers Excel (.xlsx) tout en conservant la structure des colonnes.",
+        steps: [
+          "Sélectionnez le PDF contenant votre tableau.",
+          "Notre moteur local identifie les colonnes et lignes.",
+          "Téléchargez votre fichier Excel prêt à l'emploi."
+        ],
+      },
     },
 
     toolDelete: "Supprimer des pages PDF en ligne",
@@ -1623,6 +1693,10 @@ export const translations = {
     toolOrganizeDesc: "Réorganiser ou supprimer des pages.",
     toolInvoiceOcr: "OCR Factures",
     toolInvoiceOcrDesc: "Extraire les données vers Excel.",
+    toolCsv: "PDF vers CSV",
+    toolCsvDesc: "Extraire tableaux du PDF.",
+    toolExcel: "PDF vers Excel",
+    toolExcelDesc: "Convertir tableaux en XLSX.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
     toolMerge: "Fusionner PDF",

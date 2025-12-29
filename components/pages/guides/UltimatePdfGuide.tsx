@@ -23,6 +23,70 @@ const getGuideContent = (lang: Language) => ({
         h1: `The Ultimate Guide to Modern PDF Management (${CURRENT_YEAR} Edition)`,
         subtitle: "A comprehensive deep-dive into editing, converting, and securing your PDF documents without expensive software.",
 
+        // AEO Quick Answer Box
+        quickAnswer: {
+            question: "What are the best free PDF tools?",
+            answer: "The best free PDF tools in 2026 are local-first, browser-based solutions like pdfcanada.ca. They offer editing, merging, splitting, compressing, converting, OCR, and signing—all without uploading your files to any server. This provides faster processing, complete privacy, and no file size limits.",
+            time: "Varies by tool (5-60 seconds)",
+            cost: "100% free, no account needed",
+            privacy: "Local processing—files never leave your device"
+        },
+
+        // At-a-Glance Summary
+        atGlance: {
+            title: "PDF Mastery: At a Glance",
+            items: [
+                { label: "Tools Available", value: "20+ free PDF tools" },
+                { label: "Best For", value: "Students, professionals, small businesses" },
+                { label: "Privacy", value: "100% local processing—no uploads" },
+                { label: "Cost", value: "Free forever, no hidden fees" },
+                { label: "Platform", value: "Works on any device with a browser" },
+                { label: "Speed", value: "Instant processing (no upload wait)" }
+            ]
+        },
+
+        // All Tools Matrix for AEO
+        toolsMatrix: {
+            title: "Complete PDF Toolkit Overview",
+            categories: [
+                {
+                    name: "Edit & Organize",
+                    tools: [
+                        { name: "Delete Pages", desc: "Remove unwanted pages", time: "5s" },
+                        { name: "Rotate PDF", desc: "Fix page orientation", time: "3s" },
+                        { name: "Reorder Pages", desc: "Rearrange page sequence", time: "10s" },
+                        { name: "Crop PDF", desc: "Trim page margins", time: "5s" }
+                    ]
+                },
+                {
+                    name: "Combine & Split",
+                    tools: [
+                        { name: "Merge PDF", desc: "Combine multiple PDFs", time: "5-15s" },
+                        { name: "Split PDF", desc: "Extract specific pages", time: "5s" },
+                        { name: "Insert Pages", desc: "Add pages to existing PDF", time: "5s" }
+                    ]
+                },
+                {
+                    name: "Convert",
+                    tools: [
+                        { name: "PDF to Word", desc: "Extract editable text", time: "10-30s" },
+                        { name: "PDF to EPUB", desc: "E-reader format", time: "15-45s" },
+                        { name: "Images to PDF", desc: "Create PDF from photos", time: "5-15s" },
+                        { name: "HEIC to PDF", desc: "iPhone photos to PDF", time: "5s" }
+                    ]
+                },
+                {
+                    name: "Optimize & Secure",
+                    tools: [
+                        { name: "Compress PDF", desc: "Reduce file size", time: "5-20s" },
+                        { name: "Protect PDF", desc: "Add password", time: "3s" },
+                        { name: "Unlock PDF", desc: "Remove password", time: "3s" },
+                        { name: "OCR PDF", desc: "Make searchable", time: "30-120s" }
+                    ]
+                }
+            ]
+        },
+
         sections: [
             {
                 id: "intro",

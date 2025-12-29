@@ -23,6 +23,10 @@ const BarcodeGeneratorTool = dynamic(() => import('./tools/BarcodeGeneratorTool'
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
+const PdfToCsvTool = dynamic(() => import('./tools/PdfToCsvTool').then(mod => mod.PdfToCsvTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
 
 
 import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
@@ -241,6 +245,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isCompressTool = currentTool === ToolType.COMPRESS;
     const isInvoiceTool = currentTool === ToolType.INVOICE_OCR;
     const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
+    const isCsvTool = currentTool === ToolType.PDF_TO_CSV || currentTool === ToolType.PDF_TO_EXCEL;
 
     if (!file && (!files || files.length === 0) && !isBarcodeTool) {
         const tool = tools.find(t => t.id === currentTool);
@@ -374,9 +379,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
-        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
+        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
-            {!isSignTool && !isInvoiceTool && !isBarcodeTool && (
+            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && (
                 <div
                     className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
                     {...swipeHandlers} // Attach swipe to header specifically
@@ -399,7 +404,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
+            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
                 {isBarcodeTool ? (
                     <BarcodeGeneratorTool
                         file={file || undefined}
@@ -409,6 +414,11 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     <InvoiceOcrTool
                         file={file}
                         pdfJsDoc={pdfJsDoc}
+                        t={t}
+                    />
+                ) : isCsvTool && file ? (
+                    <PdfToCsvTool
+                        file={file}
                         t={t}
                     />
                 ) : isPageSelectionTool ? (
@@ -738,7 +748,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action - Hidden for Sign Tool as it has its own sidebar/modal actions */}
-            {isSignTool || isCropTool ? null : (
+            {isSignTool || isCropTool || isCsvTool ? null : (
                 <div
                     className="p-3 md:p-4 border-t border-gray-100 bg-white"
                     style={{ paddingBottom: 'max(12px, calc(env(safe-area-inset-bottom) + 12px))' }}

@@ -30,6 +30,65 @@ Unlike other tools that force you to upload your sensitive data to their servers
 
 In this mega-guide, we'll cover everything you need to know about splitting PDFs, from choosing the **best free pdf splitter** to advanced techniques for legal and real estate professionals.`,
 
+        // AEO Quick Answer Box - AI-optimized direct answer
+        quickAnswer: {
+            question: "How do I split a PDF into separate pages?",
+            answer: "To split a PDF: 1) Go to pdfcanada.ca/split-pdf, 2) Upload your PDF file, 3) Select pages to extract or choose 'Split All', 4) Click 'Split PDF', 5) Download your files. Processing is instant and 100% local—your files never leave your device.",
+            time: "5-15 seconds",
+            cost: "Free forever",
+            privacy: "100% offline processing"
+        },
+
+        // At-a-Glance Summary
+        atGlance: {
+            title: "PDF Splitting: At a Glance",
+            items: [
+                { label: "What", value: "Extract specific pages or split PDFs into individual files" },
+                { label: "Why", value: "Share specific sections, reduce file size, organize documents" },
+                { label: "Time", value: "5-15 seconds for most PDFs" },
+                { label: "Cost", value: "Free with no limits, no account required" },
+                { label: "Privacy", value: "Local processing—files never uploaded" },
+                { label: "Works On", value: "Windows, Mac, iOS, Android, any browser" }
+            ]
+        },
+
+        // Industry Use Cases for AEO
+        industryUseCases: {
+            title: "Who Uses PDF Splitters?",
+            cases: [
+                {
+                    industry: "Legal Professionals",
+                    icon: "⚖️",
+                    useCase: "Extract signature pages from contracts, separate exhibits from case files, share specific clauses with clients",
+                    benefit: "Maintain client confidentiality with local processing"
+                },
+                {
+                    industry: "Real Estate Agents",
+                    icon: "🏠",
+                    useCase: "Extract disclosure pages, separate buyer and seller documents, send signing pages via DocuSign",
+                    benefit: "Speed up closings by sharing only relevant pages"
+                },
+                {
+                    industry: "Healthcare",
+                    icon: "🏥",
+                    useCase: "Separate patient records, extract lab results, organize medical imaging reports",
+                    benefit: "HIPAA-compliant local processing protects patient data"
+                },
+                {
+                    industry: "Education",
+                    icon: "📚",
+                    useCase: "Extract chapters from textbooks, create study guides, separate exam sections",
+                    benefit: "Students save on printing by extracting needed pages"
+                },
+                {
+                    industry: "Finance",
+                    icon: "💰",
+                    useCase: "Extract specific months from statements, separate tax documents, organize invoices",
+                    benefit: "Protect sensitive financial data with offline processing"
+                }
+            ]
+        },
+
         sections: [
             {
                 id: "why-split",

@@ -31,6 +31,66 @@ const getGuideContent = (lang: Language) => ({
             </>
         ),
 
+        // AEO Quick Answer Box
+        quickAnswer: {
+            question: "How do I edit an XFA PDF?",
+            answer: "To edit an XFA PDF: 1) Open in Adobe Acrobat, 2) Press Ctrl+P (Print), 3) Select 'Adobe PDF' or 'Microsoft Print to PDF' as printer, 4) Click Print and save. This 'flattens' the XFA form into a standard PDF you can edit with any tool. The process takes 30 seconds.",
+            time: "30 seconds",
+            cost: "Free (requires Adobe Reader)",
+            privacy: "100% local processing"
+        },
+
+        // At-a-Glance Summary
+        atGlance: {
+            title: "Editing XFA PDFs: At a Glance",
+            items: [
+                { label: "What", value: "Convert dynamic XFA forms to editable static PDFs" },
+                { label: "Why", value: "Standard PDF editors can't read XFA format" },
+                { label: "Method", value: "Print to PDF (flattening)" },
+                { label: "Time", value: "30 seconds" },
+                { label: "Requirements", value: "Adobe Acrobat or Reader" },
+                { label: "Result", value: "Standard PDF editable in any tool" }
+            ]
+        },
+
+        // XFA vs AcroForms Comparison Table
+        comparisonTable: {
+            title: "XFA vs AcroForms: Understanding PDF Form Types",
+            headers: ["Feature", "XFA Forms", "AcroForms (Standard)"],
+            rows: [
+                ["Compatibility", "Adobe only ⚠️", "All PDF readers ✅"],
+                ["Editability", "Requires flattening", "Direct editing ✅"],
+                ["Browser Support", "❌ Not supported", "✅ Chrome, Edge, Firefox"],
+                ["Mobile Support", "❌ Broken on most devices", "✅ Works everywhere"],
+                ["Government Use", "CRA, IRCC, IRS forms", "Modern digital forms"],
+                ["Future", "Deprecated by Adobe", "Industry standard ✅"]
+            ],
+            note: "Adobe deprecated XFA in 2017, but many government agencies still use legacy XFA forms."
+        },
+
+        // Common XFA Forms List
+        commonXfaForms: {
+            title: "Common XFA PDF Forms You May Encounter",
+            categories: [
+                {
+                    name: "Canadian Government (CRA, IRCC)",
+                    forms: ["T1 General Income Tax", "T4 Statement of Remuneration", "IMM 5257 Visitor Visa", "IMM 5645 Family Information"]
+                },
+                {
+                    name: "US Government (IRS)",
+                    forms: ["Form 1040", "W-9 Tax Form", "I-130 Immigration Petition"]
+                },
+                {
+                    name: "Financial Institutions",
+                    forms: ["Loan applications", "Account opening forms", "Insurance claims"]
+                },
+                {
+                    name: "Healthcare",
+                    forms: ["Patient intake forms", "HIPAA consent forms", "Insurance claims"]
+                }
+            ]
+        },
+
         sections: [
             {
                 id: "concept",
