@@ -77,7 +77,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             const loadingTask = pdfjs.getDocument({
                 data: arrayBuffer,
                 enableScripting: false
-            });
+            } as any);
             const pdf = await loadingTask.promise;
             const page = await pdf.getPage(previewPage);
 
