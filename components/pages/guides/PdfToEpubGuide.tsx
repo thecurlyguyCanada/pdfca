@@ -1112,7 +1112,7 @@ Pour convertir 100 PDF en EPUB :
 \`\`\`bash
 #!/bin/bash
 for pdf in *.pdf; do
-    ebook-convert "$pdf" "${pdf%.pdf}.epub" --enable-heuristics
+    ebook-convert "$pdf" "\${pdf%.pdf}.epub" --enable-heuristics
 done
 \`\`\`
 
@@ -2364,7 +2364,7 @@ To convert 100 PDFs to EPUB:
 \`\`\`bash
 #!/bin/bash
 for pdf in *.pdf; do
-    ebook-convert "$pdf" "${pdf%.pdf}.epub" --enable-heuristics
+    ebook-convert "$pdf" "\${pdf%.pdf}.epub" --enable-heuristics
 done
 \`\`\`
 
