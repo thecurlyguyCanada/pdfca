@@ -39,6 +39,7 @@ export const translations = {
     insertPictureGuide: "Insert Picture Guide",
     pageRemoverGuide: "PDF Page Remover Guide",
     barcodeGeneratorGuide: "Barcode Generator Guide",
+    analyzePdfGuide: "Analyze Security Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -760,6 +761,30 @@ export const translations = {
           tool: "PDF to Excel",
           steps: ["Upload PDF", "Analyze table structure", "Download Excel"]
         }
+      },
+      analyzepdf: {
+        title: "Analyze PDF Security Online - Detect Malware & Phishing | pdfcanada.ca",
+        desc: "Scan PDF attachments for phishing links and malware. Local analysis ensures your files never leave your device. 100% free & secure.",
+        h1: "Analyze PDF Security",
+        subtitle: "Detect hidden threats in your PDF documents.",
+        content: "Worried about a suspicious PDF attachment? Our security analyzer scans the file structure for JavaScript, external links, and launch actions that could harm your computer. Everything is analyzed locally, so you don't risk uploading a sensitive file to a public server.",
+        steps: [
+          "Select the suspicious PDF file.",
+          "Our tool parses the file structure locally.",
+          "Review the risk score and detailed security report.",
+          "Use 'Safe Preview' to view content without executing scripts."
+        ],
+        quickAnswer: {
+          question: "How can I check if a PDF is safe?",
+          answer: "Use a local-first PDF analyzer like pdfcanada.ca. It inspects the file's internal structure for hazardous elements like embedded scripts or phishing URLs without opening the file potentially triggering a payload.",
+          tool: "Analyze PDF",
+          steps: ["Upload PDF", "Check Risk Score", "Safe Preview"]
+        },
+        faq: [
+          { question: "Is it safe to upload suspicious PDFs?", answer: "Yes, because we don't upload them! The analysis happens entirely in your browser using WebAssembly." },
+          { question: "Can this tool simplify the PDF?", answer: "Yes, you can check it here and then use our Flatten tool to convert pages to images, neutralizing active scripts." },
+          { question: "What does the Safe Preview do?", answer: "It renders the PDF pages as static images with JavaScript disabled, so you can read the content without triggering malicious code." }
+        ]
       }
     },
 
@@ -803,6 +828,8 @@ export const translations = {
     toolCsvDesc: "Extract tables from PDF.",
     toolExcel: "PDF to Excel",
     toolExcelDesc: "Convert tables to XLSX.",
+    toolPhishingDetector: "Analyze PDF",
+    toolPhishingDetectorDesc: "Scan for malware & phishing.",
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
@@ -1113,6 +1140,7 @@ export const translations = {
     insertPictureGuide: "Guide Insérer Image",
     pageRemoverGuide: "Guide Suppresseur Pages",
     barcodeGeneratorGuide: "Guide Générateur Code-Barres",
+    analyzePdfGuide: "Guide Analyse Sécurité",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",
@@ -1690,6 +1718,30 @@ export const translations = {
           "Téléchargez votre fichier Excel prêt à l'emploi."
         ],
       },
+      analyzepdf: {
+        title: "Analyser Sécurité PDF en Ligne - Détecter Malwares | pdfcanada.ca",
+        desc: "Analysez les pièces jointes PDF pour détecter liens d'hameçonnage et malwares. Analyse locale garantie sans envoi de fichier. Gratuit & sécurisé.",
+        h1: "Analyser la Sécurité PDF",
+        subtitle: "Détectez les menaces cachées dans vos documents.",
+        content: "Inquiet d'une pièce jointe suspecte ? Notre analyseur de sécurité scanne la structure du fichier pour trouver JavaScript, liens externes et actions de lancement. Tout est analysé localement pour ne pas compromettre vos fichiers sensibles.",
+        steps: [
+          "Sélectionnez le fichier PDF suspect.",
+          "Notre outil analyse la structure localement.",
+          "Examinez le score de risque et le rapport.",
+          "Utilisez l'Aperçu Sécurisé pour voir le contenu sans danger."
+        ],
+        quickAnswer: {
+          question: "Comment vérifier si un PDF est sûr ?",
+          answer: "Utilisez un analyseur local comme pdfcanada.ca. Il inspecte la structure interne pour détecter les éléments dangereux sans exécuter le fichier.",
+          tool: "Analyser PDF",
+          steps: ["Téléversez le PDF", "Vérifiez le Score", "Aperçu Sécurisé"]
+        },
+        faq: [
+          { question: "Est-ce dangereux d'importer un PDF infecté ?", answer: "Non, car le fichier n'est pas envoyé sur un serveur. L'analyse est isolée dans votre navigateur." },
+          { question: "Comment nettoyer un PDF ?", answer: "Après analyse, utilisez l'outil 'Aplatir PDF' pour convertir les pages en images et neutraliser les scripts." },
+          { question: "Que fait l'Aperçu Sécurisé ?", answer: "Il affiche le PDF comme une image statique, empêchant l'exécution de tout code malveillant caché." }
+        ]
+      }
     },
 
     toolDelete: "Supprimer des pages PDF en ligne",
@@ -1731,6 +1783,8 @@ export const translations = {
     toolCsvDesc: "Extraire tableaux du PDF.",
     toolExcel: "PDF vers Excel",
     toolExcelDesc: "Convertir tableaux en XLSX.",
+    toolPhishingDetector: "Analyser PDF",
+    toolPhishingDetectorDesc: "Détecter malwares & hameçonnage.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
     toolMerge: "Fusionner PDF",

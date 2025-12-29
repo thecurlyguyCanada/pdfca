@@ -299,6 +299,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['PDF vers Excel', 'PDF vers XLSX', 'exporter tableau PDF vers Excel'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'analyze-pdf',
+    tool: ToolType.PHISHING_DETECTOR,
+    title: 'Analyze PDF Security',
+    titleFr: 'Analyser Sécurité PDF',
+    description: 'Scan PDF for phishing links, malware, and scripts. View content safely without executing malicious code. 100% local analysis.',
+    descriptionFr: 'Analysez les PDF pour détecter les liens d\'hameçonnage, les malwares et les scripts. Visualisez le contenu en toute sécurité sans exécuter de code malveillant. Analyse 100% locale.',
+    keywords: ['analyze PDF', 'PDF security scan', 'detect phishing PDF', 'safe view PDF', 'malware scanner'],
+    keywordsFr: ['analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF', 'vue sécurisée PDF', 'scanner malware'],
+    accept: '.pdf,application/pdf'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
