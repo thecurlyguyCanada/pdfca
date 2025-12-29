@@ -591,7 +591,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const signedPdf = await signPdf(file, entries);
                                 onAction(signedPdf);
                             } catch (e) {
-                                console.error("Signing failed", e);
+                                if (process.env.NODE_ENV === 'development') {
+                                    console.error("Signing failed", e);
+                                }
                             }
                         }}
                     />
@@ -638,7 +640,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 const croppedPdf = await cropPdfPages(file, margins, pageIndices);
                                 onAction(croppedPdf);
                             } catch (e) {
-                                console.error("Cropping failed", e);
+                                if (process.env.NODE_ENV === 'development') {
+                                    console.error("Cropping failed", e);
+                                }
                             }
                         }}
 

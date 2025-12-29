@@ -59,7 +59,9 @@ const getDocx = async () => {
     const docx = await import('docx');
     return docx;
   } catch (error) {
-    console.error('Failed to load docx library:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to load docx library:', error);
+    }
     throw new Error('ERR_LIB_LOAD_FAILED_DOCX');
   }
 };
@@ -70,7 +72,9 @@ const getMammoth = async () => {
     const mammoth = await import('mammoth');
     return mammoth;
   } catch (error) {
-    console.error('Failed to load mammoth library:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to load mammoth library:', error);
+    }
     throw new Error('ERR_LIB_LOAD_FAILED_MAMMOTH');
   }
 };
@@ -81,7 +85,9 @@ const getJsPdf = async () => {
     const mod = await import('jspdf');
     return (mod as any).jsPDF || mod.default || mod;
   } catch (error) {
-    console.error('Failed to load jspdf library:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to load jspdf library:', error);
+    }
     throw new Error('ERR_LIB_LOAD_FAILED_JSPDF');
   }
 };
@@ -91,7 +97,9 @@ const getExcelJs = async () => {
     const ExcelJS = await import('exceljs');
     return ExcelJS;
   } catch (error) {
-    console.error('Failed to load exceljs library:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to load exceljs library:', error);
+    }
     throw new Error('ERR_LIB_LOAD_FAILED_EXCELJS');
   }
 };

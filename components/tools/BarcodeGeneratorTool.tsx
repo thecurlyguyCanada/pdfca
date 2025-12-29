@@ -81,7 +81,9 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             }
             triggerHaptic('success');
         } catch (err) {
-            console.error('File parsing error:', err);
+            if (process.env.NODE_ENV === 'development') {
+                console.error('File parsing error:', err);
+            }
             alert(t.barcode?.errorFile || 'Failed to parse file. Please check the format.');
             triggerHaptic('error');
         } finally {
@@ -130,7 +132,9 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             });
             return true;
         } catch (err) {
-            console.error('Barcode generation error:', err);
+            if (process.env.NODE_ENV === 'development') {
+                console.error('Barcode generation error:', err);
+            }
             return false;
         }
     };
@@ -262,7 +266,9 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
             URL.revokeObjectURL(url);
             triggerHaptic('success');
         } catch (err) {
-            console.error('PDF export error:', err);
+            if (process.env.NODE_ENV === 'development') {
+                console.error('PDF export error:', err);
+            }
             alert(t.barcode?.errorExport || 'Failed to export PDF');
             triggerHaptic('error');
         } finally {
@@ -286,7 +292,9 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                     setTimeout(() => setCopiedId(null), 2000);
                     triggerHaptic('light');
                 } catch (err) {
-                    console.error('Copy failed:', err);
+                    if (process.env.NODE_ENV === 'development') {
+                        console.error('Copy failed:', err);
+                    }
                 }
             }
         });
