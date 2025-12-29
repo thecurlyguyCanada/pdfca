@@ -49,7 +49,9 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                     setCanvasRef(canvas);
                 }
             } catch (err) {
-                console.error("Preview render error", err);
+                if (process.env.NODE_ENV === 'development') {
+                    console.error("Preview render error", err);
+                }
             }
         };
         renderPreview();
@@ -65,7 +67,9 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             setData(result);
             triggerHaptic('success');
         } catch (err) {
-            console.error(err);
+            if (process.env.NODE_ENV === 'development') {
+                console.error(err);
+            }
             setError("Failed to extract data. Please try again.");
             triggerHaptic('error');
         } finally {
@@ -196,7 +200,9 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             window.URL.revokeObjectURL(url);
             triggerHaptic('success');
         } catch (e) {
-            console.error("Excel export failed", e);
+            if (process.env.NODE_ENV === 'development') {
+                console.error("Excel export failed", e);
+            }
             alert("Export failed. Please try again.");
         }
     };
@@ -262,7 +268,9 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             window.URL.revokeObjectURL(url);
             triggerHaptic('success');
         } catch (e) {
-            console.error("CSV export failed", e);
+            if (process.env.NODE_ENV === 'development') {
+                console.error("CSV export failed", e);
+            }
             alert("Export failed. Please try again.");
         }
     };
@@ -299,7 +307,9 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             window.URL.revokeObjectURL(url);
             triggerHaptic('success');
         } catch (e) {
-            console.error("JSON export failed", e);
+            if (process.env.NODE_ENV === 'development') {
+                console.error("JSON export failed", e);
+            }
             alert("Export failed. Please try again.");
         }
     };

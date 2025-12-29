@@ -99,7 +99,9 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 await renderTask.promise;
             } catch (error: any) {
                 if (error?.name !== 'RenderingCancelledException') {
-                    console.error("Error rendering page for crop:", error);
+                    if (process.env.NODE_ENV === 'development') {
+                        console.error("Error rendering page for crop:", error);
+                    }
                 }
             }
         };
@@ -171,7 +173,9 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                 );
             } catch (error: any) {
                 if (error?.name !== 'RenderingCancelledException') {
-                    console.error("Error rendering cropped preview:", error);
+                    if (process.env.NODE_ENV === 'development') {
+                        console.error("Error rendering cropped preview:", error);
+                    }
                 }
             }
         };

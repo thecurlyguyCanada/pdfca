@@ -129,7 +129,9 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
 
         if (mounted) setLoading(false);
       } catch (err) {
-        console.error(`Error rendering page ${pageIndex + 1}:`, err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error(`Error rendering page ${pageIndex + 1}:`, err);
+        }
         if (mounted) {
           setError(true);
           setLoading(false);

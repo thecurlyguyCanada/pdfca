@@ -89,7 +89,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                 const viewport = page.getViewport({ scale: 1.0 });
                 setBaseSize({ width: viewport.width, height: viewport.height });
             } catch (e) {
-                console.error("Failed to get page size", e);
+                if (process.env.NODE_ENV === 'development') {
+                    console.error("Failed to get page size", e);
+                }
             }
         };
         getBaseSize();
@@ -139,7 +141,9 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
             } catch (err: any) {
                 // Ignore cancellation errors
                 if (err?.name !== 'RenderingCancelledException') {
-                    console.error("Error rendering page", pageIndex, err);
+                    if (process.env.NODE_ENV === 'development') {
+                        console.error("Error rendering page", pageIndex, err);
+                    }
                 }
             }
         };

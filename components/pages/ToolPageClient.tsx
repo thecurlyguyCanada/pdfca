@@ -62,7 +62,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
 
   // Initialize worker once
   useEffect(() => {
-    initPdfWorker().catch(console.error);
+    initPdfWorker().catch((err) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
+    });
   }, []);
 
   // Desktop detection
@@ -153,8 +157,9 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
 
       setAppState(AppState.PREVIEW);
     } catch (err) {
-      console.error(err);
-      console.error(err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(err);
+      }
       if (err instanceof Error) setErrorMessage(err.message);
       setErrorKey('errorGeneric'); // Simplified error handling
     } finally {
@@ -403,7 +408,9 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
       document.body.removeChild(link);
 
     } catch (error) {
-      console.error('Action failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Action failed:', error);
+      }
       if (error instanceof Error) {
         setErrorMessage(error.message);
       }
