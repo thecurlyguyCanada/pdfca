@@ -1,5 +1,9 @@
-import React from 'react';
-import { Shield, CloudOff, Laptop, Award, Sparkles, Zap, Heart, Users } from 'lucide-react';
+import {
+    Shield, CloudOff, Laptop, Award, Sparkles, Zap, Heart, Users,
+    Trash2, RotateCw, FileDown, LayoutGrid, Scissors, FileSearch, Crop,
+    Image, BookOpen, Smartphone, Tablet, FormInput, PenTool, Layers,
+    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck
+} from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { MapleLeaf } from '@/components/MapleLeaf';
@@ -11,6 +15,37 @@ interface Props {
     lang: Language;
 }
 
+const TOOL_ICONS: Record<string, React.ElementType> = {
+    'delete-pdf-pages': Trash2,
+    'rotate-pdf': RotateCw,
+    'compress-pdf': FileDown,
+    'merge-pdf': LayoutGrid,
+    'split-pdf': Scissors,
+    'extract-pdf-pages': FileSearch,
+    'crop-pdf': Crop,
+    'heic-to-pdf': Image,
+    'epub-to-pdf': BookOpen,
+    'pdf-to-epub': Smartphone,
+    'pdf-to-kindle': Tablet,
+    'make-pdf-fillable': FormInput,
+    'sign-pdf': PenTool,
+    'organize-pdf': Layers,
+    'pdf-to-word': FileText,
+    'word-to-pdf': FileCode,
+    'make-pdf-non-editable': Lock,
+    'pdf-page-remover': Trash2,
+    'cbr-to-pdf': Ghost,
+    'pdf-to-xml': FileCode,
+    'xml-to-pdf': FileCode,
+    'excel-to-pdf': FileSpreadsheet,
+    'rtf-to-pdf': FileText,
+    'invoice-ocr': Eye,
+    'barcode-generator': Barcode,
+    'pdf-to-csv': Table,
+    'pdf-to-excel': FileSpreadsheet,
+    'analyze-pdf': ShieldCheck,
+};
+
 export function HomePageServer({ lang }: Props) {
     const t = translations[lang];
     const toolSlugs = getAllToolSlugs();
@@ -21,6 +56,7 @@ export function HomePageServer({ lang }: Props) {
         return {
             slug,
             title: config?.title || slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+            Icon: TOOL_ICONS[slug] || Sparkles
         };
     });
 
@@ -75,7 +111,7 @@ export function HomePageServer({ lang }: Props) {
 
                         <nav aria-label={lang === 'fr' ? 'Outils PDF disponibles' : 'Available PDF tools'}>
                             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                                {tools.map(({ slug, title }) => (
+                                {tools.map(({ slug, title, Icon }) => (
                                     <li key={slug}>
                                         <Link
                                             href={`/${lang}/${slug}`}
@@ -83,7 +119,7 @@ export function HomePageServer({ lang }: Props) {
                                         >
                                             <div className="flex flex-col items-center text-center gap-2 sm:gap-3">
                                                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-canada-red/10 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-canada-red group-hover:scale-110 transition-all duration-200">
-                                                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-canada-red group-hover:text-white transition-colors" aria-hidden="true" />
+                                                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-canada-red group-hover:text-white transition-colors" aria-hidden="true" />
                                                 </div>
                                                 <span className="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-canada-red transition-colors">
                                                     {title}

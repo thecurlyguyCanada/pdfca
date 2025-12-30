@@ -27,7 +27,11 @@ import {
   convertPdfToXml,
   convertXmlToPdf,
   convertExcelToPdf,
-  convertRtfToPdf
+  convertRtfToPdf,
+  convertPdfToCsv,
+  convertPdfToExcel,
+  analyzePdfSecurity,
+  optimizePdfForKindleVisual
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -54,6 +58,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [processedSize, setProcessedSize] = useState<number | null>(null);
   const [pageRangeInput, setPageRangeInput] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [kindleMode, setKindleMode] = useState<'reflow' | 'visual'>('reflow');
+  const [kindleScreenSize, setKindleScreenSize] = useState<number>(6);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lastSelectedPageRef = useRef<number | null>(null);
@@ -346,9 +352,14 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
 
           case ToolType.PDF_TO_EPUB:
           case ToolType.PDF_TO_KINDLE:
-            // Returns a ZIP blob (epub is zip)
-            resultBlob = await convertPdfToEpub(primaryFile);
-            outputName = primaryFile.name.replace(/\.pdf$/i, '.epub');
+            if (kindleMode === 'visual') {
+              resultBlob = await optimizePdfForKindleVisual(primaryFile, kindleScreenSize);
+              outputName = `kindle_${primaryFile.name}`;
+            } else {
+              // Returns a ZIP blob (epub is zip)
+              resultBlob = await convertPdfToEpub(primaryFile);
+              outputName = primaryFile.name.replace(/\.pdf$/i, '.epub');
+            }
             break;
 
           case ToolType.CBR_TO_PDF:
@@ -384,6 +395,21 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.RTF_TO_PDF:
             resultBlob = await convertRtfToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.rtf$/i, '.pdf');
+            break;
+
+          case ToolType.PDF_TO_CSV:
+            resultBlob = await convertPdfToCsv(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '.csv');
+            break;
+
+          case ToolType.PDF_TO_EXCEL:
+            resultBlob = await convertPdfToExcel(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '.xlsx');
+            break;
+
+          case ToolType.PHISHING_DETECTOR:
+            resultBlob = await analyzePdfSecurity(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_security_report.pdf');
             break;
 
           default:
@@ -454,6 +480,10 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         handleRangeInputChange={handleRangeInputChange}
         compressionLevel={compressionLevel}
         setCompressionLevel={setCompressionLevel}
+        kindleMode={kindleMode}
+        setKindleMode={setKindleMode}
+        kindleScreenSize={kindleScreenSize}
+        setKindleScreenSize={setKindleScreenSize}
       />
 
       <input

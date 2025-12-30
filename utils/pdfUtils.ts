@@ -726,8 +726,9 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
     elements.sort((a, b) => b.y - a.y);
 
     let currentParagraphContent = "";
+    const bodyLineHeight = bodyFontSize * 1.4;
 
-    elements.forEach(el => {
+    elements.forEach((el, elIdx) => {
       if (el.type === 'image') {
         if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
         pageHtml += `<div class="image-wrapper"><img src="images/${el.data.id}.png" alt="Illustration" /></div>`;
@@ -749,27 +750,62 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
           if (item.isItalic) itemText = `<em>${itemText}</em>`;
 
           if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(item.str.trim())) {
-            lineProcessed += `<a href="#note_${item.str.trim()}" id="ref_${item.str.trim()}_${globalFootnotes.length + 1000}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
+            const refId = `ref_${item.str.trim()}_${pIdx}_${elIdx}`;
+            lineProcessed += `<a href="#note_${item.str.trim()}" id="${refId}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
           } else { lineProcessed += itemText; }
         });
-        const lastWord = currentParagraphContent.trim().split(' ').pop() || "";
+
+        const nextEl = elements[elIdx + 1];
+        const isLastWordAbbr = commonAbbreviations.has(currentParagraphContent.trim().split(' ').pop() || "");
+
+        // Intelligent Merging: Check for paragraph break
+        let shouldBreak = false;
+        if (!nextEl) {
+          shouldBreak = true;
+        } else if (nextEl.type !== 'text') {
+          shouldBreak = true;
+        } else {
+          const gap = Math.abs(el.y - nextEl.y);
+          const isPunctuation = /[.!?]$/.test(lineProcessed.trim());
+          if (gap > bodyLineHeight * 1.8) {
+            shouldBreak = true; // Large gap
+          } else if (isPunctuation && gap > bodyLineHeight * 1.2 && !isLastWordAbbr) {
+            shouldBreak = true; // End of sentence with moderate gap
+          }
+        }
+
         if (lineProcessed.trim().endsWith('-')) {
           currentParagraphContent += lineProcessed.trim().slice(0, -1);
-        } else if (/[.!?]$/.test(lineProcessed.trim()) && !commonAbbreviations.has(lastWord)) {
+        } else {
           currentParagraphContent += lineProcessed + " ";
-          pageHtml += `<p>${currentParagraphContent.trim()}</p>`;
+        }
+
+        if (shouldBreak) {
+          if (currentParagraphContent.trim()) {
+            pageHtml += `<p>${currentParagraphContent.trim()}</p>`;
+          }
           currentParagraphContent = "";
-        } else { currentParagraphContent += lineProcessed + " "; }
+        }
       }
     });
 
-    if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+    if (currentParagraphContent.trim()) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
     fullHtml += pageHtml;
     await new Promise(resolve => setTimeout(resolve, 0));
   }
 
   const footnoteMap: Record<string, string[]> = {};
-  globalFootnotes.forEach(fn => { if (!footnoteMap[fn.key]) footnoteMap[fn.key] = []; footnoteMap[fn.key].push(fn.id); });
+  globalFootnotes.forEach(fn => {
+    if (!footnoteMap[fn.key]) footnoteMap[fn.key] = [];
+    footnoteMap[fn.key].push(fn.id);
+
+    // Find the actual ID used for the first reference to this footnote to create a backlink
+    const backlinkMatch = fullHtml.match(new RegExp(`id="(ref_${fn.key.replace(/[*†‡§]/g, '\\$&')}_\\d+_\\d+)"`));
+    if (backlinkMatch) {
+      (fn as any).backlinkId = backlinkMatch[1];
+    }
+  });
+
   Object.entries(footnoteMap).forEach(([key, ids]) => {
     const regex = new RegExp(`href="#note_${key.replace(/[*†‡§]/g, '\\$&')}"`, 'g');
     fullHtml = fullHtml.replace(regex, `href="#${ids[0]}"`);
@@ -801,7 +837,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   allImages.forEach(img => imagesFolder?.file(`${img.id}.png`, img.data));
   if (coverData) imagesFolder?.file("cover.jpg", coverData);
 
-  const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#ref_${fn.key}">&#8617;</a></p></aside>`).join('\n');
+  const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#${(fn as any).backlinkId || 'content'}">&#8617;</a></p></aside>`).join('\n');
 
   oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>${escapeHtml(docTitle)}</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
 
@@ -2111,4 +2147,354 @@ export const extractInvoiceData = async (file: File): Promise<InvoiceData> => {
     console.error('Invoice extraction failed:', error);
     throw new Error('Failed to extract invoice data');
   }
+};
+
+export const convertPdfToCsv = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  let csvContent = "";
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const textContent = await page.getTextContent();
+    const items = textContent.items.map((it: any) => ({
+      str: it.str,
+      x: it.transform[4],
+      y: it.transform[5]
+    }));
+
+    items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
+
+    let currentY = -1;
+    let currentRow: string[] = [];
+    items.forEach((it: any) => {
+      if (it.str.trim().length === 0) return;
+      if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
+        if (currentRow.length > 0) {
+          csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
+        }
+        currentRow = [];
+      }
+      currentY = it.y;
+      currentRow.push(it.str.trim());
+    });
+    if (currentRow.length > 0) {
+      csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
+    }
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+  return new Blob([csvContent], { type: 'text/csv' });
+};
+
+export const convertPdfToExcel = async (file: File): Promise<Blob> => {
+  const ExcelJS = await getExcelJs();
+  const workbook = new ExcelJS.Workbook();
+  const sheet = workbook.addWorksheet('Extracted Data');
+
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  let rowIdx = 1;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const textContent = await page.getTextContent();
+    const items = textContent.items.map((it: any) => ({
+      str: it.str,
+      x: it.transform[4],
+      y: it.transform[5]
+    }));
+
+    items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
+
+    let currentY = -1;
+    let currentRow: string[] = [];
+    items.forEach((it: any) => {
+      if (it.str.trim().length === 0) return;
+      if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
+        if (currentRow.length > 0) {
+          sheet.addRow(currentRow);
+          rowIdx++;
+        }
+        currentRow = [];
+      }
+      currentY = it.y;
+      currentRow.push(it.str.trim());
+    });
+    if (currentRow.length > 0) {
+      sheet.addRow(currentRow);
+      rowIdx++;
+    }
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  const buffer = await workbook.xlsx.writeBuffer();
+  return new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+};
+
+export const analyzePdfSecurity = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  const findings: { type: string, detail: string, severity: 'Low' | 'Medium' | 'High' }[] = [];
+
+  // Metadata check
+  const metadata = await pdf.getMetadata();
+  const info = (metadata?.info as any) || {};
+  findings.push({ type: 'Document Metadata', detail: `Producer: ${info.Producer || 'N/A'}, Creator: ${info.Creator || 'N/A'}`, severity: 'Low' });
+
+  // JavaScript Check
+  try {
+    const scripts = await (pdf as any).getJavaScript();
+    if (scripts && scripts.length > 0) {
+      findings.push({ type: 'JavaScript Detected', detail: `This PDF contains ${scripts.length} embedded scripts. JavaScript can be used for malicious actions.`, severity: 'High' });
+    }
+  } catch (e) {
+    console.warn("JS extraction failed", e);
+  }
+
+  // Link Analysis
+  let suspiciousLinks = 0;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const annotations = await page.getAnnotations();
+    annotations.forEach((anno: any) => {
+      if (anno.subtype === 'Link' && anno.url) {
+        const url = anno.url.toLowerCase();
+        if (url.startsWith('javascript:') || url.includes('bit.ly') || url.includes('t.co') || url.includes('tinyurl')) {
+          suspiciousLinks++;
+          findings.push({ type: 'Suspicious Link', detail: `Possibly deceptive or shortened URL on page ${i}: ${anno.url}`, severity: 'Medium' });
+        }
+      }
+    });
+  }
+
+  // Visual report generation
+  const { jsPDF } = await getJsPdf();
+  const doc = new jsPDF();
+
+  doc.setFontSize(22);
+  doc.setTextColor(227, 24, 55); // Canada Red
+  doc.text('PDF Security Analysis Report', 20, 20);
+
+  doc.setFontSize(10);
+  doc.setTextColor(100);
+  doc.text(`File: ${file.name}`, 20, 30);
+  doc.text(`Date: ${new Date().toLocaleString()}`, 20, 35);
+  doc.text(`Powered by pdfcanada.ca - 100% Local Privacy`, 20, 40);
+
+  let y = 60;
+  findings.forEach((f) => {
+    if (y > 270) { doc.addPage(); y = 20; }
+
+    doc.setFontSize(12);
+    const color = f.severity === 'High' ? [255, 0, 0] : (f.severity === 'Medium' ? [255, 128, 0] : [0, 150, 0]);
+    doc.setTextColor(color[0], color[1], color[2]);
+    doc.text(`[${f.severity}] ${f.type}`, 20, y);
+
+    doc.setFontSize(10);
+    doc.setTextColor(50);
+    const splitDetail = doc.splitTextToSize(f.detail, 170);
+    doc.text(splitDetail, 25, y + 5);
+
+    y += 10 + (splitDetail.length * 5);
+  });
+
+  if (findings.length === 1) {
+    doc.setTextColor(0, 150, 0);
+    doc.text("No significant security threats detected.", 20, y);
+  }
+
+  return doc.output('blob');
+};
+
+/**
+ * Visual Kindle Optimization (K2PdfOpt Style)
+ * Handles smart cropping, column detection, and re-pagination for E-ink screens.
+ */
+export const optimizePdfForKindleVisual = async (file: File, screenSize: number = 6): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const { jsPDF } = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  // Target dimensions for Kindle (approx in points)
+  const targetWidth = 300 + (screenSize - 4) * 75; // 6" -> 450, 7" -> 525, 10" -> 750
+  const targetHeight = targetWidth * 1.33;
+
+  const outputDoc = new jsPDF({
+    orientation: 'p',
+    unit: 'pt',
+    format: [targetWidth, targetHeight]
+  });
+
+  let pageAdded = false;
+  const sharedCanvas = document.createElement('canvas');
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const scale = 2.0;
+    const viewport = page.getViewport({ scale });
+    const textContent = await page.getTextContent();
+
+    let minX = viewport.width, minY = viewport.height, maxX = 0, maxY = 0;
+    let hasContent = false;
+
+    // 1. Content Area Detection
+    if (textContent.items.length > 0) {
+      textContent.items.forEach((it: any) => {
+        if (it.str.trim()) {
+          const x = it.transform[4] * scale;
+          const y = viewport.height - it.transform[5] * scale;
+          const w = it.width * scale;
+          const h = it.height * scale;
+          minX = Math.min(minX, x);
+          minY = Math.min(minY, y - h);
+          maxX = Math.max(maxX, x + w);
+          maxY = Math.max(maxY, y);
+          hasContent = true;
+        }
+      });
+    }
+
+    // Fallback for scanned pages (pixel analysis)
+    if (!hasContent) {
+      const tempScale = 0.5;
+      const tempViewport = page.getViewport({ scale: tempScale });
+      sharedCanvas.width = tempViewport.width;
+      sharedCanvas.height = tempViewport.height;
+      const ctx = sharedCanvas.getContext('2d', { willReadFrequently: true });
+      if (ctx) {
+        await page.render({ canvasContext: ctx, viewport: tempViewport }).promise;
+        const imgData = ctx.getImageData(0, 0, sharedCanvas.width, sharedCanvas.height).data;
+
+        let pMinX = sharedCanvas.width, pMinY = sharedCanvas.height, pMaxX = 0, pMaxY = 0;
+        for (let py = 0; py < sharedCanvas.height; py += 4) {
+          for (let px = 0; px < sharedCanvas.width; px += 4) {
+            const idx = (py * sharedCanvas.width + px) * 4;
+            if (imgData[idx] < 245 || imgData[idx + 1] < 245 || imgData[idx + 2] < 245) {
+              pMinX = Math.min(pMinX, px);
+              pMinY = Math.min(pMinY, py);
+              pMaxX = Math.max(pMaxX, px);
+              pMaxY = Math.max(pMaxY, py);
+              hasContent = true;
+            }
+          }
+        }
+        if (hasContent) {
+          minX = (pMinX / tempScale) * scale;
+          minY = (pMinY / tempScale) * scale;
+          maxX = (pMaxX / tempScale) * scale;
+          maxY = (pMaxY / tempScale) * scale;
+        }
+      }
+    }
+
+    if (!hasContent) continue;
+
+    // Padding
+    const p = 15;
+    minX = Math.max(0, minX - p);
+    minY = Math.max(0, minY - p);
+    maxX = Math.min(viewport.width, maxX + p);
+    maxY = Math.min(viewport.height, maxY + p);
+
+    const contentWidth = maxX - minX;
+    const contentHeight = maxY - minY;
+
+    // 2. Column Detection Logic
+    const strips = 20;
+    const stripWidth = contentWidth / strips;
+    const occupancy = new Array(strips).fill(0);
+
+    textContent.items.forEach((it: any) => {
+      const x = it.transform[4] * scale;
+      const w = it.width * scale;
+      const startStrip = Math.floor((x - minX) / stripWidth);
+      const endStrip = Math.floor((x + w - minX) / stripWidth);
+      for (let s = Math.max(0, startStrip); s <= Math.min(strips - 1, endStrip); s++) {
+        occupancy[s]++;
+      }
+    });
+
+    const avgOcc = occupancy.reduce((a, b) => a + b, 0) / strips;
+    const thresh = Math.max(1, avgOcc * 0.1);
+
+    let columnGapStart = -1;
+    let maxGapWidth = 0;
+    let currentGapStart = -1;
+
+    for (let s = 5; s < strips - 5; s++) {
+      if (occupancy[s] <= thresh) {
+        if (currentGapStart === -1) currentGapStart = s;
+      } else {
+        if (currentGapStart !== -1) {
+          const gapWidth = s - currentGapStart;
+          if (gapWidth > maxGapWidth) {
+            maxGapWidth = gapWidth;
+            columnGapStart = currentGapStart;
+          }
+          currentGapStart = -1;
+        }
+      }
+    }
+
+    const hasTwoColumns = maxGapWidth >= 2;
+    const midX = minX + (columnGapStart + maxGapWidth / 2) * stripWidth;
+
+    // 3. Sub-region Processing
+    const processRegion = async (rx: number, ry: number, rw: number, rh: number) => {
+      const hScale = targetWidth / rw;
+      const chunkH_Source = targetHeight / hScale;
+
+      let currentY = ry;
+      while (currentY < ry + rh) {
+        const actualChunkH = Math.min(chunkH_Source, (ry + rh) - currentY);
+
+        if (pageAdded) outputDoc.addPage([targetWidth, targetHeight]);
+        pageAdded = true;
+
+        sharedCanvas.width = rw * 2;
+        sharedCanvas.height = actualChunkH * 2;
+        const ctx = sharedCanvas.getContext('2d');
+
+        if (ctx) {
+          await page.render({
+            canvasContext: ctx,
+            viewport: page.getViewport({
+              scale: (rw * 2) / (rw / scale),
+              offsetX: -rx * ((rw * 2) / rw),
+              offsetY: -currentY * ((rw * 2) / rw)
+            })
+          }).promise;
+
+          const imgData = sharedCanvas.toDataURL('image/jpeg', 0.9);
+          outputDoc.addImage(imgData, 'JPEG', 0, 0, targetWidth, actualChunkH * hScale);
+        }
+
+        currentY += actualChunkH * 0.95;
+      }
+    };
+
+    if (hasTwoColumns) {
+      await processRegion(minX, minY, midX - minX, contentHeight);
+      await processRegion(midX, minY, maxX - midX, contentHeight);
+    } else {
+      await processRegion(minX, minY, contentWidth, contentHeight);
+    }
+
+    // Cleanup page resources
+    (page as any).cleanup?.();
+    sharedCanvas.width = 0;
+    sharedCanvas.height = 0;
+  }
+
+  return outputDoc.output('blob');
 };

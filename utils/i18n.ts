@@ -1153,7 +1153,16 @@ export const translations = {
       errorFile: "Failed to parse file. Please check the format.",
       errorExport: "Failed to export PDF",
       errorMinBarcodes: "Please add at least one barcode"
-    }
+    },
+    kindleSettings: "Kindle Optimization",
+    kindleSettingsDesc: "Choose how your PDF is optimized for Kindle",
+    reflowableMode: "Reflowable EPUB",
+    reflowableDesc: "Best for text-heavy books. Change fonts & sizes.",
+    visualMode: "Visual PDF",
+    visualDesc: "Smart cropping for complex layouts & columns.",
+    kindleScreenSize: "Target Screen Size",
+    reflowInfo: "Your PDF will be converted to a reflowable EPUB 3.0 file. Perfect for adjusting font size and reading on any Kindle device.",
+    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming."
   },
   fr: {
     builtIn: "Fait au Canada",
@@ -2196,7 +2205,16 @@ export const translations = {
       errorFile: "Échec de l'analyse du fichier. Veuillez vérifier le format.",
       errorExport: "Échec de l'export PDF",
       errorMinBarcodes: "Veuillez ajouter au moins un code-barres"
-    }
+    },
+    kindleSettings: "Optimisation Kindle",
+    kindleSettingsDesc: "Choisissez comment votre PDF est optimisé pour Kindle",
+    reflowableMode: "EPUB Reflowable",
+    reflowableDesc: "Idéal pour les livres textuels. Modifiez polices et tailles.",
+    visualMode: "PDF Visuel",
+    visualDesc: "Recadrage intelligent pour mises en page complexes et colonnes.",
+    kindleScreenSize: "Taille de l'écran cible",
+    reflowInfo: "Votre PDF sera converti en un fichier EPUB 3.0 ajustable. Parfait pour modifier la taille de la police sur n'importe quel Kindle.",
+    visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom."
   }
 };
 export type TranslationType = typeof translations.en;

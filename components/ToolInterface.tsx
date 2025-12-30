@@ -74,6 +74,10 @@ interface ToolInterfaceProps {
     handleRangeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     compressionLevel?: 'good' | 'balanced' | 'extreme';
     setCompressionLevel?: (level: 'good' | 'balanced' | 'extreme') => void;
+    kindleMode?: 'reflow' | 'visual';
+    setKindleMode?: (mode: 'reflow' | 'visual') => void;
+    kindleScreenSize?: number;
+    setKindleScreenSize?: (size: number) => void;
 }
 
 // ... SortableThumbnail component ...
@@ -181,6 +185,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     compressionLevel,
     setCompressionLevel,
     setSelectedPages,
+    kindleMode,
+    setKindleMode,
+    kindleScreenSize,
+    setKindleScreenSize,
 }) => {
     // dnd-kit sensors for drag and drop
     const sensors = useSensors(
@@ -739,12 +747,90 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             </div>
                         </div>
                     </div>
+                ) : (currentTool === ToolType.PDF_TO_EPUB || currentTool === ToolType.PDF_TO_KINDLE) ? (
+                    <div className="flex-grow flex flex-col items-center justify-center p-4 md:p-6 w-full max-w-2xl mx-auto">
+                        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-5 md:p-8 w-full">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-gradient-to-br from-canada-red to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-500/20">
+                                    <BookOpen size={28} className="text-white" />
+                                </div>
+                                <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-2">{t.kindleSettings || "Kindle Optimization"}</h3>
+                                <p className="text-sm text-gray-500">{t.kindleSettingsDesc || "Choose how your PDF is optimized for Kindle"}</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <button
+                                    onClick={() => { triggerHaptic('light'); setKindleMode && setKindleMode('reflow'); }}
+                                    className={`p-5 rounded-2xl border-2 text-left transition-all active:scale-[0.98] flex flex-col gap-3 ${kindleMode === 'reflow' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 bg-gray-50/50'}`}
+                                >
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className={`p-2 rounded-lg ${kindleMode === 'reflow' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                            <FileText size={20} />
+                                        </div>
+                                        {kindleMode === 'reflow' && <div className="w-5 h-5 bg-canada-red rounded-full flex items-center justify-center"><div className="w-1.5 h-1.5 bg-white rounded-full" /></div>}
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-gray-900">{t.reflowableMode || "Reflowable EPUB"}</div>
+                                        <div className="text-xs text-gray-500 mt-1">{t.reflowableDesc || "Best for text-heavy books. Change fonts & sizes."}</div>
+                                    </div>
+                                </button>
+
+                                <button
+                                    onClick={() => { triggerHaptic('light'); setKindleMode && setKindleMode('visual'); }}
+                                    className={`p-5 rounded-2xl border-2 text-left transition-all active:scale-[0.98] flex flex-col gap-3 ${kindleMode === 'visual' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 bg-gray-50/50'}`}
+                                >
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className={`p-2 rounded-lg ${kindleMode === 'visual' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                            <Search size={20} />
+                                        </div>
+                                        {kindleMode === 'visual' && <div className="w-5 h-5 bg-canada-red rounded-full flex items-center justify-center"><div className="w-1.5 h-1.5 bg-white rounded-full" /></div>}
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-gray-900">{t.visualMode || "Visual PDF"}</div>
+                                        <div className="text-xs text-gray-500 mt-1">{t.visualDesc || "Smart cropping for complex layouts & columns."}</div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            {kindleMode === 'visual' && (
+                                <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <div className="flex items-center justify-between px-1">
+                                        <label className="text-sm font-bold text-gray-700">{t.kindleScreenSize || "Target Screen Size"}</label>
+                                        <span className="text-sm font-black text-canada-red bg-red-50 px-3 py-1 rounded-full border border-red-100">{kindleScreenSize}"</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="6"
+                                        max="10"
+                                        step="1"
+                                        value={kindleScreenSize}
+                                        onChange={(e) => { triggerHaptic('light'); setKindleScreenSize && setKindleScreenSize(parseInt(e.target.value)); }}
+                                        className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-canada-red"
+                                    />
+                                    <div className="flex justify-between text-[10px] font-bold text-gray-400 px-1 uppercase tracking-wider">
+                                        <span>Kindle (6")</span>
+                                        <span>Paperwhite (7")</span>
+                                        <span>Scribe (10")</span>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="mt-8 p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-start gap-3">
+                                <Info size={16} className="text-canada-red shrink-0 mt-0.5" />
+                                <p className="text-xs text-gray-500 leading-relaxed">
+                                    {kindleMode === 'reflow'
+                                        ? (t.reflowInfo || "Your PDF will be converted to a reflowable EPUB 3.0 file. Perfect for adjusting font size and reading on any Kindle device.")
+                                        : (t.visualInfo || "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming.")
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
                             {currentTool === ToolType.HEIC_TO_PDF && <ImageIcon size={32} />}
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
-                            {currentTool === ToolType.PDF_TO_EPUB && <FileText size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
                             {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF || currentTool === ToolType.XML_TO_PDF || currentTool === ToolType.EXCEL_TO_PDF) && <FileText size={32} />}
                         </div>
