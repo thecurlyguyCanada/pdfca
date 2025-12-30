@@ -685,17 +685,34 @@ export const HealthcarePdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
     const schema = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "TechArticle",
         "headline": t.h1,
         "description": t.seo.desc,
+        "image": "https://www.pdfcanada.ca/og-image.png",
+        "datePublished": "2024-01-15",
+        "dateModified": new Date().toISOString().split('T')[0],
         "author": {
             "@type": "Organization",
-            "name": "pdfcanada.ca"
+            "name": "pdfcanada.ca",
+            "url": "https://www.pdfcanada.ca"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.pdfcanada.ca/android-chrome-192x192.png"
+            }
         },
         "audience": {
             "@type": "Audience",
             "audienceType": "Healthcare Professionals"
-        }
+        },
+        "about": [
+            { "@type": "Thing", "name": "HIPAA Compliance" },
+            { "@type": "Thing", "name": "PIPEDA Compliance" },
+            { "@type": "Thing", "name": "Healthcare Data Security" }
+        ]
     };
 
     return (

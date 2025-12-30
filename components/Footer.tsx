@@ -138,6 +138,14 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
+                        {/* Security & Privacy Guides */}
+                        <li className="pt-3 mt-3 border-t border-white/10">
+                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Sécurité' : 'Security'}</span>
+                        </li>
+                        <li><Link href={`/${lang}/guides/private-pdf-tools`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Outils PDF Privés' : 'Private PDF Tools'}</Link></li>
+                        <li><Link href={`/${lang}/guides/finance-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Finance' : 'Finance PDF Security'}</Link></li>
+                        <li><Link href={`/${lang}/guides/legal-pdf-tools`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Juridique' : 'Legal PDF Security'}</Link></li>
+                        <li><Link href={`/${lang}/guides/healthcare-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Santé' : 'Healthcare PDF'}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

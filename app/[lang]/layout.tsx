@@ -153,6 +153,9 @@ export default async function RootLayout({
                 <link rel="alternate" hrefLang="en-CA" href="https://www.pdfcanada.ca/en" />
                 <link rel="alternate" hrefLang="fr-CA" href="https://www.pdfcanada.ca/fr" />
                 <link rel="alternate" hrefLang="x-default" href="https://www.pdfcanada.ca/en" />
+                {/* RSS and JSON Feed autodiscovery */}
+                <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
+                <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />
             </head>
             <body className={`${inter.className} antialiased`}>
                 <ErrorBoundary>

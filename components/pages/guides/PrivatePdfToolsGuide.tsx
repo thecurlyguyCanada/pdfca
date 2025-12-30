@@ -389,7 +389,7 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
 
     const schema = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "TechArticle",
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2025-12-28",
