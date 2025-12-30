@@ -256,14 +256,34 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
 
     const schema = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": t.h1,
-        "operatingSystem": "All",
-        "applicationCategory": "FinanceApplication",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "CAD"
+        "@type": "TechArticle",
+        "headline": t.h1,
+        "description": t.seo.desc,
+        "image": "https://www.pdfcanada.ca/og-image.png",
+        "author": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.pdfcanada.ca/android-chrome-192x192.png"
+            }
+        },
+        "datePublished": "2024-12-29",
+        "dateModified": new Date().toISOString().split('T')[0],
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "PDF to CSV Converter",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "CAD"
+            }
         }
     };
 

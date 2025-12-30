@@ -52,6 +52,10 @@ export const metadata: Metadata = {
         'PIPEDA compliant',
         'privacy-first PDF',
         'no-upload PDF tools',
+        'how to edit PDF for free',
+        'convertir PDF gratuit',
+        'PDF privacy Canada',
+        'local PDF processing'
     ],
     referrer: 'strict-origin-when-cross-origin',
     creator: 'pdfcanada.ca',
@@ -60,6 +64,12 @@ export const metadata: Metadata = {
         email: false,
         address: false,
         telephone: false,
+    },
+    verification: {
+        google: 'google-site-verification=placeholder',
+        other: {
+            'msvalidate.01': 'placeholder_bing'
+        }
     },
     robots: {
         index: true,

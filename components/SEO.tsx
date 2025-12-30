@@ -140,7 +140,16 @@ export function SEO({
 
   // 1. Add Core Schemas
   if (!noOrganization) {
-    allSchemas.push(organizationSchema);
+    // Enhanced Organization Schema for Entity Knowledge
+    const enhancedOrgSchema = {
+      ...organizationSchema,
+      "knowsAbout": ["PDF processing", "Document Security", "Optical Character Recognition", "Data Privacy", "PIPEDA"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Canada"
+      }
+    };
+    allSchemas.push(enhancedOrgSchema);
     allSchemas.push(websiteSchema);
     allSchemas.push(localBusinessSchema);
   }
@@ -157,16 +166,24 @@ export function SEO({
   });
 
   // 3. Page Specific Schemas
-  if (canonicalPath !== '/' && !canonicalPath.startsWith('/guides')) {
+  // Check if we are potentially on a tool page or a guide page for a tool
+  if (canonicalPath !== '/' && !canonicalPath.startsWith('/about')) {
+    const isGuide = canonicalPath.startsWith('/guides');
+
+    // For guides, we might want to separate the Article from the App, 
+    // but often Google likes seeing the App schema if the page *is* the entry point for the app.
+    // We will keep standard logic but allow 'applicationCategory' customization via props if needed in future.
+
     const swSchema: Record<string, any> = {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": schemaName,
+      "name": schemaName, // Use the cleaned title or specific tool name
       "operatingSystem": "Any",
-      "applicationCategory": "BusinessApplication",
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "PDF Tools", // AEO signal
       "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
       "permissions": "Local file access only",
-      "featureList": "Local PDF processing, No server uploads",
+      "featureList": "Local PDF processing, No server uploads, PIPEDA compliant",
       "offers": {
         "@type": "Offer",
         "price": price || "0",
@@ -196,6 +213,10 @@ export function SEO({
     "url": getFullUrl(canonicalPath),
     "name": title,
     "description": description,
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": image
+    },
     "isPartOf": { "@id": `${URLS.DOMAIN}/#website` },
     "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
     "speakable": {

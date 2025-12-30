@@ -27,9 +27,13 @@ export const AISnapshot: React.FC<AISnapshotProps> = ({ lang, question, answer, 
     }[lang];
 
     return (
-        <div className="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-2xl p-6 my-8 shadow-sm relative overflow-hidden group">
+        <div
+            className="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-2xl p-6 my-8 shadow-sm relative overflow-hidden group"
+            itemScope
+            itemType="https://schema.org/Question"
+        >
             {/* Decorative background element */}
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-red-100/30 w-24 h-24 rounded-full blur-2xl group-hover:bg-red-200/40 transition-colors" />
+            <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-red-100/30 w-24 h-24 rounded-full blur-2xl group-hover:bg-red-200/40 transition-colors" aria-hidden="true" />
 
             <div className="flex items-center gap-2 mb-4">
                 <div className="bg-canada-red p-1.5 rounded-lg shadow-sm shadow-red-200">
@@ -44,12 +48,24 @@ export const AISnapshot: React.FC<AISnapshotProps> = ({ lang, question, answer, 
 
             <div className="space-y-4 relative">
                 <div className="ai-snapshot-answer">
-                    <h3 className="text-lg font-black text-gray-900 mb-2 leading-snug">
+                    <h3
+                        className="text-lg font-black text-gray-900 mb-2 leading-snug"
+                        itemProp="name"
+                    >
                         {question}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed text-[15px] font-medium">
-                        {answer}
-                    </p>
+                    <div
+                        itemScope
+                        itemProp="acceptedAnswer"
+                        itemType="https://schema.org/Answer"
+                    >
+                        <p
+                            className="text-gray-700 leading-relaxed text-[15px] font-medium"
+                            itemProp="text"
+                        >
+                            {answer}
+                        </p>
+                    </div>
                 </div>
 
                 {steps && steps.length > 0 && (
