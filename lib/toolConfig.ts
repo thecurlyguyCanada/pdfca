@@ -49,13 +49,13 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   {
     slug: 'merge-pdf',
     tool: ToolType.MERGE,
-    title: 'Merge PDF',
-    titleFr: 'Fusionner PDF',
-    description: 'Combine multiple PDF files into one document. Drag and drop to reorder. Free, secure PDF merging - all processing happens locally.',
-    descriptionFr: 'Combinez plusieurs fichiers PDF en un seul document. Glissez-déposez pour réorganiser. Fusion PDF gratuite et sécurisée.',
-    keywords: ['merge PDF', 'combine PDF', 'join PDF files'],
-    keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
-    accept: '.pdf,application/pdf'
+    title: 'Merge PDF & Images',
+    titleFr: 'Fusionner PDF et Images',
+    description: 'Combine multiple PDF files and images (JPG, PNG, WebP, AVIF) into one document. Drag and drop to reorder. Free, secure, and processing happens locally.',
+    descriptionFr: 'Combinez plusieurs fichiers PDF et images (JPG, PNG, WebP, AVIF) en un seul document. Glissez-déposez pour réorganiser. Gratuit et sécurisé.',
+    keywords: ['merge PDF', 'combine PDF', 'join PDF files', 'merge images to pdf'],
+    keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF', 'fusionner images en pdf'],
+    accept: '.pdf,application/pdf,image/jpeg,image/png,image/webp,image/avif,.jpg,.jpeg,.png,.webp,.avif'
   },
   {
     slug: 'split-pdf',
@@ -342,6 +342,28 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywords: ['ipynb to pdf', 'convert jupyter notebook to pdf', 'notebook to pdf converter', 'python notebook to pdf'],
     keywordsFr: ['ipynb vers pdf', 'convertir jupyter notebook en pdf', 'convertisseur notebook en pdf'],
     accept: '.ipynb,application/x-ipynb+json'
+  },
+  {
+    slug: 'image-to-pdf',
+    tool: ToolType.IMAGE_TO_PDF,
+    title: 'Image to PDF',
+    titleFr: 'Image vers PDF',
+    description: 'Convert images (JPG, PNG, WebP, AVIF) to PDF. Merge multiple images into a single PDF document. Free, secure, and processing happens locally.',
+    descriptionFr: 'Convertissez des images (JPG, PNG, WebP, AVIF) en PDF. Fusionnez plusieurs images en un seul document PDF. Gratuit, sécurisé et traitement local.',
+    keywords: ['image to pdf', 'jpg to pdf', 'png to pdf', 'avif to pdf', 'photo to pdf'],
+    keywordsFr: ['image vers pdf', 'jpg vers pdf', 'png vers pdf', 'avif vers pdf', 'photo vers pdf'],
+    accept: 'image/jpeg,image/png,image/webp,image/avif,.jpg,.jpeg,.png,.webp,.avif'
+  },
+  {
+    slug: 'pdf-to-avif',
+    tool: ToolType.PDF_TO_IMAGE,
+    title: 'PDF to AVIF',
+    titleFr: 'PDF vers AVIF',
+    description: 'Convert PDF pages to high-quality AVIF images. Fast, free, and secure - all processing happens in your browser.',
+    descriptionFr: 'Convertissez les pages PDF en images AVIF de haute qualité. Rapide, gratuit et sécurisé.',
+    keywords: ['pdf to avif', 'convert pdf to image', 'extract images from pdf'],
+    keywordsFr: ['pdf vers avif', 'convertir pdf en image', 'extraire images du pdf'],
+    accept: '.pdf,application/pdf'
   },
 ];
 

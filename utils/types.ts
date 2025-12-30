@@ -28,7 +28,9 @@ export enum ToolType {
     PHISHING_DETECTOR = 'PHISHING_DETECTOR',
     PDF_TO_KINDLE = 'PDF_TO_KINDLE',
     PDF_TO_UBL = 'PDF_TO_UBL',
-    IPYNB_TO_PDF = 'IPYNB_TO_PDF'
+    IPYNB_TO_PDF = 'IPYNB_TO_PDF',
+    IMAGE_TO_PDF = 'IMAGE_TO_PDF',
+    PDF_TO_IMAGE = 'PDF_TO_IMAGE'
 }
 
 export enum AppState {

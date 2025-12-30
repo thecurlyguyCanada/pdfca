@@ -28,6 +28,7 @@ import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
 import { PhishingPdfGuide } from '@/components/pages/guides/PhishingPdfGuide';
 import { PdfToUblGuide } from '@/components/pages/guides/PdfToUblGuide';
 import { IpynbToPdfGuide } from '@/components/pages/guides/IpynbToPdfGuide';
+import { AvifToPdfGuide } from '@/components/pages/guides/AvifToPdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -63,6 +64,8 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'pdf-to-kindle': PdfToEpubGuide,
     'pdf-to-ubl': PdfToUblGuide,
     'ipynb-to-pdf': IpynbToPdfGuide,
+    'avif-to-pdf': AvifToPdfGuide,
+    'pdf-to-avif': AvifToPdfGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

@@ -90,6 +90,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
                         <li><Link href={`/${lang}/pdf-to-ubl`} className="hover:text-white transition-colors font-bold text-orange-500">{t.toolPdfToUbl}</Link></li>
                         <li><Link href={`/${lang}/ipynb-to-pdf`} className="hover:text-white transition-colors font-bold text-blue-400">{t.toolIpynbToPdf}</Link></li>
+                        <li><Link href={`/${lang}/image-to-pdf`} className="hover:text-white transition-colors">{t.toolImageToPdf}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -129,6 +130,9 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/email-to-pdf`} className="hover:text-white transition-colors">{t.emailToPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/insert-picture-in-pdf`} className="hover:text-white transition-colors">{t.insertPictureGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/pdf-page-remover`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/image-to-pdf`} className="hover:text-white transition-colors">{t.imageToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/avif-to-pdf`} className="hover:text-white transition-colors">{t.avifToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-to-avif`} className="hover:text-white transition-colors">{t.pdfToAvifGuide}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

@@ -42,6 +42,9 @@ export const translations = {
     pdfToUblGuide: "PDF to UBL Guide",
     ipynbToPdfGuide: "IPYNB to PDF Guide",
     analyzePdfGuide: "Analyze Security Guide",
+    imageToPdfGuide: "Image to PDF Guide",
+    avifToPdfGuide: "AVIF to PDF Guide",
+    pdfToAvifGuide: "PDF to AVIF Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -62,6 +65,9 @@ export const translations = {
     // Compress Tool
     sizeReduced: "Size Reduced",
     addMorePdfs: "Add more PDFs",
+    addMoreImages: "Add more Images",
+    addMoreFiles: "Add more Files",
+    reorderImages: "Reorder Images",
     compressGood: "Good",
     compressGoodDesc: "Best quality, selectable text.",
     compressBalanced: "Balanced",
@@ -133,7 +139,7 @@ export const translations = {
         },
         {
           q: "What tools do you offer?",
-          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, Image to PDF (JPG, PNG, WebP, AVIF), and a PDF Form Filler."
         },
         {
           q: "Do I need to create an account or sign up?",
@@ -855,6 +861,29 @@ export const translations = {
           { question: "Is this compliant with PEPPOL?", answer: "We use the standard UBL 2.1 schema commonly used in PEPPOL, but you should always validate the XML with your specific receiving network." },
           { question: "Can I bulk convert invoices?", answer: "Currently, we process one invoice at a time to ensure you can verify the data accuracy before generating the XML." }
         ]
+      },
+      imageToPdf: {
+        title: "Convert Images to PDF Online - JPG, PNG, WebP, AVIF | pdfcanada.ca",
+        desc: "Convert your images to PDF instantly locally in your browser. Supports JPG, PNG, WebP, and AVIF formats. 100% free and private—no uploads.",
+        h1: "Convert Images to PDF",
+        subtitle: "Turn your photos and graphics into professional PDFs.",
+        content: "Need to bundle photos into a document or convert a scan to PDF? Our Image to PDF tool lets you easily convert JPG, PNG, WebP, and AVIF images into high-quality PDF files. All processing happens locally on your device, ensuring your personal photos stay private.",
+        steps: [
+          "Click 'Select File' to upload your image (JPG, PNG, WebP, or AVIF).",
+          "Our tool instantly processes and embeds the image into a PDF page.",
+          "Download your new PDF document."
+        ],
+        quickAnswer: {
+          question: "How do I convert a JPG, PNG, or AVIF to PDF securely?",
+          answer: "Use our local-first converter. It transforms your image files into PDF format directly in your browser without uploading them to any server.",
+          tool: "Image to PDF",
+          steps: ["Select image file", "Wait for conversion", "Download PDF"]
+        },
+        faq: [
+          { question: "What image formats are supported?", answer: "We support standard JPG and PNG files, as well as modern WebP and AVIF images." },
+          { question: "Is it safe to convert private photos?", answer: "Yes! Your photos never leave your computer. We generate the PDF right in your browser." },
+          { question: "Can I convert multiple images?", answer: "Currently, you can convert images one by one. Merge them afterwards using our Merge PDF tool if needed!" }
+        ]
       }
     },
 
@@ -903,8 +932,8 @@ export const translations = {
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
-    toolMerge: "Merge PDF",
-    toolMergeDesc: "Combine multiple PDFs.",
+    toolMerge: "Merge PDF & Images",
+    toolMergeDesc: "Combine multiple PDFs and images.",
     toolSplit: "Split PDF",
     toolSplitDesc: "Separate into pages.",
     toolExtract: "Extract PDF Pages",
@@ -917,6 +946,10 @@ export const translations = {
     toolIpynbToPdf: "IPYNB to PDF",
     toolPdfToUblDesc: "Convert invoice to UBL XML.",
     toolIpynbToPdfDesc: "Convert Jupyter notebooks to PDF.",
+    toolImageToPdf: "Image to PDF",
+    toolImageToPdfDesc: "Convert JPG/PNG/AVIF to PDF.",
+    toolPdfToAvif: "PDF to AVIF",
+    toolPdfToAvifDesc: "Extract pages as AVIF images.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -941,6 +974,7 @@ export const translations = {
 
     // Tool Specific Inputs
     deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
+    pdfToAvifInfo: "Select the pages you want to convert to AVIF images. All pages will be converted if none are selected.",
     totalPages: "Total pages",
     pagesToRemove: "Pages to remove",
     signPagesInfo: "Place your signature or initials on the document.",
@@ -1262,6 +1296,9 @@ export const translations = {
     pdfToUblGuide: "Guide PDF vers UBL",
     ipynbToPdfGuide: "Guide IPYNB vers PDF",
     analyzePdfGuide: "Guide Analyse Sécurité",
+    imageToPdfGuide: "Guide Image en PDF",
+    avifToPdfGuide: "Guide AVIF en PDF",
+    pdfToAvifGuide: "Guide PDF en AVIF",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",
@@ -1282,6 +1319,9 @@ export const translations = {
     // Compress Tool
     sizeReduced: "Taille réduite",
     addMorePdfs: "Ajouter plus de PDF",
+    addMoreImages: "Ajouter d'autres images",
+    addMoreFiles: "Ajouter plus de fichiers",
+    reorderImages: "Réorganiser les images",
     compressGood: "Bon",
     compressGoodDesc: "Meilleure qualité, texte sélectionnable.",
     compressBalanced: "Équilibré",
@@ -1352,7 +1392,7 @@ export const translations = {
         },
         {
           q: "Quels outils proposez-vous ?",
-          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
+          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, Image en PDF (JPG, PNG, WebP, AVIF), PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
         },
         {
           q: "Dois-je créer un compte ou m'inscrire ?",
@@ -1926,6 +1966,29 @@ export const translations = {
           { question: "Est-ce conforme à PEPPOL ?", answer: "Nous utilisons le schéma standard UBL 2.1 couramment utilisé dans PEPPOL, mais vous devriez toujours valider le XML avec votre réseau de réception spécifique." },
           { question: "Puis-je convertir des factures en lot ?", answer: "Actuellement, nous traitons une facture à la fois pour vous permettre de vérifier l'exactitude des données avant de générer le XML." }
         ]
+      },
+      imageToPdf: {
+        title: "Convertir Images en PDF en Ligne - JPG, PNG, WebP, AVIF | pdfcanada.ca",
+        desc: "Convertissez vos images en PDF instantanément et localement. Supporte les formats JPG, PNG, WebP et AVIF. 100% gratuit et privé—aucun téléchargement.",
+        h1: "Convertir Images en PDF",
+        subtitle: "Transformez vos photos et graphiques en PDF professionnels.",
+        content: "Besoin de regrouper des photos dans un document ou de convertir une numérisation en PDF ? Notre outil Image vers PDF vous permet de convertir facilement des images JPG, PNG, WebP et AVIF en fichiers PDF de haute qualité. Tout le traitement se fait localement sur votre appareil, garantissant la confidentialité de vos photos.",
+        steps: [
+          "Cliquez sur 'Sélectionner le fichier' pour télécharger votre image (JPG, PNG, WebP ou AVIF).",
+          "Notre outil traite et intègre instantanément l'image dans une page PDF.",
+          "Téléchargez votre nouveau document PDF."
+        ],
+        quickAnswer: {
+          question: "Comment convertir un JPG, PNG ou AVIF en PDF en toute sécurité ?",
+          answer: "Utilisez notre convertisseur local. Il transforme vos fichiers images en format PDF directement dans votre navigateur sans les télécharger sur un serveur.",
+          tool: "Image vers PDF",
+          steps: ["Sélectionnez le fichier image", "Attendez la conversion", "Téléchargez le PDF"]
+        },
+        faq: [
+          { question: "Quels formats d'images sont supportés ?", answer: "Nous supportons les fichiers standards JPG et PNG, ainsi que les images modernes WebP et AVIF." },
+          { question: "Est-ce sûr pour mes photos privées ?", answer: "Oui ! Vos photos ne quittent jamais votre ordinateur. Nous générons le PDF directement dans votre navigateur." },
+          { question: "Puis-je convertir plusieurs images ?", answer: "Actuellement, vous pouvez convertir les images une par une. Fusionnez-les ensuite avec notre outil Fusionner PDF si nécessaire !" }
+        ]
       }
     },
 
@@ -1972,8 +2035,8 @@ export const translations = {
     toolPhishingDetectorDesc: "Détecter malwares & hameçonnage.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
-    toolMerge: "Fusionner PDF",
-    toolMergeDesc: "Combiner plusieurs PDFs.",
+    toolMerge: "Fusionner PDF & Images",
+    toolMergeDesc: "Combiner plusieurs PDFs et images.",
     toolSplit: "Diviser PDF",
     toolSplitDesc: "Séparer en pages.",
     toolExtract: "Extraire Pages PDF online",
@@ -1986,6 +2049,10 @@ export const translations = {
     toolIpynbToPdf: "IPYNB vers PDF",
     toolPdfToUblDesc: "Convertir facture en XML UBL.",
     toolIpynbToPdfDesc: "Convertir notebooks Jupyter en PDF.",
+    toolImageToPdf: "Image en PDF",
+    toolImageToPdfDesc: "Convertir JPG/PNG/AVIF en PDF.",
+    toolPdfToAvif: "PDF vers AVIF",
+    toolPdfToAvifDesc: "Extraire les pages en images AVIF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -2022,6 +2089,7 @@ export const translations = {
 
     // Tool Specific Inputs
     deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
+    pdfToAvifInfo: "Sélectionnez les pages que vous souhaitez convertir en images AVIF. Toutes les pages seront converties si aucune n'est sélectionnée.",
     totalPages: "Nombre de pages",
     pagesToRemove: "Pages à supprimer",
     signPagesInfo: "Placez votre signature ou vos initiales sur le document.",

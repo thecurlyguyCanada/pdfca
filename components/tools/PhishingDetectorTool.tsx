@@ -13,7 +13,7 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import { analyzePdfSecurity, SecurityAnalysisResult } from '@/utils/securityAnalyzer';
-import { getPdfJsDocument } from '@/utils/pdfUtils';
+import { getPdfJsDocument, generateSecurityReport } from '@/utils/pdfUtils';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 interface PhishingDetectorToolProps {
@@ -50,6 +50,23 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             // Error handling can be managed by parent or local state if needed
         } finally {
             setIsAnalyzing(false);
+        }
+    };
+
+    const handleDownloadReport = async () => {
+        if (!file || !result) return;
+        try {
+            const blob = await generateSecurityReport(file, result);
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${file.name.replace('.pdf', '')}_security_report.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        } catch (e) {
+            console.error("Failed to generate report", e);
         }
     };
 
@@ -150,6 +167,17 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                 <span className="font-medium">Safe Preview</span>
                             </button>
                         </nav>
+
+                        {/* Action Button */}
+                        <div className="pt-4 border-t border-gray-100">
+                            <button
+                                onClick={handleDownloadReport}
+                                disabled={!result}
+                                className="w-full py-3 bg-red-50 hover:bg-red-100 text-canada-red font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <FileText size={16} /> Download PDF Report
+                            </button>
+                        </div>
                     </div>
                 </div>
 

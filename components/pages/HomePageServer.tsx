@@ -44,6 +44,8 @@ const TOOL_ICONS: Record<string, React.ElementType> = {
     'pdf-to-csv': Table,
     'pdf-to-excel': FileSpreadsheet,
     'analyze-pdf': ShieldCheck,
+    'image-to-pdf': Image,
+    'pdf-to-avif': Image,
 };
 
 export function HomePageServer({ lang }: Props) {

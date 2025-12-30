@@ -30,8 +30,9 @@ import {
   convertRtfToPdf,
   convertPdfToCsv,
   convertPdfToExcel,
-  analyzePdfSecurity,
-  optimizePdfForKindleVisual
+  optimizePdfForKindleVisual,
+  convertImageToPdf,
+  convertPdfToAvifZip
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -127,7 +128,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.WORD_TO_PDF,
         ToolType.XML_TO_PDF,
         ToolType.EXCEL_TO_PDF,
-        ToolType.RTF_TO_PDF
+        ToolType.RTF_TO_PDF,
+        ToolType.IMAGE_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -177,7 +179,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     const selectedFiles = e.target.files;
     if (selectedFiles && selectedFiles.length > 0) {
       // Handle multiple files for Merge
-      if (toolConfig.tool === ToolType.MERGE) {
+      if (toolConfig.tool === ToolType.MERGE || toolConfig.tool === ToolType.IMAGE_TO_PDF) {
         Array.from(selectedFiles).forEach(f => processFile(f));
       } else {
         processFile(selectedFiles[0]);
@@ -345,6 +347,16 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = primaryFile.name.replace(/\.(heic|heif)$/i, '.pdf');
             break;
 
+          case ToolType.IMAGE_TO_PDF:
+            resultBlob = await convertImageToPdf(files);
+            outputName = primaryFile.name.replace(/\.(jpg|jpeg|png|webp|gif|avif)$/i, '.pdf');
+            break;
+
+          case ToolType.PDF_TO_IMAGE:
+            resultBlob = await convertPdfToAvifZip(primaryFile, Array.from(selectedPages));
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_images.zip');
+            break;
+
           case ToolType.EPUB_TO_PDF:
             resultBlob = await convertEpubToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.epub$/i, '.pdf');
@@ -402,14 +414,10 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = primaryFile.name.replace(/\.pdf$/i, '.csv');
             break;
 
+
           case ToolType.PDF_TO_EXCEL:
             resultBlob = await convertPdfToExcel(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '.xlsx');
-            break;
-
-          case ToolType.PHISHING_DETECTOR:
-            resultBlob = await analyzePdfSecurity(primaryFile);
-            outputName = primaryFile.name.replace(/\.pdf$/i, '_security_report.pdf');
             break;
 
           default:
