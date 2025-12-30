@@ -1,9 +1,5 @@
-import * as pdfjs from 'pdfjs-dist';
-
-// Ensure worker path is set
-if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
-}
+import type { PDFDocumentProxy } from 'pdfjs-dist';
+import { getPdfJsDocument } from './pdfUtils';
 
 export type RiskLevel = 'SAFE' | 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
 
@@ -29,9 +25,7 @@ export interface SecurityAnalysisResult {
 }
 
 export async function analyzePdfSecurity(file: File): Promise<SecurityAnalysisResult> {
-    const arrayBuffer = await file.arrayBuffer();
-    const loadingTask = pdfjs.getDocument({ data: arrayBuffer });
-    const pdf = await loadingTask.promise;
+    const pdf = await getPdfJsDocument(file) as PDFDocumentProxy;
 
     const result: SecurityAnalysisResult = {
         riskLevel: 'SAFE',

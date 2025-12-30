@@ -127,7 +127,7 @@ export const initPdfWorker = async () => {
   }
 };
 
-export const getPdfJsDocument = async (file: File) => {
+export const getPdfJsDocument = async (file: File, options: any = {}) => {
   try {
     await initPdfWorker();
     const pdfjs = await getPdfJs();
@@ -138,6 +138,7 @@ export const getPdfJsDocument = async (file: File) => {
       cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
       cMapPacked: true,
       standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
+      ...options,
     });
 
     return loadingTask.promise;

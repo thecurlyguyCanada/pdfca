@@ -13,12 +13,8 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import { analyzePdfSecurity, SecurityAnalysisResult } from '@/utils/securityAnalyzer';
-import * as pdfjs from 'pdfjs-dist';
-
-// Ensure worker is set for preview rendering
-if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
-}
+import { getPdfJsDocument } from '@/utils/pdfUtils';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 interface PhishingDetectorToolProps {
     file: File;
@@ -46,12 +42,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             setResult(analysis);
 
             // Get num pages for preview
-            const arrayBuffer = await f.arrayBuffer();
-            const loadingTask = pdfjs.getDocument({
-                data: arrayBuffer
-                // EnableScripting is handled in analyzePdfSecurity logic or default false. 
-            } as any);
-            const pdf = await loadingTask.promise;
+            const pdf = await getPdfJsDocument(f) as PDFDocumentProxy;
             setNumPages(pdf.numPages);
 
         } catch (error) {
@@ -73,12 +64,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
         if (!file || !canvasRef.current) return;
 
         try {
-            const arrayBuffer = await file.arrayBuffer();
-            const loadingTask = pdfjs.getDocument({
-                data: arrayBuffer,
-                enableScripting: false
-            } as any);
-            const pdf = await loadingTask.promise;
+            const pdf = await getPdfJsDocument(file, { enableScripting: false }) as PDFDocumentProxy;
             const page = await pdf.getPage(previewPage);
 
             const viewport = page.getViewport({ scale: 1.5 });
