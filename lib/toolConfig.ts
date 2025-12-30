@@ -321,6 +321,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF', 'vue sécurisée PDF', 'scanner malware'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'pdf-to-ubl',
+    tool: ToolType.PDF_TO_UBL,
+    title: 'PDF to UBL',
+    titleFr: 'PDF vers UBL',
+    description: 'Convert PDF invoices to UBL 2.1 XML format. Extract invoice data automatically and generate compliant E-Invoices. Local, private, and free.',
+    descriptionFr: 'Convertissez des factures PDF au format UBL 2.1 XML. Extrayez automatiquement les données de facturation et générez des factures électroniques conformes. Local, privé et gratuit.',
+    keywords: ['PDF to UBL', 'invoice to UBL', 'convert invoice to xml', 'ubl 2.1 generator', 'e-invoice converter'],
+    keywordsFr: ['PDF vers UBL', 'facture vers UBL', 'convertir facture en xml', 'générateur ubl 2.1', 'convertisseur facture électronique'],
+    accept: '.pdf,application/pdf'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

@@ -39,6 +39,7 @@ export const translations = {
     insertPictureGuide: "Insert Picture Guide",
     pageRemoverGuide: "PDF Page Remover Guide",
     barcodeGeneratorGuide: "Barcode Generator Guide",
+    pdfToUblGuide: "PDF to UBL Guide",
     analyzePdfGuide: "Analyze Security Guide",
 
     // Value Propositions
@@ -830,6 +831,29 @@ export const translations = {
           { question: "Can this tool simplify the PDF?", answer: "Yes, you can check it here and then use our Flatten tool to convert pages to images, neutralizing active scripts." },
           { question: "What does the Safe Preview do?", answer: "It renders the PDF pages as static images with JavaScript disabled, so you can read the content without triggering malicious code." }
         ]
+      },
+      pdfToUbl: {
+        title: "PDF to UBL Converter - Create E-Invoices Online | pdfcanada.ca",
+        desc: "Convert PDF invoices to UBL 2.1 XML format. Extract invoice data automatically and generate compliant E-Invoices. Local, private, and free.",
+        h1: "Convert PDF to UBL XML",
+        subtitle: "Create compliant E-Invoices from standard PDFs.",
+        content: "Need to generate a UBL invoice for a government or enterprise client? Our tool converts standard PDF invoices into structured UBL 2.1 XML files. It's fast, accurate, and processes everything locally to ensure your financial data stays private.",
+        steps: [
+          "Upload your PDF invoice.",
+          "Verify the extracted vendor, date, and amounts.",
+          "Click 'Download UBL XML' to get your compliant e-invoice."
+        ],
+        quickAnswer: {
+          question: "How do I convert a PDF invoice to UBL format?",
+          answer: "Use our free local tool to extract data from your PDF and generate a UBL 2.1 XML file. No need for expensive e-invoicing software—just upload, verify, and download.",
+          tool: "PDF to UBL",
+          steps: ["Upload PDF", "Verify extracted data", "Download UBL XML"]
+        },
+        faq: [
+          { question: "What acts as the 'Invoice ID' in the XML?", answer: "We extract the invoice number from your PDF. If none is found, we generate a unique reference." },
+          { question: "Is this compliant with PEPPOL?", answer: "We use the standard UBL 2.1 schema commonly used in PEPPOL, but you should always validate the XML with your specific receiving network." },
+          { question: "Can I bulk convert invoices?", answer: "Currently, we process one invoice at a time to ensure you can verify the data accuracy before generating the XML." }
+        ]
       }
     },
 
@@ -888,6 +912,8 @@ export const translations = {
     toolPdfToXmlDesc: "Extract structured data.",
     toolXmlToPdf: "XML to PDF",
     toolXmlToPdfDesc: "Create PDF from XML.",
+    toolPdfToUbl: "PDF to UBL",
+    toolPdfToUblDesc: "Convert invoice to UBL XML.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -1162,7 +1188,27 @@ export const translations = {
     visualDesc: "Smart cropping for complex layouts & columns.",
     kindleScreenSize: "Target Screen Size",
     reflowInfo: "Your PDF will be converted to a reflowable EPUB 3.0 file. Perfect for adjusting font size and reading on any Kindle device.",
-    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming."
+    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming.",
+    pdfToUbl: {
+      uploadTitle: "Upload PDF Invoice",
+      verifyTitle: "Verify Invoice Data",
+      scanning: "Scanning...",
+      vendor: "Vendor Name",
+      invoiceId: "Invoice Number",
+      date: "Date (YYYY-MM-DD)",
+      dueDate: "Due Date",
+      subtotal: "Subtotal",
+      tax: "Tax",
+      total: "Total",
+      currency: "Currency",
+      confidence: "Confidence",
+      downloadUbl: "Download UBL XML",
+      rescan: "Scan Another",
+      errorExtraction: "Failed to extract invoice data. Please try again or fill manually.",
+      errorGeneration: "Failed to generate UBL XML.",
+      verifyDesc: "Please review and correct the extracted data before generating the UBL XML.",
+      successMsg: "UBL XML generated successfully!"
+    }
   },
   fr: {
     builtIn: "Fait au Canada",
@@ -1199,6 +1245,7 @@ export const translations = {
     insertPictureGuide: "Guide Insérer Image",
     pageRemoverGuide: "Guide Suppresseur Pages",
     barcodeGeneratorGuide: "Guide Générateur Code-Barres",
+    pdfToUblGuide: "Guide PDF en UBL",
     analyzePdfGuide: "Guide Analyse Sécurité",
 
     // Propositions de valeur
@@ -1841,6 +1888,29 @@ export const translations = {
           { question: "Comment nettoyer un PDF ?", answer: "Après analyse, utilisez l'outil 'Aplatir PDF' pour convertir les pages en images et neutraliser les scripts." },
           { question: "Que fait l'Aperçu Sécurisé ?", answer: "Il affiche le PDF comme une image statique, empêchant l'exécution de tout code malveillant caché." }
         ]
+      },
+      pdfToUbl: {
+        title: "Convertisseur PDF vers UBL - Créer des Factures Électroniques | pdfcanada.ca",
+        desc: "Convertissez des factures PDF au format UBL 2.1 XML. Extrayez automatiquement les données et générez des factures électroniques conformes. Local, privé et gratuit.",
+        h1: "Convertir PDF en UBL XML",
+        subtitle: "Générez des factures électroniques conformes à partir de vos PDF.",
+        content: "Besoin de générer une facture UBL pour un client gouvernemental ou une grande entreprise ? Notre outil convertit vos factures PDF standards en fichiers XML UBL 2.1 structurés. Rapide, précis, et 100% local pour garantir la confidentialité de vos données financières.",
+        steps: [
+          "Téléversez votre facture PDF.",
+          "Vérifiez les données extraites (vendeur, date, montants).",
+          "Cliquez sur 'Télécharger UBL XML' pour obtenir votre facture électronique conforme."
+        ],
+        quickAnswer: {
+          question: "Comment convertir une facture PDF au format UBL ?",
+          answer: "Utilisez notre outil local gratuit pour extraire les données de votre PDF et générer un fichier XML UBL 2.1. Pas besoin de logiciel coûteux—téléversez, vérifiez et téléchargez.",
+          tool: "PDF vers UBL",
+          steps: ["Téléverser le PDF", "Vérifier les données", "Télécharger le XML UBL"]
+        },
+        faq: [
+          { question: "Qu'est-ce qui sert d'ID de facture dans le XML ?", answer: "Nous extrayons le numéro de facture de votre PDF. Si aucun n'est trouvé, nous générons une référence unique." },
+          { question: "Est-ce conforme à PEPPOL ?", answer: "Nous utilisons le schéma standard UBL 2.1 couramment utilisé dans PEPPOL, mais vous devriez toujours valider le XML avec votre réseau de réception spécifique." },
+          { question: "Puis-je convertir des factures en lot ?", answer: "Actuellement, nous traitons une facture à la fois pour vous permettre de vérifier l'exactitude des données avant de générer le XML." }
+        ]
       }
     },
 
@@ -1897,6 +1967,8 @@ export const translations = {
     toolPdfToXmlDesc: "Extraire données structurées.",
     toolXmlToPdf: "XML en PDF",
     toolXmlToPdfDesc: "Créer PDF depuis XML.",
+    toolPdfToUbl: "PDF en UBL",
+    toolPdfToUblDesc: "Convertir facture en XML UBL.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -2214,7 +2286,27 @@ export const translations = {
     visualDesc: "Recadrage intelligent pour mises en page complexes et colonnes.",
     kindleScreenSize: "Taille de l'écran cible",
     reflowInfo: "Votre PDF sera converti en un fichier EPUB 3.0 ajustable. Parfait pour modifier la taille de la police sur n'importe quel Kindle.",
-    visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom."
+    visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom.",
+    pdfToUbl: {
+      uploadTitle: "Téléverser Facture PDF",
+      verifyTitle: "Vérifier les Données",
+      scanning: "Analyse en cours...",
+      vendor: "Vendeur",
+      invoiceId: "Numéro de Facture",
+      date: "Date (AAAA-MM-JJ)",
+      dueDate: "Date d'Échéance",
+      subtotal: "Sous-total",
+      tax: "Taxes",
+      total: "Total",
+      currency: "Devise",
+      confidence: "Confiance",
+      downloadUbl: "Télécharger UBL XML",
+      rescan: "Scanner à nouveau",
+      errorExtraction: "Échec de l'extraction des données. Veuillez réessayer.",
+      errorGeneration: "Échec de la génération UBL XML.",
+      verifyDesc: "Veuillez vérifier et corriger les données extraites avant de générer le fichier XML.",
+      successMsg: "Fichier UBL XML généré avec succès !"
+    }
   }
 };
 export type TranslationType = typeof translations.en;
