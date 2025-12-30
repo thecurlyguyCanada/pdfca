@@ -447,9 +447,15 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
     const schema = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "TechArticle",
         "headline": t.h1,
         "description": t.seo.desc,
+        "proficiencyLevel": "Beginner to Advanced",
+        "about": [
+            { "@type": "Thing", "name": "Document Management" },
+            { "@type": "Thing", "name": "PDF Conversion" },
+            { "@type": "Thing", "name": "Data Privacy" }
+        ],
         "datePublished": "2024-01-15",
         "dateModified": "2025-12-29",
         "author": {

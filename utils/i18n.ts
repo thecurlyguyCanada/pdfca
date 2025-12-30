@@ -229,7 +229,16 @@ export const translations = {
       value2Title: "No Paywalls",
       value2Text: "No subscriptions, no hidden fees, and no watermarks. Essential tools should be free for everyone.",
       value3Title: "User-First Service",
-      value3Text: "No signups, no complex interfaces, and no bloated software. Just simple tools that work."
+      value3Text: "No signups, no complex interfaces, and no bloated software. Just simple tools that work.",
+      trustTitle: "Why Trust PDFCanada.ca?",
+      trust1Title: "Canadian Compliance",
+      trust1Text: "We strictly follow PIPEDA guidelines, ensuring Canadian data sovereignty by keeping processing on your hardware.",
+      trust2Title: "Local-First Security",
+      trust2Text: "Our 'Zero-Upload' architecture means your sensitive documents (tax files, medical records) never touch a cloud server.",
+      trust3Title: "Transparent Tech",
+      trust3Text: "We use audited open-source libraries like pdf-lib and WebAssembly to ensure reliable, high-speed processing.",
+      techTitle: "Our Technology Stack",
+      techText: "PDFCanada.ca is built using modern WebAssembly (WASM) modules. This allows us to run complex C++ and JavaScript engines directly in your browser's memory, providing the speed of a desktop application with the security of a sandboxed web environment."
     },
     features: {
       delete: {
@@ -1277,7 +1286,16 @@ export const translations = {
       value2Title: "Pas de frais",
       value2Text: "Pas d'abonnement, pas de frais cachés et pas de filigranes. Les outils essentiels doivent être gratuits pour tous.",
       value3Title: "Service axé sur l'utilisateur",
-      value3Text: "Pas d'inscription, pas d'interfaces complexes et pas de logiciels lourds. Juste des outils simples qui fonctionnent."
+      value3Text: "Pas d'inscription, pas d'interfaces complexes et pas de logiciels lourds. Juste des outils simples qui fonctionnent.",
+      trustTitle: "Pourquoi faire confiance à PDFCanada.ca ?",
+      trust1Title: "Conformité Canadienne",
+      trust1Text: "Nous suivons strictement les directives de la LPRPDE, garantissant la souveraineté des données canadiennes en traitant tout sur votre matériel.",
+      trust2Title: "Sécurité 'Local-First'",
+      trust2Text: "Notre architecture 'Zéro-Téléchargement' signifie que vos documents sensibles ne touchent jamais un serveur cloud.",
+      trust3Title: "Technologie Transparente",
+      trust3Text: "Nous utilisons des bibliothèques open-source auditées comme pdf-lib et WebAssembly pour un traitement fiable et rapide.",
+      techTitle: "Notre Pile Technologique",
+      techText: "PDFCanada.ca est bâti sur des modules WebAssembly (WASM) modernes. Cela nous permet d'exécuter des moteurs complexes directement dans la mémoire de votre navigateur, offrant la puissance d'une application de bureau."
     },
     features: {
       delete: {
