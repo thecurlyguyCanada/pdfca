@@ -431,7 +431,7 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const t = content;
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="w-full px-4 py-12">
             <SEO
                 title={content.seo.title}
                 description={content.seo.desc}
@@ -450,7 +450,7 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>
-                <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
+                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
                     <section className="animate-fade-in">
                         <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-4 border-canada-red pl-6 py-2">
                             {t.intro}

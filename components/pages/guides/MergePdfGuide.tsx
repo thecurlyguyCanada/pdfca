@@ -497,7 +497,7 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide Fusionner PDF' : 'Merge PDF Guide', href: lang === 'fr' ? '/fr/guides/merge-pdf' : '/guides/merge-pdf' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
+                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
                     <section className="animate-fade-in">
                         <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-4 border-canada-red pl-6 py-2">
                             {t.intro}

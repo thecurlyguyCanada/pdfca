@@ -23,7 +23,7 @@ const getGuideContent = (lang: string) => ({
         },
         h1: "How to Convert PDF to Word: The Definitive Guide",
         subtitle: "Transform your read-only PDFs into editable documents without software installation or privacy compromises.",
-        intro: "Need to edit a **PDF document**? We've all been there: you have a contract, resume, or report that needs a quick update, but you only have the PDF version. Our **PDF to Word converter** allows you to extract text and basic formatting into a standard **.docx** file. The best part? Everything happens entirely in your browser, keeping your sensitive Canadian documents safe and away from foreign servers.",
+        intro: "Need to edit a **PDF document**? We've all been there: you have a contract, resume, or report that needs a quick update, but you only have the PDF version. Our [PDF to Word converter](/${lang}/pdf-to-word) allows you to extract text and basic formatting into a standard **.docx** file. The best part? Everything happens entirely in your browser, keeping your sensitive Canadian documents safe and away from foreign servers.",
 
         sections: [
             {
@@ -400,7 +400,7 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide PDF vers Word' : 'PDF to Word Guide', href: lang === 'fr' ? '/fr/guides/pdf-to-word' : '/guides/pdf-to-word' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
+                <div className="w-full py-8">
                     <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>

@@ -215,7 +215,11 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "What makes pdfcanada.ca different from other PDF tools?",
-                a: "Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser's memory. This means faster processing, complete privacy, and no file size limits."
+                a: (
+                    <>
+                        Unlike major services, we use 'Local-First' processing. Your files never upload to a server; editing happens entirely in your browser's memory. This means faster processing, complete <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline decoration-dashed">privacy</Link>, and no file size limits.
+                    </>
+                )
             },
             {
                 q: "Is there a limit to file size I can process?",
@@ -235,15 +239,27 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "How do I edit a scanned PDF that I can't select text from?",
-                a: "Use our OCR (Optical Character Recognition) tool. It analyzes the scanned images and creates a searchable, selectable text layer over your document. After OCR, you can copy text, search with Ctrl+F, and use other editing tools."
+                a: (
+                    <>
+                        Use our <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">OCR (Optical Character Recognition) tool</Link>. It analyzes the scanned images and creates a searchable, selectable text layer over your document. After OCR, you can copy text, search with Ctrl+F, and use other editing tools.
+                    </>
+                )
             },
             {
                 q: "Can I merge multiple PDFs into one document?",
-                a: "Yes, our Merge PDF tool lets you combine unlimited PDFs into a single file. Just drag and drop your files, arrange them in the order you want, and click merge. The result is a single, combined PDF document."
+                a: (
+                    <>
+                        Yes, our <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">Merge PDF tool</Link> lets you combine unlimited PDFs into a single file. Just drag and drop your files, arrange them in the order you want, and click merge. The result is a single, combined PDF document.
+                    </>
+                )
             },
             {
                 q: "What's the best format to convert my PDF to for e-readers?",
-                a: "For e-readers like Kindle or Kobo, convert to EPUB format. EPUB allows the text to reflow based on screen size and font preferences, providing a much better reading experience than viewing a fixed-layout PDF."
+                a: (
+                    <>
+                        For e-readers like Kindle or Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">convert to EPUB format</Link>. EPUB allows the text to reflow based on screen size and font preferences, providing a much better reading experience than viewing a fixed-layout PDF.
+                    </>
+                )
             },
             {
                 q: "Can I password-protect my PDF after editing?",
@@ -395,7 +411,11 @@ const getGuideContent = (lang: Language) => ({
         faqs: [
             {
                 q: "Qu'est-ce qui rend pdfcanada.ca différent des autres outils PDF ?",
-                a: "Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur. Cela signifie un traitement plus rapide, une confidentialité totale et aucune limite de taille de fichier."
+                a: (
+                    <>
+                        Contrairement aux services majeurs, nous utilisons un traitement 'Local-First'. Vos fichiers ne sont jamais téléchargés sur un serveur ; l'édition se fait entièrement dans la mémoire de votre navigateur. Cela signifie un traitement plus rapide, une <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline decoration-dashed">confidentialité totale</Link> et aucune limite de taille de fichier.
+                    </>
+                )
             },
             {
                 q: "Y a-t-il une limite de taille de fichier ?",
@@ -415,15 +435,27 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Comment éditer un PDF scanné dont je ne peux pas sélectionner le texte ?",
-                a: "Utilisez notre outil OCR (Reconnaissance Optique de Caractères). Il analyse les images scannées et crée une couche de texte consultable et sélectionnable sur votre document."
+                a: (
+                    <>
+                        Utilisez notre <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">outil OCR (Reconnaissance Optique de Caractères)</Link>. Il analyse les images scannées et crée une couche de texte consultable et sélectionnable sur votre document.
+                    </>
+                )
             },
             {
                 q: "Puis-je fusionner plusieurs PDF en un seul document ?",
-                a: "Oui, notre outil Fusionner PDF vous permet de combiner des PDF illimités en un seul fichier. Glissez-déposez vos fichiers, arrangez-les dans l'ordre souhaité, et cliquez fusionner."
+                a: (
+                    <>
+                        Oui, notre <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">outil Fusionner PDF</Link> vous permet de combiner des PDF illimités en un seul fichier. Glissez-déposez vos fichiers, arrangez-les dans l'ordre souhaité, et cliquez fusionner.
+                    </>
+                )
             },
             {
                 q: "Quel est le meilleur format pour convertir mon PDF pour les liseuses ?",
-                a: "Pour les liseuses comme Kindle ou Kobo, convertissez en format EPUB. L'EPUB permet au texte de s'adapter en fonction de la taille de l'écran et des préférences de police."
+                a: (
+                    <>
+                        Pour les liseuses comme Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">convertissez en format EPUB</Link>. L'EPUB permet au texte de s'adapter en fonction de la taille de l'écran et des préférences de police.
+                    </>
+                )
             },
             {
                 q: "Puis-je protéger mon PDF par mot de passe après l'édition ?",
@@ -435,7 +467,7 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
 
-        cta: "Prêt à prendre le contrôle de vos documents ?",
+        cta: "Prêt à prendre le contrôle de vos documents?",
         ctaBtn: "Voir tous les outils",
         related: "Plus de ressources"
     }

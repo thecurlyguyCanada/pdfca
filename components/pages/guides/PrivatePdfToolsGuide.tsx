@@ -29,11 +29,11 @@ const getGuideContent = (lang: Language) => ({
                 title: "The Cloud Privacy Crisis",
                 content: (
                     <>
-                        For the last decade, &quot;free online tools&quot; came with a hidden price tag: your privacy. To merge a PDF, you had to upload it to a remote server. To compress a contract, you sent it to a data center in an unknown jurisdiction.
+                        For the last decade, &quot;free online tools&quot; came with a hidden price tag: your privacy. To <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline decoration-dashed">merge a PDF</Link>, you had to upload it to a remote server. To <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline decoration-dashed">compress a contract</Link>, you sent it to a data center in an unknown jurisdiction.
                         <br /><br />
-                        In 2026, the paradigm has shifted. With high-profile data breaches exposing millions of sensitive documents, relying on cloud-based processors for <strong>High-Sensitivity Data</strong> (Legal, Medical, Financial) is no longer a viable risk for professionals.
+                        In 2026, the paradigm has shifted. With high-profile data breaches exposing millions of sensitive documents, relying on cloud-based processors for <strong>High-Sensitivity Data</strong> (<Link href={`/${lang}/guides/legal-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Legal</Link>, <Link href={`/${lang}/guides/healthcare-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Medical</Link>, <Link href={`/${lang}/guides/finance-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Financial</Link>) is no longer a viable risk for professionals.
                         <br /><br />
-                        This guide explores the rise of <strong>Local-First Software</strong> and why tools like <strong>pdfcanada.ca</strong> represent the safer, faster future of digital document management.
+                        This guide explores the rise of <strong>Local-First Software</strong> and why tools like <Link href={`/${lang}`} className="font-bold text-gray-900 dark:text-gray-100 hover:text-canada-red">pdfcanada.ca</Link> represent the safer, faster future of digital document management.
                     </>
                 )
             },
@@ -212,11 +212,11 @@ const getGuideContent = (lang: Language) => ({
                 title: "La Crise de Confidentialité du Cloud",
                 content: (
                     <>
-                        Au cours de la dernière décennie, les &quot;outils en ligne gratuits&quot; avaient un prix caché : votre vie privée. Pour fusionner un PDF, vous deviez le télécharger sur un serveur distant. Pour compresser un contrat, vous l'envoyiez à un centre de données dans une juridiction inconnue.
+                        Au cours de la dernière décennie, les &quot;outils en ligne gratuits&quot; avaient un prix caché : votre vie privée. Pour <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline decoration-dashed">fusionner un PDF</Link>, vous deviez le télécharger sur un serveur distant. Pour <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline decoration-dashed">compresser un contrat</Link>, vous l'envoyiez à un centre de données dans une juridiction inconnue.
                         <br /><br />
-                        En 2026, le paradigme a changé. Avec des violations de données très médiatisées exposant des millions de documents sensibles, s'appuyer sur des processeurs basés sur le cloud pour des <strong>Données à Haute Sensibilité</strong> (Juridique, Médical, Financier) n'est plus un risque viable pour les professionnels.
+                        En 2026, le paradigme a changé. Avec des violations de données très médiatisées exposant des millions de documents sensibles, s'appuyer sur des processeurs basés sur le cloud pour des <strong>Données à Haute Sensibilité</strong> (<Link href={`/${lang}/guides/legal-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Juridique</Link>, <Link href={`/${lang}/guides/healthcare-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Médical</Link>, <Link href={`/${lang}/guides/finance-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Financier</Link>) n'est plus un risque viable pour les professionnels.
                         <br /><br />
-                        Ce guide explore la montée du <strong>Logiciel Local-First</strong> et pourquoi des outils comme <strong>pdfcanada.ca</strong> représentent l'avenir plus sûr, plus rapide et plus éthique de la gestion numérique des documents.
+                        Ce guide explore la montée du <strong>Logiciel Local-First</strong> et pourquoi des outils comme <Link href={`/${lang}`} className="font-bold text-gray-900 dark:text-gray-100 hover:text-canada-red">pdfcanada.ca</Link> représentent l'avenir plus sûr, plus rapide et plus éthique de la gestion numérique des documents.
                     </>
                 )
             },

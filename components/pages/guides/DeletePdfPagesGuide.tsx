@@ -419,7 +419,7 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Supprimer des pages' : 'Delete Pages', href: lang === 'fr' ? '/fr/guides/delete-pdf-pages' : '/guides/delete-pdf-pages' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
+                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
                     <div className="prose prose-lg dark:prose-invert max-w-none">
                         <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 italic border-l-4 border-canada-red pl-6 py-2">
                             {t.intro}

@@ -537,7 +537,7 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide Suppresseur de Pages' : 'Page Remover Guide', href: lang === 'fr' ? '/fr/guides/pdf-page-remover' : '/guides/pdf-page-remover' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
+                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
                     <div className="prose prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-6 py-2 text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>

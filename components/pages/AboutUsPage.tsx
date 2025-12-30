@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { Info, Shield, Heart, Users, CheckCircle2, Cpu, Lock, Globe } from 'lucide-react';
 import { translations, Language } from '../../utils/i18n';
@@ -12,6 +13,25 @@ interface PageProps {
 export const AboutUsPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     const aboutT = t.aboutPage;
+
+    // Helper to safely hyperlink specific terms
+    const renderSubtitle = () => {
+        const text = aboutT.subtitle;
+        const term = lang === 'fr' ? 'outils PDF' : 'PDF tools';
+
+        if (!text.includes(term)) return text;
+
+        const parts = text.split(term);
+        return (
+            <>
+                {parts[0]}
+                <Link href={`/${lang}`} className="text-canada-red hover:underline decoration-dashed font-bold">
+                    {term}
+                </Link>
+                {parts[1]}
+            </>
+        );
+    };
 
     const aboutSchema = {
         "@context": "https://schema.org",
@@ -36,7 +56,7 @@ export const AboutUsPage: React.FC<PageProps> = ({ lang }) => {
             <PageLayout title={aboutT.title} icon={<Info size={32} />}>
                 <div className="w-full">
                     <p className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-12 text-center">
-                        {aboutT.subtitle}
+                        {renderSubtitle()}
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">

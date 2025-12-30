@@ -30,7 +30,7 @@ const getGuideContent = (lang: Language) => ({
                 <br /><br />
                 Your tax return, bank statements, investment portfolios, and financial reports contain everything an identity thief dreams of: Social Insurance Number (SIN) or Social Security Number (SSN), date of birth, home address, income details, bank account numbers, investment account information, employer details, and complete financial transaction history. Uploading these documents to anonymous cloud PDF services creates <strong>catastrophic identity theft risk</strong>.
                 <br /><br />
-                <strong>pdfcanada.ca</strong> provides financial-grade security through local-only PDF processing: compress tax returns, merge financial statements, organize receipts, split multi-year tax records, and rotate scanned documents—all without a single byte of financial data touching external servers. Your sensitive financial information processes entirely in your browser using WebAssembly technology, ensuring zero server uploads, zero data retention, and zero identity theft exposure.
+                <strong>pdfcanada.ca</strong> provides financial-grade security through local-only PDF processing: <Link href={`/${lang}/compress-pdf`} className="text-green-600 hover:underline decoration-dashed font-medium">compress tax returns</Link>, <Link href={`/${lang}/merge-pdf`} className="text-green-600 hover:underline decoration-dashed font-medium">merge financial statements</Link>, <Link href={`/${lang}/organize-pdf`} className="text-green-600 hover:underline decoration-dashed font-medium">organize receipts</Link>, split multi-year tax records, and <Link href={`/${lang}/rotate-pdf`} className="text-green-600 hover:underline decoration-dashed font-medium">rotate scanned documents</Link>—all without a single byte of financial data touching external servers. Your sensitive financial information processes entirely in your browser using WebAssembly technology, ensuring zero server uploads, zero data retention, and zero identity theft exposure.
             </>
         ),
 
@@ -158,14 +158,14 @@ const getGuideContent = (lang: Language) => ({
                                 <h4 className="font-bold text-green-600 dark:text-green-400 mb-2 flex items-center gap-2">
                                     <FileText size={20} /> Tax Return Compression for CRA/IRS Upload
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">Personal tax filers and tax preparers need to compress large T1/1040 returns with extensive supporting documentation (T4 slips, receipts, charitable donation records, medical expenses, investment statements) to fit CRA's 25MB or IRS's 15MB e-file limits. Local compression maintains document quality while reducing file size for portal acceptance.</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Personal tax filers and tax preparers need to <Link href={`/${lang}/compress-pdf`} className="text-green-600 hover:underline">compress large T1/1040 returns</Link> with extensive supporting documentation (T4 slips, receipts, charitable donation records, medical expenses, investment statements) to fit CRA's 25MB or IRS's 15MB e-file limits. Local compression maintains document quality while reducing file size for portal acceptance.</p>
                             </div>
 
                             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-green-100 dark:border-gray-700 shadow-sm">
                                 <h4 className="font-bold text-green-600 dark:text-green-400 mb-2 flex items-center gap-2">
                                     <DollarSign size={20} /> Bank Statement Consolidation
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">Mortgage applicants, loan borrowers, and visa applicants must provide 3-6 months of continuous bank statements. Merging multiple monthly PDF statements from TD, RBC, Scotia, BMO, or CIBC into a single chronological file simplifies submission while preventing exposure of account numbers, balances, and transaction history to PDF conversion servers.</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Mortgage applicants, loan borrowers, and visa applicants must provide 3-6 months of continuous bank statements. <Link href={`/${lang}/merge-pdf`} className="text-green-600 hover:underline">Merging multiple monthly PDF statements</Link> from TD, RBC, Scotia, BMO, or CIBC into a single chronological file simplifies submission while preventing exposure of account numbers, balances, and transaction history to PDF conversion servers.</p>
                             </div>
 
                             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-green-100 dark:border-gray-700 shadow-sm">
