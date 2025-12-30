@@ -332,6 +332,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['PDF vers UBL', 'facture vers UBL', 'convertir facture en xml', 'générateur ubl 2.1', 'convertisseur facture électronique'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'ipynb-to-pdf',
+    tool: ToolType.IPYNB_TO_PDF,
+    title: 'Jupyter Notebook to PDF',
+    titleFr: 'Jupyter Notebook vers PDF',
+    description: 'Convert Jupyter Notebook (.ipynb) files to high-quality PDF documents. Local processing ensures private and secure conversion in your browser.',
+    descriptionFr: 'Convertissez les fichiers Jupyter Notebook (.ipynb) en documents PDF de haute qualité. Le traitement local garantit une conversion privée et sécurisée.',
+    keywords: ['ipynb to pdf', 'convert jupyter notebook to pdf', 'notebook to pdf converter', 'python notebook to pdf'],
+    keywordsFr: ['ipynb vers pdf', 'convertir jupyter notebook en pdf', 'convertisseur notebook en pdf'],
+    accept: '.ipynb,application/x-ipynb+json'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

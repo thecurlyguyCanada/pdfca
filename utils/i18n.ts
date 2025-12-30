@@ -40,6 +40,7 @@ export const translations = {
     pageRemoverGuide: "PDF Page Remover Guide",
     barcodeGeneratorGuide: "Barcode Generator Guide",
     pdfToUblGuide: "PDF to UBL Guide",
+    ipynbToPdfGuide: "IPYNB to PDF Guide",
     analyzePdfGuide: "Analyze Security Guide",
 
     // Value Propositions
@@ -913,7 +914,9 @@ export const translations = {
     toolXmlToPdf: "XML to PDF",
     toolXmlToPdfDesc: "Create PDF from XML.",
     toolPdfToUbl: "PDF to UBL",
+    toolIpynbToPdf: "IPYNB to PDF",
     toolPdfToUblDesc: "Convert invoice to UBL XML.",
+    toolIpynbToPdfDesc: "Convert Jupyter notebooks to PDF.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -1208,6 +1211,17 @@ export const translations = {
       errorGeneration: "Failed to generate UBL XML.",
       verifyDesc: "Please review and correct the extracted data before generating the UBL XML.",
       successMsg: "UBL XML generated successfully!"
+    },
+    ipynbToPdf: {
+      uploadTitle: "Upload Jupyter Notebook",
+      dragDrop: "Drag & Drop .ipynb file here",
+      convert: "Convert to PDF",
+      converting: "Converting...",
+      success: "Conversion Successful!",
+      download: "Download PDF",
+      error: "Conversion Failed",
+      privacy: "100% Local Processing",
+      privacyDesc: "Your code never leaves the browser."
     }
   },
   fr: {
@@ -1245,7 +1259,8 @@ export const translations = {
     insertPictureGuide: "Guide Insérer Image",
     pageRemoverGuide: "Guide Suppresseur Pages",
     barcodeGeneratorGuide: "Guide Générateur Code-Barres",
-    pdfToUblGuide: "Guide PDF en UBL",
+    pdfToUblGuide: "Guide PDF vers UBL",
+    ipynbToPdfGuide: "Guide IPYNB vers PDF",
     analyzePdfGuide: "Guide Analyse Sécurité",
 
     // Propositions de valeur
@@ -1968,7 +1983,9 @@ export const translations = {
     toolXmlToPdf: "XML en PDF",
     toolXmlToPdfDesc: "Créer PDF depuis XML.",
     toolPdfToUbl: "PDF en UBL",
+    toolIpynbToPdf: "IPYNB vers PDF",
     toolPdfToUblDesc: "Convertir facture en XML UBL.",
+    toolIpynbToPdfDesc: "Convertir notebooks Jupyter en PDF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -2306,6 +2323,17 @@ export const translations = {
       errorGeneration: "Échec de la génération UBL XML.",
       verifyDesc: "Veuillez vérifier et corriger les données extraites avant de générer le fichier XML.",
       successMsg: "Fichier UBL XML généré avec succès !"
+    },
+    ipynbToPdf: {
+      uploadTitle: "Téléverser Jupyter Notebook",
+      dragDrop: "Glisser-Déposer fichier .ipynb ici",
+      convert: "Convertir en PDF",
+      converting: "Conversion...",
+      success: "Conversion Réussie !",
+      download: "Télécharger PDF",
+      error: "Échec de la conversion",
+      privacy: "Traitement 100 % Local",
+      privacyDesc: "Votre code ne quitte jamais le navigateur."
     }
   }
 };

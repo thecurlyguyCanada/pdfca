@@ -89,6 +89,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
                         <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
                         <li><Link href={`/${lang}/pdf-to-ubl`} className="hover:text-white transition-colors font-bold text-orange-500">{t.toolPdfToUbl}</Link></li>
+                        <li><Link href={`/${lang}/ipynb-to-pdf`} className="hover:text-white transition-colors font-bold text-blue-400">{t.toolIpynbToPdf}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -109,6 +110,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/invoice-ocr`} className="hover:text-white transition-colors">{t.invoiceOcrGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/pdf-to-ubl`} className="hover:text-white transition-colors">{t.pdfToUblGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/ipynb-to-pdf`} className="hover:text-white transition-colors">{t.ipynbToPdfGuide}</Link></li>
                         <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{lang === 'en' ? 'View All Guides →' : 'Voir Tous les Guides →'}</Link></li>
                      </ul>
                   </FooterSection>
