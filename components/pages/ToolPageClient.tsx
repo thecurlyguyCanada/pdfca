@@ -345,6 +345,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             break;
 
           case ToolType.PDF_TO_EPUB:
+          case ToolType.PDF_TO_KINDLE:
             // Returns a ZIP blob (epub is zip)
             resultBlob = await convertPdfToEpub(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '.epub');

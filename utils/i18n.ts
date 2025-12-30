@@ -435,6 +435,43 @@ export const translations = {
           }
         ]
       },
+      pdfToKindle: {
+        title: "PDF to Kindle Converter - Optimize PDFs for Amazon Kindle | pdfcanada.ca",
+        desc: "Convert PDF for Kindle with enhanced reflow and pop-up footnotes. 100% free, private, and local. Optimized for Kindle Paperwhite, Oasis, and Scribe.",
+        h1: "Convert PDF to Kindle",
+        subtitle: "The best way to read your PDFs on a Kindle, eh?",
+        content: "Love your Kindle but hate reading PDFs on it? We've all been there. Small text, no font control, and those annoying margins. Our PDF to Kindle tool is designed specifically to solve this. It converts your PDF into a highly-optimized EPUB 3 format that Kindles love. We use advanced heuristics to merge broken paragraphs, detect headings for a proper Table of Contents, and most importantly, we turn bottom-of-the-page footnotes into Kindle's famous pop-up footnotes.\n\nEverything happens locally on your computer. Your books, research papers, and private documents never touch a server. If you want to know how to convert PDF for Kindle without compromise, this is the tool. We support the latest Kindle features like 'Enhanced Typesetting' and 'Page Flip' by ensuring the underlying code is clean and semantic.",
+        steps: [
+          "Choose the PDF file you want to read on your Kindle.",
+          "Our engine automatically detects footnotes, headers, and headings.",
+          "The conversion happens entirely in your browser—completely private.",
+          "Download the optimized file and send it to your Kindle (@kindle.com) or via USB."
+        ],
+        quickAnswer: {
+          question: "How do I make a PDF look good on my Kindle?",
+          answer: "Don't just send the raw PDF. Use a specialized converter to create a reflowable ebook. Our tool optimizes text, removes margins, and enables Kindle features like font adjustment and pop-up footnotes.",
+          tool: "PDF to Kindle",
+          steps: ["Upload PDF", "Auto-optimize for Kindle", "Download and transfer"]
+        },
+        faq: [
+          {
+            question: "Why convert PDF to Kindle format instead of reading the PDF?",
+            answer: "PDFs have a fixed layout. On a Kindle's small screen, this means tiny text and constant panning. Converting to our optimized format allows the text to 'reflow', letting you change font sizes and read comfortably."
+          },
+          {
+            question: "Does this tool support Kindle pop-up footnotes?",
+            answer: "Yes! Our engine identifies footnotes at the bottom of PDF pages and converts them into semantic EPUB footnotes that trigger the Kindle pop-up preview."
+          },
+          {
+            question: "How do I transfer the file to my Kindle?",
+            answer: "After downloading, you can use Amazon's 'Send to Kindle' service (via email or web) or transfer it manually via USB cable into the 'documents' folder."
+          },
+          {
+            question: "Is it safe to convert my private books here?",
+            answer: "Absolutely. We are the only converter that does this entirely on your device. Your files never leave your browser, ensuring 100% privacy."
+          }
+        ]
+      },
       fillable: {
         title: "Make PDF Fillable Online - Free & Secure Interactive Form Creator | pdfcanada.ca",
         desc: "Add fillable text fields to any PDF instantly. Create professional interactive forms for free securely in your browser. No uploads—100% private & Canadian.",
@@ -1426,6 +1463,39 @@ export const translations = {
           tool: "PDF en EPUB",
           steps: ["Sélectionnez votre PDF", "Conversion auto", "Téléchargez le fichier .epub"]
         }
+      },
+      pdfToKindle: {
+        title: "Convertisseur PDF vers Kindle - Optimisez vos PDF pour Amazon Kindle | pdfcanada.ca",
+        desc: "Convertissez vos PDF pour Kindle avec mode fluide et notes de bas de page surgissantes. 100% gratuit, privé et local. Optimisé pour Kindle Paperwhite, Oasis et Scribe.",
+        h1: "Convertir PDF vers Kindle",
+        subtitle: "La meilleure façon de lire vos PDF sur un Kindle, hein ?",
+        content: "Vous aimez votre Kindle mais détestez y lire des PDF ? On connaît ça. Petit texte, aucun contrôle sur la police, et ces marges agaçantes. Notre outil PDF vers Kindle est conçu spécifiquement pour régler ça. Il convertit votre PDF en format EPUB 3 hautement optimisé que les Kindles adorent. Nous utilisons des heuristiques avancées pour fusionner les paragraphes brisés, détecter les titres pour une table des matières correcte, et surtout, nous transformons les notes de bas de page en notes surgissantes célèbres de Kindle.\n\nTout se passe localement sur votre ordinateur. Vos livres, travaux de recherche et documents privés ne touchent jamais un serveur. Si vous voulez savoir comment convertir un PDF pour Kindle sans compromis, c'est l'outil qu'il vous faut.",
+        steps: [
+          "Choisissez le fichier PDF que vous voulez lire sur votre Kindle.",
+          "Notre moteur détecte automatiquement les notes, en-têtes et titres.",
+          "La conversion se fait entièrement dans votre navigateur—totalement privé.",
+          "Téléchargez le fichier optimisé et envoyez-le à votre Kindle."
+        ],
+        quickAnswer: {
+          question: "Comment rendre un PDF lisible sur mon Kindle ?",
+          answer: "Ne vous contentez pas d'envoyer le PDF brut. Utilisez un convertisseur spécialisé pour créer un ebook fluide. Notre outil optimise le texte, supprime les marges et active les fonctionnalités Kindle comme l'ajustement de police.",
+          tool: "PDF vers Kindle",
+          steps: ["Téléverser le PDF", "Optimisation auto Kindle", "Télécharger et transférer"]
+        },
+        faq: [
+          {
+            question: "Pourquoi convertir un PDF au format Kindle ?",
+            answer: "Les PDF ont une mise en page fixe. Sur le petit écran d'un Kindle, cela signifie un texte minuscule. La conversion permet au texte de devenir 'fluide', vous permettant de changer la taille de la police."
+          },
+          {
+            question: "Est-ce que cet outil supporte les notes surgissantes ?",
+            answer: "Oui ! Notre moteur identifie les notes au bas des pages PDF et les convertit en notes sémantiques qui déclenchent l'aperçu surgissant sur Kindle."
+          },
+          {
+            question: "Est-ce sécuritaire pour mes livres privés ?",
+            answer: "Absolument. Nous sommes le seul convertisseur qui fait cela entièrement sur votre appareil. Vos fichiers ne quittent jamais votre navigateur."
+          }
+        ]
       },
       fillable: {
         title: "Rendre PDF Remplissable en Ligne - Créateur de Formulaire | pdfcanada.ca",

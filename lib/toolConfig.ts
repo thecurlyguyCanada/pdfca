@@ -124,6 +124,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     accept: '.pdf,application/pdf'
   },
   {
+    slug: 'pdf-to-kindle',
+    tool: ToolType.PDF_TO_KINDLE,
+    title: 'PDF to Kindle',
+    titleFr: 'PDF vers Kindle',
+    description: 'Optimize PDFs for Kindle devices with enhanced EPUB conversion. Supports pop-up footnotes, reflowable text, and optimized margins. Private, local-first processing.',
+    descriptionFr: 'Optimisez les PDF pour les appareils Kindle avec une conversion EPUB améliorée. Supporte les notes de bas de page surgissantes et le texte fluide. Traitement privé et local.',
+    keywords: ['PDF to Kindle', 'Kindle converter', 'PDF to ebook Kindle', 'convert PDF for Kindle'],
+    keywordsFr: ['PDF vers Kindle', 'convertisseur Kindle', 'PDF en ebook Kindle', 'convertir PDF pour Kindle'],
+    accept: '.pdf,application/pdf'
+  },
+  {
     slug: 'make-pdf-fillable',
     tool: ToolType.MAKE_FILLABLE,
     title: 'Make PDF Fillable',

@@ -58,6 +58,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'pdf-to-excel': PdfToCsvGuide, // Reuse the same rich guide as it covers both
     'ocr-pdf': InvoiceOcrGuide, // Alias for legacy/general OCR links
     'analyze-pdf': PhishingPdfGuide,
+    'pdf-to-kindle': PdfToEpubGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);
