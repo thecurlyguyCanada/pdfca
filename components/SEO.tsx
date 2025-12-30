@@ -37,6 +37,15 @@ interface SEOProps {
   quickAnswer?: QuickAnswer;
   author?: Author;
   mentions?: { name: string; url?: string; sameAs?: string }[];
+  // Video support for enhanced SERP features
+  video?: {
+    name: string;
+    description: string;
+    contentUrl: string;
+    thumbnailUrl: string;
+    uploadDate: string;
+    duration?: string; // ISO 8601 format e.g. "PT1M30S"
+  };
 }
 
 // Fixed schemas
@@ -131,7 +140,8 @@ export function SEO({
   steps,
   quickAnswer,
   author,
-  mentions
+  mentions,
+  video
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
 
@@ -321,7 +331,32 @@ export function SEO({
     });
   }
 
-  // 8. Custom Schemas
+  // 8. VideoObject Schema for enhanced SERP features
+  if (video) {
+    const videoSchema: Record<string, any> = {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": video.name,
+      "description": video.description,
+      "contentUrl": video.contentUrl,
+      "thumbnailUrl": video.thumbnailUrl,
+      "uploadDate": video.uploadDate,
+      "publisher": {
+        "@type": "Organization",
+        "name": "pdfcanada.ca",
+        "logo": {
+          "@type": "ImageObject",
+          "url": getAssetUrl(URLS.ANDROID_ICON)
+        }
+      }
+    };
+    if (video.duration) {
+      videoSchema["duration"] = video.duration;
+    }
+    allSchemas.push(videoSchema);
+  }
+
+  // 9. Custom Schemas
   if (schema) {
     const pageSchemas = Array.isArray(schema) ? schema : [schema];
     allSchemas.push(...pageSchemas);

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MapPin, ExternalLink, CheckCircle } from 'lucide-react';
+import { MapPin, ExternalLink, CheckCircle, Award, Shield } from 'lucide-react';
 import { Language } from '../utils/i18n';
 
 interface AuthorBioProps {
@@ -14,7 +14,10 @@ const getContent = () => ({
         role: "Canadian PDF Experts",
         bio: "PDFCanada.ca was built with a simple mission: make working with PDFs easy, fast, and private. Our tools are designed from real-world experience, solving frustrations we encountered firsthand. Every feature exists because it solves a real problem — not because it looks good on a feature list.",
         verified: "Verified Canadian Developer",
-        learnMore: "Learn more about us"
+        learnMore: "Learn more about us",
+        expertise: "Expertise",
+        expertiseAreas: ["PDF Processing", "Document Security", "PIPEDA Compliance", "Browser-Based Technology"],
+        credentials: "Privacy-First Development"
     },
     fr: {
         writtenBy: "Rédigé par",
@@ -23,7 +26,10 @@ const getContent = () => ({
         role: "Experts PDF Canadiens",
         bio: "PDFCanada.ca a été créé avec une mission simple : rendre le travail avec les PDF facile, rapide et privé. Nos outils sont conçus à partir d'expériences réelles, résolvant des frustrations que nous avons rencontrées de première main. Chaque fonctionnalité existe parce qu'elle résout un vrai problème — pas parce qu'elle a l'air bien sur une liste de fonctionnalités.",
         verified: "Développeur Canadien Vérifié",
-        learnMore: "En savoir plus sur nous"
+        learnMore: "En savoir plus sur nous",
+        expertise: "Expertise",
+        expertiseAreas: ["Traitement PDF", "Sécurité des Documents", "Conformité LPRPDE", "Technologie Navigateur"],
+        credentials: "Développement Axé sur la Confidentialité"
     }
 });
 
@@ -64,10 +70,27 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
                             {t.bio}
                         </p>
 
+                        {/* Expertise Areas - E-A-T Signal */}
+                        <div className="mb-4">
+                            <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">{t.expertise}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {t.expertiseAreas.map((area, i) => (
+                                    <span key={i} className="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+                                        {area}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 px-3 py-1.5 rounded-full text-sm font-bold">
                                 <CheckCircle size={16} />
                                 {t.verified}
+                            </div>
+
+                            <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-3 py-1.5 rounded-full text-sm font-bold">
+                                <Shield size={16} />
+                                {t.credentials}
                             </div>
 
                             <Link
@@ -85,7 +108,7 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
     );
 };
 
-// Author schema data for SEO
+// Author schema data for SEO - Enhanced with E-A-T signals
 export const getAuthorSchema = () => ({
     "@type": "Organization",
     "name": "PDFCanada.ca",
@@ -97,7 +120,16 @@ export const getAuthorSchema = () => ({
         "height": 512
     },
     "sameAs": [
-        "https://www.pdfcanada.ca"
+        "https://www.pdfcanada.ca",
+        "https://twitter.com/pdfcanada"
+    ],
+    "knowsAbout": [
+        "PDF Processing",
+        "Document Security",
+        "PIPEDA Compliance",
+        "Browser-Based Technology",
+        "Data Privacy",
+        "Optical Character Recognition"
     ],
     "address": {
         "@type": "PostalAddress",

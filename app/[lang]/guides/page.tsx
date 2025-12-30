@@ -69,6 +69,48 @@ export default async function GuidesPage({
 
     const t = seoData[currentLang];
 
+    // Course schema - positions the guide collection as an educational series
+    const courseSchema = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": currentLang === 'fr' ? "Maîtrise PDF Complète" : "Complete PDF Mastery Course",
+        "description": t.desc,
+        "provider": {
+            "@type": "Organization",
+            "name": "pdfcanada.ca",
+            "url": "https://www.pdfcanada.ca"
+        },
+        "educationalLevel": "Beginner to Advanced",
+        "isAccessibleForFree": true,
+        "inLanguage": currentLang === 'fr' ? "fr-CA" : "en-CA",
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "PT3H"
+        },
+        "about": [
+            { "@type": "Thing", "name": "PDF Processing" },
+            { "@type": "Thing", "name": "Document Security" },
+            { "@type": "Thing", "name": "File Conversion" }
+        ]
+    };
+
+    // ItemList schema for the guide collection  
+    const itemListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": t.title,
+        "description": t.desc,
+        "numberOfItems": 26,
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ultimate PDF Guide", "url": "https://www.pdfcanada.ca/en/guides/ultimate-pdf-guide" },
+            { "@type": "ListItem", "position": 2, "name": "Private PDF Tools", "url": "https://www.pdfcanada.ca/en/guides/private-pdf-tools" },
+            { "@type": "ListItem", "position": 3, "name": "Finance PDF Security", "url": "https://www.pdfcanada.ca/en/guides/finance-pdf-security" },
+            { "@type": "ListItem", "position": 4, "name": "Legal PDF Security", "url": "https://www.pdfcanada.ca/en/guides/legal-pdf-tools" },
+            { "@type": "ListItem", "position": 5, "name": "Healthcare PDF Compliance", "url": "https://www.pdfcanada.ca/en/guides/healthcare-pdf-security" }
+        ]
+    };
+
     return (
         <>
             <SEO
@@ -80,6 +122,7 @@ export default async function GuidesPage({
                     { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
                     { name: currentLang === 'fr' ? 'Guides' : 'Guides', path: `/${lang}/guides` }
                 ]}
+                schema={[courseSchema, itemListSchema]}
             />
             <div className="mesh-bg" />
             <div className="min-h-screen flex flex-col">
