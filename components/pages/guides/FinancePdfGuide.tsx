@@ -421,7 +421,7 @@ export const FinancePdfGuide: React.FC<GuideProps> = ({ lang }) => {
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/finance-pdf-security" lang={lang} schema={schema} />
 
-            <div className="max-w-4xl mx-auto py-12">
+            <div className="w-full py-12">
                 <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
                     <div className="p-8 bg-green-50 dark:bg-green-900/10 rounded-3xl mb-12 border border-green-100 dark:border-green-900">
                         {t.intro}

@@ -34,7 +34,7 @@ export const AboutUsPage: React.FC<PageProps> = ({ lang }) => {
                 schema={aboutSchema}
             />
             <PageLayout title={aboutT.title} icon={<Info size={32} />}>
-                <div className="max-w-4xl mx-auto">
+                <div className="w-full">
                     <p className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-12 text-center">
                         {aboutT.subtitle}
                     </p>

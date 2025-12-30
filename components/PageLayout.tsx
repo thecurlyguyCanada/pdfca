@@ -9,7 +9,7 @@ interface PageLayoutProps {
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({ title, subtitle, icon, children, breadcrumbs }) => (
-    <div className="max-w-4xl mx-auto px-6 py-12 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 animate-fade-in">
         {breadcrumbs && (
             <nav className="flex mb-8 text-sm text-gray-500 dark:text-gray-400" aria-label="Breadcrumb">
                 <ol className="inline-flex items-center space-x-1 md:space-x-3">

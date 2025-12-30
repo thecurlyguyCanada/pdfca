@@ -1069,7 +1069,7 @@ export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/legal-pdf-tools" lang={lang} schema={schema} />
 
-            <div className="max-w-4xl mx-auto py-12">
+            <div className="w-full py-12">
                 <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
                     <div className="p-8 bg-slate-50 dark:bg-slate-900 rounded-3xl mb-12 border border-slate-200 dark:border-slate-800">
                         {t.intro}

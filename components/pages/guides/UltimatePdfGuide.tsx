@@ -509,7 +509,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: 'Ultimate Guide', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
+                <div className="w-full py-8">
 
                     {/* Table of Contents */}
                     <div className="bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-3xl border border-blue-100 dark:border-blue-800/30 mb-16">

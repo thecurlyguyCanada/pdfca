@@ -445,7 +445,7 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: 'Privacy Guide', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
+                <div className="w-full py-8">
 
                     {/* Table of Contents */}
                     <div className="bg-indigo-50/50 dark:bg-indigo-900/10 p-6 rounded-3xl border border-indigo-100 dark:border-indigo-800/30 mb-16">
