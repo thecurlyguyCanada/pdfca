@@ -58,7 +58,6 @@ export const translations = {
 
 
     // Compress Tool
-    btnCompress: "Compress PDF",
     sizeReduced: "Size Reduced",
     addMorePdfs: "Add more PDFs",
     compressGood: "Good",
@@ -932,7 +931,12 @@ export const translations = {
     btnSave: "Save",
     btnSplit: "Split PDF",
     btnExtract: "Extract Pages",
+    btnCompress: "Compress PDF",
     processedSize: "Processed Size",
+    selectAll: "Select All",
+    selectNone: "Select None",
+    selectOdd: "Select Odd",
+    selectEven: "Select Even",
     toolRotateInfo: "Click pages to rotate or use global controls above.",
     readyToConvertDesc: "Ready to convert {fileName}. This might take a few moments depending on the file size, eh.",
     btnTryAgain: "Try Again",
@@ -1168,7 +1172,6 @@ export const translations = {
 
 
     // Compress Tool
-    btnCompress: "Compresser PDF",
     sizeReduced: "Taille réduite",
     addMorePdfs: "Ajouter plus de PDF",
     compressGood: "Bon",
@@ -1835,8 +1838,19 @@ export const translations = {
     resetRotations: "Réinitialiser",
     selectPagesToFill: "Sélectionnez les pages à scanner :",
     toolRotateInfo: "Cliquez sur les pages pour les faire pivoter ou utilisez les contrôles ci-dessus.",
+    readyToConvertDesc: "Prêt à convertir {fileName}. Cela peut prendre quelques instants selon la taille du fichier, hein.",
+    btnTryAgain: "Réessayer",
+    processing: "Traitement en cours...",
+    errorGeneric: "Une erreur est survenue lors du traitement de votre fichier.",
+    btnSave: "Enregistrer",
     btnSplit: "Diviser le PDF",
+    btnExtract: "Extraire les pages",
+    btnCompress: "Compresser PDF",
     processedSize: "Taille traitée",
+    selectAll: "Tout sélectionner",
+    selectNone: "Tout désélectionner",
+    selectOdd: "Pages impaires",
+    selectEven: "Pages paires",
 
     // Tool Specific Inputs
     deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
@@ -1884,9 +1898,7 @@ export const translations = {
     before: "Avant",
     after: "Après",
     previewModeInfo: "Vérifiez le résultat à droite. Si ça vous convient, cliquez sur Finaliser.",
-    btnSave: "Enregistrer",
-    btnExtract: "Extraire les pages",
-    readyToConvertDesc: "Prêt à convertir {fileName}. Cela peut prendre quelques instants selon la taille du fichier.",
+
 
     working: "On y travaille...",
     workingDesc: "On scanne pour les champs et on arrange ça.",
