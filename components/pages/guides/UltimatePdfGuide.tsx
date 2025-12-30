@@ -582,36 +582,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </div>
                     </div>
 
-                    {/* Related Guides */}
-                    <div className="mt-32 pt-16 border-t border-gray-100 dark:border-gray-800">
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-8">{t.related}</h4>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[
-                                { name: 'Delete PDF Pages', path: '/guides/delete-pdf-pages', icon: Trash2, view: 'GUIDE_DELETE_PAGES' },
-                                { name: 'Rotate PDF Guide', path: '/guides/rotate-pdf', icon: RotateCw, view: 'GUIDE_ROTATE' },
-                                { name: 'HEIC to PDF Transfer', path: '/guides/heic-to-pdf', icon: Image, view: 'GUIDE_HEIC_TO_PDF' },
-                                { name: 'OCR & Text Extraction', path: '/guides/invoice-ocr', icon: Search, view: 'GUIDE_OCR' },
-                                { name: 'Fillable Form Creation', path: '/guides/make-pdf-fillable', icon: PenTool, view: 'GUIDE_FILLABLE' },
-                                { name: 'Organize & Reorder', path: '/guides/organize-pdf', icon: MousePointer2, view: 'GUIDE_ORGANIZE' },
-                                { name: 'Save Email as PDF', path: '/guides/email-to-pdf', icon: Mail, view: 'GUIDE_EMAIL_TO_PDF' },
-                                { name: 'Split PDF Pages', path: '/guides/split-pdf', icon: Split, view: 'GUIDE_SPLIT' },
-                                { name: lang === 'fr' ? 'PDF vers CSV / Relevés' : 'PDF to CSV / Bank Stats', path: '/guides/pdf-to-csv', icon: FileText, view: 'GUIDE_PDF_TO_CSV' },
-                                { name: lang === 'fr' ? 'Insérer Image dans PDF' : 'Insert Picture in PDF', path: '/guides/insert-picture-in-pdf', icon: Image, view: 'GUIDE_INSERT_PICTURE' }
-                            ].map((guide: any, i: number) => (
-                                <Link
-                                    key={i}
-                                    href={`/${lang}${guide.path}`}
-                                    className="p-6 bg-gray-50 dark:bg-gray-800 rounded-3xl border border-transparent hover:border-canada-red hover:bg-white dark:hover:bg-gray-900 transition-all flex items-center justify-between group"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <guide.icon className="text-canada-red" size={20} />
-                                        <span className="font-bold text-gray-900 dark:text-white">{guide.name}</span>
-                                    </div>
-                                    <ArrowRight className="text-gray-300 group-hover:text-canada-red group-hover:translate-x-1 transition-all" size={20} />
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+
 
                     <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white">
                         <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.cta}</h2>
