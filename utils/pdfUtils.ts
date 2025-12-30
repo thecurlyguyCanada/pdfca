@@ -1773,6 +1773,7 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
           const ctx = canvas.getContext('2d');
           if (!ctx) throw new Error('Canvas context not available');
           ctx.drawImage(bitmap, 0, 0);
+          bitmap.close();
           const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
           if (!blob) throw new Error('Failed to convert image');
           arrayBuffer = await blob.arrayBuffer();
@@ -2547,6 +2548,7 @@ export const convertImageToPdf = async (input: File | File[]): Promise<Uint8Arra
       const ctx = canvas.getContext('2d');
       if (!ctx) throw new Error('Canvas context not available');
       ctx.drawImage(bitmap, 0, 0);
+      bitmap.close();
       const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
       if (!blob) throw new Error('Failed to convert image');
       arrayBuffer = await blob.arrayBuffer();
@@ -2573,6 +2575,7 @@ export const convertImageToPdf = async (input: File | File[]): Promise<Uint8Arra
       const ctx = canvas.getContext('2d');
       if (!ctx) throw new Error('Canvas context not available');
       ctx.drawImage(bitmap, 0, 0);
+      bitmap.close();
       const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
       if (!blob) throw new Error('Failed to convert image fallback');
       const pngBuffer = await blob.arrayBuffer();
@@ -2624,6 +2627,8 @@ export const convertPdfToAvifZip = async (file: File, selectedPages?: number[]):
 
     // Cleanup page to free memory
     page.cleanup();
+    canvas.width = 0;
+    canvas.height = 0;
   }
 
   return await zip.generateAsync({ type: 'blob' });

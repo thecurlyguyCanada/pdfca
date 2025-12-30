@@ -375,7 +375,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             <Plus className="text-canada-red" size={24} strokeWidth={3} />
                         </div>
                         <span className="font-black text-gray-400 group-hover:text-canada-red transition-colors uppercase tracking-widest text-xs">
-                            {currentTool === ToolType.IMAGE_TO_PDF ? (t.addMoreImages || 'Add more images') : (t.addMorePdfs || 'Add more PDFs')}
+                            {currentTool === ToolType.IMAGE_TO_PDF ? (t.addMoreImages || 'Add more images') : (currentTool === ToolType.MERGE ? (t.addMoreFiles || 'Add more Files') : (t.addMorePdfs || 'Add more PDFs'))}
                         </span>
                         <input type="file" multiple accept={tool?.accept || '.pdf'} className="hidden" ref={fileInputRef} onChange={handleFileChange} />
                     </button>
