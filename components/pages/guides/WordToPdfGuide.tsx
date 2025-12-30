@@ -263,7 +263,10 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             >
                 <div className="w-full py-8">
                     <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
-                        <MarkdownContent content={t.intro.replace('**Word to PDF converter**', `[Word to PDF converter](/${lang}/word-to-pdf)`)} />
+                        <MarkdownContent content={t.intro.replace(
+                            lang === 'fr' ? '**convertisseur Word en PDF**' : '**Word to PDF converter**',
+                            `[${lang === 'fr' ? 'convertisseur Word en PDF' : 'Word to PDF converter'}](/${lang}/word-to-pdf)`
+                        )} />
                     </div>
 
                     <div className="space-y-16">
