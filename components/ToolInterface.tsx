@@ -458,6 +458,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 ) : isIpynbTool && file ? (
                     <IpynbToPdfTool
                         lang={lang as Language}
+                        file={file}
                     />
                 ) : isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">

@@ -9,15 +9,25 @@ import { convertIpynbToPdf } from '../../utils/ipynbUtils';
 
 interface IpynbToPdfToolProps {
     lang: Language;
+    file?: File;
 }
 
-export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang }) => {
+export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: initialFile }) => {
     const t = translations[lang];
-    const [file, setFile] = useState<File | null>(null);
+    const [file, setFile] = useState<File | null>(initialFile || null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [result, setResult] = useState<Blob | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        if (initialFile) {
+            setFile(initialFile);
+            setResult(null);
+            setError(null);
+            setProgress(0);
+        }
+    }, [initialFile]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0];
