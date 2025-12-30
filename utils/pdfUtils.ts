@@ -515,6 +515,11 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
       .replace(/'/g, "&#039;");
   };
 
+  const metadata = await pdf.getMetadata();
+  const pdfInfo = (metadata?.info as any) || {};
+  const docTitle = pdfInfo.Title || file.name.replace(/\.[^/.]+$/, "");
+  const docAuthor = pdfInfo.Author || "PDFCanada.ca";
+
   interface TextItem {
     str: string;
     x: number;
@@ -523,6 +528,8 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
     height: number;
     fontSize: number;
     fontName: string;
+    isBold: boolean;
+    isItalic: boolean;
   }
 
   interface ImageItem {
@@ -562,6 +569,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
 
     const items: TextItem[] = textContent.items.map((item: any) => {
       const fs = Math.abs(item.transform[0] || item.transform[3]);
+      const fname = (item.fontName || '').toLowerCase();
       allFontSizes.push(Math.round(fs));
       return {
         str: item.str,
@@ -570,7 +578,9 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
         width: item.width,
         height: item.height || fs,
         fontSize: fs,
-        fontName: item.fontName || ''
+        fontName: item.fontName || '',
+        isBold: fname.includes('bold') || fname.includes('black') || fname.includes('heavy'),
+        isItalic: fname.includes('italic') || fname.includes('oblique')
       };
     });
 
@@ -654,7 +664,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   // 2. Identify Recurring Headers/Footers
   const lineFrequencies: Record<string, number> = {};
   allLinesContents.forEach(content => {
-    if (content.length > 3) {
+    if (content.trim().length > 3) {
       lineFrequencies[content] = (lineFrequencies[content] || 0) + 1;
     }
   });
@@ -702,8 +712,9 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
     filteredLines.forEach((line, lIdx) => {
       const lineText = cleanText(line.map(i => i.str).join(' '));
       const avgFontSize = line.reduce((acc, i) => acc + i.fontSize, 0) / line.length;
+      const isMostlyBold = line.filter(i => i.isBold).length > line.length * 0.5;
 
-      if (avgFontSize > bodyFontSize * 1.15 && lineText.length < 120) {
+      if ((avgFontSize > bodyFontSize * 1.15 || isMostlyBold) && lineText.length < 120) {
         elements.push({ type: 'head', data: { text: lineText.trim(), level: avgFontSize > bodyFontSize * 1.4 ? 1 : (avgFontSize > bodyFontSize * 1.25 ? 2 : 3), line }, y: line[0].y });
       } else if (lIdx > filteredLines.length * 0.6 && (avgFontSize < bodyFontSize * 0.95 || /^\s*(\d+|[*†‡§])[\.\s)]/.test(lineText))) {
         elements.push({ type: 'foot', data: { text: lineText.trim() }, y: line[0].y });
@@ -733,10 +744,13 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
       } else {
         let lineProcessed = "";
         el.data.line.forEach((item: TextItem) => {
-          const itemText = cleanText(item.str);
-          if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(itemText.trim())) {
-            lineProcessed += `<a href="#note_${itemText.trim()}" id="ref_${itemText.trim()}_${globalFootnotes.length + 1000}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
-          } else { lineProcessed += escapeHtml(itemText); }
+          let itemText = escapeHtml(cleanText(item.str));
+          if (item.isBold) itemText = `<strong>${itemText}</strong>`;
+          if (item.isItalic) itemText = `<em>${itemText}</em>`;
+
+          if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(item.str.trim())) {
+            lineProcessed += `<a href="#note_${item.str.trim()}" id="ref_${item.str.trim()}_${globalFootnotes.length + 1000}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
+          } else { lineProcessed += itemText; }
         });
         const lastWord = currentParagraphContent.trim().split(' ').pop() || "";
         if (lineProcessed.trim().endsWith('-')) {
@@ -789,7 +803,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
 
   const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#ref_${fn.key}">&#8617;</a></p></aside>`).join('\n');
 
-  oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>Converted PDF</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
+  oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>${escapeHtml(docTitle)}</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
 
   const tocList = tocEntries.map(e => `<li><a href="content.xhtml#${e.id}">${escapeHtml(e.text)}</a></li>`).join('\n');
   oebps?.file("nav.xhtml", `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Table of Contents</title></head><body><nav epub:type="toc" id="toc"><h1>Table of Contents</h1><ol>${tocList || '<li><a href="content.xhtml">Main Content</a></li>'}</ol></nav></body></html>`);
@@ -797,7 +811,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   const imageManifest = allImages.map(img => `<item id="${img.id}" href="images/${img.id}.png" media-type="image/png"/>`).join('\n');
   const coverManifest = coverData ? '<item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>' : '';
 
-  oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:${Math.random().toString(36).substring(2)}</dc:identifier><dc:title>${escapeHtml(file.name.replace(/\.[^/.]+$/, ""))}</dc:title><dc:language>en</dc:language><dc:creator>PDFCanada.ca</dc:creator><meta property="dcterms:modified">${new Date().toISOString().split('.')[0]}Z</meta>${coverData ? '<meta name="cover" content="cover-image"/>' : ''}</metadata><manifest><item id="content" href="content.xhtml" media-type="application/xhtml+xml"/><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>${imageManifest}${coverManifest}</manifest><spine><itemref idref="content"/></spine></package>`);
+  oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:${Math.random().toString(36).substring(2)}</dc:identifier><dc:title>${escapeHtml(docTitle)}</dc:title><dc:language>en</dc:language><dc:creator>${escapeHtml(docAuthor)}</dc:creator><meta property="dcterms:modified">${new Date().toISOString().split('.')[0]}Z</meta>${coverData ? '<meta name="cover" content="cover-image"/>' : ''}</metadata><manifest><item id="content" href="content.xhtml" media-type="application/xhtml+xml"/><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>${imageManifest}${coverManifest}</manifest><spine><itemref idref="content"/></spine></package>`);
 
   return await zip.generateAsync({ type: "blob" });
 };
