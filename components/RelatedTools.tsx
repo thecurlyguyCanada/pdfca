@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Language } from '../utils/i18n';
+import { ALL_GUIDES, GuideMetadata } from '../lib/guideMetadata';
 
 interface RelatedTool {
     name: string;
@@ -43,48 +44,61 @@ const getTools = (lang: Language) => ({
     ],
 });
 
-const getGuides = (lang: Language) => [
-    { name: lang === 'fr' ? 'Guide Ultime PDF' : 'Ultimate PDF Guide', path: '/guides/ultimate-pdf-guide' },
-    { name: lang === 'fr' ? 'Sécurité Finance PDF' : 'Finance PDF Security', path: '/guides/finance-pdf-security' },
-    { name: lang === 'fr' ? 'Outils PDF Privés' : 'Private PDF Tools', path: '/guides/private-pdf-tools' },
-    { name: lang === 'fr' ? 'PDF Juridique' : 'Legal PDF Security', path: '/guides/legal-pdf-tools' },
-    { name: lang === 'fr' ? 'PDF Santé' : 'Healthcare PDF', path: '/guides/healthcare-pdf-security' },
-    { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', path: '/guides/delete-pdf-pages' },
-    { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: '/guides/compress-pdf' },
-    { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: '/guides/merge-pdf' },
-    { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: '/guides/split-pdf' },
-    { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', path: '/guides/invoice-ocr' },
-    { name: lang === 'fr' ? 'PDF vers CSV' : 'PDF to CSV', path: '/guides/pdf-to-csv' },
-];
-
 const content = {
     en: {
         toolsTitle: 'Related Tools',
         toolsSubtitle: 'Explore more free PDF tools',
         guidesTitle: 'Helpful Guides',
-        viewAll: 'View All Tools'
+        viewAll: 'View All Tools',
+        exploreGuides: 'Explore Guides'
     },
     fr: {
         toolsTitle: 'Outils Connexes',
         toolsSubtitle: 'Découvrez plus d\'outils PDF gratuits',
         guidesTitle: 'Guides Utiles',
-        viewAll: 'Voir Tous les Outils'
+        viewAll: 'Voir Tous les Outils',
+        exploreGuides: 'Explorer les Guides'
     }
 };
 
 export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToolsProps) {
     const allTools = getTools(lang);
-    const guides = getGuides(lang);
 
+    // Determine relevant guide category based on tool category
+    let guideCategory: GuideMetadata['category'] | 'All' = 'All';
+    if (category === 'edit') guideCategory = 'Editing';
+    if (category === 'organize') guideCategory = 'Editing'; // Map organize to Editing as well usually
+    if (category === 'convert') guideCategory = 'Conversion';
+
+    // Get tools
     let tools: RelatedTool[] = [];
     if (category === 'all') {
         tools = [...allTools.edit, ...allTools.organize, ...allTools.convert];
     } else {
-        tools = allTools[category];
+        tools = allTools[category] || [];
+    }
+
+    // Get Guides from Metadata
+    let relevantGuides = ALL_GUIDES;
+    if (guideCategory !== 'All') {
+        // Prioritize matching category, but fill with others if not enough
+        const catGuides = ALL_GUIDES.filter(g => g.category === guideCategory);
+        const otherGuides = ALL_GUIDES.filter(g => g.category !== guideCategory);
+        relevantGuides = [...catGuides, ...otherGuides];
+    } else {
+        // For 'all', maybe prioritize Privacy & Security first as they are high value?
+        const privacyGuides = ALL_GUIDES.filter(g => g.category === 'Privacy & Security');
+        const otherGuides = ALL_GUIDES.filter(g => g.category !== 'Privacy & Security');
+        relevantGuides = [...privacyGuides, ...otherGuides];
     }
 
     const filteredTools = tools.filter(t => t.path !== currentPath).slice(0, 6);
-    const filteredGuides = guides.filter(g => g.path !== currentPath).slice(0, 4);
+
+    // Filter out current guide if we are on a guide page (e.g. /guides/slug)
+    // The currentPath passed might be just the guide path
+    const filteredGuides = relevantGuides
+        .filter(g => !currentPath?.includes(g.slug))
+        .slice(0, 8); // Increased from 4 to 8 for better interlinking
 
     const t = content[lang] || content.en;
 
@@ -94,7 +108,7 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">{t.toolsTitle}</h2>
                 <p className="text-gray-500 dark:text-gray-400 mb-6">{t.toolsSubtitle}</p>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {filteredTools.map((tool, i) => (
                         <Link
                             key={i}
@@ -126,12 +140,18 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
                     {filteredGuides.map((guide, i) => (
                         <Link
                             key={i}
-                            href={`/${lang}${guide.path}`}
-                            className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 hover:border-canada-red text-sm text-gray-600 dark:text-gray-400 hover:text-canada-red transition-all"
+                            href={`/${lang}/guides/${guide.slug}`}
+                            className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 hover:border-canada-red text-sm text-gray-600 dark:text-gray-400 hover:text-canada-red transition-all flex items-center gap-2"
                         >
-                            {guide.name}
+                            <span>{lang === 'fr' ? guide.titleFr : guide.titleEn}</span>
                         </Link>
                     ))}
+                    <Link
+                        href={`/${lang}/guides`}
+                        className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 font-bold text-sm text-canada-red hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                    >
+                        {t.exploreGuides} →
+                    </Link>
                 </div>
             </div>
         </section>
