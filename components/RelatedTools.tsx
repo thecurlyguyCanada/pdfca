@@ -45,11 +45,16 @@ const getTools = (lang: Language) => ({
 
 const getGuides = (lang: Language) => [
     { name: lang === 'fr' ? 'Guide Ultime PDF' : 'Ultimate PDF Guide', path: '/guides/ultimate-pdf-guide' },
+    { name: lang === 'fr' ? 'Sécurité Finance PDF' : 'Finance PDF Security', path: '/guides/finance-pdf-security' },
+    { name: lang === 'fr' ? 'Outils PDF Privés' : 'Private PDF Tools', path: '/guides/private-pdf-tools' },
+    { name: lang === 'fr' ? 'PDF Juridique' : 'Legal PDF Security', path: '/guides/legal-pdf-tools' },
+    { name: lang === 'fr' ? 'PDF Santé' : 'Healthcare PDF', path: '/guides/healthcare-pdf-security' },
     { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', path: '/guides/delete-pdf-pages' },
     { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: '/guides/compress-pdf' },
     { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: '/guides/merge-pdf' },
-    { name: lang === 'fr' ? 'Pivoter PDF' : 'Rotate PDF', path: '/guides/rotate-pdf' },
+    { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: '/guides/split-pdf' },
     { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', path: '/guides/invoice-ocr' },
+    { name: lang === 'fr' ? 'PDF vers CSV' : 'PDF to CSV', path: '/guides/pdf-to-csv' },
 ];
 
 const content = {

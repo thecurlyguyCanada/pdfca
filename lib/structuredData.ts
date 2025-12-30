@@ -90,34 +90,33 @@ export function generateLocalBusinessSchema() {
       closes: '23:59',
     },
     areaServed: [
-      {
-        '@type': 'Country',
-        name: 'Canada',
-      },
-      {
-        '@type': 'State',
-        name: 'Ontario',
-      },
-      {
-        '@type': 'State',
-        name: 'Quebec',
-      },
-      {
-        '@type': 'State',
-        name: 'British Columbia',
-      },
-      {
-        '@type': 'State',
-        name: 'Alberta',
-      },
-      {
-        '@type': 'State',
-        name: 'Manitoba',
-      },
-      {
-        '@type': 'State',
-        name: 'Saskatchewan',
-      },
+      // Country
+      { '@type': 'Country', name: 'Canada' },
+      // All Provinces & Territories
+      { '@type': 'State', name: 'Ontario' },
+      { '@type': 'State', name: 'Quebec' },
+      { '@type': 'State', name: 'British Columbia' },
+      { '@type': 'State', name: 'Alberta' },
+      { '@type': 'State', name: 'Manitoba' },
+      { '@type': 'State', name: 'Saskatchewan' },
+      { '@type': 'State', name: 'Nova Scotia' },
+      { '@type': 'State', name: 'New Brunswick' },
+      { '@type': 'State', name: 'Newfoundland and Labrador' },
+      { '@type': 'State', name: 'Prince Edward Island' },
+      { '@type': 'State', name: 'Northwest Territories' },
+      { '@type': 'State', name: 'Yukon' },
+      { '@type': 'State', name: 'Nunavut' },
+      // Major Cities
+      { '@type': 'City', name: 'Toronto' },
+      { '@type': 'City', name: 'Montreal' },
+      { '@type': 'City', name: 'Vancouver' },
+      { '@type': 'City', name: 'Calgary' },
+      { '@type': 'City', name: 'Edmonton' },
+      { '@type': 'City', name: 'Ottawa' },
+      { '@type': 'City', name: 'Winnipeg' },
+      { '@type': 'City', name: 'Quebec City' },
+      { '@type': 'City', name: 'Hamilton' },
+      { '@type': 'City', name: 'Halifax' },
     ],
   };
 }
@@ -137,13 +136,8 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig) {
       price: '0',
       priceCurrency: 'CAD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '1250',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // Note: aggregateRating removed - Google penalizes fake/unverified reviews
+    // Add back when you have real user reviews to reference
     author: {
       '@type': 'Organization',
       name: 'pdfcanada.ca',

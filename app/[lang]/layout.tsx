@@ -149,6 +149,10 @@ export default async function RootLayout({
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
                 {/* Preconnect for critical third parties */}
                 <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+                {/* Explicit hreflang tags for better international SEO */}
+                <link rel="alternate" hrefLang="en-CA" href="https://www.pdfcanada.ca/en" />
+                <link rel="alternate" hrefLang="fr-CA" href="https://www.pdfcanada.ca/fr" />
+                <link rel="alternate" hrefLang="x-default" href="https://www.pdfcanada.ca/en" />
             </head>
             <body className={`${inter.className} antialiased`}>
                 <ErrorBoundary>
