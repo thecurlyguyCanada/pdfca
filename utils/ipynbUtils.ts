@@ -47,102 +47,200 @@ export const convertIpynbToPdf = async (file: File): Promise<Blob> => {
         return false;
     };
 
-    const addText = (text: string, options: { font?: string, style?: string, size?: number, color?: number[] } = {}) => {
-        const font = options.font || 'helvetica';
-        const style = options.style || 'normal';
-        const size = options.size || 10;
-        const color = options.color || [0, 0, 0];
-
-        doc.setFont(font, style);
-        doc.setFontSize(size);
+    /**
+     * Renders a block of text with basic Markdown formatting (Bold, Italic)
+     * Handles splitting text into lines and checking for page breaks.
+     */
+    const renderStyledText = (text: string, xUrl: number, fontSize: number, fontName: string = 'helvetica', color: number[] = [0, 0, 0]) => {
+        doc.setFontSize(fontSize);
         doc.setTextColor(color[0], color[1], color[2]);
 
-        const lines = doc.splitTextToSize(text, contentWidth);
-        const lineHeight = (size * 0.3527) * 1.2; // Convert pt to mm and add spacing
+        const lineHeight = (fontSize * 0.3527) * 1.3;
 
-        lines.forEach((line: string) => {
+        // Tokenize by style delimiters
+        // Bold: **text** or __text__
+        // Italic: *text* or _text_
+        // Code: `text`
+
+        // Simple line splitting first
+        const words = text.split(/(\s+)/);
+        let currentLine = "";
+        let currentLineWidth = 0;
+
+        const printLine = (line: string) => {
             checkPageBreak(lineHeight);
-            doc.text(line, margin, y + (size * 0.3527)); // Adjust for baseline
-            y += lineHeight;
-        });
 
-        y += 2; // Extra padding between blocks
+            // Basic regex-based formatting for the whole line (simplified)
+            // Ideally we would parse tokens and render them one by one, but for this simplified version:
+            // We will strip markdown chars and use normal font for now, 
+            // OR checks for fully bold lines.
+            // A full rich-text renderer token-by-token is very complex without a library.
+            // We will implement a simplified version:
+            // 1. Check if line starts with ### (Header) -> handled by caller
+            // 2. Bold/Italic rendering for inline text is tricky in standard jsPDF without HTML.
+            // Strategy: Render plain text but clean up the markers.
+
+            // CLEAN UP MARKDOWN SYMBOLS FOR DISPLAY
+            const cleanLine = line
+                .replace(/\*\*(.*?)\*\*/g, '$1') // Bold
+                .replace(/\*(.*?)\*/g, '$1')     // Italic
+                .replace(/`(.*?)`/g, '$1');      // Code
+
+            doc.setFont(fontName, 'normal');
+            if (/\*\*(.*?)\*\*/.test(line)) doc.setFont(fontName, 'bold'); // Heuristic: if line contains bold marker, bold the line (simplification)
+
+            doc.text(cleanLine, xUrl, y + (fontSize * 0.3527));
+            y += lineHeight;
+        };
+
+        let tempLine = "";
+        for (const word of words) {
+            // Calculate width of clean word
+            const cleanWord = word.replace(/[\*_`]/g, '');
+            const w = doc.getStringUnitWidth(cleanWord) * fontSize / doc.internal.scaleFactor;
+
+            if (currentLineWidth + w > contentWidth) {
+                printLine(currentLine);
+                currentLine = word;
+                currentLineWidth = w;
+            } else {
+                currentLine += word;
+                currentLineWidth += w;
+            }
+        }
+        if (currentLine) printLine(currentLine);
+    };
+
+    const renderMarkdown = (source: string) => {
+        const lines = source.split('\n');
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+
+            // Headers
+            if (line.startsWith('# ')) {
+                checkPageBreak(12);
+                y += 2;
+                renderStyledText(line.replace('# ', ''), margin, 18, 'helvetica-bold');
+                y += 2;
+            } else if (line.startsWith('## ')) {
+                checkPageBreak(10);
+                y += 2;
+                renderStyledText(line.replace('## ', ''), margin, 16, 'helvetica-bold');
+                y += 2;
+            } else if (line.startsWith('### ')) {
+                checkPageBreak(8);
+                renderStyledText(line.replace('### ', ''), margin, 14, 'helvetica-bold');
+            } else if (line.startsWith('- ') || line.startsWith('* ')) {
+                // List item
+                renderStyledText('• ' + line.substring(2), margin + 5, 11);
+            } else {
+                // Regular Text
+                if (line.trim()) {
+                    renderStyledText(line, margin, 11);
+                }
+            }
+        }
+        y += 3;
     };
 
     for (const cell of cells) {
         if (cell.cell_type === 'markdown') {
             const source = Array.isArray(cell.source) ? cell.source.join('') : cell.source;
             if (source.trim()) {
-                addText(source, { size: 11, style: 'normal' });
+                renderMarkdown(source);
             }
         } else if (cell.cell_type === 'code') {
-            // Input code
+            // Input code wrapper
             const source = Array.isArray(cell.source) ? cell.source.join('') : cell.source;
             if (source.trim()) {
-                doc.setFillColor(245, 245, 245);
                 const codeLines = source.split('\n');
                 const codeSize = 9;
-                const codeLineHeight = (codeSize * 0.3527) * 1.2;
+                const codeLineHeight = (codeSize * 0.3527) * 1.3;
                 const totalCodeHeight = (codeLines.length * codeLineHeight) + 4;
 
                 checkPageBreak(totalCodeHeight);
-                doc.rect(margin - 2, y, contentWidth + 4, totalCodeHeight, 'F');
-                y += 2;
 
-                addText(source, { font: 'courier', size: codeSize, color: [50, 50, 50] });
-                y += 2;
+                // Background Box
+                doc.setFillColor(248, 248, 248);
+                doc.setDrawColor(230, 230, 230);
+                doc.rect(margin - 2, y, contentWidth + 4, totalCodeHeight, 'FD');
+
+                // Render Code
+                doc.setFont('courier', 'normal');
+                doc.setFontSize(codeSize);
+                doc.setTextColor(50, 50, 50);
+
+                let codeY = y + 2 + (codeSize * 0.3527);
+                for (const line of codeLines) {
+                    doc.text(line, margin, codeY);
+                    codeY += codeLineHeight;
+                }
+
+                y += totalCodeHeight + 2;
             }
 
             // Outputs
             if (cell.outputs && cell.outputs.length > 0) {
                 for (const output of cell.outputs) {
-                    if (output.output_type === 'stream' || output.output_type === 'execute_result' || output.output_type === 'display_data') {
-                        if (output.text) {
-                            const text = Array.isArray(output.text) ? output.text.join('') : output.text;
-                            addText(text, { font: 'courier', size: 8, color: [100, 100, 100] });
-                        }
+                    // Text Output
+                    if (output.text || (output.data && output.data['text/plain'])) {
+                        const rawText = output.text || output.data['text/plain'];
+                        const text = Array.isArray(rawText) ? rawText.join('') : rawText;
 
-                        if (output.data) {
-                            // Handle text/plain
-                            if (output.data['text/plain']) {
-                                const text = Array.isArray(output.data['text/plain']) ? output.data['text/plain'].join('') : output.data['text/plain'];
-                                addText(text, { font: 'courier', size: 8, color: [100, 100, 100] });
+                        doc.setFont('courier', 'normal');
+                        doc.setFontSize(8);
+                        doc.setTextColor(80, 80, 80);
+
+                        const lines = doc.splitTextToSize(text, contentWidth);
+                        const lineHeight = 3.5; // mm
+
+                        checkPageBreak(lines.length * lineHeight);
+
+                        lines.forEach((line: string) => {
+                            checkPageBreak(lineHeight);
+                            doc.text(line, margin, y + 2.5);
+                            y += lineHeight;
+                        });
+                        y += 2;
+                    }
+
+                    // Image Output
+                    const imgData = output.data ? (output.data['image/png'] || output.data['image/jpeg']) : null;
+                    if (imgData) {
+                        try {
+                            // Ensure Base64 prefix
+                            const base64 = imgData.startsWith('data:image') ? imgData : `data:image/png;base64,${imgData.trim()}`;
+
+                            // Load image synchronously-ish to get dimensions
+                            const img = new Image();
+                            await new Promise((resolve, reject) => {
+                                img.onload = resolve;
+                                img.onerror = reject;
+                                img.src = base64;
+                            });
+
+                            let imgW = img.width * 0.264583; // px to mm
+                            let imgH = img.height * 0.264583;
+
+                            // Scale down if too big
+                            if (imgW > contentWidth) {
+                                const ratio = contentWidth / imgW;
+                                imgW = contentWidth;
+                                imgH = imgH * ratio;
                             }
 
-                            // Handle images (image/png or image/jpeg)
-                            const imgData = output.data['image/png'] || output.data['image/jpeg'];
-                            if (imgData) {
-                                try {
-                                    const base64 = `data:image/png;base64,${imgData.trim()}`;
-                                    // We need to get image dimensions. Simplified for now.
-                                    const img = new Image();
-                                    await new Promise((resolve) => {
-                                        img.onload = resolve;
-                                        img.src = base64;
-                                    });
-
-                                    let imgW = img.width * 0.264583; // px to mm approx
-                                    let imgH = img.height * 0.264583;
-
-                                    if (imgW > contentWidth) {
-                                        const ratio = contentWidth / imgW;
-                                        imgW = contentWidth;
-                                        imgH = imgH * ratio;
-                                    }
-
-                                    checkPageBreak(imgH + 10);
-                                    doc.addImage(base64, 'PNG', margin, y, imgW, imgH);
-                                    y += imgH + 5;
-                                } catch (e) {
-                                    console.error('Failed to add image to PDF:', e);
-                                }
-                            }
+                            checkPageBreak(imgH + 5);
+                            doc.addImage(base64, 'PNG', margin, y, imgW, imgH);
+                            y += imgH + 5;
+                        } catch (e) {
+                            console.warn('Failed to render output image', e);
                         }
                     }
                 }
             }
         }
-        y += 5; // Spacing between cells
+        y += 2; // Spacing between cells
     }
 
     return doc.output('blob');

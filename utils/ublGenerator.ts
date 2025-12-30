@@ -76,6 +76,32 @@ export const generateUBL = (data: InvoiceData): string => {
     const totalAmount = data.total || 0;
     const subtotalAmount = data.subtotal || (totalAmount - taxAmount);
 
+    const lineItemsXml = data.lineItems && data.lineItems.length > 0
+        ? data.lineItems.map((item, index) => `
+    <cac:InvoiceLine>
+        <cbc:ID>${index + 1}</cbc:ID>
+        <cbc:InvoicedQuantity unitCode="EA">${item.quantity || 1}</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="${currency}">${((item.amount || 0)).toFixed(2)}</cbc:LineExtensionAmount>
+        <cac:Item>
+            <cbc:Name>${escapeXml(item.description || 'Item')}</cbc:Name>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="${currency}">${((item.unitPrice || 0)).toFixed(2)}</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>`).join('')
+        : `
+    <cac:InvoiceLine>
+        <cbc:ID>1</cbc:ID>
+        <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="${currency}">${subtotalAmount.toFixed(2)}</cbc:LineExtensionAmount>
+        <cac:Item>
+            <cbc:Name>Invoice Services</cbc:Name>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="${currency}">${subtotalAmount.toFixed(2)}</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>`;
+
     return `<?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
     xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
@@ -129,17 +155,6 @@ export const generateUBL = (data: InvoiceData): string => {
         <cbc:TaxInclusiveAmount currencyID="${currency}">${totalAmount.toFixed(2)}</cbc:TaxInclusiveAmount>
         <cbc:PayableAmount currencyID="${currency}">${totalAmount.toFixed(2)}</cbc:PayableAmount>
     </cac:LegalMonetaryTotal>
-
-    <cac:InvoiceLine>
-        <cbc:ID>1</cbc:ID>
-        <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="${currency}">${subtotalAmount.toFixed(2)}</cbc:LineExtensionAmount>
-        <cac:Item>
-            <cbc:Name>Invoice Services</cbc:Name>
-        </cac:Item>
-        <cac:Price>
-            <cbc:PriceAmount currencyID="${currency}">${subtotalAmount.toFixed(2)}</cbc:PriceAmount>
-        </cac:Price>
-    </cac:InvoiceLine>
+${lineItemsXml}
 </Invoice>`;
 };
