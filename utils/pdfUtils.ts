@@ -500,7 +500,11 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   const JSZip = await getJSZip();
 
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+  }).promise;
 
   const escapeHtml = (unsafe: string) => {
     return unsafe
@@ -511,62 +515,289 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
       .replace(/'/g, "&#039;");
   };
 
-  let fullText = "";
+  interface TextItem {
+    str: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    fontSize: number;
+    fontName: string;
+  }
+
+  interface ImageItem {
+    id: string;
+    data: Uint8Array;
+    y: number;
+    width: number;
+    height: number;
+  }
+
+  interface ProcessedPage {
+    lines: TextItem[][];
+    images: ImageItem[];
+    footnotes: { id: string; content: string; key: string }[];
+    headings: { level: number; text: string; id: string }[];
+  }
+
+  const processedPages: ProcessedPage[] = [];
+  const allLinesContents: string[] = [];
+  const allImages: ImageItem[] = [];
+
+  // Helper for mode calculation
+  const getMode = (arr: number[]) => {
+    const counts: Record<number, number> = {};
+    arr.forEach(v => counts[v] = (counts[v] || 0) + 1);
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return sorted.length > 0 ? parseInt(sorted[0][0]) : 12;
+  };
+
+  const allFontSizes: number[] = [];
+
+  // 1. Initial Extraction
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const strings = content.items
-      .filter((item: any) => typeof item.str === 'string')
-      .map((item: any) => escapeHtml(item.str));
-    fullText += `<h2>Page ${i}</h2><p>${strings.join(' ')}</p><hr/>`;
-    // Yield to UI loop
+    const textContent = await page.getTextContent();
+    const viewport = page.getViewport({ scale: 1.0 });
+
+    const items: TextItem[] = textContent.items.map((item: any) => {
+      const fs = Math.abs(item.transform[0] || item.transform[3]);
+      allFontSizes.push(Math.round(fs));
+      return {
+        str: item.str,
+        x: item.transform[4],
+        y: item.transform[5],
+        width: item.width,
+        height: item.height || fs,
+        fontSize: fs,
+        fontName: item.fontName || ''
+      };
+    });
+
+    // --- Image Extraction ---
+    const pageImages: ImageItem[] = [];
+    const operatorList = await page.getOperatorList();
+    let transform = [1, 0, 0, 1, 0, 0];
+    const transformStack: any[] = [];
+    const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
+
+    for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
+      const fn = operatorList.fnArray[opIdx];
+      const args = operatorList.argsArray[opIdx];
+      if (fn === OPS.transform) {
+        const m = args;
+        const [a, b, c, d, e, f] = transform;
+        transform = [a * m[0] + c * m[1], b * m[0] + d * m[1], a * m[2] + c * m[3], b * m[2] + d * m[3], a * m[4] + c * m[5] + e, b * m[4] + d * m[5] + f];
+      } else if (fn === OPS.save) {
+        transformStack.push([...transform]);
+      } else if (fn === OPS.restore) {
+        transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
+      } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
+        const imgId = args[0];
+        try {
+          const img = await page.objs.get(imgId);
+          if (img) {
+            const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
+            const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
+            const y = transform[5];
+
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              const imageData = ctx.createImageData(img.width, img.height);
+              if (img.data.length === img.width * img.height * 3) {
+                for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
+                  imageData.data[l] = img.data[k]; imageData.data[l + 1] = img.data[k + 1]; imageData.data[l + 2] = img.data[k + 2]; imageData.data[l + 3] = 255;
+                }
+              } else { imageData.data.set(img.data); }
+              ctx.putImageData(imageData, 0, 0);
+              const dataUrl = canvas.toDataURL('image/png');
+              const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+              const imageItem = { id: `img_${allImages.length}`, data: bytes, y, width, height };
+              pageImages.push(imageItem);
+              allImages.push(imageItem);
+              canvas.width = 0; canvas.height = 0;
+            }
+          }
+        } catch (err) { console.warn("Image extraction failed", err); }
+      }
+    }
+
+    // Group into lines
+    const lines: TextItem[][] = [];
+    items.sort((a, b) => b.y - a.y || a.x - b.x);
+    let currentLine: TextItem[] = [];
+    items.forEach(item => {
+      if (currentLine.length === 0) {
+        currentLine.push(item);
+      } else {
+        const last = currentLine[currentLine.length - 1];
+        if (Math.abs(item.y - last.y) < 3) {
+          currentLine.push(item);
+        } else {
+          lines.push(currentLine.sort((a, b) => a.x - b.x));
+          currentLine = [item];
+        }
+      }
+    });
+    if (currentLine.length > 0) lines.push(currentLine.sort((a, b) => a.x - b.x));
+
+    processedPages.push({ lines, images: pageImages, footnotes: [], headings: [] });
+    lines.forEach(l => allLinesContents.push(l.map(i => i.str.trim()).join(' ')));
     await new Promise(resolve => setTimeout(resolve, 0));
   }
 
+  const bodyFontSize = getMode(allFontSizes);
+
+  // 2. Identify Recurring Headers/Footers
+  const lineFrequencies: Record<string, number> = {};
+  allLinesContents.forEach(content => {
+    if (content.length > 3) {
+      lineFrequencies[content] = (lineFrequencies[content] || 0) + 1;
+    }
+  });
+
+  const recurringLines = new Set(
+    Object.entries(lineFrequencies)
+      .filter(([content, count]) => count > pdf.numPages * 0.4)
+      .map(([content]) => content)
+  );
+
+  // 3. Process Pages
+  let fullHtml = "";
+  const globalFootnotes: { id: string; content: string; key: string }[] = [];
+  const tocEntries: { level: number; text: string; id: string }[] = [];
+  let headingCounter = 1;
+
+  const ligatures: Record<string, string> = {
+    '\uFB00': 'ff', '\uFB01': 'fi', '\uFB02': 'fl', '\uFB03': 'ffi', '\uFB04': 'ffl', '\u00A0': ' ',
+  };
+
+  const cleanText = (text: string) => {
+    let cleaned = text;
+    Object.entries(ligatures).forEach(([lig, rep]) => {
+      cleaned = cleaned.split(lig).join(rep);
+    });
+    return cleaned.replace(/\s+/g, ' ');
+  };
+
+  const commonAbbreviations = new Set(['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'St.', 'Ave.', 'Ltd.', 'Inc.', 'e.g.', 'i.e.', 'vs.', 'vol.', 'p.', 'pp.', 'cf.', 'viz.', 'et al.']);
+
+  for (let pIdx = 0; pIdx < processedPages.length; pIdx++) {
+    const page = processedPages[pIdx];
+    let pageHtml = "";
+
+    const elements: { type: 'text' | 'image' | 'head' | 'foot'; data: any; y: number }[] = [];
+
+    page.images.forEach(img => elements.push({ type: 'image', data: img, y: img.y }));
+
+    const filteredLines = page.lines.filter(line => {
+      const content = line.map(i => i.str.trim()).join(' ');
+      const isPageNum = /^\d+$/.test(content.trim()) || /^Page \d+$/.test(content.trim());
+      return !recurringLines.has(content) && !isPageNum;
+    });
+
+    filteredLines.forEach((line, lIdx) => {
+      const lineText = cleanText(line.map(i => i.str).join(' '));
+      const avgFontSize = line.reduce((acc, i) => acc + i.fontSize, 0) / line.length;
+
+      if (avgFontSize > bodyFontSize * 1.15 && lineText.length < 120) {
+        elements.push({ type: 'head', data: { text: lineText.trim(), level: avgFontSize > bodyFontSize * 1.4 ? 1 : (avgFontSize > bodyFontSize * 1.25 ? 2 : 3), line }, y: line[0].y });
+      } else if (lIdx > filteredLines.length * 0.6 && (avgFontSize < bodyFontSize * 0.95 || /^\s*(\d+|[*†‡§])[\.\s)]/.test(lineText))) {
+        elements.push({ type: 'foot', data: { text: lineText.trim() }, y: line[0].y });
+      } else {
+        elements.push({ type: 'text', data: { line, text: lineText }, y: line[0].y });
+      }
+    });
+
+    elements.sort((a, b) => b.y - a.y);
+
+    let currentParagraphContent = "";
+
+    elements.forEach(el => {
+      if (el.type === 'image') {
+        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+        pageHtml += `<div class="image-wrapper"><img src="images/${el.data.id}.png" alt="Illustration" /></div>`;
+      } else if (el.type === 'head') {
+        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+        const id = `heading_${headingCounter++}`;
+        pageHtml += `<h${el.data.level} id="${id}">${escapeHtml(el.data.text)}</h${el.data.level}>`;
+        tocEntries.push({ level: el.data.level, text: el.data.text, id });
+      } else if (el.type === 'foot') {
+        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+        const match = el.data.text.match(/^\s*(\d+|[*†‡§]+)/);
+        const key = match ? match[1] : `p${pIdx}_${globalFootnotes.length}`;
+        globalFootnotes.push({ id: `note_${key}_${globalFootnotes.length}`, content: el.data.text, key });
+      } else {
+        let lineProcessed = "";
+        el.data.line.forEach((item: TextItem) => {
+          const itemText = cleanText(item.str);
+          if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(itemText.trim())) {
+            lineProcessed += `<a href="#note_${itemText.trim()}" id="ref_${itemText.trim()}_${globalFootnotes.length + 1000}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
+          } else { lineProcessed += escapeHtml(itemText); }
+        });
+        const lastWord = currentParagraphContent.trim().split(' ').pop() || "";
+        if (lineProcessed.trim().endsWith('-')) {
+          currentParagraphContent += lineProcessed.trim().slice(0, -1);
+        } else if (/[.!?]$/.test(lineProcessed.trim()) && !commonAbbreviations.has(lastWord)) {
+          currentParagraphContent += lineProcessed + " ";
+          pageHtml += `<p>${currentParagraphContent.trim()}</p>`;
+          currentParagraphContent = "";
+        } else { currentParagraphContent += lineProcessed + " "; }
+      }
+    });
+
+    if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+    fullHtml += pageHtml;
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  const footnoteMap: Record<string, string[]> = {};
+  globalFootnotes.forEach(fn => { if (!footnoteMap[fn.key]) footnoteMap[fn.key] = []; footnoteMap[fn.key].push(fn.id); });
+  Object.entries(footnoteMap).forEach(([key, ids]) => {
+    const regex = new RegExp(`href="#note_${key.replace(/[*†‡§]/g, '\\$&')}"`, 'g');
+    fullHtml = fullHtml.replace(regex, `href="#${ids[0]}"`);
+  });
+
+  // 4. Generate Cover Image (Page 1)
+  let coverData: Uint8Array | null = null;
+  try {
+    const firstPage = await pdf.getPage(1);
+    const scale = 1.5;
+    const viewport = firstPage.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      await firstPage.render({ canvasContext: ctx, viewport }).promise;
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      coverData = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+    }
+  } catch (err) { console.warn("Cover generation failed", err); }
+
   const zip = new JSZip();
   zip.file("mimetype", "application/epub+zip", { compression: "STORE" });
-
-  zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
-  <rootfiles>
-    <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
-  </rootfiles>
-</container>`);
+  zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?><container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>`);
 
   const oebps = zip.folder("OEBPS");
-  oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><title>Converted PDF</title></head>
-<body>${fullText}</body>
-</html>`);
+  const imagesFolder = oebps?.folder("images");
+  allImages.forEach(img => imagesFolder?.file(`${img.id}.png`, img.data));
+  if (coverData) imagesFolder?.file("cover.jpg", coverData);
 
-  oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0">
-  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <dc:title>Converted PDF</dc:title>
-    <dc:language>en</dc:language>
-  </metadata>
-  <manifest>
-    <item id="content" href="content.xhtml" media-type="application/xhtml+xml"/>
-    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
-  </manifest>
-  <spine toc="ncx">
-    <itemref idref="content"/>
-  </spine>
-</package>`);
+  const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#ref_${fn.key}">&#8617;</a></p></aside>`).join('\n');
 
-  oebps?.file("toc.ncx", `<?xml version="1.0" encoding="UTF-8"?>
-<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
-  <head><meta name="dtb:uid" content="urn:uuid:12345"/></head>
-  <docTitle><text>Converted PDF</text></docTitle>
-  <navMap>
-    <navPoint id="navPoint-1" playOrder="1">
-      <navLabel><text>Content</text></navLabel>
-      <content src="content.xhtml"/>
-    </navPoint>
-  </navMap>
-</ncx>`);
+  oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>Converted PDF</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
+
+  const tocList = tocEntries.map(e => `<li><a href="content.xhtml#${e.id}">${escapeHtml(e.text)}</a></li>`).join('\n');
+  oebps?.file("nav.xhtml", `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Table of Contents</title></head><body><nav epub:type="toc" id="toc"><h1>Table of Contents</h1><ol>${tocList || '<li><a href="content.xhtml">Main Content</a></li>'}</ol></nav></body></html>`);
+
+  const imageManifest = allImages.map(img => `<item id="${img.id}" href="images/${img.id}.png" media-type="image/png"/>`).join('\n');
+  const coverManifest = coverData ? '<item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>' : '';
+
+  oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:${Math.random().toString(36).substring(2)}</dc:identifier><dc:title>${escapeHtml(file.name.replace(/\.[^/.]+$/, ""))}</dc:title><dc:language>en</dc:language><dc:creator>PDFCanada.ca</dc:creator><meta property="dcterms:modified">${new Date().toISOString().split('.')[0]}Z</meta>${coverData ? '<meta name="cover" content="cover-image"/>' : ''}</metadata><manifest><item id="content" href="content.xhtml" media-type="application/xhtml+xml"/><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>${imageManifest}${coverManifest}</manifest><spine><itemref idref="content"/></spine></package>`);
 
   return await zip.generateAsync({ type: "blob" });
 };
