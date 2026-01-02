@@ -208,7 +208,7 @@ NEWFILEUID:NONE
         const amt = row['Amount'] || row['amount'] || "0";
         const memo = Object.values(row).join(' ').substring(0, 255);
         const name = (row['Description'] || row['desc'] || row['Payee'] || "Transaction").substring(0, 32);
-        const fitid = `${date.replace(/-/g, '')}${amt.replace(/./g, '')}${i}`;
+        const fitid = `${date.replace(/-/g, '')}${amt.replace(/\./g, '')}${i}`;
 
         ofx += `<STMTTRN>
 <TRNTYPE>OTHER</TRNTYPE>
