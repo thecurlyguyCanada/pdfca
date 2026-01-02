@@ -45,6 +45,7 @@ export const translations = {
     imageToPdfGuide: "Image to PDF Guide",
     avifToPdfGuide: "AVIF to PDF Guide",
     pdfToAvifGuide: "PDF to AVIF Guide",
+    changePdfViewerMacGuide: "Change PDF Viewer Mac Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -1299,6 +1300,7 @@ export const translations = {
     imageToPdfGuide: "Guide Image en PDF",
     avifToPdfGuide: "Guide AVIF en PDF",
     pdfToAvifGuide: "Guide PDF en AVIF",
+    changePdfViewerMacGuide: "Guide Changer Lecteur PDF Mac",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",

@@ -29,6 +29,7 @@ import { PhishingPdfGuide } from '@/components/pages/guides/PhishingPdfGuide';
 import { PdfToUblGuide } from '@/components/pages/guides/PdfToUblGuide';
 import { IpynbToPdfGuide } from '@/components/pages/guides/IpynbToPdfGuide';
 import { AvifToPdfGuide } from '@/components/pages/guides/AvifToPdfGuide';
+import { ChangePdfViewerMacGuide } from '@/components/pages/guides/ChangePdfViewerMacGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -66,6 +67,8 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ipynb-to-pdf': IpynbToPdfGuide,
     'avif-to-pdf': AvifToPdfGuide,
     'pdf-to-avif': AvifToPdfGuide,
+    'change-pdf-viewer-mac': ChangePdfViewerMacGuide,
+    'change-default-pdf-viewer-mac': ChangePdfViewerMacGuide, // SEO alias
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);
