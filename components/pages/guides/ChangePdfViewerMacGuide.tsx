@@ -576,7 +576,7 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
                         lang={lang}
                     />
 
-                    <RelatedTools lang={lang} currentPath="/guides/change-pdf-viewer-mac" category="view" />
+                    <RelatedTools lang={lang} currentPath="/guides/change-pdf-viewer-mac" category="all" />
 
                     <AuthorBio lang={lang} />
                 </div>
