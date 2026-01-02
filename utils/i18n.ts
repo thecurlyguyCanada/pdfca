@@ -45,6 +45,8 @@ export const translations = {
     imageToPdfGuide: "Image to PDF Guide",
     avifToPdfGuide: "AVIF to PDF Guide",
     pdfToAvifGuide: "PDF to AVIF Guide",
+    emlToPdfGuide: "EML to PDF Guide",
+    changePdfViewerMacGuide: "Change PDF Viewer Mac Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -950,6 +952,8 @@ export const translations = {
     toolImageToPdfDesc: "Convert JPG/PNG/AVIF to PDF.",
     toolPdfToAvif: "PDF to AVIF",
     toolPdfToAvifDesc: "Extract pages as AVIF images.",
+    toolEmlToPdf: "EML to PDF",
+    toolEmlToPdfDesc: "Convert email files to PDF.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -1299,6 +1303,8 @@ export const translations = {
     imageToPdfGuide: "Guide Image en PDF",
     avifToPdfGuide: "Guide AVIF en PDF",
     pdfToAvifGuide: "Guide PDF en AVIF",
+    emlToPdfGuide: "Guide EML en PDF",
+    changePdfViewerMacGuide: "Guide Changer Lecteur PDF Mac",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",
@@ -2053,6 +2059,8 @@ export const translations = {
     toolImageToPdfDesc: "Convertir JPG/PNG/AVIF en PDF.",
     toolPdfToAvif: "PDF vers AVIF",
     toolPdfToAvifDesc: "Extraire les pages en images AVIF.",
+    toolEmlToPdf: "EML vers PDF",
+    toolEmlToPdfDesc: "Convertir fichiers email en PDF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",

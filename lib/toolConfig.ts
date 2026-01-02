@@ -365,6 +365,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['pdf vers avif', 'convertir pdf en image', 'extraire images du pdf'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'eml-to-pdf',
+    tool: ToolType.EML_TO_PDF,
+    title: 'EML to PDF',
+    titleFr: 'EML vers PDF',
+    description: 'Convert email files (EML) to PDF format. Preserve email headers, body text, and attachment info. Free, secure, browser-based conversion.',
+    descriptionFr: 'Convertissez les fichiers email (EML) en format PDF. Préservez les en-têtes, le texte et les informations de pièces jointes. Gratuit et sécurisé.',
+    keywords: ['eml to pdf', 'convert email to pdf', 'email to pdf converter', 'outlook email to pdf', 'thunderbird email to pdf'],
+    keywordsFr: ['eml vers pdf', 'convertir email en pdf', 'convertisseur email pdf', 'email outlook en pdf'],
+    accept: '.eml,message/rfc822'
+  },
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

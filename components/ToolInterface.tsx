@@ -40,6 +40,10 @@ const IpynbToPdfTool = dynamic(() => import('./tools/IpynbToPdfTool').then(mod =
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
+const EmlToPdfTool = dynamic(() => import('./tools/EmlToPdfTool').then(mod => mod.EmlToPdfTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
 
 
 import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
@@ -270,6 +274,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isPhishingTool = currentTool === ToolType.PHISHING_DETECTOR;
     const isUblTool = currentTool === ToolType.PDF_TO_UBL;
     const isIpynbTool = currentTool === ToolType.IPYNB_TO_PDF;
+    const isEmlTool = currentTool === ToolType.EML_TO_PDF;
 
     const tool = tools.find(t => t.id === currentTool);
     if (!file && (!files || files.length === 0) && !isBarcodeTool) {
@@ -465,6 +470,11 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     />
                 ) : isIpynbTool && file ? (
                     <IpynbToPdfTool
+                        lang={lang as Language}
+                        file={file}
+                    />
+                ) : isEmlTool && file ? (
+                    <EmlToPdfTool
                         lang={lang as Language}
                         file={file}
                     />

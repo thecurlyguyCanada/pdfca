@@ -90,6 +90,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
                         <li><Link href={`/${lang}/pdf-to-ubl`} className="hover:text-white transition-colors font-bold text-orange-500">{t.toolPdfToUbl}</Link></li>
                         <li><Link href={`/${lang}/ipynb-to-pdf`} className="hover:text-white transition-colors font-bold text-blue-400">{t.toolIpynbToPdf}</Link></li>
+                        <li><Link href={`/${lang}/eml-to-pdf`} className="hover:text-white transition-colors font-bold text-cyan-400">{t.toolEmlToPdf}</Link></li>
                         <li><Link href={`/${lang}/image-to-pdf`} className="hover:text-white transition-colors">{t.toolImageToPdf}</Link></li>
                      </ul>
                   </FooterSection>
