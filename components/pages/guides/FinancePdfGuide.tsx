@@ -440,9 +440,9 @@ export const FinancePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
                 </div>
 
-                <div className="bg-green-600 text-white rounded-[2rem] p-12 text-center shadow-xl shadow-green-500/20">
-                    <h3 className="text-3xl font-bold mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}`} className="inline-block bg-white text-green-600 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50">
+                <div className="bg-green-600 text-white rounded-xl md:rounded-[2rem] p-6 md:p-12 text-center shadow-xl shadow-green-500/20">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{t.cta}</h3>
+                    <Link href={`/${lang}`} className="inline-block bg-white text-green-600 hover:scale-105 transition-all px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-green-50">
                         {t.ctaBtn}
                     </Link>
                 </div>

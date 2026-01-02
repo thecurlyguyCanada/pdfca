@@ -438,12 +438,12 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                         </section>
                     ))}
 
-                    <section className="bg-canada-red rounded-3xl p-12 text-center text-white shadow-xl">
-                        <Zap className="mx-auto mb-6 opacity-50" size={48} />
-                        <h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2>
-                        <p className="text-white/80 mb-8 font-medium">{t.ctaSubtext}</p>
+                    <section className="bg-canada-red rounded-2xl md:rounded-3xl p-6 md:p-12 text-center text-white shadow-xl">
+                        <Zap className="mx-auto mb-4 md:mb-6 opacity-50" size={36} />
+                        <h2 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">{t.ctaTitle}</h2>
+                        <p className="text-white/80 mb-6 md:mb-8 font-medium text-sm md:text-base">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/delete-pdf-pages`}
-                            className="bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-lg"
+                            className="bg-white text-canada-red px-6 md:px-10 py-3 md:py-4 rounded-full font-black text-base md:text-lg hover:scale-105 transition-transform shadow-lg inline-block"
                         >
                             {t.ctaButton}
                         </Link>

@@ -666,10 +666,10 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </section>
                     ))}
 
-                    <section className="bg-canada-red rounded-3xl p-12 text-center text-white shadow-xl">
-                        <h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2>
+                    <section className="bg-canada-red rounded-2xl md:rounded-3xl p-6 md:p-12 text-center text-white shadow-xl">
+                        <h2 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">{t.ctaTitle}</h2>
                         <Link href={`/${lang}/crop-pdf`}
-                            className="bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-lg"
+                            className="bg-white text-canada-red px-6 md:px-10 py-3 md:py-4 rounded-full font-black text-base md:text-lg hover:scale-105 transition-transform shadow-lg inline-block"
                         >
                             {t.ctaButton}
                         </Link>
