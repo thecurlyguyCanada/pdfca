@@ -30,7 +30,8 @@ export enum ToolType {
     PDF_TO_UBL = 'PDF_TO_UBL',
     IPYNB_TO_PDF = 'IPYNB_TO_PDF',
     IMAGE_TO_PDF = 'IMAGE_TO_PDF',
-    PDF_TO_IMAGE = 'PDF_TO_IMAGE'
+    PDF_TO_IMAGE = 'PDF_TO_IMAGE',
+    EML_TO_PDF = 'EML_TO_PDF'
 }
 
 export enum AppState {
