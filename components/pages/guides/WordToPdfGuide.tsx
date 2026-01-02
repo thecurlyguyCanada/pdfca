@@ -304,11 +304,11 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red rounded-[3rem] p-12 text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-4xl font-black mb-6">{t.ctaTitle}</h2>
-                        <p className="text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-12 md:mt-20 bg-canada-red rounded-2xl md:rounded-[3rem] p-6 md:p-12 text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl md:text-4xl font-black mb-4 md:mb-6">{t.ctaTitle}</h2>
+                        <p className="text-base md:text-xl mb-6 md:mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/word-to-pdf`}
-                            className="bg-white text-canada-red px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
+                            className="bg-white text-canada-red px-6 md:px-12 py-3 md:py-5 rounded-full font-black text-base md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95 inline-block"
                         >
                             {t.ctaButton}
                         </Link>

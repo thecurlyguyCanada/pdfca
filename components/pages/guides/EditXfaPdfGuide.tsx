@@ -472,9 +472,9 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     {/* Explanation */}
-                    <section className="bg-gray-900 text-white rounded-[3rem] p-12 relative overflow-hidden shadow-2xl animate-fade-in shadow-gray-400">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-canada-red opacity-10 blur-[80px] -mr-32 -mt-32 rounded-full"></div>
-                        <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <section className="bg-gray-900 text-white rounded-2xl md:rounded-[3rem] p-6 md:p-12 relative overflow-hidden shadow-2xl animate-fade-in shadow-gray-400">
+                        <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-canada-red opacity-10 blur-[80px] -mr-16 md:-mr-32 -mt-16 md:-mt-32 rounded-full"></div>
+                        <div className="relative z-10 grid md:grid-cols-2 gap-6 md:gap-12 items-center">
                             <div>
                                 <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
                                     <Shield className="text-canada-red" size={32} />
