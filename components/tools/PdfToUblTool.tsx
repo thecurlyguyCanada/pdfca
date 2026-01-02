@@ -67,7 +67,9 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
             setData(result);
             triggerHaptic('success');
         } catch (err) {
-            console.error(err);
+            if (process.env.NODE_ENV === 'development') {
+                console.error(err);
+            }
             setError("Failed to extract data. Please try again.");
             triggerHaptic('error');
         } finally {
