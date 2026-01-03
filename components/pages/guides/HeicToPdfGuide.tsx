@@ -551,17 +551,17 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'HEIC en PDF' : 'HEIC to PDF', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-12 sm:mb-14 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>
 
                     {/* Content Sections */}
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections.map((section: any) => (
                             <section key={section.id}>
-                                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{section.title}</h3>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">{section.title}</h3>
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {typeof section.content === 'string' ? (
                                         <MarkdownContent content={section.content} />
                                     ) : (
@@ -592,15 +592,15 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-20">
-                        <h3 className="text-3xl font-black mb-10 text-gray-900 dark:text-white">Common Questions</h3>
-                        <div className="grid gap-6">
+                    <div className="my-16 sm:my-18 md:my-20">
+                        <h3 className="text-2xl sm:text-3xl font-black mb-8 sm:mb-10 text-gray-900 dark:text-white">Common Questions</h3>
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm">
-                                    <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                                        <MousePointer2 size={20} className="text-canada-red" /> {item.q}
+                                <div key={i} className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                                        <MousePointer2 className="w-4 h-4 sm:w-5 sm:h-5 text-canada-red" /> {item.q}
                                     </h4>
-                                    <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                                         {item.a}
                                     </div>
                                 </div>
@@ -609,11 +609,11 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
-                        <p className="text-lg md:text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/heic-to-pdf`}
-                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 lg:py-5 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>

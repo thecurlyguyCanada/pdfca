@@ -537,46 +537,46 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide Suppresseur de Pages' : 'Page Remover Guide', href: lang === 'fr' ? '/fr/guides/pdf-page-remover' : '/guides/pdf-page-remover' }
                 ]}
             >
-                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
-                    <div className="prose prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-6 py-2 text-gray-600 dark:text-gray-400">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">
+                    <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-4 sm:pl-6 py-2 text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>
 
                     {t.sections.map((section: any, idx: number) => (
-                        <section key={section.id} id={section.id} className="scroll-mt-24">
-                            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-4">
-                                <span className="text-canada-red opacity-20 text-5xl font-black">0{idx + 1}</span>
+                        <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white flex items-center gap-3 sm:gap-4">
+                                <span className="text-canada-red opacity-20 text-3xl sm:text-4xl md:text-5xl font-black">0{idx + 1}</span>
                                 {section.title}
                             </h2>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                            <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                 {section.content}
                             </div>
                         </section>
                     ))}
 
-                    <section className="bg-canada-red rounded-2xl md:rounded-3xl p-6 md:p-12 text-center text-white shadow-xl">
-                        <Zap className="mx-auto mb-4 md:mb-6 opacity-50" size={36} />
-                        <h2 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">{t.ctaTitle}</h2>
-                        <p className="text-white/80 mb-6 md:mb-8 font-medium text-sm md:text-base">{t.ctaSubtext}</p>
+                    <section className="bg-canada-red rounded-2xl sm:rounded-[2.5rem] md:rounded-3xl p-6 sm:p-8 md:p-12 text-center text-white shadow-xl">
+                        <Zap className="mx-auto mb-4 sm:mb-6 opacity-50 w-10 h-10 sm:w-12 sm:h-12" />
+                        <h2 className="text-2xl sm:text-3xl font-black mb-3 sm:mb-4">{t.ctaTitle}</h2>
+                        <p className="text-white/80 mb-6 sm:mb-8 font-medium text-sm sm:text-base">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/pdf-page-remover`}
-                            className="bg-white text-canada-red px-6 md:px-10 py-3 md:py-4 rounded-full font-black text-base md:text-lg hover:scale-105 transition-transform shadow-lg inline-block"
+                            className="bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 rounded-full font-black text-base sm:text-lg hover:scale-105 transition-transform shadow-lg"
                         >
                             {t.ctaButton}
                         </Link>
                     </section>
 
                     <section>
-                        <div className="flex items-center gap-3 mb-8">
-                            <HelpCircle className="text-canada-red" size={32} />
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+                            <HelpCircle className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                                 {lang === 'fr' ? "Questions Fréquentes" : "Common Questions"}
                             </h2>
                         </div>
-                        <div className="grid gap-6">
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
-                                    <h3 className="font-bold text-xl mb-4 text-gray-900 dark:text-white">{item.q}</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{item.a}</p>
+                                <div key={i} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
+                                    <h3 className="font-bold text-base sm:text-lg md:text-xl mb-2 sm:mb-3 md:mb-4 text-gray-900 dark:text-white">{item.q}</h3>
+                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">{item.a}</p>
                                 </div>
                             ))}
                         </div>

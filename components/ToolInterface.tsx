@@ -3,7 +3,6 @@
 import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image as ImageIcon, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
-import { Language } from '../utils/i18n';
 
 // Lazy load large/interactive components
 const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
@@ -29,18 +28,6 @@ const PdfToCsvTool = dynamic(() => import('./tools/PdfToCsvTool').then(mod => mo
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
 const PhishingDetectorTool = dynamic(() => import('./tools/PhishingDetectorTool').then(mod => mod.PhishingDetectorTool), {
-    ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
-});
-const PdfToUblTool = dynamic(() => import('./tools/PdfToUblTool').then(mod => mod.PdfToUblTool), {
-    ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
-});
-const IpynbToPdfTool = dynamic(() => import('./tools/IpynbToPdfTool').then(mod => mod.IpynbToPdfTool), {
-    ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
-});
-const EmlToPdfTool = dynamic(() => import('./tools/EmlToPdfTool').then(mod => mod.EmlToPdfTool), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
@@ -263,7 +250,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
     // Tool type checks - must be declared before use
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML || currentTool === ToolType.PDF_TO_IMAGE;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML;
     const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;
@@ -272,12 +259,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isBarcodeTool = currentTool === ToolType.BARCODE_GENERATOR;
     const isCsvTool = currentTool === ToolType.PDF_TO_CSV || currentTool === ToolType.PDF_TO_EXCEL;
     const isPhishingTool = currentTool === ToolType.PHISHING_DETECTOR;
-    const isUblTool = currentTool === ToolType.PDF_TO_UBL;
-    const isIpynbTool = currentTool === ToolType.IPYNB_TO_PDF;
-    const isEmlTool = currentTool === ToolType.EML_TO_PDF;
 
-    const tool = tools.find(t => t.id === currentTool);
     if (!file && (!files || files.length === 0) && !isBarcodeTool) {
+        const tool = tools.find(t => t.id === currentTool);
         return (
             <div
                 className={`flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/${isDesktop ? '95' : '60'} border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-700 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover`}
@@ -336,22 +320,16 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     }
 
 
-    if ((currentTool === ToolType.MERGE || currentTool === ToolType.IMAGE_TO_PDF) && files && files.length > 0) {
+    if (currentTool === ToolType.MERGE && files && files.length > 0) {
         return (
             <div className="w-full max-w-4xl mx-auto px-6 pb-32 animate-fade-in">
                 <div className="text-center py-12 md:py-16">
                     <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/${isDesktop ? '100' : '80'} border border-white/40 shadow-premium mb-6`}>
                         <GripVertical size={16} className="text-canada-red" />
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">
-                            {currentTool === ToolType.IMAGE_TO_PDF ? (t.reorderImages || 'Reorder Images') : (t.reorderFiles || (lang === 'en' ? 'Reorder Files' : 'Réorganiser'))}
-                        </span>
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">{t.reorderFiles || (lang === 'en' ? 'Reorder Files' : 'Réorganiser')}</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-[1000] text-gray-900 tracking-tighter mb-4">
-                        {currentTool === ToolType.IMAGE_TO_PDF ? t.toolImageToPdf : t.toolMerge}
-                    </h2>
-                    <p className="text-gray-600 font-medium max-w-md mx-auto">
-                        {currentTool === ToolType.IMAGE_TO_PDF ? t.toolImageToPdfDesc : t.toolMergeDesc}
-                    </p>
+                    <h2 className="text-3xl md:text-5xl font-[1000] text-gray-900 tracking-tighter mb-4">{t.toolMerge}</h2>
+                    <p className="text-gray-600 font-medium max-w-md mx-auto">{t.toolMergeDesc}</p>
                 </div>
 
                 <div className="space-y-4">
@@ -379,10 +357,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-premium group-hover:scale-105 transition-all">
                             <Plus className="text-canada-red" size={24} strokeWidth={3} />
                         </div>
-                        <span className="font-black text-gray-400 group-hover:text-canada-red transition-colors uppercase tracking-widest text-xs">
-                            {currentTool === ToolType.IMAGE_TO_PDF ? (t.addMoreImages || 'Add more images') : (currentTool === ToolType.MERGE ? (t.addMoreFiles || 'Add more Files') : (t.addMorePdfs || 'Add more PDFs'))}
-                        </span>
-                        <input type="file" multiple accept={tool?.accept || '.pdf'} className="hidden" ref={fileInputRef} onChange={handleFileChange} />
+                        <span className="font-black text-gray-400 group-hover:text-canada-red transition-colors uppercase tracking-widest text-xs">{t.addMorePdfs || 'Add more PDFs'}</span>
+                        <input type="file" multiple accept=".pdf" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
                     </button>
                 </div>
 
@@ -396,10 +372,10 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         </button>
                         <button
                             onClick={() => onAction()}
-                            disabled={currentTool === ToolType.MERGE ? files.length < 2 : files.length < 1}
+                            disabled={files.length < 2}
                             className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-bold text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/10"
                         >
-                            {currentTool === ToolType.IMAGE_TO_PDF ? t.toolImageToPdf : t.toolMerge}
+                            {t.toolMerge}
                         </button>
                     </div>
                 </div>
@@ -416,9 +392,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
-        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isUblTool || isIpynbTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
+        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
-            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && !isUblTool && !isIpynbTool && (
+            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && (
                 <div
                     className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
                     {...swipeHandlers} // Attach swipe to header specifically
@@ -441,7 +417,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isUblTool || isIpynbTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
+            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
                 {isBarcodeTool ? (
                     <BarcodeGeneratorTool
                         file={file || undefined}
@@ -462,22 +438,6 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     <PhishingDetectorTool
                         file={file}
                     />
-                ) : isUblTool && file ? (
-                    <PdfToUblTool
-                        file={file}
-                        pdfJsDoc={pdfJsDoc}
-                        t={t}
-                    />
-                ) : isIpynbTool && file ? (
-                    <IpynbToPdfTool
-                        lang={lang as Language}
-                        file={file}
-                    />
-                ) : isEmlTool && file ? (
-                    <EmlToPdfTool
-                        lang={lang as Language}
-                        file={file}
-                    />
                 ) : isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
@@ -487,20 +447,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                         <Info size={18} className="mt-0.5 shrink-0" />
                                         <p>{t.deletePagesInfo}</p>
                                     </div>
-                                </div>
-                            )}
 
-                            {currentTool === ToolType.PDF_TO_IMAGE && (
-                                <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
-                                    <div className="bg-blue-50 text-blue-800 p-4 rounded-xl mb-4 text-sm flex items-start gap-2 border border-blue-100 shadow-sm">
-                                        <Info size={18} className="mt-0.5 shrink-0" />
-                                        <p>{t.pdfToAvifInfo}</p>
-                                    </div>
-                                </div>
-                            )}
-
-                            {isPageSelectionTool && (
-                                <div className="w-full max-w-2xl mx-auto mb-6 transition-all duration-300">
                                     <div className="flex items-center justify-between mb-3 px-1">
                                         <span className="font-bold text-gray-900">{t.totalPages}: <span className="text-canada-red">{pageCount}</span></span>
                                         {selectedPages.size > 0 && (
@@ -882,7 +829,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center h-full text-center max-w-sm mx-auto p-6 w-full">
                         <div className="w-16 h-16 bg-red-100 text-canada-red rounded-2xl flex items-center justify-center mb-4">
-                            {(currentTool === ToolType.HEIC_TO_PDF || currentTool === ToolType.IMAGE_TO_PDF) && <ImageIcon size={32} />}
+                            {currentTool === ToolType.HEIC_TO_PDF && <ImageIcon size={32} />}
                             {currentTool === ToolType.EPUB_TO_PDF && <BookOpen size={32} />}
                             {currentTool === ToolType.CBR_TO_PDF && <BookOpen size={32} />}
                             {(currentTool === ToolType.PDF_TO_WORD || currentTool === ToolType.WORD_TO_PDF || currentTool === ToolType.XML_TO_PDF || currentTool === ToolType.EXCEL_TO_PDF) && <FileText size={32} />}
@@ -896,7 +843,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action - Hidden for Sign Tool as it has its own sidebar/modal actions */}
-            {isSignTool || isCropTool || isCsvTool || isPhishingTool || isUblTool ? null : (
+            {isSignTool || isCropTool || isCsvTool || isPhishingTool ? null : (
                 <div
                     className="p-3 md:p-4 border-t border-gray-100 bg-white"
                     style={{ paddingBottom: 'max(12px, calc(env(safe-area-inset-bottom) + 12px))' }}
@@ -927,7 +874,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
                         {currentTool === ToolType.XML_TO_PDF && (t.btnConvert || "Convert to PDF")}
                         {currentTool === ToolType.EXCEL_TO_PDF && (t.btnConvert || "Convert to PDF")}
-                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.IMAGE_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
+                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
                     </button>
                 </div>
             )}

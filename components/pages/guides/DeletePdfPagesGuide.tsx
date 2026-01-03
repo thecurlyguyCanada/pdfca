@@ -419,51 +419,51 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Supprimer des pages' : 'Delete Pages', href: lang === 'fr' ? '/fr/guides/delete-pdf-pages' : '/guides/delete-pdf-pages' }
                 ]}
             >
-                <div className="w-full space-y-16 text-gray-700 dark:text-gray-300">
-                    <div className="prose prose-lg dark:prose-invert max-w-none">
-                        <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 italic border-l-4 border-canada-red pl-6 py-2">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">
+                    <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none">
+                        <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 italic border-l-4 border-canada-red pl-4 sm:pl-6 py-2">
                             {t.intro}
                         </div>
                     </div>
 
                     {t.sections.map((section: any, idx: number) => (
-                        <section key={section.id} id={section.id} className="scroll-mt-24">
-                            <div className="flex items-center gap-4 mb-6">
-                                <span className="text-4xl font-black text-gray-100 dark:text-gray-800">{idx + 1}</span>
-                                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
+                        <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-100 dark:text-gray-800">{idx + 1}</span>
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
                             </div>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                            <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                 {section.content}
                             </div>
                         </section>
                     ))}
 
-                    <section className="bg-canada-red rounded-2xl md:rounded-3xl p-6 md:p-12 text-center text-white shadow-xl">
-                        <Zap className="mx-auto mb-4 md:mb-6 opacity-50" size={36} />
-                        <h2 className="text-2xl md:text-3xl font-black mb-3 md:mb-4">{t.ctaTitle}</h2>
-                        <p className="text-white/80 mb-6 md:mb-8 font-medium text-sm md:text-base">{t.ctaSubtext}</p>
+                    <section className="bg-canada-red rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 text-center text-white shadow-xl">
+                        <Zap className="mx-auto mb-4 sm:mb-6 opacity-50 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">{t.ctaTitle}</h2>
+                        <p className="text-white/80 mb-4 sm:mb-6 md:mb-8 font-medium text-sm sm:text-base">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/delete-pdf-pages`}
-                            className="bg-white text-canada-red px-6 md:px-10 py-3 md:py-4 rounded-full font-black text-base md:text-lg hover:scale-105 transition-transform shadow-lg inline-block"
+                            className="bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 rounded-full font-black text-base sm:text-lg hover:scale-105 transition-transform shadow-lg"
                         >
                             {t.ctaButton}
                         </Link>
                     </section>
 
                     <section aria-labelledby="faq-title">
-                        <div className="flex items-center gap-3 mb-8">
-                            <HelpCircle className="text-canada-red" size={32} />
-                            <h2 id="faq-title" className="text-3xl font-bold text-gray-900 dark:text-white">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+                            <HelpCircle className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
+                            <h2 id="faq-title" className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                                 {lang === 'fr' ? "Questions Fréquentes" : "Questions & Answers"}
                             </h2>
                         </div>
-                        <div className="grid gap-4">
+                        <div className="grid gap-3 sm:gap-4">
                             {t.faq && t.faq.map((item: any, i: number) => (
-                                <details key={i} className="group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 hover:border-canada-red transition-all">
-                                    <summary className="font-bold text-lg text-gray-900 dark:text-white cursor-pointer list-none flex justify-between items-center group-open:text-canada-red">
+                                <details key={i} className="group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:border-canada-red transition-all">
+                                    <summary className="font-bold text-sm sm:text-base md:text-lg text-gray-900 dark:text-white cursor-pointer list-none flex justify-between items-center group-open:text-canada-red">
                                         {item.q}
-                                        <span className="text-gray-300 group-open:rotate-180 transition-transform">▼</span>
+                                        <span className="text-gray-300 group-open:rotate-180 transition-transform text-sm sm:text-base">▼</span>
                                     </summary>
-                                    <p className="mt-4 text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-50 dark:border-gray-800 pt-4">
+                                    <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-50 dark:border-gray-800 pt-3 sm:pt-4">
                                         {item.a}
                                     </p>
                                 </details>

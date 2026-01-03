@@ -13,8 +13,12 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import { analyzePdfSecurity, SecurityAnalysisResult } from '@/utils/securityAnalyzer';
-import { getPdfJsDocument, generateSecurityReport } from '@/utils/pdfUtils';
-import type { PDFDocumentProxy } from 'pdfjs-dist';
+import * as pdfjs from 'pdfjs-dist';
+
+// Ensure worker is set for preview rendering
+if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
+    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+}
 
 interface PhishingDetectorToolProps {
     file: File;
@@ -42,7 +46,12 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             setResult(analysis);
 
             // Get num pages for preview
-            const pdf = await getPdfJsDocument(f) as PDFDocumentProxy;
+            const arrayBuffer = await f.arrayBuffer();
+            const loadingTask = pdfjs.getDocument({
+                data: arrayBuffer
+                // EnableScripting is handled in analyzePdfSecurity logic or default false. 
+            } as any);
+            const pdf = await loadingTask.promise;
             setNumPages(pdf.numPages);
 
         } catch (error) {
@@ -50,23 +59,6 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             // Error handling can be managed by parent or local state if needed
         } finally {
             setIsAnalyzing(false);
-        }
-    };
-
-    const handleDownloadReport = async () => {
-        if (!file || !result) return;
-        try {
-            const blob = await generateSecurityReport(file, result);
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${file.name.replace('.pdf', '')}_security_report.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        } catch (e) {
-            console.error("Failed to generate report", e);
         }
     };
 
@@ -81,7 +73,12 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
         if (!file || !canvasRef.current) return;
 
         try {
-            const pdf = await getPdfJsDocument(file, { enableScripting: false }) as PDFDocumentProxy;
+            const arrayBuffer = await file.arrayBuffer();
+            const loadingTask = pdfjs.getDocument({
+                data: arrayBuffer,
+                enableScripting: false
+            } as any);
+            const pdf = await loadingTask.promise;
             const page = await pdf.getPage(previewPage);
 
             const viewport = page.getViewport({ scale: 1.5 });
@@ -167,17 +164,6 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                 <span className="font-medium">Safe Preview</span>
                             </button>
                         </nav>
-
-                        {/* Action Button */}
-                        <div className="pt-4 border-t border-gray-100">
-                            <button
-                                onClick={handleDownloadReport}
-                                disabled={!result}
-                                className="w-full py-3 bg-red-50 hover:bg-red-100 text-canada-red font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                <FileText size={16} /> Download PDF Report
-                            </button>
-                        </div>
                     </div>
                 </div>
 

@@ -400,16 +400,16 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide PDF vers Word' : 'PDF to Word Guide', href: lang === 'fr' ? '/fr/guides/pdf-to-word' : '/guides/pdf-to-word' }
                 ]}
             >
-                <div className="w-full py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
+                <div className="w-full py-4 sm:py-6 md:py-8">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>
 
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections.map((section: any) => (
-                            <section key={section.id}>
-                                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{section.title}</h3>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                            <section key={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">{section.title}</h3>
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {typeof section.content === 'string' ? (
                                         <MarkdownContent content={section.content} />
                                     ) : (
@@ -421,17 +421,17 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-20">
-                        <h3 className="text-3xl font-black mb-10 text-gray-900 dark:text-white">
+                    <div className="my-10 sm:my-16 md:my-20">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-6 sm:mb-8 md:mb-10 text-gray-900 dark:text-white">
                             {lang === 'fr' ? "Questions Fréquentes" : "Common Questions"}
                         </h3>
-                        <div className="grid gap-6">
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm">
-                                    <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                                        <MousePointer2 size={20} className="text-canada-red" /> {item.q}
+                                <div key={i} className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                                        <MousePointer2 size={18} className="text-canada-red sm:w-5 sm:h-5" /> {item.q}
                                     </h4>
-                                    <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                                         {item.a}
                                     </div>
                                 </div>
@@ -440,11 +440,11 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-12 md:mt-20 bg-canada-red rounded-2xl md:rounded-[3rem] p-6 md:p-12 text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-2xl md:text-4xl font-black mb-4 md:mb-6">{t.ctaTitle}</h2>
-                        <p className="text-base md:text-xl mb-6 md:mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-10 sm:mt-16 md:mt-20 bg-canada-red rounded-2xl sm:rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 lg:p-12 text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6">{t.ctaTitle}</h2>
+                        <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/pdf-to-word`}
-                            className="bg-white text-canada-red px-6 md:px-12 py-3 md:py-5 rounded-full font-black text-base md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95 inline-block"
+                            className="bg-white text-canada-red px-8 py-3.5 sm:px-10 sm:py-4 md:px-12 md:py-5 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>

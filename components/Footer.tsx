@@ -88,10 +88,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/flatten-pdf`} className="hover:text-white transition-colors">{t.toolFlatten}</Link></li>
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
                         <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
-                        <li><Link href={`/${lang}/pdf-to-ubl`} className="hover:text-white transition-colors font-bold text-orange-500">{t.toolPdfToUbl}</Link></li>
-                        <li><Link href={`/${lang}/ipynb-to-pdf`} className="hover:text-white transition-colors font-bold text-blue-400">{t.toolIpynbToPdf}</Link></li>
-                        <li><Link href={`/${lang}/eml-to-pdf`} className="hover:text-white transition-colors font-bold text-cyan-400">{t.toolEmlToPdf}</Link></li>
-                        <li><Link href={`/${lang}/image-to-pdf`} className="hover:text-white transition-colors">{t.toolImageToPdf}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -111,8 +107,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/flatten-pdf`} className="hover:text-white transition-colors">{t.flattenPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/invoice-ocr`} className="hover:text-white transition-colors">{t.invoiceOcrGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-to-ubl`} className="hover:text-white transition-colors">{t.pdfToUblGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/ipynb-to-pdf`} className="hover:text-white transition-colors">{t.ipynbToPdfGuide}</Link></li>
                         <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{lang === 'en' ? 'View All Guides →' : 'Voir Tous les Guides →'}</Link></li>
                      </ul>
                   </FooterSection>
@@ -131,9 +125,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/email-to-pdf`} className="hover:text-white transition-colors">{t.emailToPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/insert-picture-in-pdf`} className="hover:text-white transition-colors">{t.insertPictureGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/pdf-page-remover`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/image-to-pdf`} className="hover:text-white transition-colors">{t.imageToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/avif-to-pdf`} className="hover:text-white transition-colors">{t.avifToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-to-avif`} className="hover:text-white transition-colors">{t.pdfToAvifGuide}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

@@ -26,10 +26,6 @@ import { HealthcarePdfGuide } from '@/components/pages/guides/HealthcarePdfGuide
 import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
 import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
 import { PhishingPdfGuide } from '@/components/pages/guides/PhishingPdfGuide';
-import { PdfToUblGuide } from '@/components/pages/guides/PdfToUblGuide';
-import { IpynbToPdfGuide } from '@/components/pages/guides/IpynbToPdfGuide';
-import { AvifToPdfGuide } from '@/components/pages/guides/AvifToPdfGuide';
-import { ChangePdfViewerMacGuide } from '@/components/pages/guides/ChangePdfViewerMacGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -63,12 +59,6 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ocr-pdf': InvoiceOcrGuide, // Alias for legacy/general OCR links
     'analyze-pdf': PhishingPdfGuide,
     'pdf-to-kindle': PdfToEpubGuide,
-    'pdf-to-ubl': PdfToUblGuide,
-    'ipynb-to-pdf': IpynbToPdfGuide,
-    'avif-to-pdf': AvifToPdfGuide,
-    'pdf-to-avif': AvifToPdfGuide,
-    'change-pdf-viewer-mac': ChangePdfViewerMacGuide,
-    'change-default-pdf-viewer-mac': ChangePdfViewerMacGuide, // SEO alias
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

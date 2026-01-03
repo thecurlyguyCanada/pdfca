@@ -436,43 +436,43 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Guide Pivoter PDF' : 'Rotate PDF Guide', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto space-y-12">
-                    <div className="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+                <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">
+                    <div className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>
 
                     {t.sections && t.sections.map((section: any) => (
-                        <section key={section.id}>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{section.title}</h2>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+                        <section key={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">{section.title}</h2>
+                            <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                                 {section.content}
                             </div>
                         </section>
                     ))}
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl text-center">
-                            <RefreshCcw className="mx-auto text-canada-red mb-2" />
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
+                            <RefreshCcw className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
                             <span className="text-xs font-bold">90° CW</span>
                         </div>
-                        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl text-center">
-                            <RefreshCcw className="mx-auto text-canada-red mb-2 -scale-x-100" />
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
+                            <RefreshCcw className="mx-auto text-canada-red mb-1 sm:mb-2 -scale-x-100 w-5 h-5 sm:w-6 sm:h-6" />
                             <span className="text-xs font-bold">90° CCW</span>
                         </div>
-                        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl text-center">
-                            <Clock className="mx-auto text-canada-red mb-2" />
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
+                            <Clock className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
                             <span className="text-xs font-bold">Permanent</span>
                         </div>
-                        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl text-center">
-                            <Monitor className="mx-auto text-canada-red mb-2" />
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
+                            <Monitor className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
                             <span className="text-xs font-bold">Cross-Device</span>
                         </div>
                     </div>
 
-                    <section className="bg-canada-red p-10 rounded-3xl text-center text-white">
-                        <h2 className="text-2xl font-bold mb-4">{t.ctaTitle}</h2>
+                    <section className="bg-canada-red p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl text-center text-white">
+                        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t.ctaTitle}</h2>
                         <Link href={`/${lang}/rotate-pdf`}
-                            className="bg-white text-canada-red px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
+                            className="bg-white text-canada-red px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-sm sm:text-base hover:scale-105 transition-transform"
                         >
                             {t.ctaButton}
                         </Link>
@@ -480,12 +480,12 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {t.faq && (
                         <section>
-                            <h2 className="text-2xl font-bold mb-6">{lang === 'fr' ? "Foire Aux Questions" : "Frequently Asked Questions"}</h2>
-                            <div className="space-y-4">
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6">{lang === 'fr' ? "Foire Aux Questions" : "Frequently Asked Questions"}</h2>
+                            <div className="space-y-3 sm:space-y-4">
                                 {t.faq.map((item: any, i: number) => (
-                                    <div key={i} className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
-                                        <h4 className="font-bold mb-2 text-gray-900 dark:text-white">{item.q}</h4>
-                                        <p className="text-gray-600 dark:text-gray-400">{item.a}</p>
+                                    <div key={i} className="bg-white dark:bg-gray-900 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-gray-100 dark:border-gray-800">
+                                        <h4 className="font-bold mb-1.5 sm:mb-2 text-sm sm:text-base text-gray-900 dark:text-white">{item.q}</h4>
+                                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{item.a}</p>
                                     </div>
                                 ))}
                             </div>

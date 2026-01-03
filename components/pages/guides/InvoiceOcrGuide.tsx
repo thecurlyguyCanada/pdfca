@@ -586,39 +586,39 @@ export const InvoiceOcrGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-12 sm:mb-14 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>
 
                     {/* Features Tiles */}
-                    <div className="grid md:grid-cols-3 gap-8 mb-20">
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
-                            <FileSpreadsheet className="text-canada-red mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Export Excel" : "Export to Excel"}</h3>
-                            <p className="text-gray-500">{lang === 'fr' ? "Téléchargez vos données en format .xlsx instantanément." : "Download your data in .xlsx format instantly."}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-16 sm:mb-18 md:mb-20">
+                        <div className="p-6 sm:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+                            <FileSpreadsheet className="text-canada-red mb-3 sm:mb-4" size={28} />
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Export Excel" : "Export to Excel"}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Téléchargez vos données en format .xlsx instantanément." : "Download your data in .xlsx format instantly."}</p>
                         </div>
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
-                            <Database className="text-canada-red mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "IA Locale" : "Local AI"}</h3>
-                            <p className="text-gray-500">{lang === 'fr' ? "Extraction intelligente sans serveur." : "Smart extraction without any servers."}</p>
+                        <div className="p-6 sm:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+                            <Database className="text-canada-red mb-3 sm:mb-4" size={28} />
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "IA Locale" : "Local AI"}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Extraction intelligente sans serveur." : "Smart extraction without any servers."}</p>
                         </div>
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
-                            <Lock className="text-canada-red mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Zéro Risque" : "Zero Risk"}</h3>
-                            <p className="text-gray-500">{lang === 'fr' ? "Vos finances restent totalement privées." : "Your finances stay completely private."}</p>
+                        <div className="p-6 sm:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+                            <Lock className="text-canada-red mb-3 sm:mb-4" size={28} />
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Zéro Risque" : "Zero Risk"}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Vos finances restent totalement privées." : "Your finances stay completely private."}</p>
                         </div>
                     </div>
 
                     {/* Content Sections */}
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections.map((section: any) => (
-                            <section key={section.id} id={section.id} className="scroll-mt-24">
-                                <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-canada-red rounded-full" />
+                            <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                                <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                                    <div className="w-1.5 sm:w-2 h-6 sm:h-8 bg-canada-red rounded-full" />
                                     {section.title}
                                 </h2>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     <MarkdownContent content={section.content} />
                                 </div>
                             </section>
@@ -626,18 +626,18 @@ export const InvoiceOcrGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-20">
-                        <div className="flex items-center gap-3 mb-10">
-                            <Info className="text-canada-red" size={32} />
-                            <h2 className="text-3xl font-black text-gray-900 dark:text-white">FAQ</h2>
+                    <div className="my-16 sm:my-18 md:my-20">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+                            <Info className="text-canada-red" size={28} />
+                            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">FAQ</h2>
                         </div>
-                        <div className="grid gap-6">
+                        <div className="grid gap-4 sm:gap-5 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm group hover:border-canada-red/30 transition-colors">
-                                    <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-canada-red transition-colors">
+                                <div key={i} className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm group hover:border-canada-red/30 transition-colors">
+                                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white group-hover:text-canada-red transition-colors">
                                         {item.q}
                                     </h4>
-                                    <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                                         {item.a}
                                     </div>
                                 </div>
@@ -646,11 +646,11 @@ export const InvoiceOcrGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
-                        <p className="text-lg md:text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/invoice-ocr`}
-                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>

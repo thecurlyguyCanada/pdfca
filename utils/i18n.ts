@@ -39,14 +39,7 @@ export const translations = {
     insertPictureGuide: "Insert Picture Guide",
     pageRemoverGuide: "PDF Page Remover Guide",
     barcodeGeneratorGuide: "Barcode Generator Guide",
-    pdfToUblGuide: "PDF to UBL Guide",
-    ipynbToPdfGuide: "IPYNB to PDF Guide",
     analyzePdfGuide: "Analyze Security Guide",
-    imageToPdfGuide: "Image to PDF Guide",
-    avifToPdfGuide: "AVIF to PDF Guide",
-    pdfToAvifGuide: "PDF to AVIF Guide",
-    emlToPdfGuide: "EML to PDF Guide",
-    changePdfViewerMacGuide: "Change PDF Viewer Mac Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -67,9 +60,6 @@ export const translations = {
     // Compress Tool
     sizeReduced: "Size Reduced",
     addMorePdfs: "Add more PDFs",
-    addMoreImages: "Add more Images",
-    addMoreFiles: "Add more Files",
-    reorderImages: "Reorder Images",
     compressGood: "Good",
     compressGoodDesc: "Best quality, selectable text.",
     compressBalanced: "Balanced",
@@ -141,7 +131,7 @@ export const translations = {
         },
         {
           q: "What tools do you offer?",
-          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, Image to PDF (JPG, PNG, WebP, AVIF), and a PDF Form Filler."
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
         },
         {
           q: "Do I need to create an account or sign up?",
@@ -840,52 +830,6 @@ export const translations = {
           { question: "Can this tool simplify the PDF?", answer: "Yes, you can check it here and then use our Flatten tool to convert pages to images, neutralizing active scripts." },
           { question: "What does the Safe Preview do?", answer: "It renders the PDF pages as static images with JavaScript disabled, so you can read the content without triggering malicious code." }
         ]
-      },
-      pdfToUbl: {
-        title: "PDF to UBL Converter - Create E-Invoices Online | pdfcanada.ca",
-        desc: "Convert PDF invoices to UBL 2.1 XML format. Extract invoice data automatically and generate compliant E-Invoices. Local, private, and free.",
-        h1: "Convert PDF to UBL XML",
-        subtitle: "Create compliant E-Invoices from standard PDFs.",
-        content: "Need to generate a UBL invoice for a government or enterprise client? Our tool converts standard PDF invoices into structured UBL 2.1 XML files. It's fast, accurate, and processes everything locally to ensure your financial data stays private.",
-        steps: [
-          "Upload your PDF invoice.",
-          "Verify the extracted vendor, date, and amounts.",
-          "Click 'Download UBL XML' to get your compliant e-invoice."
-        ],
-        quickAnswer: {
-          question: "How do I convert a PDF invoice to UBL format?",
-          answer: "Use our free local tool to extract data from your PDF and generate a UBL 2.1 XML file. No need for expensive e-invoicing software—just upload, verify, and download.",
-          tool: "PDF to UBL",
-          steps: ["Upload PDF", "Verify extracted data", "Download UBL XML"]
-        },
-        faq: [
-          { question: "What acts as the 'Invoice ID' in the XML?", answer: "We extract the invoice number from your PDF. If none is found, we generate a unique reference." },
-          { question: "Is this compliant with PEPPOL?", answer: "We use the standard UBL 2.1 schema commonly used in PEPPOL, but you should always validate the XML with your specific receiving network." },
-          { question: "Can I bulk convert invoices?", answer: "Currently, we process one invoice at a time to ensure you can verify the data accuracy before generating the XML." }
-        ]
-      },
-      imageToPdf: {
-        title: "Convert Images to PDF Online - JPG, PNG, WebP, AVIF | pdfcanada.ca",
-        desc: "Convert your images to PDF instantly locally in your browser. Supports JPG, PNG, WebP, and AVIF formats. 100% free and private—no uploads.",
-        h1: "Convert Images to PDF",
-        subtitle: "Turn your photos and graphics into professional PDFs.",
-        content: "Need to bundle photos into a document or convert a scan to PDF? Our Image to PDF tool lets you easily convert JPG, PNG, WebP, and AVIF images into high-quality PDF files. All processing happens locally on your device, ensuring your personal photos stay private.",
-        steps: [
-          "Click 'Select File' to upload your image (JPG, PNG, WebP, or AVIF).",
-          "Our tool instantly processes and embeds the image into a PDF page.",
-          "Download your new PDF document."
-        ],
-        quickAnswer: {
-          question: "How do I convert a JPG, PNG, or AVIF to PDF securely?",
-          answer: "Use our local-first converter. It transforms your image files into PDF format directly in your browser without uploading them to any server.",
-          tool: "Image to PDF",
-          steps: ["Select image file", "Wait for conversion", "Download PDF"]
-        },
-        faq: [
-          { question: "What image formats are supported?", answer: "We support standard JPG and PNG files, as well as modern WebP and AVIF images." },
-          { question: "Is it safe to convert private photos?", answer: "Yes! Your photos never leave your computer. We generate the PDF right in your browser." },
-          { question: "Can I convert multiple images?", answer: "Currently, you can convert images one by one. Merge them afterwards using our Merge PDF tool if needed!" }
-        ]
       }
     },
 
@@ -934,8 +878,8 @@ export const translations = {
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
-    toolMerge: "Merge PDF & Images",
-    toolMergeDesc: "Combine multiple PDFs and images.",
+    toolMerge: "Merge PDF",
+    toolMergeDesc: "Combine multiple PDFs.",
     toolSplit: "Split PDF",
     toolSplitDesc: "Separate into pages.",
     toolExtract: "Extract PDF Pages",
@@ -944,16 +888,6 @@ export const translations = {
     toolPdfToXmlDesc: "Extract structured data.",
     toolXmlToPdf: "XML to PDF",
     toolXmlToPdfDesc: "Create PDF from XML.",
-    toolPdfToUbl: "PDF to UBL",
-    toolIpynbToPdf: "IPYNB to PDF",
-    toolPdfToUblDesc: "Convert invoice to UBL XML.",
-    toolIpynbToPdfDesc: "Convert Jupyter notebooks to PDF.",
-    toolImageToPdf: "Image to PDF",
-    toolImageToPdfDesc: "Convert JPG/PNG/AVIF to PDF.",
-    toolPdfToAvif: "PDF to AVIF",
-    toolPdfToAvifDesc: "Extract pages as AVIF images.",
-    toolEmlToPdf: "EML to PDF",
-    toolEmlToPdfDesc: "Convert email files to PDF.",
 
     // Actions
     uploadTitle: "Upload File",
@@ -978,7 +912,6 @@ export const translations = {
 
     // Tool Specific Inputs
     deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
-    pdfToAvifInfo: "Select the pages you want to convert to AVIF images. All pages will be converted if none are selected.",
     totalPages: "Total pages",
     pagesToRemove: "Pages to remove",
     signPagesInfo: "Place your signature or initials on the document.",
@@ -1229,38 +1162,7 @@ export const translations = {
     visualDesc: "Smart cropping for complex layouts & columns.",
     kindleScreenSize: "Target Screen Size",
     reflowInfo: "Your PDF will be converted to a reflowable EPUB 3.0 file. Perfect for adjusting font size and reading on any Kindle device.",
-    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming.",
-    pdfToUbl: {
-      uploadTitle: "Upload PDF Invoice",
-      verifyTitle: "Verify Invoice Data",
-      scanning: "Scanning...",
-      vendor: "Vendor Name",
-      invoiceId: "Invoice Number",
-      date: "Date (YYYY-MM-DD)",
-      dueDate: "Due Date",
-      subtotal: "Subtotal",
-      tax: "Tax",
-      total: "Total",
-      currency: "Currency",
-      confidence: "Confidence",
-      downloadUbl: "Download UBL XML",
-      rescan: "Scan Another",
-      errorExtraction: "Failed to extract invoice data. Please try again or fill manually.",
-      errorGeneration: "Failed to generate UBL XML.",
-      verifyDesc: "Please review and correct the extracted data before generating the UBL XML.",
-      successMsg: "UBL XML generated successfully!"
-    },
-    ipynbToPdf: {
-      uploadTitle: "Upload Jupyter Notebook",
-      dragDrop: "Drag & Drop .ipynb file here",
-      convert: "Convert to PDF",
-      converting: "Converting...",
-      success: "Conversion Successful!",
-      download: "Download PDF",
-      error: "Conversion Failed",
-      privacy: "100% Local Processing",
-      privacyDesc: "Your code never leaves the browser."
-    }
+    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming."
   },
   fr: {
     builtIn: "Fait au Canada",
@@ -1297,14 +1199,7 @@ export const translations = {
     insertPictureGuide: "Guide Insérer Image",
     pageRemoverGuide: "Guide Suppresseur Pages",
     barcodeGeneratorGuide: "Guide Générateur Code-Barres",
-    pdfToUblGuide: "Guide PDF vers UBL",
-    ipynbToPdfGuide: "Guide IPYNB vers PDF",
     analyzePdfGuide: "Guide Analyse Sécurité",
-    imageToPdfGuide: "Guide Image en PDF",
-    avifToPdfGuide: "Guide AVIF en PDF",
-    pdfToAvifGuide: "Guide PDF en AVIF",
-    emlToPdfGuide: "Guide EML en PDF",
-    changePdfViewerMacGuide: "Guide Changer Lecteur PDF Mac",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",
@@ -1325,9 +1220,6 @@ export const translations = {
     // Compress Tool
     sizeReduced: "Taille réduite",
     addMorePdfs: "Ajouter plus de PDF",
-    addMoreImages: "Ajouter d'autres images",
-    addMoreFiles: "Ajouter plus de fichiers",
-    reorderImages: "Réorganiser les images",
     compressGood: "Bon",
     compressGoodDesc: "Meilleure qualité, texte sélectionnable.",
     compressBalanced: "Équilibré",
@@ -1398,7 +1290,7 @@ export const translations = {
         },
         {
           q: "Quels outils proposez-vous ?",
-          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, Image en PDF (JPG, PNG, WebP, AVIF), PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
+          a: "Nous proposons une gamme complète d'outils PDF, notamment : Supprimer des pages, Pivoter PDF, Fusionner PDF, Compresser PDF, HEIC en PDF, EPUB en PDF, CBR en PDF, PDF en Word, Word en PDF, Signer PDF et Créateur de formulaires remplissables."
         },
         {
           q: "Dois-je créer un compte ou m'inscrire ?",
@@ -1949,52 +1841,6 @@ export const translations = {
           { question: "Comment nettoyer un PDF ?", answer: "Après analyse, utilisez l'outil 'Aplatir PDF' pour convertir les pages en images et neutraliser les scripts." },
           { question: "Que fait l'Aperçu Sécurisé ?", answer: "Il affiche le PDF comme une image statique, empêchant l'exécution de tout code malveillant caché." }
         ]
-      },
-      pdfToUbl: {
-        title: "Convertisseur PDF vers UBL - Créer des Factures Électroniques | pdfcanada.ca",
-        desc: "Convertissez des factures PDF au format UBL 2.1 XML. Extrayez automatiquement les données et générez des factures électroniques conformes. Local, privé et gratuit.",
-        h1: "Convertir PDF en UBL XML",
-        subtitle: "Générez des factures électroniques conformes à partir de vos PDF.",
-        content: "Besoin de générer une facture UBL pour un client gouvernemental ou une grande entreprise ? Notre outil convertit vos factures PDF standards en fichiers XML UBL 2.1 structurés. Rapide, précis, et 100% local pour garantir la confidentialité de vos données financières.",
-        steps: [
-          "Téléversez votre facture PDF.",
-          "Vérifiez les données extraites (vendeur, date, montants).",
-          "Cliquez sur 'Télécharger UBL XML' pour obtenir votre facture électronique conforme."
-        ],
-        quickAnswer: {
-          question: "Comment convertir une facture PDF au format UBL ?",
-          answer: "Utilisez notre outil local gratuit pour extraire les données de votre PDF et générer un fichier XML UBL 2.1. Pas besoin de logiciel coûteux—téléversez, vérifiez et téléchargez.",
-          tool: "PDF vers UBL",
-          steps: ["Téléverser le PDF", "Vérifier les données", "Télécharger le XML UBL"]
-        },
-        faq: [
-          { question: "Qu'est-ce qui sert d'ID de facture dans le XML ?", answer: "Nous extrayons le numéro de facture de votre PDF. Si aucun n'est trouvé, nous générons une référence unique." },
-          { question: "Est-ce conforme à PEPPOL ?", answer: "Nous utilisons le schéma standard UBL 2.1 couramment utilisé dans PEPPOL, mais vous devriez toujours valider le XML avec votre réseau de réception spécifique." },
-          { question: "Puis-je convertir des factures en lot ?", answer: "Actuellement, nous traitons une facture à la fois pour vous permettre de vérifier l'exactitude des données avant de générer le XML." }
-        ]
-      },
-      imageToPdf: {
-        title: "Convertir Images en PDF en Ligne - JPG, PNG, WebP, AVIF | pdfcanada.ca",
-        desc: "Convertissez vos images en PDF instantanément et localement. Supporte les formats JPG, PNG, WebP et AVIF. 100% gratuit et privé—aucun téléchargement.",
-        h1: "Convertir Images en PDF",
-        subtitle: "Transformez vos photos et graphiques en PDF professionnels.",
-        content: "Besoin de regrouper des photos dans un document ou de convertir une numérisation en PDF ? Notre outil Image vers PDF vous permet de convertir facilement des images JPG, PNG, WebP et AVIF en fichiers PDF de haute qualité. Tout le traitement se fait localement sur votre appareil, garantissant la confidentialité de vos photos.",
-        steps: [
-          "Cliquez sur 'Sélectionner le fichier' pour télécharger votre image (JPG, PNG, WebP ou AVIF).",
-          "Notre outil traite et intègre instantanément l'image dans une page PDF.",
-          "Téléchargez votre nouveau document PDF."
-        ],
-        quickAnswer: {
-          question: "Comment convertir un JPG, PNG ou AVIF en PDF en toute sécurité ?",
-          answer: "Utilisez notre convertisseur local. Il transforme vos fichiers images en format PDF directement dans votre navigateur sans les télécharger sur un serveur.",
-          tool: "Image vers PDF",
-          steps: ["Sélectionnez le fichier image", "Attendez la conversion", "Téléchargez le PDF"]
-        },
-        faq: [
-          { question: "Quels formats d'images sont supportés ?", answer: "Nous supportons les fichiers standards JPG et PNG, ainsi que les images modernes WebP et AVIF." },
-          { question: "Est-ce sûr pour mes photos privées ?", answer: "Oui ! Vos photos ne quittent jamais votre ordinateur. Nous générons le PDF directement dans votre navigateur." },
-          { question: "Puis-je convertir plusieurs images ?", answer: "Actuellement, vous pouvez convertir les images une par une. Fusionnez-les ensuite avec notre outil Fusionner PDF si nécessaire !" }
-        ]
       }
     },
 
@@ -2041,8 +1887,8 @@ export const translations = {
     toolPhishingDetectorDesc: "Détecter malwares & hameçonnage.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
-    toolMerge: "Fusionner PDF & Images",
-    toolMergeDesc: "Combiner plusieurs PDFs et images.",
+    toolMerge: "Fusionner PDF",
+    toolMergeDesc: "Combiner plusieurs PDFs.",
     toolSplit: "Diviser PDF",
     toolSplitDesc: "Séparer en pages.",
     toolExtract: "Extraire Pages PDF online",
@@ -2051,16 +1897,6 @@ export const translations = {
     toolPdfToXmlDesc: "Extraire données structurées.",
     toolXmlToPdf: "XML en PDF",
     toolXmlToPdfDesc: "Créer PDF depuis XML.",
-    toolPdfToUbl: "PDF en UBL",
-    toolIpynbToPdf: "IPYNB vers PDF",
-    toolPdfToUblDesc: "Convertir facture en XML UBL.",
-    toolIpynbToPdfDesc: "Convertir notebooks Jupyter en PDF.",
-    toolImageToPdf: "Image en PDF",
-    toolImageToPdfDesc: "Convertir JPG/PNG/AVIF en PDF.",
-    toolPdfToAvif: "PDF vers AVIF",
-    toolPdfToAvifDesc: "Extraire les pages en images AVIF.",
-    toolEmlToPdf: "EML vers PDF",
-    toolEmlToPdfDesc: "Convertir fichiers email en PDF.",
 
     uploadTitle: "Téléverser",
     uploadDesc: "ou glisser un fichier ici",
@@ -2097,7 +1933,6 @@ export const translations = {
 
     // Tool Specific Inputs
     deletePagesInfo: "Cliquez sur les pages à supprimer. Utilisez la touche \"maj\" pour les plages.",
-    pdfToAvifInfo: "Sélectionnez les pages que vous souhaitez convertir en images AVIF. Toutes les pages seront converties si aucune n'est sélectionnée.",
     totalPages: "Nombre de pages",
     pagesToRemove: "Pages à supprimer",
     signPagesInfo: "Placez votre signature ou vos initiales sur le document.",
@@ -2379,38 +2214,7 @@ export const translations = {
     visualDesc: "Recadrage intelligent pour mises en page complexes et colonnes.",
     kindleScreenSize: "Taille de l'écran cible",
     reflowInfo: "Votre PDF sera converti en un fichier EPUB 3.0 ajustable. Parfait pour modifier la taille de la police sur n'importe quel Kindle.",
-    visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom.",
-    pdfToUbl: {
-      uploadTitle: "Téléverser Facture PDF",
-      verifyTitle: "Vérifier les Données",
-      scanning: "Analyse en cours...",
-      vendor: "Vendeur",
-      invoiceId: "Numéro de Facture",
-      date: "Date (AAAA-MM-JJ)",
-      dueDate: "Date d'Échéance",
-      subtotal: "Sous-total",
-      tax: "Taxes",
-      total: "Total",
-      currency: "Devise",
-      confidence: "Confiance",
-      downloadUbl: "Télécharger UBL XML",
-      rescan: "Scanner à nouveau",
-      errorExtraction: "Échec de l'extraction des données. Veuillez réessayer.",
-      errorGeneration: "Échec de la génération UBL XML.",
-      verifyDesc: "Veuillez vérifier et corriger les données extraites avant de générer le fichier XML.",
-      successMsg: "Fichier UBL XML généré avec succès !"
-    },
-    ipynbToPdf: {
-      uploadTitle: "Téléverser Jupyter Notebook",
-      dragDrop: "Glisser-Déposer fichier .ipynb ici",
-      convert: "Convertir en PDF",
-      converting: "Conversion...",
-      success: "Conversion Réussie !",
-      download: "Télécharger PDF",
-      error: "Échec de la conversion",
-      privacy: "Traitement 100 % Local",
-      privacyDesc: "Votre code ne quitte jamais le navigateur."
-    }
+    visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom."
   }
 };
 export type TranslationType = typeof translations.en;

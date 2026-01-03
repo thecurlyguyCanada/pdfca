@@ -322,8 +322,8 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'PDF vers CSV' : 'PDF to CSV', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-12 sm:mb-14 md:mb-16">
                         {typeof t.intro === 'string' ? <MarkdownContent content={t.intro} /> : t.intro}
                     </div>
 
@@ -347,14 +347,14 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* Content Sections */}
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections.map((section: any) => (
-                            <section key={section.id} id={section.id} className="scroll-mt-24">
-                                <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-canada-red rounded-full" />
+                            <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                                    <div className="w-1 sm:w-2 h-6 sm:h-8 bg-canada-red rounded-full" />
                                     {section.title}
                                 </h2>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {typeof section.content === 'string' ? (
                                         <MarkdownContent content={section.content} />
                                     ) : (
@@ -379,18 +379,18 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                     />
 
                     {/* FAQ */}
-                    <div className="my-20">
-                        <div className="flex items-center gap-3 mb-10">
-                            <Info className="text-canada-red" size={32} />
-                            <h2 className="text-3xl font-black text-gray-900 dark:text-white">FAQ</h2>
+                    <div className="my-16 sm:my-18 md:my-20">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+                            <Info className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 dark:text-white">FAQ</h2>
                         </div>
-                        <div className="grid gap-6">
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm group hover:border-canada-red/30 transition-colors">
-                                    <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-canada-red transition-colors">
+                                <div key={i} className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm group hover:border-canada-red/30 transition-colors">
+                                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white group-hover:text-canada-red transition-colors">
                                         {item.q}
                                     </h4>
-                                    <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                                         {item.a}
                                     </div>
                                 </div>
@@ -399,11 +399,11 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
-                        <p className="text-lg md:text-xl mb-10 opacity-90">{t.ctaSubtext}</p>
+                    <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/pdf-to-csv`}
-                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 lg:py-5 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>

@@ -421,54 +421,54 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Lock size={32} />}>
-                <div className="max-w-4xl mx-auto space-y-16 text-gray-700 dark:text-gray-300">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">
                     {/* Introduction */}
                     <section className="animate-fade-in">
-                        <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-4 border-canada-red pl-6 py-2">
+                        <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-4 border-canada-red pl-4 sm:pl-6 py-2">
                             {t.intro}
                         </div>
                     </section>
 
                     {/* How to Guide Sections */}
                     {t.sections.map((section: any, idx: number) => (
-                        <section key={section.id} id={section.id} className="scroll-mt-24 animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
-                            <div className="flex items-center gap-4 mb-6">
-                                <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-canada-red/10 text-canada-red font-black text-2xl">
+                        <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24 animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
+                            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                                <span className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-canada-red/10 text-canada-red font-black text-xl sm:text-2xl">
                                     {idx + 1}
                                 </span>
-                                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
                             </div>
-                            <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 shadow-sm">
+                            <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm">
                                 {section.content}
                             </div>
                         </section>
                     ))}
 
                     {/* Rasterization Explanation */}
-                    <section className="bg-gray-900 text-white rounded-2xl md:rounded-[3rem] p-6 md:p-12 relative overflow-hidden shadow-2xl animate-fade-in shadow-gray-400">
-                        <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-canada-red opacity-10 blur-[80px] -mr-16 md:-mr-32 -mt-16 md:-mt-32 rounded-full"></div>
-                        <div className="relative z-10 grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+                    <section className="bg-gray-900 text-white rounded-2xl sm:rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 lg:p-12 relative overflow-hidden shadow-2xl animate-fade-in shadow-gray-400">
+                        <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-canada-red opacity-10 blur-[80px] -mr-24 sm:-mr-32 -mt-24 sm:-mt-32 rounded-full"></div>
+                        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
                             <div>
-                                <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
-                                    <Shield className="text-canada-red" size={32} />
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                                    <Shield className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
                                     {t.whyTitle}
                                 </h2>
-                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
                                     {t.whyDesc}
                                 </p>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                                <ul className="space-y-4">
-                                    <li className="flex items-start gap-3">
-                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                                <ul className="space-y-3 sm:space-y-4">
+                                    <li className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base">
+                                        <Zap className="text-canada-red mt-0.5 sm:mt-1 shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                                         <span>No text selection allowed</span>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                    <li className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base">
+                                        <Zap className="text-canada-red mt-0.5 sm:mt-1 shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                                         <span>Annotation tools won't work</span>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <Zap className="text-canada-red mt-1 shrink-0" size={20} />
+                                    <li className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base">
+                                        <Zap className="text-canada-red mt-0.5 sm:mt-1 shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                                         <span>Highest privacy via local processing</span>
                                     </li>
                                 </ul>
@@ -477,30 +477,30 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     {/* CTA Section */}
-                    <section className="text-center py-12 animate-fade-in">
-                        <h2 className="text-3xl font-black mb-6 text-gray-900 dark:text-white">{t.ctaTitle}</h2>
+                    <section className="text-center py-6 sm:py-8 md:py-12 animate-fade-in">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 text-gray-900 dark:text-white">{t.ctaTitle}</h2>
                         <Link href={`/${lang}/make-pdf-non-editable`}
-                            className="inline-flex items-center gap-3 bg-canada-red hover:bg-canada-darkRed text-white px-10 py-4 rounded-full font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
+                            className="inline-flex items-center gap-2 sm:gap-3 bg-canada-red hover:bg-canada-darkRed text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 rounded-full font-black text-base sm:text-lg md:text-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
                         >
-                            <Lock size={24} />
+                            <Lock size={20} className="sm:w-6 sm:h-6" />
                             {t.ctaButton}
                         </Link>
-                        <p className="mt-4 text-gray-500 font-medium">{t.ctaSubtext}</p>
+                        <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
 
                     {/* FAQ Section */}
-                    <section className="scroll-mt-24 animate-fade-in">
-                        <div className="flex items-center gap-4 mb-10">
-                            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-2xl text-blue-600 dark:text-blue-400">
-                                <HelpCircle size={32} />
+                    <section className="scroll-mt-20 sm:scroll-mt-24 animate-fade-in">
+                        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10">
+                            <div className="p-2 sm:p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl sm:rounded-2xl text-blue-600 dark:text-blue-400">
+                                <HelpCircle size={24} className="sm:w-8 sm:h-8" />
                             </div>
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">F.A.Q.</h2>
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">F.A.Q.</h2>
                         </div>
-                        <div className="grid gap-6">
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
-                                    <h3 className="font-bold text-xl mb-4 text-gray-900 dark:text-white">{item.q}</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{item.a}</p>
+                                <div key={i} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
+                                    <h3 className="font-bold text-base sm:text-lg md:text-xl mb-2 sm:mb-3 md:mb-4 text-gray-900 dark:text-white">{item.q}</h3>
+                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">{item.a}</p>
                                 </div>
                             ))}
                         </div>

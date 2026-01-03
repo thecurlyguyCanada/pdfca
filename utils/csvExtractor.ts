@@ -108,11 +108,7 @@ export function normalizeFinancialData(data: TableData): TableData {
             if (lowerKey.includes('date')) {
                 const date = new Date(val);
                 if (!isNaN(date.getTime())) {
-                    // Use local time components to avoid UTC off-by-one errors
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    newRow[key] = `${year}-${month}-${day}`;
+                    newRow[key] = date.toISOString().split('T')[0];
                 }
             }
 
@@ -142,21 +138,17 @@ export function downloadAsExcel(data: TableData, filename: string = "converted_p
     if (format === 'csv') {
         const csv = utils.sheet_to_csv(worksheet);
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = url;
+        link.href = URL.createObjectURL(blob);
         link.download = filename.replace('.xlsx', '.csv');
         link.click();
-        setTimeout(() => URL.revokeObjectURL(url), 100);
     } else {
         const buffer = write(workbook, { bookType: 'xlsx', type: 'array' });
         const blob = new Blob([buffer], { type: 'application/octet-stream' });
-        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = url;
+        link.href = URL.createObjectURL(blob);
         link.download = filename;
         link.click();
-        setTimeout(() => URL.revokeObjectURL(url), 100);
     }
 }
 
@@ -208,7 +200,7 @@ NEWFILEUID:NONE
         const amt = row['Amount'] || row['amount'] || "0";
         const memo = Object.values(row).join(' ').substring(0, 255);
         const name = (row['Description'] || row['desc'] || row['Payee'] || "Transaction").substring(0, 32);
-        const fitid = `${date.replace(/-/g, '')}${amt.replace(/\./g, '')}${i}`;
+        const fitid = `${date.replace(/-/g, '')}${amt.replace(/./g, '')}${i}`;
 
         ofx += `<STMTTRN>
 <TRNTYPE>OTHER</TRNTYPE>

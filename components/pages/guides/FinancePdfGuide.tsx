@@ -421,28 +421,28 @@ export const FinancePdfGuide: React.FC<GuideProps> = ({ lang }) => {
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/finance-pdf-security" lang={lang} schema={schema} />
 
-            <div className="w-full py-12">
-                <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
-                    <div className="p-8 bg-green-50 dark:bg-green-900/10 rounded-3xl mb-12 border border-green-100 dark:border-green-900">
+            <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">
+                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none mb-12 sm:mb-14 md:mb-16 text-gray-600 dark:text-gray-300">
+                    <div className="p-6 sm:p-8 bg-green-50 dark:bg-green-900/10 rounded-2xl sm:rounded-3xl mb-8 sm:mb-10 md:mb-12 border border-green-100 dark:border-green-900">
                         {t.intro}
                     </div>
 
                     {t.sections.map((section: any) => (
-                        <div key={section.id} className="mb-16">
-                            <h2 className="text-3xl font-black mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
+                        <div key={section.id} className="mb-12 sm:mb-14 md:mb-16">
+                            <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-gray-900 dark:text-white">
                                 {section.id === "identity-theft" && <Lock className="text-red-500" />}
                                 {section.id === "secure-compression" && <ShieldCheck className="text-green-500" />}
                                 {section.id === "finance-tips" && <PieChart className="text-blue-500" />}
                                 {section.title}
                             </h2>
-                            <div className="text-lg leading-relaxed">{section.content}</div>
+                            <div className="text-base sm:text-lg leading-relaxed">{section.content}</div>
                         </div>
                     ))}
                 </div>
 
-                <div className="bg-green-600 text-white rounded-xl md:rounded-[2rem] p-6 md:p-12 text-center shadow-xl shadow-green-500/20">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}`} className="inline-block bg-white text-green-600 hover:scale-105 transition-all px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-green-50">
+                <div className="bg-green-600 text-white rounded-xl sm:rounded-2xl md:rounded-[2rem] p-8 sm:p-10 md:p-12 text-center shadow-xl shadow-green-500/20">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t.cta}</h3>
+                    <Link href={`/${lang}`} className="inline-block bg-white text-green-600 hover:scale-105 transition-all px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-green-50">
                         {t.ctaBtn}
                     </Link>
                 </div>

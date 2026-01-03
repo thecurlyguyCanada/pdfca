@@ -49,13 +49,13 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   {
     slug: 'merge-pdf',
     tool: ToolType.MERGE,
-    title: 'Merge PDF & Images',
-    titleFr: 'Fusionner PDF et Images',
-    description: 'Combine multiple PDF files and images (JPG, PNG, WebP, AVIF) into one document. Drag and drop to reorder. Free, secure, and processing happens locally.',
-    descriptionFr: 'Combinez plusieurs fichiers PDF et images (JPG, PNG, WebP, AVIF) en un seul document. Glissez-déposez pour réorganiser. Gratuit et sécurisé.',
-    keywords: ['merge PDF', 'combine PDF', 'join PDF files', 'merge images to pdf'],
-    keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF', 'fusionner images en pdf'],
-    accept: '.pdf,application/pdf,image/jpeg,image/png,image/webp,image/avif,.jpg,.jpeg,.png,.webp,.avif'
+    title: 'Merge PDF',
+    titleFr: 'Fusionner PDF',
+    description: 'Combine multiple PDF files into one document. Drag and drop to reorder. Free, secure PDF merging - all processing happens locally.',
+    descriptionFr: 'Combinez plusieurs fichiers PDF en un seul document. Glissez-déposez pour réorganiser. Fusion PDF gratuite et sécurisée.',
+    keywords: ['merge PDF', 'combine PDF', 'join PDF files'],
+    keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'split-pdf',
@@ -320,61 +320,6 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywords: ['analyze PDF', 'PDF security scan', 'detect phishing PDF', 'safe view PDF', 'malware scanner'],
     keywordsFr: ['analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF', 'vue sécurisée PDF', 'scanner malware'],
     accept: '.pdf,application/pdf'
-  },
-  {
-    slug: 'pdf-to-ubl',
-    tool: ToolType.PDF_TO_UBL,
-    title: 'PDF to UBL',
-    titleFr: 'PDF vers UBL',
-    description: 'Convert PDF invoices to UBL 2.1 XML format. Extract invoice data automatically and generate compliant E-Invoices. Local, private, and free.',
-    descriptionFr: 'Convertissez des factures PDF au format UBL 2.1 XML. Extrayez automatiquement les données de facturation et générez des factures électroniques conformes. Local, privé et gratuit.',
-    keywords: ['PDF to UBL', 'invoice to UBL', 'convert invoice to xml', 'ubl 2.1 generator', 'e-invoice converter'],
-    keywordsFr: ['PDF vers UBL', 'facture vers UBL', 'convertir facture en xml', 'générateur ubl 2.1', 'convertisseur facture électronique'],
-    accept: '.pdf,application/pdf'
-  },
-  {
-    slug: 'ipynb-to-pdf',
-    tool: ToolType.IPYNB_TO_PDF,
-    title: 'Jupyter Notebook to PDF',
-    titleFr: 'Jupyter Notebook vers PDF',
-    description: 'Convert Jupyter Notebook (.ipynb) files to high-quality PDF documents. Local processing ensures private and secure conversion in your browser.',
-    descriptionFr: 'Convertissez les fichiers Jupyter Notebook (.ipynb) en documents PDF de haute qualité. Le traitement local garantit une conversion privée et sécurisée.',
-    keywords: ['ipynb to pdf', 'convert jupyter notebook to pdf', 'notebook to pdf converter', 'python notebook to pdf'],
-    keywordsFr: ['ipynb vers pdf', 'convertir jupyter notebook en pdf', 'convertisseur notebook en pdf'],
-    accept: '.ipynb,application/x-ipynb+json'
-  },
-  {
-    slug: 'image-to-pdf',
-    tool: ToolType.IMAGE_TO_PDF,
-    title: 'Image to PDF',
-    titleFr: 'Image vers PDF',
-    description: 'Convert images (JPG, PNG, WebP, AVIF) to PDF. Merge multiple images into a single PDF document. Free, secure, and processing happens locally.',
-    descriptionFr: 'Convertissez des images (JPG, PNG, WebP, AVIF) en PDF. Fusionnez plusieurs images en un seul document PDF. Gratuit, sécurisé et traitement local.',
-    keywords: ['image to pdf', 'jpg to pdf', 'png to pdf', 'avif to pdf', 'photo to pdf'],
-    keywordsFr: ['image vers pdf', 'jpg vers pdf', 'png vers pdf', 'avif vers pdf', 'photo vers pdf'],
-    accept: 'image/jpeg,image/png,image/webp,image/avif,.jpg,.jpeg,.png,.webp,.avif'
-  },
-  {
-    slug: 'pdf-to-avif',
-    tool: ToolType.PDF_TO_IMAGE,
-    title: 'PDF to AVIF',
-    titleFr: 'PDF vers AVIF',
-    description: 'Convert PDF pages to high-quality AVIF images. Fast, free, and secure - all processing happens in your browser.',
-    descriptionFr: 'Convertissez les pages PDF en images AVIF de haute qualité. Rapide, gratuit et sécurisé.',
-    keywords: ['pdf to avif', 'convert pdf to image', 'extract images from pdf'],
-    keywordsFr: ['pdf vers avif', 'convertir pdf en image', 'extraire images du pdf'],
-    accept: '.pdf,application/pdf'
-  },
-  {
-    slug: 'eml-to-pdf',
-    tool: ToolType.EML_TO_PDF,
-    title: 'EML to PDF',
-    titleFr: 'EML vers PDF',
-    description: 'Convert email files (EML) to PDF format. Preserve email headers, body text, and attachment info. Free, secure, browser-based conversion.',
-    descriptionFr: 'Convertissez les fichiers email (EML) en format PDF. Préservez les en-têtes, le texte et les informations de pièces jointes. Gratuit et sécurisé.',
-    keywords: ['eml to pdf', 'convert email to pdf', 'email to pdf converter', 'outlook email to pdf', 'thunderbird email to pdf'],
-    keywordsFr: ['eml vers pdf', 'convertir email en pdf', 'convertisseur email pdf', 'email outlook en pdf'],
-    accept: '.eml,message/rfc822'
   },
 ];
 

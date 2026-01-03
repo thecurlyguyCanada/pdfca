@@ -127,7 +127,7 @@ export const initPdfWorker = async () => {
   }
 };
 
-export const getPdfJsDocument = async (file: File, options: any = {}) => {
+export const getPdfJsDocument = async (file: File) => {
   try {
     await initPdfWorker();
     const pdfjs = await getPdfJs();
@@ -138,7 +138,6 @@ export const getPdfJsDocument = async (file: File, options: any = {}) => {
       cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
       cMapPacked: true,
       standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
-      ...options,
     });
 
     return loadingTask.promise;
@@ -1746,55 +1745,24 @@ export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extr
 
 export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
   try {
-    const { PDFDocument } = await getPdfLib();
+    const pdfLib = await getPdfLib();
+    const { PDFDocument } = pdfLib;
+
+    // Create a new document
     const mergedPdf = await PDFDocument.create();
 
     for (const file of files) {
-      const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+      // Load the source PDF
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await PDFDocument.load(arrayBuffer);
 
-      if (isPdf) {
-        // Load the source PDF
-        const arrayBuffer = await file.arrayBuffer();
-        const pdf = await PDFDocument.load(arrayBuffer);
-        // Copy all pages
-        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-        // Add pages to the new document
-        copiedPages.forEach((page) => mergedPdf.addPage(page));
-      } else if (file.type.startsWith('image/')) {
-        // Handle image embedding
-        let arrayBuffer: ArrayBuffer;
-        let isPng = false;
+      // Copy all pages
+      const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
 
-        if (file.type === 'image/webp' || file.type === 'image/avif' || !['image/jpeg', 'image/png'].includes(file.type)) {
-          const bitmap = await createImageBitmap(file);
-          const canvas = document.createElement('canvas');
-          canvas.width = bitmap.width;
-          canvas.height = bitmap.height;
-          const ctx = canvas.getContext('2d');
-          if (!ctx) throw new Error('Canvas context not available');
-          ctx.drawImage(bitmap, 0, 0);
-          bitmap.close();
-          const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
-          if (!blob) throw new Error('Failed to convert image');
-          arrayBuffer = await blob.arrayBuffer();
-          isPng = true;
-        } else {
-          arrayBuffer = await file.arrayBuffer();
-          isPng = file.type === 'image/png' || file.name.toLowerCase().endsWith('.png');
-        }
+      // Add pages to the new document
+      copiedPages.forEach((page) => mergedPdf.addPage(page));
 
-        let image;
-        if (isPng) {
-          image = await mergedPdf.embedPng(arrayBuffer);
-        } else {
-          image = await mergedPdf.embedJpg(arrayBuffer);
-        }
-
-        const page = mergedPdf.addPage([image.width, image.height]);
-        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
-      }
-
-      // Yield to event loop
+      // Yield to event loop to prevent UI freezing
       await new Promise(resolve => setTimeout(resolve, 0));
     }
 
@@ -1803,7 +1771,7 @@ export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
     return await mergedPdf.save();
   } catch (error) {
     console.error('Error in mergePdfs:', error);
-    throw new Error('Failed to merge files. One of the documents might be corrupted or in an unsupported format.');
+    throw new Error('Failed to merge PDFs. One of the files might be corrupted or password protected.');
   }
 };
 
@@ -2267,8 +2235,46 @@ export const convertPdfToExcel = async (file: File): Promise<Blob> => {
   return new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 };
 
-// Generate Security Report PDF
-export const generateSecurityReport = async (file: File, analysis: any): Promise<Blob> => {
+export const analyzePdfSecurity = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+
+  const findings: { type: string, detail: string, severity: 'Low' | 'Medium' | 'High' }[] = [];
+
+  // Metadata check
+  const metadata = await pdf.getMetadata();
+  const info = (metadata?.info as any) || {};
+  findings.push({ type: 'Document Metadata', detail: `Producer: ${info.Producer || 'N/A'}, Creator: ${info.Creator || 'N/A'}`, severity: 'Low' });
+
+  // JavaScript Check
+  try {
+    const scripts = await (pdf as any).getJavaScript();
+    if (scripts && scripts.length > 0) {
+      findings.push({ type: 'JavaScript Detected', detail: `This PDF contains ${scripts.length} embedded scripts. JavaScript can be used for malicious actions.`, severity: 'High' });
+    }
+  } catch (e) {
+    console.warn("JS extraction failed", e);
+  }
+
+  // Link Analysis
+  let suspiciousLinks = 0;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const annotations = await page.getAnnotations();
+    annotations.forEach((anno: any) => {
+      if (anno.subtype === 'Link' && anno.url) {
+        const url = anno.url.toLowerCase();
+        if (url.startsWith('javascript:') || url.includes('bit.ly') || url.includes('t.co') || url.includes('tinyurl')) {
+          suspiciousLinks++;
+          findings.push({ type: 'Suspicious Link', detail: `Possibly deceptive or shortened URL on page ${i}: ${anno.url}`, severity: 'Medium' });
+        }
+      }
+    });
+  }
+
+  // Visual report generation
   const { jsPDF } = await getJsPdf();
   const doc = new jsPDF();
 
@@ -2280,64 +2286,28 @@ export const generateSecurityReport = async (file: File, analysis: any): Promise
   doc.setTextColor(100);
   doc.text(`File: ${file.name}`, 20, 30);
   doc.text(`Date: ${new Date().toLocaleString()}`, 20, 35);
-  doc.text(`Risk Level: ${analysis.riskLevel} (Score: ${analysis.score}/100)`, 20, 40);
-  doc.text(`Powered by pdfcanada.ca - 100% Local Privacy`, 20, 50);
+  doc.text(`Powered by pdfcanada.ca - 100% Local Privacy`, 20, 40);
 
-  let y = 70;
+  let y = 60;
+  findings.forEach((f) => {
+    if (y > 270) { doc.addPage(); y = 20; }
 
-  const addLine = (text: string, color: [number, number, number] = [0, 0, 0], fontSize = 12) => {
-    if (y > 270) {
-      doc.addPage();
-      y = 20;
-    }
-    doc.setFontSize(fontSize);
+    doc.setFontSize(12);
+    const color = f.severity === 'High' ? [255, 0, 0] : (f.severity === 'Medium' ? [255, 128, 0] : [0, 150, 0]);
     doc.setTextColor(color[0], color[1], color[2]);
-    doc.text(text, 20, y);
-    y += fontSize * 0.5 + 4;
-  };
+    doc.text(`[${f.severity}] ${f.type}`, 20, y);
 
-  // Summary
-  if (analysis.riskLevel === 'SAFE') {
-    addLine('[SAFE] No significant threats found.', [0, 150, 0], 14);
-  } else {
-    addLine(`[${analysis.riskLevel}] Threats detected! Proceed with caution.`, [255, 0, 0], 14);
-  }
-  y += 10;
+    doc.setFontSize(10);
+    doc.setTextColor(50);
+    const splitDetail = doc.splitTextToSize(f.detail, 170);
+    doc.text(splitDetail, 25, y + 5);
 
-  // Findings
-  if (analysis.details.hasJavascript) {
-    addLine('[High] JavaScript Detected: Document contains embedded scripts.', [255, 0, 0]);
-  }
-  if (analysis.details.hasLaunchActions) {
-    addLine('[Critical] Launch Action Detected: Document tries to launch external programs.', [255, 0, 0]);
-  }
-  if (analysis.details.hasOpenAction) {
-    addLine('[Medium] Open Action Detected: Document performs an action on open.', [255, 128, 0]);
-  }
-  if (analysis.details.embeddedFiles.length > 0) {
-    addLine(`[Medium] Embedded Files: ${analysis.details.embeddedFiles.join(', ')}`, [255, 128, 0]);
-  }
+    y += 10 + (splitDetail.length * 5);
+  });
 
-  // Links
-  if (analysis.details.links.length > 0) {
-    y += 5;
-    addLine('Analyzed Links:', [0, 0, 0], 14);
-    analysis.details.links.forEach((l: any) => {
-      if (l.isSuspicious) {
-        addLine(`[Suspicious] Page ${l.page}: ${l.url} (${l.reason})`, [255, 0, 0]);
-      } else {
-        addLine(`[Safe] Page ${l.page}: ${l.url}`, [0, 100, 0]);
-      }
-    });
-  } else {
-    addLine('No links found in document.', [100, 100, 100]);
-  }
-
-  // Logs
-  if (analysis.logs && analysis.logs.length > 0) {
-    y += 10;
-    addLine('Detailed Logs:', [0, 0, 0], 14);
-    analysis.logs.forEach((log: string) => addLine(`- ${log}`, [80, 80, 80], 10));
+  if (findings.length === 1) {
+    doc.setTextColor(0, 150, 0);
+    doc.text("No significant security threats detected.", 20, y);
   }
 
   return doc.output('blob');
@@ -2527,109 +2497,4 @@ export const optimizePdfForKindleVisual = async (file: File, screenSize: number 
   }
 
   return outputDoc.output('blob');
-};
-
-// Convert Image (JPG, PNG, WebP, AVIF) to PDF
-export const convertImageToPdf = async (input: File | File[]): Promise<Uint8Array> => {
-  const { PDFDocument } = await getPdfLib();
-  const doc = await PDFDocument.create();
-  const files = Array.isArray(input) ? input : [input];
-
-  for (const file of files) {
-    let arrayBuffer: ArrayBuffer;
-    let isPng = false;
-
-    // Handle WebP, AVIF or other formats by converting to PNG first
-    if (file.type === 'image/webp' || file.type === 'image/avif' || !['image/jpeg', 'image/png'].includes(file.type)) {
-      const bitmap = await createImageBitmap(file);
-      const canvas = document.createElement('canvas');
-      canvas.width = bitmap.width;
-      canvas.height = bitmap.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('Canvas context not available');
-      ctx.drawImage(bitmap, 0, 0);
-      bitmap.close();
-      const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
-      if (!blob) throw new Error('Failed to convert image');
-      arrayBuffer = await blob.arrayBuffer();
-      isPng = true;
-    } else {
-      arrayBuffer = await file.arrayBuffer();
-      isPng = file.type === 'image/png' || file.name.toLowerCase().endsWith('.png');
-    }
-
-    let image;
-    try {
-      if (isPng) {
-        image = await doc.embedPng(arrayBuffer);
-      } else {
-        image = await doc.embedJpg(arrayBuffer);
-      }
-    } catch (e) {
-      // Fallback: If embed fails (e.g. malformed JPG), try converting to PNG via canvas
-      console.warn("Direct embed failed, trying canvas conversion", e);
-      const bitmap = await createImageBitmap(file);
-      const canvas = document.createElement('canvas');
-      canvas.width = bitmap.width;
-      canvas.height = bitmap.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('Canvas context not available');
-      ctx.drawImage(bitmap, 0, 0);
-      bitmap.close();
-      const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
-      if (!blob) throw new Error('Failed to convert image fallback');
-      const pngBuffer = await blob.arrayBuffer();
-      image = await doc.embedPng(pngBuffer);
-    }
-
-    // Add page with matching dimensions
-    const page = doc.addPage([image.width, image.height]);
-    page.drawImage(image, {
-      x: 0,
-      y: 0,
-      width: image.width,
-      height: image.height,
-    });
-  }
-
-  addPdfMetadata(doc, 'Image to PDF');
-  return await doc.save();
-};
-
-// Convert PDF to Images (specifically AVIF) and zip them
-export const convertPdfToAvifZip = async (file: File, selectedPages?: number[]): Promise<Blob> => {
-  const pdfJs = await getPdfJs();
-  const JSZip = await getJSZip();
-  const pdf = await getPdfJsDocument(file);
-  const zip = new JSZip();
-
-  const pagesToProcess = selectedPages && selectedPages.length > 0
-    ? selectedPages
-    : Array.from({ length: pdf.numPages }, (_, i) => i);
-
-  for (const pageIdx of pagesToProcess) {
-    const page = await pdf.getPage(pageIdx + 1);
-    const viewport = page.getViewport({ scale: 2.0 }); // 2x scale for high quality
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (!context) throw new Error('Canvas context error');
-
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    await page.render({ canvasContext: context, viewport }).promise;
-
-    // Use image/avif - most modern browsers support this now
-    const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/avif', 0.8));
-    if (blob) {
-      zip.file(`page-${pageIdx + 1}.avif`, blob);
-    }
-
-    // Cleanup page to free memory
-    page.cleanup();
-    canvas.width = 0;
-    canvas.height = 0;
-  }
-
-  return await zip.generateAsync({ type: 'blob' });
 };

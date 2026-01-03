@@ -541,19 +541,37 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: 'Ultimate Guide', href: '#' }
                 ]}
             >
-                <div className="w-full py-8">
+                <div className="w-full py-4 sm:py-6 md:py-8">
+
+                    {/* At a Glance Summary - NEW */}
+                    {'atGlance' in t && t.atGlance && (
+                        <div className="bg-gradient-to-br from-canada-red/5 to-canada-red/10 dark:from-canada-red/10 dark:to-canada-red/5 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-canada-red/20 mb-8 sm:mb-12 md:mb-16">
+                            <h3 className="text-base sm:text-lg font-bold uppercase tracking-widest text-canada-red mb-4 sm:mb-6 flex items-center gap-2">
+                                <Zap size={18} className="shrink-0" />
+                                {t.atGlance.title}
+                            </h3>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                                {t.atGlance.items.map((item: any, idx: number) => (
+                                    <div key={idx} className="bg-white dark:bg-gray-900 p-3 sm:p-4 rounded-xl shadow-sm">
+                                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">{item.label}</p>
+                                        <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">{item.value}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Table of Contents */}
-                    <div className="bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-3xl border border-blue-100 dark:border-blue-800/30 mb-16">
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-2">
-                            <MousePointer2 size={16} /> Table of Contents
+                    <div className="bg-blue-50/50 dark:bg-blue-900/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-blue-100 dark:border-blue-800/30 mb-8 sm:mb-12 md:mb-16">
+                        <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 sm:mb-4 flex items-center gap-2">
+                            <MousePointer2 size={16} /> {lang === 'fr' ? 'Table des matières' : 'Table of Contents'}
                         </h3>
-                        <nav className="grid md:grid-cols-2 gap-y-3 gap-x-12">
+                        <nav className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 sm:gap-y-3 gap-x-6 sm:gap-x-12">
                             {t.sections.map((section: any, idx: number) => (
                                 <a
                                     key={section.id}
                                     href={"#" + section.id}
-                                    className="text-gray-600 dark:text-gray-400 hover:text-canada-red dark:hover:text-canada-red transition-all flex items-center gap-3 group"
+                                    className="text-sm sm:text-base text-gray-600 dark:text-gray-400 hover:text-canada-red dark:hover:text-canada-red transition-all flex items-center gap-2 sm:gap-3 group py-1"
                                 >
                                     <span className="text-xs font-mono text-gray-400 group-hover:text-canada-red transition-colors">0{idx + 1}.</span>
                                     <span className="border-b border-transparent group-hover:border-canada-red/30">{section.title}</span>
@@ -563,35 +581,32 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* Stats */}
-                    <div className="flex flex-wrap justify-center gap-8 mb-20 py-8 border-y border-gray-100 dark:border-gray-800">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-16 md:mb-20 py-4 sm:py-6 md:py-8 border-y border-gray-100 dark:border-gray-800">
                         <div className="flex items-center gap-2 text-gray-500">
-                            <Shield size={20} className="text-canada-red" />
-                            <span className="text-sm font-medium">100% Private</span>
+                            <Shield size={18} className="text-canada-red sm:w-5 sm:h-5" />
+                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? '100% Privé' : '100% Private'}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-500">
-                            <Globe size={20} className="text-canada-red" />
-                            <span className="text-sm font-medium">Local Processing</span>
+                            <Globe size={18} className="text-canada-red sm:w-5 sm:h-5" />
+                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? 'Traitement Local' : 'Local Processing'}</span>
                         </div>
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-24">
+                    <div className="space-y-12 sm:space-y-16 md:space-y-24">
                         {t.sections.map((section: any, idx: number) => (
-                            <section key={section.id} id={section.id} className="scroll-mt-24 group">
-                                <div className="flex items-center gap-6 mb-8">
-                                    <div className="bg-gray-100 dark:bg-gray-800 w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-canada-red transition-colors">
-                                        <span className="text-2xl font-black text-gray-400 group-hover:text-white transition-colors">
+                            <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24 group">
+                                <div className="flex items-center gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+                                    <div className="bg-gray-100 dark:bg-gray-800 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-canada-red transition-colors">
+                                        <span className="text-lg sm:text-xl md:text-2xl font-black text-gray-400 group-hover:text-white transition-colors">
                                             {idx + 1}
                                         </span>
                                     </div>
-                                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+                                    <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
                                         {section.title}
                                     </h2>
                                 </div>
-                                <p className="text-gray-800 dark:text-gray-200">
-                                    <span className="font-bold">Conseil de pro :</span> Si vous manipulez des relevés bancaires ou des documents juridiques, utilisez toujours un outil qui traite les fichiers localement (comme le nôtre !) pour garantir le plus haut niveau de confidentialité.
-                                </p>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {section.content}
                                 </div>
                             </section>
@@ -599,16 +614,13 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-32">
-                        <h2 className="text-4xl font-black mb-12">{t.faqTitle}</h2>
-                        <div className="grid gap-6">
+                    <div className="my-16 sm:my-24 md:my-32">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 sm:mb-8 md:mb-12">{t.faqTitle}</h2>
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faqs.map((faq: any, i: number) => (
-                                <div key={i} className="p-8 bg-gray-50 dark:bg-gray-900 rounded-3xl">
-                                    <h5 className="text-xl font-bold mb-4">{faq.q}</h5>
-                                    <p className="text-gray-800 dark:text-gray-200">
-                                        <span className="font-bold">Pro Tip:</span> If you're dealing with bank statements or legal papers, always use a tool that processes files locally (like ours!) to ensure the highest level of privacy.
-                                    </p>
-                                    <p className="text-gray-600 dark:text-gray-400">{faq.a}</p>
+                                <div key={i} className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-2xl sm:rounded-3xl">
+                                    <h5 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4">{faq.q}</h5>
+                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{faq.a}</p>
                                 </div>
                             ))}
                         </div>
@@ -616,9 +628,9 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
 
 
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white">
-                        <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{t.cta}</h2>
-                        <Link href={`/${lang}`} className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 rounded-full font-black text-xl hover:scale-105 transition-all">
+                    <div className="mt-10 sm:mt-16 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2.5rem] md:rounded-[3rem] text-center text-white">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">{t.cta}</h2>
+                        <Link href={`/${lang}`} className="inline-block bg-white text-canada-red px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all">
                             {t.ctaBtn}
                         </Link>
                     </div>

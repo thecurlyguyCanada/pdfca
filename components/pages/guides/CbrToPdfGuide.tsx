@@ -510,21 +510,21 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: 'CBR to PDF', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-12 px-6">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
                     {/* Intro */}
-                    <div className="prose prose-lg dark:prose-invert mb-16 max-w-none text-gray-600 dark:text-gray-400">
+                    <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert mb-12 sm:mb-14 md:mb-16 max-w-none text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>
 
                     {/* Sections */}
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections.map((section: any) => (
-                            <section key={section.id} id={section.id} className="scroll-mt-24">
-                                <h2 className="text-3xl font-black mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-canada-red rounded-full" />
+                            <section key={section.id} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                                <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                                    <div className="w-1.5 sm:w-2 h-6 sm:h-8 bg-canada-red rounded-full" />
                                     {section.title}
                                 </h2>
-                                <div className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
+                                <div className="text-gray-600 dark:text-gray-400 leading-relaxed text-base sm:text-lg">
                                     {section.content}
                                 </div>
                             </section>
@@ -532,19 +532,19 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="mt-24 pt-16 border-t border-gray-100 dark:border-gray-800">
-                        <h2 className="text-4xl font-black mb-12 flex items-center gap-4">
-                            <Info className="text-canada-red" size={36} />
+                    <div className="mt-16 sm:mt-20 md:mt-24 pt-12 sm:pt-14 md:pt-16 border-t border-gray-100 dark:border-gray-800">
+                        <h2 className="text-3xl sm:text-4xl font-black mb-8 sm:mb-10 md:mb-12 flex items-center gap-3 sm:gap-4">
+                            <Info className="text-canada-red" size={28} />
                             FAQ
                         </h2>
-                        <div className="grid gap-6">
+                        <div className="grid gap-4 sm:gap-5 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="bg-gray-50 dark:bg-gray-900/50 p-8 rounded-3xl border border-gray-100 dark:border-gray-800">
-                                    <h3 className="text-xl font-bold mb-4 flex items-start gap-3">
+                                <div key={i} className="bg-gray-50 dark:bg-gray-900/50 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-gray-800">
+                                    <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-start gap-2 sm:gap-3">
                                         <span className="text-canada-red font-black">Q.</span>
                                         {item.q}
                                     </h3>
-                                    <div className="text-gray-600 dark:text-gray-400 pl-8 border-l-2 border-gray-200 dark:border-gray-800">
+                                    <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-gray-800">
                                         {item.a}
                                     </div>
                                 </div>
@@ -552,14 +552,14 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </div>
                     </div>
 
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] text-center text-white relative overflow-hidden group shadow-2xl shadow-red-500/20">
+                    <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3rem] text-center text-white relative overflow-hidden group shadow-2xl shadow-red-500/20">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform hidden md:block">
                             <Zap size={120} />
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-black mb-4 relative z-10 leading-tight">{t.ctaTitle}</h2>
-                        <p className="text-red-100 mb-8 text-lg md:text-xl relative z-10">{t.ctaSubtext}</p>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 relative z-10 leading-tight">{t.ctaTitle}</h2>
+                        <p className="text-red-100 mb-6 sm:mb-8 text-base sm:text-lg md:text-xl relative z-10">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/cbr-to-pdf`}
-                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 rounded-full font-black text-lg md:text-xl shadow-xl hover:bg-gray-50 transition-all hover:scale-105 active:scale-95 relative z-10"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 rounded-full font-black text-base sm:text-lg md:text-xl shadow-xl hover:bg-gray-50 transition-all hover:scale-105 active:scale-95 relative z-10"
                         >
                             {t.ctaButton}
                         </Link>

@@ -1262,20 +1262,20 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'PDF Remplissable' : 'Make PDF Fillable', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto space-y-12">
-                    <p className="text-xl text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
+                <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">
+                    <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
                         {t.intro}
                     </p>
 
                     {/* Content */}
-                    <div className="space-y-16">
+                    <div className="space-y-8 sm:space-y-12 md:space-y-16">
                         {t.sections && t.sections.map((section) => (
                             <section key={section.id}>
-                                <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-1 h-8 bg-canada-red rounded-full"></div>
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                                    <div className="w-1 h-6 sm:h-8 bg-canada-red rounded-full"></div>
                                     {section.title}
                                 </h2>
-                                <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 whitespace-pre-line">
+                                <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 whitespace-pre-line">
                                     {section.content}
                                 </div>
                             </section>
@@ -1296,11 +1296,11 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <section className="bg-canada-red p-8 md:p-12 rounded-[2.5rem] text-center text-white shadow-2xl">
-                        <h2 className="text-2xl md:text-3xl font-black mb-4 leading-tight">{t.ctaTitle}</h2>
-                        <p className="mb-8 text-white/80 font-medium">{t.ctaSubtext}</p>
+                    <section className="bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] text-center text-white shadow-2xl">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4 leading-tight">{t.ctaTitle}</h2>
+                        <p className="mb-6 sm:mb-8 text-sm sm:text-base text-white/80 font-medium">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/make-pdf-fillable`}
-                            className="inline-block bg-white text-canada-red px-10 md:px-12 py-4 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-all shadow-lg"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg"
                         >
                             {t.ctaButton}
                         </Link>
@@ -1308,13 +1308,13 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {/* FAQ */}
                     {t.faq && (
-                        <section className="bg-gray-50 dark:bg-gray-900/50 p-10 rounded-3xl">
-                            <h2 className="text-2xl font-black mb-8 text-center tracking-tight uppercase">Solutions to Common Problems</h2>
-                            <div className="grid gap-6">
+                        <section className="bg-gray-50 dark:bg-gray-900/50 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl">
+                            <h2 className="text-xl sm:text-2xl font-black mb-6 sm:mb-8 text-center tracking-tight uppercase">Solutions to Common Problems</h2>
+                            <div className="grid gap-3 sm:gap-4 md:gap-6">
                                 {t.faq.map((item, i) => (
-                                    <div key={i} className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
-                                        <h4 className="font-bold text-lg mb-3 text-gray-900 dark:text-white">{item.q}</h4>
-                                        <p className="text-gray-600 dark:text-gray-400">{item.a}</p>
+                                    <div key={i} className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                        <h4 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-gray-900 dark:text-white">{item.q}</h4>
+                                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{item.a}</p>
                                     </div>
                                 ))}
                             </div>

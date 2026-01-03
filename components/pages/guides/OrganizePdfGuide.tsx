@@ -390,26 +390,26 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: 'Organize PDF Guide', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
+                <div className="w-full py-4 sm:py-6 md:py-8">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>
 
-                    <div className="bg-amber-50 dark:bg-amber-900/10 p-8 rounded-[2rem] border border-amber-200 dark:border-amber-800 flex gap-6 mb-16">
-                        <Zap className="text-amber-600 shrink-0" size={28} />
-                        <p className="text-lg text-amber-900 dark:text-amber-300">
+                    <div className="bg-amber-50 dark:bg-amber-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-[1.5rem] md:rounded-[2rem] border border-amber-200 dark:border-amber-800 flex flex-col sm:flex-row gap-3 sm:gap-6 mb-8 sm:mb-12 md:mb-16">
+                        <Zap className="text-amber-600 shrink-0 w-6 h-6 sm:w-7 sm:h-7" />
+                        <p className="text-sm sm:text-base md:text-lg text-amber-900 dark:text-amber-300">
                             <strong>Insider Tip:</strong> You can combine this tool with our <Link href={`/${lang}/delete-pdf-pages`} className="underline decoration-dashed hover:decoration-solid hover:text-amber-800">'Delete Pages' tool</Link> to perfectly curate your final document before sharing. Perfect for clean board reports!
                         </p>
                     </div>
 
                     {/* Content Sections */}
-                    <div className="space-y-20">
+                    <div className="space-y-10 sm:space-y-16 md:space-y-20">
                         {t.sections.map((section: any) => (
-                            <section key={section.id}>
-                                <h3 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white flex items-center gap-3">
-                                    <CheckCircle size={24} className="text-canada-red" /> {section.title}
+                            <section key={section.id} className="scroll-mt-20 sm:scroll-mt-24">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 md:mb-8 text-gray-900 dark:text-white flex items-center gap-2 sm:gap-3">
+                                    <CheckCircle size={20} className="text-canada-red sm:w-6 sm:h-6" /> {section.title}
                                 </h3>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {typeof section.content === 'string' ? (
                                         <MarkdownContent content={section.content} />
                                     ) : (
@@ -421,34 +421,34 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* Features Tiles */}
-                    <div className="grid md:grid-cols-3 gap-8 my-24">
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center">
-                            <GripVertical className="text-canada-red mx-auto mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-3">Drag & Drop</h3>
-                            <p className="text-gray-500">Visual interface makes reordering intuitive and fast.</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 my-12 sm:my-18 md:my-24">
+                        <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center">
+                            <GripVertical className="text-canada-red mx-auto mb-3 sm:mb-4 md:mb-6 w-8 h-8 sm:w-10 sm:h-10" />
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Drag & Drop</h3>
+                            <p className="text-sm sm:text-base text-gray-500">Visual interface makes reordering intuitive and fast.</p>
                         </div>
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center">
-                            <Shield className="text-canada-red mx-auto mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-3">100% Private</h3>
-                            <p className="text-gray-500">Files never leave your browser. Local processing only.</p>
+                        <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center">
+                            <Shield className="text-canada-red mx-auto mb-3 sm:mb-4 md:mb-6 w-8 h-8 sm:w-10 sm:h-10" />
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">100% Private</h3>
+                            <p className="text-sm sm:text-base text-gray-500">Files never leave your browser. Local processing only.</p>
                         </div>
-                        <div className="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center">
-                            <Zap className="text-canada-red mx-auto mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-3">Instant Save</h3>
-                            <p className="text-gray-500">Generate your new PDF in milliseconds, not minutes.</p>
+                        <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm text-center sm:col-span-2 md:col-span-1">
+                            <Zap className="text-canada-red mx-auto mb-3 sm:mb-4 md:mb-6 w-8 h-8 sm:w-10 sm:h-10" />
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Instant Save</h3>
+                            <p className="text-sm sm:text-base text-gray-500">Generate your new PDF in milliseconds, not minutes.</p>
                         </div>
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-24">
-                        <h3 className="text-4xl font-black mb-12 text-gray-900 dark:text-white">Common Questions</h3>
-                        <div className="grid gap-6">
+                    <div className="my-12 sm:my-18 md:my-24">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 sm:mb-8 md:mb-12 text-gray-900 dark:text-white">Common Questions</h3>
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="p-10 bg-white dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm">
-                                    <h4 className="text-xl font-black mb-4 flex items-center gap-3 text-gray-900 dark:text-white">
-                                        <MousePointer2 size={24} className="text-canada-red" /> {item.q}
+                                <div key={i} className="p-4 sm:p-6 md:p-8 lg:p-10 bg-white dark:bg-gray-900 rounded-xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-sm">
+                                    <h4 className="text-base sm:text-lg md:text-xl font-black mb-2 sm:mb-3 md:mb-4 flex items-center gap-2 sm:gap-3 text-gray-900 dark:text-white">
+                                        <MousePointer2 size={18} className="text-canada-red sm:w-6 sm:h-6" /> {item.q}
                                     </h4>
-                                    <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                                         <MarkdownContent content={item.a} />
                                     </div>
                                 </div>
@@ -457,11 +457,11 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA Section */}
-                    <section className="bg-canada-red p-16 rounded-[3.5rem] text-center text-white shadow-2xl shadow-red-500/20">
-                        <h2 className="text-4xl font-black mb-6">{t.ctaTitle}</h2>
-                        <p className="text-xl mb-12 opacity-90">{t.ctaSubtext}</p>
+                    <section className="bg-canada-red p-6 sm:p-8 md:p-12 lg:p-16 rounded-2xl sm:rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] text-center text-white shadow-2xl shadow-red-500/20">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6">{t.ctaTitle}</h2>
+                        <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-12 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/organize-pdf`}
-                            className="bg-white text-canada-red px-14 py-5 rounded-full font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl"
+                            className="bg-white text-canada-red px-8 py-3.5 sm:px-10 sm:py-4 md:px-12 md:py-5 lg:px-14 rounded-full font-black text-base sm:text-lg md:text-xl lg:text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl"
                         >
                             {t.ctaButton}
                         </Link>

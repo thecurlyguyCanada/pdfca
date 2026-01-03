@@ -598,16 +598,16 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     { name: lang === 'fr' ? 'Courriel en PDF' : 'Email to PDF', href: '#' }
                 ]}
             >
-                <div className="max-w-4xl mx-auto py-8">
-                    <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 border-l-4 border-canada-red pl-6 py-2 mb-16 font-medium">
+                <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 border-l-4 border-canada-red pl-4 sm:pl-6 py-2 mb-12 sm:mb-14 md:mb-16 font-medium">
                         {t.intro}
                     </div>
 
                     {/* Content Sections */}
-                    <div className="space-y-20">
+                    <div className="space-y-12 sm:space-y-16 md:space-y-20">
                         {t.sections.map((section: any) => (
                             <section key={section.id} id={section.id}>
-                                <h3 className="text-3xl font-bold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
+                                <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-gray-900 dark:text-white">
                                     {section.id === 'gmail' && <Mail size={28} className="text-canada-red" />}
                                     {section.id === 'new-outlook' && <Monitor size={28} className="text-blue-500" />}
                                     {section.id === 'classic-outlook' && <Monitor size={28} className="text-blue-700" />}
@@ -619,7 +619,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                     {section.id === 'troubleshooting' && <AlertTriangle size={28} className="text-amber-600" />}
                                     {section.title}
                                 </h3>
-                                <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
                                     {section.content}
                                 </div>
                             </section>
@@ -627,16 +627,16 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* FAQ */}
-                    <div className="my-20">
-                        <h3 className="text-3xl font-black mb-10 text-gray-900 dark:text-white">{t.faqTitle}</h3>
+                    <div className="my-16 sm:my-18 md:my-20">
+                        <h3 className="text-2xl sm:text-3xl font-black mb-8 sm:mb-10 text-gray-900 dark:text-white">{t.faqTitle}</h3>
                         <div className="divide-y divide-gray-100 dark:divide-gray-800">
                             {t.faq.map((item: any, i: number) => (
-                                <details key={i} className="group py-6 cursor-pointer">
-                                    <summary className="text-xl font-bold flex justify-between items-center group-hover:text-canada-red transition-all text-gray-900 dark:text-white">
+                                <details key={i} className="group py-4 sm:py-5 md:py-6 cursor-pointer">
+                                    <summary className="text-lg sm:text-xl font-bold flex justify-between items-center group-hover:text-canada-red transition-all text-gray-900 dark:text-white">
                                         {item.q}
-                                        <ArrowRight size={20} className="text-gray-300 group-open:rotate-90 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-open:rotate-90 transition-transform" />
                                     </summary>
-                                    <div className="mt-4 text-lg text-gray-600 dark:text-gray-400 pr-12 leading-relaxed">
+                                    <div className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400 pr-8 sm:pr-12 leading-relaxed">
                                         {item.a}
                                     </div>
                                 </details>
@@ -645,10 +645,10 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-20 bg-canada-red p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] text-center shadow-2xl shadow-red-500/20 text-white">
-                        <h2 className="text-2xl md:text-3xl font-black mb-6 leading-tight">{t.ctaTitle}</h2>
+                    <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3.5rem] text-center shadow-2xl shadow-red-500/20 text-white">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 leading-tight">{t.ctaTitle}</h2>
                         <Link href={`/${lang}/delete-pdf-pages`}
-                            className="inline-block bg-white text-canada-red px-8 md:px-12 py-4 rounded-full font-black text-lg shadow-lg hover:scale-105 transition-all"
+                            className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 rounded-full font-black text-base sm:text-lg shadow-lg hover:scale-105 transition-all"
                         >
                             {t.ctaButton}
                         </Link>
