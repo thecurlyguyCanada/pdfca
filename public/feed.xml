@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>pdfcanada.ca - PDF Tools Guides</title>
+    <link>https://www.pdfcanada.ca</link>
+    <description>Free guides and tutorials for PDF editing, conversion, and management tools. 100% privacy-focused, no uploads required.</description>
+    <language>en-ca</language>
+    <lastBuildDate>Tue, 24 Dec 2025 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.pdfcanada.ca/feed.xml" rel="self" type="application/rss+xml" />
+    <generator>pdfcanada.ca</generator>
+    <image>
+      <url>https://www.pdfcanada.ca/android-chrome-512x512.png</url>
+      <title>pdfcanada.ca</title>
+      <link>https://www.pdfcanada.ca</link>
+    </image>
+
+    <!-- Ultimate PDF Guide -->
+    <item>
+      <title>Ultimate 2026 Guide to PDF Tools - Master Your Documents</title>
+      <link>https://www.pdfcanada.ca/guides/ultimate-pdf-guide</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/ultimate-pdf-guide</guid>
+      <description>Master PDF management with our definitive 2026 guide. Learn how to edit, merge, and convert PDFs securely using local-first tools.</description>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Tools</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Delete PDF Pages Guide -->
+    <item>
+      <title>How to Delete PDF Pages - Complete Guide</title>
+      <link>https://www.pdfcanada.ca/guides/delete-pdf-pages</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/delete-pdf-pages</guid>
+      <description>Learn how to remove unwanted pages from PDF documents quickly and securely using our free online tool.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Rotate PDF Guide -->
+    <item>
+      <title>How to Rotate PDF Pages Permanently - Step-by-Step Guide</title>
+      <link>https://www.pdfcanada.ca/guides/rotate-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/rotate-pdf</guid>
+      <description>Fix sideways PDF pages permanently with our rotation tool. Save the changes so they stay rotated.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- HEIC to PDF Guide -->
+    <item>
+      <title>Convert HEIC to PDF - iPhone Photos Guide</title>
+      <link>https://www.pdfcanada.ca/guides/heic-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/heic-to-pdf</guid>
+      <description>Convert iPhone HEIC photos to PDF format for easy sharing and printing. Batch conversion supported.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- OCR PDF Guide -->
+    <item>
+      <title>OCR PDF - Extract Text from Scanned Documents</title>
+      <link>https://www.pdfcanada.ca/guides/ocr-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/ocr-pdf</guid>
+      <description>Make scanned PDFs searchable and copyable with optical character recognition (OCR). Process locally in your browser.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Tools</category>
+      <category>OCR</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Make PDF Fillable Guide -->
+    <item>
+      <title>How to Make a PDF Fillable - Add Form Fields</title>
+      <link>https://www.pdfcanada.ca/guides/make-pdf-fillable</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/make-pdf-fillable</guid>
+      <description>Transform static PDFs into interactive forms with text fields, checkboxes, and more. No expensive software needed.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Forms</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Organize PDF Guide -->
+    <item>
+      <title>Organize PDF Pages - Reorder and Rearrange</title>
+      <link>https://www.pdfcanada.ca/guides/organize-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/organize-pdf</guid>
+      <description>Drag and drop to reorder PDF pages. Reorganize your documents quickly with our free tool.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- EPUB to PDF Guide -->
+    <item>
+      <title>Convert EPUB to PDF - eBook Conversion Guide</title>
+      <link>https://www.pdfcanada.ca/guides/epub-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/epub-to-pdf</guid>
+      <description>Convert eBooks from EPUB format to PDF for printing or sharing. Preserve formatting and layout.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>eBooks</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- PDF to EPUB Guide -->
+    <item>
+      <title>Convert PDF to EPUB - Create eBooks from PDFs</title>
+      <link>https://www.pdfcanada.ca/guides/pdf-to-epub</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/pdf-to-epub</guid>
+      <description>Transform PDF documents into EPUB format for better reading on e-readers and tablets.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>eBooks</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Email to PDF Guide -->
+    <item>
+      <title>Save Email as PDF - Complete Guide</title>
+      <link>https://www.pdfcanada.ca/guides/email-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/email-to-pdf</guid>
+      <description>Learn how to save emails as PDF files for archiving and sharing. Works with Gmail, Outlook, and more.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- CBR to PDF Guide -->
+    <item>
+      <title>Convert CBR to PDF - Comic Book Archive Guide</title>
+      <link>https://www.pdfcanada.ca/guides/cbr-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/cbr-to-pdf</guid>
+      <description>Convert comic book archives (CBR/CBZ) to PDF format for easier reading and sharing.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Comics</category>
+      <category>Guides</category>
+    </item>
+
+  </channel>
+</rss>

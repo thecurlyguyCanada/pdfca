@@ -1,0 +1,7 @@
+﻿commit 91c0b792dab92ecde87f6b147addfcd9b6f6ddc9
+Author: shaheertiger <77096267+shaheertiger@users.noreply.github.com>
+Date:   Sun Dec 21 23:52:10 2025 -0500
+
+    SEO-phase3-faqs-for-high-value-tools-en-fr
+
+utils/i18n.ts
