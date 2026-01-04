@@ -143,7 +143,7 @@ export default async function RootLayout({
     const { lang } = await params;
 
     return (
-        <html lang={lang} className={inter.variable}>
+        <html lang={lang} className={inter.variable} suppressHydrationWarning>
             <head>
                 {/* DNS prefetch for external resources */}
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
@@ -157,7 +157,7 @@ export default async function RootLayout({
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />
             </head>
-            <body className={`${inter.className} antialiased`}>
+            <body className={`${inter.className} antialiased`} suppressHydrationWarning>
                 <ErrorBoundary>
                     {children}
                 </ErrorBoundary>
