@@ -26,6 +26,7 @@ import { HealthcarePdfGuide } from '@/components/pages/guides/HealthcarePdfGuide
 import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
 import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
 import { PhishingPdfGuide } from '@/components/pages/guides/PhishingPdfGuide';
+import { TrimPdfGuide } from '@/components/pages/guides/TrimPdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -59,6 +60,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ocr-pdf': InvoiceOcrGuide, // Alias for legacy/general OCR links
     'analyze-pdf': PhishingPdfGuide,
     'pdf-to-kindle': PdfToEpubGuide,
+    'trim-pdf': TrimPdfGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

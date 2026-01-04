@@ -40,6 +40,7 @@ export const translations = {
     pageRemoverGuide: "PDF Page Remover Guide",
     barcodeGeneratorGuide: "Barcode Generator Guide",
     analyzePdfGuide: "Analyze Security Guide",
+    trimPdfGuide: "Trim PDF Guide",
 
     // Value Propositions
     hpFastTitle: "Lightning Fast",
@@ -1200,6 +1201,7 @@ export const translations = {
     pageRemoverGuide: "Guide Suppresseur Pages",
     barcodeGeneratorGuide: "Guide Générateur Code-Barres",
     analyzePdfGuide: "Guide Analyse Sécurité",
+    trimPdfGuide: "Guide Rogner PDF",
 
     // Propositions de valeur
     hpFastTitle: "Ultra Rapide",

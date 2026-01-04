@@ -104,6 +104,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/organize-pdf`} className="hover:text-white transition-colors">{t.organizePdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/make-pdf-fillable`} className="hover:text-white transition-colors">{t.makeFillableGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/crop-pdf`} className="hover:text-white transition-colors">{t.cropPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/trim-pdf`} className="hover:text-white transition-colors">{t.trimPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/flatten-pdf`} className="hover:text-white transition-colors">{t.flattenPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/invoice-ocr`} className="hover:text-white transition-colors">{t.invoiceOcrGuide}</Link></li>
