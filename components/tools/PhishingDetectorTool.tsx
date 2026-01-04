@@ -307,3 +307,5 @@ const RiskItem = ({ label, detected, desc }: { label: string, detected: boolean,
         <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
     </div>
 );
+
+export default PhishingDetectorTool;

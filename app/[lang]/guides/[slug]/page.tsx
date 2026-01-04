@@ -38,7 +38,7 @@ export async function generateMetadata({
 
     return {
         title: `${displayTitle} | pdfcanada.ca Guide`,
-        description: `Learn more about ${slug.replace(/-/g, ' ')} with our comprehensive guide on pdfcanada.ca.`,
+        description: `Learn more about ${safeSlug.replace(/-/g, ' ')} with our comprehensive guide on pdfcanada.ca.`,
         alternates: {
             canonical: `${baseUrl}/${lang}${path}`,
             languages: {

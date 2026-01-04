@@ -681,8 +681,8 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                             <button
                                                 onClick={() => copyToClipboard(item)}
                                                 className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-center gap-2 ${copiedId === item.id
-                                                        ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800'
-                                                        : 'bg-transparent text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
+                                                    ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800'
+                                                    : 'bg-transparent text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
                                                     }`}
                                             >
                                                 {copiedId === item.id ? (
@@ -1059,3 +1059,5 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
         </div>
     );
 };
+
+export default BarcodeGeneratorTool;

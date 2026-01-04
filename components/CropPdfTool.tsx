@@ -446,3 +446,5 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
     );
 };
 
+export default CropPdfTool;
+

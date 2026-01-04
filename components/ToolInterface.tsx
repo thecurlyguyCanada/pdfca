@@ -5,36 +5,35 @@ import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image as ImageIcon, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
 
 // Lazy load large/interactive components
-const DndContext = dynamic(() => import('@dnd-kit/core').then(mod => mod.DndContext), { ssr: false });
-const SortableContext = dynamic(() => import('@dnd-kit/sortable').then(mod => mod.SortableContext), { ssr: false });
-const SignPdfTool = dynamic(() => import('./SignPdfTool').then(mod => mod.SignPdfTool), {
+// Lazy load large/interactive components
+const SignPdfTool = dynamic(() => import('./SignPdfTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
-const CropPdfTool = dynamic(() => import('./CropPdfTool').then(mod => mod.CropPdfTool), {
+const CropPdfTool = dynamic(() => import('./CropPdfTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
-const InvoiceOcrTool = dynamic(() => import('./tools/InvoiceOcrTool').then(mod => mod.InvoiceOcrTool), {
+const InvoiceOcrTool = dynamic(() => import('./tools/InvoiceOcrTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
-const BarcodeGeneratorTool = dynamic(() => import('./tools/BarcodeGeneratorTool').then(mod => mod.BarcodeGeneratorTool), {
+const BarcodeGeneratorTool = dynamic(() => import('./tools/BarcodeGeneratorTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
-const PdfToCsvTool = dynamic(() => import('./tools/PdfToCsvTool').then(mod => mod.PdfToCsvTool), {
+const PdfToCsvTool = dynamic(() => import('./tools/PdfToCsvTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
-const PhishingDetectorTool = dynamic(() => import('./tools/PhishingDetectorTool').then(mod => mod.PhishingDetectorTool), {
+const PhishingDetectorTool = dynamic(() => import('./tools/PhishingDetectorTool'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
 
 
-import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor } from '@dnd-kit/core';
-import { arrayMove, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor, DndContext } from '@dnd-kit/core';
+import { arrayMove, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { PdfPageThumbnail } from './PdfPageThumbnail';
 import { formatFileSize, signPdf, SignatureEntry, cropPdfPages } from '../utils/pdfUtils';

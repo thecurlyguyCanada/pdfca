@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 import { Lock, Shield, Zap, HelpCircle, FileText, CheckCircle } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -37,7 +38,7 @@ const getGuideContent = (lang: Language) => ({
                 title: "Step-by-Step: Flattening Your PDF",
                 content: (
                     <>
-                        <img src="/images/guides/flatten-pdf-guide.png" alt="Flatten PDF illustration" className="w-full h-auto rounded-xl shadow-md mb-8" />
+                        <Image src="/images/guides/flatten-pdf-guide.png" alt="Flatten PDF illustration" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
                         <p className="mb-4">
                             Our <strong>Make PDF Non-Editable</strong> tool uses a technique called &quot;rasterization.&quot; It turns each page of your PDF into behind-the-scenes images, effectively baking the content into the page.
                         </p>

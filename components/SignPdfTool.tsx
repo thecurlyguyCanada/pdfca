@@ -1095,6 +1095,8 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
     );
 };
 
+export default SignPdfTool;
+
 // ===== PAGE RENDERER =====
 
 

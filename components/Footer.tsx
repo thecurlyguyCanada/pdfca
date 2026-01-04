@@ -138,6 +138,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
+                        <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Tarification' : 'Pricing'}</Link></li>
                         {/* Security & Privacy Guides */}
                         <li className="pt-3 mt-3 border-t border-white/10">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Sécurité' : 'Security'}</span>

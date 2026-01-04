@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
@@ -25,7 +26,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                <img src="/images/guides/merge-pdf-guide.png" alt="Merging PDF files illustration" className="w-full h-auto rounded-xl shadow-md mb-8" />
+                <Image src="/images/guides/merge-pdf-guide.png" alt="Merging PDF files illustration" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
                 Keeping track of multiple related PDF files can be a nightmare. Whether it's invoices, receipts, or chapters of a report, <strong>merging multiple PDF files into one</strong> keeps everything organized and professional.
                 <br /><br />
                 Our merge tool lets you combine several PDFs into one, reorder them exactly how you want, and save them as a single document—all without needing Adobe Acrobat or uploading anything to a server.

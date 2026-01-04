@@ -6,7 +6,7 @@ import { i18n, Locale } from '@/lib/i18n-config';
 const baseUrl = 'https://www.pdfcanada.ca';
 
 // Static pages that should be in sitemap
-const staticPages = ['about', 'howto', 'support', 'privacy', 'terms'];
+const staticPages = ['about', 'howto', 'support', 'privacy', 'terms', 'pricing'];
 
 interface SitemapEntry {
     url: string;

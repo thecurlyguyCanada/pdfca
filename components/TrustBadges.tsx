@@ -43,9 +43,9 @@ export const TrustBadges: React.FC<TrustBadgesProps> = ({ variant = 'horizontal'
     if (variant === 'grid') {
         return (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {badges.map((badge, index) => (
+                {badges.map((badge) => (
                     <div
-                        key={index}
+                        key={badge.label}
                         className="flex items-center gap-2 bg-white border border-gray-200 px-3 py-2 rounded-xl shadow-sm"
                     >
                         <badge.icon className={`w-5 h-5 ${badge.color}`} />
@@ -58,9 +58,9 @@ export const TrustBadges: React.FC<TrustBadgesProps> = ({ variant = 'horizontal'
 
     return (
         <div className="flex flex-wrap justify-center gap-3 md:gap-6">
-            {badges.slice(0, 4).map((badge, index) => (
+            {badges.slice(0, 4).map((badge) => (
                 <div
-                    key={index}
+                    key={badge.label}
                     className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm"
                 >
                     <badge.icon className={`w-5 h-5 ${badge.color}`} />

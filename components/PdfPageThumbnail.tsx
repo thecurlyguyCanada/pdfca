@@ -62,12 +62,30 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
     };
   }, []);
 
-  // Detect mobile/screen size for optimal rendering width - Cap at 3000px for memory efficiency
-  const baseWidth = Math.min(3000, width || (typeof window !== 'undefined' ? (window.innerWidth < 640 ? 150 : 300) : 300));
+  // Initialize baseWidth with the prop or a safe default (server-compatible)
+  // We'll update it in useEffect for client-specific sizing
+  const [baseWidth, setBaseWidth] = useState(width || 300);
+
+  // Detect mobile/screen size for optimal rendering width
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        const newWidth = Math.min(3000, width || (window.innerWidth < 640 ? 150 : 300));
+        setBaseWidth(newWidth);
+      };
+
+      // Set initial value
+      handleResize();
+
+      // Listen for resizing
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [width]);
 
   // Use a "stepped" width for the actual PDF rendering to prevent constant re-renders during smooth zoom
   // We round to the nearest 100px
-  const [renderWidth, setRenderWidth] = useState(Math.round(baseWidth / 100) * 100);
+  const [renderWidth, setRenderWidth] = useState(Math.round((width || 300) / 100) * 100);
 
   useEffect(() => {
     const timer = setTimeout(() => {

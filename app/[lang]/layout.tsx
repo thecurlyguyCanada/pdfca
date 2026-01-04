@@ -65,12 +65,12 @@ export const metadata: Metadata = {
         address: false,
         telephone: false,
     },
-    verification: {
-        google: 'google-site-verification=placeholder',
-        other: {
-            'msvalidate.01': 'placeholder_bing'
-        }
-    },
+    // verification: {
+    //     google: 'google-site-verification=placeholder',
+    //     other: {
+    //         'msvalidate.01': 'placeholder_bing'
+    //     }
+    // },
     robots: {
         index: true,
         follow: true,
@@ -149,10 +149,6 @@ export default async function RootLayout({
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
                 {/* Preconnect for critical third parties */}
                 <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
-                {/* Explicit hreflang tags for better international SEO */}
-                <link rel="alternate" hrefLang="en-CA" href="https://www.pdfcanada.ca/en" />
-                <link rel="alternate" hrefLang="fr-CA" href="https://www.pdfcanada.ca/fr" />
-                <link rel="alternate" hrefLang="x-default" href="https://www.pdfcanada.ca/en" />
                 {/* RSS and JSON Feed autodiscovery */}
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />

@@ -2106,42 +2106,41 @@ export const extractInvoiceData = async (file: File): Promise<InvoiceData> => {
     if (textItems.length > 50) {
       // Sufficient text found, use it
       return parseInvoiceText(textItems);
-    } else {
-      // 2. Scanned PDF -> OCR with Tesseract
-      console.log('Text extraction insufficient, falling back to Tesseract OCR...');
+    }
 
-      // Render page to canvas for image input
-      const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      if (!context) throw new Error('Failed to create canvas context');
+    // 2. Scanned PDF -> OCR with Tesseract
 
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
+    // Render page to canvas for image input
+    const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (!context) throw new Error('Failed to create canvas context');
 
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
 
-      const imageBlob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve));
-      if (!imageBlob) throw new Error("Failed to render PDF page for OCR");
+    await page.render({ canvasContext: context, viewport: viewport }).promise;
 
-      // Load Tesseract dynamically
-      const Tesseract = await import('tesseract.js');
+    const imageBlob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve));
+    if (!imageBlob) throw new Error("Failed to render PDF page for OCR");
 
-      // Use createWorker for better lifecycle control
-      const worker = await Tesseract.createWorker('eng');
+    // Load Tesseract dynamically
+    const Tesseract = await import('tesseract.js');
 
-      try {
-        const ret = await worker.recognize(imageBlob);
-        const ocrText = ret.data.text;
+    // Use createWorker for better lifecycle control
+    const worker = await Tesseract.createWorker('eng');
 
-        // Always terminate worker to prevent memory leaks
-        await worker.terminate();
+    try {
+      const ret = await worker.recognize(imageBlob);
+      const ocrText = ret.data.text;
 
-        return parseInvoiceText(ocrText);
-      } catch (err) {
-        await worker.terminate();
-        throw err;
-      }
+      // Always terminate worker to prevent memory leaks
+      await worker.terminate();
+
+      return parseInvoiceText(ocrText);
+    } catch (err) {
+      await worker.terminate();
+      throw err;
     }
   } catch (error) {
     console.error('Invoice extraction failed:', error);

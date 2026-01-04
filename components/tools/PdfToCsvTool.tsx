@@ -331,3 +331,5 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         </div>
     );
 };
+
+export default PdfToCsvTool;

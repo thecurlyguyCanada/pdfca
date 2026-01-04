@@ -86,8 +86,8 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
                 </p>
 
                 <div className="prose prose-lg text-gray-600 mx-auto md:mx-0">
-                    {content.content.split('\n\n').map((paragraph, index) => (
-                        <p key={index} className="mb-4">{paragraph}</p>
+                    {content.content.split('\n\n').map((paragraph) => (
+                        <p key={paragraph.substring(0, 30)} className="mb-4">{paragraph}</p>
                     ))}
 
                     {content.steps && (

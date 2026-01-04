@@ -24,14 +24,14 @@ const getGuideContent = (lang: Language) => ({
         h1: `How to Convert RTF to PDF: The ${CURRENT_YEAR} Guide`,
         subtitle: "Create high-quality, locked-down PDF documents from your RTF files instantly without leaving your browser.",
 
-        intro: "Need to turn your **RTF file** into a professional-looking PDF? Rich Text Format (RTF) files are widely used for cross-platform document compatibility, but PDFs are the modern standard for ensuring your formatting stays exactly as intended. Our **RTF to PDF converter** handles the transition smoothly, and because it runs locally, you don't have to worry about your business or personal data being stored on a random server.",
+        intro: "Need to turn your **RTF file** into a professional-looking PDF? Rich Text Format (RTF) files are widely used for cross-platform document compatibility, but PDFs are the modern standard for ensuring your formatting stays exactly as intended. Our [**RTF to PDF converter**](/en/rtf-to-pdf) handles the transition smoothly, and because it runs locally, you don't have to worry about your business or personal data being stored on a random server.",
 
         sections: [
             {
                 id: "how-to",
                 title: "Step-by-Step: Converting RTF to PDF",
                 content: `Follow these simple steps to convert your RTF document to PDF:
-1. **Upload Your .rtf File**: Click to browse or drag-and-drop your RTF document into our converter. The file stays on your device—never uploaded to our servers.
+1. **Upload Your .rtf File**: Click to browse or drag-and-drop your RTF document into [our converter](/en/rtf-to-pdf). The file stays on your device—never uploaded to our servers.
 2. **Automatic Conversion**: Our browser-based engine immediately begins processing your document, preserving formatting, fonts, and layout.
 3. **Preview (Optional)**: Some converters show a preview—ours focuses on speed, but you can always open the result to verify.
 4. **Download Your PDF**: Within seconds, your professional PDF is ready. Save it and share with confidence knowing the formatting is locked.
@@ -169,14 +169,14 @@ const getGuideContent = (lang: Language) => ({
         h1: "Comment Convertir RTF en PDF : La Méthode Professionnelle",
         subtitle: "Créez des documents PDF de haute qualité et verrouillés à partir de vos fichiers RTF instantanément sans quitter votre navigateur.",
 
-        intro: "Besoin de transformer votre **fichier RTF** en PDF professionnel ? Les fichiers Rich Text Format (RTF) sont largement utilisés pour la compatibilité inter-plateformes, mais les PDF sont la norme moderne pour garantir que votre formatage reste exactement comme prévu. Notre **convertisseur RTF en PDF** gère la transition en douceur, et parce qu'il fonctionne localement, vous n'avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
+        intro: "Besoin de transformer votre **fichier RTF** en PDF professionnel ? Les fichiers Rich Text Format (RTF) sont largement utilisés pour la compatibilité inter-plateformes, mais les PDF sont la norme moderne pour garantir que votre formatage reste exactement comme prévu. Notre [**convertisseur RTF en PDF**](/fr/rtf-to-pdf) gère la transition en douceur, et parce qu'il fonctionne localement, vous n'avez pas à vous soucier que vos données professionnelles ou personnelles soient stockées sur un serveur aléatoire.",
 
         sections: [
             {
                 id: "how-to",
                 title: "Étape par Étape : Conversion de RTF en PDF",
                 content: `Suivez ces étapes simples pour convertir votre document RTF en PDF :
-1. **Téléchargez votre fichier .rtf** : Cliquez pour parcourir ou glissez-déposez votre document RTF dans notre convertisseur. Le fichier reste sur votre appareil—jamais téléchargé sur nos serveurs.
+1. **Téléchargez votre fichier .rtf** : Cliquez pour parcourir ou glissez-déposez votre document RTF dans [notre convertisseur](/fr/rtf-to-pdf). Le fichier reste sur votre appareil—jamais téléchargé sur nos serveurs.
 2. **Conversion automatique** : Notre moteur basé sur le navigateur commence immédiatement à traiter votre document, en préservant la mise en forme, les polices et la mise en page.
 3. **Aperçu (optionnel)** : Certains convertisseurs affichent un aperçu—le nôtre se concentre sur la vitesse, mais vous pouvez toujours ouvrir le résultat pour vérifier.
 4. **Téléchargez votre PDF** : En quelques secondes, votre PDF professionnel est prêt. Enregistrez-le et partagez-le en toute confiance sachant que la mise en forme est verrouillée.

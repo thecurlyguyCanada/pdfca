@@ -543,11 +543,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                             <button
                                 onClick={handleExportExcel}
                                 disabled={selectedFields.size === 0}
-                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
-                                    selectedFields.size === 0
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
                                         : 'bg-green-600 hover:bg-green-700 text-white hover:shadow-lg active:scale-95'
-                                }`}
+                                    }`}
                                 title="Export to Excel"
                             >
                                 <FileSpreadsheet size={18} />
@@ -556,11 +555,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                             <button
                                 onClick={handleExportCSV}
                                 disabled={selectedFields.size === 0}
-                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
-                                    selectedFields.size === 0
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
                                         : 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-lg active:scale-95'
-                                }`}
+                                    }`}
                                 title="Export to CSV"
                             >
                                 <FileText size={18} />
@@ -569,11 +567,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                             <button
                                 onClick={handleExportJSON}
                                 disabled={selectedFields.size === 0}
-                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${
-                                    selectedFields.size === 0
+                                className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
                                         : 'bg-purple-600 hover:bg-purple-700 text-white hover:shadow-lg active:scale-95'
-                                }`}
+                                    }`}
                                 title="Export to JSON"
                             >
                                 <FileJson size={18} />
@@ -585,11 +582,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                             <button
                                 onClick={handleCopy}
                                 disabled={selectedFields.size === 0}
-                                className={`flex-1 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 ${
-                                    selectedFields.size === 0
+                                className={`flex-1 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 ${selectedFields.size === 0
                                         ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed opacity-60'
                                         : 'bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 active:scale-95'
-                                }`}
+                                    }`}
                             >
                                 <Copy size={18} />
                                 {t.invoiceOcr?.copyData || "Copy"}
@@ -608,3 +604,5 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
         </div>
     );
 };
+
+export default InvoiceOcrTool;
