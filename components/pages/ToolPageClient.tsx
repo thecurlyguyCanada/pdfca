@@ -273,9 +273,18 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     setPageRangeInput('');
   };
 
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   const onAction = async (processedBlobData?: Blob | Uint8Array) => {
     if (!file && !files.length) return;
     setIsProcessing(true); // Should trigger a global loading state if we had one
+    await new Promise(resolve => setTimeout(resolve, 50)); // Allow UI to update before freezing main thread
 
     try {
       let resultBlob: Blob | Uint8Array;
@@ -418,32 +427,39 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
       }
 
       // Create download
-      const url = URL.createObjectURL(new Blob([resultBlob as any]));
-      setDownloadUrl(url);
-      setDownloadName(outputName);
-      if (files.length > 0) {
-        setProcessedSize(resultBlob instanceof Uint8Array ? resultBlob.byteLength : (resultBlob as Blob).size);
-      }
-      setAppState(AppState.COMPLETE);
+      // Create download
+      if (isMounted.current) {
+        const url = URL.createObjectURL(new Blob([resultBlob as any]));
+        setDownloadUrl(url);
+        setDownloadName(outputName);
+        if (files.length > 0) {
+          setProcessedSize(resultBlob instanceof Uint8Array ? resultBlob.byteLength : (resultBlob as Blob).size);
+        }
+        setAppState(AppState.COMPLETE);
 
-      // Auto-trigger download
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = outputName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+        // Auto-trigger download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = outputName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
 
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
         console.error('Action failed:', error);
       }
-      if (error instanceof Error) {
-        setErrorMessage(error.message);
+      if (isMounted.current) {
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+        }
+        setErrorKey('errorGeneric');
       }
-      setErrorKey('errorGeneric');
     } finally {
-      setIsProcessing(false);
+      if (isMounted.current) {
+        setIsProcessing(false);
+      }
     }
   };
 

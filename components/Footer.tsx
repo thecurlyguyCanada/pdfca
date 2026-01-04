@@ -155,7 +155,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
             {/* Bottom Bar - Minimalist */}
             <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <p className="text-xs text-modern-neutral-300 font-bold">&copy; {year} pdfcanada.ca</p>
+                  <p className="text-xs text-modern-neutral-300 font-bold" suppressHydrationWarning>&copy; {year} pdfcanada.ca</p>
 
                   <div className="flex items-center gap-4">
                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">

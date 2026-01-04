@@ -10,11 +10,13 @@ export interface ToolConfig {
   keywords: string[];
   keywordsFr: string[];
   accept?: string;
+  i18nKey?: string;
 }
 
 export const TOOL_CONFIGS: ToolConfig[] = [
   {
     slug: 'delete-pdf-pages',
+    i18nKey: 'delete',
     tool: ToolType.DELETE,
     title: 'Delete PDF Pages',
     titleFr: 'Supprimer Pages PDF',
@@ -26,6 +28,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'rotate-pdf',
+    i18nKey: 'rotate',
     tool: ToolType.ROTATE,
     title: 'Rotate PDF',
     titleFr: 'Pivoter PDF',
@@ -37,6 +40,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'compress-pdf',
+    i18nKey: 'compress',
     tool: ToolType.COMPRESS,
     title: 'Compress PDF',
     titleFr: 'Compresser PDF',
@@ -48,6 +52,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'merge-pdf',
+    i18nKey: 'merge',
     tool: ToolType.MERGE,
     title: 'Merge PDF',
     titleFr: 'Fusionner PDF',
@@ -59,6 +64,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'split-pdf',
+    i18nKey: 'split',
     tool: ToolType.SPLIT,
     title: 'Split PDF',
     titleFr: 'Diviser PDF',
@@ -70,6 +76,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'extract-pdf-pages',
+    i18nKey: 'extract',
     tool: ToolType.EXTRACT,
     title: 'Extract PDF Pages',
     titleFr: 'Extraire Pages PDF',
@@ -81,6 +88,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'crop-pdf',
+    i18nKey: 'crop',
     tool: ToolType.CROP,
     title: 'Crop PDF',
     titleFr: 'Recadrer PDF',
@@ -92,6 +100,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'heic-to-pdf',
+    i18nKey: 'heic',
     tool: ToolType.HEIC_TO_PDF,
     title: 'HEIC to PDF',
     titleFr: 'HEIC vers PDF',
@@ -103,6 +112,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'epub-to-pdf',
+    i18nKey: 'epubToPdf',
     tool: ToolType.EPUB_TO_PDF,
     title: 'EPUB to PDF',
     titleFr: 'EPUB vers PDF',
@@ -114,6 +124,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-epub',
+    i18nKey: 'pdfToEpub',
     tool: ToolType.PDF_TO_EPUB,
     title: 'PDF to EPUB',
     titleFr: 'PDF vers EPUB',
@@ -125,6 +136,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-kindle',
+    i18nKey: 'pdfToKindle',
     tool: ToolType.PDF_TO_KINDLE,
     title: 'PDF to Kindle',
     titleFr: 'PDF vers Kindle',
@@ -136,6 +148,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'make-pdf-fillable',
+    i18nKey: 'fillable',
     tool: ToolType.MAKE_FILLABLE,
     title: 'Make PDF Fillable',
     titleFr: 'Rendre PDF Modifiable',
@@ -147,6 +160,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'sign-pdf',
+    i18nKey: 'sign',
     tool: ToolType.SIGN,
     title: 'Sign PDF',
     titleFr: 'Signer PDF',
@@ -158,6 +172,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'organize-pdf',
+    i18nKey: 'organizePdf',
     tool: ToolType.ORGANIZE,
     title: 'Organize PDF Pages',
     titleFr: 'Organiser Pages PDF',
@@ -169,6 +184,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-word',
+    i18nKey: 'pdfToWord',
     tool: ToolType.PDF_TO_WORD,
     title: 'PDF to Word',
     titleFr: 'PDF vers Word',
@@ -180,6 +196,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'word-to-pdf',
+    i18nKey: 'wordToPdf',
     tool: ToolType.WORD_TO_PDF,
     title: 'Word to PDF',
     titleFr: 'Word vers PDF',
@@ -191,6 +208,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'make-pdf-non-editable',
+    i18nKey: 'flatten',
     tool: ToolType.FLATTEN,
     title: 'Flatten PDF',
     titleFr: 'Aplatir PDF',
@@ -202,6 +220,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-page-remover',
+    i18nKey: 'pdfPageRemover',
     tool: ToolType.PDF_PAGE_REMOVER,
     title: 'PDF Page Remover',
     titleFr: 'Suppresseur Pages PDF',
@@ -213,6 +232,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'cbr-to-pdf',
+    i18nKey: 'cbrToPdf',
     tool: ToolType.CBR_TO_PDF,
     title: 'CBR to PDF',
     titleFr: 'CBR vers PDF',
@@ -224,6 +244,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-xml',
+    i18nKey: 'pdfToXml',
     tool: ToolType.PDF_TO_XML,
     title: 'PDF to XML',
     titleFr: 'PDF vers XML',
@@ -235,6 +256,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'xml-to-pdf',
+    i18nKey: 'xmlToPdf',
     tool: ToolType.XML_TO_PDF,
     title: 'XML to PDF',
     titleFr: 'XML vers PDF',
@@ -246,6 +268,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'excel-to-pdf',
+    i18nKey: 'excelToPdf',
     tool: ToolType.EXCEL_TO_PDF,
     title: 'Excel to PDF',
     titleFr: 'Excel vers PDF',
@@ -257,6 +280,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'rtf-to-pdf',
+    i18nKey: 'rtfToPdf',
     tool: ToolType.RTF_TO_PDF,
     title: 'RTF to PDF',
     titleFr: 'RTF vers PDF',
@@ -268,6 +292,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'invoice-ocr',
+    i18nKey: 'invoiceOcr',
     tool: ToolType.INVOICE_OCR,
     title: 'Invoice OCR',
     titleFr: 'OCR Factures',
@@ -279,6 +304,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'barcode-generator',
+    i18nKey: 'barcode',
     tool: ToolType.BARCODE_GENERATOR,
     title: 'Code 128 Barcode Generator',
     titleFr: 'Générateur Code-Barres Code 128',
@@ -290,6 +316,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-csv',
+    i18nKey: 'pdftocsv',
     tool: ToolType.PDF_TO_CSV,
     title: 'PDF to CSV',
     titleFr: 'PDF vers CSV',
@@ -301,6 +328,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'pdf-to-excel',
+    i18nKey: 'pdftoexcel',
     tool: ToolType.PDF_TO_EXCEL,
     title: 'PDF to Excel',
     titleFr: 'PDF vers Excel',
@@ -312,6 +340,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   },
   {
     slug: 'analyze-pdf',
+    i18nKey: 'analyzepdf',
     tool: ToolType.PHISHING_DETECTOR,
     title: 'Analyze PDF Security',
     titleFr: 'Analyser Sécurité PDF',

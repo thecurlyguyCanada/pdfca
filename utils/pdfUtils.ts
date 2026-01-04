@@ -230,84 +230,93 @@ export const makePdfFillable = async (originalFile: File, pageIndicesToFill: num
     cMapPacked: true,
   }).promise;
 
-  let fieldCount = 0;
-  const timestamp = Date.now();
+  try {
 
-  for (const pageIndex of pageIndicesToFill) {
-    if (pageIndex < 0 || pageIndex >= doc.getPageCount()) continue;
+    let fieldCount = 0;
+    const timestamp = Date.now();
 
-    const pdfLibPage = doc.getPage(pageIndex);
-    const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
+    for (const pageIndex of pageIndicesToFill) {
+      if (pageIndex < 0 || pageIndex >= doc.getPageCount()) continue;
 
-    let pageHasFields = false;
+      const pdfLibPage = doc.getPage(pageIndex);
+      const { width: pageWidth, height: pageHeight } = pdfLibPage.getSize();
 
-    try {
-      const pdfJsPage = await pdfJsDoc.getPage(pageIndex + 1);
-      const textContent = await pdfJsPage.getTextContent();
+      let pageHasFields = false;
 
-      for (const item of textContent.items as any[]) {
-        const str = item?.str || '';
-        if (!str) continue;
+      try {
+        const pdfJsPage = await pdfJsDoc.getPage(pageIndex + 1);
+        const textContent = await pdfJsPage.getTextContent();
 
-        if (/__{3,}/.test(str)) {
-          if (!item.transform) continue;
-          const tx = item.transform[4];
-          const ty = item.transform[5];
-          const w = item.width || 0;
-          const h = item.height || item.transform[3] || 12;
+        for (const item of textContent.items as any[]) {
+          const str = item?.str || '';
+          if (!str) continue;
 
-          const fieldName = `txt_${pageIndex}_${fieldCount++}`;
-          const textField = form.createTextField(fieldName);
+          if (/__{3,}/.test(str)) {
+            if (!item.transform) continue;
+            const tx = item.transform[4];
+            const ty = item.transform[5];
+            const w = item.width || 0;
+            const h = item.height || item.transform[3] || 12;
 
-          textField.addToPage(pdfLibPage, {
-            x: tx,
-            y: ty - 2,
-            width: w,
-            height: h + 4,
-            borderColor: rgb(0.9, 0.9, 0.9),
-            borderWidth: 0,
-          });
+            const fieldName = `txt_${pageIndex}_${fieldCount++}`;
+            const textField = form.createTextField(fieldName);
 
-          pageHasFields = true;
+            textField.addToPage(pdfLibPage, {
+              x: tx,
+              y: ty - 2,
+              width: w,
+              height: h + 4,
+              borderColor: rgb(0.9, 0.9, 0.9),
+              borderWidth: 0,
+            });
+
+            pageHasFields = true;
+          }
+          else if (/\[\s*\]/.test(str) || /☐/.test(str)) {
+            if (!item.transform) continue;
+            const tx = item.transform[4];
+            const ty = item.transform[5];
+            const size = (item.height || item.transform[3] || 12) * 1.2;
+
+            const fieldName = `chk_${pageIndex}_${fieldCount++}`;
+            const checkBox = form.createCheckBox(fieldName);
+            checkBox.addToPage(pdfLibPage, {
+              x: tx,
+              y: ty,
+              width: size,
+              height: size,
+              borderColor: rgb(0.5, 0.5, 0.5),
+              borderWidth: 1,
+            });
+            pageHasFields = true;
+          }
         }
-        else if (/\[\s*\]/.test(str) || /☐/.test(str)) {
-          if (!item.transform) continue;
-          const tx = item.transform[4];
-          const ty = item.transform[5];
-          const size = (item.height || item.transform[3] || 12) * 1.2;
-
-          const fieldName = `chk_${pageIndex}_${fieldCount++}`;
-          const checkBox = form.createCheckBox(fieldName);
-          checkBox.addToPage(pdfLibPage, {
-            x: tx,
-            y: ty,
-            width: size,
-            height: size,
-            borderColor: rgb(0.5, 0.5, 0.5),
-            borderWidth: 1,
-          });
-          pageHasFields = true;
-        }
+      } catch (e) {
+        console.warn(`Smart detection failed for page ${pageIndex}, falling back to manual mode.`, e);
       }
-    } catch (e) {
-      console.warn(`Smart detection failed for page ${pageIndex}, falling back to manual mode.`, e);
+
+      if (!pageHasFields) {
+        const margin = PDF_CONFIG.LAYOUT.MARGIN;
+        const textField = form.createTextField(`notes_${pageIndex}_${timestamp}`);
+
+        textField.addToPage(pdfLibPage, {
+          x: margin,
+          y: margin,
+          width: pageWidth - (margin * 2),
+          height: pageHeight - (margin * 2),
+          borderWidth: 1,
+          borderColor: rgb(0.8, 0.8, 0.8),
+        });
+
+        textField.enableMultiline();
+        textField.setText("Enter your notes here...");
+      }
     }
 
-    if (!pageHasFields) {
-      const margin = PDF_CONFIG.LAYOUT.MARGIN;
-      const textField = form.createTextField(`notes_${pageIndex}_${timestamp}`);
-
-      textField.addToPage(pdfLibPage, {
-        x: margin,
-        y: margin,
-        width: pageWidth - (margin * 2),
-        height: pageHeight - (margin * 2),
-        borderWidth: 1,
-        borderColor: rgb(0.8, 0.8, 0.8),
-      });
-
-      textField.enableMultiline();
-      textField.setText("Enter your notes here...");
+  } finally {
+    if (!existingPdfJsDoc && pdfJsDoc) {
+      // Only destroy if we created it locally
+      await pdfJsDoc.destroy();
     }
   }
 
@@ -426,6 +435,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
         });
       } catch (e) {
         console.error("Failed to embed signature image", e);
+        throw new Error(`Failed to embed signature image for ${entry.type}. Please parse a valid image.`);
       }
     } else if (entry.type === 'text' || entry.type === 'date') {
       const text = entry.text || '';
@@ -506,350 +516,360 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
     cMapPacked: true,
   }).promise;
 
-  const escapeHtml = (unsafe: string) => {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  };
+  try {
 
-  const metadata = await pdf.getMetadata();
-  const pdfInfo = (metadata?.info as any) || {};
-  const docTitle = pdfInfo.Title || file.name.replace(/\.[^/.]+$/, "");
-  const docAuthor = pdfInfo.Author || "PDFCanada.ca";
+    const escapeHtml = (unsafe: string) => {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
 
-  interface TextItem {
-    str: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    fontSize: number;
-    fontName: string;
-    isBold: boolean;
-    isItalic: boolean;
-  }
+    const metadata = await pdf.getMetadata();
+    const pdfInfo = (metadata?.info as any) || {};
+    const docTitle = pdfInfo.Title || file.name.replace(/\.[^/.]+$/, "");
+    const docAuthor = pdfInfo.Author || "PDFCanada.ca";
 
-  interface ImageItem {
-    id: string;
-    data: Uint8Array;
-    y: number;
-    width: number;
-    height: number;
-  }
-
-  interface ProcessedPage {
-    lines: TextItem[][];
-    images: ImageItem[];
-    footnotes: { id: string; content: string; key: string }[];
-    headings: { level: number; text: string; id: string }[];
-  }
-
-  const processedPages: ProcessedPage[] = [];
-  const allLinesContents: string[] = [];
-  const allImages: ImageItem[] = [];
-
-  // Helper for mode calculation
-  const getMode = (arr: number[]) => {
-    const counts: Record<number, number> = {};
-    arr.forEach(v => counts[v] = (counts[v] || 0) + 1);
-    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    return sorted.length > 0 ? parseInt(sorted[0][0]) : 12;
-  };
-
-  const allFontSizes: number[] = [];
-
-  // 1. Initial Extraction
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const textContent = await page.getTextContent();
-    const viewport = page.getViewport({ scale: 1.0 });
-
-    const items: TextItem[] = textContent.items.map((item: any) => {
-      const fs = Math.abs(item.transform[0] || item.transform[3]);
-      const fname = (item.fontName || '').toLowerCase();
-      allFontSizes.push(Math.round(fs));
-      return {
-        str: item.str,
-        x: item.transform[4],
-        y: item.transform[5],
-        width: item.width,
-        height: item.height || fs,
-        fontSize: fs,
-        fontName: item.fontName || '',
-        isBold: fname.includes('bold') || fname.includes('black') || fname.includes('heavy'),
-        isItalic: fname.includes('italic') || fname.includes('oblique')
-      };
-    });
-
-    // --- Image Extraction ---
-    const pageImages: ImageItem[] = [];
-    const operatorList = await page.getOperatorList();
-    let transform = [1, 0, 0, 1, 0, 0];
-    const transformStack: any[] = [];
-    const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
-
-    for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
-      const fn = operatorList.fnArray[opIdx];
-      const args = operatorList.argsArray[opIdx];
-      if (fn === OPS.transform) {
-        const m = args;
-        const [a, b, c, d, e, f] = transform;
-        transform = [a * m[0] + c * m[1], b * m[0] + d * m[1], a * m[2] + c * m[3], b * m[2] + d * m[3], a * m[4] + c * m[5] + e, b * m[4] + d * m[5] + f];
-      } else if (fn === OPS.save) {
-        transformStack.push([...transform]);
-      } else if (fn === OPS.restore) {
-        transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
-      } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
-        const imgId = args[0];
-        try {
-          const img = await page.objs.get(imgId);
-          if (img) {
-            const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
-            const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
-            const y = transform[5];
-
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-              const imageData = ctx.createImageData(img.width, img.height);
-              if (img.data.length === img.width * img.height * 3) {
-                for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
-                  imageData.data[l] = img.data[k]; imageData.data[l + 1] = img.data[k + 1]; imageData.data[l + 2] = img.data[k + 2]; imageData.data[l + 3] = 255;
-                }
-              } else { imageData.data.set(img.data); }
-              ctx.putImageData(imageData, 0, 0);
-              const dataUrl = canvas.toDataURL('image/png');
-              const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
-              const imageItem = { id: `img_${allImages.length}`, data: bytes, y, width, height };
-              pageImages.push(imageItem);
-              allImages.push(imageItem);
-              canvas.width = 0; canvas.height = 0;
-            }
-          }
-        } catch (err) { console.warn("Image extraction failed", err); }
-      }
+    interface TextItem {
+      str: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      fontSize: number;
+      fontName: string;
+      isBold: boolean;
+      isItalic: boolean;
     }
 
-    // Group into lines
-    const lines: TextItem[][] = [];
-    items.sort((a, b) => b.y - a.y || a.x - b.x);
-    let currentLine: TextItem[] = [];
-    items.forEach(item => {
-      if (currentLine.length === 0) {
-        currentLine.push(item);
-      } else {
-        const last = currentLine[currentLine.length - 1];
-        if (Math.abs(item.y - last.y) < 3) {
+    interface ImageItem {
+      id: string;
+      data: Uint8Array;
+      y: number;
+      width: number;
+      height: number;
+    }
+
+    interface ProcessedPage {
+      lines: TextItem[][];
+      images: ImageItem[];
+      footnotes: { id: string; content: string; key: string }[];
+      headings: { level: number; text: string; id: string }[];
+    }
+
+    const processedPages: ProcessedPage[] = [];
+    const allLinesContents: string[] = [];
+    const allImages: ImageItem[] = [];
+
+    // Helper for mode calculation
+    const getMode = (arr: number[]) => {
+      const counts: Record<number, number> = {};
+      arr.forEach(v => counts[v] = (counts[v] || 0) + 1);
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      return sorted.length > 0 ? parseInt(sorted[0][0]) : 12;
+    };
+
+    const allFontSizes: number[] = [];
+
+    // 1. Initial Extraction
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const textContent = await page.getTextContent();
+      const viewport = page.getViewport({ scale: 1.0 });
+
+      const items: TextItem[] = textContent.items.map((item: any) => {
+        const fs = Math.abs(item.transform[0] || item.transform[3]);
+        const fname = (item.fontName || '').toLowerCase();
+        allFontSizes.push(Math.round(fs));
+        return {
+          str: item.str,
+          x: item.transform[4],
+          y: item.transform[5],
+          width: item.width,
+          height: item.height || fs,
+          fontSize: fs,
+          fontName: item.fontName || '',
+          isBold: fname.includes('bold') || fname.includes('black') || fname.includes('heavy'),
+          isItalic: fname.includes('italic') || fname.includes('oblique')
+        };
+      });
+
+      // --- Image Extraction ---
+      const pageImages: ImageItem[] = [];
+      const operatorList = await page.getOperatorList();
+      let transform = [1, 0, 0, 1, 0, 0];
+      const transformStack: any[] = [];
+      const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
+
+      for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
+        const fn = operatorList.fnArray[opIdx];
+        const args = operatorList.argsArray[opIdx];
+        if (fn === OPS.transform) {
+          const m = args;
+          const [a, b, c, d, e, f] = transform;
+          transform = [a * m[0] + c * m[1], b * m[0] + d * m[1], a * m[2] + c * m[3], b * m[2] + d * m[3], a * m[4] + c * m[5] + e, b * m[4] + d * m[5] + f];
+        } else if (fn === OPS.save) {
+          transformStack.push([...transform]);
+        } else if (fn === OPS.restore) {
+          transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
+        } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
+          const imgId = args[0];
+          try {
+            const img = await page.objs.get(imgId);
+            if (img) {
+              const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
+              const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
+              const y = transform[5];
+
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                const imageData = ctx.createImageData(img.width, img.height);
+                if (img.data.length === img.width * img.height * 3) {
+                  for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
+                    imageData.data[l] = img.data[k]; imageData.data[l + 1] = img.data[k + 1]; imageData.data[l + 2] = img.data[k + 2]; imageData.data[l + 3] = 255;
+                  }
+                } else { imageData.data.set(img.data); }
+                ctx.putImageData(imageData, 0, 0);
+                const dataUrl = canvas.toDataURL('image/png');
+                const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+                const imageItem = { id: `img_${allImages.length}`, data: bytes, y, width, height };
+                pageImages.push(imageItem);
+                allImages.push(imageItem);
+                canvas.width = 0; canvas.height = 0;
+              }
+            }
+          } catch (err) { console.warn("Image extraction failed", err); }
+        }
+      }
+
+      // Group into lines
+      const lines: TextItem[][] = [];
+      items.sort((a, b) => b.y - a.y || a.x - b.x);
+      let currentLine: TextItem[] = [];
+      items.forEach(item => {
+        if (currentLine.length === 0) {
           currentLine.push(item);
         } else {
-          lines.push(currentLine.sort((a, b) => a.x - b.x));
-          currentLine = [item];
-        }
-      }
-    });
-    if (currentLine.length > 0) lines.push(currentLine.sort((a, b) => a.x - b.x));
-
-    processedPages.push({ lines, images: pageImages, footnotes: [], headings: [] });
-    lines.forEach(l => allLinesContents.push(l.map(i => i.str.trim()).join(' ')));
-    await new Promise(resolve => setTimeout(resolve, 0));
-  }
-
-  const bodyFontSize = getMode(allFontSizes);
-
-  // 2. Identify Recurring Headers/Footers
-  const lineFrequencies: Record<string, number> = {};
-  allLinesContents.forEach(content => {
-    if (content.trim().length > 3) {
-      lineFrequencies[content] = (lineFrequencies[content] || 0) + 1;
-    }
-  });
-
-  const recurringLines = new Set(
-    Object.entries(lineFrequencies)
-      .filter(([content, count]) => count > pdf.numPages * 0.4)
-      .map(([content]) => content)
-  );
-
-  // 3. Process Pages
-  let fullHtml = "";
-  const globalFootnotes: { id: string; content: string; key: string }[] = [];
-  const tocEntries: { level: number; text: string; id: string }[] = [];
-  let headingCounter = 1;
-
-  const ligatures: Record<string, string> = {
-    '\uFB00': 'ff', '\uFB01': 'fi', '\uFB02': 'fl', '\uFB03': 'ffi', '\uFB04': 'ffl', '\u00A0': ' ',
-  };
-
-  const cleanText = (text: string) => {
-    let cleaned = text;
-    Object.entries(ligatures).forEach(([lig, rep]) => {
-      cleaned = cleaned.split(lig).join(rep);
-    });
-    return cleaned.replace(/\s+/g, ' ');
-  };
-
-  const commonAbbreviations = new Set(['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'St.', 'Ave.', 'Ltd.', 'Inc.', 'e.g.', 'i.e.', 'vs.', 'vol.', 'p.', 'pp.', 'cf.', 'viz.', 'et al.']);
-
-  for (let pIdx = 0; pIdx < processedPages.length; pIdx++) {
-    const page = processedPages[pIdx];
-    let pageHtml = "";
-
-    const elements: { type: 'text' | 'image' | 'head' | 'foot'; data: any; y: number }[] = [];
-
-    page.images.forEach(img => elements.push({ type: 'image', data: img, y: img.y }));
-
-    const filteredLines = page.lines.filter(line => {
-      const content = line.map(i => i.str.trim()).join(' ');
-      const isPageNum = /^\d+$/.test(content.trim()) || /^Page \d+$/.test(content.trim());
-      return !recurringLines.has(content) && !isPageNum;
-    });
-
-    filteredLines.forEach((line, lIdx) => {
-      const lineText = cleanText(line.map(i => i.str).join(' '));
-      const avgFontSize = line.reduce((acc, i) => acc + i.fontSize, 0) / line.length;
-      const isMostlyBold = line.filter(i => i.isBold).length > line.length * 0.5;
-
-      if ((avgFontSize > bodyFontSize * 1.15 || isMostlyBold) && lineText.length < 120) {
-        elements.push({ type: 'head', data: { text: lineText.trim(), level: avgFontSize > bodyFontSize * 1.4 ? 1 : (avgFontSize > bodyFontSize * 1.25 ? 2 : 3), line }, y: line[0].y });
-      } else if (lIdx > filteredLines.length * 0.6 && (avgFontSize < bodyFontSize * 0.95 || /^\s*(\d+|[*†‡§])[\.\s)]/.test(lineText))) {
-        elements.push({ type: 'foot', data: { text: lineText.trim() }, y: line[0].y });
-      } else {
-        elements.push({ type: 'text', data: { line, text: lineText }, y: line[0].y });
-      }
-    });
-
-    elements.sort((a, b) => b.y - a.y);
-
-    let currentParagraphContent = "";
-    const bodyLineHeight = bodyFontSize * 1.4;
-
-    elements.forEach((el, elIdx) => {
-      if (el.type === 'image') {
-        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
-        pageHtml += `<div class="image-wrapper"><img src="images/${el.data.id}.png" alt="Illustration" /></div>`;
-      } else if (el.type === 'head') {
-        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
-        const id = `heading_${headingCounter++}`;
-        pageHtml += `<h${el.data.level} id="${id}">${escapeHtml(el.data.text)}</h${el.data.level}>`;
-        tocEntries.push({ level: el.data.level, text: el.data.text, id });
-      } else if (el.type === 'foot') {
-        if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
-        const match = el.data.text.match(/^\s*(\d+|[*†‡§]+)/);
-        const key = match ? match[1] : `p${pIdx}_${globalFootnotes.length}`;
-        globalFootnotes.push({ id: `note_${key}_${globalFootnotes.length}`, content: el.data.text, key });
-      } else {
-        let lineProcessed = "";
-        el.data.line.forEach((item: TextItem) => {
-          let itemText = escapeHtml(cleanText(item.str));
-          if (item.isBold) itemText = `<strong>${itemText}</strong>`;
-          if (item.isItalic) itemText = `<em>${itemText}</em>`;
-
-          if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(item.str.trim())) {
-            const refId = `ref_${item.str.trim()}_${pIdx}_${elIdx}`;
-            lineProcessed += `<a href="#note_${item.str.trim()}" id="${refId}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
-          } else { lineProcessed += itemText; }
-        });
-
-        const nextEl = elements[elIdx + 1];
-        const isLastWordAbbr = commonAbbreviations.has(currentParagraphContent.trim().split(' ').pop() || "");
-
-        // Intelligent Merging: Check for paragraph break
-        let shouldBreak = false;
-        if (!nextEl) {
-          shouldBreak = true;
-        } else if (nextEl.type !== 'text') {
-          shouldBreak = true;
-        } else {
-          const gap = Math.abs(el.y - nextEl.y);
-          const isPunctuation = /[.!?]$/.test(lineProcessed.trim());
-          if (gap > bodyLineHeight * 1.8) {
-            shouldBreak = true; // Large gap
-          } else if (isPunctuation && gap > bodyLineHeight * 1.2 && !isLastWordAbbr) {
-            shouldBreak = true; // End of sentence with moderate gap
+          const last = currentLine[currentLine.length - 1];
+          if (Math.abs(item.y - last.y) < 3) {
+            currentLine.push(item);
+          } else {
+            lines.push(currentLine.sort((a, b) => a.x - b.x));
+            currentLine = [item];
           }
         }
+      });
+      if (currentLine.length > 0) lines.push(currentLine.sort((a, b) => a.x - b.x));
 
-        if (lineProcessed.trim().endsWith('-')) {
-          currentParagraphContent += lineProcessed.trim().slice(0, -1);
-        } else {
-          currentParagraphContent += lineProcessed + " ";
-        }
+      processedPages.push({ lines, images: pageImages, footnotes: [], headings: [] });
+      lines.forEach(l => allLinesContents.push(l.map(i => i.str.trim()).join(' ')));
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
 
-        if (shouldBreak) {
-          if (currentParagraphContent.trim()) {
-            pageHtml += `<p>${currentParagraphContent.trim()}</p>`;
-          }
-          currentParagraphContent = "";
-        }
+    const bodyFontSize = getMode(allFontSizes);
+
+    // 2. Identify Recurring Headers/Footers
+    const lineFrequencies: Record<string, number> = {};
+    allLinesContents.forEach(content => {
+      if (content.trim().length > 3) {
+        lineFrequencies[content] = (lineFrequencies[content] || 0) + 1;
       }
     });
 
-    if (currentParagraphContent.trim()) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
-    fullHtml += pageHtml;
-    await new Promise(resolve => setTimeout(resolve, 0));
+    const recurringLines = new Set(
+      Object.entries(lineFrequencies)
+        .filter(([content, count]) => count > pdf.numPages * 0.4)
+        .map(([content]) => content)
+    );
+
+    // 3. Process Pages
+    let fullHtml = "";
+    const globalFootnotes: { id: string; content: string; key: string }[] = [];
+    const tocEntries: { level: number; text: string; id: string }[] = [];
+    let headingCounter = 1;
+
+    const ligatures: Record<string, string> = {
+      '\uFB00': 'ff', '\uFB01': 'fi', '\uFB02': 'fl', '\uFB03': 'ffi', '\uFB04': 'ffl', '\u00A0': ' ',
+    };
+
+    const cleanText = (text: string) => {
+      let cleaned = text;
+      Object.entries(ligatures).forEach(([lig, rep]) => {
+        cleaned = cleaned.split(lig).join(rep);
+      });
+      return cleaned.replace(/\s+/g, ' ');
+    };
+
+    const commonAbbreviations = new Set(['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'St.', 'Ave.', 'Ltd.', 'Inc.', 'e.g.', 'i.e.', 'vs.', 'vol.', 'p.', 'pp.', 'cf.', 'viz.', 'et al.']);
+
+    for (let pIdx = 0; pIdx < processedPages.length; pIdx++) {
+      const page = processedPages[pIdx];
+      let pageHtml = "";
+
+      const elements: { type: 'text' | 'image' | 'head' | 'foot'; data: any; y: number }[] = [];
+
+      page.images.forEach(img => elements.push({ type: 'image', data: img, y: img.y }));
+
+      const filteredLines = page.lines.filter(line => {
+        const content = line.map(i => i.str.trim()).join(' ');
+        const isPageNum = /^\d+$/.test(content.trim()) || /^Page \d+$/.test(content.trim());
+        return !recurringLines.has(content) && !isPageNum;
+      });
+
+      filteredLines.forEach((line, lIdx) => {
+        const lineText = cleanText(line.map(i => i.str).join(' '));
+        const avgFontSize = line.reduce((acc, i) => acc + i.fontSize, 0) / line.length;
+        const isMostlyBold = line.filter(i => i.isBold).length > line.length * 0.5;
+
+        if ((avgFontSize > bodyFontSize * 1.15 || isMostlyBold) && lineText.length < 120) {
+          elements.push({ type: 'head', data: { text: lineText.trim(), level: avgFontSize > bodyFontSize * 1.4 ? 1 : (avgFontSize > bodyFontSize * 1.25 ? 2 : 3), line }, y: line[0].y });
+        } else if (lIdx > filteredLines.length * 0.6 && (avgFontSize < bodyFontSize * 0.95 || /^\s*(\d+|[*†‡§])[\.\s)]/.test(lineText))) {
+          elements.push({ type: 'foot', data: { text: lineText.trim() }, y: line[0].y });
+        } else {
+          elements.push({ type: 'text', data: { line, text: lineText }, y: line[0].y });
+        }
+      });
+
+      elements.sort((a, b) => b.y - a.y);
+
+      let currentParagraphContent = "";
+      const bodyLineHeight = bodyFontSize * 1.4;
+
+      elements.forEach((el, elIdx) => {
+        if (el.type === 'image') {
+          if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+          pageHtml += `<div class="image-wrapper"><img src="images/${el.data.id}.png" alt="Illustration" /></div>`;
+        } else if (el.type === 'head') {
+          if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+          const id = `heading_${headingCounter++}`;
+          pageHtml += `<h${el.data.level} id="${id}">${escapeHtml(el.data.text)}</h${el.data.level}>`;
+          tocEntries.push({ level: el.data.level, text: el.data.text, id });
+        } else if (el.type === 'foot') {
+          if (currentParagraphContent) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+          const match = el.data.text.match(/^\s*(\d+|[*†‡§]+)/);
+          const key = match ? match[1] : `p${pIdx}_${globalFootnotes.length}`;
+          globalFootnotes.push({ id: `note_${key}_${globalFootnotes.length}`, content: el.data.text, key });
+        } else {
+          let lineProcessed = "";
+          el.data.line.forEach((item: TextItem) => {
+            let itemText = escapeHtml(cleanText(item.str));
+            if (item.isBold) itemText = `<strong>${itemText}</strong>`;
+            if (item.isItalic) itemText = `<em>${itemText}</em>`;
+
+            if (item.fontSize < bodyFontSize * 0.85 && /^(\d+|[*†‡§]+)$/.test(item.str.trim())) {
+              const refId = `ref_${item.str.trim()}_${pIdx}_${elIdx}`;
+              lineProcessed += `<a href="#note_${item.str.trim()}" id="${refId}" epub:type="noteref" class="footnote-ref">${itemText}</a>`;
+            } else { lineProcessed += itemText; }
+          });
+
+          const nextEl = elements[elIdx + 1];
+          const isLastWordAbbr = commonAbbreviations.has(currentParagraphContent.trim().split(' ').pop() || "");
+
+          // Intelligent Merging: Check for paragraph break
+          let shouldBreak = false;
+          if (!nextEl) {
+            shouldBreak = true;
+          } else if (nextEl.type !== 'text') {
+            shouldBreak = true;
+          } else {
+            const gap = Math.abs(el.y - nextEl.y);
+            const isPunctuation = /[.!?]$/.test(lineProcessed.trim());
+            if (gap > bodyLineHeight * 1.8) {
+              shouldBreak = true; // Large gap
+            } else if (isPunctuation && gap > bodyLineHeight * 1.2 && !isLastWordAbbr) {
+              shouldBreak = true; // End of sentence with moderate gap
+            }
+          }
+
+          if (lineProcessed.trim().endsWith('-')) {
+            currentParagraphContent += lineProcessed.trim().slice(0, -1);
+          } else {
+            currentParagraphContent += lineProcessed + " ";
+          }
+
+          if (shouldBreak) {
+            if (currentParagraphContent.trim()) {
+              pageHtml += `<p>${currentParagraphContent.trim()}</p>`;
+            }
+            currentParagraphContent = "";
+          }
+        }
+      });
+
+      if (currentParagraphContent.trim()) { pageHtml += `<p>${currentParagraphContent.trim()}</p>`; currentParagraphContent = ""; }
+      fullHtml += pageHtml;
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    const footnoteMap: Record<string, string[]> = {};
+    globalFootnotes.forEach(fn => {
+      if (!footnoteMap[fn.key]) footnoteMap[fn.key] = [];
+      footnoteMap[fn.key].push(fn.id);
+
+      // Find the actual ID used for the first reference to this footnote to create a backlink
+      const backlinkMatch = fullHtml.match(new RegExp(`id="(ref_${fn.key.replace(/[*†‡§]/g, '\\$&')}_\\d+_\\d+)"`));
+      if (backlinkMatch) {
+        (fn as any).backlinkId = backlinkMatch[1];
+      }
+    });
+
+    Object.entries(footnoteMap).forEach(([key, ids]) => {
+      const regex = new RegExp(`href="#note_${key.replace(/[*†‡§]/g, '\\$&')}"`, 'g');
+      fullHtml = fullHtml.replace(regex, `href="#${ids[0]}"`);
+    });
+
+    // 4. Generate Cover Image (Page 1)
+    let coverData: Uint8Array | null = null;
+    try {
+      const firstPage = await pdf.getPage(1);
+      const scale = 1.5;
+      const viewport = firstPage.getViewport({ scale });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        await firstPage.render({ canvasContext: ctx, viewport }).promise;
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        coverData = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+      }
+    } catch (err) { console.warn("Cover generation failed", err); }
+
+    const zip = new JSZip();
+    zip.file("mimetype", "application/epub+zip", { compression: "STORE" });
+    zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?><container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>`);
+
+    const oebps = zip.folder("OEBPS");
+    const imagesFolder = oebps?.folder("images");
+    allImages.forEach(img => imagesFolder?.file(`${img.id}.png`, img.data));
+    if (coverData) imagesFolder?.file("cover.jpg", coverData);
+
+    const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#${(fn as any).backlinkId || 'content'}">&#8617;</a></p></aside>`).join('\n');
+
+    oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>${escapeHtml(docTitle)}</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
+
+    const tocList = tocEntries.map(e => `<li><a href="content.xhtml#${e.id}">${escapeHtml(e.text)}</a></li>`).join('\n');
+    oebps?.file("nav.xhtml", `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Table of Contents</title></head><body><nav epub:type="toc" id="toc"><h1>Table of Contents</h1><ol>${tocList || '<li><a href="content.xhtml">Main Content</a></li>'}</ol></nav></body></html>`);
+
+    const imageManifest = allImages.map(img => `<item id="${img.id}" href="images/${img.id}.png" media-type="image/png"/>`).join('\n');
+    const coverManifest = coverData ? '<item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>' : '';
+
+    oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:${Math.random().toString(36).substring(2)}</dc:identifier><dc:title>${escapeHtml(docTitle)}</dc:title><dc:language>en</dc:language><dc:creator>${escapeHtml(docAuthor)}</dc:creator><meta property="dcterms:modified">${new Date().toISOString().split('.')[0]}Z</meta>${coverData ? '<meta name="cover" content="cover-image"/>' : ''}</metadata><manifest><item id="content" href="content.xhtml" media-type="application/xhtml+xml"/><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>${imageManifest}${coverManifest}</manifest><spine><itemref idref="content"/></spine></package>`);
+
+    try {
+      return await zip.generateAsync({ type: "blob" });
+    } finally {
+      if (pdf) await pdf.destroy();
+    }
+  } catch (e) {
+    console.error(e);
+    throw e;
   }
-
-  const footnoteMap: Record<string, string[]> = {};
-  globalFootnotes.forEach(fn => {
-    if (!footnoteMap[fn.key]) footnoteMap[fn.key] = [];
-    footnoteMap[fn.key].push(fn.id);
-
-    // Find the actual ID used for the first reference to this footnote to create a backlink
-    const backlinkMatch = fullHtml.match(new RegExp(`id="(ref_${fn.key.replace(/[*†‡§]/g, '\\$&')}_\\d+_\\d+)"`));
-    if (backlinkMatch) {
-      (fn as any).backlinkId = backlinkMatch[1];
-    }
-  });
-
-  Object.entries(footnoteMap).forEach(([key, ids]) => {
-    const regex = new RegExp(`href="#note_${key.replace(/[*†‡§]/g, '\\$&')}"`, 'g');
-    fullHtml = fullHtml.replace(regex, `href="#${ids[0]}"`);
-  });
-
-  // 4. Generate Cover Image (Page 1)
-  let coverData: Uint8Array | null = null;
-  try {
-    const firstPage = await pdf.getPage(1);
-    const scale = 1.5;
-    const viewport = firstPage.getViewport({ scale });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      await firstPage.render({ canvasContext: ctx, viewport }).promise;
-      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-      coverData = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
-    }
-  } catch (err) { console.warn("Cover generation failed", err); }
-
-  const zip = new JSZip();
-  zip.file("mimetype", "application/epub+zip", { compression: "STORE" });
-  zip.folder("META-INF")?.file("container.xml", `<?xml version="1.0"?><container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>`);
-
-  const oebps = zip.folder("OEBPS");
-  const imagesFolder = oebps?.folder("images");
-  allImages.forEach(img => imagesFolder?.file(`${img.id}.png`, img.data));
-  if (coverData) imagesFolder?.file("cover.jpg", coverData);
-
-  const footnoteHtml = globalFootnotes.map(fn => `<aside id="${fn.id}" epub:type="footnote" class="footnote"><p>${escapeHtml(fn.content)} <a href="#${(fn as any).backlinkId || 'content'}">&#8617;</a></p></aside>`).join('\n');
-
-  oebps?.file("content.xhtml", `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en"><head><title>${escapeHtml(docTitle)}</title><style>body { font-family: sans-serif; line-height: 1.5; padding: 5%; color: #000; background: #fff; } p { margin: 1em 0; text-align: justify; hyphens: auto; } h1, h2, h3 { color: #333; margin-top: 2em; } .footnote-ref { vertical-align: super; font-size: 0.7em; text-decoration: none; color: blue; } .footnote { font-size: 0.9em; border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1em; } .image-wrapper { text-align: center; margin: 2em 0; } .image-wrapper img { max-width: 100%; height: auto; }</style></head><body><section epub:type="bodymatter">${fullHtml}</section><section epub:type="backmatter"><hr/>${footnoteHtml}</section></body></html>`);
-
-  const tocList = tocEntries.map(e => `<li><a href="content.xhtml#${e.id}">${escapeHtml(e.text)}</a></li>`).join('\n');
-  oebps?.file("nav.xhtml", `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Table of Contents</title></head><body><nav epub:type="toc" id="toc"><h1>Table of Contents</h1><ol>${tocList || '<li><a href="content.xhtml">Main Content</a></li>'}</ol></nav></body></html>`);
-
-  const imageManifest = allImages.map(img => `<item id="${img.id}" href="images/${img.id}.png" media-type="image/png"/>`).join('\n');
-  const coverManifest = coverData ? '<item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>' : '';
-
-  oebps?.file("content.opf", `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:${Math.random().toString(36).substring(2)}</dc:identifier><dc:title>${escapeHtml(docTitle)}</dc:title><dc:language>en</dc:language><dc:creator>${escapeHtml(docAuthor)}</dc:creator><meta property="dcterms:modified">${new Date().toISOString().split('.')[0]}Z</meta>${coverData ? '<meta name="cover" content="cover-image"/>' : ''}</metadata><manifest><item id="content" href="content.xhtml" media-type="application/xhtml+xml"/><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>${imageManifest}${coverManifest}</manifest><spine><itemref idref="content"/></spine></package>`);
-
-  return await zip.generateAsync({ type: "blob" });
 };
 
 export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
@@ -981,7 +1001,9 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
         fileNames.push(path);
       }
     });
-    fileNames.sort();
+    fileNames.sort((a, b) => {
+      return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+    });
 
     for (const name of fileNames) {
       const data = await content.file(name)?.async("uint8array");
@@ -1066,213 +1088,217 @@ export const convertPdfToWord = async (file: File): Promise<Blob> => {
   });
 
   const pdf = await loadingTask.promise;
-  const sections: any[] = [];
+  try {
+    const sections: any[] = [];
 
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 1.0 });
-    const textContent = await page.getTextContent();
-    const items = textContent.items as any[];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: 1.0 });
+      const textContent = await page.getTextContent();
+      const items = textContent.items as any[];
 
-    // --- Image Extraction ---
-    const operatorList = await page.getOperatorList();
-    const images: any[] = [];
-    let transform = [1, 0, 0, 1, 0, 0];
-    const transformStack: any[] = [];
+      // --- Image Extraction ---
+      const operatorList = await page.getOperatorList();
+      const images: any[] = [];
+      let transform = [1, 0, 0, 1, 0, 0];
+      const transformStack: any[] = [];
 
-    // OPS mapping for standard PDF.js (constants might vary, using literals from common versions)
-    // transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82
-    const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
+      // OPS mapping for standard PDF.js (constants might vary, using literals from common versions)
+      // transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82
+      const OPS = (pdfjs as any).OPS || { transform: 11, save: 12, restore: 13, paintImageXObject: 85, paintInlineImageXObject: 82 };
 
-    for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
-      const fn = operatorList.fnArray[opIdx];
-      const args = operatorList.argsArray[opIdx];
+      for (let opIdx = 0; opIdx < operatorList.fnArray.length; opIdx++) {
+        const fn = operatorList.fnArray[opIdx];
+        const args = operatorList.argsArray[opIdx];
 
-      if (fn === OPS.transform) {
-        const m = args;
-        const [a, b, c, d, e, f] = transform;
-        transform = [
-          a * m[0] + c * m[1],
-          b * m[0] + d * m[1],
-          a * m[2] + c * m[3],
-          b * m[2] + d * m[3],
-          a * m[4] + c * m[5] + e,
-          b * m[4] + d * m[5] + f
-        ];
-      } else if (fn === OPS.save) {
-        transformStack.push([...transform]);
-      } else if (fn === OPS.restore) {
-        transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
-      } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
-        const imgId = args[0];
-        try {
-          const img = await page.objs.get(imgId);
-          if (img) {
-            // Calculate real dimensions and position
-            const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
-            const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
-            const x = transform[4];
-            const y = viewport.height - (transform[5] + height); // Convert to top-based Y
+        if (fn === OPS.transform) {
+          const m = args;
+          const [a, b, c, d, e, f] = transform;
+          transform = [
+            a * m[0] + c * m[1],
+            b * m[0] + d * m[1],
+            a * m[2] + c * m[3],
+            b * m[2] + d * m[3],
+            a * m[4] + c * m[5] + e,
+            b * m[4] + d * m[5] + f
+          ];
+        } else if (fn === OPS.save) {
+          transformStack.push([...transform]);
+        } else if (fn === OPS.restore) {
+          transform = transformStack.pop() || [1, 0, 0, 1, 0, 0];
+        } else if (fn === OPS.paintImageXObject || fn === OPS.paintInlineImageXObject) {
+          const imgId = args[0];
+          try {
+            const img = await page.objs.get(imgId);
+            if (img) {
+              // Calculate real dimensions and position
+              const width = Math.sqrt(transform[0] ** 2 + transform[1] ** 2);
+              const height = Math.sqrt(transform[2] ** 2 + transform[3] ** 2);
+              const x = transform[4];
+              const y = viewport.height - (transform[5] + height); // Convert to top-based Y
 
-            // Convert raw data to array buffer (heuristic for RGB/RGBA)
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-              const imageData = ctx.createImageData(img.width, img.height);
-              if (img.data.length === img.width * img.height * 3) {
-                for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
-                  imageData.data[l] = img.data[k];
-                  imageData.data[l + 1] = img.data[k + 1];
-                  imageData.data[l + 2] = img.data[k + 2];
-                  imageData.data[l + 3] = 255;
+              // Convert raw data to array buffer (heuristic for RGB/RGBA)
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                const imageData = ctx.createImageData(img.width, img.height);
+                if (img.data.length === img.width * img.height * 3) {
+                  for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
+                    imageData.data[l] = img.data[k];
+                    imageData.data[l + 1] = img.data[k + 1];
+                    imageData.data[l + 2] = img.data[k + 2];
+                    imageData.data[l + 3] = 255;
+                  }
+                } else {
+                  imageData.data.set(img.data);
                 }
-              } else {
-                imageData.data.set(img.data);
+                ctx.putImageData(imageData, 0, 0);
+                const dataUrl = canvas.toDataURL('image/png');
+                const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+
+                images.push({ data: bytes, width, height, x, y });
+
+                // Cleanup
+                canvas.width = 0;
+                canvas.height = 0;
               }
-              ctx.putImageData(imageData, 0, 0);
-              const dataUrl = canvas.toDataURL('image/png');
-              const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
-
-              images.push({ data: bytes, width, height, x, y });
-
-              // Cleanup
-              canvas.width = 0;
-              canvas.height = 0;
             }
-          }
-        } catch (err) { console.warn("Image extraction failed", err); }
+          } catch (err) { console.warn("Image extraction failed", err); }
+        }
       }
+
+      // --- Table Detection ---
+      // Group items by Y coordinate
+      const yGroups: { [y: number]: any[] } = {};
+      const tolerance = 5;
+      items.forEach(item => {
+        const y = item.transform[5];
+        let matchedY = Object.keys(yGroups).find(gy => Math.abs(Number(gy) - y) < tolerance);
+        if (!matchedY) yGroups[y] = [item];
+        else yGroups[Number(matchedY)].push(item);
+      });
+
+      const sortedYs = Object.keys(yGroups).map(Number).sort((a, b) => b - a);
+      const tableBlocks: any[] = [];
+      let currentTable: any[] = [];
+
+      // Heuristic: adjacent lines with multiple items and similar column breaks are likely tables
+      // Disabled for stability: formatting text paragraphs often triggers false positives.
+      // Future improvement: Use stricter column alignment checks.
+      /* 
+      sortedYs.forEach((y, idx) => {
+        const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
+        if (rowItems.length > 1) {
+          currentTable.push({ y, items: rowItems });
+        } else {
+          if (currentTable.length > 1) tableBlocks.push([...currentTable]);
+          currentTable = [];
+        }
+      });
+      if (currentTable.length > 1) tableBlocks.push(currentTable);
+      */
+
+      // --- Compilation ---
+      const pageElements: any[] = [];
+      const usedYsInTables = new Set(tableBlocks.flatMap(t => t.map((r: any) => r.y)));
+
+      // Add Tables
+      tableBlocks.forEach(block => {
+        const rows = block.map((row: any) => {
+          // Simple cell division - this is a basic split, ideally should use grid lines
+          const cells = row.items.map((item: any) => {
+            const fontName = item.fontName?.toLowerCase() || '';
+            return new TableCell({
+              children: [new Paragraph({
+                children: [new TextRun({
+                  text: item.str,
+                  size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
+                  bold: fontName.includes('bold'),
+                  italics: fontName.includes('italic')
+                })]
+              })],
+              width: { size: (item.width || 50) * 20, type: WidthType.DXA }
+            });
+          });
+          return new TableRow({ children: cells });
+        });
+
+        pageElements.push({
+          y: viewport.height - (block[0].y + 20),
+          element: new Table({
+            rows: rows,
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            borders: {
+              top: { style: BorderStyle.SINGLE, size: 1 },
+              bottom: { style: BorderStyle.SINGLE, size: 1 },
+              left: { style: BorderStyle.SINGLE, size: 1 },
+              right: { style: BorderStyle.SINGLE, size: 1 },
+            }
+          })
+        });
+      });
+
+      // Add Images
+      images.forEach(img => {
+        pageElements.push({
+          y: img.y,
+          element: new Paragraph({
+            children: [new ImageRun({
+              data: img.data,
+              transformation: { width: img.width, height: img.height }
+            } as any)],
+            alignment: AlignmentType.CENTER
+          })
+        });
+      });
+
+      // Add Text (paragraphs not in tables)
+      sortedYs.forEach(y => {
+        if (usedYsInTables.has(y)) return;
+        const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
+
+        const runs = rowItems.map(item => {
+          const text = item.str;
+          if (!text.trim() && text !== ' ') return null;
+
+          const fontName = item.fontName?.toLowerCase() || '';
+          return new TextRun({
+            text: text,
+            size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
+            bold: fontName.includes('bold') || fontName.includes('700'),
+            italics: fontName.includes('italic') || fontName.includes('oblique')
+          });
+        }).filter(Boolean) as any[];
+
+        if (runs.length > 0) {
+          pageElements.push({
+            y: viewport.height - y,
+            element: new Paragraph({ children: runs, spacing: { after: 120 } })
+          });
+        }
+      });
+
+      // Explicit cleanup for images if any operator logic used a temporary canvas
+      // (None currently in the loop besides the one inside paintImageXObject logic)
+
+      // Sort all by Y and add to sections
+      const sortedElements = pageElements.sort((a, b) => a.y - b.y).map(e => e.element);
+      sections.push({
+        properties: { page: { size: { width: viewport.width * 20, height: viewport.height * 20 } } },
+        children: sortedElements
+      });
+
+      // Yield to avoid freezing
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
 
-    // --- Table Detection ---
-    // Group items by Y coordinate
-    const yGroups: { [y: number]: any[] } = {};
-    const tolerance = 5;
-    items.forEach(item => {
-      const y = item.transform[5];
-      let matchedY = Object.keys(yGroups).find(gy => Math.abs(Number(gy) - y) < tolerance);
-      if (!matchedY) yGroups[y] = [item];
-      else yGroups[Number(matchedY)].push(item);
-    });
-
-    const sortedYs = Object.keys(yGroups).map(Number).sort((a, b) => b - a);
-    const tableBlocks: any[] = [];
-    let currentTable: any[] = [];
-
-    // Heuristic: adjacent lines with multiple items and similar column breaks are likely tables
-    // Disabled for stability: formatting text paragraphs often triggers false positives.
-    // Future improvement: Use stricter column alignment checks.
-    /* 
-    sortedYs.forEach((y, idx) => {
-      const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
-      if (rowItems.length > 1) {
-        currentTable.push({ y, items: rowItems });
-      } else {
-        if (currentTable.length > 1) tableBlocks.push([...currentTable]);
-        currentTable = [];
-      }
-    });
-    if (currentTable.length > 1) tableBlocks.push(currentTable);
-    */
-
-    // --- Compilation ---
-    const pageElements: any[] = [];
-    const usedYsInTables = new Set(tableBlocks.flatMap(t => t.map((r: any) => r.y)));
-
-    // Add Tables
-    tableBlocks.forEach(block => {
-      const rows = block.map((row: any) => {
-        // Simple cell division - this is a basic split, ideally should use grid lines
-        const cells = row.items.map((item: any) => {
-          const fontName = item.fontName?.toLowerCase() || '';
-          return new TableCell({
-            children: [new Paragraph({
-              children: [new TextRun({
-                text: item.str,
-                size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
-                bold: fontName.includes('bold'),
-                italics: fontName.includes('italic')
-              })]
-            })],
-            width: { size: (item.width || 50) * 20, type: WidthType.DXA }
-          });
-        });
-        return new TableRow({ children: cells });
-      });
-
-      pageElements.push({
-        y: viewport.height - (block[0].y + 20),
-        element: new Table({
-          rows: rows,
-          width: { size: 100, type: WidthType.PERCENTAGE },
-          borders: {
-            top: { style: BorderStyle.SINGLE, size: 1 },
-            bottom: { style: BorderStyle.SINGLE, size: 1 },
-            left: { style: BorderStyle.SINGLE, size: 1 },
-            right: { style: BorderStyle.SINGLE, size: 1 },
-          }
-        })
-      });
-    });
-
-    // Add Images
-    images.forEach(img => {
-      pageElements.push({
-        y: img.y,
-        element: new Paragraph({
-          children: [new ImageRun({
-            data: img.data,
-            transformation: { width: img.width, height: img.height }
-          } as any)],
-          alignment: AlignmentType.CENTER
-        })
-      });
-    });
-
-    // Add Text (paragraphs not in tables)
-    sortedYs.forEach(y => {
-      if (usedYsInTables.has(y)) return;
-      const rowItems = yGroups[y].sort((a, b) => a.transform[4] - b.transform[4]);
-
-      const runs = rowItems.map(item => {
-        const text = item.str;
-        if (!text.trim() && text !== ' ') return null;
-
-        const fontName = item.fontName?.toLowerCase() || '';
-        return new TextRun({
-          text: text,
-          size: Math.round(Math.abs(item.transform[0] || item.transform[3]) * 2),
-          bold: fontName.includes('bold') || fontName.includes('700'),
-          italics: fontName.includes('italic') || fontName.includes('oblique')
-        });
-      }).filter(Boolean) as any[];
-
-      if (runs.length > 0) {
-        pageElements.push({
-          y: viewport.height - y,
-          element: new Paragraph({ children: runs, spacing: { after: 120 } })
-        });
-      }
-    });
-
-    // Explicit cleanup for images if any operator logic used a temporary canvas
-    // (None currently in the loop besides the one inside paintImageXObject logic)
-
-    // Sort all by Y and add to sections
-    const sortedElements = pageElements.sort((a, b) => a.y - b.y).map(e => e.element);
-    sections.push({
-      properties: { page: { size: { width: viewport.width * 20, height: viewport.height * 20 } } },
-      children: sortedElements
-    });
-
-    // Yield to avoid freezing
-    await new Promise(resolve => setTimeout(resolve, 0));
+    const doc = new Document({ sections: sections });
+    return await Packer.toBlob(doc);
+  } finally {
+    if (pdf) await pdf.destroy();
   }
-
-  const doc = new Document({ sections: sections });
-  return await Packer.toBlob(doc);
 };
 
 export const convertWordToPdf = async (file: File): Promise<Blob> => {
@@ -1744,35 +1770,27 @@ export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extr
 };
 
 export const mergePdfs = async (files: File[]): Promise<Uint8Array> => {
-  try {
-    const pdfLib = await getPdfLib();
-    const { PDFDocument } = pdfLib;
+  const pdfLib = await getPdfLib();
+  const { PDFDocument } = pdfLib;
 
-    // Create a new document
-    const mergedPdf = await PDFDocument.create();
+  const mergedPdf = await PDFDocument.create();
 
-    for (const file of files) {
-      // Load the source PDF
+  for (const file of files) {
+    try {
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await PDFDocument.load(arrayBuffer);
-
-      // Copy all pages
       const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-
-      // Add pages to the new document
       copiedPages.forEach((page) => mergedPdf.addPage(page));
-
       // Yield to event loop to prevent UI freezing
       await new Promise(resolve => setTimeout(resolve, 0));
+    } catch (error) {
+      console.error(`Error merging file ${file.name}:`, error);
+      throw new Error(`Failed to merge file "${file.name}". It might be corrupted or password protected.`);
     }
-
-    // Save the merged PDF
-    addPdfMetadata(mergedPdf, 'Merged PDF');
-    return await mergedPdf.save();
-  } catch (error) {
-    console.error('Error in mergePdfs:', error);
-    throw new Error('Failed to merge PDFs. One of the files might be corrupted or password protected.');
   }
+
+  addPdfMetadata(mergedPdf, 'Merged PDF');
+  return await mergedPdf.save();
 };
 
 // Split PDF: Separate a PDF into individual pages, returned as a ZIP
@@ -1863,48 +1881,55 @@ export const convertPdfToXml = async (file: File): Promise<Blob> => {
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
-  const escapeXml = (unsafe: string) => {
-    return unsafe
-      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]/g, "") // Remove invalid XML chars
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&apos;");
-  };
+  try {
+    const escapeXml = (unsafe: string) => {
+      return unsafe
+        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]/g, "") // Remove invalid XML chars
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    };
 
-  let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xmlContent += '<document>\n';
-  xmlContent += `  <metadata>\n`;
-  xmlContent += `    <filename>${escapeXml(file.name)}</filename>\n`;
-  xmlContent += `    <pageCount>${pdf.numPages}</pageCount>\n`;
-  xmlContent += `    <exportDate>${new Date().toISOString()}</exportDate>\n`;
-  xmlContent += `  </metadata>\n`;
-  xmlContent += '  <pages>\n';
+    let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xmlContent += '<document>\n';
+    xmlContent += `  <metadata>\n`;
+    xmlContent += `    <filename>${escapeXml(file.name)}</filename>\n`;
+    xmlContent += `    <pageCount>${pdf.numPages}</pageCount>\n`;
+    xmlContent += `    <exportDate>${new Date().toISOString()}</exportDate>\n`;
+    xmlContent += `  </metadata>\n`;
+    xmlContent += '  <pages>\n';
 
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const textContent = await page.getTextContent();
-    const viewport = page.getViewport({ scale: 1.0 });
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const textContent = await page.getTextContent();
+      const viewport = page.getViewport({ scale: 1.0 });
 
-    xmlContent += `    <page number="${i}" width="${viewport.width.toFixed(2)}" height="${viewport.height.toFixed(2)}">\n`;
+      xmlContent += `    <page number="${i}" width="${viewport.width.toFixed(2)}" height="${viewport.height.toFixed(2)}">\n`;
 
-    for (const item of textContent.items as any[]) {
-      if (item.str && item.str.trim()) {
-        const x = item.transform ? item.transform[4].toFixed(2) : '0';
-        const y = item.transform ? item.transform[5].toFixed(2) : '0';
-        const fontSize = item.transform ? item.transform[0].toFixed(2) : '12';
-        xmlContent += `      <text x="${x}" y="${y}" fontSize="${fontSize}">${escapeXml(item.str)}</text>\n`;
+      for (const item of textContent.items as any[]) {
+        if (item.str && item.str.trim()) {
+          const x = item.transform ? item.transform[4].toFixed(2) : '0';
+          const y = item.transform ? item.transform[5].toFixed(2) : '0';
+          const fontSize = item.transform ? item.transform[0].toFixed(2) : '12';
+          xmlContent += `      <text x="${x}" y="${y}" fontSize="${fontSize}">${escapeXml(item.str)}</text>\n`;
+        }
       }
+
+      xmlContent += `    </page>\n`;
+
+      // Yield to event loop
+      if (i % 5 === 0) await new Promise(resolve => setTimeout(resolve, 0));
     }
 
-    xmlContent += `    </page>\n`;
+    xmlContent += '  </pages>\n';
+    xmlContent += '</document>';
+
+    return new Blob([xmlContent], { type: 'application/xml' });
+  } finally {
+    if (pdf) await pdf.destroy();
   }
-
-  xmlContent += '  </pages>\n';
-  xmlContent += '</document>';
-
-  return new Blob([xmlContent], { type: 'application/xml' });
 };
 
 // XML to PDF: Convert structured XML into a PDF document
@@ -2098,49 +2123,50 @@ export const extractInvoiceData = async (file: File): Promise<InvoiceData> => {
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfJs.getDocument({ data: arrayBuffer }).promise;
 
-    // Parse first page only for invoice data usually
-    const page = await pdf.getPage(1);
-    const textContent = await page.getTextContent();
-    const textItems = textContent.items.map((item: any) => item.str).join(' ');
-
-    if (textItems.length > 50) {
-      // Sufficient text found, use it
-      return parseInvoiceText(textItems);
-    }
-
-    // 2. Scanned PDF -> OCR with Tesseract
-
-    // Render page to canvas for image input
-    const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (!context) throw new Error('Failed to create canvas context');
-
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    await page.render({ canvasContext: context, viewport: viewport }).promise;
-
-    const imageBlob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve));
-    if (!imageBlob) throw new Error("Failed to render PDF page for OCR");
-
-    // Load Tesseract dynamically
-    const Tesseract = await import('tesseract.js');
-
-    // Use createWorker for better lifecycle control
-    const worker = await Tesseract.createWorker('eng');
-
     try {
-      const ret = await worker.recognize(imageBlob);
-      const ocrText = ret.data.text;
+      // Parse first page only for invoice data usually
+      const page = await pdf.getPage(1);
+      const textContent = await page.getTextContent();
+      const textItems = textContent.items.map((item: any) => item.str).join(' ');
 
-      // Always terminate worker to prevent memory leaks
-      await worker.terminate();
+      if (textItems.length > 50) {
+        // Sufficient text found, use it
+        return parseInvoiceText(textItems);
+      }
 
-      return parseInvoiceText(ocrText);
-    } catch (err) {
-      await worker.terminate();
-      throw err;
+      // 2. Scanned PDF -> OCR with Tesseract
+
+      // Render page to canvas for image input
+      const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for better OCR
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Failed to create canvas context');
+
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+      const imageBlob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve));
+      if (!imageBlob) throw new Error("Failed to render PDF page for OCR");
+
+      // Load Tesseract dynamically
+      const Tesseract = await import('tesseract.js');
+
+      // Use createWorker for better lifecycle control
+      const worker = await Tesseract.createWorker('eng');
+
+      try {
+        const ret = await worker.recognize(imageBlob);
+        const ocrText = ret.data.text;
+        await worker.terminate();
+        return parseInvoiceText(ocrText);
+      } catch (err) {
+        await worker.terminate();
+        throw err;
+      }
+    } finally {
+      if (pdf) await pdf.destroy();
     }
   } catch (error) {
     console.error('Invoice extraction failed:', error);
@@ -2154,37 +2180,41 @@ export const convertPdfToCsv = async (file: File): Promise<Blob> => {
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
-  let csvContent = "";
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const textContent = await page.getTextContent();
-    const items = textContent.items.map((it: any) => ({
-      str: it.str,
-      x: it.transform[4],
-      y: it.transform[5]
-    }));
+  try {
+    let csvContent = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const textContent = await page.getTextContent();
+      const items = textContent.items.map((it: any) => ({
+        str: it.str,
+        x: it.transform[4],
+        y: it.transform[5]
+      }));
 
-    items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
+      items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
 
-    let currentY = -1;
-    let currentRow: string[] = [];
-    items.forEach((it: any) => {
-      if (it.str.trim().length === 0) return;
-      if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
-        if (currentRow.length > 0) {
-          csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
+      let currentY = -1;
+      let currentRow: string[] = [];
+      items.forEach((it: any) => {
+        if (it.str.trim().length === 0) return;
+        if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
+          if (currentRow.length > 0) {
+            csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
+          }
+          currentRow = [];
         }
-        currentRow = [];
+        currentY = it.y;
+        currentRow.push(it.str.trim());
+      });
+      if (currentRow.length > 0) {
+        csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
       }
-      currentY = it.y;
-      currentRow.push(it.str.trim());
-    });
-    if (currentRow.length > 0) {
-      csvContent += currentRow.map(s => `"${s.replace(/"/g, '""')}"`).join(',') + "\n";
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
-    await new Promise(resolve => setTimeout(resolve, 0));
+    return new Blob([csvContent], { type: 'text/csv' });
+  } finally {
+    if (pdf) await pdf.destroy();
   }
-  return new Blob([csvContent], { type: 'text/csv' });
 };
 
 export const convertPdfToExcel = async (file: File): Promise<Blob> => {
@@ -2198,40 +2228,44 @@ export const convertPdfToExcel = async (file: File): Promise<Blob> => {
   const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
   let rowIdx = 1;
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const textContent = await page.getTextContent();
-    const items = textContent.items.map((it: any) => ({
-      str: it.str,
-      x: it.transform[4],
-      y: it.transform[5]
-    }));
+  try {
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const textContent = await page.getTextContent();
+      const items = textContent.items.map((it: any) => ({
+        str: it.str,
+        x: it.transform[4],
+        y: it.transform[5]
+      }));
 
-    items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
+      items.sort((a: any, b: any) => b.y - a.y || a.x - b.x);
 
-    let currentY = -1;
-    let currentRow: string[] = [];
-    items.forEach((it: any) => {
-      if (it.str.trim().length === 0) return;
-      if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
-        if (currentRow.length > 0) {
-          sheet.addRow(currentRow);
-          rowIdx++;
+      let currentY = -1;
+      let currentRow: string[] = [];
+      items.forEach((it: any) => {
+        if (it.str.trim().length === 0) return;
+        if (currentY !== -1 && Math.abs(it.y - currentY) > 5) {
+          if (currentRow.length > 0) {
+            sheet.addRow(currentRow);
+            rowIdx++;
+          }
+          currentRow = [];
         }
-        currentRow = [];
+        currentY = it.y;
+        currentRow.push(it.str.trim());
+      });
+      if (currentRow.length > 0) {
+        sheet.addRow(currentRow);
+        rowIdx++;
       }
-      currentY = it.y;
-      currentRow.push(it.str.trim());
-    });
-    if (currentRow.length > 0) {
-      sheet.addRow(currentRow);
-      rowIdx++;
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
-    await new Promise(resolve => setTimeout(resolve, 0));
-  }
 
-  const buffer = await workbook.xlsx.writeBuffer();
-  return new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const buffer = await workbook.xlsx.writeBuffer();
+    return new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  } finally {
+    if (pdf) await pdf.destroy();
+  }
 };
 
 export const analyzePdfSecurity = async (file: File): Promise<Blob> => {
@@ -2241,75 +2275,80 @@ export const analyzePdfSecurity = async (file: File): Promise<Blob> => {
   const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
   const findings: { type: string, detail: string, severity: 'Low' | 'Medium' | 'High' }[] = [];
-
-  // Metadata check
-  const metadata = await pdf.getMetadata();
-  const info = (metadata?.info as any) || {};
-  findings.push({ type: 'Document Metadata', detail: `Producer: ${info.Producer || 'N/A'}, Creator: ${info.Creator || 'N/A'}`, severity: 'Low' });
-
-  // JavaScript Check
   try {
-    const scripts = await (pdf as any).getJavaScript();
-    if (scripts && scripts.length > 0) {
-      findings.push({ type: 'JavaScript Detected', detail: `This PDF contains ${scripts.length} embedded scripts. JavaScript can be used for malicious actions.`, severity: 'High' });
-    }
-  } catch (e) {
-    console.warn("JS extraction failed", e);
-  }
+    // Metadata check
+    const metadata = await pdf.getMetadata();
+    const info = (metadata?.info as any) || {};
+    findings.push({ type: 'Document Metadata', detail: `Producer: ${info.Producer || 'N/A'}, Creator: ${info.Creator || 'N/A'}`, severity: 'Low' });
 
-  // Link Analysis
-  let suspiciousLinks = 0;
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const annotations = await page.getAnnotations();
-    annotations.forEach((anno: any) => {
-      if (anno.subtype === 'Link' && anno.url) {
-        const url = anno.url.toLowerCase();
-        if (url.startsWith('javascript:') || url.includes('bit.ly') || url.includes('t.co') || url.includes('tinyurl')) {
-          suspiciousLinks++;
-          findings.push({ type: 'Suspicious Link', detail: `Possibly deceptive or shortened URL on page ${i}: ${anno.url}`, severity: 'Medium' });
-        }
+    // JavaScript Check
+    try {
+      const scripts = await (pdf as any).getJavaScript();
+      if (scripts && scripts.length > 0) {
+        findings.push({ type: 'JavaScript Detected', detail: `This PDF contains ${scripts.length} embedded scripts. JavaScript can be used for malicious actions.`, severity: 'High' });
       }
-    });
-  }
+    } catch (e) {
+      console.warn("JS extraction failed", e);
+    }
 
-  // Visual report generation
-  const { jsPDF } = await getJsPdf();
-  const doc = new jsPDF();
+    // Link Analysis
+    let suspiciousLinks = 0;
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const annotations = await page.getAnnotations();
+      annotations.forEach((anno: any) => {
+        if (anno.subtype === 'Link' && anno.url) {
+          const url = anno.url.toLowerCase();
+          if (url.startsWith('javascript:') || url.includes('bit.ly') || url.includes('t.co') || url.includes('tinyurl')) {
+            suspiciousLinks++;
+            findings.push({ type: 'Suspicious Link', detail: `Possibly deceptive or shortened URL on page ${i}: ${anno.url}`, severity: 'Medium' });
+          }
+        }
+      });
+      // Yield every 10 pages
+      if (i % 10 === 0) await new Promise(resolve => setTimeout(resolve, 0));
+    }
 
-  doc.setFontSize(22);
-  doc.setTextColor(227, 24, 55); // Canada Red
-  doc.text('PDF Security Analysis Report', 20, 20);
+    // Visual report generation
+    const { jsPDF } = await getJsPdf();
+    const doc = new jsPDF();
 
-  doc.setFontSize(10);
-  doc.setTextColor(100);
-  doc.text(`File: ${file.name}`, 20, 30);
-  doc.text(`Date: ${new Date().toLocaleString()}`, 20, 35);
-  doc.text(`Powered by pdfcanada.ca - 100% Local Privacy`, 20, 40);
-
-  let y = 60;
-  findings.forEach((f) => {
-    if (y > 270) { doc.addPage(); y = 20; }
-
-    doc.setFontSize(12);
-    const color = f.severity === 'High' ? [255, 0, 0] : (f.severity === 'Medium' ? [255, 128, 0] : [0, 150, 0]);
-    doc.setTextColor(color[0], color[1], color[2]);
-    doc.text(`[${f.severity}] ${f.type}`, 20, y);
+    doc.setFontSize(22);
+    doc.setTextColor(227, 24, 55); // Canada Red
+    doc.text('PDF Security Analysis Report', 20, 20);
 
     doc.setFontSize(10);
-    doc.setTextColor(50);
-    const splitDetail = doc.splitTextToSize(f.detail, 170);
-    doc.text(splitDetail, 25, y + 5);
+    doc.setTextColor(100);
+    doc.text(`File: ${file.name}`, 20, 30);
+    doc.text(`Date: ${new Date().toLocaleString()}`, 20, 35);
+    doc.text(`Powered by pdfcanada.ca - 100% Local Privacy`, 20, 40);
 
-    y += 10 + (splitDetail.length * 5);
-  });
+    let y = 60;
+    findings.forEach((f) => {
+      if (y > 270) { doc.addPage(); y = 20; }
 
-  if (findings.length === 1) {
-    doc.setTextColor(0, 150, 0);
-    doc.text("No significant security threats detected.", 20, y);
+      doc.setFontSize(12);
+      const color = f.severity === 'High' ? [255, 0, 0] : (f.severity === 'Medium' ? [255, 128, 0] : [0, 150, 0]);
+      doc.setTextColor(color[0], color[1], color[2]);
+      doc.text(`[${f.severity}] ${f.type}`, 20, y);
+
+      doc.setFontSize(10);
+      doc.setTextColor(50);
+      const splitDetail = doc.splitTextToSize(f.detail, 170);
+      doc.text(splitDetail, 25, y + 5);
+
+      y += 10 + (splitDetail.length * 5);
+    });
+
+    if (findings.length === 1) {
+      doc.setTextColor(0, 150, 0);
+      doc.text("No significant security threats detected.", 20, y);
+    }
+
+    return doc.output('blob');
+  } finally {
+    if (pdf) await pdf.destroy();
   }
-
-  return doc.output('blob');
 };
 
 /**
@@ -2324,176 +2363,182 @@ export const optimizePdfForKindleVisual = async (file: File, screenSize: number 
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
 
-  // Target dimensions for Kindle (approx in points)
-  const targetWidth = 300 + (screenSize - 4) * 75; // 6" -> 450, 7" -> 525, 10" -> 750
-  const targetHeight = targetWidth * 1.33;
+  try {
+    // Target dimensions for Kindle (approx in points)
+    const targetWidth = 300 + (screenSize - 4) * 75; // 6" -> 450, 7" -> 525, 10" -> 750
+    const targetHeight = targetWidth * 1.33;
 
-  const outputDoc = new jsPDF({
-    orientation: 'p',
-    unit: 'pt',
-    format: [targetWidth, targetHeight]
-  });
-
-  let pageAdded = false;
-  const sharedCanvas = document.createElement('canvas');
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const scale = 2.0;
-    const viewport = page.getViewport({ scale });
-    const textContent = await page.getTextContent();
-
-    let minX = viewport.width, minY = viewport.height, maxX = 0, maxY = 0;
-    let hasContent = false;
-
-    // 1. Content Area Detection
-    if (textContent.items.length > 0) {
-      textContent.items.forEach((it: any) => {
-        if (it.str.trim()) {
-          const x = it.transform[4] * scale;
-          const y = viewport.height - it.transform[5] * scale;
-          const w = it.width * scale;
-          const h = it.height * scale;
-          minX = Math.min(minX, x);
-          minY = Math.min(minY, y - h);
-          maxX = Math.max(maxX, x + w);
-          maxY = Math.max(maxY, y);
-          hasContent = true;
-        }
-      });
-    }
-
-    // Fallback for scanned pages (pixel analysis)
-    if (!hasContent) {
-      const tempScale = 0.5;
-      const tempViewport = page.getViewport({ scale: tempScale });
-      sharedCanvas.width = tempViewport.width;
-      sharedCanvas.height = tempViewport.height;
-      const ctx = sharedCanvas.getContext('2d', { willReadFrequently: true });
-      if (ctx) {
-        await page.render({ canvasContext: ctx, viewport: tempViewport }).promise;
-        const imgData = ctx.getImageData(0, 0, sharedCanvas.width, sharedCanvas.height).data;
-
-        let pMinX = sharedCanvas.width, pMinY = sharedCanvas.height, pMaxX = 0, pMaxY = 0;
-        for (let py = 0; py < sharedCanvas.height; py += 4) {
-          for (let px = 0; px < sharedCanvas.width; px += 4) {
-            const idx = (py * sharedCanvas.width + px) * 4;
-            if (imgData[idx] < 245 || imgData[idx + 1] < 245 || imgData[idx + 2] < 245) {
-              pMinX = Math.min(pMinX, px);
-              pMinY = Math.min(pMinY, py);
-              pMaxX = Math.max(pMaxX, px);
-              pMaxY = Math.max(pMaxY, py);
-              hasContent = true;
-            }
-          }
-        }
-        if (hasContent) {
-          minX = (pMinX / tempScale) * scale;
-          minY = (pMinY / tempScale) * scale;
-          maxX = (pMaxX / tempScale) * scale;
-          maxY = (pMaxY / tempScale) * scale;
-        }
-      }
-    }
-
-    if (!hasContent) continue;
-
-    // Padding
-    const p = 15;
-    minX = Math.max(0, minX - p);
-    minY = Math.max(0, minY - p);
-    maxX = Math.min(viewport.width, maxX + p);
-    maxY = Math.min(viewport.height, maxY + p);
-
-    const contentWidth = maxX - minX;
-    const contentHeight = maxY - minY;
-
-    // 2. Column Detection Logic
-    const strips = 20;
-    const stripWidth = contentWidth / strips;
-    const occupancy = new Array(strips).fill(0);
-
-    textContent.items.forEach((it: any) => {
-      const x = it.transform[4] * scale;
-      const w = it.width * scale;
-      const startStrip = Math.floor((x - minX) / stripWidth);
-      const endStrip = Math.floor((x + w - minX) / stripWidth);
-      for (let s = Math.max(0, startStrip); s <= Math.min(strips - 1, endStrip); s++) {
-        occupancy[s]++;
-      }
+    const outputDoc = new jsPDF({
+      orientation: 'p',
+      unit: 'pt',
+      format: [targetWidth, targetHeight]
     });
 
-    const avgOcc = occupancy.reduce((a, b) => a + b, 0) / strips;
-    const thresh = Math.max(1, avgOcc * 0.1);
+    let pageAdded = false;
+    const sharedCanvas = document.createElement('canvas');
 
-    let columnGapStart = -1;
-    let maxGapWidth = 0;
-    let currentGapStart = -1;
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 2.0;
+      const viewport = page.getViewport({ scale });
+      const textContent = await page.getTextContent();
 
-    for (let s = 5; s < strips - 5; s++) {
-      if (occupancy[s] <= thresh) {
-        if (currentGapStart === -1) currentGapStart = s;
-      } else {
-        if (currentGapStart !== -1) {
-          const gapWidth = s - currentGapStart;
-          if (gapWidth > maxGapWidth) {
-            maxGapWidth = gapWidth;
-            columnGapStart = currentGapStart;
+      let minX = viewport.width, minY = viewport.height, maxX = 0, maxY = 0;
+      let hasContent = false;
+
+      // 1. Content Area Detection
+      if (textContent.items.length > 0) {
+        textContent.items.forEach((it: any) => {
+          if (it.str.trim()) {
+            const x = it.transform[4] * scale;
+            const y = viewport.height - it.transform[5] * scale;
+            const w = it.width * scale;
+            const h = it.height * scale;
+            minX = Math.min(minX, x);
+            minY = Math.min(minY, y - h);
+            maxX = Math.max(maxX, x + w);
+            maxY = Math.max(maxY, y);
+            hasContent = true;
           }
-          currentGapStart = -1;
-        }
+        });
       }
-    }
 
-    const hasTwoColumns = maxGapWidth >= 2;
-    const midX = minX + (columnGapStart + maxGapWidth / 2) * stripWidth;
-
-    // 3. Sub-region Processing
-    const processRegion = async (rx: number, ry: number, rw: number, rh: number) => {
-      const hScale = targetWidth / rw;
-      const chunkH_Source = targetHeight / hScale;
-
-      let currentY = ry;
-      while (currentY < ry + rh) {
-        const actualChunkH = Math.min(chunkH_Source, (ry + rh) - currentY);
-
-        if (pageAdded) outputDoc.addPage([targetWidth, targetHeight]);
-        pageAdded = true;
-
-        sharedCanvas.width = rw * 2;
-        sharedCanvas.height = actualChunkH * 2;
-        const ctx = sharedCanvas.getContext('2d');
-
+      // Fallback for scanned pages (pixel analysis)
+      if (!hasContent) {
+        const tempScale = 0.5;
+        const tempViewport = page.getViewport({ scale: tempScale });
+        sharedCanvas.width = tempViewport.width;
+        sharedCanvas.height = tempViewport.height;
+        const ctx = sharedCanvas.getContext('2d', { willReadFrequently: true });
         if (ctx) {
-          await page.render({
-            canvasContext: ctx,
-            viewport: page.getViewport({
-              scale: (rw * 2) / (rw / scale),
-              offsetX: -rx * ((rw * 2) / rw),
-              offsetY: -currentY * ((rw * 2) / rw)
-            })
-          }).promise;
+          await page.render({ canvasContext: ctx, viewport: tempViewport }).promise;
+          const imgData = ctx.getImageData(0, 0, sharedCanvas.width, sharedCanvas.height).data;
 
-          const imgData = sharedCanvas.toDataURL('image/jpeg', 0.9);
-          outputDoc.addImage(imgData, 'JPEG', 0, 0, targetWidth, actualChunkH * hScale);
+          let pMinX = sharedCanvas.width, pMinY = sharedCanvas.height, pMaxX = 0, pMaxY = 0;
+          for (let py = 0; py < sharedCanvas.height; py += 4) {
+            for (let px = 0; px < sharedCanvas.width; px += 4) {
+              const idx = (py * sharedCanvas.width + px) * 4;
+              if (imgData[idx] < 245 || imgData[idx + 1] < 245 || imgData[idx + 2] < 245) {
+                pMinX = Math.min(pMinX, px);
+                pMinY = Math.min(pMinY, py);
+                pMaxX = Math.max(pMaxX, px);
+                pMaxY = Math.max(pMaxY, py);
+                hasContent = true;
+              }
+            }
+          }
+          if (hasContent) {
+            minX = (pMinX / tempScale) * scale;
+            minY = (pMinY / tempScale) * scale;
+            maxX = (pMaxX / tempScale) * scale;
+            maxY = (pMaxY / tempScale) * scale;
+          }
         }
-
-        currentY += actualChunkH * 0.95;
       }
-    };
 
-    if (hasTwoColumns) {
-      await processRegion(minX, minY, midX - minX, contentHeight);
-      await processRegion(midX, minY, maxX - midX, contentHeight);
-    } else {
-      await processRegion(minX, minY, contentWidth, contentHeight);
+      if (!hasContent) continue;
+
+      // Padding
+      const p = 15;
+      minX = Math.max(0, minX - p);
+      minY = Math.max(0, minY - p);
+      maxX = Math.min(viewport.width, maxX + p);
+      maxY = Math.min(viewport.height, maxY + p);
+
+      const contentWidth = maxX - minX;
+      const contentHeight = maxY - minY;
+
+      // 2. Column Detection Logic
+      const strips = 20;
+      const stripWidth = contentWidth / strips;
+      const occupancy = new Array(strips).fill(0);
+
+      textContent.items.forEach((it: any) => {
+        const x = it.transform[4] * scale;
+        const w = it.width * scale;
+        const startStrip = Math.floor((x - minX) / stripWidth);
+        const endStrip = Math.floor((x + w - minX) / stripWidth);
+        for (let s = Math.max(0, startStrip); s <= Math.min(strips - 1, endStrip); s++) {
+          occupancy[s]++;
+        }
+      });
+
+      const avgOcc = occupancy.reduce((a, b) => a + b, 0) / strips;
+      const thresh = Math.max(1, avgOcc * 0.1);
+
+      let columnGapStart = -1;
+      let maxGapWidth = 0;
+      let currentGapStart = -1;
+
+      for (let s = 5; s < strips - 5; s++) {
+        if (occupancy[s] <= thresh) {
+          if (currentGapStart === -1) currentGapStart = s;
+        } else {
+          if (currentGapStart !== -1) {
+            const gapWidth = s - currentGapStart;
+            if (gapWidth > maxGapWidth) {
+              maxGapWidth = gapWidth;
+              columnGapStart = currentGapStart;
+            }
+            currentGapStart = -1;
+          }
+        }
+      }
+
+      const hasTwoColumns = maxGapWidth >= 2;
+      const midX = minX + (columnGapStart + maxGapWidth / 2) * stripWidth;
+
+      // 3. Sub-region Processing
+      const processRegion = async (rx: number, ry: number, rw: number, rh: number) => {
+        const hScale = targetWidth / rw;
+        const chunkH_Source = targetHeight / hScale;
+
+        let currentY = ry;
+        while (currentY < ry + rh) {
+          const actualChunkH = Math.min(chunkH_Source, (ry + rh) - currentY);
+
+          if (pageAdded) outputDoc.addPage([targetWidth, targetHeight]);
+          pageAdded = true;
+
+          sharedCanvas.width = rw * 2;
+          sharedCanvas.height = actualChunkH * 2;
+          const ctx = sharedCanvas.getContext('2d');
+
+          if (ctx) {
+            await page.render({
+              canvasContext: ctx,
+              viewport: page.getViewport({
+                scale: (rw * 2) / (rw / scale),
+                offsetX: -rx * ((rw * 2) / rw),
+                offsetY: -currentY * ((rw * 2) / rw)
+              })
+            }).promise;
+
+            const imgData = sharedCanvas.toDataURL('image/jpeg', 0.9);
+            outputDoc.addImage(imgData, 'JPEG', 0, 0, targetWidth, actualChunkH * hScale);
+          }
+
+          currentY += actualChunkH * 0.95;
+        }
+      };
+
+      if (hasTwoColumns) {
+        await processRegion(minX, minY, midX - minX, contentHeight);
+        await processRegion(midX, minY, maxX - midX, contentHeight);
+      } else {
+        await processRegion(minX, minY, contentWidth, contentHeight);
+      }
+
+      // Cleanup page resources
+      (page as any).cleanup?.();
+      sharedCanvas.height = 0;
+
+      // Yield to avoid freezing
+      await new Promise(resolve => setTimeout(resolve, 0));
     }
 
-    // Cleanup page resources
-    (page as any).cleanup?.();
-    sharedCanvas.width = 0;
-    sharedCanvas.height = 0;
+    return outputDoc.output('blob');
+  } finally {
+    if (pdf) await pdf.destroy();
   }
-
-  return outputDoc.output('blob');
 };

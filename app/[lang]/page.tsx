@@ -86,9 +86,9 @@ export async function generateMetadata({
             images: [`${baseUrl}/og-image.png`],
             creator: '@pdfcanada',
         },
-        verification: {
-            google: 'your-google-verification-code',
-        },
+        // verification: {
+        //     google: 'google-site-verification=placeholder',
+        // },
         category: 'technology',
     };
 }

@@ -249,7 +249,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const pageRangeInputRef = useRef<HTMLInputElement>(null);
 
     // Tool type checks - must be declared before use
-    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.FLATTEN || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT || currentTool === ToolType.PDF_TO_XML;
+    const isPageSelectionTool = currentTool === ToolType.DELETE || currentTool === ToolType.ROTATE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.SPLIT || currentTool === ToolType.EXTRACT;
     const isSignTool = currentTool === ToolType.SIGN;
     const isCropTool = currentTool === ToolType.CROP;
     const isOrganizeTool = currentTool === ToolType.ORGANIZE;

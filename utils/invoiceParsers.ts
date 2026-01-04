@@ -141,7 +141,9 @@ export const parseInvoiceText = (text: string): InvoiceData => {
     }
 
     // Preprocess text and extract lines
-    const { cleanText, lines } = preprocessText(text);
+    // Truncate text to 50k characters to prevent ReDoS and performance issues
+    const safeText = text.length > 50000 ? text.substring(0, 50000) : text;
+    const { cleanText, lines } = preprocessText(safeText);
     let fieldsFound = 0;
     const totalFields = 8; // vendor, id, date, total, subtotal, tax, dueDate, poNumber
 

@@ -102,7 +102,7 @@ export default async function ToolPage({
 
     // Get tool-specific FAQs from i18n
     const t = translations[currentLang] as any;
-    const toolKey = tool.replace(/-/g, '');
+    const toolKey = config.i18nKey || tool.replace(/-/g, '');
     const toolFaqs = t.features?.[toolKey]?.faq || [];
 
     // Prepare FAQs with enhanced schema including HowTo steps
