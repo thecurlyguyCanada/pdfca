@@ -170,18 +170,18 @@ export const ALL_GUIDES: GuideMetadata[] = [
     {
         slug: 'pdf-to-word',
         titleEn: 'PDF to Word Guide',
-        titleFr: 'Guide PDF vers Word',
+        titleFr: 'Comment Convertir PDF en Word Gratuitement',
         descEn: 'Convert PDF documents to editable Word files.',
-        descFr: 'Convertissez des documents PDF en fichiers Word éditables.',
+        descFr: 'Comment convertir un PDF en Word gratuitement. Guide complet pour convertir fichier PDF en Word modifiable, en ligne et sans logiciel.',
         category: 'Conversion',
         icon: '📄'
     },
     {
         slug: 'word-to-pdf',
         titleEn: 'Word to PDF Guide',
-        titleFr: 'Guide Word vers PDF',
+        titleFr: 'Comment Convertir Word en PDF Gratuitement',
         descEn: 'Convert Word documents to PDF format.',
-        descFr: 'Convertissez des documents Word au format PDF.',
+        descFr: 'Comment convertir un document Word en PDF gratuitement. Guide pour convertir fichier Word en PDF en ligne, sans logiciel.',
         category: 'Conversion',
         icon: '📝'
     },
