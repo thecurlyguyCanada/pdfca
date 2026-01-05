@@ -61,7 +61,7 @@ export const ORGANIZATION = {
     ],
   },
 
-  priceRange: '$$',
+  priceRange: 'Free',
 } as const;
 
 /**

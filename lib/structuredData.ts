@@ -121,13 +121,13 @@ export function generateLocalBusinessSchema() {
   };
 }
 
-export function generateSoftwareApplicationSchema(toolConfig: ToolConfig) {
+export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 'en' | 'fr' = 'en') {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: toolConfig.title,
-    description: toolConfig.description,
-    url: `https://www.pdfcanada.ca/${toolConfig.slug}`,
+    name: lang === 'fr' ? toolConfig.titleFr : toolConfig.title,
+    description: lang === 'fr' ? toolConfig.descriptionFr : toolConfig.description,
+    url: `https://www.pdfcanada.ca/${lang}/${toolConfig.slug}`,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Web Browser',
     browserRequirements: 'Requires JavaScript. Supports Chrome, Firefox, Safari, Edge.',
@@ -136,14 +136,51 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig) {
       price: '0',
       priceCurrency: 'CAD',
     },
-    // Note: aggregateRating removed - Google penalizes fake/unverified reviews
-    // Add back when you have real user reviews to reference
     author: {
       '@type': 'Organization',
       name: 'pdfcanada.ca',
     },
     datePublished: '2024-01-01',
-    inLanguage: ['en-CA', 'fr-CA'],
+    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+  };
+}
+
+export function generateArticleSchema(options: {
+  title: string;
+  description: string;
+  slug: string;
+  lang: 'en' | 'fr';
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  const { title, description, slug, lang, datePublished = '2024-01-01', dateModified } = options;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    url: `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
+    image: 'https://www.pdfcanada.ca/og-image.png',
+    datePublished: datePublished,
+    dateModified: dateModified || datePublished,
+    author: {
+      '@type': 'Organization',
+      name: 'pdfcanada.ca',
+      url: 'https://www.pdfcanada.ca',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'pdfcanada.ca',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.pdfcanada.ca/android-chrome-512x512.png',
+      },
+    },
+    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
+    },
   };
 }
 

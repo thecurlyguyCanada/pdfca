@@ -5,8 +5,10 @@ import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { SEO } from '@/components/SEO';
 import { ALL_GUIDES } from '@/lib/guideMetadata';
 import { URLS, getAssetUrl } from '@/config/urls';
+import { generateArticleSchema } from '@/lib/structuredData';
 
 // ISR: Revalidate every hour
 // Note: Cannot use Edge Runtime with generateStaticParams in Next.js 15
@@ -96,8 +98,44 @@ export default async function GuidePage({
         notFound();
     }
 
+    // Get guide metadata for SEO
+    const guideMeta = ALL_GUIDES.find(g => g.slug === slug);
+    const isFr = lang === 'fr';
+
+    const title = guideMeta
+        ? (isFr ? guideMeta.titleFr : guideMeta.titleEn)
+        : slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+
+    const description = guideMeta
+        ? (isFr ? guideMeta.descFr : guideMeta.descEn)
+        : `Learn more about ${slug.replace(/-/g, ' ')} with our comprehensive guide.`;
+
+    // Breadcrumbs for SEO
+    const breadcrumbs = [
+        { name: isFr ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: isFr ? 'Guides' : 'Guides', path: `/${lang}/guides` },
+        { name: title, path: `/${lang}/guides/${slug}` },
+    ];
+
+    // Generate Article schema
+    const articleSchema = generateArticleSchema({
+        title,
+        description,
+        slug,
+        lang: currentLang,
+    });
+
     return (
         <>
+            <SEO
+                title={title}
+                description={description}
+                lang={currentLang}
+                canonicalPath={`/${lang}/guides/${slug}`}
+                ogType="article"
+                breadcrumbs={breadcrumbs}
+                schema={articleSchema}
+            />
             <div className="mesh-bg" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />

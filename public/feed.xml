@@ -8,7 +8,7 @@
     <link>https://www.pdfcanada.ca</link>
     <description>Free guides and tutorials for PDF editing, conversion, and management tools. 100% privacy-focused, no uploads required.</description>
     <language>en-ca</language>
-    <lastBuildDate>Tue, 24 Dec 2025 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jan 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://www.pdfcanada.ca/feed.xml" rel="self" type="application/rss+xml" />
     <generator>pdfcanada.ca</generator>
     <image>
@@ -20,8 +20,8 @@
     <!-- Ultimate PDF Guide -->
     <item>
       <title>Ultimate 2026 Guide to PDF Tools - Master Your Documents</title>
-      <link>https://www.pdfcanada.ca/guides/ultimate-pdf-guide</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/ultimate-pdf-guide</guid>
+      <link>https://www.pdfcanada.ca/en/guides/ultimate-pdf-guide</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/ultimate-pdf-guide</guid>
       <description>Master PDF management with our definitive 2026 guide. Learn how to edit, merge, and convert PDFs securely using local-first tools.</description>
       <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
@@ -29,11 +29,59 @@
       <category>Guides</category>
     </item>
 
+    <!-- Private PDF Tools Guide -->
+    <item>
+      <title>Private PDF Processing - Why Local Browser Processing Matters</title>
+      <link>https://www.pdfcanada.ca/en/guides/private-pdf-tools</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/private-pdf-tools</guid>
+      <description>Why local browser processing is the future of secure PDF tools. Learn about privacy-first PDF processing.</description>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Privacy</category>
+      <category>Security</category>
+    </item>
+
+    <!-- Legal PDF Security Guide -->
+    <item>
+      <title>Legal PDF Security - Protect Solicitor-Client Privilege</title>
+      <link>https://www.pdfcanada.ca/en/guides/legal-pdf-tools</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/legal-pdf-tools</guid>
+      <description>Protect solicitor-client privilege with local-only PDF processing. Essential for legal professionals.</description>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Legal</category>
+      <category>Security</category>
+    </item>
+
+    <!-- Healthcare PDF Security Guide -->
+    <item>
+      <title>Healthcare PDF Compliance - HIPAA/PIPEDA Compliant Tools</title>
+      <link>https://www.pdfcanada.ca/en/guides/healthcare-pdf-security</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/healthcare-pdf-security</guid>
+      <description>HIPAA/PIPEDA compliant PDF tools for medical professionals. Secure document handling for healthcare.</description>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Healthcare</category>
+      <category>Compliance</category>
+    </item>
+
+    <!-- Finance PDF Security Guide -->
+    <item>
+      <title>Finance PDF Security - Secure Tax Returns and Bank Statements</title>
+      <link>https://www.pdfcanada.ca/en/guides/finance-pdf-security</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/finance-pdf-security</guid>
+      <description>Secure compression and processing for tax returns and bank statements. Privacy-first financial document handling.</description>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Finance</category>
+      <category>Security</category>
+    </item>
+
     <!-- Delete PDF Pages Guide -->
     <item>
       <title>How to Delete PDF Pages - Complete Guide</title>
-      <link>https://www.pdfcanada.ca/guides/delete-pdf-pages</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/delete-pdf-pages</guid>
+      <link>https://www.pdfcanada.ca/en/guides/delete-pdf-pages</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/delete-pdf-pages</guid>
       <description>Learn how to remove unwanted pages from PDF documents quickly and securely using our free online tool.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
@@ -44,9 +92,69 @@
     <!-- Rotate PDF Guide -->
     <item>
       <title>How to Rotate PDF Pages Permanently - Step-by-Step Guide</title>
-      <link>https://www.pdfcanada.ca/guides/rotate-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/rotate-pdf</guid>
+      <link>https://www.pdfcanada.ca/en/guides/rotate-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/rotate-pdf</guid>
       <description>Fix sideways PDF pages permanently with our rotation tool. Save the changes so they stay rotated.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Merge PDF Guide -->
+    <item>
+      <title>How to Merge PDF Files - Combine Multiple PDFs</title>
+      <link>https://www.pdfcanada.ca/en/guides/merge-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/merge-pdf</guid>
+      <description>Combine multiple PDFs into a single document securely. Drag and drop to reorder pages.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Split PDF Guide -->
+    <item>
+      <title>How to Split PDF Files - Extract Pages</title>
+      <link>https://www.pdfcanada.ca/en/guides/split-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/split-pdf</guid>
+      <description>Extract specific pages or split PDFs into individual files. Free and secure.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Compress PDF Guide -->
+    <item>
+      <title>How to Compress PDF Files - Reduce File Size</title>
+      <link>https://www.pdfcanada.ca/en/guides/compress-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/compress-pdf</guid>
+      <description>Reduce PDF file size without losing quality. Choose from multiple compression levels.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Crop PDF Guide -->
+    <item>
+      <title>How to Crop PDF Pages - Trim Margins</title>
+      <link>https://www.pdfcanada.ca/en/guides/crop-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/crop-pdf</guid>
+      <description>Trim margins and crop PDF pages visually. Remove unwanted whitespace.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Flatten PDF Guide -->
+    <item>
+      <title>How to Flatten PDF - Make Non-Editable</title>
+      <link>https://www.pdfcanada.ca/en/guides/flatten-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/flatten-pdf</guid>
+      <description>Convert interactive forms to static content. Lock PDF content permanently.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Editing</category>
@@ -56,8 +164,8 @@
     <!-- HEIC to PDF Guide -->
     <item>
       <title>Convert HEIC to PDF - iPhone Photos Guide</title>
-      <link>https://www.pdfcanada.ca/guides/heic-to-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/heic-to-pdf</guid>
+      <link>https://www.pdfcanada.ca/en/guides/heic-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/heic-to-pdf</guid>
       <description>Convert iPhone HEIC photos to PDF format for easy sharing and printing. Batch conversion supported.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
@@ -65,25 +173,12 @@
       <category>Guides</category>
     </item>
 
-    <!-- OCR PDF Guide -->
-    <item>
-      <title>OCR PDF - Extract Text from Scanned Documents</title>
-      <link>https://www.pdfcanada.ca/guides/ocr-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/ocr-pdf</guid>
-      <description>Make scanned PDFs searchable and copyable with optical character recognition (OCR). Process locally in your browser.</description>
-      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
-      <dc:creator>pdfcanada.ca</dc:creator>
-      <category>PDF Tools</category>
-      <category>OCR</category>
-      <category>Guides</category>
-    </item>
-
     <!-- Make PDF Fillable Guide -->
     <item>
       <title>How to Make a PDF Fillable - Add Form Fields</title>
-      <link>https://www.pdfcanada.ca/guides/make-pdf-fillable</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/make-pdf-fillable</guid>
-      <description>Transform static PDFs into interactive forms with text fields, checkboxes, and more. No expensive software needed.</description>
+      <link>https://www.pdfcanada.ca/en/guides/make-pdf-fillable</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/make-pdf-fillable</guid>
+      <description>Transform static PDFs into interactive forms with text fields, checkboxes, and more.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Forms</category>
@@ -93,9 +188,9 @@
     <!-- Organize PDF Guide -->
     <item>
       <title>Organize PDF Pages - Reorder and Rearrange</title>
-      <link>https://www.pdfcanada.ca/guides/organize-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/organize-pdf</guid>
-      <description>Drag and drop to reorder PDF pages. Reorganize your documents quickly with our free tool.</description>
+      <link>https://www.pdfcanada.ca/en/guides/organize-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/organize-pdf</guid>
+      <description>Drag and drop to reorder PDF pages. Reorganize your documents quickly.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Editing</category>
@@ -105,35 +200,69 @@
     <!-- EPUB to PDF Guide -->
     <item>
       <title>Convert EPUB to PDF - eBook Conversion Guide</title>
-      <link>https://www.pdfcanada.ca/guides/epub-to-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/epub-to-pdf</guid>
-      <description>Convert eBooks from EPUB format to PDF for printing or sharing. Preserve formatting and layout.</description>
+      <link>https://www.pdfcanada.ca/en/guides/epub-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/epub-to-pdf</guid>
+      <description>Convert eBooks from EPUB format to PDF for printing or sharing. Preserve formatting.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Conversion</category>
       <category>eBooks</category>
-      <category>Guides</category>
     </item>
 
     <!-- PDF to EPUB Guide -->
     <item>
       <title>Convert PDF to EPUB - Create eBooks from PDFs</title>
-      <link>https://www.pdfcanada.ca/guides/pdf-to-epub</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/pdf-to-epub</guid>
-      <description>Transform PDF documents into EPUB format for better reading on e-readers and tablets.</description>
+      <link>https://www.pdfcanada.ca/en/guides/pdf-to-epub</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/pdf-to-epub</guid>
+      <description>Transform PDF documents into EPUB format for better reading on e-readers.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Conversion</category>
       <category>eBooks</category>
+    </item>
+
+    <!-- PDF to Word Guide -->
+    <item>
+      <title>Convert PDF to Word - Editable DOCX</title>
+      <link>https://www.pdfcanada.ca/en/guides/pdf-to-word</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/pdf-to-word</guid>
+      <description>Convert PDF documents to editable Word files. Preserve formatting and layout.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Word to PDF Guide -->
+    <item>
+      <title>Convert Word to PDF - DOCX to PDF</title>
+      <link>https://www.pdfcanada.ca/en/guides/word-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/word-to-pdf</guid>
+      <description>Convert Word documents to PDF format. Maintain formatting perfectly.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- RTF to PDF Guide -->
+    <item>
+      <title>Convert RTF to PDF - Rich Text Format</title>
+      <link>https://www.pdfcanada.ca/en/guides/rtf-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/rtf-to-pdf</guid>
+      <description>Convert Rich Text Format documents to PDF. Preserve text formatting and styles.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
       <category>Guides</category>
     </item>
 
     <!-- Email to PDF Guide -->
     <item>
       <title>Save Email as PDF - Complete Guide</title>
-      <link>https://www.pdfcanada.ca/guides/email-to-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/email-to-pdf</guid>
-      <description>Learn how to save emails as PDF files for archiving and sharing. Works with Gmail, Outlook, and more.</description>
+      <link>https://www.pdfcanada.ca/en/guides/email-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/email-to-pdf</guid>
+      <description>Learn how to save emails as PDF files for archiving. Works with Gmail and Outlook.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Conversion</category>
@@ -143,14 +272,145 @@
     <!-- CBR to PDF Guide -->
     <item>
       <title>Convert CBR to PDF - Comic Book Archive Guide</title>
-      <link>https://www.pdfcanada.ca/guides/cbr-to-pdf</link>
-      <guid isPermaLink="true">https://www.pdfcanada.ca/guides/cbr-to-pdf</guid>
-      <description>Convert comic book archives (CBR/CBZ) to PDF format for easier reading and sharing.</description>
+      <link>https://www.pdfcanada.ca/en/guides/cbr-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/cbr-to-pdf</guid>
+      <description>Convert comic book archives (CBR/CBZ) to PDF format for easier reading.</description>
       <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
       <dc:creator>pdfcanada.ca</dc:creator>
       <category>PDF Conversion</category>
       <category>Comics</category>
+    </item>
+
+    <!-- Invoice OCR Guide -->
+    <item>
+      <title>Invoice OCR - Extract Text from PDF Invoices</title>
+      <link>https://www.pdfcanada.ca/en/guides/invoice-ocr</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/invoice-ocr</guid>
+      <description>Extract text and data from invoice PDFs automatically. Export to Excel/CSV.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>OCR</category>
+      <category>Advanced</category>
+    </item>
+
+    <!-- PDF to CSV Guide -->
+    <item>
+      <title>PDF to CSV - Extract Tables from PDFs</title>
+      <link>https://www.pdfcanada.ca/en/guides/pdf-to-csv</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/pdf-to-csv</guid>
+      <description>Extract tables from bank statements and documents into CSV format.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Data Extraction</category>
+      <category>Advanced</category>
+    </item>
+
+    <!-- Edit XFA PDF Guide -->
+    <item>
+      <title>Edit XFA PDF Guide - Complex Form PDFs</title>
+      <link>https://www.pdfcanada.ca/en/guides/edit-xfa-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/edit-xfa-pdf</guid>
+      <description>Work with complex XFA form PDFs. Handle advanced form structures.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Advanced</category>
+      <category>Forms</category>
+    </item>
+
+    <!-- Insert Picture Guide -->
+    <item>
+      <title>Insert Picture in PDF - Add Images Guide</title>
+      <link>https://www.pdfcanada.ca/en/guides/insert-picture-in-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/insert-picture-in-pdf</guid>
+      <description>Add images and graphics to your PDF documents easily.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
       <category>Guides</category>
+    </item>
+
+    <!-- PDF Page Remover Guide -->
+    <item>
+      <title>PDF Page Remover - Quick Page Deletion</title>
+      <link>https://www.pdfcanada.ca/en/guides/pdf-page-remover</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/pdf-page-remover</guid>
+      <description>Quick tool to remove specific pages from PDFs instantly.</description>
+      <pubDate>Thu, 20 Dec 2025 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- Trim PDF Guide -->
+    <item>
+      <title>Trim PDF Margins - Remove White Space</title>
+      <link>https://www.pdfcanada.ca/en/guides/trim-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/trim-pdf</guid>
+      <description>Remove excess white margins from PDF documents permanently.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Editing</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- PDF to UBL Guide -->
+    <item>
+      <title>PDF to UBL Converter - E-Invoice XML</title>
+      <link>https://www.pdfcanada.ca/en/guides/pdf-to-ubl</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/pdf-to-ubl</guid>
+      <description>Convert PDF invoices to UBL 2.1 XML e-invoices for free.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>Advanced</category>
+      <category>E-Invoice</category>
+    </item>
+
+    <!-- GIF to PDF Guide -->
+    <item>
+      <title>GIF to PDF - Convert Images</title>
+      <link>https://www.pdfcanada.ca/en/guides/gif-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/gif-to-pdf</guid>
+      <description>Convert GIF images to PDF format. Supports animated GIFs.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- ASPX to PDF Guide -->
+    <item>
+      <title>ASPX to PDF - Code to PDF</title>
+      <link>https://www.pdfcanada.ca/en/guides/aspx-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/aspx-to-pdf</guid>
+      <description>Convert ASPX source code files to PDF for documentation.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Code</category>
+    </item>
+
+    <!-- ACSM to PDF Guide -->
+    <item>
+      <title>ACSM to PDF - License File Guide</title>
+      <link>https://www.pdfcanada.ca/en/guides/acsm-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/acsm-to-pdf</guid>
+      <description>Guide to converting .acsm license files to PDF format.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Guides</category>
+    </item>
+
+    <!-- PHP to PDF Guide -->
+    <item>
+      <title>PHP to PDF - Source Code to PDF</title>
+      <link>https://www.pdfcanada.ca/en/guides/php-to-pdf</link>
+      <guid isPermaLink="true">https://www.pdfcanada.ca/en/guides/php-to-pdf</guid>
+      <description>Convert PHP source code to PDF for documentation or printing.</description>
+      <pubDate>Sun, 05 Jan 2026 10:00:00 GMT</pubDate>
+      <dc:creator>pdfcanada.ca</dc:creator>
+      <category>PDF Conversion</category>
+      <category>Code</category>
     </item>
 
   </channel>
