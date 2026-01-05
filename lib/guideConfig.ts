@@ -2,6 +2,7 @@ import { UltimatePdfGuide } from '@/components/pages/guides/UltimatePdfGuide';
 import { DeletePdfPagesGuide } from '@/components/pages/guides/DeletePdfPagesGuide';
 import { RotatePdfGuide } from '@/components/pages/guides/RotatePdfGuide';
 import { HeicToPdfGuide } from '@/components/pages/guides/HeicToPdfGuide';
+import { PdfToUblGuide } from '@/components/pages/guides/PdfToUblGuide';
 import { EpubToPdfGuide } from '@/components/pages/guides/EpubToPdfGuide';
 import { PdfToEpubGuide } from '@/components/pages/guides/PdfToEpubGuide';
 import { OrganizePdfGuide } from '@/components/pages/guides/OrganizePdfGuide';
@@ -61,6 +62,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'analyze-pdf': PhishingPdfGuide,
     'pdf-to-kindle': PdfToEpubGuide,
     'trim-pdf': TrimPdfGuide,
+    'pdf-to-ubl': PdfToUblGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

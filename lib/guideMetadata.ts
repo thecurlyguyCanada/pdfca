@@ -250,6 +250,24 @@ export const ALL_GUIDES: GuideMetadata[] = [
         category: 'Advanced',
         icon: '🧾'
     },
+    {
+        slug: 'trim-pdf',
+        titleEn: 'Trim PDF Margins',
+        titleFr: 'Rogner les Marges PDF',
+        descEn: 'Remove excess white margins from PDF documents permanently.',
+        descFr: 'Supprimez les marges blanches excessives de vos documents PDF de façon permanente.',
+        category: 'Editing',
+        icon: '✂️'
+    },
+    {
+        slug: 'pdf-to-ubl',
+        titleEn: 'PDF to UBL Converter',
+        titleFr: 'Convertisseur PDF vers UBL',
+        descEn: 'Convert PDF invoices to UBL 2.1 XML e-invoices for free.',
+        descFr: 'Convertissez vos factures PDF au format UBL 2.1 XML gratuitement.',
+        category: 'Advanced',
+        icon: '🧾'
+    }
 ];
 
 export const getGuidesByCategory = (category: GuideMetadata['category']) => {
