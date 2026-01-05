@@ -267,6 +267,42 @@ export const ALL_GUIDES: GuideMetadata[] = [
         descFr: 'Convertissez vos factures PDF au format UBL 2.1 XML gratuitement.',
         category: 'Advanced',
         icon: '🧾'
+    },
+    {
+        slug: 'gif-to-pdf',
+        titleEn: 'GIF to PDF',
+        titleFr: 'GIF en PDF',
+        descEn: 'Convert GIF images to PDF format.',
+        descFr: 'Convertissez des images GIF au format PDF.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'aspx-to-pdf',
+        titleEn: 'ASPX to PDF',
+        titleFr: 'ASPX en PDF',
+        descEn: 'Convert ASPX code files to PDF.',
+        descFr: 'Convertissez des fichiers code ASPX en PDF.',
+        category: 'Conversion',
+        icon: '💻'
+    },
+    {
+        slug: 'acsm-to-pdf',
+        titleEn: 'ACSM to PDF',
+        titleFr: 'ACSM en PDF',
+        descEn: 'Guide to converting .acsm license files to PDF.',
+        descFr: 'Guide pour convertir fichiers de licence .acsm en PDF.',
+        category: 'Conversion',
+        icon: '🔑'
+    },
+    {
+        slug: 'php-to-pdf',
+        titleEn: 'PHP to PDF',
+        titleFr: 'PHP en PDF',
+        descEn: 'Convert PHP source code to PDF.',
+        descFr: 'Convertir le code source PHP en PDF.',
+        category: 'Conversion',
+        icon: '🐘'
     }
 ];
 

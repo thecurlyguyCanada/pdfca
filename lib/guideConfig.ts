@@ -28,6 +28,10 @@ import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
 import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
 import { PhishingPdfGuide } from '@/components/pages/guides/PhishingPdfGuide';
 import { TrimPdfGuide } from '@/components/pages/guides/TrimPdfGuide';
+import { GifToPdfGuide } from '@/components/pages/guides/GifToPdfGuide';
+import { AspxToPdfGuide } from '@/components/pages/guides/AspxToPdfGuide';
+import { AcsmToPdfGuide } from '@/components/pages/guides/AcsmToPdfGuide';
+import { PhpToPdfGuide } from '@/components/pages/guides/PhpToPdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -63,6 +67,10 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'pdf-to-kindle': PdfToEpubGuide,
     'trim-pdf': TrimPdfGuide,
     'pdf-to-ubl': PdfToUblGuide,
+    'gif-to-pdf': GifToPdfGuide,
+    'aspx-to-pdf': AspxToPdfGuide,
+    'acsm-to-pdf': AcsmToPdfGuide,
+    'php-to-pdf': PhpToPdfGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

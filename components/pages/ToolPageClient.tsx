@@ -31,7 +31,10 @@ import {
   convertPdfToCsv,
   convertPdfToExcel,
   analyzePdfSecurity,
-  optimizePdfForKindleVisual
+  optimizePdfForKindleVisual,
+  convertGifToPdf,
+  convertAspxToPdf,
+  convertPhpToPdf
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -127,7 +130,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.WORD_TO_PDF,
         ToolType.XML_TO_PDF,
         ToolType.EXCEL_TO_PDF,
-        ToolType.RTF_TO_PDF
+        ToolType.EXCEL_TO_PDF,
+        ToolType.RTF_TO_PDF,
+        ToolType.XRECHNUNG_VIEWER,
+        ToolType.GIF_TO_PDF,
+        ToolType.ASPX_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -406,6 +413,16 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = primaryFile.name.replace(/\.rtf$/i, '.pdf');
             break;
 
+          case ToolType.GIF_TO_PDF:
+            resultBlob = await convertGifToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(gif)$/i, '.pdf');
+            break;
+
+          case ToolType.ASPX_TO_PDF:
+            resultBlob = await convertAspxToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(aspx)$/i, '.pdf');
+            break;
+
           case ToolType.PDF_TO_CSV:
             resultBlob = await convertPdfToCsv(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '.csv');
@@ -414,6 +431,12 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.PDF_TO_EXCEL:
             resultBlob = await convertPdfToExcel(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '.xlsx');
+            break;
+
+          case ToolType.PHP_TO_PDF:
+            // @ts-ignore
+            resultBlob = await convertPhpToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(php|txt)$/i, '.pdf');
             break;
 
           case ToolType.PHISHING_DETECTOR:

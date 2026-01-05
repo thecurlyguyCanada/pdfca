@@ -2542,3 +2542,110 @@ export const optimizePdfForKindleVisual = async (file: File, screenSize: number 
     if (pdf) await pdf.destroy();
   }
 };
+
+export const convertGifToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  // Create an image element to load the GIF
+  const img = new Image();
+  const url = URL.createObjectURL(file);
+
+  await new Promise((resolve, reject) => {
+    img.onload = resolve;
+    img.onerror = reject;
+    img.src = url;
+  });
+
+  // Draw to canvas to get a static frame (first frame)
+  // Note: Full animated GIF support to multiple PDF pages requires complex decoding not native to browser/pdf-lib
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error("Could not create canvas context");
+
+  ctx.drawImage(img, 0, 0);
+
+  // Get as JPEG
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+  const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+
+  const doc = await PDFDocument.create();
+  const jpgImage = await doc.embedJpg(bytes);
+  const page = doc.addPage([jpgImage.width, jpgImage.height]);
+  page.drawImage(jpgImage, {
+    x: 0,
+    y: 0,
+    width: jpgImage.width,
+    height: jpgImage.height,
+  });
+
+  URL.revokeObjectURL(url);
+  addPdfMetadata(doc, 'GIF to PDF Conversion');
+  return await doc.save();
+};
+
+// Generic code to PDF converter
+const convertCodeToPdf = async (file: File, title: string): Promise<Uint8Array> => {
+  const { PDFDocument, StandardFonts, rgb } = await getPdfLib();
+  const text = await file.text();
+
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.Courier);
+  const fontSize = 10;
+  const lineHeight = 12;
+  const margin = 50;
+
+  const page = doc.addPage();
+  const { width, height } = page.getSize();
+  const maxLineWidth = width - (margin * 2);
+
+  const lines = text.split(/\r?\n/);
+  let currentY = height - margin;
+  let currentPage = page;
+
+  const addNewPage = () => {
+    currentPage = doc.addPage();
+    currentY = height - margin;
+  };
+
+  for (const line of lines) {
+    if (line.length === 0) {
+      currentY -= lineHeight;
+      if (currentY < margin) addNewPage();
+      continue;
+    }
+
+    let remainingLine = line;
+    while (remainingLine.length > 0) {
+      if (currentY < margin) addNewPage();
+
+      const charWidth = fontSize * 0.6;
+      const charsPerLine = Math.floor(maxLineWidth / charWidth);
+
+      const chunk = remainingLine.slice(0, charsPerLine);
+      remainingLine = remainingLine.slice(charsPerLine);
+
+      currentPage.drawText(chunk, {
+        x: margin,
+        y: currentY,
+        size: fontSize,
+        font: font,
+        color: rgb(0, 0, 0),
+      });
+
+      currentY -= lineHeight;
+    }
+  }
+
+  addPdfMetadata(doc, title);
+  return await doc.save();
+};
+
+export const convertAspxToPdf = async (file: File): Promise<Uint8Array> => {
+  return convertCodeToPdf(file, 'ASPX to PDF Conversion');
+};
+
+export const convertPhpToPdf = async (file: File): Promise<Uint8Array> => {
+  return convertCodeToPdf(file, 'PHP to PDF Conversion');
+};

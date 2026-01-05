@@ -350,6 +350,54 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywordsFr: ['analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF', 'vue sécurisée PDF', 'scanner malware'],
     accept: '.pdf,application/pdf'
   },
+  {
+    slug: 'xrechnung-viewer',
+    i18nKey: 'xrechnungViewer',
+    tool: ToolType.XRECHNUNG_VIEWER,
+    title: 'XRechnung Viewer',
+    titleFr: 'Visualiseur XRechnung',
+    description: 'View XRechnung (XML) invoices in a human-readable format. Free, secure, and client-side only viewer.',
+    descriptionFr: 'Visualisez les factures XRechnung (XML) dans un format lisible. Visualiseur gratuit, sécurisé et 100% côté client.',
+    keywords: ['XRechnung viewer', 'XML invoice viewer', 'read XRechnung', 'visualize XML invoice'],
+    keywordsFr: ['visualiseur XRechnung', 'lire facture XML', 'visualiser facture XML'],
+    accept: '.xml,text/xml,application/xml'
+  },
+  {
+    slug: 'gif-to-pdf',
+    i18nKey: 'gifToPdf',
+    tool: ToolType.GIF_TO_PDF,
+    title: 'GIF to PDF',
+    titleFr: 'GIF en PDF',
+    description: 'Convert GIF images to PDF documents. Static and animated GIFs supported (converts frames).',
+    descriptionFr: 'Convertir des images GIF en documents PDF. Supports des GIFs animés (convertit les cadres).',
+    keywords: ['gif to pdf', 'convert gif', 'image to pdf'],
+    keywordsFr: ['gif en pdf', 'pdf pour gif', 'image en pdf'],
+    accept: '.gif,image/gif'
+  },
+  {
+    slug: 'aspx-to-pdf',
+    i18nKey: 'aspxToPdf',
+    tool: ToolType.ASPX_TO_PDF,
+    title: 'ASPX to PDF',
+    titleFr: 'ASPX en PDF',
+    description: 'Convert ASPX source code files to PDF format for documentation or printing.',
+    descriptionFr: 'Convertir les fichiers de code source ASPX en format PDF pour la documentation ou l\'impression.',
+    keywords: ['aspx to pdf', 'convert aspx', 'code to pdf'],
+    keywordsFr: ['html en code', 'aspx en pdf'],
+    accept: '.aspx,text/plain,application/xml'
+  },
+  {
+    slug: 'php-to-pdf',
+    i18nKey: 'phpToPdf',
+    tool: ToolType.PHP_TO_PDF,
+    title: 'PHP to PDF',
+    titleFr: 'PHP en PDF',
+    description: 'Convert PHP source code files to PDF format for documentation or printing.',
+    descriptionFr: 'Convertir les fichiers de code source PHP en format PDF pour la documentation ou l\'impression.',
+    keywords: ['php to pdf', 'convert php', 'code to pdf', 'php source to pdf'],
+    keywordsFr: ['php en pdf', 'code php en pdf', 'imprimer code php'],
+    accept: '.php,text/x-php,application/x-php,text/plain'
+  }
 ];
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

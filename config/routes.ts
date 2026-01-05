@@ -20,6 +20,10 @@ export const ROUTES = {
   PDF_TO_XML: '/pdf-to-xml',
   XML_TO_PDF: '/xml-to-pdf',
   EXCEL_TO_PDF: '/excel-to-pdf',
+  XRECHNUNG_VIEWER: '/xrechnung-viewer',
+  GIF_TO_PDF: '/gif-to-pdf',
+  ASPX_TO_PDF: '/aspx-to-pdf',
+  PHP_TO_PDF: '/php-to-pdf',
 
   // Information Pages
   PRICING: '/pricing',
@@ -72,6 +76,7 @@ export const getAllToolRoutes = (): string[] => {
     ROUTES.PDF_TO_XML,
     ROUTES.XML_TO_PDF,
     ROUTES.EXCEL_TO_PDF,
+    ROUTES.XRECHNUNG_VIEWER,
   ];
 };
 
