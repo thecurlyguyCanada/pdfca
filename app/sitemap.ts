@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllToolSlugs } from '@/lib/toolConfig';
 import { getAllGuideSlugs } from '@/lib/guideConfig';
-import { i18n, Locale } from '@/lib/i18n-config';
 
 const baseUrl = 'https://www.pdfcanada.ca';
 
@@ -21,7 +20,6 @@ interface SitemapEntry {
 export default function sitemap(): MetadataRoute.Sitemap {
     const tools = getAllToolSlugs();
     const guides = getAllGuideSlugs();
-    const locales = i18n.locales;
 
     const routes: SitemapEntry[] = [];
 
@@ -54,60 +52,121 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     });
 
-    // Static pages with alternates
+    // Static pages with alternates (one entry per page, not per locale)
     staticPages.forEach((page) => {
-        locales.forEach((lang) => {
-            routes.push({
-                url: `${baseUrl}/${lang}/${page}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: 0.6,
-                alternates: {
-                    languages: {
-                        'en-CA': `${baseUrl}/en/${page}`,
-                        'fr-CA': `${baseUrl}/fr/${page}`,
-                        'x-default': `${baseUrl}/en/${page}`,
-                    },
+        routes.push({
+            url: `${baseUrl}/en/${page}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.6,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/${page}`,
+                    'fr-CA': `${baseUrl}/fr/${page}`,
+                    'x-default': `${baseUrl}/en/${page}`,
                 },
-            });
+            },
+        });
+        routes.push({
+            url: `${baseUrl}/fr/${page}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.6,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/${page}`,
+                    'fr-CA': `${baseUrl}/fr/${page}`,
+                    'x-default': `${baseUrl}/en/${page}`,
+                },
+            },
         });
     });
 
-    // Tool pages with alternates
+    // Guides index page
+    routes.push({
+        url: `${baseUrl}/en/guides`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+        alternates: {
+            languages: {
+                'en-CA': `${baseUrl}/en/guides`,
+                'fr-CA': `${baseUrl}/fr/guides`,
+                'x-default': `${baseUrl}/en/guides`,
+            },
+        },
+    });
+    routes.push({
+        url: `${baseUrl}/fr/guides`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+        alternates: {
+            languages: {
+                'en-CA': `${baseUrl}/en/guides`,
+                'fr-CA': `${baseUrl}/fr/guides`,
+                'x-default': `${baseUrl}/en/guides`,
+            },
+        },
+    });
+
+    // Tool pages with alternates (explicit en/fr entries)
     tools.forEach((slug) => {
-        locales.forEach((lang) => {
-            routes.push({
-                url: `${baseUrl}/${lang}/${slug}`,
-                lastModified: new Date(),
-                changeFrequency: 'weekly',
-                priority: 0.9,
-                alternates: {
-                    languages: {
-                        'en-CA': `${baseUrl}/en/${slug}`,
-                        'fr-CA': `${baseUrl}/fr/${slug}`,
-                        'x-default': `${baseUrl}/en/${slug}`,
-                    },
+        routes.push({
+            url: `${baseUrl}/en/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/${slug}`,
+                    'fr-CA': `${baseUrl}/fr/${slug}`,
+                    'x-default': `${baseUrl}/en/${slug}`,
                 },
-            });
+            },
+        });
+        routes.push({
+            url: `${baseUrl}/fr/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/${slug}`,
+                    'fr-CA': `${baseUrl}/fr/${slug}`,
+                    'x-default': `${baseUrl}/en/${slug}`,
+                },
+            },
         });
     });
 
-    // Guide pages with alternates
+    // Guide pages with alternates (explicit en/fr entries)
     guides.forEach((slug) => {
-        locales.forEach((lang) => {
-            routes.push({
-                url: `${baseUrl}/${lang}/guides/${slug}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: 0.8,
-                alternates: {
-                    languages: {
-                        'en-CA': `${baseUrl}/en/guides/${slug}`,
-                        'fr-CA': `${baseUrl}/fr/guides/${slug}`,
-                        'x-default': `${baseUrl}/en/guides/${slug}`,
-                    },
+        routes.push({
+            url: `${baseUrl}/en/guides/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/guides/${slug}`,
+                    'fr-CA': `${baseUrl}/fr/guides/${slug}`,
+                    'x-default': `${baseUrl}/en/guides/${slug}`,
                 },
-            });
+            },
+        });
+        routes.push({
+            url: `${baseUrl}/fr/guides/${slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+            alternates: {
+                languages: {
+                    'en-CA': `${baseUrl}/en/guides/${slug}`,
+                    'fr-CA': `${baseUrl}/fr/guides/${slug}`,
+                    'x-default': `${baseUrl}/en/guides/${slug}`,
+                },
+            },
         });
     });
 

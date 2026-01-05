@@ -121,29 +121,96 @@ export function generateLocalBusinessSchema() {
   };
 }
 
-export function generateSoftwareApplicationSchema(toolConfig: ToolConfig) {
+export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 'en' | 'fr' = 'en') {
+  // 2026 Update: Use WebApplication for browser-based tools per Google's guidelines
+  // WebApplication is more accurate than generic SoftwareApplication for web apps
   return {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: toolConfig.title,
-    description: toolConfig.description,
-    url: `https://www.pdfcanada.ca/${toolConfig.slug}`,
+    '@type': 'WebApplication',
+    name: lang === 'fr' ? toolConfig.titleFr : toolConfig.title,
+    description: lang === 'fr' ? toolConfig.descriptionFr : toolConfig.description,
+    url: `https://www.pdfcanada.ca/${lang}/${toolConfig.slug}`,
     applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Web Browser',
+    applicationSubCategory: 'PDF Tools',
+    operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript. Supports Chrome, Firefox, Safari, Edge.',
+    permissions: 'Local file access only - no server uploads',
+    featureList: ['Local PDF processing', 'No server uploads', 'PIPEDA compliant', 'Privacy-first'],
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'CAD',
+      availability: 'https://schema.org/InStock',
     },
-    // Note: aggregateRating removed - Google penalizes fake/unverified reviews
-    // Add back when you have real user reviews to reference
     author: {
       '@type': 'Organization',
+      '@id': 'https://www.pdfcanada.ca/#organization',
+      name: 'pdfcanada.ca',
+    },
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://www.pdfcanada.ca/#organization',
       name: 'pdfcanada.ca',
     },
     datePublished: '2024-01-01',
-    inLanguage: ['en-CA', 'fr-CA'],
+    dateModified: new Date().toISOString().split('T')[0],
+    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+    // 2026: Entity connections for Knowledge Graph density
+    isAccessibleForFree: true,
+    countryOfOrigin: {
+      '@type': 'Country',
+      name: 'Canada',
+    },
+  };
+}
+
+export function generateArticleSchema(options: {
+  title: string;
+  description: string;
+  slug: string;
+  lang: 'en' | 'fr';
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  const { title, description, slug, lang, datePublished = '2024-01-01', dateModified } = options;
+  // 2026 Update: Content freshness is a major AI ranking factor
+  // Use current date for dateModified to signal fresh, maintained content
+  const currentDate = new Date().toISOString().split('T')[0];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    url: `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
+    image: 'https://www.pdfcanada.ca/og-image.png',
+    datePublished: datePublished,
+    dateModified: dateModified || currentDate,
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.pdfcanada.ca/#organization',
+      name: 'pdfcanada.ca',
+      url: 'https://www.pdfcanada.ca',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.pdfcanada.ca/#organization',
+      name: 'pdfcanada.ca',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.pdfcanada.ca/android-chrome-512x512.png',
+      },
+    },
+    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
+    },
+    // 2026: Additional AI-friendly properties
+    isAccessibleForFree: true,
+    copyrightHolder: {
+      '@type': 'Organization',
+      '@id': 'https://www.pdfcanada.ca/#organization',
+    },
   };
 }
 
