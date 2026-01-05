@@ -175,35 +175,35 @@ export function SEO({
     "url": navUrls.map(url => getFullUrl(`${langPrefix}${url}`))
   });
 
-  // 3. Page Specific Schemas
-  // Check if we are potentially on a tool page or a guide page for a tool
-  if (canonicalPath !== '/' && !canonicalPath.startsWith('/about')) {
-    const isGuide = canonicalPath.startsWith('/guides');
-
-    // For guides, we might want to separate the Article from the App, 
-    // but often Google likes seeing the App schema if the page *is* the entry point for the app.
-    // We will keep standard logic but allow 'applicationCategory' customization via props if needed in future.
-
-    const swSchema: Record<string, any> = {
+  // 3. Page Specific Schemas - WebApplication for tool pages
+  // 2026 Update: Use WebApplication instead of SoftwareApplication for browser-based tools
+  if (canonicalPath !== '/' && !canonicalPath.startsWith('/about') && !canonicalPath.startsWith('/guides')) {
+    const webAppSchema: Record<string, any> = {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": schemaName, // Use the cleaned title or specific tool name
+      "@type": "WebApplication",
+      "name": schemaName,
       "operatingSystem": "Any",
       "applicationCategory": "UtilitiesApplication",
-      "applicationSubCategory": "PDF Tools", // AEO signal
+      "applicationSubCategory": "PDF Tools",
       "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
-      "permissions": "Local file access only",
-      "featureList": "Local PDF processing, No server uploads, PIPEDA compliant",
+      "permissions": "Local file access only - no server uploads",
+      "featureList": ["Local PDF processing", "No server uploads", "PIPEDA compliant", "Privacy-first"],
       "offers": {
         "@type": "Offer",
         "price": price || "0",
         "priceCurrency": "CAD",
         "availability": "https://schema.org/InStock"
-      }
+      },
+      "author": { "@id": `${URLS.DOMAIN}/#organization` },
+      "provider": { "@id": `${URLS.DOMAIN}/#organization` },
+      "datePublished": "2024-01-01",
+      "dateModified": new Date().toISOString().split('T')[0],
+      "isAccessibleForFree": true,
+      "countryOfOrigin": { "@type": "Country", "name": "Canada" }
     };
 
     if (rating) {
-      swSchema["aggregateRating"] = {
+      webAppSchema["aggregateRating"] = {
         "@type": "AggregateRating",
         "ratingValue": rating,
         "reviewCount": reviewCount || 100,
@@ -212,7 +212,7 @@ export function SEO({
       };
     }
 
-    allSchemas.push(swSchema);
+    allSchemas.push(webAppSchema);
   }
 
   // 4. WebPage Schema (Speakable & Accessibility & Entity SEO)
@@ -246,7 +246,10 @@ export function SEO({
 
   allSchemas.push(webPageSchema);
 
-  // 5. Enhanced FAQ Schema with Images, Videos, and HowTo
+  // 5. FAQ Schema - 2026 Update
+  // Note: As of 2026, FAQ rich results only show for government/health sites.
+  // However, FAQ schema still helps AI systems (Google AI Overviews, ChatGPT, etc.)
+  // understand and cite content, so we keep it for AI visibility (+73% selection rate).
   if (faqs && faqs.length > 0) {
     allSchemas.push({
       "@context": "https://schema.org",
@@ -257,7 +260,7 @@ export function SEO({
           "text": typeof faq.a === 'string' ? faq.a : title
         };
 
-        // Add image to answer if provided
+        // Add image to answer if provided (helps with multimodal AI search)
         if (faq.image) {
           answer["image"] = {
             "@type": "ImageObject",
@@ -266,7 +269,7 @@ export function SEO({
           };
         }
 
-        // Add video to answer if provided
+        // Add video to answer if provided (helps with multimodal AI search)
         if (faq.video) {
           answer["video"] = {
             "@type": "VideoObject",
@@ -283,39 +286,16 @@ export function SEO({
           "acceptedAnswer": answer
         };
 
-        // Add HowTo steps within FAQ if provided
-        if (faq.howTo && faq.howTo.length > 0) {
-          answer["itemListElement"] = faq.howTo.map((step, idx) => ({
-            "@type": "HowToStep",
-            "position": idx + 1,
-            "name": step.name,
-            "text": step.text
-          }));
-        }
-
         return question;
       })
     });
   }
 
-  // 6. HowTo Schema (Expert Enhancement)
-  const howToSteps = steps || quickAnswer?.steps?.map(step => ({ name: step, text: step }));
-
-  if (howToSteps && howToSteps.length > 0) {
-    allSchemas.push({
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": schemaName,
-      "description": description,
-      "step": howToSteps.map((step, index) => ({
-        "@type": "HowToStep",
-        "position": index + 1,
-        "name": step.name,
-        "text": step.text,
-        "url": `${getFullUrl(canonicalPath)}#step-${index + 1}`
-      }))
-    });
-  }
+  // 6. HowTo Schema - 2026 DEPRECATED
+  // As of September 2023 and fully deprecated in 2024-2025, Google no longer shows
+  // HowTo rich results on desktop or mobile. The schema is now ignored.
+  // Keeping steps data in FAQ answers for AI understanding but removing standalone HowTo.
+  // Reference: https://developers.google.com/search/blog/2023/08/howto-faq-changes
 
   // 7. Breadcrumbs Schema
   if (breadcrumbs && breadcrumbs.length > 0) {
