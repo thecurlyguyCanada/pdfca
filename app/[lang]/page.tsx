@@ -25,13 +25,15 @@ const metadata = {
     },
 };
 
+import { URLS } from '@/config/urls';
+
 export async function generateMetadata({
     params,
 }: {
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = 'https://www.pdfcanada.ca';
+    const baseUrl = URLS.DOMAIN;
     const content = metadata[lang] || metadata.en;
 
     return {

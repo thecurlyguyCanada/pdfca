@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Split, BookOpen, Shield, Zap, Lock, Globe, CheckCircle, ArrowRight, FileText, Trash2, RotateCw, Image, Search, MousePointer2, Settings, Users, Cpu, Accessibility, Globe2, Heart, PenTool, Mail } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -476,6 +476,7 @@ const getGuideContent = (lang: Language) => ({
 export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.ultimateGuide.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",
@@ -519,13 +520,9 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 faqs={t.faqs}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment éditer un PDF gratuitement sans logiciel?" : "How do I edit a PDF for free without software?",
-                    answer: lang === 'fr'
-                        ? "Utilisez pdfcanada.ca - tous les outils fonctionnent directement dans votre navigateur sans téléchargement. Vous pouvez supprimer des pages, faire pivoter, fusionner, compresser, convertir et même créer des formulaires remplissables. Tout le traitement se fait localement sur votre appareil - vos fichiers ne sont jamais téléchargés sur un serveur."
-                        : "Use pdfcanada.ca - all tools work directly in your browser with no downloads. You can delete pages, rotate, merge, compress, convert, and even create fillable forms. All processing happens locally on your device - your files are never uploaded to a server.",
-                    steps: lang === 'fr'
-                        ? ["Visitez pdfcanada.ca", "Sélectionnez l'outil dont vous avez besoin", "Téléchargez votre PDF", "Éditez localement et téléchargez"]
-                        : ["Visit pdfcanada.ca", "Select the tool you need", "Upload your PDF", "Edit locally and download"]
+                    question: qa.question,
+                    answer: qa.answer,
+                    steps: qa.steps
                 }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
@@ -636,14 +633,10 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment éditer un PDF gratuitement sans logiciel?" : "How do I edit a PDF for free without software?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez pdfcanada.ca - tous les outils fonctionnent directement dans votre navigateur sans téléchargement. Vous pouvez supprimer des pages, faire pivoter, fusionner, compresser, convertir et même créer des formulaires remplissables. Tout le traitement se fait localement sur votre appareil - vos fichiers ne sont jamais téléchargés sur un serveur."
-                            : "Use pdfcanada.ca - all tools work directly in your browser with no downloads. You can delete pages, rotate, merge, compress, convert, and even create fillable forms. All processing happens locally on your device - your files are never uploaded to a server."}
-                        toolName="Ultimate PDF Toolkit"
-                        steps={lang === 'fr'
-                            ? ["Visitez pdfcanada.ca", "Sélectionnez l'outil dont vous avez besoin", "Téléchargez votre PDF", "Éditez localement et téléchargez"]
-                            : ["Visit pdfcanada.ca", "Select the tool you need", "Upload your PDF", "Edit locally and download"]}
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={qa.tool}
+                        steps={qa.steps}
                         lang={lang}
                     />
 

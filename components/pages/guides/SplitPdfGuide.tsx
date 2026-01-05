@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Split, Shield, Zap, CheckCircle, Info, ArrowRight, Laptop, Smartphone, Server, Globe, Lock, AlertTriangle } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -447,6 +447,7 @@ La plupart des applis sont remplies de pubs. Notre site est réactif et fonction
 export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.split.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",
@@ -470,14 +471,10 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment diviser un PDF gratuitement ?" : "How to split a PDF for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil de division de pdfcanada.ca. Sélectionnez votre fichier, choisissez les pages à extraire et téléchargez. Le processus est sécurisé et local."
-                        : "Use pdfcanada.ca's PDF splitter. Select your file, choose the pages to extract, and download. The process is secure and runs locally.",
-                    tool: "Split PDF Tool",
-                    steps: lang === 'fr'
-                        ? ["Importez le PDF", "Sélectionnez les pages", "Téléchargez"]
-                        : ["Upload PDF", "Select Pages", "Download"],
+                    question: qa.question,
+                    answer: qa.answer,
+                    tool: qa.tool,
+                    steps: qa.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -597,14 +594,10 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment diviser un PDF gratuitement ?" : "How to split a PDF for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil de division de pdfcanada.ca. Sélectionnez votre fichier, choisissez les pages à extraire et téléchargez. Le processus est sécurisé et local."
-                            : "Use pdfcanada.ca's PDF splitter. Select your file, choose the pages to extract, and download. The process is secure and runs locally."}
-                        toolName="Split PDF Tool"
-                        steps={lang === 'fr'
-                            ? ["Importez le PDF", "Sélectionnez les pages", "Téléchargez"]
-                            : ["Upload PDF", "Select Pages", "Download"]}
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={qa.tool}
+                        steps={qa.steps}
                         lang={lang}
                     />
 

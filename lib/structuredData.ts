@@ -1,12 +1,14 @@
 import type { ToolConfig } from './toolConfig';
+import { ORGANIZATION } from '@/config/organization';
+import { URLS, getFullUrl, getAssetUrl } from '@/config/urls';
 
 export function generateWebsiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://www.pdfcanada.ca/#website',
+    '@id': `${URLS.DOMAIN}/#website`,
     name: 'pdfcanada.ca',
-    url: 'https://www.pdfcanada.ca',
+    url: URLS.DOMAIN,
     description:
       'Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.',
     inLanguage: ['en-CA', 'fr-CA'],
@@ -14,7 +16,7 @@ export function generateWebsiteSchema() {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://www.pdfcanada.ca/{search_term_string}',
+        urlTemplate: `${URLS.DOMAIN}/{search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },
@@ -25,22 +27,23 @@ export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://www.pdfcanada.ca/#organization',
-    name: 'pdfcanada.ca',
-    url: 'https://www.pdfcanada.ca',
+    '@id': `${URLS.DOMAIN}/#organization`,
+    name: ORGANIZATION.name,
+    url: URLS.DOMAIN,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.pdfcanada.ca/android-chrome-512x512.png',
+      url: getAssetUrl(URLS.ANDROID_ICON),
       width: 512,
       height: 512,
     },
-    sameAs: ['https://twitter.com/pdfcanada'],
+    sameAs: URLS.SAME_AS,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Canada',
+      addressLocality: ORGANIZATION.location.city,
+      addressRegion: ORGANIZATION.location.province,
       addressCountry: 'CA',
     },
-    foundingDate: '2024-01-01',
+    foundingDate: ORGANIZATION.foundingDate,
     description:
       'Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.',
   };
@@ -50,62 +53,45 @@ export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'ProfessionalService'],
-    '@id': 'https://www.pdfcanada.ca/#localbusiness',
-    name: 'pdfcanada.ca - Free PDF Tools',
+    '@id': `${URLS.DOMAIN}/#localbusiness`,
+    name: `${ORGANIZATION.name} - Free PDF Tools`,
     alternateName: 'PDF Canada',
-    url: 'https://www.pdfcanada.ca',
+    url: URLS.DOMAIN,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.pdfcanada.ca/android-chrome-512x512.png',
+      url: getAssetUrl(URLS.ANDROID_ICON),
       width: 512,
       height: 512,
     },
-    image: 'https://www.pdfcanada.ca/og-image.png',
+    image: getAssetUrl(URLS.OG_IMAGE),
     description:
       "Canada's premier free PDF tools service. Privacy-first, browser-based PDF processing for all Canadians. Merge, split, compress, convert, and sign PDFs - all locally in your browser.",
     address: {
       '@type': 'PostalAddress',
+      addressLocality: ORGANIZATION.location.city,
+      addressRegion: ORGANIZATION.location.province,
       addressCountry: 'CA',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 56.1304,
-      longitude: -106.3468,
+      latitude: parseFloat(ORGANIZATION.coordinates.toronto.latitude),
+      longitude: parseFloat(ORGANIZATION.coordinates.toronto.longitude),
     },
-    priceRange: 'FREE',
+    priceRange: ORGANIZATION.priceRange,
     currenciesAccepted: 'CAD',
     paymentAccepted: 'Not Applicable - Free Service',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      opens: '00:00',
-      closes: '23:59',
+      dayOfWeek: ORGANIZATION.hours.dayOfWeek,
+      opens: ORGANIZATION.hours.opensAt,
+      closes: ORGANIZATION.hours.closesAt,
     },
     areaServed: [
       // Country
       { '@type': 'Country', name: 'Canada' },
       // All Provinces & Territories
-      { '@type': 'State', name: 'Ontario' },
-      { '@type': 'State', name: 'Quebec' },
-      { '@type': 'State', name: 'British Columbia' },
-      { '@type': 'State', name: 'Alberta' },
-      { '@type': 'State', name: 'Manitoba' },
-      { '@type': 'State', name: 'Saskatchewan' },
-      { '@type': 'State', name: 'Nova Scotia' },
-      { '@type': 'State', name: 'New Brunswick' },
-      { '@type': 'State', name: 'Newfoundland and Labrador' },
-      { '@type': 'State', name: 'Prince Edward Island' },
-      { '@type': 'State', name: 'Northwest Territories' },
-      { '@type': 'State', name: 'Yukon' },
-      { '@type': 'State', name: 'Nunavut' },
+      ...ORGANIZATION.serviceArea.provinces.map(p => ({ '@type': 'State', name: p })),
+      ...ORGANIZATION.serviceArea.territories.map(t => ({ '@type': 'State', name: t })),
       // Major Cities
       { '@type': 'City', name: 'Toronto' },
       { '@type': 'City', name: 'Montreal' },
@@ -129,7 +115,7 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 
     '@type': 'WebApplication',
     name: lang === 'fr' ? toolConfig.titleFr : toolConfig.title,
     description: lang === 'fr' ? toolConfig.descriptionFr : toolConfig.description,
-    url: `https://www.pdfcanada.ca/${lang}/${toolConfig.slug}`,
+    url: `${URLS.DOMAIN}/${lang}/${toolConfig.slug}`,
     applicationCategory: 'UtilitiesApplication',
     applicationSubCategory: 'PDF Tools',
     operatingSystem: 'Any',
@@ -144,12 +130,12 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 
     },
     author: {
       '@type': 'Organization',
-      '@id': 'https://www.pdfcanada.ca/#organization',
+      '@id': `${URLS.DOMAIN}/#organization`,
       name: 'pdfcanada.ca',
     },
     provider: {
       '@type': 'Organization',
-      '@id': 'https://www.pdfcanada.ca/#organization',
+      '@id': `${URLS.DOMAIN}/#organization`,
       name: 'pdfcanada.ca',
     },
     datePublished: '2024-01-01',
@@ -181,35 +167,35 @@ export function generateArticleSchema(options: {
     '@type': 'Article',
     headline: title,
     description: description,
-    url: `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
-    image: 'https://www.pdfcanada.ca/og-image.png',
+    url: `${URLS.DOMAIN}/${lang}/guides/${slug}`,
+    image: getAssetUrl(URLS.OG_IMAGE),
     datePublished: datePublished,
     dateModified: dateModified || currentDate,
     author: {
       '@type': 'Organization',
-      '@id': 'https://www.pdfcanada.ca/#organization',
+      '@id': `${URLS.DOMAIN}/#organization`,
       name: 'pdfcanada.ca',
-      url: 'https://www.pdfcanada.ca',
+      url: URLS.DOMAIN,
     },
     publisher: {
       '@type': 'Organization',
-      '@id': 'https://www.pdfcanada.ca/#organization',
+      '@id': `${URLS.DOMAIN}/#organization`,
       name: 'pdfcanada.ca',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.pdfcanada.ca/android-chrome-512x512.png',
+        url: getAssetUrl(URLS.ANDROID_ICON),
       },
     },
     inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.pdfcanada.ca/${lang}/guides/${slug}`,
+      '@id': `${URLS.DOMAIN}/${lang}/guides/${slug}`,
     },
     // 2026: Additional AI-friendly properties
     isAccessibleForFree: true,
     copyrightHolder: {
       '@type': 'Organization',
-      '@id': 'https://www.pdfcanada.ca/#organization',
+      '@id': `${URLS.DOMAIN}/#organization`,
     },
   };
 }
@@ -222,7 +208,7 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: item.url.startsWith('http') ? item.url : getFullUrl(item.url),
     })),
   };
 }

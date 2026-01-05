@@ -313,6 +313,22 @@ export const translations = {
           steps: ["Upload document", "Rotate pages visualy", "Save permanently"]
         }
       },
+      privatePdf: {
+        quickAnswer: {
+          question: "Why choose local PDF tools?",
+          answer: "Local processing ensures your files never leave your device, offering total privacy, no file size limitations, and instant speed with no upload times.",
+          tool: "Private PDF Technology",
+          steps: ["Maximum Security", "Instant Speed", "No Data Limits"]
+        }
+      },
+      legalPdf: {
+        quickAnswer: {
+          question: "Are these PDF tools safe for legal documents?",
+          answer: "Yes. Our local-first tools process files entirely in your browser using WebAssembly. No data is ever uploaded to a server, ensuring full compliance with solicitor-client privilege and PIPEDA guidelines.",
+          tool: "Legal PDF Tools",
+          steps: ["Select sensitive files", "Process locally in browser", "Download securely"]
+        }
+      },
       heic: {
         title: "HEIC to PDF Converter - Convert iPhone Photos Safely | pdfcanada.ca",
         desc: "Convert HEIC photos to PDF instantly in your browser. Safely transform iPhone photos without uploading to a server. 100% free, private, and local-first processing.",
@@ -831,6 +847,26 @@ export const translations = {
           { question: "Can this tool simplify the PDF?", answer: "Yes, you can check it here and then use our Flatten tool to convert pages to images, neutralizing active scripts." },
           { question: "What does the Safe Preview do?", answer: "It renders the PDF pages as static images with JavaScript disabled, so you can read the content without triggering malicious code." }
         ]
+      },
+      ultimateGuide: {
+        title: `Ultimate ${CURRENT_YEAR} Guide to PDF Tools | Master Your Documents | pdfcanada.ca`,
+        desc: `Master PDF management with our definitive ${CURRENT_YEAR} guide. Learn how to edit, merge, and convert PDFs securely using local-first tools. No uploads, 100% private.`,
+        quickAnswer: {
+          question: "How do I edit a PDF for free without software?",
+          answer: "The best way is to use a local-first browser tool like pdfcanada.ca. It allows you to delete pages, rotate, merge, compress, convert, and sign documents directly in your browser without downloading software or uploading your files to a server.",
+          tool: "Ultimate PDF Toolkit",
+          steps: ["Visit pdfcanada.ca", "Select the tool you need", "Edit locally in browser", "Download your file"]
+        }
+      },
+      editXfa: {
+        title: `How to Edit XFA PDFs | Free ${CURRENT_YEAR} Technical Guide | pdfcanada.ca`,
+        desc: "Unlock and edit XFA-based PDF forms securely. Our technical guide shows you how to manage dynamic forms locally on your device without uploading private data.",
+        quickAnswer: {
+          question: "How do I edit an XFA PDF?",
+          answer: "XFA PDFs are dynamic forms that can't be edited directly in standard viewers. To edit them, you must 'flatten' them by printing to 'Adobe PDF' or 'Microsoft Print to PDF'. This converts the dynamic form into a standard, editable PDF document.",
+          tool: "PDF Flattening Tool",
+          steps: ["Open in Acrobat Reader", "Print to PDF (Flatten)", "Save as new PDF", "Edit the new file"]
+        }
       }
     },
 
@@ -1421,6 +1457,22 @@ export const translations = {
           steps: ["Téléversez le document", "Pivotez les pages", "Enregistrez le résultat"]
         }
       },
+      privatePdf: {
+        quickAnswer: {
+          question: "Pourquoi choisir des outils PDF locaux ?",
+          answer: "Le traitement local garantit que vos fichiers ne quittent jamais votre appareil, offrant une confidentialité totale, aucune limitation de taille de fichier, et une vitesse instantanée sans temps de téléchargement.",
+          tool: "Technologie PDF Privée",
+          steps: ["Sécurité maximale", "Vitesse instantanée", "Aucune limite de données"]
+        }
+      },
+      legalPdf: {
+        quickAnswer: {
+          question: "Ces outils PDF sont-ils sûrs pour les documents juridiques ?",
+          answer: "Oui. Nos outils locaux traitent les fichiers entièrement dans votre navigateur via WebAssembly. Aucune donnée n'est téléchargée sur un serveur, garantissant la conformité avec le secret professionnel et la LPRPDE.",
+          tool: "Outils PDF Juridiques",
+          steps: ["Sélectionnez fichiers sensibles", "Traitez localement", "Téléchargez en sécurité"]
+        }
+      },
       heic: {
         title: "Convertisseur HEIC vers PDF - Convertir Photos iPhone | pdfcanada.ca",
         desc: "Convertissez vos photos HEIC en PDF instantanément. Transformez les images iPhone sans aucun téléversement sur serveur. Gratuit, privé et 100% local.",
@@ -1843,6 +1895,26 @@ export const translations = {
           { question: "Comment nettoyer un PDF ?", answer: "Après analyse, utilisez l'outil 'Aplatir PDF' pour convertir les pages en images et neutraliser les scripts." },
           { question: "Que fait l'Aperçu Sécurisé ?", answer: "Il affiche le PDF comme une image statique, empêchant l'exécution de tout code malveillant caché." }
         ]
+      },
+      ultimateGuide: {
+        title: `Guide Ultime ${CURRENT_YEAR} des Outils PDF | Maîtrisez vos Documents | pdfcanada.ca`,
+        desc: `Maîtrisez la gestion des PDF avec notre guide définitif ${CURRENT_YEAR}. Apprenez à éditer, fusionner et convertir vos PDF en toute sécurité sans jamais les télécharger.`,
+        quickAnswer: {
+          question: "Comment éditer un PDF gratuitement sans logiciel ?",
+          answer: "La meilleure façon est d'utiliser un outil local comme pdfcanada.ca. Il permet de supprimer des pages, faire pivoter, fusionner, compresser, convertir et signer des documents directement dans votre navigateur sans télécharger de logiciel.",
+          tool: "Boîte à Outils PDF",
+          steps: ["Visitez pdfcanada.ca", "Sélectionnez l'outil requis", "Éditez localement", "Téléchargez votre fichier"]
+        }
+      },
+      editXfa: {
+        title: `Comment Éditer un PDF XFA | Guide Technique ${CURRENT_YEAR} | pdfcanada.ca`,
+        desc: "Déverrouillez et modifiez les formulaires PDF basés sur XFA en toute sécurité. Notre guide technique vous montre comment gérer les formulaires dynamiques localement.",
+        quickAnswer: {
+          question: "Comment éditer un PDF XFA ?",
+          answer: "Les PDF XFA sont des formulaires dynamiques non éditables directement. Pour les modifier, vous devez les 'aplatir' en les imprimant vers 'Adobe PDF' ou 'Microsoft Print to PDF'. Cela convertit le formulaire dynamique en un document PDF standard et éditable.",
+          tool: "Outil d'Aplatissement PDF",
+          steps: ["Ouvrez dans Acrobat", "Imprimez en PDF (Aplatir)", "Enregistrez le nouveau PDF", "Éditez le fichier"]
+        }
       }
     },
 

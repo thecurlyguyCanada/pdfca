@@ -197,7 +197,7 @@ export function SEO({
       "author": { "@id": `${URLS.DOMAIN}/#organization` },
       "provider": { "@id": `${URLS.DOMAIN}/#organization` },
       "datePublished": "2024-01-01",
-      "dateModified": new Date().toISOString().split('T')[0],
+      "dateModified": dateModified || "2026-01-01",
       "isAccessibleForFree": true,
       "countryOfOrigin": { "@type": "Country", "name": "Canada" }
     };

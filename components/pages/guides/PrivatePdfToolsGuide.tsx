@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Shield, Lock, Globe, Server, CloudOff, Cpu, CheckCircle, XCircle, ArrowRight, FileText, Activity } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -386,6 +386,7 @@ const getGuideContent = (lang: Language) => ({
 export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.privatePdf.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",
@@ -423,13 +424,10 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 faqs={t.faqs}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Quels sont les outils PDF les plus privés ?" : "What are the most private PDF tools?",
-                    answer: lang === 'fr'
-                        ? "Les outils PDF les plus privés sont ceux qui utilisent le traitement 'Local-First' ou 'Client-Side', comme pdfcanada.ca. Ces outils traitent les documents directement dans votre navigateur web sans jamais les télécharger sur un serveur, garantissant que vos données ne quittent jamais votre appareil."
-                        : "The most private PDF tools are 'Local-First' or 'Client-Side' processors like pdfcanada.ca. These tools process documents directly within your web browser without ever uploading them to a server, ensuring your data never leaves your device.",
-                    steps: lang === 'fr'
-                        ? ["Vérifiez la politique 'Pas de téléchargement'", "Testez en mode hors ligne", "Utilisez des outils basés sur WebAssembly", "Évitez les services nécessitant un compte"]
-                        : ["Check for 'No Upload' policy", "Test in offline mode", "Use WebAssembly-based tools", "Avoid services requiring accounts"]
+                    question: qa.question,
+                    answer: qa.answer,
+                    tool: qa.tool,
+                    steps: qa.steps
                 }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
@@ -520,14 +518,10 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Pourquoi choisir des outils PDF locaux ?" : "Why choose local PDF tools?"}
-                        answer={lang === 'fr'
-                            ? "Le traitement local garantit que vos fichiers ne quittent jamais votre appareil, offrant une confidentialité totale, aucune limitation de taille de fichier, et une vitesse instantanée sans temps de téléchargement."
-                            : "Local processing ensures your files never leave your device, offering total privacy, no file size limitations, and instant speed with no upload times."}
-                        toolName="Private PDF Technology"
-                        steps={lang === 'fr'
-                            ? ["Sécurité maximale", "Vitesse instantanée", "Aucune limite de données"]
-                            : ["Maximum Security", "Instant Speed", "No Data Limits"]}
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={qa.tool}
+                        steps={qa.steps}
                         lang={lang}
                     />
 

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Scale, Gavel, Shield, Briefcase, FileText, Lock, Globe, AlertTriangle } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -295,7 +295,7 @@ const getGuideContent = (lang: Language) => ({
                             <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
                                 <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
                                     <FileText className="text-blue-500" size={20} />
-                                    1. Exhibit Compiling for Court Filings
+                                    1. <Link href={`/${lang}/merge-pdf`} className="hover:underline text-blue-600">Exhibit Compiling for Court Filings</Link>
                                 </h5>
                                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Combine 50+ affidavits, email printouts, scanned contracts, and expert reports into a single paginated Court Record or Book of Authorities. Maintain perfect chronological order while preserving original document formatting.
@@ -308,7 +308,7 @@ const getGuideContent = (lang: Language) => ({
                             <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
                                 <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
                                     <Lock className="text-red-500" size={20} />
-                                    2. Redaction Preparation (Flatten Before Redacting)
+                                    2. <Link href={`/${lang}/flatten-pdf`} className="hover:underline text-red-600">Redaction Preparation (Flatten Before Redacting)</Link>
                                 </h5>
                                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Flatten PDFs before applying redactions to prevent opposing counsel from removing redaction layers. This workflow is critical for Freedom of Information requests, discovery productions, and settlement disclosure.
@@ -347,7 +347,7 @@ const getGuideContent = (lang: Language) => ({
                             <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
                                 <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
                                     <Scale className="text-amber-500" size={20} />
-                                    5. Discovery Document Organization
+                                    5. <Link href={`/${lang}/compress-pdf`} className="hover:underline text-amber-600">Discovery Document Organization</Link>
                                 </h5>
                                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Organize thousands of discovery documents by relevance, date, or witness. Compress large PDF scans to meet court e-filing size limits without quality loss.
@@ -1024,6 +1024,7 @@ const getGuideContent = (lang: Language) => ({
 export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.legalPdf.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",
@@ -1067,7 +1068,19 @@ export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 { name: 'Legal', href: '#' }
             ]}
         >
-            <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/legal-pdf-tools" lang={lang} schema={schema} />
+            <SEO
+                title={t.seo.title}
+                description={t.seo.desc}
+                canonicalPath="/guides/legal-pdf-tools"
+                lang={lang}
+                schema={schema}
+                quickAnswer={{
+                    question: qa.question,
+                    answer: qa.answer,
+                    tool: qa.tool,
+                    steps: qa.steps
+                }}
+            />
 
             <div className="w-full py-12">
                 <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
@@ -1093,6 +1106,16 @@ export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <Link href={`/${lang}`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
                         {t.ctaBtn}
                     </Link>
+                </div>
+
+                <div className="mt-20 mb-12">
+                    <AISnapshot
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={qa.tool}
+                        steps={qa.steps}
+                        lang={lang}
+                    />
                 </div>
 
                 <div className="mt-20">

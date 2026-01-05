@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { RotateCw, CheckCircle, Shield, Zap, ArrowRight, Globe, Lock, Clock, Monitor, RefreshCcw } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -42,7 +42,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">Rotate PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link>, processing begins instantly—no upload wait times.
+                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">Rotate PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Privacy Guide</Link>), processing begins instantly—no upload wait times.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview Page Thumbnails</strong>: You'll see thumbnail previews of all pages. This makes it easy to identify which pages need rotation at a glance.
@@ -215,7 +215,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">outil de rotation PDF</Link>. Grâce à notre <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</Link>, le traitement commence instantanément—aucun temps d'attente de téléchargement.
+                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">outil de rotation PDF</Link>. Grâce à notre <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Confidentialité</Link>), le traitement commence instantanément—aucun temps d'attente de téléchargement.
                             </li>
                             <li className="pl-2">
                                 <strong>Aperçu des miniatures de pages</strong> : Vous verrez des aperçus miniatures de toutes les pages. Cela facilite l'identification des pages nécessitant une rotation d'un coup d'œil.
@@ -366,6 +366,7 @@ const getGuideContent = (lang: Language) => ({
 export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.rotate.quickAnswer;
 
     const schema = [
         {
@@ -411,14 +412,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment faire pivoter un PDF de façon permanente?" : "How do I rotate a PDF permanently?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil de rotation PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les boutons de rotation des pages individuelles ou utilisez 'Tout pivoter', puis téléchargez. L'orientation est fixée définitivement dans le fichier, pas seulement dans l'affichage."
-                        : "Use pdfcanada.ca's Rotate PDF tool. Upload your PDF, click rotate buttons on individual pages or use 'Rotate All', then download. The orientation is fixed permanently in the file, not just in the view.",
-                    tool: "PDF Rotation Tool",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier PDF", "Pivotez les pages individuellement ou toutes", "Téléchargez le PDF corrigé"]
-                        : ["Upload your PDF file", "Rotate pages individually or all", "Download corrected PDF"]
+                    question: qa.question,
+                    answer: qa.answer,
+                    tool: "Rotate PDF",
+                    steps: qa.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -493,14 +490,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     )}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment faire pivoter un PDF de façon permanente?" : "How do I rotate a PDF permanently?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil de rotation PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur les boutons de rotation des pages individuelles ou utilisez 'Tout pivoter', puis téléchargez. L'orientation est fixée définitivement dans le fichier, pas seulement dans l'affichage."
-                            : "Use pdfcanada.ca's Rotate PDF tool. Upload your PDF, click rotate buttons on individual pages or use 'Rotate All', then download. The orientation is fixed permanently in the file, not just in the view."}
-                        toolName="PDF Rotation Tool"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre fichier PDF", "Pivotez les pages individuellement ou toutes", "Téléchargez le PDF corrigé"]
-                            : ["Upload your PDF file", "Rotate pages individually or all", "Download corrected PDF"]}
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={lang === 'fr' ? "Pivoter PDF" : "Rotate PDF"}
+                        steps={qa.steps}
                         lang={lang}
                     />
 

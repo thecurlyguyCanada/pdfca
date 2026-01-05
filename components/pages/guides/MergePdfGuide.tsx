@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -85,7 +85,7 @@ const getGuideContent = (lang: Language) => ({
                                 </div>
                                 <div>
                                     <h5 className="font-bold text-gray-900 dark:text-white">Client-Side Processing</h5>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine executes the merge operation using your computer&apos;s CPU. <strong>0 bytes are sent to any server.</strong></p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine executes the merge operation using your computer&apos;s CPU. <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline">0 bytes are sent to any server.</Link></p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
@@ -298,7 +298,7 @@ const getGuideContent = (lang: Language) => ({
                     <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
                         <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                             <Shield className="text-green-500" size={24} />
-                            Vérification du Cycle de Vie des Données
+                            Vérification du Cycle de Vie des Données (<Link href={`/${lang}/guides/private-pdf-tools`} className="hover:text-green-500 underline">En savoir plus</Link>)
                         </h4>
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
@@ -316,7 +316,7 @@ const getGuideContent = (lang: Language) => ({
                                 </div>
                                 <div>
                                     <h5 className="font-bold text-gray-900 dark:text-white">Traitement Client-Side</h5>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">Notre moteur WebAssembly exécute l&apos;opération de fusion en utilisant le CPU de votre ordinateur. <strong>0 octets ne sont envoyés à aucun serveur.</strong></p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Our WebAssembly engine executes the merge operation using your computer&apos;s CPU. <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline">0 bytes are sent to any server.</Link></p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
@@ -461,6 +461,7 @@ const getGuideContent = (lang: Language) => ({
 export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang] || guideContent.en;
+    const qa = translations[lang].features.merge.quickAnswer;
 
     return (
         <>
@@ -473,14 +474,10 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 datePublished="2024-02-15"
                 dateModified="2025-12-24"
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
-                        : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server.",
-                    tool: "PDF Merger",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]
-                        : ["Upload your PDF files", "Reorder via drag-and-drop", "Click Merge", "Download your combined PDF"]
+                    question: qa.question,
+                    answer: qa.answer,
+                    tool: "Merge PDF",
+                    steps: qa.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -562,14 +559,10 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment fusionner des PDF gratuitement?" : "How do I merge PDF files for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil de fusion PDF de pdfcanada.ca. Téléchargez vos fichiers PDF, glissez-déposez pour les réorganiser dans l'ordre souhaité, puis cliquez sur 'Fusionner'. Vos fichiers sont combinés localement - jamais envoyés sur un serveur."
-                            : "Use pdfcanada.ca's Merge PDF tool. Upload your PDF files, drag-and-drop to reorder them, then click 'Merge'. Your files are combined locally - never sent to a server."}
-                        toolName="PDF Merger"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez vos fichiers PDF", "Réorganisez par glisser-déposer", "Cliquez sur Fusionner", "Téléchargez votre PDF combiné"]
-                            : ["Upload your PDF files", "Reorder via drag-and-drop", "Click Merge", "Download your combined PDF"]}
+                        question={qa.question}
+                        answer={qa.answer}
+                        toolName={lang === 'fr' ? "Fusionner PDF" : "Merge PDF"}
+                        steps={qa.steps}
                         lang={lang}
                     />
 
