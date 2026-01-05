@@ -176,30 +176,59 @@ export function SEO({
   });
 
   // 3. Page Specific Schemas - WebApplication for tool pages
-  // 2026 Update: Use WebApplication instead of SoftwareApplication for browser-based tools
+  // 2026 Update: Enhanced schema for AI agent discoverability
   if (canonicalPath !== '/' && !canonicalPath.startsWith('/about') && !canonicalPath.startsWith('/guides')) {
     const webAppSchema: Record<string, any> = {
       "@context": "https://schema.org",
       "@type": "WebApplication",
+      "@id": `${getFullUrl(canonicalPath)}#application`,
       "name": schemaName,
-      "operatingSystem": "Any",
+      "url": getFullUrl(canonicalPath),
+      "operatingSystem": "Web, Windows, macOS, Linux, Android, iOS",
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "PDF Tools",
       "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
       "permissions": "Local file access only - no server uploads",
-      "featureList": ["Local PDF processing", "No server uploads", "PIPEDA compliant", "Privacy-first"],
+      // 2026: Expanded featureList for AI agents to understand capabilities
+      "featureList": [
+        "Local PDF processing",
+        "No server uploads",
+        "PIPEDA compliant",
+        "Privacy-first",
+        "No account required",
+        "No file size limits",
+        "Works offline after load"
+      ],
       "offers": {
         "@type": "Offer",
         "price": price || "0",
         "priceCurrency": "CAD",
-        "availability": "https://schema.org/InStock"
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2027-12-31"
+      },
+      // 2026: Add softwareHelp for AI agents to find documentation
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": `${URLS.DOMAIN}/guides/ultimate-pdf-guide`
       },
       "author": { "@id": `${URLS.DOMAIN}/#organization` },
       "provider": { "@id": `${URLS.DOMAIN}/#organization` },
-      "datePublished": "2024-01-01",
-      "dateModified": dateModified || "2026-01-01",
+      "datePublished": datePublished || "2024-01-01",
+      "dateModified": dateModified || "2026-01-05",
       "isAccessibleForFree": true,
-      "countryOfOrigin": { "@type": "Country", "name": "Canada" }
+      "countryOfOrigin": { "@type": "Country", "name": "Canada" },
+      // 2026: Add screenshot for AI agents to preview
+      "screenshot": getAssetUrl(URLS.OG_IMAGE),
+      // 2026: Add potentialAction for AI agents to understand usage
+      "potentialAction": {
+        "@type": "UseAction",
+        "name": `Use ${schemaName}`,
+        "target": getFullUrl(canonicalPath),
+        "object": {
+          "@type": "DigitalDocument",
+          "name": "PDF File"
+        }
+      }
     };
 
     if (rating) {
@@ -214,6 +243,7 @@ export function SEO({
 
     allSchemas.push(webAppSchema);
   }
+
 
   // 4. WebPage Schema (Speakable & Accessibility & Entity SEO)
   const webPageSchema: Record<string, any> = {

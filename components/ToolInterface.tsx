@@ -377,6 +377,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <button
                             onClick={() => onAction()}
                             disabled={files.length < 2}
+                            aria-label="Merge PDF files into one document"
                             className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-bold text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/10"
                         >
                             {t.toolMerge}
@@ -864,6 +865,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             onAction();
                         }}
                         disabled={(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.EXTRACT) && selectedPages.size === 0}
+                        aria-label={`Process PDF: ${currentTool}`}
                         className={`
                   w-full py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 text-base min-h-[56px] active:scale-[0.98]
                   ${(currentTool === ToolType.DELETE || currentTool === ToolType.MAKE_FILLABLE || currentTool === ToolType.PDF_PAGE_REMOVER || currentTool === ToolType.EXTRACT) && selectedPages.size === 0
