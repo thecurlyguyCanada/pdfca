@@ -46,8 +46,16 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'Compresser PDF',
     description: 'Reduce PDF file size while maintaining quality. Choose from good, balanced, or extreme compression. Free, secure, and fast compression in your browser.',
     descriptionFr: 'Réduisez la taille des fichiers PDF tout en maintenant la qualité. Choisissez entre compression légère, équilibrée ou extrême. Gratuit et sécurisé.',
-    keywords: ['compress PDF', 'reduce PDF size', 'PDF compressor'],
-    keywordsFr: ['compresser PDF', 'réduire taille PDF', 'compresseur PDF'],
+    keywords: ['compress PDF', 'reduce PDF size', 'PDF compressor', 'convert pdf smaller'],
+    keywordsFr: [
+      'compresser PDF',
+      'réduire taille PDF',
+      'compresseur PDF',
+      'convert pdf smaller',
+      'compresser pdf gratuit',
+      'réduire pdf en ligne',
+      'diminuer taille pdf'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -107,7 +115,16 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     description: 'Convert HEIC (iPhone photos) to PDF format. Fast, free, and secure conversion in your browser. No uploads required.',
     descriptionFr: 'Convertissez HEIC (photos iPhone) en format PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur.',
     keywords: ['HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF'],
-    keywordsFr: ['HEIC vers PDF', 'convertir HEIC', 'photos iPhone en PDF'],
+    keywordsFr: [
+      // High volume primary keywords
+      'convertir heic en pdf',
+      'HEIC vers PDF',
+      'convertir HEIC',
+      'photos iPhone en PDF',
+      'heic en pdf gratuit',
+      'convertir photo heic en pdf',
+      'heic vers pdf en ligne'
+    ],
     accept: '.heic,.heif,image/heic,image/heif'
   },
   {
@@ -118,8 +135,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'EPUB vers PDF',
     description: 'Convert EPUB ebooks to PDF format. Preserve formatting and layout. Free, secure conversion - no file uploads.',
     descriptionFr: 'Convertissez les ebooks EPUB en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
-    keywords: ['EPUB to PDF', 'convert ebook', 'EPUB converter'],
-    keywordsFr: ['EPUB vers PDF', 'convertir ebook', 'convertisseur EPUB'],
+    keywords: ['EPUB to PDF', 'convert ebook', 'EPUB converter', 'convert epub to pdf'],
+    keywordsFr: [
+      // High volume primary keywords
+      'convertir epub en pdf',
+      'convert epub to pdf',
+      'EPUB vers PDF',
+      'convertir ebook',
+      'convertisseur EPUB',
+      'epub en pdf gratuit',
+      'convertir fichier epub en pdf',
+      'epub vers pdf en ligne'
+    ],
     accept: '.epub,application/epub+zip'
   },
   {
@@ -192,20 +219,51 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Comment convertir PDF en Word gratuitement. Convertissez vos fichiers PDF en documents Word modifiables (DOCX). Préservez le formatage. Gratuit, en ligne et sécurisé.',
     keywords: ['PDF to Word', 'PDF to DOCX', 'convert PDF to Word', 'free PDF converter'],
     keywordsFr: [
+      // High volume primary keywords
+      'convertir pdf en word',
+      'convertir un pdf en word',
+      'convertir pdf en word gratuit',
+      'convertir un pdf en word gratuit',
+      'convertir pdf en word gratuitement',
+      'convertir gratuitement pdf en word',
+      'convertir pdf en word en ligne gratuit',
+      'convertir du pdf en word en ligne gratuit',
+      'convertir pdf en word modifiable gratuit',
+      'convertir un pdf en word gratuitement',
+      'pdf word convertir gratuit',
+      'pdf to word converter',
+      'convert pdf to word',
+      'convert pdf to word converter',
+      'converter pdf to word',
+      'convert pdf to word format',
+      'pdf convert to word converter',
+      'pdf to word word converter',
+      'convertir pdf to word',
+      'convertir pdf word',
+      'convertir pdf a word',
+      'convertir a pdf un word',
+      'convert to word pdf',
+      // Question format keywords
       'comment convertir pdf en word',
       'comment convertir un pdf en word',
       'comment convertir du pdf en word',
-      'convertir pdf en word gratuit',
-      'convertir pdf en word gratuitement',
       'comment convertir un fichier pdf en word',
       'comment convertir des fichiers pdf en word',
       'comment convertir document pdf en word',
-      'convertir fichier pdf en word gratuitement',
       'comment convertir un document pdf en word',
+      'comment convertir pdf en word mac',
+      'comment convertir pdf en word modifiable',
+      // Additional variants
+      'convertir fichier pdf en word gratuitement',
+      'convertir fichier pdf',
       'pdf en word gratuit',
       'pdf vers word en ligne',
-      'comment convertir pdf en word mac',
-      'comment convertir pdf en word modifiable'
+      'pdf converter',
+      'pdf format converter',
+      'a pdf converter',
+      'converter pdf',
+      'pdf convert',
+      'convert pdf'
     ],
     accept: '.pdf,application/pdf'
   },
@@ -219,19 +277,37 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Comment convertir Word en PDF gratuitement. Convertissez vos documents Word (DOCX) en format PDF. Maintenez le formatage. Gratuit, en ligne et sécurisé.',
     keywords: ['Word to PDF', 'DOCX to PDF', 'convert Word to PDF', 'free Word converter'],
     keywordsFr: [
+      // High volume primary keywords
+      'convertir word en pdf',
+      'convertir en pdf',
+      'convert word to pdf',
+      'convert to pdf',
+      'convertir en pdf gratuit',
+      'convertir word en pdf gratuit',
+      'convertir gratuitement word en pdf',
+      'convertir word a pdf',
+      'convertir un word en pdf',
+      'convert to pdf format',
+      'convertir fichier en pdf',
+      'convertir un fichier en pdf',
+      'convertir docx en pdf',
+      'convertir doc en pdf',
+      'convertir un document en pdf',
+      'convertir en word en pdf',
+      // Question format keywords
       'comment convertir document word en pdf',
       'comment convertir un document word en pdf',
       'comment convertir fichier word en pdf',
       'comment convertir un fichier word en pdf',
-      'convertir word en pdf gratuit',
       'comment convertir un word en pdf',
       'comment convertir word en pdf',
-      'convertir un fichier word en pdf gratuitement',
       'comment convertir un document word en pdf gratuit',
-      'word vers pdf gratuit',
-      'word en pdf en ligne',
       'comment convertir word en pdf mac',
-      'comment convertir fichier word en pdf sur mac'
+      'comment convertir fichier word en pdf sur mac',
+      // Additional variants
+      'convertir un fichier word en pdf gratuitement',
+      'word vers pdf gratuit',
+      'word en pdf en ligne'
     ],
     accept: '.docx,.doc,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword'
   },
@@ -304,7 +380,16 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     description: 'Convert Excel spreadsheets (XLSX) to PDF format. Preserve formatting and layout. Free, secure conversion.',
     descriptionFr: 'Convertissez les feuilles de calcul Excel (XLSX) en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
     keywords: ['Excel to PDF', 'XLSX to PDF', 'convert spreadsheet to PDF'],
-    keywordsFr: ['Excel vers PDF', 'XLSX vers PDF', 'convertir feuille de calcul en PDF'],
+    keywordsFr: [
+      // High volume primary keywords
+      'convertir excel en pdf',
+      'Excel vers PDF',
+      'XLSX vers PDF',
+      'convertir feuille de calcul en PDF',
+      'excel en pdf gratuit',
+      'convertir fichier excel en pdf',
+      'excel vers pdf en ligne'
+    ],
     accept: '.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
   },
   {
@@ -364,7 +449,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     description: 'Convert PDF tables to Excel (XLSX) spreadsheets instantly. Preserve columns and formatting with local processing.',
     descriptionFr: 'Convertissez instantanément les tableaux PDF en feuilles de calcul Excel (XLSX). Préservez les colonnes et le formatage avec un traitement local.',
     keywords: ['PDF to Excel', 'PDF to XLSX', 'export PDF table to Excel'],
-    keywordsFr: ['PDF vers Excel', 'PDF vers XLSX', 'exporter tableau PDF vers Excel'],
+    keywordsFr: [
+      // High volume primary keywords
+      'convertir pdf en excel',
+      'convert pdf to excel',
+      'convert excel pdf to excel',
+      'PDF vers Excel',
+      'PDF vers XLSX',
+      'exporter tableau PDF vers Excel',
+      'convertir fichier pdf en excel',
+      'pdf en excel gratuit',
+      'pdf vers excel en ligne'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
