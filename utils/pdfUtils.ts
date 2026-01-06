@@ -2872,25 +2872,38 @@ export const convertOdtToPdf = async (file: File): Promise<Blob> => {
   const xmlDoc = parser.parseFromString(contentXml, 'text/xml');
 
   // Extract text from text:p and text:h elements (paragraphs and headings)
-  const textElements = xmlDoc.querySelectorAll('text\\:p, text\\:h, p, h1, h2, h3, h4, h5, h6');
+  // Try multiple selector approaches for cross-browser compatibility
   const paragraphs: string[] = [];
 
-  textElements.forEach((el) => {
-    const text = el.textContent?.trim();
-    if (text) {
-      paragraphs.push(text);
-    }
-  });
+  // Method 1: Try getElementsByTagNameNS for proper namespace handling
+  const textNs = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+  const pElements = xmlDoc.getElementsByTagNameNS(textNs, 'p');
+  const hElements = xmlDoc.getElementsByTagNameNS(textNs, 'h');
 
-  // If no text found via namespaced selectors, try regex fallback
+  for (let i = 0; i < pElements.length; i++) {
+    const text = pElements[i].textContent?.trim();
+    if (text) paragraphs.push(text);
+  }
+  for (let i = 0; i < hElements.length; i++) {
+    const text = hElements[i].textContent?.trim();
+    if (text) paragraphs.push(text);
+  }
+
+  // Method 2: If no text found, try regex fallback on raw XML
   if (paragraphs.length === 0) {
-    const textMatches = contentXml.match(/<text:p[^>]*>([^<]*(?:<[^>]+>[^<]*)*)<\/text:p>/g);
+    const textMatches = contentXml.match(/<text:p[^>]*>([\s\S]*?)<\/text:p>/g);
     if (textMatches) {
       textMatches.forEach(match => {
         const text = match.replace(/<[^>]+>/g, '').trim();
         if (text) paragraphs.push(text);
       });
     }
+  }
+
+  // Method 3: Last resort - extract all text between tags
+  if (paragraphs.length === 0) {
+    const allText = contentXml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (allText) paragraphs.push(allText);
   }
 
   const fullText = paragraphs.join('\n\n');
@@ -3072,13 +3085,12 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
   const jsPDF = await getJsPdf();
 
   const arrayBuffer = await file.arrayBuffer();
-  const zip = await JSZip.loadAsync(arrayBuffer);
-
-  const doc = new jsPDF({
-    orientation: 'landscape',
-    unit: 'pt',
-    format: [960, 540] // 16:9 aspect ratio
-  });
+  let zip;
+  try {
+    zip = await JSZip.loadAsync(arrayBuffer);
+  } catch {
+    throw new Error('Invalid PowerPoint file: unable to read file structure');
+  }
 
   // Find slides
   const slideFiles: string[] = [];
@@ -3086,6 +3098,16 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
     if (relativePath.match(/ppt\/slides\/slide\d+\.xml$/)) {
       slideFiles.push(relativePath);
     }
+  });
+
+  if (slideFiles.length === 0) {
+    throw new Error('Invalid PowerPoint file: no slides found');
+  }
+
+  const doc = new jsPDF({
+    orientation: 'landscape',
+    unit: 'pt',
+    format: [960, 540] // 16:9 aspect ratio
   });
 
   // Sort slides by number
@@ -3149,4 +3171,86 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
   }
 
   return doc.output('blob');
+};
+
+// Apple Pages to PDF conversion
+export const convertPagesToPdf = async (file: File): Promise<Blob> => {
+  const JSZip = await getJSZip();
+  const jsPDF = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+  let zip;
+  try {
+    zip = await JSZip.loadAsync(arrayBuffer);
+  } catch {
+    throw new Error('Invalid Pages file: unable to read file structure');
+  }
+
+  // Try to find the QuickLook preview PDF (most Pages files include this)
+  const previewPdfFile = zip.file('QuickLook/Preview.pdf');
+  if (previewPdfFile) {
+    const pdfData = await previewPdfFile.async('arraybuffer');
+    return new Blob([pdfData], { type: 'application/pdf' });
+  }
+
+  // Fallback: Try to find thumbnail and create a basic PDF
+  const thumbnailFile = zip.file('QuickLook/Thumbnail.jpg') || zip.file('QuickLook/thumbnail.jpg');
+  if (thumbnailFile) {
+    const imgData = await thumbnailFile.async('base64');
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4'
+    });
+
+    try {
+      doc.addImage(`data:image/jpeg;base64,${imgData}`, 'JPEG', 0, 0, 595, 842);
+      return doc.output('blob');
+    } catch {
+      // Continue to next fallback
+    }
+  }
+
+  // Fallback: Look for any images in the Data folder and create a PDF from them
+  const imageFiles: string[] = [];
+  zip.forEach((relativePath) => {
+    if (relativePath.match(/\.(jpg|jpeg|png|gif)$/i) && relativePath.includes('Data/')) {
+      imageFiles.push(relativePath);
+    }
+  });
+
+  if (imageFiles.length > 0) {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4'
+    });
+
+    let isFirstPage = true;
+    for (const imgPath of imageFiles) {
+      const imgFile = zip.file(imgPath);
+      if (imgFile) {
+        const imgData = await imgFile.async('base64');
+        const ext = imgPath.split('.').pop()?.toLowerCase();
+        const imgType = ext === 'png' ? 'PNG' : 'JPEG';
+
+        if (!isFirstPage) {
+          doc.addPage('a4', 'portrait');
+        }
+        isFirstPage = false;
+
+        try {
+          doc.addImage(`data:image/${ext};base64,${imgData}`, imgType, 20, 20, 555, 800);
+        } catch {
+          // Image embedding failed, continue
+        }
+      }
+    }
+
+    if (!isFirstPage) {
+      return doc.output('blob');
+    }
+  }
+
+  throw new Error('Unable to convert Pages file: No preview PDF or extractable content found. Please export as PDF from Apple Pages directly.');
 };
