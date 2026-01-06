@@ -2649,3 +2649,504 @@ export const convertAspxToPdf = async (file: File): Promise<Uint8Array> => {
 export const convertPhpToPdf = async (file: File): Promise<Uint8Array> => {
   return convertCodeToPdf(file, 'PHP to PDF Conversion');
 };
+
+// JPG/JPEG to PDF conversion
+export const convertJpgToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const doc = await PDFDocument.create();
+
+  const image = await doc.embedJpg(arrayBuffer);
+  const page = doc.addPage([image.width, image.height]);
+  page.drawImage(image, {
+    x: 0,
+    y: 0,
+    width: image.width,
+    height: image.height,
+  });
+
+  addPdfMetadata(doc, 'JPG to PDF Conversion');
+  return await doc.save();
+};
+
+// Alias for JPEG (same as JPG)
+export const convertJpegToPdf = convertJpgToPdf;
+
+// PNG to PDF conversion
+export const convertPngToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const doc = await PDFDocument.create();
+
+  const image = await doc.embedPng(arrayBuffer);
+  const page = doc.addPage([image.width, image.height]);
+  page.drawImage(image, {
+    x: 0,
+    y: 0,
+    width: image.width,
+    height: image.height,
+  });
+
+  addPdfMetadata(doc, 'PNG to PDF Conversion');
+  return await doc.save();
+};
+
+// Generic Image to PDF conversion (supports JPG, PNG, GIF, BMP, WebP)
+export const convertImageToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  const fileType = file.type.toLowerCase();
+  const fileName = file.name.toLowerCase();
+
+  // Determine image format
+  const isJpeg = fileType === 'image/jpeg' || fileName.endsWith('.jpg') || fileName.endsWith('.jpeg');
+  const isPng = fileType === 'image/png' || fileName.endsWith('.png');
+
+  const doc = await PDFDocument.create();
+
+  if (isJpeg) {
+    const arrayBuffer = await file.arrayBuffer();
+    const image = await doc.embedJpg(arrayBuffer);
+    const page = doc.addPage([image.width, image.height]);
+    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+  } else if (isPng) {
+    const arrayBuffer = await file.arrayBuffer();
+    const image = await doc.embedPng(arrayBuffer);
+    const page = doc.addPage([image.width, image.height]);
+    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+  } else {
+    // For GIF, BMP, WebP - convert to JPEG via canvas
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = url;
+    });
+
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error("Could not create canvas context");
+
+    ctx.drawImage(img, 0, 0);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+    const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+
+    const image = await doc.embedJpg(bytes);
+    const page = doc.addPage([image.width, image.height]);
+    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+
+    URL.revokeObjectURL(url);
+  }
+
+  addPdfMetadata(doc, 'Image to PDF Conversion');
+  return await doc.save();
+};
+
+// PDF to JPG conversion - exports each page as a JPG image in a ZIP
+export const convertPdfToJpg = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const JSZip = await getJSZip();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+  }).promise;
+
+  const zip = new JSZip();
+  const baseName = file.name.replace(/\.[^/.]+$/, '');
+
+  try {
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 2.0; // High quality
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) throw new Error("Could not create canvas context");
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+      const base64Data = dataUrl.split(',')[1];
+
+      zip.file(`${baseName}_page_${i}.jpg`, base64Data, { base64: true });
+
+      // Cleanup canvas
+      canvas.width = 0;
+      canvas.height = 0;
+
+      // Yield to UI
+      if (pdf.numPages > 1) await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    return await zip.generateAsync({ type: 'blob' });
+  } finally {
+    await pdf.destroy();
+  }
+};
+
+// Alias for PDF to JPEG (same as JPG)
+export const convertPdfToJpeg = convertPdfToJpg;
+
+// PDF to PNG conversion - exports each page as a PNG image in a ZIP
+export const convertPdfToPng = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const JSZip = await getJSZip();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+  }).promise;
+
+  const zip = new JSZip();
+  const baseName = file.name.replace(/\.[^/.]+$/, '');
+
+  try {
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 2.0; // High quality
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) throw new Error("Could not create canvas context");
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const dataUrl = canvas.toDataURL('image/png');
+      const base64Data = dataUrl.split(',')[1];
+
+      zip.file(`${baseName}_page_${i}.png`, base64Data, { base64: true });
+
+      // Cleanup canvas
+      canvas.width = 0;
+      canvas.height = 0;
+
+      // Yield to UI
+      if (pdf.numPages > 1) await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    return await zip.generateAsync({ type: 'blob' });
+  } finally {
+    await pdf.destroy();
+  }
+};
+
+// ODT to PDF conversion (OpenDocument Text)
+// ODT files are ZIP archives containing XML content
+export const convertOdtToPdf = async (file: File): Promise<Blob> => {
+  const JSZip = await getJSZip();
+  const jsPDF = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+
+  // ODT is a ZIP file - extract content.xml
+  const zip = await JSZip.loadAsync(arrayBuffer);
+  const contentXml = await zip.file('content.xml')?.async('string');
+
+  if (!contentXml) {
+    throw new Error('Invalid ODT file: content.xml not found');
+  }
+
+  // Parse XML to extract text content
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(contentXml, 'text/xml');
+
+  // Extract text from text:p and text:h elements (paragraphs and headings)
+  const textElements = xmlDoc.querySelectorAll('text\\:p, text\\:h, p, h1, h2, h3, h4, h5, h6');
+  const paragraphs: string[] = [];
+
+  textElements.forEach((el) => {
+    const text = el.textContent?.trim();
+    if (text) {
+      paragraphs.push(text);
+    }
+  });
+
+  // If no text found via namespaced selectors, try regex fallback
+  if (paragraphs.length === 0) {
+    const textMatches = contentXml.match(/<text:p[^>]*>([^<]*(?:<[^>]+>[^<]*)*)<\/text:p>/g);
+    if (textMatches) {
+      textMatches.forEach(match => {
+        const text = match.replace(/<[^>]+>/g, '').trim();
+        if (text) paragraphs.push(text);
+      });
+    }
+  }
+
+  const fullText = paragraphs.join('\n\n');
+
+  // Create PDF
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'pt',
+    format: 'a4'
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const margin = 40;
+  const maxWidth = pageWidth - (margin * 2);
+
+  const lines = doc.splitTextToSize(fullText, maxWidth);
+
+  let y = margin;
+  const lineHeight = 14;
+  const pageHeight = doc.internal.pageSize.getHeight();
+
+  for (const line of lines) {
+    if (y + lineHeight > pageHeight - margin) {
+      doc.addPage();
+      y = margin;
+    }
+    doc.text(line, margin, y);
+    y += lineHeight;
+  }
+
+  return doc.output('blob');
+};
+
+// PDF to PowerPoint conversion
+export const convertPdfToPpt = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+
+  // We'll create a PPTX with images of each PDF page
+  // Using pptxgenjs-lite approach with manual construction
+  const JSZip = await getJSZip();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+  }).promise;
+
+  const zip = new JSZip();
+  const baseName = file.name.replace(/\.[^/.]+$/, '');
+
+  try {
+    // Collect page images
+    const pageImages: string[] = [];
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 2.0;
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) throw new Error("Could not create canvas context");
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const dataUrl = canvas.toDataURL('image/png');
+      pageImages.push(dataUrl.split(',')[1]);
+
+      canvas.width = 0;
+      canvas.height = 0;
+
+      if (pdf.numPages > 1) await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    // Build PPTX structure
+    // [Content_Types].xml
+    let contentTypes = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+    contentTypes += '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">';
+    contentTypes += '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>';
+    contentTypes += '<Default Extension="xml" ContentType="application/xml"/>';
+    contentTypes += '<Default Extension="png" ContentType="image/png"/>';
+    contentTypes += '<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>';
+
+    for (let i = 1; i <= pageImages.length; i++) {
+      contentTypes += `<Override PartName="/ppt/slides/slide${i}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`;
+    }
+    contentTypes += '<Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>';
+    contentTypes += '<Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>';
+    contentTypes += '</Types>';
+    zip.file('[Content_Types].xml', contentTypes);
+
+    // _rels/.rels
+    let rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+    rels += '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">';
+    rels += '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>';
+    rels += '</Relationships>';
+    zip.file('_rels/.rels', rels);
+
+    // ppt/presentation.xml
+    let presentation = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+    presentation += '<p:presentation xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">';
+    presentation += '<p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst>';
+    presentation += '<p:sldIdLst>';
+    for (let i = 1; i <= pageImages.length; i++) {
+      presentation += `<p:sldId id="${255 + i}" r:id="rId${i + 1}"/>`;
+    }
+    presentation += '</p:sldIdLst>';
+    presentation += '<p:sldSz cx="9144000" cy="6858000" type="screen4x3"/>';
+    presentation += '</p:presentation>';
+    zip.file('ppt/presentation.xml', presentation);
+
+    // ppt/_rels/presentation.xml.rels
+    let presRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+    presRels += '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">';
+    presRels += '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/>';
+    for (let i = 1; i <= pageImages.length; i++) {
+      presRels += `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i}.xml"/>`;
+    }
+    presRels += '</Relationships>';
+    zip.file('ppt/_rels/presentation.xml.rels', presRels);
+
+    // Slide master and layout (minimal)
+    const slideMaster = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sldMaster xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><p:cSld><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr/></p:spTree></p:cSld><p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/><p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst></p:sldMaster>';
+    zip.file('ppt/slideMasters/slideMaster1.xml', slideMaster);
+
+    const slideMasterRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/></Relationships>';
+    zip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels', slideMasterRels);
+
+    const slideLayout = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" type="blank"><p:cSld><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr/></p:spTree></p:cSld></p:sldLayout>';
+    zip.file('ppt/slideLayouts/slideLayout1.xml', slideLayout);
+
+    const slideLayoutRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="../slideMasters/slideMaster1.xml"/></Relationships>';
+    zip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels', slideLayoutRels);
+
+    // Create slides with images
+    for (let i = 0; i < pageImages.length; i++) {
+      const slideNum = i + 1;
+
+      // Add image to media folder
+      zip.file(`ppt/media/image${slideNum}.png`, pageImages[i], { base64: true });
+
+      // Slide XML with image
+      let slide = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+      slide += '<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">';
+      slide += '<p:cSld><p:spTree>';
+      slide += '<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>';
+      slide += '<p:grpSpPr/>';
+      slide += '<p:pic>';
+      slide += '<p:nvPicPr><p:cNvPr id="2" name="Image"/><p:cNvPicPr/><p:nvPr/></p:nvPicPr>';
+      slide += '<p:blipFill><a:blip r:embed="rId2"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>';
+      slide += '<p:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="9144000" cy="6858000"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr>';
+      slide += '</p:pic>';
+      slide += '</p:spTree></p:cSld></p:sld>';
+      zip.file(`ppt/slides/slide${slideNum}.xml`, slide);
+
+      // Slide rels
+      let slideRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+      slideRels += '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">';
+      slideRels += '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>';
+      slideRels += `<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${slideNum}.png"/>`;
+      slideRels += '</Relationships>';
+      zip.file(`ppt/slides/_rels/slide${slideNum}.xml.rels`, slideRels);
+    }
+
+    return await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
+  } finally {
+    await pdf.destroy();
+  }
+};
+
+// PowerPoint to PDF conversion
+export const convertPptToPdf = async (file: File): Promise<Blob> => {
+  const JSZip = await getJSZip();
+  const jsPDF = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const zip = await JSZip.loadAsync(arrayBuffer);
+
+  const doc = new jsPDF({
+    orientation: 'landscape',
+    unit: 'pt',
+    format: [960, 540] // 16:9 aspect ratio
+  });
+
+  // Find slides
+  const slideFiles: string[] = [];
+  zip.forEach((relativePath) => {
+    if (relativePath.match(/ppt\/slides\/slide\d+\.xml$/)) {
+      slideFiles.push(relativePath);
+    }
+  });
+
+  // Sort slides by number
+  slideFiles.sort((a, b) => {
+    const numA = parseInt(a.match(/slide(\d+)/)?.[1] || '0');
+    const numB = parseInt(b.match(/slide(\d+)/)?.[1] || '0');
+    return numA - numB;
+  });
+
+  let isFirstPage = true;
+
+  for (const slidePath of slideFiles) {
+    if (!isFirstPage) {
+      doc.addPage([960, 540], 'landscape');
+    }
+    isFirstPage = false;
+
+    // Try to extract text from slide
+    const slideXml = await zip.file(slidePath)?.async('string');
+    if (slideXml) {
+      // Basic text extraction from PPTX XML
+      const textMatches = slideXml.match(/<a:t>([^<]*)<\/a:t>/g);
+      if (textMatches) {
+        let y = 50;
+        for (const match of textMatches) {
+          const text = match.replace(/<\/?a:t>/g, '');
+          if (text.trim()) {
+            doc.text(text, 50, y);
+            y += 20;
+          }
+        }
+      }
+    }
+
+    // Try to find and embed images
+    const slideNum = slidePath.match(/slide(\d+)/)?.[1];
+    if (slideNum) {
+      const relsPath = `ppt/slides/_rels/slide${slideNum}.xml.rels`;
+      const relsXml = await zip.file(relsPath)?.async('string');
+
+      if (relsXml) {
+        const imageMatches = relsXml.match(/Target="\.\.\/media\/([^"]+)"/g);
+        if (imageMatches && imageMatches.length > 0) {
+          for (const imgMatch of imageMatches) {
+            const imgName = imgMatch.match(/media\/([^"]+)/)?.[1];
+            if (imgName) {
+              const imgData = await zip.file(`ppt/media/${imgName}`)?.async('base64');
+              if (imgData) {
+                const imgType = imgName.toLowerCase().endsWith('.png') ? 'PNG' : 'JPEG';
+                try {
+                  doc.addImage(`data:image/${imgType.toLowerCase()};base64,${imgData}`, imgType, 0, 0, 960, 540);
+                } catch {
+                  // Image embedding failed, continue
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return doc.output('blob');
+};

@@ -34,7 +34,16 @@ import {
   optimizePdfForKindleVisual,
   convertGifToPdf,
   convertAspxToPdf,
-  convertPhpToPdf
+  convertPhpToPdf,
+  // New high-volume French keyword tools
+  convertJpgToPdf,
+  convertPngToPdf,
+  convertImageToPdf,
+  convertPdfToJpg,
+  convertPdfToPng,
+  convertOdtToPdf,
+  convertPdfToPpt,
+  convertPptToPdf
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -130,11 +139,18 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.WORD_TO_PDF,
         ToolType.XML_TO_PDF,
         ToolType.EXCEL_TO_PDF,
-        ToolType.EXCEL_TO_PDF,
         ToolType.RTF_TO_PDF,
         ToolType.XRECHNUNG_VIEWER,
         ToolType.GIF_TO_PDF,
-        ToolType.ASPX_TO_PDF
+        ToolType.ASPX_TO_PDF,
+        ToolType.PHP_TO_PDF,
+        // New high-volume French keyword tools
+        ToolType.JPG_TO_PDF,
+        ToolType.JPEG_TO_PDF,
+        ToolType.PNG_TO_PDF,
+        ToolType.IMAGE_TO_PDF,
+        ToolType.ODT_TO_PDF,
+        ToolType.PPT_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -442,6 +458,48 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.PHISHING_DETECTOR:
             resultBlob = await analyzePdfSecurity(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '_security_report.pdf');
+            break;
+
+          // New high-volume French keyword tools
+          case ToolType.JPG_TO_PDF:
+          case ToolType.JPEG_TO_PDF:
+            resultBlob = await convertJpgToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(jpg|jpeg)$/i, '.pdf');
+            break;
+
+          case ToolType.PNG_TO_PDF:
+            resultBlob = await convertPngToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.png$/i, '.pdf');
+            break;
+
+          case ToolType.IMAGE_TO_PDF:
+            resultBlob = await convertImageToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(jpg|jpeg|png|gif|bmp|webp)$/i, '.pdf');
+            break;
+
+          case ToolType.PDF_TO_JPG:
+            resultBlob = await convertPdfToJpg(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_images.zip');
+            break;
+
+          case ToolType.PDF_TO_PNG:
+            resultBlob = await convertPdfToPng(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_images.zip');
+            break;
+
+          case ToolType.ODT_TO_PDF:
+            resultBlob = await convertOdtToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.odt$/i, '.pdf');
+            break;
+
+          case ToolType.PDF_TO_PPT:
+            resultBlob = await convertPdfToPpt(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '.pptx');
+            break;
+
+          case ToolType.PPT_TO_PDF:
+            resultBlob = await convertPptToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(pptx|ppt)$/i, '.pdf');
             break;
 
           default:
