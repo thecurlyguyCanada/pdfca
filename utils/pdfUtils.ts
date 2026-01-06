@@ -2852,33 +2852,61 @@ export const convertPdfToPng = async (file: File): Promise<Blob> => {
 };
 
 // ODT to PDF conversion (OpenDocument Text)
+// ODT files are ZIP archives containing XML content
 export const convertOdtToPdf = async (file: File): Promise<Blob> => {
-  const mammoth = await getMammoth();
+  const JSZip = await getJSZip();
   const jsPDF = await getJsPdf();
 
   const arrayBuffer = await file.arrayBuffer();
 
-  // Convert ODT to HTML using mammoth
-  const result = await mammoth.convertToHtml({ arrayBuffer });
-  const html = result.value;
+  // ODT is a ZIP file - extract content.xml
+  const zip = await JSZip.loadAsync(arrayBuffer);
+  const contentXml = await zip.file('content.xml')?.async('string');
 
-  // Create PDF from HTML
+  if (!contentXml) {
+    throw new Error('Invalid ODT file: content.xml not found');
+  }
+
+  // Parse XML to extract text content
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(contentXml, 'text/xml');
+
+  // Extract text from text:p and text:h elements (paragraphs and headings)
+  const textElements = xmlDoc.querySelectorAll('text\\:p, text\\:h, p, h1, h2, h3, h4, h5, h6');
+  const paragraphs: string[] = [];
+
+  textElements.forEach((el) => {
+    const text = el.textContent?.trim();
+    if (text) {
+      paragraphs.push(text);
+    }
+  });
+
+  // If no text found via namespaced selectors, try regex fallback
+  if (paragraphs.length === 0) {
+    const textMatches = contentXml.match(/<text:p[^>]*>([^<]*(?:<[^>]+>[^<]*)*)<\/text:p>/g);
+    if (textMatches) {
+      textMatches.forEach(match => {
+        const text = match.replace(/<[^>]+>/g, '').trim();
+        if (text) paragraphs.push(text);
+      });
+    }
+  }
+
+  const fullText = paragraphs.join('\n\n');
+
+  // Create PDF
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'pt',
     format: 'a4'
   });
 
-  // Parse HTML and add to PDF
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const text = tempDiv.textContent || tempDiv.innerText || '';
-
   const pageWidth = doc.internal.pageSize.getWidth();
   const margin = 40;
   const maxWidth = pageWidth - (margin * 2);
 
-  const lines = doc.splitTextToSize(text, maxWidth);
+  const lines = doc.splitTextToSize(fullText, maxWidth);
 
   let y = margin;
   const lineHeight = 14;

@@ -139,11 +139,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.WORD_TO_PDF,
         ToolType.XML_TO_PDF,
         ToolType.EXCEL_TO_PDF,
-        ToolType.EXCEL_TO_PDF,
         ToolType.RTF_TO_PDF,
         ToolType.XRECHNUNG_VIEWER,
         ToolType.GIF_TO_PDF,
         ToolType.ASPX_TO_PDF,
+        ToolType.PHP_TO_PDF,
         // New high-volume French keyword tools
         ToolType.JPG_TO_PDF,
         ToolType.JPEG_TO_PDF,
