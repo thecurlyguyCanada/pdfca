@@ -43,7 +43,8 @@ import {
   convertPdfToPng,
   convertOdtToPdf,
   convertPdfToPpt,
-  convertPptToPdf
+  convertPptToPdf,
+  convertPagesToPdf
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -150,7 +151,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.PNG_TO_PDF,
         ToolType.IMAGE_TO_PDF,
         ToolType.ODT_TO_PDF,
-        ToolType.PPT_TO_PDF
+        ToolType.PPT_TO_PDF,
+        ToolType.PAGES_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -500,6 +502,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.PPT_TO_PDF:
             resultBlob = await convertPptToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.(pptx|ppt)$/i, '.pdf');
+            break;
+
+          case ToolType.PAGES_TO_PDF:
+            resultBlob = await convertPagesToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.pages$/i, '.pdf');
             break;
 
           default:

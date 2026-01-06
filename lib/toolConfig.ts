@@ -220,6 +220,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywords: ['PDF to Word', 'PDF to DOCX', 'convert PDF to Word', 'free PDF converter'],
     keywordsFr: [
       // High volume primary keywords
+      'convertir pdf',
       'convertir pdf en word',
       'convertir un pdf en word',
       'convertir pdf en word gratuit',
@@ -754,6 +755,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'powerpoint vers pdf en ligne'
     ],
     accept: '.pptx,.ppt,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-powerpoint'
+  },
+  {
+    slug: 'pages-to-pdf',
+    i18nKey: 'pagesToPdf',
+    tool: ToolType.PAGES_TO_PDF,
+    title: 'Pages to PDF',
+    titleFr: 'Convertir Pages en PDF Gratuitement',
+    description: 'Convert Apple Pages documents to PDF format. Extract content from .pages files. Free, secure, browser-based conversion.',
+    descriptionFr: 'Convertissez les documents Apple Pages en format PDF. Extrayez le contenu des fichiers .pages. Gratuit, sécurisé et dans votre navigateur.',
+    keywords: ['Pages to PDF', 'convert Pages to PDF', 'Apple Pages converter', 'iWork to PDF'],
+    keywordsFr: [
+      // High volume primary keywords (2,900+ searches)
+      'convertir pages en pdf',
+      'pages en pdf',
+      'pages en pdf gratuit',
+      'convertir fichier pages en pdf',
+      'pages vers pdf en ligne',
+      'apple pages en pdf',
+      'convertir document pages en pdf'
+    ],
+    accept: '.pages,application/vnd.apple.pages'
   }
 ];
 

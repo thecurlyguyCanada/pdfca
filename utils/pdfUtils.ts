@@ -3172,3 +3172,85 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
 
   return doc.output('blob');
 };
+
+// Apple Pages to PDF conversion
+export const convertPagesToPdf = async (file: File): Promise<Blob> => {
+  const JSZip = await getJSZip();
+  const jsPDF = await getJsPdf();
+
+  const arrayBuffer = await file.arrayBuffer();
+  let zip;
+  try {
+    zip = await JSZip.loadAsync(arrayBuffer);
+  } catch {
+    throw new Error('Invalid Pages file: unable to read file structure');
+  }
+
+  // Try to find the QuickLook preview PDF (most Pages files include this)
+  const previewPdfFile = zip.file('QuickLook/Preview.pdf');
+  if (previewPdfFile) {
+    const pdfData = await previewPdfFile.async('arraybuffer');
+    return new Blob([pdfData], { type: 'application/pdf' });
+  }
+
+  // Fallback: Try to find thumbnail and create a basic PDF
+  const thumbnailFile = zip.file('QuickLook/Thumbnail.jpg') || zip.file('QuickLook/thumbnail.jpg');
+  if (thumbnailFile) {
+    const imgData = await thumbnailFile.async('base64');
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4'
+    });
+
+    try {
+      doc.addImage(`data:image/jpeg;base64,${imgData}`, 'JPEG', 0, 0, 595, 842);
+      return doc.output('blob');
+    } catch {
+      // Continue to next fallback
+    }
+  }
+
+  // Fallback: Look for any images in the Data folder and create a PDF from them
+  const imageFiles: string[] = [];
+  zip.forEach((relativePath) => {
+    if (relativePath.match(/\.(jpg|jpeg|png|gif)$/i) && relativePath.includes('Data/')) {
+      imageFiles.push(relativePath);
+    }
+  });
+
+  if (imageFiles.length > 0) {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4'
+    });
+
+    let isFirstPage = true;
+    for (const imgPath of imageFiles) {
+      const imgFile = zip.file(imgPath);
+      if (imgFile) {
+        const imgData = await imgFile.async('base64');
+        const ext = imgPath.split('.').pop()?.toLowerCase();
+        const imgType = ext === 'png' ? 'PNG' : 'JPEG';
+
+        if (!isFirstPage) {
+          doc.addPage('a4', 'portrait');
+        }
+        isFirstPage = false;
+
+        try {
+          doc.addImage(`data:image/${ext};base64,${imgData}`, imgType, 20, 20, 555, 800);
+        } catch {
+          // Image embedding failed, continue
+        }
+      }
+    }
+
+    if (!isFirstPage) {
+      return doc.output('blob');
+    }
+  }
+
+  throw new Error('Unable to convert Pages file: No preview PDF or extractable content found. Please export as PDF from Apple Pages directly.');
+};
