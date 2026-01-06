@@ -145,11 +145,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Guide pages with alternates (explicit en/fr entries)
     guides.forEach((slug) => {
+        // Higher priority for Pillar Hubs and Master Guide
+        const isHub = ['ultimate-pdf-guide', 'pdf-conversions', 'pdf-editing', 'pdf-security', 'pdf-ocr-analysis'].includes(slug);
+        const priority = isHub ? 0.9 : 0.7;
+        const changeFrequency = isHub ? 'weekly' : 'monthly';
+
         routes.push({
             url: `${baseUrl}/en/guides/${slug}`,
             lastModified,
-            changeFrequency: 'monthly',
-            priority: 0.8,
+            changeFrequency,
+            priority,
             alternates: {
                 languages: {
                     'en-CA': `${baseUrl}/en/guides/${slug}`,
@@ -161,8 +166,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         routes.push({
             url: `${baseUrl}/fr/guides/${slug}`,
             lastModified,
-            changeFrequency: 'monthly',
-            priority: 0.8,
+            changeFrequency,
+            priority,
             alternates: {
                 languages: {
                     'en-CA': `${baseUrl}/en/guides/${slug}`,
