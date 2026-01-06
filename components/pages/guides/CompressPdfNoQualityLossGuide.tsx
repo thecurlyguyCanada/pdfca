@@ -1,0 +1,122 @@
+'use client';
+
+import React from 'react';
+import { Minimize2, Image, Search } from 'lucide-react';
+import { Language } from '../../../utils/i18n';
+import { SEO } from '../../SEO';
+import { PageLayout } from '../../PageLayout';
+import { getGuideContent } from '../../../utils/guideContent';
+import { MarkdownContent } from '../../MarkdownContent';
+import { AuthorBio } from '../../AuthorBio';
+import Link from 'next/link';
+
+interface GuideProps {
+    lang: Language;
+}
+
+const getLocalContent = (lang: string) => ({
+    en: {
+        intro: `
+Compressing a PDF usually means sacrificing quality. Images get blurry, and text can become jagged. But it doesn't have to be that way. **Lossless compression** allows you to reduce file size while keeping the document looking exactly the same.
+
+This guide explains how to shrink files without ruining them.
+        `,
+        sections: [
+            {
+                id: 'lossy-vs-lossless',
+                title: 'Lossy vs. Lossless',
+                content: `
+*   **Lossy (Standard):** Deletes data to save space. Reduces image resolution (e.g., 300dpi -> 72dpi). Good for email, bad for printing.
+*   **Lossless (High Quality):** Reorganizes data to be more efficient without deleting pixel information. Removes metadata, unused fonts, and redundant objects.
+                `
+            },
+            {
+                id: 'how-to',
+                title: 'How to Compress Losslessly',
+                content: `
+1.  **Remove Metadata:** PDFs contain hidden data like edit history and thumbnails. Removing this saves space without touching page content.
+2.  **Optimize Fonts:** Subset fonts to only include the characters actually used in the document (e.g., if you only use 'A', don't embed the whole alphabet).
+3.  **Clean Structure:** Remove invisible objects and optimize the internal object tree (Linearization / Fast Web View).
+                `
+            }
+        ]
+    },
+    fr: {
+        intro: `
+Compresser un PDF signifie généralement sacrifier la qualité. Les images deviennent floues et le texte peut devenir crénelé. Mais ce n'est pas une fatalité. **La compression sans perte** vous permet de réduire la taille du fichier tout en gardant le document exactement identique.
+
+Ce guide explique comment réduire les fichiers sans les ruiner.
+        `,
+        sections: [
+            {
+                id: 'lossy-vs-lossless',
+                title: 'Avec Perte vs Sans Perte',
+                content: `
+*   **Avec Perte (Standard) :** Supprime des données pour gagner de la place. Réduit la résolution d'image (ex: 300dpi -> 72dpi). Bon pour l'email, mauvais pour l'impression.
+*   **Sans Perte (Haute Qualité) :** Réorganise les données pour être plus efficace sans supprimer d'information pixel. Supprime les métadonnées, polices inutilisées et objets redondants.
+                `
+            },
+            {
+                id: 'how-to',
+                title: 'Comment Compresser Sans Perte',
+                content: `
+1.  **Supprimer les Métadonnées :** Les PDF contiennent des données cachées comme l'historique d'édition et les miniatures. Supprimer cela gagne de la place sans toucher au contenu de la page.
+2.  **Optimiser les Polices :** Sous-ensembler les polices pour inclure uniquement les caractères réellement utilisés dans le document (ex: si vous n'utilisez que 'A', n'intégrez pas tout l'alphabet).
+3.  **Nettoyer la Structure :** Supprimez les objets invisibles et optimisez l'arbre d'objets interne (Linéarisation / Fast Web View).
+                `
+            }
+        ]
+    }
+});
+
+export const CompressPdfNoQualityLossGuide: React.FC<GuideProps> = ({ lang }) => {
+    const guideContent = getGuideContent(lang);
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
+
+    return (
+        <div className="bg-white dark:bg-gray-950">
+            <SEO
+                title={lang === 'en' ? 'Compress PDF Without Losing Quality' : 'Compresser PDF Sans Perdre de Qualité'}
+                description={lang === 'en' ? 'How to reduce PDF file size while maintaining high quality images and text.' : 'Comment réduire la taille du fichier PDF tout en maintenant des images et du texte de haute qualité.'}
+                canonicalPath="/guides/compress-pdf-no-quality-loss"
+                lang={lang}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
+                    { name: lang === 'fr' ? 'Compression Sans Perte' : 'Lossless Compression', path: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss' }
+                ]}
+            />
+            <PageLayout
+                title={lang === 'en' ? 'Compress PDF No Quality Loss' : 'Compresser PDF Sans Perte'}
+                subtitle={lang === 'en' ? 'Shrink files while keeping them sharp for printing.' : 'Réduisez les fichiers tout en les gardant nets pour l\'impression.'}
+                icon={<Minimize2 size={32} />}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
+                    { name: lang === 'en' ? 'Lossless' : 'Sans Perte', href: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss' }
+                ]}
+            >
+                <div className="w-full py-4 sm:py-6 md:py-8">
+                    <MarkdownContent content={t.intro} />
+
+                    {t.sections.map((section: any) => (
+                        <section key={section.id} className="mb-12">
+                            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                                <div className="w-2 h-8 bg-canada-red rounded-full" />
+                                {section.title}
+                            </h2>
+                            <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
+                                <MarkdownContent content={section.content} />
+                            </div>
+                        </section>
+                    ))}
+
+                    <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
+                        <AuthorBio lang={lang} />
+                    </div>
+                </div>
+            </PageLayout>
+        </div>
+    );
+};

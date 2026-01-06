@@ -101,7 +101,7 @@ export default async function GuidesPage({
         "@type": "ItemList",
         "name": t.title,
         "description": t.desc,
-        "numberOfItems": 26,
+        "numberOfItems": 46,
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ultimate PDF Guide", "url": "https://www.pdfcanada.ca/en/guides/ultimate-pdf-guide" },
             { "@type": "ListItem", "position": 2, "name": "Private PDF Tools", "url": "https://www.pdfcanada.ca/en/guides/private-pdf-tools" },

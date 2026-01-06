@@ -13,7 +13,7 @@ interface RelatedTool {
 interface RelatedToolsProps {
     lang: Language;
     currentPath?: string;
-    category?: 'edit' | 'convert' | 'organize' | 'all';
+    category?: 'edit' | 'convert' | 'organize' | 'security' | 'advanced' | 'all';
 }
 
 const getTools = (lang: Language) => ({
@@ -66,39 +66,43 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
 
     // Determine relevant guide category based on tool category
     let guideCategory: GuideMetadata['category'] | 'All' = 'All';
-    if (category === 'edit') guideCategory = 'Editing';
-    if (category === 'organize') guideCategory = 'Editing'; // Map organize to Editing as well usually
+    if (category === 'edit' || category === 'organize') guideCategory = 'Editing';
     if (category === 'convert') guideCategory = 'Conversion';
+    if (category === 'security') guideCategory = 'Privacy & Security';
+    if (category === 'advanced') guideCategory = 'Advanced';
 
     // Get tools
     let tools: RelatedTool[] = [];
     if (category === 'all') {
         tools = [...allTools.edit, ...allTools.organize, ...allTools.convert];
+    } else if (category === 'security') {
+        // Map to relevant security tools
+        tools = [...allTools.edit, ...allTools.organize];
+    } else if (category === 'advanced') {
+        tools = [...allTools.convert];
     } else {
-        tools = allTools[category] || [];
+        tools = allTools[category as keyof ReturnType<typeof getTools>] || [];
     }
 
     // Get Guides from Metadata
     let relevantGuides = ALL_GUIDES;
     if (guideCategory !== 'All') {
-        // Prioritize matching category, but fill with others if not enough
         const catGuides = ALL_GUIDES.filter(g => g.category === guideCategory);
+        // Fill with others if less than 8
         const otherGuides = ALL_GUIDES.filter(g => g.category !== guideCategory);
         relevantGuides = [...catGuides, ...otherGuides];
     } else {
-        // For 'all', maybe prioritize Privacy & Security first as they are high value?
-        const privacyGuides = ALL_GUIDES.filter(g => g.category === 'Privacy & Security');
-        const otherGuides = ALL_GUIDES.filter(g => g.category !== 'Privacy & Security');
-        relevantGuides = [...privacyGuides, ...otherGuides];
+        // For 'all', prioritize Hubs first
+        const hubs = ALL_GUIDES.filter(g => g.slug.includes('-hub') || g.slug === 'ultimate-pdf-guide');
+        const others = ALL_GUIDES.filter(g => !g.slug.includes('-hub') && g.slug !== 'ultimate-pdf-guide');
+        relevantGuides = [...hubs, ...others];
     }
 
     const filteredTools = tools.filter(t => t.path !== currentPath).slice(0, 6);
 
-    // Filter out current guide if we are on a guide page (e.g. /guides/slug)
-    // The currentPath passed might be just the guide path
     const filteredGuides = relevantGuides
         .filter(g => !currentPath?.includes(g.slug))
-        .slice(0, 8); // Increased from 4 to 8 for better interlinking
+        .slice(0, 8); // Updated to 8
 
     const t = content[lang] || content.en;
 
@@ -157,5 +161,3 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
         </section>
     );
 }
-
-export default RelatedTools;

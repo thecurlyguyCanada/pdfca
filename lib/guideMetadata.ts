@@ -303,6 +303,199 @@ export const ALL_GUIDES: GuideMetadata[] = [
         descFr: 'Convertir le code source PHP en PDF.',
         category: 'Conversion',
         icon: '🐘'
+    },
+    {
+        slug: 'pdf-to-word-online',
+        titleEn: 'PDF to Word Online Converter',
+        titleFr: 'Convertisseur PDF en Word en Ligne',
+        descEn: 'Convert PDF to Word online for free. Step-by-step guide to secure browser-based conversion.',
+        descFr: 'Convertissez PDF en Word en ligne gratuitement. Guide étape par étape pour conversion sécurisée.',
+        category: 'Conversion',
+        icon: '📄'
+    },
+    {
+        slug: 'compress-pdf-online',
+        titleEn: 'Compress PDF Online',
+        titleFr: 'Compresser PDF en Ligne',
+        descEn: 'Best way to compress PDF online without losing quality. Free and secure tool.',
+        descFr: 'Meilleur moyen de compresser PDF en ligne sans perte de qualité. Outil gratuit et sécurisé.',
+        category: 'Editing',
+        icon: '📦'
+    },
+    {
+        slug: 'merge-pdf-online',
+        titleEn: 'Merge PDF Online',
+        titleFr: 'Fusionner PDF en Ligne',
+        descEn: 'How to merge PDF files online properly. Combine documents securely in your browser.',
+        descFr: 'Comment fusionner des fichiers PDF en ligne correctement. Combinez des documents en toute sécurité.',
+        category: 'Editing',
+        icon: '🔗'
+    },
+    // Hub Pages
+    {
+        slug: 'pdf-conversions',
+        titleEn: 'PDF Conversion Hub',
+        titleFr: 'Hub de Conversion PDF',
+        descEn: 'The complete guide to PDF conversions. Convert to/from Word, Excel, Images, and more.',
+        descFr: 'Le guide complet des conversions PDF. Convertissez vers/depuis Word, Excel, Images, et plus.',
+        category: 'Conversion',
+        icon: '🔄'
+    },
+    {
+        slug: 'pdf-editing',
+        titleEn: 'PDF Editing Hub',
+        titleFr: 'Hub d\'Édition PDF',
+        descEn: 'Master PDF editing. Merge, split, compress, and organize your documents.',
+        descFr: 'Maîtrisez l\'édition PDF. Fusionnez, divisez, compressez et organisez vos documents.',
+        category: 'Editing',
+        icon: '✏️'
+    },
+    {
+        slug: 'pdf-security',
+        titleEn: 'PDF Security Hub',
+        titleFr: 'Hub de Sécurité PDF',
+        descEn: 'Protect your documents. Learn about encryption, redaction, and compliance.',
+        descFr: 'Protégez vos documents. Apprenez le chiffrement, la rédaction et la conformité.',
+        category: 'Privacy & Security',
+        icon: '🛡️'
+    },
+    {
+        slug: 'pdf-ocr-analysis',
+        titleEn: 'PDF OCR & Analysis',
+        titleFr: 'OCR & Analyse PDF',
+        descEn: 'Advanced PDF tools. Extract data, analyze structure, and OCR scanned docs.',
+        descFr: 'Outils PDF avancés. Extrayez des données, analysez la structure et OCRisez des docs scannés.',
+        category: 'Advanced',
+        icon: '🔍'
+    },
+    // Long-Tail Conversion
+    {
+        slug: 'pdf-to-word-offline',
+        titleEn: 'PDF to Word Offline',
+        titleFr: 'PDF en Word Hors Ligne',
+        descEn: 'Convert PDF to Word locally without internet.',
+        descFr: 'Convertir PDF en Word localement sans internet.',
+        category: 'Conversion',
+        icon: '💻'
+    },
+    {
+        slug: 'pdf-to-word-formatting',
+        titleEn: 'PDF to Word Formatting',
+        titleFr: 'Formatage PDF en Word',
+        descEn: 'Keep original layout and fonts during conversion.',
+        descFr: 'Conserver la mise en page et les polices lors de la conversion.',
+        category: 'Conversion',
+        icon: '🎨'
+    },
+    {
+        slug: 'pdf-to-word-scanned',
+        titleEn: 'Convert Scanned PDF to Word',
+        titleFr: 'Convertir PDF Scanné en Word',
+        descEn: 'Use OCR to convert scanned documents to editable text.',
+        descFr: 'Utilisez l\'OCR pour convertir des documents scannés en texte modifiable.',
+        category: 'Conversion',
+        icon: '📷'
+    },
+    {
+        slug: 'pdf-to-excel',
+        titleEn: 'PDF to Excel Guide',
+        titleFr: 'Guide PDF vers Excel',
+        descEn: 'Extract tables and data from PDF to Excel spreadsheets.',
+        descFr: 'Extrayez tableaux et données de PDF vers feuilles Excel.',
+        category: 'Conversion',
+        icon: '📊'
+    },
+    {
+        slug: 'pdf-to-csv',
+        titleEn: 'PDF to CSV Guide',
+        titleFr: 'Guide PDF vers CSV',
+        descEn: 'Convert PDF tables to Comma Separated Values.',
+        descFr: 'Convertissez les tableaux PDF en valeurs séparées par des virgules.',
+        category: 'Conversion',
+        icon: '📝'
+    },
+    {
+        slug: 'pdf-to-xml',
+        titleEn: 'PDF to XML Guide',
+        titleFr: 'Guide PDF vers XML',
+        descEn: 'Extract structured data from PDF to XML format.',
+        descFr: 'Extrayez des données structurées de PDF vers format XML.',
+        category: 'Conversion',
+        icon: '💾'
+    },
+    {
+        slug: 'pdf-to-kindle',
+        titleEn: 'PDF to Kindle Guide',
+        titleFr: 'Guide PDF vers Kindle',
+        descEn: 'Optimize PDFs for reading on Kindle devices.',
+        descFr: 'Optimisez les PDF pour la lecture sur appareils Kindle.',
+        category: 'Conversion',
+        icon: '📱'
+    },
+    // Long-Tail Editing
+    {
+        slug: 'split-pdf-online',
+        titleEn: 'Split PDF Online',
+        titleFr: 'Diviser PDF en Ligne',
+        descEn: 'Split large PDF documents into smaller files in your browser.',
+        descFr: 'Divisez de gros documents PDF en fichiers plus petits dans votre navigateur.',
+        category: 'Editing',
+        icon: '✂️'
+    },
+    {
+        slug: 'merge-large-pdfs',
+        titleEn: 'Merge Large PDFs',
+        titleFr: 'Fusionner Gros PDF',
+        descEn: 'Combine huge PDF files without file size limits.',
+        descFr: 'Combinez de gros fichiers PDF sans limite de taille.',
+        category: 'Editing',
+        icon: '🐘'
+    },
+    {
+        slug: 'compress-pdf-no-quality-loss',
+        titleEn: 'Compress PDF No Quality Loss',
+        titleFr: 'Compresser PDF Sans Perte',
+        descEn: 'Reduce file size while keeping images sharp.',
+        descFr: 'Réduisez la taille du fichier tout en gardant les images nettes.',
+        category: 'Editing',
+        icon: '💎'
+    },
+    {
+        slug: 'sign-pdf',
+        titleEn: 'Sign PDF Online',
+        titleFr: 'Signer PDF en Ligne',
+        descEn: 'Add electronic signatures to your contracts.',
+        descFr: 'Ajoutez des signatures électroniques à vos contrats.',
+        category: 'Editing',
+        icon: '✍️'
+    },
+    // Long-Tail Advanced
+    {
+        slug: 'analyze-pdf',
+        titleEn: 'Analyze PDF Structure',
+        titleFr: 'Analyser Structure PDF',
+        descEn: 'Inspect internal PDF objects, fonts, and metadata.',
+        descFr: 'Inspectez les objets, polices et métadonnées internes du PDF.',
+        category: 'Advanced',
+        icon: '🔬'
+    },
+    {
+        slug: 'barcode-generator',
+        titleEn: 'PDF Barcode Generator',
+        titleFr: 'Générateur Code-barres PDF',
+        descEn: 'Create barcodes and QR codes for your PDFs.',
+        descFr: 'Créez des codes-barres et QR codes pour vos PDF.',
+        category: 'Advanced',
+        icon: '🏷️'
+    },
+    {
+        slug: 'xrechnung-viewer',
+        titleEn: 'XRechnung Viewer',
+        titleFr: 'Visualiseur XRechnung',
+        descEn: 'View and validate German e-invoice standards.',
+        descFr: 'Visualisez et validez les normes de facture électronique allemandes.',
+        category: 'Advanced',
+        icon: '🇩🇪'
     }
 ];
 

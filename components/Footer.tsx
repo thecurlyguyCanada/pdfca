@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { Heart, ShieldCheck, MapPin, ChevronDown } from 'lucide-react';
+import { Heart, ShieldCheck, MapPin, ChevronDown, BookOpen, Zap, Scissors, Eye } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
 import { MapleLeaf } from './MapleLeaf';
@@ -94,20 +94,14 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
 
                {/* Column 3: Editing Guides */}
                <div className="lg:col-span-1">
-                  <FooterSection title={t.footerGuidesGroup}>
+                  <FooterSection title={lang === 'fr' ? 'Hubs & Guides' : 'Guide Hubs'}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold">{t.ultimateGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/merge-pdf`} className="hover:text-white transition-colors">{t.mergePdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/compress-pdf`} className="hover:text-white transition-colors">{t.compressPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/rotate-pdf`} className="hover:text-white transition-colors">{t.rotatePdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/delete-pdf-pages`} className="hover:text-white transition-colors">{t.deletePdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/organize-pdf`} className="hover:text-white transition-colors">{t.organizePdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/make-pdf-fillable`} className="hover:text-white transition-colors">{t.makeFillableGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/crop-pdf`} className="hover:text-white transition-colors">{t.cropPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/trim-pdf`} className="hover:text-white transition-colors">{t.trimPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/flatten-pdf`} className="hover:text-white transition-colors">{t.flattenPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/edit-xfa-pdf`} className="hover:text-white transition-colors">{t.editXfaGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/invoice-ocr`} className="hover:text-white transition-colors">{t.invoiceOcrGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuide}</Link></li>
+                        <li className="pt-2 mt-2 border-t border-white/10"></li>
+                        <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {lang === 'fr' ? 'Conversion' : 'Conversions'}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {lang === 'fr' ? 'Édition' : 'Editing'}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Sécurité' : 'Security'}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {lang === 'fr' ? 'OCR & Analyse' : 'OCR & Analysis'}</Link></li>
                         <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{lang === 'en' ? 'View All Guides →' : 'Voir Tous les Guides →'}</Link></li>
                      </ul>
                   </FooterSection>

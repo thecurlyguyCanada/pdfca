@@ -32,6 +32,27 @@ import { GifToPdfGuide } from '@/components/pages/guides/GifToPdfGuide';
 import { AspxToPdfGuide } from '@/components/pages/guides/AspxToPdfGuide';
 import { AcsmToPdfGuide } from '@/components/pages/guides/AcsmToPdfGuide';
 import { PhpToPdfGuide } from '@/components/pages/guides/PhpToPdfGuide';
+import { PdfToWordOnlineGuide } from '@/components/pages/guides/PdfToWordOnlineGuide';
+import { CompressPdfOnlineGuide } from '@/components/pages/guides/CompressPdfOnlineGuide';
+import { MergePdfOnlineGuide } from '@/components/pages/guides/MergePdfOnlineGuide';
+import { PdfConversionsHub } from '@/components/pages/guides/PdfConversionsHub';
+import { PdfEditingHub } from '@/components/pages/guides/PdfEditingHub';
+import { PdfSecurityHub } from '@/components/pages/guides/PdfSecurityHub';
+import { PdfOcrAnalysisHub } from '@/components/pages/guides/PdfOcrAnalysisHub';
+import { PdfToWordOfflineGuide } from '@/components/pages/guides/PdfToWordOfflineGuide';
+import { PdfToWordFormattingGuide } from '@/components/pages/guides/PdfToWordFormattingGuide';
+import { PdfToWordScannedGuide } from '@/components/pages/guides/PdfToWordScannedGuide';
+import { PdfToExcelGuide } from '@/components/pages/guides/PdfToExcelGuide';
+// import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
+import { PdfToXmlGuide } from '@/components/pages/guides/PdfToXmlGuide';
+import { PdfToKindleGuide } from '@/components/pages/guides/PdfToKindleGuide';
+import { SplitPdfOnlineGuide } from '@/components/pages/guides/SplitPdfOnlineGuide';
+import { MergeLargePdfsGuide } from '@/components/pages/guides/MergeLargePdfsGuide';
+import { CompressPdfNoQualityLossGuide } from '@/components/pages/guides/CompressPdfNoQualityLossGuide';
+import { SignPdfGuide } from '@/components/pages/guides/SignPdfGuide';
+import { AnalyzePdfGuide } from '@/components/pages/guides/AnalyzePdfGuide';
+import { BarcodeGeneratorGuide } from '@/components/pages/guides/BarcodeGeneratorGuide';
+import { XRechnungViewerGuide } from '@/components/pages/guides/XRechnungViewerGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -61,16 +82,38 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'flatten-pdf': FlattenPdfGuide,
     'invoice-ocr': InvoiceOcrGuide,
     'pdf-to-csv': PdfToCsvGuide,
-    'pdf-to-excel': PdfToCsvGuide, // Reuse the same rich guide as it covers both
+    // 'pdf-to-excel' moved to Long-Tail below
     'ocr-pdf': InvoiceOcrGuide, // Alias for legacy/general OCR links
-    'analyze-pdf': PhishingPdfGuide,
-    'pdf-to-kindle': PdfToEpubGuide,
+    // 'analyze-pdf' moved to Long-Tail below
+    // 'pdf-to-kindle' moved to Long-Tail below
     'trim-pdf': TrimPdfGuide,
     'pdf-to-ubl': PdfToUblGuide,
     'gif-to-pdf': GifToPdfGuide,
     'aspx-to-pdf': AspxToPdfGuide,
     'acsm-to-pdf': AcsmToPdfGuide,
     'php-to-pdf': PhpToPdfGuide,
+    'pdf-to-word-online': PdfToWordOnlineGuide,
+    'compress-pdf-online': CompressPdfOnlineGuide,
+    'merge-pdf-online': MergePdfOnlineGuide,
+    'pdf-conversions': PdfConversionsHub,
+    'pdf-editing': PdfEditingHub,
+    'pdf-security': PdfSecurityHub,
+    'pdf-ocr-analysis': PdfOcrAnalysisHub,
+    // Long-Tail
+    'pdf-to-word-offline': PdfToWordOfflineGuide,
+    'pdf-to-word-formatting': PdfToWordFormattingGuide,
+    'pdf-to-word-scanned': PdfToWordScannedGuide,
+    'pdf-to-excel': PdfToExcelGuide,
+    // 'pdf-to-csv': PdfToCsvGuide, // ALREADY REGISTERED ABOVE
+    'pdf-to-xml': PdfToXmlGuide,
+    'pdf-to-kindle': PdfToKindleGuide,
+    'split-pdf-online': SplitPdfOnlineGuide,
+    'merge-large-pdfs': MergeLargePdfsGuide,
+    'compress-pdf-no-quality-loss': CompressPdfNoQualityLossGuide,
+    'sign-pdf': SignPdfGuide,
+    'analyze-pdf': AnalyzePdfGuide,
+    'barcode-generator': BarcodeGeneratorGuide,
+    'xrechnung-viewer': XRechnungViewerGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

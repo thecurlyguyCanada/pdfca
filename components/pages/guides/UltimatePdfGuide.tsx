@@ -102,6 +102,34 @@ const getGuideContent = (lang: Language) => ({
                 )
             },
             {
+                id: "ecosystem",
+                title: "The PDF Ecosystem: 4 Pillars of Mastery",
+                content: (
+                    <>
+                        To master PDF management, it helps to understand the four main categories of tools available to you. We have organized our resources into central hubs for each:
+                        <br /><br />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <Link href={`/${lang}/guides/pdf-conversions`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">1. Conversion Hub</h4>
+                                <p className="text-sm text-gray-600">Convert PDF to Word, Excel, PowerPoint, Images, and e-book formats.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-editing`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">2. Editing Hub</h4>
+                                <p className="text-sm text-gray-600">Merge, split, compress, rotate, delete pages, and crop documents.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-security`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">3. Security Hub</h4>
+                                <p className="text-sm text-gray-600">Protect, unlock, and redact sensitive information using local encryption.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-ocr-analysis`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">4. OCR & Analysis</h4>
+                                <p className="text-sm text-gray-600">Extract text from scans, analyze metadata, and generate barcodes.</p>
+                            </Link>
+                        </div>
+                    </>
+                )
+            },
+            {
                 id: "privacy-revolution",
                 title: "The Privacy Revolution: Local-First Processing",
                 content: (
@@ -294,6 +322,34 @@ const getGuideContent = (lang: Language) => ({
                         Aujourd'hui, des milliards de PDF sont créés chaque année. Cependant, nos exigences ont grandi. Nous devons <Link href={`/${lang}/guides/delete-pdf-pages`} className="text-canada-red hover:underline decoration-dashed">supprimer des pages</Link>, signer des contrats et convertir des formats.
                         <br /><br />
                         Ce guide sert de phare à quiconque cherche à naviguer dans ces tâches sans tomber dans le &quot;piège de l'abonnement&quot;. Nous explorerons comment la technologie moderne permet des <strong>outils PDF gratuits en ligne</strong> qui sont plus rapides et plus sécurisés que leurs ancêtres de bureau.
+                    </>
+                )
+            },
+            {
+                id: "ecosystem",
+                title: "L'Écosystème PDF : 4 Piliers de Maîtrise",
+                content: (
+                    <>
+                        Pour maîtriser la gestion PDF, il est utile de comprendre les quatre catégories principales d'outils à votre disposition. Nous avons organisé nos ressources en hubs centraux :
+                        <br /><br />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <Link href={`/${lang}/guides/pdf-conversions`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">1. Hub de Conversion</h4>
+                                <p className="text-sm text-gray-600">Convertir PDF en Word, Excel, PowerPoint, Images et formats ebook.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-editing`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">2. Hub d'Édition</h4>
+                                <p className="text-sm text-gray-600">Fusionner, diviser, compresser, pivoter, supprimer des pages et recadrer.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-security`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">3. Hub de Sécurité</h4>
+                                <p className="text-sm text-gray-600">Protéger, déverrouiller et biffer les informations sensibles.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-ocr-analysis`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">4. OCR & Analyse</h4>
+                                <p className="text-sm text-gray-600">Extraire du texte des scans, analyser les métadonnées et codes-barres.</p>
+                            </Link>
+                        </div>
                     </>
                 )
             },
