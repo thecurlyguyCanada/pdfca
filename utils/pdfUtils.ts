@@ -2872,25 +2872,38 @@ export const convertOdtToPdf = async (file: File): Promise<Blob> => {
   const xmlDoc = parser.parseFromString(contentXml, 'text/xml');
 
   // Extract text from text:p and text:h elements (paragraphs and headings)
-  const textElements = xmlDoc.querySelectorAll('text\\:p, text\\:h, p, h1, h2, h3, h4, h5, h6');
+  // Try multiple selector approaches for cross-browser compatibility
   const paragraphs: string[] = [];
 
-  textElements.forEach((el) => {
-    const text = el.textContent?.trim();
-    if (text) {
-      paragraphs.push(text);
-    }
-  });
+  // Method 1: Try getElementsByTagNameNS for proper namespace handling
+  const textNs = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+  const pElements = xmlDoc.getElementsByTagNameNS(textNs, 'p');
+  const hElements = xmlDoc.getElementsByTagNameNS(textNs, 'h');
 
-  // If no text found via namespaced selectors, try regex fallback
+  for (let i = 0; i < pElements.length; i++) {
+    const text = pElements[i].textContent?.trim();
+    if (text) paragraphs.push(text);
+  }
+  for (let i = 0; i < hElements.length; i++) {
+    const text = hElements[i].textContent?.trim();
+    if (text) paragraphs.push(text);
+  }
+
+  // Method 2: If no text found, try regex fallback on raw XML
   if (paragraphs.length === 0) {
-    const textMatches = contentXml.match(/<text:p[^>]*>([^<]*(?:<[^>]+>[^<]*)*)<\/text:p>/g);
+    const textMatches = contentXml.match(/<text:p[^>]*>([\s\S]*?)<\/text:p>/g);
     if (textMatches) {
       textMatches.forEach(match => {
         const text = match.replace(/<[^>]+>/g, '').trim();
         if (text) paragraphs.push(text);
       });
     }
+  }
+
+  // Method 3: Last resort - extract all text between tags
+  if (paragraphs.length === 0) {
+    const allText = contentXml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (allText) paragraphs.push(allText);
   }
 
   const fullText = paragraphs.join('\n\n');
@@ -3072,13 +3085,12 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
   const jsPDF = await getJsPdf();
 
   const arrayBuffer = await file.arrayBuffer();
-  const zip = await JSZip.loadAsync(arrayBuffer);
-
-  const doc = new jsPDF({
-    orientation: 'landscape',
-    unit: 'pt',
-    format: [960, 540] // 16:9 aspect ratio
-  });
+  let zip;
+  try {
+    zip = await JSZip.loadAsync(arrayBuffer);
+  } catch {
+    throw new Error('Invalid PowerPoint file: unable to read file structure');
+  }
 
   // Find slides
   const slideFiles: string[] = [];
@@ -3086,6 +3098,16 @@ export const convertPptToPdf = async (file: File): Promise<Blob> => {
     if (relativePath.match(/ppt\/slides\/slide\d+\.xml$/)) {
       slideFiles.push(relativePath);
     }
+  });
+
+  if (slideFiles.length === 0) {
+    throw new Error('Invalid PowerPoint file: no slides found');
+  }
+
+  const doc = new jsPDF({
+    orientation: 'landscape',
+    unit: 'pt',
+    format: [960, 540] // 16:9 aspect ratio
   });
 
   // Sort slides by number
