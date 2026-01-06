@@ -29,13 +29,13 @@ const getHubContent = (lang: string) => ({
                 id: 'structure',
                 title: "Structure & Organization",
                 desc: "Change the page structure. Merge files, split documents, or reorder pages.",
-                filter: (slug: string) => ['merge-pdf', 'merge-pdf-online', 'split-pdf', 'organize-pdf', 'delete-pdf-pages', 'pdf-page-remover'].includes(slug)
+                filter: (slug: string) => ['merge-pdf', 'merge-pdf-online', 'merge-large-pdfs', 'split-pdf', 'split-pdf-online', 'organize-pdf', 'delete-pdf-pages', 'pdf-page-remover'].includes(slug)
             },
             {
                 id: 'optimization',
                 title: "Size & Optimization",
                 desc: "Make your files smaller and faster to share.",
-                filter: (slug: string) => ['compress-pdf', 'compress-pdf-online', 'flatten-pdf'].includes(slug)
+                filter: (slug: string) => ['compress-pdf', 'compress-pdf-online', 'compress-pdf-no-quality-loss', 'flatten-pdf'].includes(slug)
             },
             {
                 id: 'visuals',
@@ -64,13 +64,13 @@ const getHubContent = (lang: string) => ({
                 id: 'structure',
                 title: "Structure & Organisation",
                 desc: "Changez la structure des pages. Fusionnez, divisez ou réorganisez.",
-                filter: (slug: string) => ['merge-pdf', 'merge-pdf-online', 'split-pdf', 'organize-pdf', 'delete-pdf-pages', 'pdf-page-remover'].includes(slug)
+                filter: (slug: string) => ['merge-pdf', 'merge-pdf-online', 'merge-large-pdfs', 'split-pdf', 'split-pdf-online', 'organize-pdf', 'delete-pdf-pages', 'pdf-page-remover'].includes(slug)
             },
             {
                 id: 'optimization',
                 title: "Taille & Optimisation",
                 desc: "Rendez vos fichiers plus petits et plus rapides à partager.",
-                filter: (slug: string) => ['compress-pdf', 'compress-pdf-online', 'flatten-pdf'].includes(slug)
+                filter: (slug: string) => ['compress-pdf', 'compress-pdf-online', 'compress-pdf-no-quality-loss', 'flatten-pdf'].includes(slug)
             },
             {
                 id: 'visuals',

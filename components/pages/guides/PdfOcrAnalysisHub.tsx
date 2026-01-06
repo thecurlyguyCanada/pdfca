@@ -29,13 +29,13 @@ const getHubContent = (lang: string) => ({
                 id: 'extraction',
                 title: "Data Extraction",
                 desc: "Pull text and table data from documents.",
-                filter: (slug: string) => ['invoice-ocr', 'pdf-to-ubl', 'extract-pdf-images'].includes(slug)
+                filter: (slug: string) => ['invoice-ocr', 'pdf-to-ubl', 'xrechnung-viewer', 'extract-pdf-images'].includes(slug)
             },
             {
                 id: 'analysis',
                 title: "Analysis & Internals",
                 desc: "Inspect the underlying code and structure.",
-                filter: (slug: string) => ['analyze-pdf', 'edit-xfa-pdf'].includes(slug)
+                filter: (slug: string) => ['analyze-pdf', 'barcode-generator', 'edit-xfa-pdf'].includes(slug)
             }
         ]
     },
@@ -52,13 +52,13 @@ const getHubContent = (lang: string) => ({
                 id: 'extraction',
                 title: "Extraction de Données",
                 desc: "Extrayez texte et tableaux des documents.",
-                filter: (slug: string) => ['invoice-ocr', 'pdf-to-ubl', 'extract-pdf-images'].includes(slug)
+                filter: (slug: string) => ['invoice-ocr', 'pdf-to-ubl', 'xrechnung-viewer', 'extract-pdf-images'].includes(slug)
             },
             {
                 id: 'analysis',
                 title: "Analyse & Internes",
                 desc: "Inspectez le code sous-jacent et la structure.",
-                filter: (slug: string) => ['analyze-pdf', 'edit-xfa-pdf'].includes(slug)
+                filter: (slug: string) => ['analyze-pdf', 'barcode-generator', 'edit-xfa-pdf'].includes(slug)
             }
         ]
     }

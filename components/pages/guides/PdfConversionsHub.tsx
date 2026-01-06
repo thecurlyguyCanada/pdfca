@@ -29,13 +29,19 @@ const getHubContent = (lang: string) => ({
                 id: 'pdf-to-office',
                 title: "PDF to Office (Word, Excel, etc.)",
                 desc: "Unlock your data. Convert read-only PDFs into editable Office documents.",
-                filter: (slug: string) => ['pdf-to-word', 'pdf-to-word-online', 'pdf-to-excel', 'pdf-to-csv', 'pdf-to-xml'].includes(slug)
+                filter: (slug: string) => ['pdf-to-word', 'pdf-to-word-online', 'pdf-to-word-offline', 'pdf-to-word-formatting', 'pdf-to-word-scanned', 'pdf-to-excel', 'pdf-to-csv'].includes(slug)
             },
             {
                 id: 'office-to-pdf',
-                title: "Office & Text to PDF",
+                title: "Office Documents to PDF",
                 desc: "Create professional, shareable documents from your drafts.",
-                filter: (slug: string) => ['word-to-pdf', 'rtf-to-pdf', 'email-to-pdf', 'aspx-to-pdf', 'php-to-pdf'].includes(slug)
+                filter: (slug: string) => ['word-to-pdf', 'rtf-to-pdf', 'email-to-pdf'].includes(slug)
+            },
+            {
+                id: 'developer',
+                title: "Developer & Data Formats",
+                desc: "Convert code files and structured data (XML, UBL).",
+                filter: (slug: string) => ['pdf-to-xml', 'pdf-to-ubl', 'aspx-to-pdf', 'php-to-pdf'].includes(slug)
             },
             {
                 id: 'images',
@@ -64,13 +70,19 @@ const getHubContent = (lang: string) => ({
                 id: 'pdf-to-office',
                 title: "PDF vers Office (Word, Excel, etc.)",
                 desc: "Libérez vos données. Convertissez des PDF en lecture seule en documents Office modifiables.",
-                filter: (slug: string) => ['pdf-to-word', 'pdf-to-word-online', 'pdf-to-excel', 'pdf-to-csv', 'pdf-to-xml'].includes(slug)
+                filter: (slug: string) => ['pdf-to-word', 'pdf-to-word-online', 'pdf-to-word-offline', 'pdf-to-word-formatting', 'pdf-to-word-scanned', 'pdf-to-excel', 'pdf-to-csv'].includes(slug)
             },
             {
                 id: 'office-to-pdf',
-                title: "Office & Texte vers PDF",
+                title: "Documents Office vers PDF",
                 desc: "Créez des documents professionnels et partageables à partir de vos brouillons.",
-                filter: (slug: string) => ['word-to-pdf', 'rtf-to-pdf', 'email-to-pdf', 'aspx-to-pdf', 'php-to-pdf'].includes(slug)
+                filter: (slug: string) => ['word-to-pdf', 'rtf-to-pdf', 'email-to-pdf'].includes(slug)
+            },
+            {
+                id: 'developer',
+                title: "Formats Développeur & Données",
+                desc: "Convertissez fichiers de code et données structurées (XML, UBL).",
+                filter: (slug: string) => ['pdf-to-xml', 'pdf-to-ubl', 'aspx-to-pdf', 'php-to-pdf'].includes(slug)
             },
             {
                 id: 'images',

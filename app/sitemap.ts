@@ -21,12 +21,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const tools = getAllToolSlugs();
     const guides = getAllGuideSlugs();
 
+    // Generic last modified date for this build
+    const lastModified = new Date();
+
     const routes: SitemapEntry[] = [];
 
     // Homepage with alternates
     routes.push({
         url: `${baseUrl}/en`,
-        lastModified: new Date('2026-01-01'),
+        lastModified,
         changeFrequency: 'daily',
         priority: 1,
         alternates: {
@@ -40,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     routes.push({
         url: `${baseUrl}/fr`,
-        lastModified: new Date('2026-01-01'),
+        lastModified,
         changeFrequency: 'daily',
         priority: 1,
         alternates: {
@@ -56,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     staticPages.forEach((page) => {
         routes.push({
             url: `${baseUrl}/en/${page}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
@@ -69,7 +72,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
         routes.push({
             url: `${baseUrl}/fr/${page}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
@@ -85,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guides index page
     routes.push({
         url: `${baseUrl}/en/guides`,
-        lastModified: new Date('2026-01-01'),
+        lastModified,
         changeFrequency: 'weekly',
         priority: 0.7,
         alternates: {
@@ -98,7 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
     routes.push({
         url: `${baseUrl}/fr/guides`,
-        lastModified: new Date('2026-01-01'),
+        lastModified,
         changeFrequency: 'weekly',
         priority: 0.7,
         alternates: {
@@ -114,7 +117,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     tools.forEach((slug) => {
         routes.push({
             url: `${baseUrl}/en/${slug}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'weekly',
             priority: 0.9,
             alternates: {
@@ -127,7 +130,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
         routes.push({
             url: `${baseUrl}/fr/${slug}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'weekly',
             priority: 0.9,
             alternates: {
@@ -144,7 +147,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guides.forEach((slug) => {
         routes.push({
             url: `${baseUrl}/en/guides/${slug}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'monthly',
             priority: 0.8,
             alternates: {
@@ -157,7 +160,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
         routes.push({
             url: `${baseUrl}/fr/guides/${slug}`,
-            lastModified: new Date('2026-01-01'),
+            lastModified,
             changeFrequency: 'monthly',
             priority: 0.8,
             alternates: {
