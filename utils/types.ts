@@ -30,7 +30,18 @@ export enum ToolType {
     XRECHNUNG_VIEWER = 'XRECHNUNG_VIEWER',
     GIF_TO_PDF = 'GIF_TO_PDF',
     ASPX_TO_PDF = 'ASPX_TO_PDF',
-    PHP_TO_PDF = 'PHP_TO_PDF'
+    PHP_TO_PDF = 'PHP_TO_PDF',
+    // Image conversion tools (high-volume French keywords)
+    JPG_TO_PDF = 'JPG_TO_PDF',
+    PDF_TO_JPG = 'PDF_TO_JPG',
+    PNG_TO_PDF = 'PNG_TO_PDF',
+    PDF_TO_PNG = 'PDF_TO_PNG',
+    IMAGE_TO_PDF = 'IMAGE_TO_PDF',
+    JPEG_TO_PDF = 'JPEG_TO_PDF',
+    // Document conversion tools
+    ODT_TO_PDF = 'ODT_TO_PDF',
+    PDF_TO_PPT = 'PDF_TO_PPT',
+    PPT_TO_PDF = 'PPT_TO_PDF'
 }
 
 export enum AppState {

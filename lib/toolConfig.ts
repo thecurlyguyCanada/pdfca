@@ -522,6 +522,238 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     keywords: ['php to pdf', 'convert php', 'code to pdf', 'php source to pdf'],
     keywordsFr: ['php en pdf', 'code php en pdf', 'imprimer code php'],
     accept: '.php,text/x-php,application/x-php,text/plain'
+  },
+  // High-volume French keyword tools
+  {
+    slug: 'jpg-to-pdf',
+    i18nKey: 'jpgToPdf',
+    tool: ToolType.JPG_TO_PDF,
+    title: 'JPG to PDF',
+    titleFr: 'Convertir JPG en PDF Gratuitement',
+    description: 'Convert JPG/JPEG images to PDF documents. Fast, free, and secure conversion in your browser. No uploads required.',
+    descriptionFr: 'Convertissez vos images JPG/JPEG en documents PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur. Aucun téléchargement requis.',
+    keywords: ['JPG to PDF', 'JPEG to PDF', 'convert JPG to PDF', 'image to PDF converter'],
+    keywordsFr: [
+      // High volume primary keywords (49,500+ searches)
+      'convertir jpg en pdf',
+      'convert jpg to pdf',
+      'convertir jpg en pdf gratuit',
+      'convertir jpg en pdf gratuitement',
+      'pdf converter jpg to pdf',
+      'convert jpg to pdf format',
+      'convert from jpg to pdf format',
+      // Additional variants
+      'jpg en pdf gratuit',
+      'jpg vers pdf en ligne',
+      'convertir fichier jpg en pdf',
+      'transformer jpg en pdf'
+    ],
+    accept: '.jpg,.jpeg,image/jpeg'
+  },
+  {
+    slug: 'jpeg-to-pdf',
+    i18nKey: 'jpegToPdf',
+    tool: ToolType.JPEG_TO_PDF,
+    title: 'JPEG to PDF',
+    titleFr: 'Convertir JPEG en PDF Gratuitement',
+    description: 'Convert JPEG images to PDF documents. Fast, free, and secure conversion in your browser.',
+    descriptionFr: 'Convertissez vos images JPEG en documents PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur.',
+    keywords: ['JPEG to PDF', 'convert JPEG to PDF', 'JPEG converter'],
+    keywordsFr: [
+      // High volume primary keywords (6,600+ searches)
+      'convertir jpeg en pdf',
+      'convert jpeg to pdf',
+      'jpeg en pdf gratuit',
+      'convertir fichier jpeg en pdf',
+      'jpeg vers pdf en ligne'
+    ],
+    accept: '.jpg,.jpeg,image/jpeg'
+  },
+  {
+    slug: 'png-to-pdf',
+    i18nKey: 'pngToPdf',
+    tool: ToolType.PNG_TO_PDF,
+    title: 'PNG to PDF',
+    titleFr: 'Convertir PNG en PDF Gratuitement',
+    description: 'Convert PNG images to PDF documents. Preserve transparency and quality. Free, secure conversion.',
+    descriptionFr: 'Convertissez vos images PNG en documents PDF. Préservez la transparence et la qualité. Gratuit et sécurisé.',
+    keywords: ['PNG to PDF', 'convert PNG to PDF', 'PNG converter'],
+    keywordsFr: [
+      // High volume primary keywords (8,100+ searches)
+      'convertir png en pdf',
+      'convertir un png en pdf',
+      'convertir png a pdf',
+      'png en pdf gratuit',
+      'convertir fichier png en pdf',
+      'png vers pdf en ligne'
+    ],
+    accept: '.png,image/png'
+  },
+  {
+    slug: 'image-to-pdf',
+    i18nKey: 'imageToPdf',
+    tool: ToolType.IMAGE_TO_PDF,
+    title: 'Image to PDF',
+    titleFr: 'Convertir Image en PDF Gratuitement',
+    description: 'Convert any image (JPG, PNG, GIF, BMP, WebP) to PDF. Combine multiple images into one PDF. Free and secure.',
+    descriptionFr: 'Convertissez n\'importe quelle image (JPG, PNG, GIF, BMP, WebP) en PDF. Combinez plusieurs images en un seul PDF. Gratuit et sécurisé.',
+    keywords: ['image to PDF', 'convert image to PDF', 'photo to PDF', 'picture to PDF'],
+    keywordsFr: [
+      // High volume primary keywords (9,900+ searches)
+      'convertir image en pdf',
+      'convertir photo en pdf',
+      'convertir une image en pdf',
+      'convertir des images en pdf',
+      'convertir une photo en pdf',
+      'image en pdf gratuit',
+      'photo en pdf gratuit',
+      'convertir fichier image en pdf',
+      'image vers pdf en ligne'
+    ],
+    accept: '.jpg,.jpeg,.png,.gif,.bmp,.webp,image/jpeg,image/png,image/gif,image/bmp,image/webp'
+  },
+  {
+    slug: 'pdf-to-jpg',
+    i18nKey: 'pdfToJpg',
+    tool: ToolType.PDF_TO_JPG,
+    title: 'PDF to JPG',
+    titleFr: 'Convertir PDF en JPG Gratuitement',
+    description: 'Convert PDF pages to JPG images. High quality conversion. Free, secure, and browser-based.',
+    descriptionFr: 'Convertissez les pages PDF en images JPG. Conversion haute qualité. Gratuit, sécurisé et dans votre navigateur.',
+    keywords: ['PDF to JPG', 'convert PDF to JPG', 'PDF to image', 'PDF to JPEG'],
+    keywordsFr: [
+      // High volume primary keywords (27,100+ searches)
+      'convertir pdf en jpg',
+      'convert pdf to jpg',
+      'convert pdf document to jpg',
+      'convert pdf file to jpg',
+      'convert pdf to jpg format',
+      'convertir un pdf en jpg',
+      'convertir pdf jpg',
+      'convert pdf na jpg',
+      'convert a pdf to a jpg',
+      // Additional variants
+      'pdf en jpg gratuit',
+      'pdf vers jpg en ligne',
+      'convertir fichier pdf en jpg'
+    ],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'pdf-to-png',
+    i18nKey: 'pdfToPng',
+    tool: ToolType.PDF_TO_PNG,
+    title: 'PDF to PNG',
+    titleFr: 'Convertir PDF en PNG Gratuitement',
+    description: 'Convert PDF pages to PNG images with transparency support. High quality conversion.',
+    descriptionFr: 'Convertissez les pages PDF en images PNG avec support de la transparence. Conversion haute qualité.',
+    keywords: ['PDF to PNG', 'convert PDF to PNG', 'PDF to image PNG'],
+    keywordsFr: [
+      // High volume primary keywords (4,400+ searches)
+      'convertir pdf en png',
+      'convertir pdf a png',
+      'pdf en png gratuit',
+      'convertir fichier pdf en png',
+      'pdf vers png en ligne'
+    ],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'pdf-to-image',
+    i18nKey: 'pdfToImage',
+    tool: ToolType.PDF_TO_JPG,
+    title: 'PDF to Image',
+    titleFr: 'Convertir PDF en Image Gratuitement',
+    description: 'Convert PDF pages to images (JPG/PNG). Extract images from PDF documents. Free and secure.',
+    descriptionFr: 'Convertissez les pages PDF en images (JPG/PNG). Extrayez les images des documents PDF. Gratuit et sécurisé.',
+    keywords: ['PDF to image', 'convert PDF to image', 'extract images from PDF'],
+    keywordsFr: [
+      // High volume primary keywords (2,400+ searches)
+      'convertir pdf en image',
+      'pdf en image gratuit',
+      'extraire images pdf',
+      'convertir fichier pdf en image'
+    ],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'pdf-to-jpeg',
+    i18nKey: 'pdfToJpeg',
+    tool: ToolType.PDF_TO_JPG,
+    title: 'PDF to JPEG',
+    titleFr: 'Convertir PDF en JPEG Gratuitement',
+    description: 'Convert PDF pages to JPEG images. High quality conversion with adjustable settings.',
+    descriptionFr: 'Convertissez les pages PDF en images JPEG. Conversion haute qualité avec paramètres ajustables.',
+    keywords: ['PDF to JPEG', 'convert PDF to JPEG', 'PDF JPEG converter'],
+    keywordsFr: [
+      // High volume primary keywords (12,100+ searches)
+      'convertir pdf en jpeg',
+      'convert pdf to jpeg',
+      'convertir pdf jpeg',
+      'pdf en jpeg gratuit',
+      'convertir fichier pdf en jpeg',
+      'pdf vers jpeg en ligne'
+    ],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'odt-to-pdf',
+    i18nKey: 'odtToPdf',
+    tool: ToolType.ODT_TO_PDF,
+    title: 'ODT to PDF',
+    titleFr: 'Convertir ODT en PDF Gratuitement',
+    description: 'Convert OpenDocument Text (ODT) files to PDF format. Preserve formatting from LibreOffice/OpenOffice documents.',
+    descriptionFr: 'Convertissez les fichiers OpenDocument Text (ODT) en format PDF. Préservez le formatage des documents LibreOffice/OpenOffice.',
+    keywords: ['ODT to PDF', 'convert ODT to PDF', 'OpenDocument to PDF', 'LibreOffice to PDF'],
+    keywordsFr: [
+      // High volume primary keywords (5,400+ searches)
+      'convertir odt en pdf',
+      'odt en pdf gratuit',
+      'convertir fichier odt en pdf',
+      'odt vers pdf en ligne',
+      'libreoffice en pdf'
+    ],
+    accept: '.odt,application/vnd.oasis.opendocument.text'
+  },
+  {
+    slug: 'pdf-to-ppt',
+    i18nKey: 'pdfToPpt',
+    tool: ToolType.PDF_TO_PPT,
+    title: 'PDF to PowerPoint',
+    titleFr: 'Convertir PDF en PowerPoint Gratuitement',
+    description: 'Convert PDF documents to PowerPoint presentations (PPTX). Preserve slides and formatting.',
+    descriptionFr: 'Convertissez les documents PDF en présentations PowerPoint (PPTX). Préservez les diapositives et le formatage.',
+    keywords: ['PDF to PowerPoint', 'PDF to PPT', 'convert PDF to PPTX', 'PDF to slides'],
+    keywordsFr: [
+      // High volume primary keywords (3,600+ searches)
+      'convertir pdf en ppt',
+      'convertir pdf en powerpoint',
+      'pdf en ppt gratuit',
+      'pdf en powerpoint gratuit',
+      'convertir fichier pdf en powerpoint',
+      'pdf vers powerpoint en ligne'
+    ],
+    accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'ppt-to-pdf',
+    i18nKey: 'pptToPdf',
+    tool: ToolType.PPT_TO_PDF,
+    title: 'PowerPoint to PDF',
+    titleFr: 'Convertir PowerPoint en PDF Gratuitement',
+    description: 'Convert PowerPoint presentations (PPTX/PPT) to PDF format. Preserve slides and animations.',
+    descriptionFr: 'Convertissez les présentations PowerPoint (PPTX/PPT) en format PDF. Préservez les diapositives et les animations.',
+    keywords: ['PowerPoint to PDF', 'PPT to PDF', 'convert PPTX to PDF', 'slides to PDF'],
+    keywordsFr: [
+      // High volume primary keywords (2,400+ searches)
+      'convertir ppt en pdf',
+      'convertir powerpoint en pdf',
+      'ppt en pdf gratuit',
+      'powerpoint en pdf gratuit',
+      'convertir fichier powerpoint en pdf',
+      'powerpoint vers pdf en ligne'
+    ],
+    accept: '.pptx,.ppt,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-powerpoint'
   }
 ];
 
