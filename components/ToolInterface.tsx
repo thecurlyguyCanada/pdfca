@@ -886,7 +886,14 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.PDF_TO_XML && (t.btnConvert || "Convert to XML")}
                         {currentTool === ToolType.XML_TO_PDF && (t.btnConvert || "Convert to PDF")}
                         {currentTool === ToolType.EXCEL_TO_PDF && (t.btnConvert || "Convert to PDF")}
-                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF) && t.btnConvert}
+                        {(currentTool as any === ToolType.HEIC_TO_PDF || currentTool as any === ToolType.EPUB_TO_PDF || currentTool as any === ToolType.PDF_TO_EPUB || currentTool as any === ToolType.CBR_TO_PDF || currentTool as any === ToolType.PDF_TO_WORD || currentTool as any === ToolType.WORD_TO_PDF ||
+                            currentTool as any === ToolType.JPG_TO_PDF || currentTool as any === ToolType.PDF_TO_JPG ||
+                            currentTool as any === ToolType.PNG_TO_PDF || currentTool as any === ToolType.PDF_TO_PNG ||
+                            currentTool as any === ToolType.IMAGE_TO_PDF || currentTool as any === ToolType.JPEG_TO_PDF ||
+                            currentTool as any === ToolType.GIF_TO_PDF || currentTool as any === ToolType.ODT_TO_PDF ||
+                            currentTool as any === ToolType.PDF_TO_PPT || currentTool as any === ToolType.PPT_TO_PDF ||
+                            currentTool as any === ToolType.PAGES_TO_PDF || currentTool as any === ToolType.HTML_TO_PDF
+                        ) && t.btnConvert}
                     </button>
                 </div>
             )}
