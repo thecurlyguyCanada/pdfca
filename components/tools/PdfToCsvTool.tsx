@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
     FileSpreadsheet,
     Table,
@@ -45,15 +45,28 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [showOptions, setShowOptions] = useState(true);
     const [visibleRows, setVisibleRows] = useState(50); // Pagination for performance
 
-    // Cancellation
-    const abortController = useRef<AbortController | null>(null);
+    const handleExtraction = useCallback(async () => {
+        setIsExtracting(true);
+        setError(null);
+        setProgress(0);
+
+        try {
+            const data = await extractTableFromPdf(file, (p) => {
+                setProgress(p);
+            });
+            setOriginalData(data);
+            triggerHaptic('success');
+        } catch (err) {
+            setError("We couldn't extract the table from this PDF. It might be an image, have a highly complex layout, or utilize unsupported fonts.");
+            triggerHaptic('error');
+        } finally {
+            setIsExtracting(false);
+        }
+    }, [file]);
 
     useEffect(() => {
         handleExtraction();
-        return () => {
-            // Cleanup: Could cancel worker here if we implemented full abort signal in worker wrapper
-        };
-    }, [file]);
+    }, [handleExtraction]);
 
     // Apply processing whenever options change
     useEffect(() => {
@@ -74,25 +87,6 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         return () => clearTimeout(timer);
     }, [originalData, smartMerge, normalizeData]);
 
-    const handleExtraction = async () => {
-        setIsExtracting(true);
-        setError(null);
-        setProgress(0);
-
-        try {
-            const data = await extractTableFromPdf(file, (p) => {
-                setProgress(p);
-            });
-            setOriginalData(data);
-            triggerHaptic('success');
-        } catch (err) {
-            setError("We couldn't extract the table from this PDF. It might be an image, have a highly complex layout, or utilize unsupported fonts.");
-            triggerHaptic('error');
-        } finally {
-            setIsExtracting(false);
-        }
-    };
-
     const handleDownload = (format: 'csv' | 'xlsx' | 'qbo') => {
         if (!processedData) return;
         triggerHaptic('medium');
@@ -105,6 +99,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
             link.href = url;
             link.download = file.name.replace(/\.pdf$/i, '.qbo');
             link.click();
+            URL.revokeObjectURL(url); // Clean up blob URL
         } else {
             downloadAsExcel(processedData, file.name.replace(/\.pdf$/i, `.${format}`), format);
         }

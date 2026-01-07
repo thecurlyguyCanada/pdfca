@@ -50,15 +50,14 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
         setProgress(10);
         triggerHaptic('medium');
 
-        try {
-            // Simulate progress for better UX
-            const progressInterval = setInterval(() => {
-                setProgress(prev => Math.min(prev + 5, 90));
-            }, 300);
+        // Simulate progress for better UX
+        const progressInterval = setInterval(() => {
+            setProgress(prev => Math.min(prev + 5, 90));
+        }, 300);
 
+        try {
             const blob = await convertIpynbToPdf(file);
 
-            clearInterval(progressInterval);
             setProgress(100);
             setResult(blob);
             triggerHaptic('success');
@@ -67,6 +66,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
             setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : 'Conversion failed. Please check your file.');
             triggerHaptic('error');
         } finally {
+            clearInterval(progressInterval);
             setIsProcessing(false);
         }
     };

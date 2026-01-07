@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
     Shield,
     ShieldAlert,
@@ -13,12 +13,7 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import { analyzePdfSecurity, SecurityAnalysisResult } from '@/utils/securityAnalyzer';
-import * as pdfjs from 'pdfjs-dist';
-
-// Ensure worker is set for preview rendering
-if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
-}
+import { initPdfWorker } from '@/utils/pdfUtils';
 
 interface PhishingDetectorToolProps {
     file: File;
@@ -31,73 +26,102 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
     const [previewPage, setPreviewPage] = useState(1);
     const [numPages, setNumPages] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const renderIdRef = useRef(0); // For race condition prevention
+
+    const analyzeFile = useCallback(async (f: File) => {
+        setIsAnalyzing(true);
+        setResult(null);
+        try {
+            const analysis = await analyzePdfSecurity(f);
+            setResult(analysis);
+
+            // Get num pages for preview - use dynamic import
+            await initPdfWorker();
+            const pdfjs = await import('pdfjs-dist');
+            const arrayBuffer = await f.arrayBuffer();
+            const loadingTask = pdfjs.getDocument({ data: arrayBuffer });
+            const pdf = await loadingTask.promise;
+            setNumPages(pdf.numPages);
+            // Clean up
+            await pdf.destroy();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsAnalyzing(false);
+        }
+    }, []);
 
     useEffect(() => {
         if (file) {
             analyzeFile(file);
         }
-    }, [file]);
+    }, [file, analyzeFile]);
 
-    const analyzeFile = async (f: File) => {
-        setIsAnalyzing(true);
-        setResult(null); // Reset result on new file
-        try {
-            const analysis = await analyzePdfSecurity(f);
-            setResult(analysis);
-
-            // Get num pages for preview
-            const arrayBuffer = await f.arrayBuffer();
-            const loadingTask = pdfjs.getDocument({
-                data: arrayBuffer
-                // EnableScripting is handled in analyzePdfSecurity logic or default false. 
-            } as any);
-            const pdf = await loadingTask.promise;
-            setNumPages(pdf.numPages);
-
-        } catch (error) {
-            console.error(error);
-            // Error handling can be managed by parent or local state if needed
-        } finally {
-            setIsAnalyzing(false);
-        }
-    };
-
-    // Render Safe Preview
+    // Render Safe Preview with cancellation
     useEffect(() => {
-        if (activeTab === 'preview' && file && canvasRef.current) {
-            renderSafePreview();
-        }
-    }, [activeTab, previewPage, file]);
+        if (activeTab !== 'preview' || !file || !canvasRef.current) return;
 
-    const renderSafePreview = async () => {
-        if (!file || !canvasRef.current) return;
+        const currentRenderId = ++renderIdRef.current;
+        let renderTask: any = null;
+        let pdfDoc: any = null;
 
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const loadingTask = pdfjs.getDocument({
-                data: arrayBuffer,
-                enableScripting: false
-            } as any);
-            const pdf = await loadingTask.promise;
-            const page = await pdf.getPage(previewPage);
+        const renderSafePreview = async () => {
+            try {
+                await initPdfWorker();
+                const pdfjs = await import('pdfjs-dist');
+                const arrayBuffer = await file.arrayBuffer();
 
-            const viewport = page.getViewport({ scale: 1.5 });
-            const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
+                if (currentRenderId !== renderIdRef.current) return;
 
-            if (context) {
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+                const loadingTask = pdfjs.getDocument({
+                    data: arrayBuffer,
+                    enableScripting: false
+                } as any);
+                pdfDoc = await loadingTask.promise;
 
-                await page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                }).promise;
+                if (currentRenderId !== renderIdRef.current) {
+                    await pdfDoc.destroy();
+                    return;
+                }
+
+                const page = await pdfDoc.getPage(previewPage);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = canvasRef.current;
+
+                if (!canvas || currentRenderId !== renderIdRef.current) {
+                    await pdfDoc.destroy();
+                    return;
+                }
+
+                const context = canvas.getContext('2d');
+                if (context) {
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    renderTask = page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    });
+                    await renderTask.promise;
+                }
+
+                // Cleanup after render
+                await pdfDoc.destroy();
+            } catch (e: any) {
+                if (e?.name !== 'RenderingCancelledException') {
+                    console.error("Preview render error", e);
+                }
             }
-        } catch (e) {
-            console.error("Preview render error", e);
-        }
-    };
+        };
+
+        renderSafePreview();
+
+        return () => {
+            if (renderTask) {
+                renderTask.cancel();
+            }
+        };
+    }, [activeTab, previewPage, file]);
 
     const getRiskColor = (level: string) => {
         switch (level) {

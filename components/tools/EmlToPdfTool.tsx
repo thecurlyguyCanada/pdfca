@@ -63,14 +63,13 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
         setProgress(10);
         triggerHaptic('medium');
 
-        try {
-            const progressInterval = setInterval(() => {
-                setProgress(prev => Math.min(prev + 10, 90));
-            }, 200);
+        const progressInterval = setInterval(() => {
+            setProgress(prev => Math.min(prev + 10, 90));
+        }, 200);
 
+        try {
             const blob = await convertEmlToPdf(file);
 
-            clearInterval(progressInterval);
             setProgress(100);
             setResult(blob);
             triggerHaptic('success');
@@ -79,6 +78,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
             setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : 'Conversion failed. Please check your file.');
             triggerHaptic('error');
         } finally {
+            clearInterval(progressInterval);
             setIsProcessing(false);
         }
     };

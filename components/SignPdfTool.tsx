@@ -710,9 +710,12 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
             if (showSignaturesDropdown) setShowSignaturesDropdown(false);
         };
         if (showSignaturesDropdown) {
-            setTimeout(() => document.addEventListener('click', handleClickOutside), 50);
+            const timeoutId = setTimeout(() => document.addEventListener('click', handleClickOutside), 50);
+            return () => {
+                clearTimeout(timeoutId);
+                document.removeEventListener('click', handleClickOutside);
+            };
         }
-        return () => document.removeEventListener('click', handleClickOutside);
     }, [showSignaturesDropdown]);
 
     // === RENDER HELPERS ===

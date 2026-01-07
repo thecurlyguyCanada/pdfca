@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Barcode, Download, Copy, Check, Loader2, FileSpreadsheet, Plus, Trash2, Settings, Grid3x3, FileImage, FileText as FilePdf } from 'lucide-react';
 import { triggerHaptic } from '@/utils/haptics';
 import JsBarcode from 'jsbarcode';
@@ -42,28 +42,21 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
     const canvasRefs = useRef<{ [key: string]: HTMLCanvasElement }>({});
     const [copiedId, setCopiedId] = useState<string | null>(null);
 
-    // Parse Excel/CSV file if provided
-    useEffect(() => {
-        if (file) {
-            parseUploadedFile(file);
-        }
-    }, [file]);
-
-    const parseUploadedFile = async (file: File) => {
+    const parseUploadedFile = useCallback(async (f: File) => {
         setIsGenerating(true);
         try {
-            if (file.name.endsWith('.csv')) {
-                const text = await file.text();
+            if (f.name.endsWith('.csv')) {
+                const text = await f.text();
                 const lines = text.split('\n').filter(line => line.trim());
                 const items: BarcodeItem[] = lines.map((line, idx) => ({
                     id: `${idx + 1}`,
                     text: line.split(',')[0].trim() // First column
                 }));
                 setBarcodeItems(items.length > 0 ? items : [{ id: '1', text: '' }]);
-            } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+            } else if (f.name.endsWith('.xlsx') || f.name.endsWith('.xls')) {
                 const ExcelJS = (await import('exceljs')).default;
                 const workbook = new ExcelJS.Workbook();
-                const arrayBuffer = await file.arrayBuffer();
+                const arrayBuffer = await f.arrayBuffer();
                 await workbook.xlsx.load(arrayBuffer);
                 const worksheet = workbook.worksheets[0];
                 const items: BarcodeItem[] = [];
@@ -89,7 +82,14 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
         } finally {
             setIsGenerating(false);
         }
-    };
+    }, [t]);
+
+    // Parse Excel/CSV file if provided
+    useEffect(() => {
+        if (file) {
+            parseUploadedFile(file);
+        }
+    }, [file, parseUploadedFile]);
 
     const validateBarcodeText = (text: string, format: BarcodeFormat): boolean => {
         if (!text) return false;

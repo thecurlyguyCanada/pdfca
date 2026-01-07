@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Scan, FileSpreadsheet, Copy, Check, Loader2, RefreshCw, AlertTriangle, FileText, FileJson } from 'lucide-react';
 import { InvoiceData } from '@/utils/types';
 import { extractInvoiceData, initPdfWorker } from '@/utils/pdfUtils';
@@ -20,44 +20,7 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
     const containerRef = useRef<HTMLDivElement>(null);
     const [selectedFields, setSelectedFields] = useState<Set<string>>(new Set(['vendor', 'id', 'date', 'total', 'subtotal', 'tax', 'dueDate', 'poNumber']));
 
-    // Initial Scan
-    useEffect(() => {
-        handleScan();
-    }, [file]);
-
-    // Render Preview of Page 1
-    useEffect(() => {
-        if (!pdfJsDoc || !containerRef.current) return;
-
-        const renderPreview = async () => {
-            try {
-                const page = await pdfJsDoc.getPage(1);
-                const viewport = page.getViewport({ scale: 1 });
-
-                // Fit to container width
-                const containerWidth = containerRef.current?.clientWidth || 600;
-                const scale = (containerWidth - 40) / viewport.width;
-                const scaledViewport = page.getViewport({ scale });
-
-                const canvas = document.createElement('canvas');
-                canvas.width = scaledViewport.width;
-                canvas.height = scaledViewport.height;
-
-                const context = canvas.getContext('2d');
-                if (context) {
-                    await page.render({ canvasContext: context, viewport: scaledViewport }).promise;
-                    setCanvasRef(canvas);
-                }
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error("Preview render error", err);
-                }
-            }
-        };
-        renderPreview();
-    }, [pdfJsDoc]);
-
-    const handleScan = async () => {
+    const handleScan = useCallback(async () => {
         setIsScanning(true);
         setError(null);
         try {
@@ -75,7 +38,59 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
         } finally {
             setIsScanning(false);
         }
-    };
+    }, [file]);
+
+    // Initial Scan
+    useEffect(() => {
+        handleScan();
+    }, [handleScan]);
+
+    // Render Preview of Page 1
+    useEffect(() => {
+        if (!pdfJsDoc || !containerRef.current) return;
+
+        let cancelled = false;
+        let renderTask: any = null;
+
+        const renderPreview = async () => {
+            try {
+                const page = await pdfJsDoc.getPage(1);
+                if (cancelled) return;
+
+                const viewport = page.getViewport({ scale: 1 });
+
+                // Fit to container width
+                const containerWidth = containerRef.current?.clientWidth || 600;
+                const scale = (containerWidth - 40) / viewport.width;
+                const scaledViewport = page.getViewport({ scale });
+
+                const canvas = document.createElement('canvas');
+                canvas.width = scaledViewport.width;
+                canvas.height = scaledViewport.height;
+
+                const context = canvas.getContext('2d');
+                if (context && !cancelled) {
+                    renderTask = page.render({ canvasContext: context, viewport: scaledViewport });
+                    await renderTask.promise;
+                    if (!cancelled) {
+                        setCanvasRef(canvas);
+                    }
+                }
+            } catch (err: any) {
+                if (err?.name !== 'RenderingCancelledException' && process.env.NODE_ENV === 'development') {
+                    console.error("Preview render error", err);
+                }
+            }
+        };
+        renderPreview();
+
+        return () => {
+            cancelled = true;
+            if (renderTask) {
+                renderTask.cancel();
+            }
+        };
+    }, [pdfJsDoc]);
 
     const toggleFieldSelection = (field: string) => {
         setSelectedFields(prev => {
@@ -544,8 +559,8 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                 onClick={handleExportExcel}
                                 disabled={selectedFields.size === 0}
                                 className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
-                                        : 'bg-green-600 hover:bg-green-700 text-white hover:shadow-lg active:scale-95'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                    : 'bg-green-600 hover:bg-green-700 text-white hover:shadow-lg active:scale-95'
                                     }`}
                                 title="Export to Excel"
                             >
@@ -556,8 +571,8 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                 onClick={handleExportCSV}
                                 disabled={selectedFields.size === 0}
                                 className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
-                                        : 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-lg active:scale-95'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                    : 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-lg active:scale-95'
                                     }`}
                                 title="Export to CSV"
                             >
@@ -568,8 +583,8 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                 onClick={handleExportJSON}
                                 disabled={selectedFields.size === 0}
                                 className={`py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5 ${selectedFields.size === 0
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
-                                        : 'bg-purple-600 hover:bg-purple-700 text-white hover:shadow-lg active:scale-95'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                                    : 'bg-purple-600 hover:bg-purple-700 text-white hover:shadow-lg active:scale-95'
                                     }`}
                                 title="Export to JSON"
                             >
@@ -583,8 +598,8 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                 onClick={handleCopy}
                                 disabled={selectedFields.size === 0}
                                 className={`flex-1 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 ${selectedFields.size === 0
-                                        ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed opacity-60'
-                                        : 'bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 active:scale-95'
+                                    ? 'bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed opacity-60'
+                                    : 'bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 active:scale-95'
                                     }`}
                             >
                                 <Copy size={18} />

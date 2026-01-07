@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Scan, Code, Copy, Loader2, RefreshCw, AlertTriangle, Download, FileCode } from 'lucide-react';
 import { InvoiceData } from '@/utils/types';
 import { extractInvoiceData, initPdfWorker } from '@/utils/pdfUtils';
@@ -21,44 +21,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
     const [canvasRef, setCanvasRef] = useState<HTMLCanvasElement | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Initial Scan
-    useEffect(() => {
-        handleScan();
-    }, [file]);
-
-    // Render Preview of Page 1
-    useEffect(() => {
-        if (!pdfJsDoc || !containerRef.current) return;
-
-        const renderPreview = async () => {
-            try {
-                const page = await pdfJsDoc.getPage(1);
-                const viewport = page.getViewport({ scale: 1 });
-
-                // Fit to container width
-                const containerWidth = containerRef.current?.clientWidth || 600;
-                const scale = (containerWidth - 40) / viewport.width;
-                const scaledViewport = page.getViewport({ scale });
-
-                const canvas = document.createElement('canvas');
-                canvas.width = scaledViewport.width;
-                canvas.height = scaledViewport.height;
-
-                const context = canvas.getContext('2d');
-                if (context) {
-                    await page.render({ canvasContext: context, viewport: scaledViewport }).promise;
-                    setCanvasRef(canvas);
-                }
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error("Preview render error", err);
-                }
-            }
-        };
-        renderPreview();
-    }, [pdfJsDoc]);
-
-    const handleScan = async () => {
+    const handleScan = useCallback(async () => {
         setIsScanning(true);
         setError(null);
         try {
@@ -75,7 +38,59 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
         } finally {
             setIsScanning(false);
         }
-    };
+    }, [file]);
+
+    // Initial Scan
+    useEffect(() => {
+        handleScan();
+    }, [handleScan]);
+
+    // Render Preview of Page 1 with cancellation
+    useEffect(() => {
+        if (!pdfJsDoc || !containerRef.current) return;
+
+        let cancelled = false;
+        let renderTask: any = null;
+
+        const renderPreview = async () => {
+            try {
+                const page = await pdfJsDoc.getPage(1);
+                if (cancelled) return;
+
+                const viewport = page.getViewport({ scale: 1 });
+
+                // Fit to container width
+                const containerWidth = containerRef.current?.clientWidth || 600;
+                const scale = (containerWidth - 40) / viewport.width;
+                const scaledViewport = page.getViewport({ scale });
+
+                const canvas = document.createElement('canvas');
+                canvas.width = scaledViewport.width;
+                canvas.height = scaledViewport.height;
+
+                const context = canvas.getContext('2d');
+                if (context && !cancelled) {
+                    renderTask = page.render({ canvasContext: context, viewport: scaledViewport });
+                    await renderTask.promise;
+                    if (!cancelled) {
+                        setCanvasRef(canvas);
+                    }
+                }
+            } catch (err: any) {
+                if (err?.name !== 'RenderingCancelledException' && process.env.NODE_ENV === 'development') {
+                    console.error("Preview render error", err);
+                }
+            }
+        };
+        renderPreview();
+
+        return () => {
+            cancelled = true;
+            if (renderTask) {
+                renderTask.cancel();
+            }
+        };
+    }, [pdfJsDoc]);
 
     const handleDownloadUBL = () => {
         if (!data) return;
