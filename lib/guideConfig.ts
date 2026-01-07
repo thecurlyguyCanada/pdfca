@@ -53,6 +53,7 @@ import { SignPdfGuide } from '@/components/pages/guides/SignPdfGuide';
 import { AnalyzePdfGuide } from '@/components/pages/guides/AnalyzePdfGuide';
 import { BarcodeGeneratorGuide } from '@/components/pages/guides/BarcodeGeneratorGuide';
 import { XRechnungViewerGuide } from '@/components/pages/guides/XRechnungViewerGuide';
+import { FinancialStatementPdfGuide } from '@/components/pages/guides/FinancialStatementPdfGuide';
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -114,6 +115,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'analyze-pdf': AnalyzePdfGuide,
     'barcode-generator': BarcodeGeneratorGuide,
     'xrechnung-viewer': XRechnungViewerGuide,
+    'financial-statement-pdf': FinancialStatementPdfGuide,
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);
