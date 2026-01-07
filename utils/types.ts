@@ -80,6 +80,8 @@ export interface InvoiceData {
     dueDate?: string;
     poNumber?: string; // Purchase Order Number
     paymentTerms?: string;
+    customerName?: string;
+    customerTaxId?: string;
     lineItems?: InvoiceLineItem[];
     confidence: number;
     fieldConfidence?: {

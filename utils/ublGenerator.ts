@@ -70,6 +70,8 @@ export const generateUBL = (data: InvoiceData): string => {
     const issueDate = formatDate(data.date);
     const dueDate = formatDate(data.dueDate);
     const vendorName = escapeXml(data.vendor || 'Unknown Vendor');
+    const customerName = escapeXml(data.customerName || 'Unknown Customer');
+    const customerTaxId = escapeXml(data.customerTaxId || '');
 
     // Calculate tax exclusive amount if not present, assuming simple logic or fallback
     const taxAmount = data.tax || 0;
@@ -126,11 +128,19 @@ export const generateUBL = (data: InvoiceData): string => {
         </cac:Party>
     </cac:AccountingSupplierParty>
     
+    
     <cac:AccountingCustomerParty>
         <cac:Party>
             <cac:PartyName>
-                <cbc:Name>Unknown Customer</cbc:Name>
+                <cbc:Name>${customerName}</cbc:Name>
             </cac:PartyName>
+            ${customerTaxId ? `
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID>${customerTaxId}</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>` : ''}
         </cac:Party>
     </cac:AccountingCustomerParty>
 
