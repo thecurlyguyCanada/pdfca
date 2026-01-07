@@ -14,7 +14,7 @@ export function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
 }
 
-const metadata = {
+const metadata: Record<string, { title: string; description: string }> = {
     en: {
         title: 'Free PDF Tools Canada | Online & Secure No-Upload Service',
         description: 'The Polite Canadian PDF Tools. 100% free & secure. Merge, compress, split, and convert PDFs directly in your browser. No uploads—your files never leave your device. PIPEDA compliant.',
@@ -22,6 +22,10 @@ const metadata = {
     fr: {
         title: 'Outils PDF Gratuits Canada | Service en Ligne Sécurisé Sans Téléchargement',
         description: 'Les Outils PDF Canadiens Polis. 100% gratuits et sécurisés. Fusionnez, compressez, divisez et convertissez vos PDF directement dans votre navigateur. Aucun téléchargement—vos fichiers ne quittent jamais votre appareil.',
+    },
+    de: {
+        title: 'Kostenlose PDF-Tools Kanada | Online & Sicher Ohne Upload',
+        description: 'Die höflichen kanadischen PDF-Tools. 100% kostenlos und sicher. PDFs direkt im Browser zusammenführen, komprimieren, teilen und konvertieren. Kein Upload—Ihre Dateien verlassen nie Ihr Gerät.',
     },
 };
 

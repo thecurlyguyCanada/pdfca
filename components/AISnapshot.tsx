@@ -11,7 +11,7 @@ interface AISnapshotProps {
 }
 
 export const AISnapshot: React.FC<AISnapshotProps> = ({ lang, question, answer, steps, toolName }) => {
-    const t = {
+    const translations: Record<string, { title: string; summary: string; steps: string; verified: string }> = {
         en: {
             title: "AI Snapshot",
             summary: "Direct Answer",
@@ -23,8 +23,15 @@ export const AISnapshot: React.FC<AISnapshotProps> = ({ lang, question, answer, 
             summary: "Réponse Directe",
             steps: "Étapes Rapides",
             verified: "Réponse Vérifiée"
+        },
+        de: {
+            title: "KI-Übersicht",
+            summary: "Direkte Antwort",
+            steps: "Schnelle Schritte",
+            verified: "Verifizierte Antwort"
         }
-    }[lang];
+    };
+    const t = translations[lang] || translations.en;
 
     return (
         <div

@@ -1,6 +1,7 @@
 import type { ToolConfig } from './toolConfig';
 import { ORGANIZATION } from '@/config/organization';
 import { URLS, getFullUrl, getAssetUrl } from '@/config/urls';
+import type { Language } from '@/utils/i18n';
 
 export function generateWebsiteSchema() {
   return {
@@ -107,7 +108,7 @@ export function generateLocalBusinessSchema() {
   };
 }
 
-export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 'en' | 'fr' = 'en') {
+export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: Language = 'en') {
   // 2026 Update: Use WebApplication for browser-based tools per Google's guidelines
   // WebApplication is more accurate than generic SoftwareApplication for web apps
   return {
@@ -154,7 +155,7 @@ export function generateArticleSchema(options: {
   title: string;
   description: string;
   slug: string;
-  lang: 'en' | 'fr';
+  lang: Language;
   datePublished?: string;
   dateModified?: string;
 }) {

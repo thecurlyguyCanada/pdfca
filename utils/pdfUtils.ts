@@ -29,11 +29,13 @@ export interface FormField {
 // Lazy load PDF.js
 const getPdfJs = async () => {
   if (!pdfjsLib) {
-    const mod = await import('pdfjs-dist');
-    pdfjsLib = mod.default || mod;
+    // pdfjs-dist v4+ uses ES modules with named exports
+    // The module object itself contains getDocument, GlobalWorkerOptions, etc.
+    pdfjsLib = await import('pdfjs-dist');
   }
   return pdfjsLib;
 };
+
 
 // Lazy load pdf-lib
 const getPdfLib = async () => {

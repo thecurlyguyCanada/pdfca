@@ -1,4 +1,5 @@
 import { ToolType } from '@/utils/types';
+import { Language } from '@/utils/i18n';
 
 export interface ToolConfig {
   slug: string;
@@ -11,6 +12,9 @@ export interface ToolConfig {
   keywordsFr: string[];
   accept?: string;
   i18nKey?: string;
+  titleDe?: string;
+  descriptionDe?: string;
+  keywordsDe?: string[];
 }
 
 export const TOOL_CONFIGS: ToolConfig[] = [
@@ -24,6 +28,15 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Supprimez facilement les pages indésirables de vos fichiers PDF. Sélectionnez plusieurs pages et supprimez-les instantanément. 100% gratuit et sécurisé.',
     keywords: ['delete PDF pages', 'remove PDF pages', 'PDF page remover'],
     keywordsFr: ['supprimer pages PDF', 'retirer pages PDF', 'suppresseur pages PDF'],
+    titleDe: 'Seiten aus PDF Löschen',
+    descriptionDe: 'Entfernen Sie unerwünschte Seiten aus Ihren PDF-Dateien. Einfach online Seiten löschen. Kostenlos und sicher.',
+    keywordsDe: [
+      'seiten aus pdf löschen',
+      'pdf seiten löschen',
+      'pdf seite entfernen',
+      'pdf seiten entfernen',
+      'seiten löschen pdf'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -56,6 +69,19 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'réduire pdf en ligne',
       'diminuer taille pdf'
     ],
+    titleDe: 'PDF Komprimieren',
+    descriptionDe: 'Reduzieren Sie die PDF-Dateigröße online. Kostenlos, sicher und ohne Qualitätsverlust.',
+    keywordsDe: [
+      'pdf komprimieren kostenlos',
+      'pdf verkleinern',
+      'pdf größe reduzieren',
+      'pdf komprimieren',
+      'pdf kleiner machen',
+      'pdf datei verkleinern',
+      'pdf online verkleinern',
+      'pdf datei komprimieren',
+      'verkleinern von pdf'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -66,8 +92,19 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'Fusionner PDF',
     description: 'Combine multiple PDF files into one document. Drag and drop to reorder. Free, secure PDF merging - all processing happens locally.',
     descriptionFr: 'Combinez plusieurs fichiers PDF en un seul document. Glissez-déposez pour réorganiser. Fusion PDF gratuite et sécurisée.',
-    keywords: ['merge PDF', 'combine PDF', 'join PDF files'],
+    keywords: ['merge PDF', 'combine PDF', 'join PDF files', 'murg pdf'],
     keywordsFr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
+    titleDe: 'PDF Zusammenfügen',
+    descriptionDe: 'Fügen Sie mehrere PDF-Dateien zu einem Dokument zusammen. Kostenlos, sicher und direkt im Browser.',
+    keywordsDe: [
+      'pdf dateien zusammenfügen',
+      'pdf zusammenfügen',
+      'pdf verbinden',
+      'mehrere pdf zusammenfügen',
+      'pdf kombinieren',
+      'online pdf zusammenfügen',
+      'dateien zusammenfügen pdf'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -78,7 +115,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'Diviser PDF',
     description: 'Split PDF into separate files by page range. Extract specific pages or split into individual pages. Free and secure.',
     descriptionFr: 'Divisez un PDF en fichiers séparés par plage de pages. Extrayez des pages spécifiques. Gratuit et sécurisé.',
-    keywords: ['split PDF', 'divide PDF', 'separate PDF pages'],
+    keywords: ['split PDF', 'divide PDF', 'separate PDF pages', 'pdf to pdf split'],
     keywordsFr: ['diviser PDF', 'séparer PDF', 'extraire pages PDF'],
     accept: '.pdf,application/pdf'
   },
@@ -114,7 +151,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'HEIC vers PDF',
     description: 'Convert HEIC (iPhone photos) to PDF format. Fast, free, and secure conversion in your browser. No uploads required.',
     descriptionFr: 'Convertissez HEIC (photos iPhone) en format PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur.',
-    keywords: ['HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF'],
+    keywords: ['HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF', 'convert heic to pdf'],
     keywordsFr: [
       // High volume primary keywords
       'convertir heic en pdf',
@@ -266,6 +303,16 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'pdf convert',
       'convert pdf'
     ],
+    titleDe: 'PDF in Word Umwandeln',
+    descriptionDe: 'Wandeln Sie PDF-Dateien in bearbeitbare Word-Dokumente (DOCX) um. Einfach PDF in Word einfügen. Kostenlos und sicher.',
+    keywordsDe: [
+      'pdf in word einfügen',
+      'pdf in word umwandeln',
+      'pdf zu word',
+      'pdf in docx',
+      'pdf bearbeiten word',
+      'pdf in word konvertieren'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -310,6 +357,17 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'word vers pdf gratuit',
       'word en pdf en ligne'
     ],
+    titleDe: 'Word in PDF Umwandeln',
+    descriptionDe: 'Wandeln Sie Word-Dokumente (DOCX) kostenlos in PDF um. Behalten Sie das Format bei. Sicher, schnell und direkt im Browser.',
+    keywordsDe: [
+      'word zu pdf',
+      'word in pdf umwandeln',
+      'docx in pdf',
+      'word datei in pdf',
+      'word in pdf konvertieren',
+      'doc in pdf',
+      'word datei in pdf umwandeln'
+    ],
     accept: '.docx,.doc,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword'
   },
   {
@@ -330,9 +388,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_PAGE_REMOVER,
     title: 'PDF Page Remover',
     titleFr: 'Suppresseur Pages PDF',
-    description: 'Remove specific pages from PDF files. Select pages to delete. Free, fast, and secure page removal.',
+    description: 'Remove specific pages from PDF files. Select pages to delete. 100% Canadian privacy compliant - files never leave your device.',
     descriptionFr: 'Supprimez des pages spécifiques des fichiers PDF. Sélectionnez les pages à supprimer. Gratuit et sécurisé.',
-    keywords: ['remove PDF pages', 'delete PDF pages', 'PDF page remover'],
+    keywords: ['remove PDF pages', 'delete PDF pages', 'PDF page remover', 'remove pages from pdf canada', 'delete pdf pages canada', 'pdf page remover canada', 'erase pdf pages'],
     keywordsFr: ['supprimer pages PDF', 'effacer pages PDF', 'suppresseur pages PDF'],
     accept: '.pdf,application/pdf'
   },
@@ -549,6 +607,16 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'convertir fichier jpg en pdf',
       'transformer jpg en pdf'
     ],
+    titleDe: 'JPG in PDF Umwandeln',
+    descriptionDe: 'Wandeln Sie JPG-Bilder kostenlos in PDF um. Sicher, schnell und direkt im Browser - kein Upload erforderlich.',
+    keywordsDe: [
+      'jpeg in pdf umwandeln',
+      'jpg in pdf umwandeln',
+      'bilder in pdf umwandeln',
+      'foto in pdf',
+      'jpg zu pdf',
+      'jpeg umwandeln pdf'
+    ],
     accept: '.jpg,.jpeg,image/jpeg'
   },
   {
@@ -568,6 +636,13 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'convertir fichier jpeg en pdf',
       'jpeg vers pdf en ligne'
     ],
+    titleDe: 'JPEG in PDF Umwandeln',
+    descriptionDe: 'Wandeln Sie JPEG-Bilder kostenlos in PDF um. Sicher, schnell und direkt im Browser.',
+    keywordsDe: [
+      'jpeg in pdf umwandeln',
+      'jpeg zu pdf',
+      'bilder in pdf umwandeln'
+    ],
     accept: '.jpg,.jpeg,image/jpeg'
   },
   {
@@ -578,7 +653,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'Convertir PNG en PDF Gratuitement',
     description: 'Convert PNG images to PDF documents. Preserve transparency and quality. Free, secure conversion.',
     descriptionFr: 'Convertissez vos images PNG en documents PDF. Préservez la transparence et la qualité. Gratuit et sécurisé.',
-    keywords: ['PNG to PDF', 'convert PNG to PDF', 'PNG converter'],
+    keywords: ['PNG to PDF', 'convert PNG to PDF', 'PNG converter', 'png to pdf format'],
     keywordsFr: [
       // High volume primary keywords (8,100+ searches)
       'convertir png en pdf',
@@ -587,6 +662,15 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'png en pdf gratuit',
       'convertir fichier png en pdf',
       'png vers pdf en ligne'
+    ],
+    titleDe: 'PNG in PDF Umwandeln',
+    descriptionDe: 'Wandeln Sie PNG-Bilder in PDF-Dokumente um. Bewahren Sie Transparenz und Qualität. Kostenlos und sicher.',
+    keywordsDe: [
+      'png in pdf',
+      'png zu pdf',
+      'png u pdf',
+      'png in pdf umwandeln',
+      'bild in pdf'
     ],
     accept: '.png,image/png'
   },
@@ -638,6 +722,15 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'pdf vers jpg en ligne',
       'convertir fichier pdf en jpg'
     ],
+    titleDe: 'PDF in JPG Umwandeln',
+    descriptionDe: 'Wandeln Sie PDF-Seiten in JPG-Bilder um. Hohe Qualität, kostenlos und sicher im Browser.',
+    keywordsDe: [
+      'pdf als jpg',
+      'pdf in jpg umwandeln',
+      'pdf in bild umwandeln',
+      'pdf zu jpg',
+      'pdf bilder extrahieren'
+    ],
     accept: '.pdf,application/pdf'
   },
   {
@@ -648,7 +741,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     titleFr: 'Convertir PDF en PNG Gratuitement',
     description: 'Convert PDF pages to PNG images with transparency support. High quality conversion.',
     descriptionFr: 'Convertissez les pages PDF en images PNG avec support de la transparence. Conversion haute qualité.',
-    keywords: ['PDF to PNG', 'convert PDF to PNG', 'PDF to image PNG'],
+    keywords: ['PDF to PNG', 'convert PDF to PNG', 'PDF to image PNG', 'convert pdf to png', 'convert pdf to png canada'],
     keywordsFr: [
       // High volume primary keywords (4,400+ searches)
       'convertir pdf en png',
@@ -776,6 +869,25 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'convertir document pages en pdf'
     ],
     accept: '.pages,application/vnd.apple.pages'
+  },
+  {
+    slug: 'html-to-pdf',
+    i18nKey: 'htmlToPdf',
+    tool: ToolType.HTML_TO_PDF,
+    title: 'HTML to PDF',
+    titleFr: 'HTML en PDF',
+    description: 'Convert HTML files to PDF. Secure, local processing for Canadians. Save web pages as PDF documents.',
+    descriptionFr: 'Convertir HTML en PDF. Traitement local sécurisé pour les Canadiens.',
+    keywords: [
+      'html to pdf',
+      'html to pdf canada',
+      'convert html to pdf',
+      'save webpage as pdf',
+      'pdf html to pdf',
+      'secure html to pdf'
+    ],
+    keywordsFr: ['html en pdf', 'html en pdf canada'],
+    accept: '.html,.htm,text/html'
   }
 ];
 
@@ -783,7 +895,7 @@ export function getToolConfig(slug: string): ToolConfig | undefined {
   return TOOL_CONFIGS.find((config) => config.slug === slug);
 }
 
-export function getLocalizedToolConfig(slug: string, lang: 'en' | 'fr'): { slug: string; title: string; description: string; keywords: string[] } | undefined {
+export function getLocalizedToolConfig(slug: string, lang: Language): { slug: string; title: string; description: string; keywords: string[] } | undefined {
   const config = TOOL_CONFIGS.find((c) => c.slug === slug);
   if (!config) return undefined;
 

@@ -81,7 +81,7 @@ export default async function ToolPage({
     params: Promise<{ lang: Locale; tool: string }>;
 }) {
     const { lang, tool } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = lang as Language;
     const config = getToolConfig(tool);
 
     if (!config) {

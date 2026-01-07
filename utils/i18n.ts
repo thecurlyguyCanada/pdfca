@@ -1,4 +1,5 @@
 export type Language = 'en' | 'fr';
+// NOTE: German ('de') was removed because translations are incomplete across 30+ files
 
 // Dynamic current year - updates automatically
 export const CURRENT_YEAR = new Date().getFullYear();
@@ -698,7 +699,8 @@ export const translations = {
         faq: [
           { question: "How to merge 2 pdf files into 1?", answer: "Simply upload both documents, arrange them, and click merge. It is the fastest way to combine two PDF files into one for free." },
           { question: "How do I merge multiple PDF files without Acrobat?", answer: "Our tool processes everything locally in your browser, providing a free alternative to Adobe Acrobat for merging, reordering, and combining several PDF documents." },
-          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents, keeping text sharp and images clear." }
+          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents, keeping text sharp and images clear." },
+          { question: "Can I murg pdf files here?", answer: "Yes you can! 'Murg pdf' is a common typo for **merge PDF**. Our tool works perfectly for combining your files, no matter how you spell it." }
         ]
       },
       split: {
@@ -912,6 +914,8 @@ export const translations = {
     toolExcelDesc: "Convert tables to XLSX.",
     toolPhishingDetector: "Analyze PDF",
     toolPhishingDetectorDesc: "Scan for malware & phishing.",
+    toolHtmlToPdf: "HTML to PDF",
+    toolHtmlToPdfDesc: "Convert HTML to PDF.",
 
     toolCompress: "Compress PDF",
     toolCompressDesc: "Reduce file size.",
@@ -1316,7 +1320,7 @@ export const translations = {
 
     seo: {
       homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
-      homeDesc: `Outils PDF canadiens polis. 100% gratuit et sécurisé en ${CURRENT_YEAR}. Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.`,
+      homeDesc: "Outils PDF canadiens polis. 100% gratuit et sécurisé en " + CURRENT_YEAR + ". Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.",
       homeFaq: [
         {
           q: "Est-ce vraiment gratuit ?",
@@ -1346,9 +1350,9 @@ export const translations = {
       pricingTitle: "Tarifs - pdfcanada.ca | Toujours Gratuit",
       pricingDesc: "Nos prix sont simples : 0 $ CAD pour tout le monde. Conversions illimitées et traitement local.",
       privacyTitle: "Politique de Confidentialité et Sécurité des Données | pdfcanada.ca",
-      privacyDesc: `Notre engagement ${CURRENT_YEAR} : tout le traitement PDF se fait localement dans votre navigateur. Vos fichiers ne sont jamais téléchargés, garantissant une sécurité maximale.`,
-      termsTitle: "Conditions d'utilisation - pdfcanada.ca",
-      termsDesc: "Nos conditions d'utilisation polies. Soyez gentil, utilisez les outils librement.",
+      privacyDesc: "Notre engagement " + CURRENT_YEAR + " : tout le traitement PDF se fait localement dans votre navigateur. Vos fichiers ne sont jamais téléchargés, garantissant une sécurité maximale.",
+      termsTitle: "Conditions d'Utilisation - Amicales et Sécurisées | pdfcanada.ca",
+      termsDesc: "Lisez nos conditions d'utilisation polies de " + CURRENT_YEAR + ". Nous privilégions la confidentialité des documents et des outils conviviaux qui gardent vos fichiers en sécurité sur votre appareil.",
       howtoTitle: "Mode d'emploi - pdfcanada.ca",
       howtoDesc: "Instructions faciles pour supprimer des pages PDF, faire pivoter des documents et convertir des fichiers.",
       supportTitle: "Soutenir Local - pdfcanada.ca",
@@ -1959,6 +1963,8 @@ export const translations = {
     toolExcelDesc: "Convertir tableaux en XLSX.",
     toolPhishingDetector: "Analyser PDF",
     toolPhishingDetectorDesc: "Détecter malwares & hameçonnage.",
+    toolHtmlToPdf: "HTML en PDF",
+    toolHtmlToPdfDesc: "Convertir HTML en PDF.",
     toolCompress: "Compresser PDF",
     toolCompressDesc: "Réduire la taille.",
     toolMerge: "Fusionner PDF",
@@ -2289,6 +2295,1214 @@ export const translations = {
     kindleScreenSize: "Taille de l'écran cible",
     reflowInfo: "Votre PDF sera converti en un fichier EPUB 3.0 ajustable. Parfait pour modifier la taille de la police sur n'importe quel Kindle.",
     visualInfo: "Optimisation de style K2PdfOpt : Détection de colonnes, retrait des marges et repagination intelligente pour s'adapter à l'écran Kindle sans zoom."
+  },
+  de: {
+    builtIn: "Hergestellt in Kanada",
+    title: "Die höflichen PDF-Tools",
+    subtitle: "Kostenlos, Sicher, Kanadisch.",
+    description: "Wir helfen Ihnen, Ihre Dokumente stressfrei zu verwalten. Wählen Sie ein Tool unten aus, eh?",
+    localProcessing: "100% Lokale Verarbeitung",
+    localProcessingDesc: "Ihre Dateien verlassen niemals Ihren Browser. Die gesamte Verarbeitung findet auf Ihrem Gerät statt.",
+    noSignup: "Keine Anmeldung erforderlich",
+    secure: "Sicher & Privat",
+    guarantee: "Sorry-free Guarantee",
+    selectToolTitle: "Wählen Sie ein Werkzeug",
+    eh: " eh?",
+    ultimateGuide: "Ultimate PDF Guide 📖",
+    editXfaGuide: "Edit XFA PDF Guide",
+    mergePdfGuide: "Merge PDF Guide",
+    compressPdfGuide: "Compress PDF Guide",
+    rotatePdfGuide: "Rotate PDF Guide",
+    deletePdfGuide: "Delete Pages Guide",
+    organizePdfGuide: "Organize PDF Guide",
+    makeFillableGuide: "Make Fillable Guide",
+    cropPdfGuide: "Crop PDF Guide",
+    splitPdfGuide: "Split PDF Guide",
+    flattenPdfGuide: "Flatten PDF Guide",
+    invoiceOcrGuide: "Invoice OCR Guide",
+    wordToPdfGuide: "Word to PDF Guide",
+    pdfToWordGuide: "PDF to Word Guide",
+    rtfToPdfGuide: "RTF to PDF Guide",
+    heicToPdfGuide: "HEIC to PDF Guide",
+    epubToPdfGuide: "EPUB to PDF Guide",
+    pdfToEpubGuide: "PDF to EPUB Guide",
+    cbrToPdfGuide: "CBR to PDF Guide",
+    emailToPdfGuide: "Email to PDF Guide",
+    insertPictureGuide: "Insert Picture Guide",
+    pageRemoverGuide: "PDF Page Remover Guide",
+    barcodeGeneratorGuide: "Barcode Generator Guide",
+    analyzePdfGuide: "Analyze Security Guide",
+    trimPdfGuide: "Trim PDF Guide",
+
+    // Value Propositions
+    hpFastTitle: "Lightning Fast",
+    hpFastDesc: "Process files instantly in your browser",
+    hpFreeTitle: "100% Free",
+    hpFreeDesc: "No hidden costs, no subscriptions",
+    hpPrivacyTitle: "Privacy First",
+    hpPrivacyDesc: "Your files never leave your device",
+
+    // Sign Tool
+    btnSign: "Finish & Download",
+    drawTitle: "Draw",
+    typeTitle: "Type",
+    btnCreate: "Create",
+
+
+
+    // Compress Tool
+    sizeReduced: "Size Reduced",
+    addMorePdfs: "Add more PDFs",
+    compressGood: "Good",
+    compressGoodDesc: "Best quality, selectable text.",
+    compressBalanced: "Balanced",
+    compressBalancedDesc: "Good quality, smaller size.",
+    compressExtreme: "Extreme",
+    compressExtremeDesc: "Smallest size, lower quality.",
+    compressGoodInfo: "Optimizes metadata and streams. Text remains selectable.",
+    compressBalancedInfo: "Re-renders pages at 150 DPI. Text becomes non-selectable.",
+    compressExtremeInfo: "Aggressive re-rendering at 96 DPI. Max compression.",
+    selectCompressionLevel: "Select Compression Level",
+
+    // Landing Page Sections
+    landingPage: {
+      // Keep Your Simple Tasks Simple
+      simpleTasksTitle: "Keep Your Simple Tasks Simple",
+      simpleTasksDesc: "pdfcanada.ca is the first and only PDF software you'll love. We have all the tools you'll need to start, manage, and finish your work with digital documents—all without leaving your browser.",
+
+      // Work Directly on Files
+      workDirectlyTitle: "Work Directly in Your Browser",
+      workDirectlyDesc: "Do more than just view PDFs. Merge, compress, split, rotate, and convert your documents—all directly in your browser. With over 20 powerful tools, you can enhance and transform your files without ever uploading them to a server.",
+
+      // Perfect Document
+      perfectDocTitle: "Create the Perfect Document",
+      perfectDocDesc: "File too big? Compress it. Need a specific format? Convert it. Things getting chaotic? Merge and split files, or remove excess pages. pdfcanada.ca has everything you need to make your documents just right.",
+
+      // Privacy First
+      privacyFirstTitle: "Your Privacy is Our Priority",
+      privacyFirstDesc: "Unlike other PDF tools, we process everything locally in your browser. Your files never leave your device. No cloud uploads, no data collection, no tracking. What happens on your computer, stays on your computer—eh?",
+
+      // Why Choose Us section
+      whyChooseTitle: "Why Choose pdfcanada.ca?",
+
+      trustedByTitle: "Canadians Trust Us",
+      trustedByDesc: "Over 10,000 Canadians have used our service to simplify their work with digital documents. From Toronto to Vancouver, we're the polite choice for PDF tools.",
+
+      freeForeverTitle: "Free Forever",
+      freeForeverDesc: "Every tool on pdfcanada.ca is 100% free with no hidden fees, no watermarks, and no signup required. Just honest, Canadian service.",
+
+      noUploadsTitle: "No Uploads Required",
+      noUploadsDesc: "All processing happens locally in your browser using WebAssembly technology. Your files never touch our servers, ensuring maximum privacy and security.",
+
+      openSourceTitle: "Built with Love in Canada",
+      openSourceDesc: "Made by a small team in Toronto, Ontario. We believe in privacy-first technology and keeping things simple—the Canadian way.",
+
+      fastSecureTitle: "Lightning Fast & Secure",
+      fastSecureDesc: "Powered by your own device, our tools process files instantly without network delays. Plus, with local processing, your documents stay 100% secure.",
+
+      pipedaTitle: "PIPEDA Compliant",
+      pipedaDesc: "We take Canadian privacy laws seriously. Our local-first approach means we don't collect, store, or process your personal information.",
+
+      // Final CTA
+      ctaTitle: "Ready to Get Started?",
+      ctaDesc: "Join thousands of Canadians who trust pdfcanada.ca for their document needs. Select a tool above and start working—no signup required.",
+      ctaButton: "Explore All Tools",
+    },
+
+    // SEO General
+    seo: {
+      homeTitle: "Free PDF Tools Canada | Online & Secure No-Upload Service | pdfcanada.ca",
+      homeDesc: "The Polite Canadian PDF Tools. 100% free & secure in " + CURRENT_YEAR + ". Merge, compress, and convert PDFs directly in your browser. No uploads—your files never leave your device.",
+      homeFaq: [
+        {
+          q: "Is pdfcanada.ca really free?",
+          a: "Absolute-leaf! Every tool on our site is 100% free. No watermarks, no signups, and no hidden fees. We're just polite Canadians helping you manage your documents."
+        },
+        {
+          q: "How secure is my data on pdfcanada.ca?",
+          a: "It's super secure. Unlike other tools that upload your files to a server, we process everything locally in your browser. Your files never leave your computer, eh?"
+        },
+        {
+          q: "What tools do you offer?",
+          a: "We offer a full suite of PDF tools including: Delete Pages, Rotate PDF, Merge PDF, Compress PDF, HEIC to PDF, EPUB to PDF, CBR (Comic) to PDF, PDF to Word, Word to PDF, Sign PDF, and a PDF Form Filler."
+        },
+        {
+          q: "Do I need to create an account or sign up?",
+          a: "No signup required! Just visit our site, select your tool, and start working on your PDF immediately. No email, no password, no hassle."
+        },
+        {
+          q: "Can I merge multiple PDF files into one?",
+          a: "Absolutely! Our Merge PDF tool lets you combine multiple PDF files into a single document. Just drag and drop your files, arrange them in order, and download your merged PDF."
+        },
+        {
+          q: "How do I convert a PDF to Word without losing formatting?",
+          a: "Use our PDF to Word tool. It extracts text and basic structure from your PDF into a .docx file. For best results, use PDFs with selectable text rather than scanned images."
+        }
+      ],
+      pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
+      pricingDesc: "Unbelievably free PDF tools. $0 CAD for unlimited file conversions, merges, and edits. No hidden fees, no subscriptions, just polite Canadian service.",
+      privacyTitle: "Privacy Policy & Data Security | pdfcanada.ca",
+      privacyDesc: "Our " + CURRENT_YEAR + " privacy commitment: All PDF processing happens locally in your browser via WebAssembly. Your files are never uploaded, ensuring maximum security and trust.",
+      termsTitle: "Terms of Service - Friendly & Secure | pdfcanada.ca",
+      termsDesc: "Read our polite " + CURRENT_YEAR + " terms of service. We focus on document privacy and user-friendly tools that keep your files safe on your device. Free to use for everyone.",
+      howtoTitle: "How to Use pdfcanada.ca | PDF Tutorials",
+      howtoDesc: "Easy instructions on how to delete PDF pages, rotate documents, and convert files using pdfcanada.ca.",
+      supportTitle: "Support Local Canadian Developers | Donate | pdfcanada.ca",
+      supportDesc: "Support the Canadian team building free, privacy-focused PDF tools. Buy us a coffee or a timbit to keep the servers running.",
+      sorryTitle: "Sorry Policy - pdfcanada.ca",
+      sorryDesc: "Our guarantee to apologize if anything goes wrong. The most Canadian policy on the web.",
+      fillableTitle: "How to make a PDF fillable | pdfcanada.ca",
+      fillableDesc: "Learn how to make a PDF fillable for free using our Canadian tools. Add text fields to flat PDFs securely and locally.",
+      aboutTitle: "About Us - Our Commitment to Privacy | pdfcanada.ca",
+      aboutDesc: "Learn more about pdfcanada.ca, our mission to provide secure, local-first PDF tools, and why we believe your data should stay on your device."
+    },
+
+    // Feature Pages SEO & Content
+    pricingPage: {
+      content: "At pdfcanada.ca, we believe that essential document tools should be free, accessible, and private. That's why we've committed to a $0 price tag for all our core features. Whether you need to delete pages, rotate a PDF, or convert formats, you'll never hit a paywall here. We rely on the generosity of our users (and our love for the game) to keep things running. If you're looking for free pdf tools Canada, you've found the best spot on the web.",
+      faq: [
+        {
+          question: "Is pdfcanada.ca really free?",
+          answer: "You betcha! Every tool on our site is completely free to use. we don't watermark your files or limit how many you can process."
+        },
+        {
+          question: "Do I need a credit card for the free plan?",
+          answer: "No way, eh. No credit card, no signup, no hassle. Just upload your file and get to work."
+        },
+        {
+          question: "Why is it free? What's the catch?",
+          answer: "No catch. We run lean using local processing technology (your browser does the work), so our server costs are low. We accept optional donations (Timbits!) to cover the basics."
+        },
+        {
+          question: "Can I use this for my business?",
+          answer: "Absolutely. Our free PDF tools are perfect for small businesses, freelancers, and anyone who wants to save money on expensive software."
+        },
+        {
+          question: "How does the 'Timbits' support work?",
+          answer: "It's an optional $1 tip. If you love our service and want to say thanks, you can 'buy us a Timbit'. It helps us keep the lights on and the code flowing."
+        }
+      ]
+    },
+    supportPage: {
+      content: "We're a small team of developers based in Toronto, Ontario, dedicated to building the most polite and private PDF tools on the internet. Unlike big corporations that harvest your data, we built pdfcanada.ca to process everything locally on your device. Your files never leave your computer. By supporting us, you're backing indie Canadian software and helping us maintain a free utility for everyone.",
+      faq: [
+        {
+          question: "How can I support pdfcanada.ca?",
+          answer: "The best way is to share our tools with your friends! If you have a loonie to spare, you can also use our 'Drop a Loonie' button to send a small tip."
+        },
+        {
+          question: "Where does my donation go?",
+          answer: "Every dollar acts as a vote of confidence. It goes towards server costs (hosting), domain fees, and maybe a double-double for the dev team during late-night coding sessions."
+        },
+        {
+          question: "Is my payment secure?",
+          answer: "Yes. We use Stripe for all transactions. We never see or store your credit card information."
+        },
+        {
+          question: "Why should I support local software?",
+          answer: "Supporting local means you're helping build a tech ecosystem that respects privacy and values users over profit. Plus, it's the Canadian thing to do, eh?"
+        },
+        {
+          question: "Do you offer refunds on tips?",
+          answer: "Since it's a small donation, we generally don't, but if you made a mistake, just reach out. We'll apologize and sort it out."
+        }
+      ]
+    },
+    aboutPage: {
+      title: "Built for Canadians, by Canadians",
+      subtitle: "Privacy-first PDF tools that respect your documents and your data.",
+      mission: "Our Mission",
+      missionText: "We believe that essential document tools should be free, secure, and accessible to everyone. Our goal is to provide a privacy-first alternative to cloud-based PDF processors, ensuring that sensitive Canadian data stays right here on your device.",
+      story: "The pdfcanada.ca Story",
+      storyText: "Started by a small team in Toronto, pdfcanada.ca was born out of a frustration with modern PDF tools. Most online converters force you to upload your sensitive documents to distant servers, often harvesting your data in the process. We knew there was a better, more 'polite' way. By leveraging modern browser technologies like WebAssembly, we've built a suite of tools that work entirely on your computer.",
+      values: "Our Core Values",
+      value1Title: "100% Privacy",
+      value1Text: "Your files never leave your device. Period. We use local processing to ensure your data stays private.",
+      value2Title: "No Paywalls",
+      value2Text: "No subscriptions, no hidden fees, and no watermarks. Essential tools should be free for everyone.",
+      value3Title: "User-First Service",
+      value3Text: "No signups, no complex interfaces, and no bloated software. Just simple tools that work.",
+      trustTitle: "Why Trust PDFCanada.ca?",
+      trust1Title: "Canadian Compliance",
+      trust1Text: "We strictly follow PIPEDA guidelines, ensuring Canadian data sovereignty by keeping processing on your hardware.",
+      trust2Title: "Local-First Security",
+      trust2Text: "Our 'Zero-Upload' architecture means your sensitive documents (tax files, medical records) never touch a cloud server.",
+      trust3Title: "Transparent Tech",
+      trust3Text: "We use audited open-source libraries like pdf-lib and WebAssembly to ensure reliable, high-speed processing.",
+      techTitle: "Our Technology Stack",
+      techText: "PDFCanada.ca is built using modern WebAssembly (WASM) modules. This allows us to run complex C++ and JavaScript engines directly in your browser's memory, providing the speed of a desktop application with the security of a sandboxed web environment."
+    },
+    features: {
+      delete: {
+        title: "Delete PDF Pages Online - Remove Pages from PDF for Free | pdfcanada.ca",
+        desc: "Best PDF page remover. Remove unwanted pages from your PDF securely. Select pages visually and delete them instantly. No uploads—all processing happens on your device. Free & private.",
+        h1: "Delete PDF Pages",
+        subtitle: "The polite way to remove pages from a PDF.",
+        content: "Need to delete pages from your PDF? Our tool makes it easy to select and remove unwanted pages. Whether it's a blank page, a mistake, or sensitive information, you can clean up your document in seconds.",
+        steps: [
+          "Click the 'Select File' button to choose your PDF document.",
+          "You will see thumbnails of all your pages. Simply click on the pages you wish to remove. They will be marked with a trash icon.",
+          "Click 'Remove Pages' to instantly download your clean, updated PDF."
+        ],
+        quickAnswer: {
+          question: "How do I remove specific pages from a PDF?",
+          answer: "You can remove pages from a PDF for free using our local-first tool. Simply select the pages you want to delete and download the updated file. No signup or upload required.",
+          tool: "Delete PDF Pages",
+          steps: ["Upload your PDF", "Select unwanted pages", "Download cleaned PDF"]
+        }
+      },
+      pdfPageRemover: {
+        title: "PDF Page Remover Online - Remove Pages from PDF for Free | pdfcanada.ca",
+        desc: "Best PDF page remover. Remove unwanted pages from your PDF securely. Select pages visually and delete them instantly. No uploads—all processing happens on your device. Free & private.",
+        h1: "PDF Page Remover",
+        subtitle: "The polite way to remove pages from a PDF.",
+        content: "Need a PDF page remover? Maybe there's a blank page, or some sensitive info you'd rather not share. Our tool lets you select and remove pages from a PDF file. It happens instantly in your browser.",
+        steps: [
+          "Click the 'Select File' button to choose your PDF document.",
+          "You will see thumbnails of all your pages. Simply click on the pages you wish to remove. They will be marked with a trash icon.",
+          "Click 'Remove Pages' to instantly download your clean, updated PDF."
+        ],
+        quickAnswer: {
+          question: "What is the best way to remove pages from a PDF?",
+          answer: "The best way is to use a secure, browser-based tool like pdfcanada.ca that processes your file locally. This ensures your data never leaves your device while removing unwanted pages.",
+          tool: "PDF Page Remover",
+          steps: ["Select your PDF file", "Click pages to delete", "Save your new PDF"]
+        }
+      },
+      flatten: {
+        title: "Flatten PDF Online - Make PDF Non-Editable & Secure | pdfcanada.ca",
+        desc: "Convert PDF pages to uneditable images to prevent changes. Flatten forms and protect your content securely via local processing. 100% private, no uploads.",
+        h1: "Flatten PDF",
+        subtitle: "Lock your document to prevent edits or selection.",
+        content: "Need to ensure your PDF can't be edited easily? Our tool flattens your document by converting each page into a high-quality image. This prevents text selection and modifications by standard PDF editors.",
+        steps: [
+          "Select the PDF you want to protect.",
+          "We will process each page and turn it into a flat image.",
+          "Download your new, non-editable PDF."
+        ],
+        quickAnswer: {
+          question: "How do I make a PDF non-editable?",
+          answer: "Flattening a PDF converts its pages into images, preventing others from easily editing the text or form fields. Our tool does this locally for maximum privacy.",
+          tool: "Flatten PDF",
+          steps: ["Upload PDF", "Process to flat images", "Download secure file"]
+        }
+      },
+      rotate: {
+        title: "Rotate PDF Online - Permanently Fix PDF Orientation for Free | pdfcanada.ca",
+        desc: "Rotate PDF pages left or right and save them permanently. Fix upside-down scans instantly in your browser with 100% privacy. No uploads, proudly Canadian.",
+        h1: "Rotate PDF Pages",
+        subtitle: "Fix those upside-down scans in seconds, eh?",
+        content: "Scanned a document the wrong way? We've all been there. Use this tool to rotate individual pages or the whole document left or right. We'll save a new copy that's oriented correctly.",
+        steps: [
+          "Upload your PDF file using the file selector.",
+          "Click the rotate button on individual pages to turn them 90 degrees, or use the 'Rotate All' buttons at the top.",
+          "When it looks right, click 'Apply Rotation' to save your new PDF."
+        ],
+        quickAnswer: {
+          question: "How can I permanently rotate a PDF?",
+          answer: "Use an online rotation tool to adjust page orientation (left or right) and save the changes permanently. Our tool is secure and handles rotation right in your browser.",
+          tool: "Rotate PDF",
+          steps: ["Upload document", "Rotate pages visualy", "Save permanently"]
+        }
+      },
+      privatePdf: {
+        quickAnswer: {
+          question: "Why choose local PDF tools?",
+          answer: "Local processing ensures your files never leave your device, offering total privacy, no file size limitations, and instant speed with no upload times.",
+          tool: "Private PDF Technology",
+          steps: ["Maximum Security", "Instant Speed", "No Data Limits"]
+        }
+      },
+      legalPdf: {
+        quickAnswer: {
+          question: "Are these PDF tools safe for legal documents?",
+          answer: "Yes. Our local-first tools process files entirely in your browser using WebAssembly. No data is ever uploaded to a server, ensuring full compliance with solicitor-client privilege and PIPEDA guidelines.",
+          tool: "Legal PDF Tools",
+          steps: ["Select sensitive files", "Process locally in browser", "Download securely"]
+        }
+      },
+      heic: {
+        title: "HEIC to PDF Converter - Convert iPhone Photos Safely | pdfcanada.ca",
+        desc: "Convert HEIC photos to PDF instantly in your browser. Safely transform iPhone photos without uploading to a server. 100% free, private, and local-first processing.",
+        h1: "Convert HEIC to PDF",
+        subtitle: "Make iPhone photos compatible with everything.",
+        content: "If you've ever tried to send an iPhone photo to a PC or upload it to a government form, you've probably run into the .HEIC problem. Apple devices use HEIC files for photos, which are great for saving space but tricky for sharing. That's where we come in. Our tool lets you convert heic to pdf quickly and easily. Whether you're wondering how do i convert heic to pdf for a job application or how to change a heic file to pdf for your taxes, our Canadian-made tool is the answer.\n\nWe process your files locally, which means if you need to know how to change heic to pdf without uploading your personal photos to a server, this is the safest way. You can change heic file to pdf or even combine heic to pdf (by converting them one by one!) without worrying about privacy. We support standard .heic files and turn them into high-quality PDFs.\n\nSo, if you're looking for a heic to pdf converter that respects your data, give pdfcanada.ca a try. We help you learn how to change a heic to a pdf instantly. No need for expensive software like Adobe convert heic to pdf—our free tool does the trick right in your browser. From conversion heic to pdf to ensuring your memories are safe, we've got you covered.",
+        steps: [
+          "Select your .HEIC image file from your computer or phone.",
+          "Our tool automatically processes the image locally in your browser to convert it.",
+          "Click 'Download' to save your new PDF file."
+        ],
+        quickAnswer: {
+          question: "How do I convert HEIC photos to PDF on a PC?",
+          answer: "You can convert Apple's HEIC photos to PDF for free without specialized software. Use our browser-based converter to transform iPhone photos into PDFs locally.",
+          tool: "HEIC to PDF",
+          steps: ["Choose HEIC images", "Auto-convert locally", "Download PDFs"]
+        },
+        faq: [
+          {
+            question: "How do I convert HEIC to PDF for free?",
+            answer: "It's simple! Use our heic to pdf converter above. Just select your file, and we'll handle the conversion heic to pdf right here on your device."
+          },
+          {
+            question: "How do you convert HEIC to PDF on Windows?",
+            answer: "Windows doesn't always open HEIC files by default. But you can use our website to change heic file to pdf instantly without installing any plugins."
+          },
+          {
+            question: "How to change a HEIC to PDF on iPhone?",
+            answer: "You can use this site directly on your iPhone! It's a quick way to convert heic to pdf convert tasks without downloading extra apps."
+          },
+          {
+            question: "Can I combine HEIC to PDF?",
+            answer: "Currently, we convert one image at a time to keep things fast and simple. You can convert multiple files one after another to change from heic to pdf."
+          },
+          {
+            question: "Is it secure to change HEIC to PDF here?",
+            answer: "Absolutely. Unlike other tools (like heic to pdf ilovepdf), we process everything locally. Your photos never leave your device, making it the safest way to convert a heic to pdf."
+          }
+        ]
+      },
+      epubToPdf: {
+        title: "EPUB to PDF Converter - Convert Ebooks to PDF for Free | pdfcanada.ca",
+        desc: "Convert EPUB ebooks to PDF format instantly. Read your books on any device. Secure local-first conversion—your files never leave your browser. Fast & Free.",
+        h1: "Convert EPUB to PDF",
+        subtitle: "Read your favorite ebooks on any device, eh?",
+        content: "Looking to convert an EPUB to PDF? You've landed in the right spot, friend. Whether you need to print an ebook, share it with a colleague who doesn't have an e-reader, or just prefer the universality of a PDF, our tool is here to help. Using our free EPUB to PDF converter, you can easily change EPUB to PDF format without your file ever leaving your computer. That's right—we process everything locally, making it the safest way to transform PDF to EPUB or vice versa. We handle the formatting so you don't have to worry about how to convert epub to pdf manually.\n\nWhy use our tool? Well, if you're wondering how do i convert epub to pdf without signing up for sketchy sites, this is your answer. We support standard .epub files and convert them into clean, readable PDFs. This is perfect for students, professionals, and anyone who needs to translate epub to pdf for wider compatibility. So if you need to convert a epub to pdf, convert an epub to pdf, or just want a reliable epub file convert to pdf solution, give ours a try. It's built right here in Canada, and we promise to treat your files with the utmost respect. No data collection, just simple, polite conversion.",
+        steps: [
+          "Click 'Select File' to upload your .epub file.",
+          "Our local engine will instantly start to convert epub to pdf format directly in your browser.",
+          "Wait a brief moment as we format the pages to look just right.",
+          "Download your new PDF file. It's now ready to open on any device that supports PDF!"
+        ],
+        quickAnswer: {
+          question: "How do I convert an EPUB ebook to PDF?",
+          answer: "You can convert EPUB to PDF instantly using our browser-based tool. It formats your ebook into a clean PDF document for easy reading or printing, processing everything locally.",
+          tool: "EPUB to PDF",
+          steps: ["Upload .epub file", "Wait for local formatting", "Download your PDF"]
+        },
+        faq: [
+          {
+            question: "How to convert EPUB to PDF for free?",
+            answer: "It's super easy, eh! Just use our tool above. Upload your file, and we convert epub to pdf instantly in your browser. No hidden fees, no subscriptions."
+          },
+          {
+            question: "How do I convert EPUB to PDF without losing formatting?",
+            answer: "Our smart converter tries its best to preserve your ebook's layout. We transform the EPUB structure into standard PDF pages so it looks great on any screen or paper."
+          },
+          {
+            question: "Can I convert an EPUB file to PDF on my phone?",
+            answer: "You sure can! Our site works great on mobile. Whether you're on iPhone or Android, you can change epub to pdf right from your browser."
+          },
+          {
+            question: "How to open EPUB file as PDF?",
+            answer: "You can't open an EPUB directly as a PDF, you need to convert it first. Use our simple tool to convert epub file to pdf, and then you can open it in Adobe Reader, Preview, or any other PDF viewer."
+          },
+          {
+            question: "Is it safe to convert my ebook online?",
+            answer: "With pdfcanada.ca, it is! We process everything locally on your device. Unlike other sites where you upload your book to a server, we convert an epub to pdf right on your computer. Your files never leave your hands."
+          }
+        ]
+      },
+      pdfToEpub: {
+        title: "PDF to EPUB Converter - Make PDF E-Reader Ready for Free | pdfcanada.ca",
+        desc: "Convert PDF to reflowable EPUB format for Kindle, Kobo, or mobile. Local-first processing ensures 100% privacy. No uploads required, proudly Canadian.",
+        h1: "Convert PDF to EPUB",
+        subtitle: "Take your reading material to go on your e-reader.",
+        content: "Trying to read a standard PDF on an e-reader can be a bit of a hassle, eh? Text is too small, zooming is awkward... that's where we come in. Our tool lets you convert pdf to epub format, making your documents reflowable and easy to read on any screen size. Whether you're looking to convert pdf file to epub for your morning commute or need a reliable pdf to epub converter for your personal library, we've got you covered.\n\nWe know you might be asking, 'how do you convert pdf to epub securely?' or 'how to convert pdf to epub without losing my data?' The answer is local processing. Unlike other tools that upload your private docs to a server, our AI-enhanced engine handles the convert pdf to epub task right on your device. It minimizes formatting errors and attempts to preserve the structure of your document. If you've been searching for how to turn pdf into epub, how to convert a pdf to an epub, or even AI convert pdf to epub, you'll find our solution robust and privacy-focused.\n\nUse our tool to transform pdf to epub today. It supports converting bulk text and simple images into the .epub format. So stop squinting at tiny PDF text and change epub to pdf (or back again!) with pdfcanada.ca. We make it easy to learn how to convert pdf to epub format and take your reading material with you, wherever the True North leads you.",
+        steps: [
+          "Select the PDF file you wish to convert to an ebook.",
+          "Our system analyzes the text and layout to convert pdf to epub optimally.",
+          "The conversion happens locally—secure and fast.",
+          "Download your .epub file and transfer it to your Kobo, Kindle, or tablet.",
+          "Enjoy a better reading experience, eh!"
+        ],
+        quickAnswer: {
+          question: "How do I convert a PDF to EPUB for my Kindle?",
+          answer: "To read a PDF on an e-reader, convert it to the reflowable EPUB format. Our tool extracts the text and optimizes it for small screens, ensuring a comfortable reading experience.",
+          tool: "PDF to EPUB",
+          steps: ["Select your PDF", "Auto-analyze and convert", "Download .epub file"]
+        },
+        faq: [
+          {
+            question: "How to convert PDF to EPUB for Kindle or Kobo?",
+            answer: "Most e-readers prefer EPUB files (or KEPUB for Kobo). Simply use our tool to convert pdf to epub format, download the file, and transfer it to your device via USB or email."
+          },
+          {
+            question: "How to turn PDF into EPUB with AI?",
+            answer: "Our tool uses smart logic (you could call it AI-lite) to detect paragraphs and headings, helping to AI convert pdf to epub cleanly so text flows naturally on small screens."
+          },
+          {
+            question: "How do you convert PDF to EPUB on Mac or Windows?",
+            answer: "You don't need to install any software. Just visit pdfcanada.ca, select your file, and we'll convert pdf file to epub right in your browser. It works on Windows, Mac, and Linux."
+          },
+          {
+            question: "Can I convert scanned PDFs to EPUB?",
+            answer: "This tool works best with standard PDFs containing text. For scanned documents, you might want to use our OCR tool first to extract the text, then save it as a digital format."
+          },
+          {
+            question: "How convert PDF to EPUB without formatting errors?",
+            answer: "PDFs are fixed-layout, while EPUBs are flowable, so it's tricky! We try our best to strip out headers and footers to give you a clean reading experience."
+          }
+        ]
+      },
+      pdfToKindle: {
+        title: "PDF to Kindle Converter - Optimize PDFs for Amazon Kindle | pdfcanada.ca",
+        desc: "Convert PDF for Kindle with enhanced reflow and pop-up footnotes. 100% free, private, and local. Optimized for Kindle Paperwhite, Oasis, and Scribe.",
+        h1: "Convert PDF to Kindle",
+        subtitle: "The best way to read your PDFs on a Kindle, eh?",
+        content: "Love your Kindle but hate reading PDFs on it? We've all been there. Small text, no font control, and those annoying margins. Our PDF to Kindle tool is designed specifically to solve this. It converts your PDF into a highly-optimized EPUB 3 format that Kindles love. We use advanced heuristics to merge broken paragraphs, detect headings for a proper Table of Contents, and most importantly, we turn bottom-of-the-page footnotes into Kindle's famous pop-up footnotes.\n\nEverything happens locally on your computer. Your books, research papers, and private documents never touch a server. If you want to know how to convert PDF for Kindle without compromise, this is the tool. We support the latest Kindle features like 'Enhanced Typesetting' and 'Page Flip' by ensuring the underlying code is clean and semantic.",
+        steps: [
+          "Choose the PDF file you want to read on your Kindle.",
+          "Our engine automatically detects footnotes, headers, and headings.",
+          "The conversion happens entirely in your browser—completely private.",
+          "Download the optimized file and send it to your Kindle (@kindle.com) or via USB."
+        ],
+        quickAnswer: {
+          question: "How do I make a PDF look good on my Kindle?",
+          answer: "Don't just send the raw PDF. Use a specialized converter to create a reflowable ebook. Our tool optimizes text, removes margins, and enables Kindle features like font adjustment and pop-up footnotes.",
+          tool: "PDF to Kindle",
+          steps: ["Upload PDF", "Auto-optimize for Kindle", "Download and transfer"]
+        },
+        faq: [
+          {
+            question: "Why convert PDF to Kindle format instead of reading the PDF?",
+            answer: "PDFs have a fixed layout. On a Kindle's small screen, this means tiny text and constant panning. Converting to our optimized format allows the text to 'reflow', letting you change font sizes and read comfortably."
+          },
+          {
+            question: "Does this tool support Kindle pop-up footnotes?",
+            answer: "Yes! Our engine identifies footnotes at the bottom of PDF pages and converts them into semantic EPUB footnotes that trigger the Kindle pop-up preview."
+          },
+          {
+            question: "How do I transfer the file to my Kindle?",
+            answer: "After downloading, you can use Amazon's 'Send to Kindle' service (via email or web) or transfer it manually via USB cable into the 'documents' folder."
+          },
+          {
+            question: "Is it safe to convert my private books here?",
+            answer: "Absolutely. We are the only converter that does this entirely on your device. Your files never leave your browser, ensuring 100% privacy."
+          }
+        ]
+      },
+      fillable: {
+        title: "Make PDF Fillable Online - Free & Secure Interactive Form Creator | pdfcanada.ca",
+        desc: "Add fillable text fields to any PDF instantly. Create professional interactive forms for free securely in your browser. No uploads—100% private & Canadian.",
+        h1: "Make PDF Fillable",
+        subtitle: "The polite way to create interactive forms.",
+        content: "Turn a flat document into an interactive form. We automatically detect underscores (____) and checkboxes ([ ]) on your selected pages and turn them into real, fillable fields.",
+        steps: [
+          "Upload a PDF form that has static lines or checkboxes.",
+          "Select the pages you want us to scan.",
+          "Click 'Auto-Detect & Fill'. We will calculate where the fields should be.",
+          "Download your interactive PDF form."
+        ],
+        quickAnswer: {
+          question: "How can I make a standard PDF fillable for free?",
+          answer: "Our tool automatically detects lines and checkboxes in your document and adds interactive text fields. It's the easiest way to create a fillable form without expensive software.",
+          tool: "Make PDF Fillable",
+          steps: ["Upload static PDF", "Scan for auto-detection", "Download interactive form"]
+        }
+      },
+      organizePdf: {
+        title: "Organize PDF Online - Reorder & Rearrange PDF Pages for Free | pdfcanada.ca",
+        desc: `Rearrange PDF pages easily with drag-and-drop in ${CURRENT_YEAR}. Reorder your PDF document securely in your browser. No uploads—your files remain 100% private on your device.`,
+        h1: "Organize PDF Pages",
+        subtitle: "Get your document's pages in the perfect order.",
+        content: "Need to fix the page order of your PDF? Our Organize PDF tool lets you drag and drop pages to rearrange them exactly how you want.",
+        steps: [
+          "Upload your valid PDF file.",
+          "Drag and drop the page thumbnails to reorder them.",
+          "Click 'Save Organized PDF' to download.",
+          "Download your meticulously organized PDF document."
+        ],
+        quickAnswer: {
+          question: "How can I rearrange pages in a PDF document?",
+          answer: "You can reorder PDF pages by simply dragging and dropping thumbnails into the desired sequence. Our Organize tool lets you rearrange your document quickly and securely.",
+          tool: "Organize PDF",
+          steps: ["Upload your PDF", "Drag pages to reorder", "Save your organized file"]
+        },
+        faq: [
+          { q: "Can I move pages between PDFs?", a: "Not yet! Currently you can only reorder pages within a single file." },
+          { q: "Is my original file changed?", a: "No way! We create a new copy with the new order." }
+        ]
+      },
+      cbrToPdf: {
+        title: "CBR to PDF Converter - Convert Comic Books Online | pdfcanada.ca",
+        desc: `Read your comics on any device. Our ${CURRENT_YEAR} guide shows you how to convert CBR/CBZ to PDF securely in your browser. No uploads, processed entirely on your device.`,
+        h1: "Convert CBR to PDF",
+        subtitle: "The definitive guide to digital comic conversion.",
+        content: "Got a collection of digital comics in CBR or CBZ format? While these are great for specialized readers, sometimes you just want a PDF to read on your tablet or share with a friend. Our CBR to PDF converter makes it easy to change comic book archives into standard PDF documents. We support both CBR (RAR-based) and CBZ (ZIP-based) files. \n\nMost online converters make you upload your comics to their servers. But digital comics can be large, and your privacy matters. That's why pdfcanada.ca processes your comics right in your browser. No uploading, no waiting for a queue, just fast and secure conversion. Whether you're looking for how to convert cbr to pdf for free or need a bulk cbr to pdf tool, we've got you covered with our Canadian-made tool.",
+        steps: [
+          "Select your .CBR or .CBZ file from your device.",
+          "Our system extracts the images and compiles them into a single PDF document.",
+          "Once the conversion is complete, click 'Download' to save your new PDF comic."
+        ],
+        quickAnswer: {
+          question: "How do I convert a CBR comic book to PDF?",
+          answer: "You can convert digital comic book formats like CBR (RAR) and CBZ (ZIP) to PDF for free using our local converter. It extracts the images and compiles them into a single, shareable PDF file.",
+          tool: "CBR to PDF",
+          steps: ["Choose your comic file", "Extract images locally", "Download your PDF book"]
+        },
+        faq: [
+          {
+            question: "What is the difference between CBR and CBZ?",
+            answer: "CBR files are RAR archives renamed, while CBZ files are ZIP archives renamed. Both contain images (usually JPG or PNG) of comic book pages. Our tool supports both!"
+          },
+          {
+            question: "Can I convert large CBR files to PDF?",
+            answer: "Yes! Since the conversion happens on your device, the only limit is your browser's memory. We don't have the file size limits that cloud-based converters do."
+          },
+          {
+            question: "Is this comic converter safe?",
+            answer: "Absolutely hoser! Your files are never uploaded to our servers. All extraction and PDF creation happens locally on your computer."
+          }
+        ]
+      },
+      sign: {
+        title: "E-Sign PDF Online - Secure & Free Digital Signatures | pdfcanada.ca",
+        desc: `Sign PDF documents online securely in ${CURRENT_YEAR}. Add signatures, initials, and dates locally in your browser. Your sensitive documents never leave your computer. Fast & Free.`,
+        h1: "E-sign PDF Documents",
+        subtitle: "The most secure way to sign contracts and forms.",
+        content: "Need to sign a contract, lease, or form? Our e-sign tool lets you add professional signatures, initials, and dates to any PDF. Everything happens locally on your device, so your sensitive documents and signatures never leave your browser.",
+        steps: [
+          "Upload the PDF document you need to sign.",
+          "Choose to either draw, type, or upload your signature.",
+          "Place your signature, initials, or the current date anywhere on the document.",
+          "Resize and move elements until they look just right.",
+          "Click 'Sign PDF' to download your securely signed document."
+        ],
+        quickAnswer: {
+          question: "How can I sign a PDF document online securely?",
+          answer: "Use an e-sign tool that processes your signature locally in the browser to ensure maximum security. Our tool allows you to draw, type, or upload signatures without sending your document to a server.",
+          tool: "Sign PDF",
+          steps: ["Upload your document", "Add signature and date", "Download signed PDF"]
+        }
+      },
+      pdfToWord: {
+        title: "How to Convert and Transform PDF to Word | Free & Secure",
+        desc: `Convert PDF to Word on Mac, PC, or Mobile. Transform PDF to editable DOCX documents locally for free. Secure, private, and no signup needed.`,
+        h1: "Convert PDF to Word",
+        subtitle: "Transform your PDFs into editable Word documents—accurately & securely.",
+        content: "Need to change a PDF to Word? Our tool lets you transform PDF to Word format effortlessly. Your local processing ensures you can switch PDF to Word without your sensitive data ever leaving your device.",
+        steps: [
+          "Select the PDF you want to transform into Word.",
+          "Our tool extracts the text and formatting into a .docx document.",
+          "Download your editable Word file instantly."
+        ],
+        quickAnswer: {
+          question: "How do I convert a PDF to an editable Word document for free?",
+          answer: "You can convert PDF to Word (.docx) for free using our browser-based converter. It allows you to save PDF as Word and extract layout information, so you can edit the document in Microsoft Word or Google Docs without Acrobat.",
+          tool: "PDF to Word",
+          steps: ["Upload your PDF", "Transform to Word format", "Download editable .docx"]
+        }
+      },
+      wordToPdf: {
+        title: "How to Convert and Save Word as PDF | Free & Secure",
+        desc: `Convert Word to PDF on Mac, PC, or Mobile for free. Secure local tool to save DOCX as PDF instantly. No uploads, 100% private.`,
+        h1: "Convert Word to PDF",
+        subtitle: "Professional PDFs from your Word documents instantly.",
+        content: "Need to convert a Word to a PDF? Turn your Word documents into high-quality PDFs while keeping your data 100% private. Perfect for sharing and printing.",
+        steps: [
+          "Upload your .docx file to save as PDF.",
+          "We process the document and generate a professional PDF.",
+          "Download your new PDF file instantly."
+        ],
+        quickAnswer: {
+          question: "What's the best way to convert from Word document to PDF?",
+          answer: "The best way is to use a secure local converter to save Word as PDF. Our tool turns your .docx files into professional PDFs instantly without requiring an upload to a server.",
+          tool: "Word to PDF",
+          steps: ["Select .docx document", "Save Word as PDF", "Download your file"]
+        }
+      },
+      rtfToPdf: {
+        title: "RTF to PDF Online - Convert Rich Text Format to PDF for Free | pdfcanada.ca",
+        desc: `Convert RTF (Rich Text Format) documents to PDF instantly in ${CURRENT_YEAR}. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.`,
+        h1: "Convert RTF to PDF",
+        subtitle: "Professional PDFs from your RTF files instantly.",
+        content: "Turn your RTF documents into high-quality PDFs. Perfect for sharing and archiving, with local security you can trust.",
+        steps: [
+          "Upload your .rtf file.",
+          "We process the document and generate a professional PDF.",
+          "Download your new PDF file."
+        ],
+        quickAnswer: {
+          question: "What's the best way to convert RTF to PDF?",
+          answer: "The best way is to use a secure local converter that preserves your formatting. Our tool turns your .rtf files into professional PDFs instantly without requiring an upload to a server.",
+          tool: "RTF to PDF",
+          steps: ["Select .rtf document", "Generate professional PDF", "Download your file"]
+        }
+      },
+      crop: {
+        title: "Crop PDF Online - Trim PDF Margins & Resize Pages for Free | pdfcanada.ca",
+        desc: "Crop PDF pages instantly to remove white space or focus on content. Adjust margins securely in your browser. No uploads, processed entirely on your device.",
+        h1: "Crop PDF Pages",
+        subtitle: "Trim those margins and focus on what matters.",
+        content: "Need to remove white space or focus on a specific area of your document? Our crop tool lets you adjust the margins of your PDF pages effortlessly. It's fast, free, and happens entirely on your device.",
+        steps: [
+          "Upload your PDF document.",
+          "Use the selector to define your crop area.",
+          "Apply the crop and download your updated PDF."
+        ],
+        quickAnswer: {
+          question: "How do I crop PDF pages to remove white space?",
+          answer: "Use a visual crop tool to select the content you want to keep and trim away the white margins. Our tool allows you to apply the crop to one or all pages securely in your browser.",
+          tool: "Crop PDF",
+          steps: ["Upload PDF file", "Define crop area visually", "Download trimmed PDF"]
+        }
+      },
+      compress: {
+        title: "Compress PDF Online - Reduce File Size without Losing Quality | pdfcanada.ca",
+        desc: "Compress PDF files to reduce size while keeping original quality. Optimize PDFs securely in your browser—no uploads required, 100% private & proudly Canadian.",
+        h1: "Compress PDF Size",
+        subtitle: "Make your files smaller without losing quality, eh?",
+        content: "Need to email a large PDF but it's too big? Our Compress PDF tool reduces the file size while maintaining excellent quality. Choose from three compression levels to find the perfect balance.",
+        steps: [
+          "Select the PDF file you want to compress.",
+          "Choose your compression level (Good, Balanced, or Extreme).",
+          "Click 'Compress PDF' and download your smaller file."
+        ],
+        quickAnswer: {
+          question: "How can I reduce my PDF file size without losing quality?",
+          answer: "You can compress PDFs by optimizing internal metadata and streams. Our tool offers multiple compression levels, allowing you to choose the best balance between file size and image quality.",
+          tool: "Compress PDF",
+          steps: ["Choose PDF file", "Select compression level", "Download smaller PDF"]
+        },
+        faq: [
+          { question: "How much can I reduce my PDF file size?", answer: "Depending on the content, you can reduce file size by 50-90%. Image-heavy PDFs see the biggest reductions." },
+          { question: "Will compression reduce quality?", answer: "Our 'Good' and 'Balanced' modes maintain excellent quality. 'Extreme' mode prioritizes size over quality." },
+          { question: "Is PDF compression secure?", answer: "Yes! All processing happens locally in your browser. Your files never leave your device." }
+        ]
+      },
+      merge: {
+        title: "How to Merge PDF Files into One | Free & Secure Online Tool",
+        desc: `Combine multiple PDF files into one in seconds. Learn how to merge PDFs locally without Adobe Acrobat. 100% private, free, and proudly Canadian.`,
+        h1: "How to Merge PDF Files into One",
+        subtitle: "Combine two or more PDFs into a single document securely.",
+        content: "Need to merge multiple PDF files into one? Our free tool lets you combine several PDFs, reorder documents by dragging, and join them into a single file without any server uploads. Perfect for merging receipts, contracts, or reports into one professional package.",
+        steps: [
+          "Select the multiple PDF files you want to merge together.",
+          "Drag and drop the documents to rearrange the order.",
+          "Click 'Merge PDFs' to download your combined PDF file into one."
+        ],
+        quickAnswer: {
+          question: "How do I merge PDF files into one for free?",
+          answer: "Merging PDFs is easy with our local tool. Just upload your documents, arrange them in the correct order, and download the single combined file. It's the best way to merge pdf files into one without Adobe Acrobat.",
+          tool: "Merge PDF",
+          steps: ["Select two or more PDFs", "Reorder files correctly", "Download merged file"]
+        },
+        faq: [
+          { question: "How to merge 2 pdf files into 1?", answer: "Simply upload both documents, arrange them, and click merge. It is the fastest way to combine two PDF files into one for free." },
+          { question: "How do I merge multiple PDF files without Acrobat?", answer: "Our tool processes everything locally in your browser, providing a free alternative to Adobe Acrobat for merging, reordering, and combining several PDF documents." },
+          { question: "Will merging affect my PDF quality?", answer: "No! Our merge tool preserves the original quality of all your documents, keeping text sharp and images clear." },
+          { question: "Can I murg pdf files here?", answer: "Yes you can! 'Murg pdf' is a common typo for **merge PDF**. Our tool works perfectly for combining your files, no matter how you spell it." }
+        ]
+      },
+      split: {
+        title: "Split PDF Online - Separate PDF Pages for Free | pdfcanada.ca",
+        desc: "Split your PDF into individual pages instantly. Download as a ZIP file containing each page as a separate PDF. 100% private—no uploads required.",
+        h1: "Split PDF into Pages",
+        subtitle: "Separate your PDF into individual page files.",
+        content: "Need to break apart a PDF document? Our Split PDF tool separates each page into its own file and packages them as a convenient ZIP download. Perfect for extracting specific pages or distributing content.",
+        steps: [
+          "Upload your PDF document.",
+          "Click 'Split PDF' to separate all pages.",
+          "Download your ZIP file containing individual PDFs."
+        ],
+        quickAnswer: {
+          question: "How do I split a large PDF into separate pages?",
+          answer: "You can split a PDF by extracting each page into its own individual file. Our tool separates the document for you and provides a convenient ZIP download, all processed locally.",
+          tool: "Split PDF",
+          steps: ["Upload your document", "Extract individual pages", "Download ZIP archive"]
+        },
+        faq: [
+          { question: "How do I split a PDF into separate pages?", answer: "Upload your PDF, click 'Split PDF', and download a ZIP file containing each page as an individual PDF file." },
+          { question: "Is splitting PDFs free?", answer: "Yes! Our Split PDF tool is 100% free with no limits. Your files are processed locally in your browser for complete privacy." },
+          { question: "Can I split a password-protected PDF?", answer: "You'll need to remove the password first. We recommend using a dedicated PDF unlock tool before splitting." }
+        ]
+      },
+      pdfToXml: {
+        title: "PDF to XML Converter - Extract Structured Data | pdfcanada.ca",
+        desc: "Convert PDF documents to XML format with structured data extraction. Preserve page layout, text positions, and content hierarchy. Free and private.",
+        h1: "Convert PDF to XML",
+        subtitle: "Extract structured data from your PDF documents.",
+        content: "Transform your PDF documents into structured XML format. Our converter extracts text content with position data, page dimensions, and content hierarchy—ideal for data processing and analysis.",
+        steps: [
+          "Upload your PDF file.",
+          "Click 'Convert to XML' to process.",
+          "Download your structured XML file."
+        ],
+        quickAnswer: {
+          question: "How do I extract structured data from a PDF to XML?",
+          answer: "Our tool converts PDF documents into XML format, preserving text content, positions, and page layout. This allows for easy data extraction and analysis, all processed locally for privacy.",
+          tool: "PDF to XML",
+          steps: ["Upload PDF document", "Extract structured data", "Download XML file"]
+        },
+        faq: [
+          { question: "What data is extracted in PDF to XML conversion?", answer: "Our tool extracts text content, page dimensions, text positions, and content structure into a clean XML format." },
+          { question: "Can I convert scanned PDFs to XML?", answer: "For scanned documents, we recommend using OCR first to extract text, then convert to XML for best results." },
+          { question: "Is my PDF data secure during conversion?", answer: "Absolutely! All processing happens locally in your browser. Your files never leave your device." }
+        ]
+      },
+      xmlToPdf: {
+        title: "XML to PDF Converter - Create PDFs from XML Data | pdfcanada.ca",
+        desc: "Convert XML documents to PDF format. Transform structured data into clean, readable PDF documents. Free, fast, and processed locally.",
+        h1: "Convert XML to PDF",
+        subtitle: "Transform XML data into PDF documents.",
+        content: "Convert your XML files into professionally formatted PDF documents. Our tool parses XML structure and creates clean, readable PDFs from your data—perfect for reports and documentation.",
+        steps: [
+          "Upload your XML file.",
+          "Click 'Convert to PDF' to process.",
+          "Download your generated PDF document."
+        ],
+        quickAnswer: {
+          question: "How do I convert XML data into a PDF document?",
+          answer: "Our tool transforms structured XML data into professionally formatted PDF documents. It parses the XML content and renders it into a clean, readable PDF, all processed locally for privacy.",
+          tool: "XML to PDF",
+          steps: ["Upload XML file", "Generate PDF from data", "Download PDF document"]
+        },
+        faq: [
+          { question: "What XML formats are supported?", answer: "Our converter supports standard XML files. The tool extracts text content and formats it into a clean, readable PDF document." },
+          { question: "Can I customize the PDF output?", answer: "Currently, the tool creates a standard formatted PDF. For advanced customization, consider using templates or post-processing tools." },
+          { question: "Is there a file size limit?", answer: "There's no strict limit, but very large XML files may take longer to process. All processing is done locally in your browser." }
+        ]
+      },
+      excelToPdf: {
+        title: "Excel to PDF Online - Convert XLSX/XLS to PDF for Free | pdfcanada.ca",
+        desc: "Create high-quality PDFs from Excel spreadsheets instantly. Our secure converter processes files locally—no uploads, no tracking, just fast and free Canadian service.",
+        h1: "Convert Excel to PDF",
+        subtitle: "Professional PDFs from your Excel files instantly.",
+        content: "Turn your Excel spreadsheets into high-quality PDFs. Perfect for sharing and printing, with local security you can trust.",
+        steps: [
+          "Upload your .xlsx or .xls file.",
+          "We process the spreadsheet and generate a professional PDF.",
+          "Download your new PDF file."
+        ],
+        quickAnswer: {
+          question: "How can I convert Excel spreadsheets to PDF free?",
+          answer: "You can convert .xlsx and .xls files to high-quality PDFs for free using our local converter. It preserves your table structure and formatting without needing to upload to a server.",
+          tool: "Excel to PDF",
+          steps: ["Select Excel file", "Generate professional PDF", "Download your file"]
+        }
+      },
+      pdftocsv: {
+        title: `Convert PDF to CSV & Excel | Extract Bank Statements Free ${CURRENT_YEAR}`,
+        desc: `Convert PDF to CSV, Excel, and QBO for free. Secure local extraction for bank statements (TD, RBC, BMO). PIPEDA compliant, no uploads, 100% private.`,
+        h1: "Extract Data from PDF to CSV & Excel",
+        subtitle: "Professional-grade bank statement extraction with zero uploads.",
+        content: "Stop manual data entry. Our AI-assisted spatial engine extracts tables from bank statements, invoices, and reports into clean CSV or Excel files. Everything is processed locally on your computer for maximum security.",
+        steps: [
+          "Choose your PDF bank statement or tabular document.",
+          "Use 'Smart Merge' to fix multi-line transaction rows.",
+          "Export as CSV, XLSX, or QBO for QuickBooks."
+        ],
+        quickAnswer: {
+          question: "How do I convert a PDF bank statement to CSV for Excel?",
+          answer: "The best way is to use a local-first converter like pdfcanada.ca that handles multi-line transaction descriptions. It extracts your bank data directly in the browser, ensuring your account details never hit a cloud server.",
+          tool: "PDF to CSV",
+          steps: ["Upload PDF", "Preview & Merge Rows", "Download CSV/Excel"]
+        }
+      },
+      pdftoexcel: {
+        title: "PDF to Excel Online - Convert PDF Tables to XLSX for Free",
+        desc: "Convert PDF documents to editable Excel spreadsheets. Professional-grade table extraction with local security. 100% free with no signup.",
+        h1: "Convert PDF to Excel",
+        subtitle: "Turn tables into spreadsheets instantly.",
+        content: "Stop manually typing data. Convert your PDF tables into fully editable Excel (.xlsx) files while maintaining column structure and formatting.",
+        steps: [
+          "Select the PDF containing your table.",
+          "Our engine maps columns and rows locally.",
+          "Download your ready-to-use Excel file."
+        ],
+        quickAnswer: {
+          question: "How do I turn a PDF table into an Excel sheet?",
+          answer: "Our tool analyzes the spatial layout of your PDF locally to recreate the grid in an XLSX file, preserving rows and columns accurately.",
+          tool: "PDF to Excel",
+          steps: ["Upload PDF", "Analyze table structure", "Download Excel"]
+        }
+      },
+      analyzepdf: {
+        title: "Analyze PDF Security Online - Detect Malware & Phishing | pdfcanada.ca",
+        desc: "Scan PDF attachments for phishing links and malware. Local analysis ensures your files never leave your device. 100% free & secure.",
+        h1: "Analyze PDF Security",
+        subtitle: "Detect hidden threats in your PDF documents.",
+        content: "Worried about a suspicious PDF attachment? Our security analyzer scans the file structure for JavaScript, external links, and launch actions that could harm your computer. Everything is analyzed locally, so you don't risk uploading a sensitive file to a public server.",
+        steps: [
+          "Select the suspicious PDF file.",
+          "Our tool parses the file structure locally.",
+          "Review the risk score and detailed security report.",
+          "Use 'Safe Preview' to view content without executing scripts."
+        ],
+        quickAnswer: {
+          question: "How can I check if a PDF is safe?",
+          answer: "Use a local-first PDF analyzer like pdfcanada.ca. It inspects the file's internal structure for hazardous elements like embedded scripts or phishing URLs without opening the file potentially triggering a payload.",
+          tool: "Analyze PDF",
+          steps: ["Upload PDF", "Check Risk Score", "Safe Preview"]
+        },
+        faq: [
+          { question: "Is it safe to upload suspicious PDFs?", answer: "Yes, because we don't upload them! The analysis happens entirely in your browser using WebAssembly." },
+          { question: "Can this tool simplify the PDF?", answer: "Yes, you can check it here and then use our Flatten tool to convert pages to images, neutralizing active scripts." },
+          { question: "What does the Safe Preview do?", answer: "It renders the PDF pages as static images with JavaScript disabled, so you can read the content without triggering malicious code." }
+        ]
+      },
+      ultimateGuide: {
+        title: `Ultimate ${CURRENT_YEAR} Guide to PDF Tools | Master Your Documents | pdfcanada.ca`,
+        desc: `Master PDF management with our definitive ${CURRENT_YEAR} guide. Learn how to edit, merge, and convert PDFs securely using local-first tools. No uploads, 100% private.`,
+        quickAnswer: {
+          question: "How do I edit a PDF for free without software?",
+          answer: "The best way is to use a local-first browser tool like pdfcanada.ca. It allows you to delete pages, rotate, merge, compress, convert, and sign documents directly in your browser without downloading software or uploading your files to a server.",
+          tool: "Ultimate PDF Toolkit",
+          steps: ["Visit pdfcanada.ca", "Select the tool you need", "Edit locally in browser", "Download your file"]
+        }
+      },
+      editXfa: {
+        title: `How to Edit XFA PDFs | Free ${CURRENT_YEAR} Technical Guide | pdfcanada.ca`,
+        desc: "Unlock and edit XFA-based PDF forms securely. Our technical guide shows you how to manage dynamic forms locally on your device without uploading private data.",
+        quickAnswer: {
+          question: "How do I edit an XFA PDF?",
+          answer: "XFA PDFs are dynamic forms that can't be edited directly in standard viewers. To edit them, you must 'flatten' them by printing to 'Adobe PDF' or 'Microsoft Print to PDF'. This converts the dynamic form into a standard, editable PDF document.",
+          tool: "PDF Flattening Tool",
+          steps: ["Open in Acrobat Reader", "Print to PDF (Flatten)", "Save as new PDF", "Edit the new file"]
+        }
+      }
+    },
+
+
+    // Tools
+    toolDelete: "Seiten aus PDF Löschen",
+    toolDeleteDesc: "Entfernen Sie unerwünschte Seiten.",
+    toolFlatten: "Make Non-Editable",
+    toolFlattenDesc: "Flatten your PDF content.",
+    toolPdfPageRemover: "PDF Page Remover",
+    toolPdfPageRemoverDesc: "Remove pages from PDF.",
+    toolRotate: "Rotate PDF",
+    toolRotateDesc: "Fix upside-down pages.",
+    toolHeic: "HEIC to PDF",
+    toolHeicDesc: "Convert iPhone photos.",
+    toolEpubToPdf: "EPUB to PDF",
+    toolEpubToPdfDesc: "Read ebooks as PDFs.",
+    toolPdfToEpub: "PDF to EPUB",
+    toolPdfToEpubDesc: "Convert for e-readers.",
+    toolMakeFillable: "Make PDF Fillable",
+    toolMakeFillableDesc: "Auto-add fields to pages.",
+    toolCbrToPdf: "CBR to PDF",
+    toolCbrToPdfDesc: "Convert comics to PDF.",
+    toolSign: "Sign PDF",
+    toolSignDesc: "E-sign documents securely.",
+    toolPdfToWord: "PDF in Word",
+    toolPdfToWordDesc: "Wandeln Sie PDF in bearbeitbares Docx um.",
+    toolWordToPdf: "Word in PDF",
+    toolWordToPdfDesc: "Wandeln Sie Word docx in PDF um.",
+    toolRtfToPdf: "RTF to PDF",
+    toolRtfToPdfDesc: "Convert RTF to PDF.",
+    toolExcelToPdf: "Excel to PDF",
+    toolExcelToPdfDesc: "Convert Excel sheets to PDF.",
+    toolCrop: "Crop PDF",
+    toolCropDesc: "Adjust page margins.",
+    toolOrganize: "Organize PDF",
+    toolOrganizeDesc: "Reorder or remove pages.",
+    toolInvoiceOcr: "Invoice OCR",
+    toolInvoiceOcrDesc: "Extract data to Excel.",
+    toolCsv: "PDF to CSV",
+    toolCsvDesc: "Extract tables from PDF.",
+    toolPdfToJpg: "PDF in JPG",
+    toolPdfToJpgDesc: "Wandeln Sie PDF in JPG-Bilder um.",
+    toolPngToPdf: "PNG in PDF",
+    toolPngToPdfDesc: "Wandeln Sie PNG-Bilder in PDF um.",
+    toolJpgToPdf: "JPG in PDF",
+    toolJpgToPdfDesc: "Wandeln Sie JPG-Bilder in PDF um.",
+    toolExcel: "PDF in Excel",
+    toolExcelDesc: "Convert tables to XLSX.",
+    toolPhishingDetector: "Analyze PDF",
+    toolPhishingDetectorDesc: "Scan for malware & phishing.",
+    toolHtmlToPdf: "HTML in PDF",
+    toolHtmlToPdfDesc: "HTML in PDF umwandeln.",
+
+    toolCompress: "PDF Komprimieren",
+    toolCompressDesc: "Reduzieren Sie die Dateigröße.",
+    toolMerge: "PDF Zusammenfügen",
+    toolMergeDesc: "Fügen Sie mehrere PDF-Dateien zusammen.",
+    toolSplit: "Split PDF",
+    toolSplitDesc: "Separate into pages.",
+    toolExtract: "Extract PDF Pages",
+    toolExtractDesc: "Extract selected pages.",
+    toolPdfToXml: "PDF to XML",
+    toolPdfToXmlDesc: "Extract structured data.",
+    toolXmlToPdf: "XML to PDF",
+    toolXmlToPdfDesc: "Create PDF from XML.",
+
+    // Actions
+    uploadTitle: "Upload File",
+    uploadDesc: "or drop a file here",
+    processedLocally: "Processed locally on your device",
+    selectFile: "Select File",
+    terms: "By uploading, you agree to our polite Terms of Service.",
+    pages: "pages",
+    local: "Local",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+
+    // Selection View
+    selectPagesHeader: "Select pages:",
+    selected: "selected",
+    rotateLeft: "Left",
+    rotateRight: "Right",
+    rotateAllLeft: "Rotate All Left",
+    rotateAllRight: "Rotate All Right",
+    resetRotations: "Reset",
+    selectPagesToFill: "Select pages to scan for fields:",
+
+    // Tool Specific Inputs
+    deletePagesInfo: "Click on pages to remove from document. You can use \"shift\" key to set ranges.",
+    totalPages: "Total pages",
+    pagesToRemove: "Pages to remove",
+    signPagesInfo: "Place your signature or initials on the document.",
+    addSignature: "Add Signature",
+    addInitials: "Add Initials",
+    signUpload: "Upload",
+    select: "Select",
+    pan: "Pan",
+    newSignature: "New signature",
+    newInitials: "New initials",
+    loadingPage: "Loading page...",
+    pageNumber: "Page {number}",
+    signTools: "Sign Tools",
+    signatures: "Signatures",
+    createNewSignature: "Create New Signature",
+    initials: "Initials",
+    createNewInitials: "Create New Initials",
+    annotation: "Annotation",
+    date: "Date",
+    text: "Text",
+    check: "Check",
+    btnDeleteEntry: "Delete",
+    done: "Fertig",
+    edit: "Edit",
+    undo: "Undo",
+    redo: "Redo",
+    quickAdd: "Quick Add",
+    todaysDate: "Today's Date",
+    textField: "Text Field",
+    of: "of",
+
+    // Form Builder
+    fbTitle: "Form Builder",
+    fbAddText: "Add Text Box",
+    fbAddCheckbox: "Add Checkbox",
+    fbCancel: "Cancel",
+    fbDownload: "Download Form",
+    fbPage: "Page",
+
+    // Buttons
+    btnRemove: "Remove Pages",
+    btnRotate: "Apply Rotation",
+    btnFlatten: "Make Non-Editable",
+    btnCrop: "Crop PDF",
+    btnConvert: "Convert File",
+    btnMakeFillable: "Auto-Detect & Fill",
+    btnPreviewCrop: "Preview Crop",
+    btnFinalize: "Finalize Crop",
+    cropPreview: "Crop Preview",
+    before: "Before",
+    after: "After",
+    previewModeInfo: "Review the result on the right. If it looks good, click Finalize.",
+    btnCancel: "Cancel",
+    btnSave: "Save",
+    btnSplit: "Split PDF",
+    btnExtract: "Extract Pages",
+    btnCompress: "Compress PDF",
+    processedSize: "Processed Size",
+    selectAll: "Select All",
+    selectNone: "Select None",
+    selectOdd: "Select Odd",
+    selectEven: "Select Even",
+    toolRotateInfo: "Click pages to rotate or use global controls above.",
+    readyToConvertDesc: "Bereit zur Umwandlung von {fileName}. Das kann je nach Dateigröße einen Moment dauern.",
+    btnTryAgain: "Try Again",
+    processing: "Verarbeitung...",
+    errorGeneric: "An error occurred while processing your file.",
+
+    working: "Arbeite daran...",
+    workingDesc: "Scanning for fields and fixing that up for you, eh.",
+    doneTitle: "Beauty! It's done.",
+    doneDesc: "Your file is ready.",
+    download: "Herunterladen",
+    doAnother: "Do another one",
+    backToHome: "Back to Tools",
+
+    // Errors
+    errorTitle: "Oh snap!",
+    genericError: "Something went wrong. Technical Details: {detail}",
+    fileTypeErr: "Sorry about that, but we don't accept that file type, eh?",
+    readErr: "Sorry, we couldn't read that file. It might be corrupted.",
+    passwordErr: "This PDF is password protected. Please unlock it first, eh.",
+    corruptPdfErr: "The PDF file appears to be corrupt or invalid.",
+    conversionErr: "Oh snap! Failed to convert the file. It might be too complex or damaged. Eh?\n\nTechnical Details: {detail}",
+    emptyEpubErr: "Could not extract text from this EPUB.",
+
+    // Nav
+    navHowTo: "How to use",
+    navSupport: "Support Local",
+    navPricing: "Pricing",
+    footerEditGroup: "PDF Tools",
+    footerGuidesGroup: "Editing Guides",
+    footerFormatGroup: "Format Guides",
+    login: "Log in",
+    signup: "Sign up",
+
+    // Footer
+    footerBuilt: "Proudly built in the True North Strong and Free.",
+    footerMade: "Made with",
+    footerLocation: "and Maple Syrup in Toronto, ON.",
+    footerRights: "All rights reserved, sorry.",
+    footerTagline: "The Great White North's favorite PDF tool.",
+    footerPrivacyNotice: "We don't track you. That wouldn't be polite.",
+    termsService: "Terms of Service",
+    privacy: "Privacy Policy",
+    sorryPolicy: "Sorry Policy",
+    makeFillableFooter: "How to make a PDF fillable",
+
+    // Pages Content
+    pricingTitle: "Simple Pricing",
+    pricingSubtitle: "Honest pricing for honest folks.",
+    freePlan: "The 'Hoser' Plan",
+    freeCost: "$0 CAD",
+    freeFeature1: "Unlimited PDF conversions",
+    freeFeature2: "No account required",
+    freeFeature3: "Polite error messages",
+    freeFeature4: "Local processing (Secure)",
+    enterprisePlan: "The 'Double Double' Plan",
+    enterpriseCost: "$0 CAD",
+    enterpriseFeature1: "Everything in Hoser plan",
+    enterpriseFeature2: "We say 'Sorry' twice as much",
+    enterpriseFeature3: "Priority maple syrup delivery (optional)",
+
+    // Timbits Support Tier
+    timbitsPlan: "The 'Timbits' Tip",
+    timbitsCost: "$1 CAD",
+    timbitsDesc: "A loonie goes a long way, eh?",
+    timbitsFeature1: "Keep servers running in the True North",
+    timbitsFeature2: "Fund new features & tools",
+    timbitsFeature3: "Support indie Canadian devs",
+    timbitsFeature4: "Get our heartfelt thanks",
+    timbitsButton: "Drop a Loonie",
+
+    privacyTitle: "Privacy Policy",
+    privacyText1: "At pdfcanada.ca, we believe that your business is your business. Because we process files locally on your device using WebAssembly technology, your documents never actually upload to our servers.",
+    privacyText2: "We don't use cookies to track you across the web. We don't sell your data. We don't even ask for your email. It's just you and your PDF.",
+
+    termsTitle: "Terms of Service",
+    termsText1: "By using this service, you agree to be nice.",
+    termsText2: "Please don't use our tools for illegal stuff. That's not cool.",
+    termsText3: "We provide this service 'as is'. If it breaks, we're really sorry, but we can't be held liable for lost data. Always keep a backup, eh?",
+
+    sorryTitle: "Our Official Sorry Policy",
+    sorryText1: "In the unlikely event that something goes wrong:",
+    sorryList1: "1. We will apologize immediately.",
+    sorryList2: "2. We will try to fix it.",
+    sorryList3: "3. We will apologize again, just to be safe.",
+
+    howtoTitle: "How to use",
+    howtoStep1: "Select a tool from the main dashboard.",
+    howtoStep2: "Choose your file (PDF, HEIC, or EPUB).",
+    howtoStep3: "Follow the polite instructions on screen.",
+    howtoStep4: "Download your new file. Easy peasy.",
+
+    fillablePageTitle: "How to make a PDF fillable",
+    fillablePageSubtitle: "The polite guide to creating interactive forms.",
+    fillableIntro: "Looking to create a document that people can actually type into? We use smart technology to find lines and checkboxes automatically.",
+    fillableStep1: "Upload your PDF to our 'Make PDF Fillable' tool.",
+    fillableStep2: "Select the pages where you want people to be able to type.",
+    fillableStep3: "We automatically find '_____' lines and '[ ]' boxes and make them interactive.",
+    fillableStep4: "Download and share. Your recipients can now type directly on the page.",
+    fillableProTip: "Pro Tip: Use standard underscores for the best detection results.",
+    fillableWhy: "Why use our tool?",
+    fillableWhyText: "Most software that does this costs an arm and a leg. We do it for free, locally on your device, because that's the neighbourly thing to do.",
+
+    invoiceOcr: {
+      dragDrop: "Drag & Drop Invoice Here",
+      clickUpload: "or Click to Upload",
+      scanBtn: "Scan Invoice",
+      scanning: "Scanning...",
+      results: "Payment Details",
+      fieldId: "Invoice Number",
+      fieldDate: "Invoice Date",
+      fieldTotal: "Total Amount",
+      fieldVendor: "Vendor Name",
+      visualConfidence: "Confidence Score",
+      exportExcel: "Export to Excel",
+      exportCsv: "Export to CSV",
+      copyData: "Copy Data",
+      newScan: "Scan Another",
+      fallbackAlert: "Scanned image detected. Using Tesseract (slower)...",
+      successMsg: "Invoice data extracted successfully!"
+    },
+    barcode: {
+      title: "Code 128 Barcode Generator",
+      subtitle: "Professional barcode generation with bulk support, multiple formats, and advanced customization",
+      singleMode: "Single/Manual",
+      bulkMode: "Bulk Generation",
+      sequenceTitle: "Generate Sequence",
+      prefixLabel: "Prefix (Optional)",
+      prefixPlaceholder: "e.g., BC",
+      suffixLabel: "Suffix (Optional)",
+      suffixPlaceholder: "e.g., -A",
+      startLabel: "Start Number *",
+      startPlaceholder: "1",
+      endLabel: "End Number *",
+      endPlaceholder: "100",
+      generateBtn: "Generate Sequence",
+      sequenceExample: "Example: Prefix \"BC\" + Numbers 1-100 + Suffix \"A\" = BC1A, BC2A, ... BC100A",
+      settingsTitle: "Barcode Settings",
+      formatLabel: "Format",
+      formatAuto: "CODE128 (Auto)",
+      formatA: "CODE128A (Uppercase)",
+      formatB: "CODE128B (Mixed Case)",
+      formatC: "CODE128C (Numeric Only)",
+      widthLabel: "Bar Width",
+      heightLabel: "Height",
+      fontSizeLabel: "Font Size",
+      bgColorLabel: "Background Color",
+      barColorLabel: "Bar Color",
+      showTextLabel: "Show Text Below Barcode",
+      exportFormatLabel: "Export Format",
+      exportPNG: "PNG Image",
+      exportSVG: "SVG Vector",
+      exportPDF: "PDF Document",
+      inputPlaceholder: "Enter barcode data (e.g., BC123456789)",
+      downloadBtn: "Download",
+      copyBtn: "Copy",
+      copiedBtn: "Copied!",
+      addBtn: "Add Another Barcode",
+      exportAllBtn: "Export All as PDF",
+      barcodes: "barcodes",
+      infoTitle: "Code 128 Features:",
+      infoAuto: "Auto-selects best encoding for your data",
+      infoA: "Uppercase letters and control characters",
+      infoB: "Full ASCII (uppercase, lowercase, symbols)",
+      infoC: "Numeric only (most compact for numbers)",
+      infoBulk: "Bulk generation from sequences or Excel/CSV files",
+      infoExport: "Export as PNG, SVG, or multi-page PDF",
+      infoCustom: "Customizable colors, sizes, and fonts",
+      seoWhat: "What is a Code 128 Barcode?",
+      seoUseCases: "Code 128 Barcode Use Cases & Applications",
+      seoHowTo: "How to Use This Code 128 Barcode Generator",
+      seoBenefits: "Benefits & Advantages of Code 128 Barcodes",
+      seoFAQ: "Frequently Asked Questions (FAQ)",
+      seoTechSpecs: "Technical Specifications",
+      errorInvalid: "Please enter valid start and end numbers (start ≤ end)",
+      errorGenerate: "Failed to generate barcode. Please check the input.",
+      errorFile: "Failed to parse file. Please check the format.",
+      errorExport: "Failed to export PDF",
+      errorMinBarcodes: "Please add at least one barcode"
+    },
+    kindleSettings: "Kindle Optimization",
+    kindleSettingsDesc: "Choose how your PDF is optimized for Kindle",
+    reflowableMode: "Reflowable EPUB",
+    reflowableDesc: "Best for text-heavy books. Change fonts & sizes.",
+    visualMode: "Visual PDF",
+    visualDesc: "Smart cropping for complex layouts & columns.",
+    kindleScreenSize: "Target Screen Size",
+    reflowInfo: "Your PDF will be converted to a reflowable EPUB 3.0 file. Perfect for adjusting font size and reading on any Kindle device.",
+    visualInfo: "K2PdfOpt-style optimization: We'll detect columns, crop margins, and re-paginate content to fit your Kindle screen without zooming."
   }
 };
+
+
 export type TranslationType = typeof translations.en;

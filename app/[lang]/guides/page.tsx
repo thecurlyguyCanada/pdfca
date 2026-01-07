@@ -21,7 +21,7 @@ export async function generateMetadata({
     const { lang } = await params;
     const baseUrl = 'https://www.pdfcanada.ca';
 
-    const metadata = {
+    const metadata: Record<string, { title: string; description: string }> = {
         en: {
             title: 'All PDF Guides & Tutorials | pdfcanada.ca',
             description: 'Browse our complete collection of PDF guides. Learn how to merge, split, compress, convert, and secure PDFs with expert tutorials.',
@@ -29,6 +29,10 @@ export async function generateMetadata({
         fr: {
             title: 'Tous les Guides & Tutoriels PDF | pdfcanada.ca',
             description: 'Parcourez notre collection complète de guides PDF. Apprenez à fusionner, diviser, compresser, convertir et sécuriser des PDF avec des tutoriels experts.',
+        },
+        de: {
+            title: 'Alle PDF-Anleitungen & Tutorials | pdfcanada.ca',
+            description: 'Durchstöbern Sie unsere komplette Sammlung von PDF-Anleitungen. Lernen Sie, wie Sie PDFs zusammenführen, teilen, komprimieren, konvertieren und sichern.',
         },
     };
 
@@ -42,6 +46,7 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en/guides`,
                 'fr-CA': `${baseUrl}/fr/guides`,
+                'de-DE': `${baseUrl}/de/guides`,
                 'x-default': `${baseUrl}/en/guides`,
             },
         },
@@ -56,7 +61,7 @@ export default async function GuidesPage({
     const { lang } = await params;
     const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
 
-    const seoData = {
+    const seoData: Record<string, { title: string; desc: string }> = {
         en: {
             title: 'All PDF Guides & Tutorials',
             desc: 'Browse our complete collection of PDF guides. Learn how to merge, split, compress, convert, and secure PDFs with expert tutorials.',
@@ -65,9 +70,13 @@ export default async function GuidesPage({
             title: 'Tous les Guides & Tutoriels PDF',
             desc: 'Parcourez notre collection complète de guides PDF. Apprenez à fusionner, diviser, compresser, convertir et sécuriser des PDF.',
         },
+        de: {
+            title: 'Alle PDF-Anleitungen & Tutorials',
+            desc: 'Durchstöbern Sie unsere komplette Sammlung von PDF-Anleitungen. Lernen Sie, wie Sie PDFs verarbeiten.',
+        },
     };
 
-    const t = seoData[currentLang];
+    const t = seoData[currentLang] || seoData.en;
 
     // Course schema - positions the guide collection as an educational series
     const courseSchema = {
