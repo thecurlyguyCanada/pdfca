@@ -1,8 +1,13 @@
-import * as pdfjs from 'pdfjs-dist';
+// Dynamic import to avoid SSR issues
+let pdfjsLib: typeof import('pdfjs-dist') | null = null;
 
-// Ensure worker path is set
-if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+async function getPdfJs() {
+    if (pdfjsLib) return pdfjsLib;
+    pdfjsLib = await import('pdfjs-dist');
+    if (typeof window !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+    }
+    return pdfjsLib;
 }
 
 export type RiskLevel = 'SAFE' | 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
@@ -29,6 +34,7 @@ export interface SecurityAnalysisResult {
 }
 
 export async function analyzePdfSecurity(file: File): Promise<SecurityAnalysisResult> {
+    const pdfjs = await getPdfJs();
     const arrayBuffer = await file.arrayBuffer();
     const loadingTask = pdfjs.getDocument({ data: arrayBuffer });
     const pdf = await loadingTask.promise;
@@ -155,6 +161,9 @@ export async function analyzePdfSecurity(file: File): Promise<SecurityAnalysisRe
     else if (result.score < 70) result.riskLevel = 'MEDIUM';
     else if (result.score < 90) result.riskLevel = 'HIGH';
     else result.riskLevel = 'CRITICAL';
+
+    // Clean up to prevent memory leak
+    pdf.destroy();
 
     return result;
 }

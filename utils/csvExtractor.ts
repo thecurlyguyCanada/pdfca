@@ -138,17 +138,21 @@ export function downloadAsExcel(data: TableData, filename: string = "converted_p
     if (format === 'csv') {
         const csv = utils.sheet_to_csv(worksheet);
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
+        link.href = url;
         link.download = filename.replace('.xlsx', '.csv');
         link.click();
+        URL.revokeObjectURL(url);
     } else {
         const buffer = write(workbook, { bookType: 'xlsx', type: 'array' });
         const blob = new Blob([buffer], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
+        link.href = url;
         link.download = filename;
         link.click();
+        URL.revokeObjectURL(url);
     }
 }
 
