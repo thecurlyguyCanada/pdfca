@@ -499,6 +499,10 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = primaryFile.name.replace(/\.pdf$/i, '.pptx');
             break;
 
+          case ToolType.INVOICE_OCR:
+            // Invoice OCR handles its own actions internally
+            return;
+
           case ToolType.PPT_TO_PDF:
             resultBlob = await convertPptToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.(pptx|ppt)$/i, '.pdf');
