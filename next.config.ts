@@ -94,6 +94,16 @@ const nextConfig: NextConfig = {
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
 
+    // Polyfill/stub node modules for client
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        child_process: false,
+        path: false,
+      };
+    }
+
     // Externalize heavy dependencies in server builds
     if (isServer) {
       config.externals.push('canvas', 'jsdom');

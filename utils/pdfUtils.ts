@@ -55,6 +55,19 @@ const getHeic2Any = async () => {
   return heic2any.default;
 };
 
+// Lazy load unrar-js
+const getUnrar = async () => {
+  try {
+    const unrar = await import('unrar-js');
+    return unrar;
+  } catch (error) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Failed to load unrar-js:', error);
+    }
+    throw new Error('ERR_LIB_LOAD_FAILED_UNRAR');
+  }
+};
+
 // Lazy load docx
 const getDocx = async () => {
   try {
@@ -458,7 +471,7 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
   return await doc.save();
 };
 
-export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
+export const convertHeicToPdf = async (file: File): Promise<Blob> => {
   const { PDFDocument } = await getPdfLib();
   const heic2any = await getHeic2Any();
 
@@ -503,7 +516,7 @@ export const convertHeicToPdf = async (file: File): Promise<Uint8Array> => {
   }
 
   addPdfMetadata(doc, 'HEIC to PDF Conversion');
-  return await doc.save();
+  return new Blob([await doc.save() as any], { type: 'application/pdf' });
 };
 
 export const convertPdfToEpub = async (file: File): Promise<Blob> => {
@@ -874,7 +887,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
   }
 };
 
-export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
+export const convertEpubToPdf = async (file: File): Promise<Blob> => {
   const { PDFDocument, StandardFonts } = await getPdfLib();
   const JSZip = await getJSZip();
 
@@ -980,10 +993,10 @@ export const convertEpubToPdf = async (file: File): Promise<Uint8Array> => {
   }
 
   addPdfMetadata(doc, 'EPUB to PDF Conversion');
-  return await doc.save();
+  return new Blob([await doc.save() as any], { type: 'application/pdf' });
 };
 
-export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
+export const convertCbrToPdf = async (file: File): Promise<Blob> => {
   const { PDFDocument } = await getPdfLib();
   const JSZip = await getJSZip();
 
@@ -1012,8 +1025,33 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
       if (data) images.push({ data, name });
     }
   } else if (isRar) {
-    // RAR extraction requires Node.js APIs not available in browser
-    throw new Error("RAR/CBR files are not supported in browser. Please convert to CBZ (ZIP) format first.");
+    try {
+      const unrar = await getUnrar();
+      const arrayBuffer = await file.arrayBuffer();
+      const extractor = await unrar.createExtractorFromData(new Uint8Array(arrayBuffer));
+
+      const list = extractor.getFileList();
+      // Sort explicitly if possible or just collect and sort
+      const entries = [];
+      for (const entry of list) {
+        if (!entry.fileHeader.flags.directory && /\.(jpg|jpeg|png|gif|webp)$/i.test(entry.fileHeader.name)) {
+          entries.push(entry);
+        }
+      }
+
+      // Sort by name
+      entries.sort((a, b) => a.fileHeader.name.localeCompare(b.fileHeader.name, undefined, { numeric: true, sensitivity: 'base' }));
+
+      for (const entry of entries) {
+        const extraction = extractor.extract({ files: [entry.fileHeader.name] });
+        if (extraction.files[0]?.extraction) {
+          images.push({ name: entry.fileHeader.name, data: extraction.files[0].extraction });
+        }
+      }
+    } catch (e) {
+      console.error("CBR Extraction failed", e);
+      throw new Error("Failed to process CBR file. It might be encrypted or invalid.");
+    }
   } else {
     throw new Error("Unsupported archive format. Please use .cbz or .zip files.");
   }
@@ -1057,7 +1095,7 @@ export const convertCbrToPdf = async (file: File): Promise<Uint8Array> => {
   }
 
   addPdfMetadata(doc, 'CBR/CBZ to PDF Conversion');
-  return await doc.save();
+  return new Blob([await doc.save() as any], { type: 'application/pdf' });
 };
 
 /**
@@ -3256,3 +3294,4 @@ export const convertPagesToPdf = async (file: File): Promise<Blob> => {
 
   throw new Error('Unable to convert Pages file: No preview PDF or extractable content found. Please export as PDF from Apple Pages directly.');
 };
+
