@@ -34,6 +34,10 @@ const XRechnungViewer = dynamic(() => import('./tools/XRechnungViewer'), {
     ssr: false,
     loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
 });
+const PdfToUblTool = dynamic(() => import('./tools/PdfToUblTool').then(mod => mod.PdfToUblTool), {
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+});
 
 
 import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor, DndContext } from '@dnd-kit/core';
@@ -263,6 +267,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isCsvTool = currentTool === ToolType.PDF_TO_CSV || currentTool === ToolType.PDF_TO_EXCEL;
     const isPhishingTool = currentTool === ToolType.PHISHING_DETECTOR;
     const isXRechnungTool = currentTool === ToolType.XRECHNUNG_VIEWER;
+    const isPdfToUblTool = currentTool === ToolType.PDF_TO_UBL;
 
     if (!file && (!files || files.length === 0) && !isBarcodeTool) {
         const tool = tools.find(t => t.id === currentTool);
@@ -397,9 +402,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
-        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
+        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
-            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && !isXRechnungTool && (
+            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && !isXRechnungTool && !isPdfToUblTool && (
                 <div
                     className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
                     {...swipeHandlers} // Attach swipe to header specifically
@@ -422,7 +427,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
+            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
                 {isBarcodeTool ? (
                     <BarcodeGeneratorTool
                         file={file || undefined}
@@ -447,6 +452,12 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     <XRechnungViewer
                         file={file}
                         onClose={onSoftReset}
+                        t={t}
+                    />
+                ) : isPdfToUblTool && file ? (
+                    <PdfToUblTool
+                        file={file}
+                        pdfJsDoc={pdfJsDoc}
                         t={t}
                     />
                 ) : isPageSelectionTool ? (

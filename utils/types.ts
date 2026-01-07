@@ -43,7 +43,8 @@ export enum ToolType {
     ODT_TO_PDF = 'ODT_TO_PDF',
     PDF_TO_PPT = 'PDF_TO_PPT',
     PPT_TO_PDF = 'PPT_TO_PDF',
-    PAGES_TO_PDF = 'PAGES_TO_PDF'
+    PAGES_TO_PDF = 'PAGES_TO_PDF',
+    PDF_TO_UBL = 'PDF_TO_UBL'
 }
 
 export enum AppState {

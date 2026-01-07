@@ -800,7 +800,6 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     descriptionFr: 'Convertissez les fichiers OpenDocument Text (ODT) en format PDF. Préservez le formatage des documents LibreOffice/OpenOffice.',
     keywords: ['ODT to PDF', 'convert ODT to PDF', 'OpenDocument to PDF', 'LibreOffice to PDF'],
     keywordsFr: [
-      // High volume primary keywords (5,400+ searches)
       'convertir odt en pdf',
       'odt en pdf gratuit',
       'convertir fichier odt en pdf',
@@ -808,6 +807,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       'libreoffice en pdf'
     ],
     accept: '.odt,application/vnd.oasis.opendocument.text'
+  },
+  {
+    slug: 'pdf-to-ubl',
+    i18nKey: 'pdfToUbl',
+    tool: ToolType.PDF_TO_UBL,
+    title: 'PDF to UBL',
+    titleFr: 'PDF vers UBL',
+    description: 'Convert PDF invoices to UBL 2.1 XML format. Extract vendor, date, and amounts automatically. Free, private, local processing.',
+    descriptionFr: 'Convertissez les factures PDF en format XML UBL 2.1. Extrayez automatiquement le fournisseur, la date et les montants. Gratuit, privé, traitement local.',
+    keywords: ['PDF to UBL', 'convert PDF to UBL', 'invoice to UBL', 'UBL converter'],
+    keywordsFr: ['PDF vers UBL', 'convertir PDF en UBL', 'facture vers UBL', 'convertisseur UBL'],
+    accept: '.pdf,application/pdf'
   },
   {
     slug: 'pdf-to-ppt',
