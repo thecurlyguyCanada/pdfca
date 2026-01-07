@@ -61,3 +61,10 @@ A comprehensive engineering audit was conducted on the `pdfca` codebase, focusin
 ## 5. Recommendations
 - **Continuous Monitoring:** Errors are logged to the console in development; consider integrating a production error boundary service (like Sentry) if not already active.
 - **Regression Testing:** Ensure future PDF tool additions follow the pattern of "Dynamic Import -> Local Worker -> Explicit Cleanup".
+
+## 6. Dependency Hygiene
+A thorough audit of `package.json` revealed several unused or obsolete dependencies.
+- **Removed:** `worker-loader` (Deprecated/Unused)
+- **Removed:** `tesseract.js` (OCR functionality was previously deprecated; library was dead code)
+- **Removed:** `unrar-js` (No implementation found for CBR-to-PDF conversion)
+- **Action:** Removed these from `package.json` to reduce install time and potential security surface.
