@@ -142,6 +142,10 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/finance-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Finance' : 'Finance PDF Security'}</Link></li>
                         <li><Link href={`/${lang}/guides/legal-pdf-tools`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Juridique' : 'Legal PDF Security'}</Link></li>
                         <li><Link href={`/${lang}/guides/healthcare-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Santé' : 'Healthcare PDF'}</Link></li>
+                        <li className="pt-3 mt-3 border-t border-white/10">
+                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Téléchargements' : 'Downloads'}</span>
+                        </li>
+                        <li><Link href={`/${lang}/surah-baqarah-pdf`} className="hover:text-white transition-colors font-semibold text-green-400">{lang === 'fr' ? 'Sourate Baqarah PDF' : 'Surah Baqarah PDF'}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
