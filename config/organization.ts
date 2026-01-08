@@ -12,7 +12,7 @@ export const ORGANIZATION = {
     city: 'Toronto',
     province: 'Ontario',
     country: 'Canada',
-    postalCode: '', // To be filled
+    postalCode: 'M5V 0E9', // Downtown Toronto, Finance District
   },
 
   coordinates: {

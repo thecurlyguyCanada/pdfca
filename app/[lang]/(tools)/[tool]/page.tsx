@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { RelatedTools } from '@/components/RelatedTools';
 import { SEO } from '@/components/SEO';
+import { SocialShare } from '@/components/SocialShare';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
 import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
@@ -142,6 +143,15 @@ export default async function ToolPage({
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <ToolPageClient toolConfig={config} lang={currentLang} />
+
+                        {/* Social Share - Bing SEO: Social signals are a ranking factor */}
+                        <div className="mt-8 flex justify-center">
+                            <SocialShare
+                                url={`https://www.pdfcanada.ca/${lang}/${config.slug}`}
+                                title={localizedConfig.title}
+                                lang={currentLang}
+                            />
+                        </div>
 
                         {/* Tool-specific FAQs */}
                         {toolFaqs.length > 0 && (

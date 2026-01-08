@@ -41,6 +41,17 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
                 disallow: ['/api/'],
             },
+            // Bing's crawlers (important for Bing SEO)
+            {
+                userAgent: 'bingbot',
+                allow: '/',
+                disallow: ['/api/'],
+            },
+            {
+                userAgent: 'msnbot',
+                allow: '/',
+                disallow: ['/api/'],
+            },
         ],
         sitemap: 'https://www.pdfcanada.ca/sitemap.xml',
     };

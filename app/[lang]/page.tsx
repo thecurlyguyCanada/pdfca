@@ -44,8 +44,40 @@ export async function generateMetadata({
         title: content.title,
         description: content.description,
         keywords: lang === 'fr'
-            ? ['outils PDF gratuits', 'fusionner PDF', 'compresser PDF', 'diviser PDF', 'convertir PDF', 'Canada', 'sécurisé', 'sans téléchargement']
-            : ['free PDF tools', 'merge PDF', 'compress PDF', 'split PDF', 'convert PDF', 'Canada', 'secure', 'no upload'],
+            ? [
+                // Exact-match primary keywords (Bing prefers these)
+                'outils PDF gratuits',
+                'fusionner PDF en ligne',
+                'compresser PDF gratuit',
+                'diviser PDF en ligne',
+                'convertir PDF en Word',
+                'convertir PDF gratuit',
+                'PDF Canada',
+                'outils PDF sécurisés',
+                'sans téléchargement',
+                'PIPEDA',
+                // Location-based keywords
+                'outils PDF Québec',
+                'outils PDF Ontario',
+                'PDF gratuit Canada'
+            ]
+            : [
+                // Exact-match primary keywords (Bing prefers these)
+                'free PDF tools',
+                'free PDF tools Canada',
+                'merge PDF online free',
+                'compress PDF free',
+                'split PDF online',
+                'convert PDF to Word free',
+                'PDF editor no upload',
+                'secure PDF tools',
+                'PIPEDA compliant PDF',
+                // Location-based keywords
+                'PDF tools Ontario',
+                'PDF tools Toronto',
+                'Canadian PDF editor',
+                'privacy PDF tools'
+            ],
         authors: [{ name: 'pdfcanada.ca', url: baseUrl }],
         creator: 'pdfcanada.ca',
         publisher: 'pdfcanada.ca',
