@@ -1,11 +1,13 @@
 // Dynamic import to avoid SSR issues
+import { PDF_CONFIG } from '@/config/pdf';
+
 let pdfjsLib: typeof import('pdfjs-dist') | null = null;
 
 async function getPdfJs() {
     if (pdfjsLib) return pdfjsLib;
     pdfjsLib = await import('pdfjs-dist');
     if (typeof window !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_CONFIG.WORKER.PATH;
     }
     return pdfjsLib;
 }

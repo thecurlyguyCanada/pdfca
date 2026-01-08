@@ -5,7 +5,7 @@ import * as pdfjs from 'pdfjs-dist';
 // In a web worker, we might need to point to the external CDN script directly or bundle it.
 // For simplicity in this environment, we'll try the CDN approach which worked in the main thread.
 if (typeof self !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+    pdfjs.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs';
 }
 
 interface TextItem {

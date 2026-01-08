@@ -270,7 +270,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isPdfToUblTool = currentTool === ToolType.PDF_TO_UBL;
 
     if (!file && (!files || files.length === 0) && !isBarcodeTool) {
-        const tool = tools.find(t => t.id === currentTool);
+        const tool = tools.find(t => t.tool === currentTool);
         return (
             <div
                 className={`flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/${isDesktop ? '95' : '60'} border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-700 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover`}
@@ -289,7 +289,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                 <div className={`relative z-10 w-28 h-28 md:w-36 md:h-36 bg-white/${isDesktop ? '100' : '90'} rounded-[2.5rem] shadow-premium flex items-center justify-center mb-10 group-hover/drop:scale-105 transition-all duration-500 border border-white/60`}>
                     <div className="text-canada-red">
-                        {tool && <tool.icon size={56} strokeWidth={1.5} />}
+                        <FileText size={56} strokeWidth={1.5} />
                     </div>
                 </div>
 
