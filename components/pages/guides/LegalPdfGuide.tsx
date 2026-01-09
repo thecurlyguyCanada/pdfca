@@ -1023,7 +1023,7 @@ const getGuideContent = (lang: Language) => ({
 
 export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
     const qa = translations[lang].features.legalPdf.quickAnswer;
 
     const schema = {

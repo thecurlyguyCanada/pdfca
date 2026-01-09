@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
 import { MapleLeaf } from './MapleLeaf';
-import { usePathname } from 'next/navigation';
+import { LanguageSelector } from './LanguageSelector';
 
 interface HeaderProps {
   lang: Language;
@@ -15,7 +15,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ lang }) => {
   const t = translations[lang];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -28,19 +27,6 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
-
-  // Strip current locale from pathname to generate the link to the other language
-  const getLanguageSwitchPath = (targetLang: string) => {
-    if (!pathname) return `/${targetLang}`;
-    const segments = pathname.split('/');
-    // Check if the first segment is a locale
-    if (segments[1] === 'en' || segments[1] === 'fr') {
-      segments[1] = targetLang;
-    } else {
-      segments.splice(1, 0, targetLang);
-    }
-    return segments.join('/');
-  };
 
   return (
     <>
@@ -71,15 +57,15 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-1 items-center bg-gray-100 p-1 rounded-full border border-gray-200/50">
           <Link href={`/${lang}`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
-            {lang === 'en' ? 'Tools' : 'Outils'}
+            {t.navTools}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
           <Link href={`/${lang}/guides`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
-            {lang === 'en' ? 'Guides' : 'Guides'}
+            {t.navGuides}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
           <Link href={`/${lang}/about`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
-            {lang === 'en' ? 'About' : 'À Propos'}
+            {t.navAbout}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
           <Link href={`/${lang}/howto`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
@@ -93,15 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <Link
-            href={getLanguageSwitchPath(lang === 'en' ? 'fr' : 'en')}
-            onClick={() => triggerHaptic('light')}
-            className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-4 shadow-glass hover:shadow-premium group/lang"
-          >
-            <span className={`${lang === 'en' ? 'text-canada-red' : 'text-modern-neutral-700'}`}>EN</span>
-            <div className="w-px h-3 bg-gray-300" />
-            <span className={`${lang === 'fr' ? 'text-canada-red' : 'text-modern-neutral-700'}`}>FR</span>
-          </Link>
+          <LanguageSelector currentLang={lang} />
 
           <button
             onClick={() => {
@@ -144,20 +122,25 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
                 <X size={20} className="text-gray-700" />
               </button>
             </div>
+
             <nav className="flex flex-col p-6 gap-2 pt-4">
+              <LanguageSelector currentLang={lang} mobile={true} />
+
+              <div className="h-4" /> {/* Spacer */}
+
               <Link
                 href={`/${lang}`}
                 className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {lang === 'en' ? 'All Tools' : 'Tous les Outils'}
+                {t.navTools}
               </Link>
               <Link
                 href={`/${lang}/about`}
                 className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {lang === 'en' ? 'About Us' : 'À Propos'}
+                {t.navAbout}
               </Link>
               <Link
                 href={`/${lang}/howto`}
@@ -178,7 +161,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
                 className="text-left text-lg font-semibold text-canada-red py-4 px-5 rounded-2xl hover:bg-red-50 flex items-center border border-transparent"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {lang === 'en' ? '📚 PDF Guides' : '📚 Guides PDF'}
+                {t.navGuides}
               </Link>
             </nav>
           </div>

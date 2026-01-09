@@ -2523,7 +2523,7 @@ EPUB optimization is an art AND a science. These techniques will allow you to cr
 
 export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang];
+    const t = guideContent[lang as keyof typeof guideContent];
 
     const schema = {
         "@type": "Article",

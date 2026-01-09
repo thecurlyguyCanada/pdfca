@@ -114,8 +114,8 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: lang === 'fr' ? toolConfig.titleFr : toolConfig.title,
-    description: lang === 'fr' ? toolConfig.descriptionFr : toolConfig.description,
+    name: toolConfig.title[lang] || toolConfig.title.en,
+    description: toolConfig.description[lang] || toolConfig.description.en,
     url: `${URLS.DOMAIN}/${lang}/${toolConfig.slug}`,
     applicationCategory: 'UtilitiesApplication',
     applicationSubCategory: 'PDF Tools',

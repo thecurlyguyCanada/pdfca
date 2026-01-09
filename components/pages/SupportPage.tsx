@@ -29,7 +29,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                 canonicalPath="/support"
                 lang={lang}
                 schema={supportSchema}
-                faqs={t.supportPage.faq.map(item => ({ q: item.question, a: item.answer }))}
+                faqs={t.supportPage.faq.map((item: { question: string, answer: string }) => ({ q: item.question, a: item.answer }))}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
                     { name: lang === 'fr' ? 'Support' : 'Support', path: `/${lang}/support` }
@@ -61,7 +61,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                 <div className="mt-16 text-left max-w-3xl mx-auto">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">Frequently Asked Questions</h2>
                     <div className="space-y-6">
-                        {t.supportPage.faq.map((item, i) => (
+                        {t.supportPage.faq.map((item: { question: string, answer: string }, i: number) => (
                             <div key={i} className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 border border-gray-100 dark:border-gray-600">
                                 <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-2">{item.question}</h3>
                                 <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>

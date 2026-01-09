@@ -49,17 +49,20 @@ import { ToolType } from '../utils/types';
 import { triggerHaptic } from '../utils/haptics';
 import { useSwipe } from '../hooks/useSwipe';
 
+import { ToolConfig } from '../lib/toolConfig';
+import { Locale } from '@/lib/i18n-config';
+
 interface ToolInterfaceProps {
     // ... existing props
     file: File | null;
     files?: File[];
     setFiles?: React.Dispatch<React.SetStateAction<File[]>>;
     currentTool: ToolType;
-    lang: string;
+    lang: Locale;
     t: any;
     pageCount: number;
     pdfJsDoc: any;
-    tools: any[];
+    tools: ToolConfig[];
     selectedPages: Set<number>;
     rotations: { [key: number]: number };
     previewZoom: number;
@@ -295,7 +298,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                 <div className="relative z-10 space-y-6">
                     <div className="space-y-2">
-                        <h3 className="text-3xl md:text-5xl font-[1000] text-modern-neutral-900 tracking-tighter lowercase italic leading-none">{tool?.title}</h3>
+                        <h3 className="text-3xl md:text-5xl font-[1000] text-modern-neutral-900 tracking-tighter lowercase italic leading-none">{tool?.title[lang] || tool?.title['en']}</h3>
                         <p className="text-modern-neutral-600 font-bold max-w-sm mx-auto leading-relaxed text-sm md:text-base">
                             {t.uploadDesc} <br />
                             <span className="text-canada-red font-black text-[10px] tracking-[0.2em] uppercase mt-2 inline-block">({tool?.accept})</span>

@@ -515,7 +515,7 @@ const getGuideContent = (lang: Language) => ({
 
 export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     const quickAnswerData = {
         question: lang === 'fr' ? "Comment enregistrer un courriel en PDF?" : "How do I save an email as PDF?",

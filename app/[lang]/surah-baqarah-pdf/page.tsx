@@ -34,22 +34,36 @@ export async function generateMetadata({
         fr: {
             title: 'Sourate Baqarah PDF - Télécharger Sourate Al-Baqarah Gratuit',
             description: 'Téléchargez Sourate Baqarah PDF gratuitement. Sourate Al-Baqarah complète avec texte arabe. Lisez en ligne ou téléchargez le chapitre 2 du Saint Coran.',
+        },
+        pt: {
+            title: 'Surah Baqarah PDF - Baixar Surah Al-Baqarah Completa Grátis',
+            description: 'Baixe Surah Baqarah PDF gratuitamente. Surah Al-Baqarah completa com texto em árabe. Leia online ou baixe o capítulo 2 do Alcorão Sagrado.',
         }
     };
 
     const meta = content[lang] || content.en;
 
-    // Comprehensive keywords targeting all search variations
-    const keywords = lang === 'fr'
-        ? [
-            'sourate baqarah pdf',
-            'sourate al baqarah pdf',
-            'sourate baqarah télécharger',
-            'coran chapitre 2 pdf',
-            'sourate baqarah arabe',
-            'sourate baqarah français'
-        ]
-        : [
+    const getKeywords = (l: Locale) => {
+        if (l === 'fr') {
+            return [
+                'sourate baqarah pdf',
+                'sourate al baqarah pdf',
+                'sourate baqarah télécharger',
+                'coran chapitre 2 pdf',
+                'sourate baqarah arabe',
+                'sourate baqarah français'
+            ];
+        } else if (l === 'pt') {
+            return [
+                'surah baqarah pdf',
+                'surah al baqarah pdf',
+                'baixar surah baqarah',
+                'alcorão capítulo 2 pdf',
+                'surah baqarah árabe',
+                'surah baqarah tradução'
+            ];
+        }
+        return [
             // Primary keywords (18,100+ monthly searches combined)
             'surah baqarah pdf',
             'surah baqarah full pdf',
@@ -70,16 +84,18 @@ export async function generateMetadata({
             'surah baqarah last ruku pdf',
             'surah baqarah with tajweed pdf'
         ];
+    };
 
     return {
         title: meta.title,
         description: meta.description,
-        keywords: keywords,
+        keywords: getKeywords(lang),
         alternates: {
             canonical: `${baseUrl}/${lang}/surah-baqarah-pdf`,
             languages: {
                 'en-CA': `${baseUrl}/en/surah-baqarah-pdf`,
                 'fr-CA': `${baseUrl}/fr/surah-baqarah-pdf`,
+                'pt-BR': `${baseUrl}/pt/surah-baqarah-pdf`,
                 'x-default': `${baseUrl}/en/surah-baqarah-pdf`,
             },
         },
@@ -88,7 +104,7 @@ export async function generateMetadata({
             description: meta.description,
             url: `${baseUrl}/${lang}/surah-baqarah-pdf`,
             type: 'article',
-            locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
+            locale: lang === 'fr' ? 'fr_CA' : (lang === 'pt' ? 'pt_BR' : 'en_CA'),
             images: [
                 {
                     url: `${baseUrl}/og-image.png`,
@@ -150,46 +166,86 @@ export default async function SurahBaqarahPage({
             lastAyatTitle: 'Les 2 derniers Ayat de Sourate Baqarah',
             lastAyatText: 'Les deux derniers versets de Sourate Al-Baqarah sont parmi les plus puissants du Coran. Le Prophète Muhammad (PSL) a dit: "Celui qui récite les deux derniers versets de Sourate Al-Baqarah la nuit, ils lui suffiront."',
             faqTitle: 'Questions Fréquentes',
+        },
+        pt: {
+            title: 'Surah Baqarah PDF',
+            subtitle: 'A Vaca - Capítulo 2 do Alcorão Sagrado',
+            description: 'Baixe ou leia Surah Al-Baqarah online. O capítulo mais longo do Alcorão com 286 versos.',
+            features: [
+                'Surah Al-Baqarah completa (286 Ayat)',
+                'Texto em árabe claro',
+                'Formato PDF de alta qualidade',
+                'Download gratuito - sem cadastro',
+                'Inclui os 2 últimos ayat (versos 285-286)',
+                'Privacidade respeitada - processamento local'
+            ],
+            aboutTitle: 'Sobre Surah Al-Baqarah',
+            aboutText: 'Surah Al-Baqarah (A Vaca) é o segundo e mais longo capítulo do Sagrado Alcorão, contendo 286 versos. Foi revelado em Medina e abrange muitos aspectos da lei islâmica, conselhos e histórias de profetas anteriores.',
+            lastAyatTitle: 'Os 2 Últimos Ayat da Surah Baqarah',
+            lastAyatText: 'Os dois últimos versos da Surah Al-Baqarah estão entre os mais poderosos do Alcorão. O Profeta Muhammad (que a paz esteja com ele) disse: "Quem recitar os dois últimos versos da Surah Al-Baqarah à noite, eles lhe bastarão."',
+            faqTitle: 'Perguntas Frequentes',
         }
     };
 
-    const t = content[currentLang];
+    const t = content[currentLang] || content.en;
 
-    const faqs = currentLang === 'en' ? [
-        {
-            q: 'How do I download Surah Baqarah PDF?',
-            a: 'Click the "Download PDF" button above to save the complete Surah Al-Baqarah to your device. The download is instant and free.'
-        },
-        {
-            q: 'Does this include the last 2 ayat of Surah Baqarah?',
-            a: 'Yes, this PDF includes the complete Surah Al-Baqarah with all 286 verses, including the powerful last two ayat (verses 285-286).'
-        },
-        {
-            q: 'Is this Surah Baqarah PDF free to download?',
-            a: 'Yes, absolutely free. No signup, no payment, no restrictions. Download and share as many times as you like.'
-        },
-        {
-            q: 'Can I read Surah Baqarah online without downloading?',
-            a: 'Yes! Use the "View PDF Online" button to read directly in your browser. You can zoom, navigate pages, and even listen to audio.'
-        },
-        {
-            q: 'Is this available in Urdu, Hindi, or English translation?',
-            a: 'This PDF contains the original Arabic text. For translations, we recommend using a separate translation guide alongside this PDF.'
+    const getFaqs = (l: string) => {
+        if (l === 'fr') {
+            return [
+                {
+                    q: 'Comment télécharger Sourate Baqarah en PDF?',
+                    a: 'Cliquez sur le bouton "Télécharger PDF" ci-dessus pour enregistrer Sourate Al-Baqarah complète sur votre appareil. Le téléchargement est instantané et gratuit.'
+                },
+                {
+                    q: 'Ce PDF inclut-il les 2 derniers ayat?',
+                    a: 'Oui, ce PDF inclut la Sourate Al-Baqarah complète avec les 286 versets, y compris les deux derniers ayat puissants (versets 285-286).'
+                },
+                {
+                    q: 'Ce PDF de Sourate Baqarah est-il gratuit?',
+                    a: 'Oui, absolument gratuit. Pas d\'inscription, pas de paiement, pas de restrictions.'
+                }
+            ];
+        } else if (l === 'pt') {
+            return [
+                {
+                    q: 'Como baixar Surah Baqarah em PDF?',
+                    a: 'Clique no botão "Baixar PDF" acima para salvar a Surah Al-Baqarah completa no seu dispositivo. O download é instantâneo e gratuito.'
+                },
+                {
+                    q: 'Este PDF inclui os 2 últimos ayat?',
+                    a: 'Sim, este PDF inclui a Surah Al-Baqarah completa com todos os 286 versos, incluindo os poderosos dois últimos ayat.'
+                },
+                {
+                    q: 'Este PDF da Surah Baqarah é grátis?',
+                    a: 'Sim, absolutamente grátis. Sem cadastro, sem pagamento, sem restrições.'
+                }
+            ];
         }
-    ] : [
-        {
-            q: 'Comment télécharger Sourate Baqarah en PDF?',
-            a: 'Cliquez sur le bouton "Télécharger PDF" ci-dessus pour enregistrer Sourate Al-Baqarah complète sur votre appareil. Le téléchargement est instantané et gratuit.'
-        },
-        {
-            q: 'Ce PDF inclut-il les 2 derniers ayat?',
-            a: 'Oui, ce PDF inclut la Sourate Al-Baqarah complète avec les 286 versets, y compris les deux derniers ayat puissants (versets 285-286).'
-        },
-        {
-            q: 'Ce PDF de Sourate Baqarah est-il gratuit?',
-            a: 'Oui, absolument gratuit. Pas d\'inscription, pas de paiement, pas de restrictions.'
-        }
-    ];
+        return [
+            {
+                q: 'How do I download Surah Baqarah PDF?',
+                a: 'Click the "Download PDF" button above to save the complete Surah Al-Baqarah to your device. The download is instant and free.'
+            },
+            {
+                q: 'Does this include the last 2 ayat of Surah Baqarah?',
+                a: 'Yes, this PDF includes the complete Surah Al-Baqarah with all 286 verses, including the powerful last two ayat (verses 285-286).'
+            },
+            {
+                q: 'Is this Surah Baqarah PDF free to download?',
+                a: 'Yes, absolutely free. No signup, no payment, no restrictions. Download and share as many times as you like.'
+            },
+            {
+                q: 'Can I read Surah Baqarah online without downloading?',
+                a: 'Yes! Use the "View PDF Online" button to read directly in your browser. You can zoom, navigate pages, and even listen to audio.'
+            },
+            {
+                q: 'Is this available in Urdu, Hindi, or English translation?',
+                a: 'This PDF contains the original Arabic text. For translations, we recommend using a separate translation guide alongside this PDF.'
+            }
+        ];
+    };
+
+    const faqs = getFaqs(currentLang);
 
     const breadcrumbs = [
         { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
@@ -246,7 +302,7 @@ export default async function SurahBaqarahPage({
 
                         {/* Features */}
                         <div className="mt-16 grid md:grid-cols-2 gap-6">
-                            {t.features.map((feature, i) => (
+                            {t.features.map((feature: string, i: number) => (
                                 <div key={i} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
                                     <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                                         <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">

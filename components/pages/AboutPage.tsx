@@ -162,6 +162,82 @@ const getContent = () => ({
 
         ctaTitle: "Prêt à Commencer ?",
         ctaButton: "Découvrir Nos Outils"
+    },
+    pt: {
+        seo: {
+            title: "About PDFCanada.ca | Our Story & Mission | Free Canadian PDF Tools",
+            desc: "PDFCanada.ca was built in Canada to make PDFs effortless. Learn about our founder's story, our privacy-first mission, and why we created free, fast PDF tools for Canadians."
+        },
+        h1: "About PDFCanada.ca",
+        subtitle: "Built in Canada to Make PDFs Effortless",
+        intro: "PDFCanada.ca was created with a simple belief: working with PDFs should be easy, fast, and accessible — not expensive or frustrating.",
+        introSub: "In a world where PDFs power everything from schoolwork and job applications to business contracts and government forms, the tools to manage them shouldn't slow people down. That's why PDFCanada.ca exists.",
+
+        founderTitle: "The Founder's Story",
+        founderIntro: "PDFCanada.ca began as a personal solution to a very common problem.",
+        founderStory: "The platform was built by someone who spent years working closely with digital documents — across projects, businesses, and real-world workflows where PDFs were unavoidable. Day after day, the same frustrations kept appearing:",
+        frustrations: [
+            "PDF tools that locked basic features behind subscriptions",
+            "Converters that broke formatting or failed entirely",
+            "Software that required downloads, installs, or sign-ups",
+            "Unclear privacy practices for sensitive files"
+        ],
+        founderConclusion: "What should have taken seconds often turned into wasted time and unnecessary costs. Instead of accepting that as \"just the way it is,\" the decision was made to build something better — a clean, reliable PDF platform that actually respects users.",
+        founderOrigin: "PDFCanada.ca started as a small internal tool — built to solve real problems, not to sell upgrades. Over time, it evolved into a public platform so others wouldn't have to deal with the same frustrations.",
+
+        whyTitle: "Why PDFCanada.ca Was Created",
+        whyIntro: "The vision was never to compete with bloated enterprise software. The goal was much simpler:",
+        whyPoints: [
+            "Do one thing well",
+            "Keep tools fast and intuitive",
+            "Remove barriers like forced accounts and paywalls",
+            "Treat user data with care and transparency"
+        ],
+        whyConclusion: "PDFCanada.ca is built for people who just want to get things done — without tutorials, installations, or hidden catches.",
+
+        differentTitle: "What Makes PDFCanada.ca Different",
+        differentiators: [
+            {
+                icon: "globe",
+                title: "Built With Canadian Users in Mind",
+                desc: "From students and job seekers to small businesses and professionals, the platform reflects how documents are actually used every day in Canada."
+            },
+            {
+                icon: "zap",
+                title: "Simple, Efficient Tools",
+                desc: "Upload, convert, download — no unnecessary steps. The interface stays clean so the work stays simple."
+            },
+            {
+                icon: "shield",
+                title: "Privacy-First by Design",
+                desc: "Files are processed securely and automatically removed after completion. Your documents remain yours."
+            },
+            {
+                icon: "target",
+                title: "Built From Real Experience",
+                desc: "Every tool on PDFCanada.ca exists because it solves a real problem encountered firsthand — not because it looks good on a feature list."
+            }
+        ],
+
+        missionTitle: "Our Mission",
+        missionText: "To remove friction from everyday document tasks.",
+        missionSub: "Whether you're converting PDFs to Word, merging files, splitting pages, or turning images into PDFs, PDFCanada.ca aims to be the tool you trust when accuracy and speed matter.",
+
+        futureTitle: "Looking Ahead",
+        futureIntro: "PDFCanada.ca continues to grow with a clear focus:",
+        futurePoints: [
+            "More practical PDF tools",
+            "Faster and more accurate conversions",
+            "A smoother experience across all devices"
+        ],
+        futureConclusion: "The platform will always stay grounded in its original purpose: simple tools built for real people, not upsells.",
+
+        thanksTitle: "Thank You for Using PDFCanada.ca",
+        thanksText: "PDFCanada.ca exists because one frustrating problem turned into a commitment to build something better — and because thousands of users rely on it every day.",
+        thanksSub: "If you're here, you're part of that journey.",
+
+        ctaTitle: "Ready to Get Started?",
+        ctaButton: "Explore Our Tools"
     }
 });
 

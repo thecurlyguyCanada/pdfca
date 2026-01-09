@@ -31,6 +31,18 @@ export function constructMetadata({
     // Clean path for alternates (remove leading slash if root)
     const cleanPath = path === '/' ? '' : path;
 
+    // Dynamically generate alternates
+    const languages: Record<string, string> = {};
+    i18n.locales.forEach(locale => {
+        const url = `${BASE_URL}/${locale}${cleanPath}`;
+        languages[`${locale}-CA`] = url; // Specific CA locale
+        languages[locale] = url; // Generic language fallback
+    });
+    languages['x-default'] = `${BASE_URL}/${i18n.defaultLocale}${cleanPath}`;
+
+    // Format locale for OpenGraph (e.g., en_CA)
+    const underscoreLocale = `${lang}_CA`;
+
     return {
         title,
         description,
@@ -43,18 +55,14 @@ export function constructMetadata({
         ],
         alternates: {
             canonical: fullUrl,
-            languages: {
-                'en-CA': `${BASE_URL}/en${cleanPath}`,
-                'fr-CA': `${BASE_URL}/fr${cleanPath}`,
-                'x-default': `${BASE_URL}/en${cleanPath}`,
-            },
+            languages,
         },
         openGraph: {
             title: `${title} | pdfcanada.ca`,
             description,
             url: fullUrl,
             siteName: 'pdfcanada.ca',
-            locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
+            locale: underscoreLocale,
             type: 'website',
             images: [
                 {

@@ -393,7 +393,7 @@ const getGuideContent = (lang: Language) => ({
 
 export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     return (
         <>

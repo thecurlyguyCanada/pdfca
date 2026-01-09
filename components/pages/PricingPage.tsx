@@ -30,7 +30,7 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 ogType="product"
                 schema={pricingSchema}
-                faqs={t.pricingPage.faq.map(item => ({ q: item.question, a: item.answer }))}
+                faqs={t.pricingPage.faq.map((item: { question: string, answer: string }) => ({ q: item.question, a: item.answer }))}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
                     { name: 'Pricing', path: '/pricing' }
@@ -119,7 +119,7 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
                 <div className="mt-20 max-w-3xl mx-auto">
                     <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-10">Common Questions</h2>
                     <div className="space-y-6">
-                        {t.pricingPage.faq.map((item, i) => (
+                        {t.pricingPage.faq.map((item: { question: string, answer: string }, i: number) => (
                             <div key={i} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
                                 <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-2">{item.question}</h3>
                                 <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>

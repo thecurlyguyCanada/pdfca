@@ -179,7 +179,7 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
         }
     };
 
-    const t = translations[lang] || translations.en;
+    const t = (translations as any)[lang] || translations.en;
 
     return (
         <div ref={containerRef} className="w-full">
@@ -206,8 +206,8 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
                 <button
                     onClick={handleListen}
                     className={`flex items-center gap-2 px-6 py-3 bg-white border-2 rounded-full font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${isSpeaking
-                            ? 'border-green-500 text-green-500 bg-green-50'
-                            : 'border-gray-200 text-gray-700 hover:border-green-500 hover:text-green-500'
+                        ? 'border-green-500 text-green-500 bg-green-50'
+                        : 'border-gray-200 text-gray-700 hover:border-green-500 hover:text-green-500'
                         }`}
                     aria-label={t.listenAudio}
                 >

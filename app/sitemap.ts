@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllToolSlugs } from '@/lib/toolConfig';
 import { getAllGuideSlugs } from '@/lib/guideConfig';
+import { i18n, Locale } from '@/lib/i18n-config';
 
 const baseUrl = 'https://www.pdfcanada.ca';
 
@@ -17,6 +18,27 @@ interface SitemapEntry {
     };
 }
 
+// Helper to generate alternate links for all locales
+function getAlternates(path: string) {
+    const languages: Record<string, string> = {};
+    i18n.locales.forEach(locale => {
+        // Construct the URL: baseUrl + /locale + path (path should start with / if not empty)
+        // path is expected to be e.g. "/about" or "/guides/slug" or "" for home
+        const cleanPath = path.startsWith('/') ? path : `/${path}`;
+        // For homepage (empty path), it becomes /en, /fr, etc.
+        // For others, it becomes /en/about, etc.
+        const url = path === '' ? `${baseUrl}/${locale}` : `${baseUrl}/${locale}${cleanPath}`;
+
+        // Key format: simple 'en', 'fr', 'pt' or specific 'en-CA' etc.
+        // Using 'x-default' pointing to 'en'
+        languages[`${locale}-CA`] = url; // Targetting Canada specifically based on domain
+        languages[locale] = url; // Fallback for the language globally
+    });
+    languages['x-default'] = `${baseUrl}/${i18n.defaultLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
+    return { languages };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const tools = getAllToolSlugs();
     const guides = getAllGuideSlugs();
@@ -26,155 +48,69 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const routes: SitemapEntry[] = [];
 
-    // Homepage with alternates
-    routes.push({
-        url: `${baseUrl}/en`,
-        lastModified,
-        changeFrequency: 'daily',
-        priority: 1,
-        alternates: {
-            languages: {
-                'en-CA': `${baseUrl}/en`,
-                'fr-CA': `${baseUrl}/fr`,
-                'x-default': `${baseUrl}/en`,
-            },
-        },
-    });
-
-    routes.push({
-        url: `${baseUrl}/fr`,
-        lastModified,
-        changeFrequency: 'daily',
-        priority: 1,
-        alternates: {
-            languages: {
-                'en-CA': `${baseUrl}/en`,
-                'fr-CA': `${baseUrl}/fr`,
-                'x-default': `${baseUrl}/en`,
-            },
-        },
-    });
-
-    // Static pages with alternates (one entry per page, not per locale)
-    staticPages.forEach((page) => {
+    // Homepage
+    i18n.locales.forEach(locale => {
         routes.push({
-            url: `${baseUrl}/en/${page}`,
+            url: `${baseUrl}/${locale}`,
             lastModified,
-            changeFrequency: 'monthly',
-            priority: 0.6,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/${page}`,
-                    'fr-CA': `${baseUrl}/fr/${page}`,
-                    'x-default': `${baseUrl}/en/${page}`,
-                },
-            },
+            changeFrequency: 'daily',
+            priority: 1,
+            alternates: getAlternates(''),
         });
-        routes.push({
-            url: `${baseUrl}/fr/${page}`,
-            lastModified,
-            changeFrequency: 'monthly',
-            priority: 0.6,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/${page}`,
-                    'fr-CA': `${baseUrl}/fr/${page}`,
-                    'x-default': `${baseUrl}/en/${page}`,
-                },
-            },
+    });
+
+    // Static pages
+    staticPages.forEach((page) => {
+        i18n.locales.forEach(locale => {
+            routes.push({
+                url: `${baseUrl}/${locale}/${page}`,
+                lastModified,
+                changeFrequency: 'monthly',
+                priority: 0.6,
+                alternates: getAlternates(`/${page}`),
+            });
         });
     });
 
     // Guides index page
-    routes.push({
-        url: `${baseUrl}/en/guides`,
-        lastModified,
-        changeFrequency: 'weekly',
-        priority: 0.7,
-        alternates: {
-            languages: {
-                'en-CA': `${baseUrl}/en/guides`,
-                'fr-CA': `${baseUrl}/fr/guides`,
-                'x-default': `${baseUrl}/en/guides`,
-            },
-        },
-    });
-    routes.push({
-        url: `${baseUrl}/fr/guides`,
-        lastModified,
-        changeFrequency: 'weekly',
-        priority: 0.7,
-        alternates: {
-            languages: {
-                'en-CA': `${baseUrl}/en/guides`,
-                'fr-CA': `${baseUrl}/fr/guides`,
-                'x-default': `${baseUrl}/en/guides`,
-            },
-        },
+    i18n.locales.forEach(locale => {
+        routes.push({
+            url: `${baseUrl}/${locale}/guides`,
+            lastModified,
+            changeFrequency: 'weekly',
+            priority: 0.7,
+            alternates: getAlternates('/guides'),
+        });
     });
 
-    // Tool pages with alternates (explicit en/fr entries)
+    // Tool pages
     tools.forEach((slug) => {
-        routes.push({
-            url: `${baseUrl}/en/${slug}`,
-            lastModified,
-            changeFrequency: 'weekly',
-            priority: 0.9,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/${slug}`,
-                    'fr-CA': `${baseUrl}/fr/${slug}`,
-                    'x-default': `${baseUrl}/en/${slug}`,
-                },
-            },
-        });
-        routes.push({
-            url: `${baseUrl}/fr/${slug}`,
-            lastModified,
-            changeFrequency: 'weekly',
-            priority: 0.9,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/${slug}`,
-                    'fr-CA': `${baseUrl}/fr/${slug}`,
-                    'x-default': `${baseUrl}/en/${slug}`,
-                },
-            },
+        i18n.locales.forEach(locale => {
+            routes.push({
+                url: `${baseUrl}/${locale}/${slug}`,
+                lastModified,
+                changeFrequency: 'weekly',
+                priority: 0.9,
+                alternates: getAlternates(`/${slug}`),
+            });
         });
     });
 
-    // Guide pages with alternates (explicit en/fr entries)
+    // Guide pages
     guides.forEach((slug) => {
         // Higher priority for Pillar Hubs and Master Guide
         const isHub = ['ultimate-pdf-guide', 'pdf-conversions', 'pdf-editing', 'pdf-security', 'pdf-ocr-analysis'].includes(slug);
         const priority = isHub ? 0.9 : 0.7;
         const changeFrequency = isHub ? 'weekly' : 'monthly';
 
-        routes.push({
-            url: `${baseUrl}/en/guides/${slug}`,
-            lastModified,
-            changeFrequency,
-            priority,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/guides/${slug}`,
-                    'fr-CA': `${baseUrl}/fr/guides/${slug}`,
-                    'x-default': `${baseUrl}/en/guides/${slug}`,
-                },
-            },
-        });
-        routes.push({
-            url: `${baseUrl}/fr/guides/${slug}`,
-            lastModified,
-            changeFrequency,
-            priority,
-            alternates: {
-                languages: {
-                    'en-CA': `${baseUrl}/en/guides/${slug}`,
-                    'fr-CA': `${baseUrl}/fr/guides/${slug}`,
-                    'x-default': `${baseUrl}/en/guides/${slug}`,
-                },
-            },
+        i18n.locales.forEach(locale => {
+            routes.push({
+                url: `${baseUrl}/${locale}/guides/${slug}`,
+                lastModified,
+                changeFrequency,
+                priority,
+                alternates: getAlternates(`/guides/${slug}`),
+            });
         });
     });
 

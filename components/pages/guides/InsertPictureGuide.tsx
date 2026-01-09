@@ -519,7 +519,7 @@ const getGuideContent = (lang: Language) => ({
 
 export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     const quickAnswerData = {
         question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",

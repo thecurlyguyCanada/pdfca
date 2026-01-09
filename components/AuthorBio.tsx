@@ -42,6 +42,24 @@ const getContent = () => ({
             { title: "Zéro Latence", desc: "Traitement local instantané", icon: Zap },
             { title: "Accessibilité", desc: "Outils gratuits pour tous", icon: Heart }
         ]
+    },
+    pt: {
+        writtenBy: "Artigo Escrito Por",
+        authorName: "Equipe de Engenharia PDFCanada.ca",
+        location: "Toronto, Canadá",
+        role: "Especialistas Sênior em PDF e Segurança",
+        bio: "PDFCanada.ca foi estabelecido em 2024 para interromper o modelo exploratório de 'upload e colheita' das ferramentas PDF modernas. Nossa equipe de engenharia, baseada em Ontário, especializa-se em implementações WebAssembly (WASM) de alta performance que trazem a manipulação de PDF de nível de servidor diretamente para o navegador do usuário, garantindo absoluta soberania de dados.",
+        verified: "Entidade Canadense Verificada",
+        learnMore: "Declaração de Missão Completa",
+        expertise: "Expertise Principal",
+        expertiseAreas: ["Engines PDF WASM", "Criptografia Client-Side", "Conformidade PIPEDA", "Redes Neurais OCR", "Padrões Web"],
+        credentials: ["Arquitetos de Software Certificados", "Defesa da Cibersegurança", "Harmonização de Legado"],
+        philosophyTitle: "Nosso Juramento de Engenharia",
+        philosophy: [
+            { title: "Privacidade Primeiro", desc: "Nenhum dado atinge o servidor", icon: Shield },
+            { title: "Zero Lag", desc: "Processamento local instantâneo", icon: Zap },
+            { title: "Acessibilidade", desc: "Ferramentas gratuitas para todos", icon: Heart }
+        ]
     }
 });
 

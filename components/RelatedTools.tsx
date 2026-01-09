@@ -104,7 +104,7 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
         .filter(g => !currentPath?.includes(g.slug))
         .slice(0, 8); // Updated to 8
 
-    const t = content[lang] || content.en;
+    const t = (content as any)[lang] || content.en;
 
     return (
         <section className="mt-20 pt-12 border-t border-gray-200 dark:border-gray-800" style={{ minHeight: '400px' }}>

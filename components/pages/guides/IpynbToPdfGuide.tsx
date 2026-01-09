@@ -11,7 +11,7 @@ interface IpynbToPdfGuideProps {
 }
 
 export const IpynbToPdfGuide: React.FC<IpynbToPdfGuideProps> = ({ lang }) => {
-    const t = translations[lang];
+    const t = translations[lang as keyof typeof translations];
 
     const sections = lang === 'en' ? [
         {

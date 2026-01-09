@@ -184,7 +184,7 @@ export function HomePageServer({ lang }: Props) {
                             {lang === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
                         </h2>
                         <div className="space-y-6">
-                            {t.seo.homeFaq.map((faq, i) => (
+                            {t.seo.homeFaq.map((faq: { q: string, a: string }, i: number) => (
                                 <div key={i} className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
                                     <h3 className="font-bold text-lg text-gray-900 mb-3">{faq.q}</h3>
                                     <p className="text-gray-600 leading-relaxed">{faq.a}</p>

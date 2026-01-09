@@ -164,7 +164,7 @@ Cliquez sur **Télécharger XML UBL** pour générer le fichier conforme aux nor
 
 export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     const schema = {
         "@context": "https://schema.org",

@@ -42,9 +42,9 @@ export async function generateMetadata({
         };
     }
 
-    const title = lang === 'fr' ? config.titleFr : config.title;
-    const description = lang === 'fr' ? config.descriptionFr : config.description;
-    const keywords = lang === 'fr' ? config.keywordsFr : config.keywords;
+    const title = config.title[lang] || config.title['en'];
+    const description = config.description[lang] || config.description['en'];
+    const keywords = config.keywords[lang] || config.keywords['en'];
 
     const baseUrl = 'https://www.pdfcanada.ca';
     const path = `/${tool}`;
@@ -58,6 +58,7 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en${path}`,
                 'fr-CA': `${baseUrl}/fr${path}`,
+                'pt-BR': `${baseUrl}/pt${path}`,
                 'x-default': `${baseUrl}/en${path}`,
             },
         },
@@ -66,7 +67,7 @@ export async function generateMetadata({
             description: description,
             url: `${baseUrl}/${lang}${path}`,
             type: 'website',
-            locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
+            locale: lang === 'fr' ? 'fr_CA' : (lang === 'pt' ? 'pt_BR' : 'en_CA'),
         },
         twitter: {
             card: 'summary_large_image',
@@ -90,9 +91,8 @@ export default async function ToolPage({
     }
 
     const localizedConfig = {
-        ...config,
-        title: lang === 'fr' ? config.titleFr : config.title,
-        description: lang === 'fr' ? config.descriptionFr : config.description,
+        title: config.title[lang] || config.title['en'],
+        description: config.description[lang] || config.description['en'],
     };
 
     // Breadcrumbs for SEO component

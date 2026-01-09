@@ -502,7 +502,7 @@ Le problème ? Windows, Android et la plupart des navigateurs web ne le supporte
 
 export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     const schema = {
         "@context": "https://schema.org",

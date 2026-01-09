@@ -34,24 +34,18 @@ export async function generateMetadata({
         fr: {
             title: 'Sourate Yasin PDF - Télécharger Sourate Ya-Sin Gratuit',
             description: 'Téléchargez Sourate Yasin PDF gratuitement. Lisez Sourate Ya-Sin (Le Cœur du Coran) en ligne. Texte arabe clair et complet.',
+        },
+        pt: {
+            title: 'Surah Yasin PDF - Baixar Surah Ya-Sin Grátis',
+            description: 'Baixe Surah Yasin em PDF gratuitamente. Leia o texto completo da Surah Ya-Sin online. O Coração do Alcorão (Capítulo 36). Texto árabe claro.',
         }
     };
 
     const meta = content[lang] || content.en;
 
     // Comprehensive keywords targeting all search variations
-    const keywords = lang === 'fr'
-        ? [
-            'sourate yasin pdf',
-            'sourate ya-sin pdf',
-            'sourate yasin télécharger',
-            'sourate yasin complet pdf',
-            'sourate 36 pdf',
-            'sourate yasin arabe pdf',
-            'télécharger sourate yasin',
-            'lire sourate yasin pdf'
-        ]
-        : [
+    const keywords = {
+        en: [
             // High volume keywords based on research
             'surah yasin pdf',
             'surah yasin full pdf',
@@ -69,17 +63,38 @@ export async function generateMetadata({
             'surah yasin pdf english',
             'surah yasin read online pdf',
             'heart of quran surah yasin pdf'
-        ];
+        ],
+        fr: [
+            'sourate yasin pdf',
+            'sourate ya-sin pdf',
+            'sourate yasin télécharger',
+            'sourate yasin complet pdf',
+            'sourate 36 pdf',
+            'sourate yasin arabe pdf',
+            'télécharger sourate yasin',
+            'lire sourate yasin pdf'
+        ],
+        pt: [
+            'surah yasin pdf',
+            'surah ya-sin pdf',
+            'baixar surah yasin',
+            'surah yasin completa pdf',
+            'surah 36 pdf',
+            'surah yasin árabe pdf',
+            'ler surah yasin pdf'
+        ]
+    };
 
     return {
         title: meta.title,
         description: meta.description,
-        keywords: keywords,
+        keywords: keywords[lang] || keywords.en,
         alternates: {
             canonical: `${baseUrl}/${lang}/surah-yasin-pdf`,
             languages: {
                 'en-CA': `${baseUrl}/en/surah-yasin-pdf`,
                 'fr-CA': `${baseUrl}/fr/surah-yasin-pdf`,
+                'pt-BR': `${baseUrl}/pt/surah-yasin-pdf`, // Assuming pt-BR for general PT usage or just pt
                 'x-default': `${baseUrl}/en/surah-yasin-pdf`,
             },
         },
@@ -88,7 +103,7 @@ export async function generateMetadata({
             description: meta.description,
             url: `${baseUrl}/${lang}/surah-yasin-pdf`,
             type: 'article',
-            locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
+            locale: lang === 'fr' ? 'fr_CA' : (lang === 'pt' ? 'pt_BR' : 'en_CA'),
             images: [
                 {
                     url: `${baseUrl}/og-image.png`,
@@ -112,7 +127,7 @@ export default async function SurahYasinPage({
     params: Promise<{ lang: Locale }>;
 }) {
     const { lang } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = (lang === 'fr' || lang === 'pt' ? lang : 'en') as Language;
 
     const content = {
         en: {
@@ -150,6 +165,24 @@ export default async function SurahYasinPage({
             benefitsTitle: 'Bienfaits de la récitation de Sourate Yasin',
             benefitsText: 'Le Prophète Muhammad (PSL) a dit : "Toute chose a un cœur, et le cœur du Coran est Yasin. J\'aimerais qu\'elle soit dans le cœur de chaque personne de mon peuple." Elle est souvent récitée pour le pardon, le soulagement dans les moments difficiles et pour les défunts.',
             faqTitle: 'Questions Fréquentes',
+        },
+        pt: {
+            title: 'Surah Yasin PDF',
+            subtitle: 'O Coração do Alcorão - Capítulo 36',
+            description: 'Baixe ou leia Surah Yasin (Ya-Sin) online. Conhecida como o "Coração do Alcorão", este capítulo contém 83 versículos e traz imensas bênçãos.',
+            features: [
+                'Surah Yasin Completa (83 Ayat)',
+                'Texto em árabe claro',
+                'Formato PDF de alta qualidade',
+                'Download grátis - sem cadastro',
+                'Leitura otimizada para celular',
+                'Privacidade em primeiro lugar'
+            ],
+            aboutTitle: 'Sobre Surah Yasin',
+            aboutText: 'Surah Yasin (Ya-Sin) é o 36º capítulo do Alcorão. É frequentemente referida como o "Coração do Alcorão" (Qalb al-Quran) devido à sua profunda mensagem sobre a soberania de Allah, a revelação do Alcorão e a realidade da Vida Após a Morte. É uma Surah de Meca composta por 83 versículos.',
+            benefitsTitle: 'Benefícios de Recitar Surah Yasin',
+            benefitsText: 'O Profeta Muhammad (que a paz esteja com ele) disse: "Tudo tem um coração, e o coração do Alcorão é Yasin. Eu adoraria que estivesse no coração de cada pessoa do meu povo." É frequentemente recitada por perdão, alívio em tempos difíceis e pelos falecidos.',
+            faqTitle: 'Perguntas Frequentes',
         }
     };
 

@@ -536,7 +536,7 @@ Cliquez sur **Exporter vers Excel** pour télécharger un fichier .xlsx, ou **Co
 
 export const InvoiceOcrGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang] || guideContent.en;
+    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
     const schema = {
         "@context": "https://schema.org",

@@ -914,7 +914,7 @@ DRM is copy-protection technology used by publishers and distributors to prevent
 
 export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
-    const t = guideContent[lang];
+    const t = guideContent[lang as keyof typeof guideContent];
 
     const schema = {
         "@type": "Article",

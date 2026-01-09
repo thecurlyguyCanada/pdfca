@@ -427,7 +427,7 @@ const getGuideContent = (lang: Language) => ({
 });
 
 export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const content = getGuideContent(lang)[lang];
+    const content = (getGuideContent(lang) as any)[lang] || getGuideContent(lang).en;
     const qa = translations[lang].features.compress.quickAnswer;
     const t = content;
 
@@ -443,7 +443,7 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     url: "https://www.pdfcanada.ca/about"
                 }}
                 quickAnswer={qa}
-                faqs={t.faq.map(f => ({ q: f.q, a: f.a }))}
+                faqs={t.faq.map((f: any) => ({ q: f.q, a: f.a }))}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
