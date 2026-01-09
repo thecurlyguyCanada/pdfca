@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { FileCode, Globe, Server } from 'lucide-react';
+import { FileCode, Globe, Server, Shield, Zap, Info, ArrowRight, Code } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -14,7 +14,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: `Convert PHP to PDF | Archive Source Code ${CURRENT_YEAR}`,
@@ -59,10 +59,20 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Is my code secure?",
                 a: "Yes. The conversion happens entirely in your browser. Your source code is never uploaded to any server."
+            },
+            {
+                q: "What fonts are used?",
+                a: "We use a standard monospaced font (like Courier or JetBrains Mono) to ensure code alignment is perfectly preserved."
             }
         ],
-        cta: "Document Your Code",
-        ctaBtn: "Convert PHP to PDF"
+        ctaTitle: "Document Your Code",
+        ctaBtn: "Convert PHP to PDF",
+        quickAnswer: {
+            question: "How to convert PHP file to PDF?",
+            answer: "Use the PHP to PDF tool on pdfcanada.ca to convert your source code into PDF documentation locally in your browser.",
+            tool: "PHP to PDF",
+            steps: ["Upload .php", "Process", "Download PDF"]
+        }
     },
     fr: {
         seo: {
@@ -108,16 +118,85 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Mon code est-il sécurisé ?",
                 a: "Oui. La conversion se fait entièrement dans votre navigateur. Votre code source n'est jamais envoyé sur un serveur."
+            },
+            {
+                q: "Quelles polices sont utilisées ?",
+                a: "Nous utilisons une police à chasse fixe standard pour garantir que l'alignement du code est parfaitement préservé."
             }
         ],
-        cta: "Documenter Votre Code",
-        ctaBtn: "Convertir PHP en PDF"
+        ctaTitle: "Documenter Votre Code",
+        ctaBtn: "Convertir PHP en PDF",
+        quickAnswer: {
+            question: "Comment convertir un fichier PHP en PDF ?",
+            answer: "Utilisez l'outil PHP en PDF de pdfcanada.ca pour convertir votre code source en documentation PDF.",
+            tool: "PHP en PDF",
+            steps: ["Téléverser PHP", "Traitement", "Télécharger PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Converter PHP para PDF | Arquivar Código Fonte ${CURRENT_YEAR}`,
+            desc: `Converta código fonte PHP para PDF para documentação. Formatação de sintaxe limpa para impressão e arquivamento. 100% privado e seguro.`
+        },
+        h1: "Converter PHP para PDF",
+        subtitle: "Crie documentação profissional a partir do seu código fonte PHP.",
+        intro: "Precisa imprimir seu código PHP para uma revisão de código, documentação ou backup físico? Nosso conversor PHP para PDF transforma seus arquivos .php brutos em documentos PDF limpos e legíveis com formatação adequada.",
+        sections: [
+            {
+                id: "how-it-works",
+                title: "Como Funciona",
+                content: (
+                    <div className="space-y-4">
+                        <p>Esta ferramenta lê seus arquivos de código fonte PHP e os renderiza em páginas PDF usando uma fonte monoespaçada. Ela preserva suas quebras de linha e indentação, tornando-o perfeito para ler código offline.</p>
+                        <h4 className="font-bold text-lg mt-4 mb-2">Por que converter PHP para PDF?</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Revisões de Código:</strong> Anote cópias físicas do seu código.</li>
+                            <li><strong>Documentação:</strong> Anexe apêndices de código fonte a relatórios técnicos.</li>
+                            <li><strong>Arquivamento:</strong> Crie um registro de longo prazo e imutável do estado do seu projeto.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "steps",
+                title: "Como Converter PHP para PDF",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4">
+                        <li><strong>Enviar Arquivo PHP:</strong> Arraste e solte seu arquivo .php na ferramenta.</li>
+                        <li><strong>Processamento:</strong> A ferramenta formata o texto do seu código.</li>
+                        <li><strong>Baixar:</strong> Sua documentação em PDF está pronta instantaneamente.</li>
+                    </ol>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Isso executa o código PHP?",
+                a: "Não. Esta ferramenta trata seu arquivo PHP como texto. Ela converte o *código fonte* em si para PDF, não executa o script nem renderiza a saída."
+            },
+            {
+                q: "Meu código está seguro?",
+                a: "Sim. A conversão acontece inteiramente no seu navegador. Seu código fonte nunca é enviado para nenhum servidor."
+            },
+            {
+                q: "Quais fontes são usadas?",
+                a: "Usamos uma fonte monoespaçada padrão (como Courier ou JetBrains Mono) para garantir que o alinhamento do código seja perfeitamente preservado."
+            }
+        ],
+        ctaTitle: "Documente Seu Código",
+        ctaBtn: "Converter PHP para PDF",
+        quickAnswer: {
+            question: "Como converter arquivo PHP para PDF?",
+            answer: "Use a ferramenta PHP para PDF no pdfcanada.ca para converter seu código fonte em documentação PDF localmente no seu navegador.",
+            tool: "PHP para PDF",
+            steps: ["Enviar .php", "Processar", "Baixar PDF"]
+        }
     }
 });
 
 export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -160,18 +239,21 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir un fichier PHP en PDF ?" : "How to convert PHP file to PDF?"}
-                        answer={lang === 'fr' ? "Utilisez l'outil PHP en PDF de pdfcanada.ca pour convertir votre code source en documentation PDF." : "Use the PHP to PDF tool on pdfcanada.ca to convert your source code into PDF documentation."}
-                        toolName="PHP to PDF"
-                        steps={lang === 'fr' ? ["Ouvrir l'outil", "Sélectionner le PHP", "Télécharger"] : ["Open Tool", "Select PHP", "Download"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 
                     <div className="mt-16">
-                        <h3 className="text-2xl font-bold mb-6">FAQ</h3>
-                        <div className="space-y-6">
+                        <div className="flex items-center gap-3 mb-8">
+                            <Info className="w-8 h-8 text-blue-500" />
+                            <h2 className="text-3xl font-bold dark:text-white">FAQ</h2>
+                        </div>
+                        <div className="grid gap-6">
                             {t.faq.map((item: any, i: number) => (
-                                <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
+                                <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
                                     <h4 className="font-bold mb-2">{item.q}</h4>
                                     <p className="text-gray-600 dark:text-gray-300">{item.a}</p>
                                 </div>
@@ -180,15 +262,18 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
                 </div>
 
-                <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-xl">
-                    <h3 className="text-3xl font-bold mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}/php-to-pdf`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
-                        {t.ctaBtn}
+                <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-xl group relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+                        <Code size={120} />
+                    </div>
+                    <h3 className="text-3xl font-bold mb-6 relative z-10">{t.ctaTitle}</h3>
+                    <Link href={`/${lang}/php-to-pdf`} className="inline-flex items-center gap-2 bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white relative z-10">
+                        {t.ctaBtn} <ArrowRight size={20} />
                     </Link>
                 </div>
 
                 <div className="mt-20">
-                    <RelatedTools lang={lang} currentPath="/guides/php-to-pdf" category="convert" />
+                    <RelatedTools lang={lang} currentPath="/guides/php-to-pdf" category="developer" />
                 </div>
 
                 <AuthorBio lang={lang} />
