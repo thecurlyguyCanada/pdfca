@@ -146,6 +146,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                            <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Téléchargements' : 'Downloads'}</span>
                         </li>
                         <li><Link href={`/${lang}/surah-baqarah-pdf`} className="hover:text-white transition-colors font-semibold text-green-400">{lang === 'fr' ? 'Sourate Baqarah PDF' : 'Surah Baqarah PDF'}</Link></li>
+                        <li><Link href={`/${lang}/surah-yasin-pdf`} className="hover:text-white transition-colors font-semibold text-emerald-400">{lang === 'fr' ? 'Sourate Yasin PDF' : 'Surah Yasin PDF'}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
