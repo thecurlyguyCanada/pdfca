@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { BookOpen, Key, Shield } from 'lucide-react';
+import { BookOpen, Key, Shield, AlertTriangle, Download, Unlock } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -14,7 +14,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: `Convert ACSM to PDF | Detailed Guide ${CURRENT_YEAR}`,
@@ -22,7 +22,7 @@ const getGuideContent = (lang: Language) => ({
         },
         h1: "Convert ACSM to PDF",
         subtitle: "A quick guide to unlocking your protected eBooks.",
-        intro: "Downloaded an eBook and got a strange .acsm file instead of a PDF? Don't worry. An .acsm file is just a license key, not the book itself. This guide explains exactly how to turn it into a readable PDF.",
+        intro: "Downloaded an eBook and got a strange .acsm file instead of a PDF? Don't worry. An .acsm file is just a license key, not the book itself. This guide explains exactly how to turn it into a readable PDF using the official Adobe method.",
         sections: [
             {
                 id: "what-is-acsm",
@@ -30,7 +30,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p>An <strong>ACSM (Adobe Content Server Message)</strong> file is a tiny file that manages the download of your eBook. It tells a program authorized by Adobe (like Adobe Digital Editions) which book to download and ensures you have the rights to read it.</p>
-                        <p>You cannot \"convert\" it directly with a generic online tool because it requires your personal Adobe ID to unlock the content.</p>
+                        <p>You cannot "convert" it directly with a generic online tool because it requires your personal Adobe ID to unlock the content.</p>
                     </div>
                 )
             },
@@ -69,6 +69,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Can I remove the DRM?",
                 content: (
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-100 dark:border-yellow-800">
+                        <h4 className="flex items-center gap-2 font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+                            <Unlock size={20} /> About Digital Rights Management
+                        </h4>
                         <p>The PDF you get from Adobe Digital Editions is often DRM-protected, meaning it can only be opened on authorized devices. Removing this DRM to read on other devices (like a Kindle-compatible PDF reader) usually requires third-party tools like Calibre with specific plugins, but be aware of copyright laws in your jurisdiction.</p>
                     </div>
                 )
@@ -82,10 +85,20 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Is Adobe Digital Editions free?",
                 a: "Yes, it is free software provided by Adobe."
+            },
+            {
+                q: "Can I read ACSM files on Kindle?",
+                a: "Not directly. Kindle does not support Adobe DRM. You must verify the ACSM in Adobe Digital Editions to get the PDF, and then transfer that PDF to your Kindle (if DRM allows) or strip the DRM first."
             }
         ],
         cta: "Need to Edit Your New PDF?",
-        ctaBtn: "Explore PDF Tools"
+        ctaBtn: "Explore PDF Tools",
+        quickAnswer: {
+            question: "How to convert ACSM file to PDF?",
+            answer: "Install Adobe Digital Editions, authorize your computer with your Adobe ID, and open the ACSM file. The software will verify your license and download the actual PDF eBook to your Documents folder.",
+            tool: "Adobe Digital Editions",
+            steps: ["Install ADE", "Open ACSM", "Get PDF"]
+        }
     },
     fr: {
         seo: {
@@ -94,7 +107,7 @@ const getGuideContent = (lang: Language) => ({
         },
         h1: "Convertir ACSM en PDF",
         subtitle: "Un guide rapide pour débloquer vos eBooks protégés.",
-        intro: "Vous avez téléchargé un eBook et obtenu un fichier .acsm étrange au lieu d'un PDF ? Ne vous inquiétez pas. Un fichier .acsm est juste une clé de licence, pas le livre lui-même. Ce guide vous explique comment le transformer en PDF lisible.",
+        intro: "Vous avez téléchargé un eBook et obtenu un fichier .acsm étrange au lieu d'un PDF ? Ne vous inquiétez pas. Un fichier .acsm est juste une clé de licence, pas le livre lui-même. Ce guide vous explique exactement comment le transformer en un PDF lisible utilisant la méthode officielle d'Adobe.",
         sections: [
             {
                 id: "what-is-acsm",
@@ -102,7 +115,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p>Un fichier <strong>ACSM (Adobe Content Server Message)</strong> est un petit fichier qui gère le téléchargement de votre eBook. Il indique à un programme autorisé par Adobe (comme Adobe Digital Editions) quel livre télécharger et vérifie que vous avez le droit de le lire.</p>
-                        <p>Vous ne pouvez pas le \"convertir\" directement avec un outil en ligne générique car il nécessite votre identifiant Adobe personnel pour déverrouiller le contenu.</p>
+                        <p>Vous ne pouvez pas le "convertir" directement avec un outil en ligne générique car il nécessite votre identifiant Adobe personnel pour déverrouiller le contenu.</p>
                     </div>
                 )
             },
@@ -141,6 +154,9 @@ const getGuideContent = (lang: Language) => ({
                 title: "Puis-je supprimer les DRM ?",
                 content: (
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-100 dark:border-yellow-800">
+                        <h4 className="flex items-center gap-2 font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+                            <Unlock size={20} /> À propos de la Gestion des Droits Numériques
+                        </h4>
                         <p>Le PDF que vous obtenez d'Adobe Digital Editions est souvent protégé par DRM, ce qui signifie qu'il ne peut être ouvert que sur des appareils autorisés. Supprimer ce DRM pour le lire ailleurs nécessite généralement des outils tiers comme Calibre, mais attention aux lois sur le droit d'auteur.</p>
                     </div>
                 )
@@ -154,16 +170,111 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Adobe Digital Editions est-il gratuit ?",
                 a: "Oui, c'est un logiciel gratuit fourni par Adobe."
+            },
+            {
+                q: "Puis-je lire un ACSM sur Kindle ?",
+                a: "Pas directement. Kindle ne supporte pas le DRM Adobe. Vous devez obtenir le PDF via ADE, puis le transférer (si le DRM le permet) ou retirer le DRM avec Calibre."
             }
         ],
         cta: "Besoin d'éditer votre nouveau PDF ?",
-        ctaBtn: "Explorer les Outils PDF"
+        ctaBtn: "Explorer les Outils PDF",
+        quickAnswer: {
+            question: "Comment convertir un fichier ACSM en PDF ?",
+            answer: "Installez Adobe Digital Editions, autorisez votre ordinateur et ouvrez le fichier ACSM. Le logiciel téléchargera le PDF réel.",
+            tool: "Guide ACSM",
+            steps: ["Installer ADE", "Ouvrir ACSM", "Obtenir PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Converter ACSM para PDF | Guia Detalhado ${CURRENT_YEAR}`,
+            desc: `Como converter arquivos .acsm em PDF. Guia passo a passo para desbloquear seus eBooks usando Adobe Digital Editions. Tutorial gratuito e fácil.`
+        },
+        h1: "Converter ACSM para PDF",
+        subtitle: "Um guia rápido para desbloquear seus eBooks protegidos.",
+        intro: "Baixou um eBook e obteve um arquivo .acsm estranho em vez de um PDF? Não se preocupe. Um arquivo .acsm é apenas uma chave de licença, não o livro em si. Este guia explica exatamente como transformá-lo em um PDF legível usando o método oficial da Adobe.",
+        sections: [
+            {
+                id: "what-is-acsm",
+                title: "O que é um arquivo ACSM?",
+                content: (
+                    <div className="space-y-4">
+                        <p>Um arquivo <strong>ACSM (Adobe Content Server Message)</strong> é um pequeno arquivo que gerencia o download do seu eBook. Ele diz a um programa autorizado pela Adobe (como Adobe Digital Editions) qual livro baixar e garante que você tenha os direitos para lê-lo.</p>
+                        <p>Você não pode convertê-lo diretamente com uma ferramenta online genérica porque ele requer seu Adobe ID pessoal para desbloquear o conteúdo.</p>
+                    </div>
+                )
+            },
+            {
+                id: "how-to-convert",
+                title: "Como Converter ACSM para PDF",
+                content: (
+                    <div className="space-y-4">
+                        <p>Para transformar seu arquivo ACSM em um PDF real, siga estes passos oficiais:</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Instale o Adobe Digital Editions (ADE):</strong> Baixe e instale o software gratuito ADE do site da Adobe.
+                            </li>
+                            <li>
+                                <strong>Autorize Seu Computador:</strong> Abra o ADE, vá em <em>Ajuda &gt; Autorizar Computador</em>, e faça login com seu Adobe ID. Isso vincula o livro a você.
+                            </li>
+                            <li>
+                                <strong>Abra o Arquivo ACSM:</strong> Clique duas vezes no seu arquivo .acsm. Ele deve abrir automaticamente no ADE.
+                            </li>
+                            <li>
+                                <strong>Download Completo:</strong> O ADE verificará sua licença e baixará o eBook em PDF (ou EPUB) real.
+                            </li>
+                            <li>
+                                <strong>Encontre Seu PDF:</strong> O arquivo PDF padrão geralmente é salvo em:
+                                <ul className="list-disc pl-5 mt-2 text-gray-600 dark:text-gray-400">
+                                    <li><strong>Windows:</strong> Documentos\My Digital Editions</li>
+                                    <li><strong>Mac:</strong> Documentos/Digital Editions</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                )
+            },
+            {
+                id: "remove-drm",
+                title: "Posso remover o DRM?",
+                content: (
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-100 dark:border-yellow-800">
+                        <h4 className="flex items-center gap-2 font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+                            <Unlock size={20} /> Sobre Gestão de Direitos Digitais (DRM)
+                        </h4>
+                        <p>O PDF que você obtém do Adobe Digital Editions é frequentemente protegido por DRM, o que significa que só pode ser aberto em dispositivos autorizados. Remover esse DRM para ler em outros dispositivos (como um Kindle) geralmente requer ferramentas de terceiros como o Calibre, mas esteja ciente das leis de direitos autorais em sua jurisdição.</p>
+                    </div>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Por que não posso usar um conversor online?",
+                a: "Porque o arquivo ACSM está bloqueado para sua conta de usuário específica. Um servidor online não tem suas credenciais Adobe ID para autorizar o download."
+            },
+            {
+                q: "O Adobe Digital Editions é gratuito?",
+                a: "Sim, é um software gratuito fornecido pela Adobe."
+            },
+            {
+                q: "Posso ler arquivos ACSM no Kindle?",
+                a: "Não diretamente. O Kindle não suporta Adobe DRM. Você deve obter o PDF via ADE e, em seguida, transferir esse PDF para o seu Kindle (se o DRM permitir) ou remover o DRM primeiro."
+            }
+        ],
+        cta: "Precisa Editar Seu Novo PDF?",
+        ctaBtn: "Explorar Ferramentas PDF",
+        quickAnswer: {
+            question: "Como converter arquivo ACSM para PDF?",
+            answer: "Instale o Adobe Digital Editions, autorize seu computador e abra o arquivo ACSM. O software baixará o verdadeiro eBook em PDF.",
+            tool: "Guia Adobe",
+            steps: ["Instalar ADE", "Abrir ACSM", "Obter PDF"]
+        }
     }
 });
 
 export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -187,7 +298,7 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             breadcrumbs={[
                 { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
                 { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'ACSM en PDF' : 'ACSM to PDF', href: '#' }
+                { name: lang === 'fr' ? 'ACSM em PDF' : 'ACSM to PDF', href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/acsm-to-pdf" lang={lang} schema={schema} />
@@ -208,10 +319,10 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir un fichier ACSM en PDF ?" : "How to convert ACSM file to PDF?"}
-                        answer={lang === 'fr' ? "Installez Adobe Digital Editions, autorisez votre ordinateur et ouvrez le fichier ACSM. Le logiciel téléchargera le PDF réel." : "Install Adobe Digital Editions, authorize your computer, and open the ACSM file. The software will download the actual PDF."}
-                        toolName="ACSM Guide"
-                        steps={lang === 'fr' ? ["Installer ADE", "Ouvrir ACSM", "Obtenir PDF"] : ["Install ADE", "Open ACSM", "Get PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

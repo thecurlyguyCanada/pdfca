@@ -362,7 +362,14 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Ready to trim your PDF?",
         ctaButton: "Crop My PDF Now",
-        ctaSubtext: "Free, Secure, and Canadian."
+        ctaSubtext: "Free, Secure, and Canadian.",
+        faqHeading: "Frequently Asked Questions",
+        quickAnswer: {
+            question: "How do I crop a PDF for free?",
+            answer: "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser.",
+            tool: "PDF Crop Tool",
+            steps: ["Upload your PDF file", "Set crop margins", "Download your cropped PDF"]
+        }
     },
     fr: {
         seo: {
@@ -615,8 +622,152 @@ const getGuideContent = (lang: Language) => ({
         ctaTitle: "Prêt à Recadrer Votre PDF ?",
         ctaButton: "Commencer le Rognage",
         ctaSubtext: "Gratuit, Rapide et Sécurisé.",
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment rogner un PDF gratuitement?",
+            answer: "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur.",
+            tool: "Outil de Rognage PDF",
+            steps: ["Téléchargez votre fichier PDF", "Définissez les marges de rognage", "Téléchargez votre PDF recadré"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Cortar PDF e Remover Margens | Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
+                desc: `Corte espaço em branco e margens de documentos PDF localmente sem uploads. Perfeito para documentos digitalizados e ebooks. Ferramenta de corte gratuita ${CURRENT_YEAR}.`
+        },
+h1: `Como Cortar Páginas PDF: Guia ${CURRENT_YEAR}`,
+    subtitle: "Elimine o excesso e foque no seu conteúdo—100% privado e canadense.",
 
-        faqHeading: "Questions Fréquentes"
+        intro: (
+            <>
+                Se você precisa <strong>remover espaço em branco de documentos digitalizados</strong>, cortar margens para impressão, extrair diagramas de manuais técnicos ou otimizar ebooks para dispositivos móveis, saber <strong>como cortar páginas PDF</strong> é essencial. A maioria dos editores profissionais como Adobe Acrobat cobram assinaturas caras ($15-30/mês) por este recurso básico. No pdfcanada.ca, o corte é totalmente gratuito, processado localmente no seu dispositivo para máxima privacidade, e não requer instalação de software ou conta.
+            </>
+        ),
+
+            sections: [
+                {
+                    id: "why-crop",
+                    title: "Por Que Cortar Documentos PDF?",
+                    content: (
+                        <>
+                            <p className="mb-4">
+                                O corte de PDF resolve inúmeros problemas reais na gestão de documentos e fluxos de arquivamento:
+                            </p>
+
+                            <div className="space-y-4 mb-6">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                    <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-3">1. Remover Margens Brancas Excessivas</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">
+                                        Scanners capturam todo o leito de digitalização (A4 ou Carta), criando PDFs com enormes bordas brancas. Conteúdo descentralizado desperdiça espaço.
+                                    </p>
+                                </div>
+
+                                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                    <h4 className="font-bold text-green-900 dark:text-green-300 mb-3">2. Reduzir Tamanho do Arquivo</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">
+                                        Remover espaço em branco reduz as dimensões físicas da página. Para digitalizações, isso significa tamanhos de arquivo menores para email.
+                                    </p>
+                                </div>
+
+                                <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                    <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-3">3. Extrair Regiões Específicas</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">
+                                        Engenheiros e arquitetos frequentemente precisam isolar seções específicas: uma planta baixa de um conjunto, ou um diagrama de um manual.
+                                    </p>
+                                </div>
+                            </div>
+                        </>
+                    )
+                },
+                {
+                    id: "how-to",
+                    title: "Passo a Passo: Cortando Seu PDF com pdfcanada.ca",
+                    content: (
+                        <>
+                            <p className="mb-4">
+                                Nossa <strong>ferramenta Cortar PDF</strong> é projetada para simplicidade e privacidade. Todo o processamento acontece no seu navegador.
+                            </p>
+
+                            <div className="space-y-6 mb-6">
+                                <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border-l-4 border-canada-red">
+                                    <h4 className="font-bold text-lg mb-3">Passo 1: Selecione Seu Arquivo PDF</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">
+                                        Clique em "Selecionar PDF" ou arraste seu documento para a <Link href={`/${lang}/crop-pdf`} className="text-canada-red hover:underline font-medium">ferramenta Cortar PDF</Link>.
+                                    </p>
+                                </div>
+
+                                <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border-l-4 border-canada-red">
+                                    <h4 className="font-bold text-lg mb-3">Passo 2: Definir Margens de Corte</h4>
+                                    <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                        Escolha seu método:
+                                    </p>
+                                    <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                                        <li><strong>Auto-Corte</strong>: Detecta limites de conteúdo e remove margens brancas automaticamente.</li>
+                                        <li><strong>Margens Personalizadas</strong>: Insira valores específicos para controle preciso.</li>
+                                    </ul>
+                                </div>
+
+                                <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border-l-4 border-canada-red">
+                                    <h4 className="font-bold text-lg mb-3">Passo 3: Pré-visualizar e Baixar</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">
+                                        Revise a prévia e clique em "Baixar PDF Cortado". O arquivo original permanece inalterado.
+                                    </p>
+                                </div>
+                            </div>
+                        </>
+                    )
+                },
+                {
+                    id: "privacy",
+                    title: "Privacidade e Segurança: Por Que Corte Local Importa",
+                    content: (
+                        <>
+                            <p className="mb-4">
+                                A maioria das ferramentas online exige upload. O pdfcanada.ca processa seu PDF inteiramente no seu navegador usando WebAssembly.
+                            </p>
+                            <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                                <li><strong>Sem Upload</strong>: Seu arquivo nunca sai do seu dispositivo.</li>
+                                <li><strong>Sem Logs</strong>: Não podemos ver seus arquivos.</li>
+                                <li><strong>Exclusão Instantânea</strong>: Feche a aba e os dados somem.</li>
+                            </ul>
+                        </>
+                    )
+                }
+            ],
+
+                faq: [
+                    {
+                        q: "Cortar reduz a qualidade do PDF?",
+                        a: "Não! O corte de PDF é não-destrutivo—apenas muda a 'caixa' visível (CropBox) sem alterar o conteúdo subjacente. A qualidade original é preservada."
+                    },
+                    {
+                        q: "Posso cortar páginas específicas?",
+                        a: "Atualmente aplicamos o corte a todas as páginas. Para páginas específicas, separe-as primeiro, corte e depois una novamente."
+                    },
+                    {
+                        q: "O corte removerá marcas d'água?",
+                        a: "Apenas se estiverem nas margens que você está cortando. Marcas no centro da página permanecerão."
+                    },
+                    {
+                        q: "É realmente gratuito?",
+                        a: "100% gratuito, para sempre. Sem marcas d'água, sem assinaturas."
+                    },
+                    {
+                        q: "Meus dados estão seguros?",
+                        a: "Absolutamente. Processamento local significa que nunca vemos seus arquivos. Ideal para documentos confidenciais."
+                    }
+                ],
+
+                    ctaTitle: "Pronto para Cortar Seu PDF?",
+                        ctaButton: "Começar a Cortar",
+                            ctaSubtext: "Grátis, Seguro e Canadense.",
+                                faqHeading: "Perguntas Frequentes",
+                                    quickAnswer: {
+    question: "Como cortar um PDF de graça?",
+        answer: "Use a ferramenta Cortar PDF do pdfcanada.ca. Envie seu arquivo, defina as margens e baixe seu PDF cortado. Tudo acontece localmente no seu navegador.",
+            tool: "Ferramenta Cortar PDF",
+                steps: ["Envie seu arquivo PDF", "Defina margens de corte", "Baixe seu PDF cortado"]
+}
     }
 });
 
@@ -633,14 +784,10 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment rogner un PDF gratuitement?" : "How do I crop a PDF for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
-                        : "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser.",
-                    tool: "PDF Crop Tool",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier PDF", "Définissez les marges de rognage", "Téléchargez votre PDF recadré"]
-                        : ["Upload your PDF file", "Set crop margins", "Download your cropped PDF"]
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
@@ -678,7 +825,7 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <section>
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-gray-900 dark:text-white flex items-center gap-2 sm:gap-3">
                             <HelpCircle className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
-                            Questions Fréquentes
+                            {t.faqHeading}
                         </h2>
                         <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
@@ -691,14 +838,10 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment rogner un PDF gratuitement?" : "How do I crop a PDF for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil de rognage PDF de pdfcanada.ca. Téléchargez votre fichier, définissez les marges de rognage, puis téléchargez votre PDF recadré. Le traitement se fait entièrement dans votre navigateur."
-                            : "Use pdfcanada.ca's PDF Crop tool. Upload your file, set crop margins, then download your cropped PDF. All processing happens locally in your browser."}
-                        toolName="PDF Crop Tool"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre fichier PDF", "Définissez les marges de rognage", "Téléchargez votre PDF recadré"]
-                            : ["Upload your PDF file", "Set crop margins", "Download your cropped PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

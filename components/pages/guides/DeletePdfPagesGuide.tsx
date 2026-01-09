@@ -196,7 +196,14 @@ const getGuideContent = (lang: Language) => ({
                 q: "How large can my merged PDF be?",
                 a: "The size limit depends on your device's available memory. Most modern computers can handle merged PDFs up to several hundred megabytes. If you're experiencing issues with very large files, try merging fewer files at once."
             },
-        ]
+        ],
+        faqHeading: "Questions & Answers",
+        quickAnswer: {
+            question: "How do I delete pages from a PDF for free online?",
+            answer: "To delete PDF pages for free online, use pdfcanada.ca. Upload your PDF, select pages to remove, and click 'Delete'. It's the secure alternative to Adobe Reader and iLovePDF as everything stays on your device.",
+            tool: "PDF Page Remover",
+            steps: ["Upload your PDF file", "Click on pages to remove", "Download your cleaned PDF"]
+        }
     },
     fr: {
         seo: {
@@ -360,7 +367,157 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Prêt à Nettoyer Votre PDF ?",
         ctaButton: "Supprimer les Pages",
-        ctaSubtext: "Gratuit, Rapide et Sécurisé."
+        ctaSubtext: "Gratuit, Rapide et Sécurisé.",
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment supprimer des pages d'un PDF gratuitement online ?",
+            answer: "Pour supprimer une page PDF online gratuitement, utilisez pdfcanada.ca. Téléchargez votre PDF, sélectionnez les pages à retirer et cliquez sur 'Supprimer'. C'est l'alternative sécurisée à Adobe Reader et iLovePDF car tout reste sur votre Android ou PC.",
+            tool: "Suppression de Page PDF",
+            steps: ["Choisissez votre PDF", "Cochez les pages à retirer", "Téléchargez le PDF nettoyé"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Excluir Páginas PDF | Guia Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Saiba como remover páginas de PDF com segurança. Nosso guia definitivo de ${CURRENT_YEAR} mostra como excluir páginas localmente em qualquer dispositivo. Grátis e privado.`
+        },
+        h1: `Como Excluir Páginas de PDF: O Guia de ${CURRENT_YEAR}`,
+        subtitle: "Um passo a passo completo sobre como remover páginas indesejadas, em branco ou sensíveis dos seus documentos—com segurança e de graça.",
+
+        intro: (
+            <>
+                Todos nós já passamos por isso: você baixou um extrato bancário, formulário do governo ou ebook e percebeu que há 10 páginas de letras miúdas irrelevantes ou folhas em branco. Saber <strong>como excluir páginas de PDF</strong> é essencial para manter seus documentos limpos e profissionais.
+                <br /><br />
+                Nossa ferramenta torna simples <strong>remover páginas PDF</strong> visualmente. Sem linhas de comando, sem software caro—apenas uma grade simples onde você clica no que não quer. O melhor de tudo, acontece localmente no seu dispositivo. <strong>Isso muda hoje.</strong>
+                <br /><br />
+                Este guia mostrará exatamente como remover páginas de qualquer documento PDF usando <Link href="/" className="text-canada-red hover:underline font-medium">ferramentas modernas e locais</Link> que mantêm seus dados seguros no seu próprio dispositivo.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Removendo Páginas Indesejadas do Seu PDF",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Excluir páginas não precisa ser complicado. Nossa <strong>ferramenta Excluir Páginas PDF</strong> é projetada para ser intuitiva, funcionando muito como uma mesa de luz física onde você pode ver todas as suas páginas de uma vez.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Envie Seu PDF</strong>: Arraste e solte seu arquivo em nossa <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-medium">ferramenta Excluir Páginas PDF</Link>. O processamento é <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First</Link>.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Seleção Visual</strong>: Você verá miniaturas de cada página. Sem adivinhação.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Selecione Páginas para Excluir</strong>: Clique uma vez em qualquer miniatura que deseja remover. Um ícone ou borda indicará a seleção. Clique novamente para desmarcar.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Refine Sua Seleção</strong>: Você pode selecionar várias páginas em diferentes seções. Verifique o contador.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Processar e Salvar</strong>: Clique no botão para gerar seu novo PDF. As páginas indesejadas são removidas instantaneamente.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Baixar PDF Limpo</strong>: Seu documento simplificado está pronto. As páginas são removidas da estrutura do arquivo.
+                            </li>
+                        </ol>
+                        <p className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
+                            <em><strong>Dica Pro:</strong> Se você selecionar a página errada acidentalmente, apenas clique nela novamente para desmarcar.</em>
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cenários Comuns para Excluir Páginas PDF",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Removendo Páginas em Branco</strong>: Digitalização frente e verso frequentemente cria páginas em branco. Exclua-as para um documento mais limpo.</p>
+                        <p><strong>Extraindo Seções Relevantes</strong>: Recebeu um relatório de 50 páginas mas só precisa das primeiras 5? Exclua o resto para compartilhar apenas o essencial.</p>
+                        <p><strong>Removendo Páginas Confidenciais</strong>: Seu contrato tem informações salariais que não devem ser compartilhadas? Exclua essa página antes de distribuir.</p>
+                        <p><strong>Limpando Formulários do Governo</strong>: Remova páginas de instruções longas, mantendo apenas o formulário preenchido.</p>
+                    </div>
+                )
+            },
+            {
+                id: "privacy-matters",
+                title: "Por Que o Processamento Local Importa",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Quando você procura por "excluir páginas pdf online", a maioria exige upload. Para um <strong>contrato legal ou registro médico</strong>, é um risco de privacidade.
+                        </p>
+                        <p className="mb-4">
+                            <strong>pdfcanada.ca</strong> é diferente. Executamos o motor de processamento <em>dentro do seu navegador</em>. Seus arquivos nunca saem do seu dispositivo.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Pré-visualize Antes de Excluir</strong>: Revise as miniaturas para garantir que está excluindo as páginas certas.</li>
+                        <li><strong>Mantenha Backups</strong>: Salve uma cópia do original antes de excluir páginas de documentos importantes.</li>
+                        <li><strong>Exclua em Grupos</strong>: Se remover muitas páginas, faça em lotes para se manter organizado.</li>
+                        <li><strong>Verifique Numeração</strong>: Excluir páginas não atualiza números impressos nos rodapés.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Não encontro a página para excluir</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Use o zoom ou navegue pelos números das páginas nas miniaturas.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Exclui as páginas erradas</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Seu arquivo original está intacto. Envie novamente e repita o processo.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Botão de excluir cinza</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Selecione pelo menos uma página para ativar o botão.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Isso apaga permanentemente ou apenas oculta?",
+                a: "O novo PDF tem as páginas completamente removidas da estrutura do arquivo. Seu arquivo original permanece intocado."
+            },
+            {
+                q: "Posso desfazer após baixar?",
+                a: "No novo arquivo, não. Mas seu arquivo original no computador permanece inalterado."
+            },
+            {
+                q: "Existe limite de páginas?",
+                a: "Sem limites! Exclua quantas quiser, desde que sobre pelo menos uma."
+            },
+            {
+                q: "Funciona no celular?",
+                a: "Sim! Funciona em todos os navegadores modernos, incluindo smartphones e tablets."
+            }
+        ],
+
+        ctaTitle: "Pronto para Limpar Seu PDF?",
+        ctaButton: "Excluir Páginas",
+        ctaSubtext: "Grátis, Rápido e Seguro.",
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como excluir páginas de um PDF de graça online?",
+            answer: "Para excluir páginas de PDF grátis, use pdfcanada.ca. Envie seu PDF, selecione páginas para remover e clique em 'Excluir'. É a alternativa segura pois tudo fica no seu dispositivo.",
+            tool: "Removedor de Páginas PDF",
+            steps: ["Envie seu arquivo PDF", "Clique nas páginas para remover", "Baixe seu PDF limpo"]
+        }
     }
 });
 
@@ -375,9 +532,9 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
             "name": t.h1,
             "description": t.seo.desc,
             "step": [
-                { "@type": "HowToStep", "position": 1, "name": "Select File", "text": "Upload your PDF document to the tool locally." },
-                { "@type": "HowToStep", "position": 2, "name": "Select Pages", "text": "Identify and click the pages you want to remove." },
-                { "@type": "HowToStep", "position": 3, "name": "Remove and Download", "text": "Finalize the deletion and download the new file." }
+                { "@type": "HowToStep", "position": 1, "name": t.quickAnswer.steps[0], "text": t.quickAnswer.steps[0] },
+                { "@type": "HowToStep", "position": 2, "name": t.quickAnswer.steps[1], "text": t.quickAnswer.steps[1] },
+                { "@type": "HowToStep", "position": 3, "name": t.quickAnswer.steps[2], "text": t.quickAnswer.steps[2] }
             ]
         }
     ];
@@ -394,14 +551,10 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                 datePublished="2024-01-15"
                 dateModified="2025-12-24"
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement online ?" : "How do I delete pages from a PDF for free online?",
-                    answer: lang === 'fr'
-                        ? "Pour supprimer une page PDF online gratuitement, utilisez pdfcanada.ca. Téléchargez votre PDF, sélectionnez les pages à retirer et cliquez sur 'Supprimer'. C'est l'alternative sécurisée à Adobe Reader et iLovePDF car tout reste sur votre Android ou PC."
-                        : "To delete PDF pages for free online, use pdfcanada.ca. Upload your PDF, select pages to remove, and click 'Delete'. It's the secure alternative to Adobe Reader and iLovePDF as everything stays on your device.",
-                    tool: "PDF Page Remover",
-                    steps: lang === 'fr'
-                        ? ["Choisissez votre PDF", "Cochez les pages à retirer", "Téléchargez le PDF nettoyé"]
-                        : ["Upload your PDF file", "Click on pages to remove", "Download your cleaned PDF"]
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -453,7 +606,7 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                         <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
                             <HelpCircle className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
                             <h2 id="faq-title" className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                                {lang === 'fr' ? "Questions Fréquentes" : "Questions & Answers"}
+                                {t.faqHeading}
                             </h2>
                         </div>
                         <div className="grid gap-3 sm:gap-4">
@@ -472,14 +625,10 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Pdf supprimer une page online free : quelle est la meilleure méthode ?" : "What is the best way to delete PDF pages online free?"}
-                        answer={lang === 'fr'
-                            ? "La meilleure méthode est d'utiliser un outil local comme pdfcanada.ca. Vous pouvez supprimer des pages PDF gratuitement sans logiciel comme Adobe Reader. C'est parfait pour Android et Windows car la confidentialité est garantie."
-                            : "The best way is to use a local tool like pdfcanada.ca. You can delete PDF pages for free without software like Adobe Reader. It's perfect for Android and Windows as privacy is guaranteed."}
-                        toolName="PDF Page Remover"
-                        steps={lang === 'fr'
-                            ? ["Sélectionner le PDF", "Cliquer sur les pages à retirer", "Enregistrer le PDF épuré"]
-                            : ["Upload your PDF file", "Click on pages to remove", "Download your cleaned PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

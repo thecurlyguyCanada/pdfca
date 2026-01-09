@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { GripVertical, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
-import { Language, CURRENT_YEAR, translations } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -254,6 +254,14 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
 
+        faqHeading: "Frequently Asked Questions",
+        quickAnswer: {
+            question: "How do I merge PDF files?",
+            answer: "Use pdfcanada.ca's Merge PDF tool. Select multiple files, arrange them in order, and click 'Merge PDF'. It's free and secure.",
+            tool: "Merge PDF Tool",
+            steps: ["Select PDF files", "Reorder pages", "Download merged PDF"]
+        },
+
         ctaTitle: "Ready to Get Organized?",
         ctaButton: "Merge PDFs Now",
         ctaSubtext: "Free, Secure, and Canadian.",
@@ -450,18 +458,277 @@ const getGuideContent = (lang: Language) => ({
             }
         ],
 
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment fusionner des fichiers PDF ?",
+            answer: "Utilisez l'outil Fusionner PDF de pdfcanada.ca. Sélectionnez plusieurs fichiers, organisez-les et cliquez sur 'Fusionner'. C'est gratuit et sécurisé.",
+            tool: "Outil Fusionner PDF",
+            steps: ["Sélectionnez les fichiers PDF", "Réorganisez les pages", "Téléchargez le PDF fusionné"]
+        },
+
         ctaTitle: "Prêt à Vous Organiser ?",
         ctaButton: "Fusionner PDF Maintenant",
         ctaSubtext: "Gratuit, Sécurisé et Canadien.",
         whyTitle: "Pourquoi la Fusion Locale ?",
         whyDesc: "Vos fichiers sont fusionnés directement dans votre navigateur. Cela signifie qu'ils ne sont jamais envoyés sur un serveur distant, garantissant que vos documents confidentiels restent confidentiels."
+    },
+    pt: {
+        seo: {
+            title: `Como Juntar Arquivos PDF | Guia Gratuito e Seguro ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Aprenda como combinar vários arquivos PDF em um só com segurança. Nosso guia de ${CURRENT_YEAR} mostra como juntar PDFs localmente no seu navegador sem uploads. Rápido e Privado.`
+        },
+        h1: `Como Juntar Arquivos PDF em Um (Guia ${CURRENT_YEAR})`,
+        subtitle: "A maneira mais fácil de combinar vários documentos em um único arquivo PDF organizado.",
+
+        intro: (
+            <>
+                <Image src="/images/guides/merge-pdf-guide.png" alt="Ilustração de juntar arquivos PDF" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
+                Manter o controle de vários arquivos PDF relacionados pode ser um pesadelo. Seja faturas, recibos ou capítulos de um relatório, <strong>juntar vários arquivos PDF em um</strong> mantém tudo organizado e profissional.
+                <br /><br />
+                Nossa ferramenta de junção permite combinar vários PDFs em um, reordená-los exatamente como você deseja e salvá-los como um único documento—tudo sem precisar do Adobe Acrobat ou fazer upload de nada para um servidor.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Combinando PDFs",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4 mb-6">
+                        <li className="pl-2">
+                            <strong>Selecione Arquivos</strong>: Clique para enviar ou arraste vários arquivos PDF para nossa <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-medium">ferramenta Juntar PDF</Link>. Você pode selecionar vários arquivos de uma vez usando Ctrl (Windows) ou Cmd (Mac) ao navegar.
+                        </li>
+                        <li className="pl-2">
+                            <strong>Pré-visualize Miniaturas</strong>: Uma vez carregados, você verá pré-visualizações em miniatura da primeira página de cada arquivo, facilitando a identificação de qual documento é qual.
+                        </li>
+                        <li className="pl-2">
+                            <strong>Reordenar</strong>: Arraste e solte os arquivos para organizá-los na ordem correta. O arquivo no topo se tornará as primeiras páginas do seu documento mesclado.
+                        </li>
+                        <li className="pl-2">
+                            <strong>Remover Arquivos Indesejados</strong>: Cometeu um erro? Clique no botão X em qualquer arquivo para removê-lo da fila de mesclagem sem começar de novo.
+                        </li>
+                        <li className="pl-2">
+                            <strong>Juntar</strong>: Clique no botão &quot;Juntar PDF&quot; para combiná-los instantaneamente. O processamento acontece no seu navegador, então arquivos maiores podem levar alguns segundos.
+                        </li>
+                        <li className="pl-2">
+                            <strong>Baixar</strong>: Salve seu novo documento único. O arquivo mesclado manterá a qualidade original de todos os documentos de origem.
+                        </li>
+                    </ol>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Auditoria de Privacidade: Para onde vão seus arquivos?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Verificação do Ciclo de Vida de Dados
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Carregamento Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Os arquivos são lidos do seu disco para a memória segura do navegador.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Processamento Cliente-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Nosso motor WebAssembly executa a operação de junção usando a CPU do seu computador. <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline">0 bytes são enviados para qualquer servidor.</Link></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Limpeza Automática</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Assim que você fecha a aba, a memória do navegador é limpa. Nenhum traço do seu documento permanece.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Casos de Uso Reais para Juntar PDFs",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Preparação para Impostos</strong>: Combine todos os seus comprovantes T4, recibos, comprovantes de doação e relatórios de despesas em um PDF organizado para fácil envio à CRA ou ao seu contador.</p>
+                        <p><strong>Candidaturas de Emprego</strong>: Junte seu currículo, carta de apresentação, cartas de referência e amostras de portfólio em um único pacote profissional que os gerentes de contratação podem revisar facilmente.</p>
+                        <p><strong>Documentação Legal</strong>: Reúna todos os contratos, emendas, documentos de suporte e correspondência em um arquivo legal completo para submissões judiciais ou manutenção de registros.</p>
+                        <p><strong>Trabalho Acadêmico</strong>: Combine artigos de pesquisa, bibliografia, apêndices e gráficos de suporte em um único documento de tese ou dissertação.</p>
+                        <p><strong>Propostas de Negócios</strong>: Junte o resumo executivo, cronograma do projeto, detalhamento do orçamento e biografias da equipe em um documento de proposta coeso.</p>
+                        <p><strong>Transações Imobiliárias</strong>: Consolide relatórios de inspeção, divulgações de propriedade, avaliações e documentos de fechamento em um arquivo abrangente.</p>
+                        <p><strong>Registros Médicos</strong>: Combine resultados de exames, notas médicas, histórico de prescrições e formulários de seguro para documentação médica completa.</p>
+                    </div>
+                )
+            },
+            {
+                id: "tips",
+                title: "Dicas Profissionais para Juntar",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
+                            <h3 className="font-bold text-blue-800 mb-2">A Ordem Importa</h3>
+                            <p className="text-sm text-blue-700">O arquivo no topo da lista será as primeiras páginas do seu novo PDF. Certifique-se de organizá-los cronologicamente ou logicamente antes de juntar.</p>
+                        </div>
+                        <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
+                            <h3 className="font-bold text-green-800 mb-2">Comprima Após Juntar</h3>
+                            <p className="text-sm text-green-700">Juntar muitos arquivos pode criar um PDF grande. Use nossa <Link href={`/${lang}/compress-pdf`} className="underline">ferramenta de Comprimir</Link> depois se o arquivo for muito grande para enviar por e-mail.</p>
+                        </div>
+                        <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
+                            <h3 className="font-bold text-purple-800 mb-2">Renomeie Antes de Enviar</h3>
+                            <p className="text-sm text-purple-700">Dê aos seus arquivos de origem nomes descritivos (como &quot;01-Capa.pdf&quot;, &quot;02-Curriculo.pdf&quot;) para facilitar a ordenação durante o processo de junção.</p>
+                        </div>
+                        <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
+                            <h3 className="font-bold text-orange-800 mb-2">Pré-visualize as Primeiras Páginas</h3>
+                            <p className="text-sm text-orange-700">Use as pré-visualizações em miniatura para verificar se cada arquivo está correto antes de juntar. Isso economiza tempo em comparação com a abertura de cada seção de PDF mesclada separadamente.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "platforms",
+                title: "Como Juntar Arquivos PDF no Mac e Windows",
+                content: (
+                    <div className="space-y-4">
+                        <p>Uma das perguntas mais comuns é como juntar arquivos dependendo do seu dispositivo. Se você está usando um <strong>Macbook Air</strong>, um <strong>desktop Windows 10/11</strong> ou um celular, nossa ferramenta funciona universalmente.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white">No Windows:</h4>
+                        <p>Não há necessidade de procurar por software &quot;como juntar arquivos pdf windows&quot;. Apenas use nossa ferramenta baseada na web. Ela usa a memória local do seu navegador para processar a fusão, tornando-a mais rápida do que muitos aplicativos instalados.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white">No Mac:</h4>
+                        <p>Embora você possa usar o Preview, muitas pessoas procuram &quot;como juntar arquivos pdf no mac&quot; para uma experiência de arrastar e soltar mais intuitiva. Nossa ferramenta fornece uma interface visual clara que funciona perfeitamente no Safari ou Chrome no macOS.</p>
+                    </div>
+                )
+            },
+            {
+                id: "no-acrobat",
+                title: "Como Juntar Arquivos PDF Sem Acrobat",
+                content: (
+                    <div className="space-y-4">
+                        <p>Muitos usuários querem saber <strong>como juntar documentos pdf sem Adobe Acrobat</strong> por causa dos altos custos de assinatura. Nossa ferramenta é uma alternativa 100% gratuita que preserva a qualidade profissional.</p>
+                        <ul className="list-disc pl-5">
+                            <li><strong>Grátis para Sempre:</strong> Nenhuma versão &quot;Pro&quot; necessária para combinar arquivos.</li>
+                            <li><strong>Sem Cadastro:</strong> Comece a juntar imediatamente sem uma conta.</li>
+                            <li><strong>Privacidade:</strong> Ao contrário de muitas ferramentas &quot;Juntar PDF Online&quot;, nós nunca vemos seus arquivos.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas para Resultados Profissionais",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Orientação Consistente</strong>: Garanta que todos os PDFs tenham a mesma orientação (retrato ou paisagem) antes de juntar, ou use nossa <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline">ferramenta de Girar</Link> primeiro para padronizá-los.</li>
+                        <li><strong>Tamanhos de Página Semelhantes</strong>: Embora você possa juntar PDFs de tamanhos diferentes, ter dimensões de página consistentes (como tudo Carta ou tudo A4) cria um resultado mais profissional.</li>
+                        <li><strong>Verificação de Qualidade</strong>: Revise cada PDF de origem individualmente antes de juntar para garantir que não haja páginas em branco, conteúdo corrompido ou materiais indesejados.</li>
+                        <li><strong>Organização Lógica</strong>: Organize os documentos em um fluxo lógico - tipicamente ordem cronológica, ou de informações gerais para detalhes específicos.</li>
+                        <li><strong>Consciência do Tamanho do Arquivo</strong>: Esteja ciente dos limites de anexo de e-mail (geralmente 10-25MB). Se seu arquivo mesclado exceder isso, considere compressão ou divisão em vários arquivos.</li>
+                        <li><strong>Backup dos Originais</strong>: Sempre mantenha cópias de seus PDFs originais separados antes de juntar, caso precise fazer alterações mais tarde.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Botão de juntar está cinza</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Você precisa de pelo menos 2 arquivos PDF para juntar. Envie arquivos adicionais e o botão será ativado.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Processamento é muito lento</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Arquivos grandes ou muitos arquivos podem levar tempo para processar localmente. Tente fechar outras abas do navegador para liberar memória, ou junte em lotes menores.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: PDF juntado é muito grande para enviar por e-mail</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Use nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta de Comprimir PDF</Link> para reduzir o tamanho do arquivo mantendo uma qualidade razoável.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Páginas estão na orientação errada</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Use nossa <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta de Girar PDF</Link> no arquivo mesclado ou nos arquivos de origem individuais antes de juntar.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Como faço para juntar 2 arquivos pdf em 1?",
+                a: "Simplesmente envie ambos os arquivos para nossa ferramenta, organize-os na ordem que deseja e clique em 'Juntar PDF'. Esta é a maneira mais rápida de combinar dois documentos em um único arquivo gratuitamente."
+            },
+            {
+                q: "Como juntar vários arquivos pdf em um pdf usando esta ferramenta?",
+                a: "Você pode enviar até 50 arquivos de uma vez. Nossa visualização em grade permite ver todos os seus documentos, reordená-los arrastando e depois juntá-los em um arquivo PDF contínuo com um único clique."
+            },
+            {
+                q: "Existe um limite de quantos arquivos posso juntar?",
+                a: "Não! Você pode adicionar tantos arquivos quanto a memória do seu navegador permitir. Recomendamos fazer 10-20 de cada vez para o melhor desempenho. Para lotes muito grandes (50+ arquivos), considere juntar em grupos e depois combinar esses arquivos fundidos."
+            },
+            {
+                q: "Posso juntar arquivos protegidos por senha?",
+                a: "Você precisará desbloqueá-los primeiro. Se você tiver a senha, pode usar um visualizador de PDF para salvar uma cópia sem a senha antes de juntar, ou use nossa ferramenta de Desbloquear PDF para remover a proteção."
+            },
+            {
+                q: "A fusão reduzirá a qualidade dos meus PDFs?",
+                a: "Não. Nossa ferramenta de fusão preserva 100% da qualidade original. O texto permanece selecionável, as imagens ficam nítidas e toda a formatação é mantida exatamente como estava nos arquivos de origem."
+            },
+            {
+                q: "Posso juntar PDFs de tamanhos de página diferentes?",
+                a: "Sim! Você pode juntar PDFs com tamanhos de página diferentes (como Carta e A4, ou retrato e paisagem). Cada página manterá suas dimensões originais no documento mesclado."
+            },
+            {
+                q: "O que acontece com marcadores e links quando eu junto?",
+                a: "Marcadores e links internos dos PDFs originais são preservados no arquivo mesclado. No entanto, a organização dos marcadores pode precisar de ajuste, pois todos os marcadores são combinados no nível raiz."
+            },
+            {
+                q: "Qual tamanho meu PDF juntado pode ter?",
+                a: "O limite de tamanho depende da memória disponível do seu dispositivo. A maioria dos computadores modernos pode lidar com PDFs mesclados de até várias centenas de megabytes. Se você estiver tendo problemas com arquivos muito grandes, tente juntar menos arquivos de uma vez."
+            },
+            {
+                q: "Posso juntar PDFs no meu celular ou tablet?",
+                a: "Sim! Nossa ferramenta de fusão funciona em todos os navegadores modernos, incluindo dispositivos móveis. No entanto, processar arquivos grandes no celular pode ser mais lento devido à memória limitada em comparação com computadores desktop."
+            },
+            {
+                q: "Existe uma maneira de adicionar números de página ao PDF juntado?",
+                a: "Nossa ferramenta de fusão combina os arquivos como estão. Para adicionar números de página, você precisaria usar uma ferramenta de edição de PDF separada após a fusão. Considere adicionar números de página aos arquivos individuais antes de juntar para melhor controle."
+            },
+            {
+                q: "Posso pesquisar texto em todos os arquivos juntados?",
+                a: "Sim! Uma vez combinados em um único PDF, você pode usar a função de pesquisa padrão (Ctrl+F ou Cmd+F) para encontrar palavras em todas as páginas instantaneamente. Perfeito para pesquisa e descoberta legal."
+            }
+        ],
+
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como juntar arquivos PDF?",
+            answer: "Use a ferramenta Juntar PDF do pdfcanada.ca. Selecione vários arquivos, organize-os e clique em 'Juntar PDF'. É grátis e seguro.",
+            tool: "Ferramenta Juntar PDF",
+            steps: ["Selecione arquivos PDF", "Baixe o PDF junto"]
+        },
+
+        ctaTitle: "Pronto para se Organizar?",
+        ctaButton: "Juntar PDFs Agora",
+        ctaSubtext: "Grátis, Seguro e Canadense.",
+        whyTitle: "Por que Junção Local?",
+        whyDesc: "Seus arquivos são mesclados diretamente no seu navegador. Isso significa que eles nunca são enviados para um servidor remoto, garantindo que seus documentos confidenciais permaneçam confidenciais."
     }
 });
 
 export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang].features.merge.quickAnswer;
 
     return (
         <>
@@ -474,10 +741,10 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 datePublished="2024-02-15"
                 dateModified="2025-12-24"
                 quickAnswer={{
-                    question: qa.question,
-                    answer: qa.answer,
-                    tool: "Merge PDF",
-                    steps: qa.steps
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -558,11 +825,26 @@ export const MergePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
 
+                    <section>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-gray-900 dark:text-white flex items-center gap-2 sm:gap-3">
+                            <HelpCircle className="text-canada-red w-6 h-6 sm:w-8 sm:h-8" />
+                            {t.faqHeading}
+                        </h2>
+                        <div className="grid gap-3 sm:gap-4 md:gap-6">
+                            {t.faq.map((item: any, i: number) => (
+                                <div key={i} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
+                                    <h3 className="font-bold text-base sm:text-lg md:text-xl mb-2 sm:mb-3 md:mb-4 text-gray-900 dark:text-white">{item.q}</h3>
+                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">{item.a}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     <AISnapshot
-                        question={qa.question}
-                        answer={qa.answer}
-                        toolName={lang === 'fr' ? "Fusionner PDF" : "Merge PDF"}
-                        steps={qa.steps}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

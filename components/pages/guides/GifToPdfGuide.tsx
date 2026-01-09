@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { Globe, FileImage, Layers, Zap } from 'lucide-react';
+import { Globe, FileImage, Layers, Zap, CheckCircle, Shield } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -14,7 +14,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: `GIF to PDF Converter | Convert Animated & Static GIFs ${CURRENT_YEAR}`,
@@ -59,10 +59,20 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Is it free?",
                 a: "Yes, this tool is completely free and unlimited."
+            },
+            {
+                q: "Is my data secure?",
+                a: "Absolutely. The conversion happens entirely in your browser. No image data is ever sent to a server."
             }
         ],
         cta: "Start Converting",
-        ctaBtn: "Convert GIF to PDF"
+        ctaBtn: "Convert GIF to PDF",
+        quickAnswer: {
+            question: "How to convert GIF to PDF?",
+            answer: "Use the GIF to PDF tool on pdfcanada.ca. It securely converts your animated or static GIFs into PDF documents directly in your browser.",
+            tool: "GIF to PDF",
+            steps: ["Upload GIF", "Process", "Download PDF"]
+        }
     },
     fr: {
         seo: {
@@ -107,16 +117,85 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Est-ce gratuit ?",
                 a: "Oui, cet outil est complètement gratuit et illimité."
+            },
+            {
+                q: "Mes données sont-elles sécurisées ?",
+                a: "Absolument. La conversion se fait entièrement dans votre navigateur. Aucune donnée d'image n'est jamais envoyée à un serveur."
             }
         ],
         cta: "Commencer la Conversion",
-        ctaBtn: "Convertir GIF scan en PDF"
+        ctaBtn: "Convertir GIF scan en PDF",
+        quickAnswer: {
+            question: "Comment convertir un GIF en PDF ?",
+            answer: "Utilisez l'outil GIF en PDF de pdfcanada.ca. Il convertit en toute sécurité vos GIFs animés ou statiques en documents PDF directement dans votre navigateur.",
+            tool: "GIF en PDF",
+            steps: ["Téléverser GIF", "Traitement", "Télécharger PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Conversor GIF para PDF | Converter GIFs Animados e Estáticos ${CURRENT_YEAR}`,
+            desc: `Ferramenta online gratuita para converter imagens GIF para PDF. Suporta GIFs estáticos e animados. Rápido, seguro e local.`
+        },
+        h1: "Converter GIF para PDF",
+        subtitle: "Transforme suas imagens GIF em documentos PDF profissionais instantaneamente.",
+        intro: "Precisa incluir um GIF em um relatório ou apresentação? Nosso conversor GIF para PDF transforma seus arquivos GIF animados ou estáticos em documentos PDF de alta qualidade. Ele captura os dados da imagem preservando a clareza.",
+        sections: [
+            {
+                id: "how-it-works",
+                title: "Como Funciona",
+                content: (
+                    <div className="space-y-4">
+                        <p>Nossa ferramenta roda diretamente no seu navegador. Se você tem um GIF estático ou animado, convertemos os dados da imagem em uma página PDF padrão.</p>
+                        <h4 className="font-bold text-lg mt-4 mb-2">Principais Recursos:</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Conversão Instantânea:</strong> Sem espera por uploads.</li>
+                            <li><strong>Processamento Privado:</strong> Seus arquivos nunca saem do seu dispositivo.</li>
+                            <li><strong>Compatibilidade Universal:</strong> Funciona em todos os dispositivos.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "steps",
+                title: "Como Converter GIF para PDF",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4">
+                        <li><strong>Enviar GIF:</strong> Arraste e solte seu arquivo .gif na ferramenta.</li>
+                        <li><strong>Processamento:</strong> A ferramenta lê automaticamente os dados da imagem.</li>
+                        <li><strong>Baixar:</strong> Seu PDF está pronto instantaneamente.</li>
+                    </ol>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Suporta GIFs animados?",
+                a: "Sim, ele captura o quadro principal do GIF. Como os PDFs são documentos estáticos, ele cria uma representação estática do seu GIF."
+            },
+            {
+                q: "É gratuito?",
+                a: "Sim, esta ferramenta é completamente gratuita e ilimitada."
+            },
+            {
+                q: "Meus dados estão seguros?",
+                a: "Absolutamente. A conversão acontece inteiramente no seu navegador. Nenhuma imagem é enviada para um servidor."
+            }
+        ],
+        cta: "Começar a Converter",
+        ctaBtn: "Converter GIF para PDF",
+        quickAnswer: {
+            question: "Como converter GIF para PDF?",
+            answer: "Use a ferramenta GIF para PDF no pdfcanada.ca. Ela converte com segurança seus GIFs animados ou estáticos em documentos PDF diretamente no seu navegador.",
+            tool: "GIF para PDF",
+            steps: ["Enviar GIF", "Processar", "Baixar PDF"]
+        }
     }
 });
 
 export const GifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -138,7 +217,7 @@ export const GifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             breadcrumbs={[
                 { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
                 { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'GIF en PDF' : 'GIF to PDF', href: '#' }
+                { name: lang === 'fr' ? 'GIF em PDF' : 'GIF to PDF', href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/gif-to-pdf" lang={lang} schema={schema} />
@@ -159,10 +238,10 @@ export const GifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir un GIF en PDF ?" : "How to convert GIF to PDF?"}
-                        answer={lang === 'fr' ? "Utilisez l'outil GIF en PDF de pdfcanada.ca." : "Use the GIF to PDF tool on pdfcanada.ca."}
-                        toolName="GIF to PDF"
-                        steps={lang === 'fr' ? ["Ouvrir l'outil", "Sélectionner le GIF", "Télécharger"] : ["Open Tool", "Select GIF", "Download"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

@@ -15,7 +15,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: "How to Convert HEIC to PDF | Secure iPhone Photo Guide | pdfcanada.ca",
@@ -314,7 +314,7 @@ Despite being introduced in 2017, HEIC remains poorly supported across platforms
 - **Try different browser**: Switch from Chrome to Safari or vice versa
 
 **Problem: Photos Appear Rotated in PDF**
-- **EXIF orientation**: Our tool reads EXIF rotation data, but if it's missing, photos may appear sideways
+- **EXIF orientation**: Our tool reads EXIF rotation data, but if it's missing, photos may display sideways
 - **Solution**: Rotate photos in iPhone Photos app before conversion, OR use our PDF rotation tool after conversion
 
 **Problem: File Size Too Large**
@@ -441,7 +441,13 @@ Despite being introduced in 2017, HEIC remains poorly supported across platforms
 
         ctaTitle: "Ready to Fix Your Compatibility Issues?",
         ctaButton: "Start HEIC to PDF Conversion",
-        ctaSubtext: "100% Free. No Signup. Proudly Canadian and Local-First."
+        ctaSubtext: "100% Free. No Signup. Proudly Canadian and Local-First.",
+        quickAnswer: {
+            question: "How do I convert HEIC to PDF on iPhone?",
+            answer: "Open Safari on your iPhone, go to pdfcanada.ca, select your HEIC photos from your library, and we'll generate a PDF on the fly. You can save it to Files or send via email. No app needed.",
+            tool: "HEIC to PDF Converter",
+            steps: ["Select your HEIC photos", "Organize the pages", "Download your PDF"]
+        }
     },
     fr: {
         seo: {
@@ -495,14 +501,81 @@ Le problème ? Windows, Android et la plupart des navigateurs web ne le supporte
 
         ctaTitle: "Prêt à Convertir Vos Photos ?",
         ctaButton: "Convertir HEIC en PDF",
-        ctaSubtext: "Gratuit, Rapide et 100% Privé."
+        ctaSubtext: "Gratuit, Rapide et 100% Privé.",
+        quickAnswer: {
+            question: "Comment convertir HEIC en PDF sur iPhone?",
+            answer: "Ouvrez Safari sur votre iPhone, allez sur pdfcanada.ca, sélectionnez vos photos HEIC depuis votre bibliothèque, et nous générerons un PDF automatiquement. Vous pouvez l'enregistrer dans Fichiers ou l'envoyer par email. Pas d'application requise.",
+            tool: "HEIC to PDF Converter",
+            steps: ["Sélectionnez vos photos HEIC", "Organisez les pages", "Téléchargez votre PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Converter HEIC em PDF | Guia de Fotos iPhone ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Torne suas fotos do iPhone compatíveis em qualquer lugar. Nosso tutorial de ${CURRENT_YEAR} mostra como converter HEIC para PDF com segurança no navegador sem enviar fotos.`
+        },
+        h1: "Como Converter HEIC para PDF: O Guia Completo",
+        subtitle: "Transforme suas fotos do iPhone em documentos PDF universalmente compatíveis sem downloads de app ou perda de qualidade.",
+
+        intro: "Você já tentou abrir uma foto do seu iPhone num PC Windows e descobriu que ela está num formato **.heic** estranho que nada consegue ler? É frustrante. Nosso **conversor HEIC para PDF** resolve esse problema transformando suas fotos Apple em documentos PDF compatíveis. O melhor? Tudo acontece localmente no seu navegador, então suas fotos de família nunca são enviadas para um servidor aleatório.",
+
+        sections: [
+            {
+                id: "what-is-heic",
+                title: "O que é HEIC e Por que a Apple o Usa",
+                content: `HEIC (High Efficiency Image Container) é o formato de imagem padrão da Apple desde o iOS 11. Ele oferece melhor compressão que o JPEG, o que significa que suas fotos ocupam menos espaço de armazenamento mantendo alta qualidade.
+
+O problema? Windows, Android e a maioria dos navegadores web não o suportam nativamente. É por isso que a conversão para **PDF** (ou JPEG) é frequentemente necessária para compartilhamento.`
+            },
+            {
+                id: "how-it-works",
+                title: "Como Funciona: Simples e Rápido",
+                content: `Nosso conversor HEIC para PDF foi projetado para ser intuitivo e eficiente:
+1. **Selecione Suas Fotos**: Envie um ou vários arquivos .heic do seu iPhone, iCloud ou computador.
+2. **Conversão Automática**: Nossa ferramenta decodifica o formato HEIC e gera um PDF de alta qualidade.
+3. **Baixe**: Salve seu novo PDF, pronto para ser compartilhado com qualquer pessoa em qualquer dispositivo.`
+            },
+            {
+                id: "privacy",
+                title: "Por que a Conversão Local é Importante",
+                content: `Fotos contêm frequentemente informações sensíveis: rostos de familiares, documentos pessoais, prints de contas bancárias. Enviá-las para um site de conversão aleatório é um risco de privacidade.
+ 
+**pdfcanada.ca** processa seus arquivos HEIC inteiramente no seu navegador. Suas fotos **nunca** saem do seu dispositivo.`
+            }
+        ],
+
+        faq: [
+            {
+                q: "A qualidade da imagem será reduzida?",
+                a: "Não. Mantemos a resolução e a qualidade da imagem original durante a conversão para PDF."
+            },
+            {
+                q: "Posso converter vários arquivos HEIC de uma vez?",
+                a: "Sim! Você pode selecionar várias fotos e todas serão convertidas em um único documento PDF de várias páginas."
+            },
+            {
+                q: "Funciona no Android?",
+                a: "Absolutamente. Embora o HEIC seja um formato Apple, nosso conversor funciona em qualquer navegador moderno, incluindo Chrome no Android."
+            }
+        ],
+
+        ctaTitle: "Pronto para Converter Suas Fotos?",
+        ctaButton: "Converter HEIC para PDF",
+        ctaSubtext: "Grátis, Rápido e 100% Privado.",
+        quickAnswer: {
+            question: "Como converter HEIC para PDF no iPhone?",
+            answer: "Abra o Safari no iPhone, vá para pdfcanada.ca, selecione suas fotos HEIC da biblioteca e geraremos um PDF automaticamente. Você pode salvar em Arquivos ou enviar por e-mail. Sem apps.",
+            tool: "Conversor HEIC para PDF",
+            steps: ["Selecione suas fotos HEIC", "Organize as páginas", "Baixe seu PDF"]
+        }
     }
 
 });
 
 export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -525,16 +598,7 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
-                quickAnswer={{
-                    question: lang === 'fr' ? "Comment convertir HEIC en PDF sur iPhone?" : "How do I convert HEIC to PDF on iPhone?",
-                    answer: lang === 'fr'
-                        ? "Ouvrez Safari sur votre iPhone, allez sur pdfcanada.ca, sélectionnez vos photos HEIC depuis votre bibliothèque, et nous générerons un PDF automatiquement. Vous pouvez l'enregistrer dans Fichiers ou l'envoyer par email. Pas d'application requise."
-                        : "Open Safari on your iPhone, go to pdfcanada.ca, select your HEIC photos from your library, and we'll generate a PDF on the fly. You can save it to Files or send via email. No app needed.",
-                    tool: "HEIC to PDF Converter",
-                    steps: lang === 'fr'
-                        ? ["Sélectionnez vos photos HEIC", "Organisez les pages", "Téléchargez votre PDF"]
-                        : ["Select your HEIC photos", "Organize the pages", "Download your PDF"]
-                }}
+                quickAnswer={t.quickAnswer}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -620,14 +684,10 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir HEIC en PDF sur iPhone?" : "How do I convert HEIC to PDF on iPhone?"}
-                        answer={lang === 'fr'
-                            ? "Ouvrez Safari sur votre iPhone, allez sur pdfcanada.ca, sélectionnez vos photos HEIC depuis votre bibliothèque, et nous générerons un PDF automatiquement. Vous pouvez l'enregistrer dans Fichiers ou l'envoyer par email. Pas d'application requise."
-                            : "Open Safari on your iPhone, go to pdfcanada.ca, select your HEIC photos from your library, and we'll generate a PDF on the fly. You can save it to Files or send via email. No app needed."}
-                        toolName="HEIC to PDF Converter"
-                        steps={lang === 'fr'
-                            ? ["Sélectionnez vos photos HEIC", "Organisez les pages", "Téléchargez votre PDF"]
-                            : ["Select your HEIC photos", "Organize the pages", "Download your PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 
@@ -639,5 +699,3 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
         </div>
     );
 };
-
-

@@ -186,7 +186,20 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Ready to Fix Your PDF?",
         ctaButton: "Rotate PDF Now",
-        ctaSubtext: "100% Free. No Watermarks."
+        ctaSubtext: "100% Free. No Watermarks.",
+        features: {
+            cw: "90° CW",
+            ccw: "90° CCW",
+            permanent: "Permanent",
+            crossDevice: "Cross-Device"
+        },
+        faqHeading: "Frequently Asked Questions",
+        quickAnswer: {
+            question: "How do I rotate PDF pages permanently?",
+            answer: "Use pdfcanada.ca's Rotate PDF tool. Upload your file, click rotate buttons (left/right) on specific pages or use 'Rotate All', then download. The new orientation is saved permanently in the file.",
+            tool: "Rotate PDF",
+            steps: ["Upload PDF", "Rotate pages left/right", "Download fixed PDF"]
+        }
     },
     fr: {
         seo: {
@@ -359,14 +372,185 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Prêt à redresser votre PDF ?",
         ctaButton: "Pivoter le PDF",
-        ctaSubtext: "100% Gratuit. Pas de filigrane."
+        ctaSubtext: "100% Gratuit. Pas de filigrane.",
+        features: {
+            cw: "90° Horaire",
+            ccw: "90° Anti",
+            permanent: "Permanent",
+            crossDevice: "Multi-Appareils"
+        },
+        faqHeading: "Foire Aux Questions",
+        quickAnswer: {
+            question: "Comment faire pivoter les pages PDF en permanence ?",
+            answer: "Utilisez l'outil de rotation PDF de pdfcanada.ca. Téléchargez votre fichier, cliquez sur les boutons de rotation (gauche/droite) sur des pages spécifiques, puis téléchargez. La nouvelle orientation est enregistrée de façon permanente.",
+            tool: "Pivoter PDF",
+            steps: ["Télécharger le PDF", "Pivoter les pages", "Télécharger le PDF corrigé"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Girar Páginas PDF | Guia Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Corrija PDFs de cabeça para baixo para sempre. Nosso guia de ${CURRENT_YEAR} ensina como girar páginas permanentemente no seu navegador. Processamento local seguro garante sua privacidade.`
+        },
+        h1: `Como Girar Páginas PDF: O Guia de ${CURRENT_YEAR}`,
+        subtitle: "O guia simples para corrigir documentos orientados incorretamente de forma permanente.",
+
+        intro: (
+            <>
+                Todos nós já passamos por isso: você abre uma digitalização importante e ela está de lado. Ou pior, o documento inteiro está de cabeça para baixo. Se você está procurando <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold">girar PDF online grátis</Link>, você veio ao lugar certo.
+                <br /><br />
+                Ao contrário de um visualizador de PDF padrão onde a rotação é apenas temporária (ela reinicia quando você fecha o arquivo), nossa ferramenta atualiza a estrutura do arquivo para que a orientação seja corrigida <strong>permanentemente</strong> para todos que o abrirem.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Corrigindo Orientação de PDF Permanentemente",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Girar páginas permanentemente garante que todos que abrirem seu documento vejam a orientação correta, independentemente de qual visualizador de PDF ou dispositivo estejam usando.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Envie Seu PDF</strong>: Arraste e solte seu arquivo mal orientado em nossa <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">ferramenta Girar PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">tecnologia Local-First</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Guia de Privacidade</Link>), o processamento começa instantaneamente.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Pré-visualizar Miniaturas</strong>: Você verá miniaturas de todas as páginas. Isso facilita identificar quais páginas precisam de rotação num relance.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Girar Páginas Individuais</strong>: Clique nos botões de rotação horário ou anti-horário abaixo de cada miniatura para girar em incrementos de 90°. Você pode girar 90°, 180° ou 270°.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Usar Operações em Lote (Opcional)</strong>: Se todas as páginas precisarem da mesma rotação, use "Girar Todas as Páginas" para aplicar a rotação a cada página de uma vez.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Revise Suas Mudanças</strong>: Verifique se cada página está orientada corretamente antes de finalizar.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Baixar PDF Corrigido</strong>: Clique em 'Processar PDF' e seu documento permanentemente girado é baixado imediatamente. A orientação é salva na estrutura do arquivo.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "why-rotate",
+                title: "Por Que a Orientação Correta Importa",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Orientação incorreta não é apenas um pequeno aborrecimento—pode ter sérias consequências profissionais:
+                        </p>
+                        <div className="space-y-4">
+                            <div>
+                                <strong className="text-canada-red">Problemas de Leitura</strong>: Documentos de lado são quase impossíveis de ler em dispositivos móveis sem zoom constante.
+                            </div>
+                            <div>
+                                <strong className="text-canada-red">Credibilidade Profissional</strong>: Enviar um contrato de lado para um cliente sinaliza descuido.
+                            </div>
+                            <div>
+                                <strong className="text-canada-red">Problemas de Impressão</strong>: PDFs mal orientados imprimem incorretamente, desperdiçando papel e tinta.
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cenários Comuns",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Digitalizações Mistas</strong>: Você digitalizou uma pilha de papéis contendo cartas em retrato e gráficos em paisagem. Algumas páginas saíram de lado. Gire apenas as páginas em paisagem.</p>
+                        <p><strong>Scanner de Cabeça para Baixo</strong>: Você acidentalmente carregou um documento inteiro de cabeça para baixo. Use "Girar Tudo 180°" para corrigir.</p>
+                        <p><strong>Candidaturas de Emprego</strong>: Seu currículo é retrato mas seu portfólio é paisagem. Gire as páginas do portfólio para corresponder.</p>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Pré-visualize Antes</strong>: Sempre revise as miniaturas para garantir que está girando as páginas certas.</li>
+                        <li><strong>Gire em Incrementos de 90°</strong>: Evite ângulos arbitrários que podem reduzir a qualidade.</li>
+                        <li><strong>Mantenha o Fluxo</strong>: Mantenha orientação consistente em cada seção.</li>
+                        <li><strong>Teste em Vários Dispositivos</strong>: Abra o PDF em diferentes dispositivos para verificar a orientação.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: A rotação reinicia quando abro o PDF</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Seu visualizador pode estar aplicando rotação temporária. Nossa ferramenta salva a rotação permanentemente. Tente outro visualizador.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Texto ou imagens parecem borrados</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Rotação adequada não reduz qualidade. Se parece borrado, a digitalização original pode ter baixa resolução.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Girei na direção errada</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Envie novamente e gire na direção oposta. 90° horário errado? Gire 270° horário para corrigir.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "A qualidade do PDF diminui após girar?",
+                a: "Não. Nossa ferramenta modifica apenas os metadados de rotação sem comprimir ou modificar o conteúdo visual original."
+            },
+            {
+                q: "Posso girar apenas uma página?",
+                a: "Sim! Você pode selecionar páginas específicas para girar 90°, 180° ou 270° sem afetar o resto do arquivo."
+            },
+            {
+                q: "A rotação é permanente?",
+                a: "Sim. A rotação é salva diretamente na estrutura do arquivo PDF. Qualquer pessoa que abrir seu PDF verá a orientação corrigida."
+            },
+            {
+                q: "Posso girar páginas no celular?",
+                a: "Absolutamente! Funciona em iOS Safari e Android Chrome com interface de toque."
+            },
+            {
+                q: "Existe limite de páginas?",
+                a: "Não. Você pode girar PDFs com centenas de páginas, limitado apenas pela memória do seu dispositivo."
+            },
+            {
+                q: "Posso girar PDFs com senha?",
+                a: "Você precisará desbloquear primeiro. Use nossa ferramenta Desbloquear PDF se souber a senha."
+            }
+        ],
+
+        ctaTitle: "Pronto para Corrigir Seu PDF?",
+        ctaButton: "Girar PDF Agora",
+        ctaSubtext: "100% Grátis. Sem Marca d'água.",
+        features: {
+            cw: "90° Horário",
+            ccw: "90° Anti",
+            permanent: "Permanente",
+            crossDevice: "Multi-Disp."
+        },
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como girar páginas PDF permanentemente?",
+            answer: "Use a ferramenta Girar PDF do pdfcanada.ca. Envie seu arquivo, clique nos botões de girar nas páginas ou use 'Girar Tudo', depois baixe. A nova orientação é salva permanentemente.",
+            tool: "Girar PDF",
+            steps: ["Envie o PDF", "Gire as páginas", "Baixe o PDF corrigido"]
+        }
     }
 });
 
 export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang].features.rotate.quickAnswer;
 
     const schema = [
         {
@@ -375,9 +559,9 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
             "name": t.h1,
             "description": t.seo.desc,
             "step": [
-                { "@type": "HowToStep", "position": 1, "name": lang === 'fr' ? "Sélectionner le PDF" : "Select PDF", "text": lang === 'fr' ? "Téléchargez le PDF qui nécessite une rotation." : "Upload the PDF that needs rotation." },
-                { "@type": "HowToStep", "position": 2, "name": lang === 'fr' ? "Pivoter les pages" : "Rotate Pages", "text": lang === 'fr' ? "Cliquez sur les boutons de rotation sur des pages spécifiques ou utilisez Tout pivoter." : "Click rotate buttons on specific pages or use Rotate All." },
-                { "@type": "HowToStep", "position": 3, "name": lang === 'fr' ? "Enregistrer les modifications" : "Save Changes", "text": lang === 'fr' ? "Traitez et téléchargez votre PDF corrigé." : "Process and download your corrected PDF." }
+                { "@type": "HowToStep", "position": 1, "name": t.quickAnswer.steps[0], "text": t.sections[0].content.props.children[1].props.children[0].props.children[1] },
+                { "@type": "HowToStep", "position": 2, "name": t.quickAnswer.steps[1], "text": t.sections[0].content.props.children[1].props.children[2].props.children[1] },
+                { "@type": "HowToStep", "position": 3, "name": t.quickAnswer.steps[2], "text": t.sections[0].content.props.children[1].props.children[5].props.children[1] }
             ]
         },
         {
@@ -412,10 +596,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 quickAnswer={{
-                    question: qa.question,
-                    answer: qa.answer,
-                    tool: "Rotate PDF",
-                    steps: qa.steps
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -450,19 +634,19 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                         <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
                             <RefreshCcw className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
-                            <span className="text-xs font-bold">90° CW</span>
+                            <span className="text-xs font-bold">{t.features.cw}</span>
                         </div>
                         <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
                             <RefreshCcw className="mx-auto text-canada-red mb-1 sm:mb-2 -scale-x-100 w-5 h-5 sm:w-6 sm:h-6" />
-                            <span className="text-xs font-bold">90° CCW</span>
+                            <span className="text-xs font-bold">{t.features.ccw}</span>
                         </div>
                         <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
                             <Clock className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
-                            <span className="text-xs font-bold">Permanent</span>
+                            <span className="text-xs font-bold">{t.features.permanent}</span>
                         </div>
                         <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-center">
                             <Monitor className="mx-auto text-canada-red mb-1 sm:mb-2 w-5 h-5 sm:w-6 sm:h-6" />
-                            <span className="text-xs font-bold">Cross-Device</span>
+                            <span className="text-xs font-bold">{t.features.crossDevice}</span>
                         </div>
                     </div>
 
@@ -477,7 +661,7 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {t.faq && (
                         <section>
-                            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6">{lang === 'fr' ? "Foire Aux Questions" : "Frequently Asked Questions"}</h2>
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6">{t.faqHeading}</h2>
                             <div className="space-y-3 sm:space-y-4">
                                 {t.faq.map((item: any, i: number) => (
                                     <div key={i} className="bg-white dark:bg-gray-900 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-gray-100 dark:border-gray-800">
@@ -490,10 +674,10 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     )}
 
                     <AISnapshot
-                        question={qa.question}
-                        answer={qa.answer}
-                        toolName={lang === 'fr' ? "Pivoter PDF" : "Rotate PDF"}
-                        steps={qa.steps}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

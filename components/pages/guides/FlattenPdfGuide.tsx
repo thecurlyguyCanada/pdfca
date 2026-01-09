@@ -211,7 +211,14 @@ const getGuideContent = (lang: Language) => ({
         ctaButton: "Make PDF Non-Editable",
         ctaSubtext: "Free, Secure, and Canadian.",
         whyTitle: "Why Rasterization?",
-        whyDesc: "Converting pages to images is the ultimate way to lock your content. Unlike passwords, this cannot be reversed by hackers."
+        whyDesc: "Converting pages to images is the ultimate way to lock your content. Unlike passwords, this cannot be reversed by hackers.",
+        faqHeading: "Frequently Asked Questions",
+        quickAnswer: {
+            question: "How do I make a PDF non-editable?",
+            answer: "Use pdfcanada.ca's flattening tool. It 'rasterizes' each page into an image, making text non-selectable and non-editable. This is safer than password protection because it's irreversible. All processing happens locally.",
+            tool: "PDF Flattening Tool",
+            steps: ["Upload your PDF", "Automatic processing flattens each page", "Download your protected PDF"]
+        }
     },
     fr: {
         seo: {
@@ -387,7 +394,209 @@ const getGuideContent = (lang: Language) => ({
         ctaButton: "Rendre PDF Non-Modifiable",
         ctaSubtext: "Gratuit, Sécurisé et Canadien.",
         whyTitle: "Pourquoi la Rastérisation ?",
-        whyDesc: "Convertir les pages en images est le moyen ultime de verrouiller votre contenu. Contrairement aux mots de passe, cela ne peut pas être inversé par des pirates."
+        whyDesc: "Convertir les pages en images est le moyen ultime de verrouiller votre contenu. Contrairement aux mots de passe, cela ne peut pas être inversé par des pirates.",
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment rendre un PDF non modifiable?",
+            answer: "Utilisez l'outil d'aplatissement de pdfcanada.ca. Il 'rastérise' chaque page en image, rendant le texte non sélectionnable et non modifiable. C'est plus sûr qu'un mot de passe car c'est irréversible. Tout se fait localement.",
+            tool: "Outil d'Aplatissement PDF",
+            steps: ["Téléchargez votre PDF", "Le traitement automatique aplatit chaque page", "Téléchargez votre PDF protégé"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Tornar PDF Não Editável | Guia Seguro ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Proteja seu PDF contra edições não autorizadas. Nosso guia de ${CURRENT_YEAR} mostra como achatar páginas PDF com segurança no navegador. Sem uploads—processado inteiramente no seu dispositivo.`
+        },
+        h1: "Como Tornar um PDF Não Editável: O Jeito Seguro",
+        subtitle: "Achate seus documentos para evitar mudanças indesejadas e proteger seus dados—100% localmente.",
+
+        intro: (
+            <>
+                Precisa compartilhar um documento mas quer garantir que ninguém possa copiar seu texto ou mudar seus números facilmente? Saber <strong>como tornar um PDF não editável</strong> é essencial para contratos, faturas e formulários sensíveis.
+                <br /><br />
+                Embora muitos pensem que um PDF padrão é &quot;trancado&quot;, a maioria dos editores modernos pode facilmente selecionar e modificar texto. Este guia mostrará como realmente <strong>achatar um PDF</strong> usando nossa ferramenta canadense focada em privacidade.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Achatando Seu PDF",
+                content: (
+                    <>
+                        <Image src="/images/guides/flatten-pdf-guide.png" alt="Ilustração de achatar PDF" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
+                        <p className="mb-4">
+                            Nossa ferramenta <strong>Tornar PDF Não Editável</strong> usa uma técnica chamada &quot;rasterização&quot;. Ela transforma cada página do seu PDF em imagens de segundo plano, efetivamente integrando o conteúdo na página.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Selecione Seu Arquivo</strong>: Arraste seu PDF para nossa <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-medium">ferramenta PDF Não Editável</Link>. Você pode selecionar arquivos diretamente do computador, nuvem ou celular.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Pré-visualize Seu Documento</strong>: Antes de processar, você verá uma prévia do seu PDF para confirmar que é o arquivo correto.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Escolha Configurações de Qualidade</strong>: Nossa ferramenta usa por padrão renderização de alta qualidade 2.0x, garantindo texto nítido mesmo quando impresso.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Processamento Automático</strong>: Nosso motor renderizará cada página como uma imagem estática de alta qualidade. O processo leva de 2 a 5 segundos por página.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Verifique Resultados</strong>: Uma vez achatado, pré-visualize a saída para garantir que todo o conteúdo apareça corretamente.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Baixe e Compartilhe</strong>: Baixe seu PDF achatado. Ele terá a mesma aparência, mas o texto será inselecionável e não editável—perfeito para proteger informações.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Mantenha Seu Original</strong>: Sempre salve uma cópia do seu PDF editável original antes de achatar, pois o processo não pode ser revertido.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Aplicações Reais para Achatar PDFs",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Envios Governamentais</strong>: Ao enviar formulários preenchidos, o achatamento garante que seus dados não possam ser alterados por intermediários.</p>
+                        <p><strong>Contratos Legais</strong>: Antes de enviar contratos finais, achate-os para prevenir modificações não autorizadas nos termos ou assinaturas.</p>
+                        <p><strong>Relatórios Financeiros</strong>: Proteja valores de faturas e dados financeiros contra adulteração convertendo campos editáveis em imagens.</p>
+                        <p><strong>Históricos Escolares</strong>: Universidades podem achatar históricos oficiais para prevenir alterações de notas.</p>
+                        <p><strong>Desenhos Arquitetônicos</strong>: Achate desenhos técnicos antes de compartilhar para prevenir modificações não autorizadas em medidas.</p>
+                        <p><strong>Registros Médicos</strong>: Provedores de saúde podem achatar registros de pacientes para manter a integridade dos dados.</p>
+                        <p><strong>Cartas de Oferta de Emprego</strong>: RH pode achatar cartas de oferta para garantir que valores de salário não sejam modificados.</p>
+                    </div>
+                )
+            },
+            {
+                id: "why-flatten",
+                title: "Por que Rasterização é Melhor que Senhas",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Senhas de PDF padrão são fáceis de burlar. No entanto, a <strong>rasterização</strong> (achatamento em imagem) é irreversível. Uma vez que uma página é uma imagem, os dados de texto subjacentes se vão permanentemente.
+                        </p>
+                        <p className="mb-4">
+                            Esta é a maneira mais confiável de garantir:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                            <li>Seu layout permanece exatamente o mesmo em qualquer dispositivo.</li>
+                            <li>Ninguém pode copiar e colar seu texto facilmente.</li>
+                            <li>Metadados sensíveis são removidos.</li>
+                            <li>Campos de formulário tornam-se imagens estáticas.</li>
+                            <li>Assinaturas digitais são permanentemente incorporadas.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "tips",
+                title: "Melhores Práticas para Achatar PDFs",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
+                            <h3 className="font-bold text-blue-800 mb-2">Sempre Mantenha Originais</h3>
+                            <p className="text-sm text-blue-700">Nunca apague seu arquivo fonte. O achatamento é permanente—você não poderá editar texto depois.</p>
+                        </div>
+                        <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
+                            <h3 className="font-bold text-green-800 mb-2">Verifique Antes de Achatar</h3>
+                            <p className="text-sm text-green-700">Revise cuidadosamente antes do processamento. Corrigir erros depois requer recomeçar.</p>
+                        </div>
+                        <div className="p-4 border border-purple-200 bg-purple-50 rounded-xl">
+                            <h3 className="font-bold text-purple-800 mb-2">Qualidade para Impressão vs Tela</h3>
+                            <p className="text-sm text-purple-700">Use alta resolução se o documento for impresso. PDFs apenas para tela podem usar qualidade padrão.</p>
+                        </div>
+                        <div className="p-4 border border-orange-200 bg-orange-50 rounded-xl">
+                            <h3 className="font-bold text-orange-800 mb-2">Combine com Compressão</h3>
+                            <p className="text-sm text-orange-700">PDFs achatados podem ser grandes. Use nossa ferramenta de Compresso depois para reduzir o tamanho.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Dicas de Segurança Documental Profissional",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Verifique Completude</strong>: Garanta que todas as assinaturas e campos estejam preenchidos antes de achatar.</li>
+                        <li><strong>Teste Legibilidade</strong>: Após achatar, dê zoom de 200% para verificar se o texto pequeno permanece nítido.</li>
+                        <li><strong>Remova Camadas Sensíveis</strong>: Se seu PDF tem camadas ocultas, use ferramentas de redação antes de achatar.</li>
+                        <li><strong>Nomeação de Arquivo</strong>: Nomeie arquivos achatados claramente (ex: "Contrato_FINAL_NaoEditavel.pdf").</li>
+                        <li><strong>Estratégia de Arquivamento</strong>: Armazene versões editáveis e achatadas em pastas separadas.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Texto parece borrado</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong> : Aumente a qualidade de resolução para 3.0x ou mais.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Tamanho do arquivo aumentou</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong> : O achatamento cria imagens. Use nossa ferramenta de compressão para reduzir o tamanho.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Processamento demorado</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong> : Documentos grandes podem levar minutos. Feche outras abas para liberar memória.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Meu PDF ainda terá alta qualidade?",
+                a: "Sim! Usamos um motor de renderização de alta resolução para garantir que seu PDF achatado pareça nítido e profissional."
+            },
+            {
+                q: "Esta ferramenta é gratuita?",
+                a: "Absolutamente. Como todas as ferramentas no pdfcanada.ca, é 100% grátis sem limites e sem cadastro."
+            },
+            {
+                q: "Posso desfazer o achatamento?",
+                a: "Não. O achatamento é irreversível. Sempre mantenha uma cópia do seu arquivo original."
+            },
+            {
+                q: "Qual tamanho de arquivo posso achatar?",
+                a: "Não há limite artificial, depende da memória do seu computador. A maioria lida com 100-200MB facilmente."
+            },
+            {
+                q: "Posso achatar PDFs protegidos por senha?",
+                a: "Você precisará remover a senha primeiro usando nossa ferramenta de Desbloquear PDF."
+            },
+            {
+                q: "Meus dados estão seguros?",
+                a: "Sim! O processamento é 100% local no seu navegador. Seus documentos nunca são enviados para nossos servidores."
+            },
+            {
+                q: "Funciona no celular?",
+                a: "Sim! Funciona em navegadores móveis, mas processar arquivos grandes pode ser mais lento que no computador."
+            },
+            {
+                q: "Qual a diferença entre achatar e proteger com senha?",
+                a: "A proteção por senha trava o arquivo mas o texto permanece selecionável. Achatar converte em imagem, tornando impossível selecionar ou editar o texto, o que é mais seguro contra alterações."
+            }
+        ],
+
+        ctaTitle: "Pronto para Proteger Seu PDF?",
+        ctaButton: "Tornar PDF Não Editável",
+        ctaSubtext: "Grátis, Seguro e Canadense.",
+        whyTitle: "Por que Rasterização?",
+        whyDesc: "Converter páginas em imagens é a melhor maneira de travar seu conteúdo. Ao contrário de senhas, isso não pode ser revertido.",
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como tornar um PDF não editável?",
+            answer: "Use a ferramenta de achatar do pdfcanada.ca. Ela 'rasteriza' cada página em imagem, tornando o texto não selecionável. É mais seguro que senha pois é irreversível. Tudo local.",
+            tool: "Ferramenta Achatar PDF",
+            steps: ["Envie seu PDF", "Processamento automático achata cada página", "Baixe seu PDF protegido"]
+        }
     }
 });
 
@@ -495,7 +704,7 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                             <div className="p-2 sm:p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl sm:rounded-2xl text-blue-600 dark:text-blue-400">
                                 <HelpCircle size={24} className="sm:w-8 sm:h-8" />
                             </div>
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">F.A.Q.</h2>
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{t.faqHeading}</h2>
                         </div>
                         <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
@@ -508,14 +717,10 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </section>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment rendre un PDF non modifiable?" : "How do I make a PDF non-editable?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil d'aplatissement de pdfcanada.ca. Il 'rastérise' chaque page en image, rendant le texte non sélectionnable et non modifiable. C'est plus sûr qu'un mot de passe car c'est irréversible. Tout se fait localement."
-                            : "Use pdfcanada.ca's flattening tool. It 'rasterizes' each page into an image, making text non-selectable and non-editable. This is safer than password protection because it's irreversible. All processing happens locally."}
-                        toolName="PDF Flattening Tool"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre PDF", "Le traitement automatique aplatit chaque page", "Téléchargez votre PDF protégé"]
-                            : ["Upload your PDF", "Automatic processing flattens each page", "Download your protected PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

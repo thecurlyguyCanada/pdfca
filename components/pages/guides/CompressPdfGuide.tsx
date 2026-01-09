@@ -423,11 +423,209 @@ const getGuideContent = (lang: Language) => ({
             "Les données restent sur l'appareil",
             "Compression ajustable"
         ]
+    },
+    pt: {
+        seo: {
+            title: `Como Comprimir PDF | Guia de Redução de Tamanho Grátis e Seguro | pdfcanada.ca`,
+            desc: `Diminua seus arquivos sem perder qualidade. Nosso guia de ${CURRENT_YEAR} mostra como otimizar PDFs localmente no seu navegador. Sem uploads, sem perda de clareza, eh?`
+        },
+        h1: "Como Comprimir Arquivos PDF: 3 Níveis",
+        subtitle: "Reduza o tamanho do arquivo sem perder detalhes importantes. Local, seguro e ajustável.",
+
+        intro: (
+            <>
+                <Image src="/images/guides/compress-pdf-guide.png" alt="Ilustração de compressão de arquivos PDF" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
+                Tentando enviar um PDF grande por e-mail e ele volta? Todos nós já passamos por isso. Seja uma aplicação governamental, um envio de trabalho ou um relatório pesado, arquivos grandes são um problema. Aprender <strong>como comprimir PDF online</strong> é a solução para limites de tamanho de arquivo e uploads lentos.
+                <br /><br />
+                Nossa ferramenta oferece três níveis inteligentes de compressão: <strong>Bom</strong> (otimização sem perdas), <strong>Equilibrado</strong> (compressão padrão) e <strong>Extremo</strong> (redução máxima). O melhor de tudo, acontece 100% no seu dispositivo.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Comprimindo seu PDF",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4 mb-6">
+                        <li className="pl-2">
+                            <strong>Faça Upload do seu PDF</strong>: Arraste e solte seu arquivo na nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium">ferramenta de Comprimir PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">tecnologia Local-First</Link>, seu arquivo nunca sai do seu dispositivo.
+                        </li>
+                        <li className="pl-2"><strong>Pré-visualize o Tamanho do Arquivo</strong>: Você verá o tamanho atual do arquivo exibido. Isso ajuda a entender quanta compressão você pode precisar.</li>
+                        <li className="pl-2"><strong>Selecione o Nível de Compressão</strong>: Escolha entre <strong>Bom</strong> (sem perdas), <strong>Equilibrado</strong> (padrão) ou <strong>Extremo</strong> (máximo) com base em seus requisitos de qualidade vs. tamanho.</li>
+                        <li className="pl-2"><strong>Processar</strong>: Clique no botão de comprimir. O tempo de processamento varia com base no tamanho do arquivo e nível de compressão selecionado—tipicamente 2-10 segundos para documentos padrão.</li>
+                        <li className="pl-2"><strong>Revise os Resultados</strong>: Veja o novo tamanho do arquivo e a porcentagem de compressão alcançada antes de baixar.</li>
+                        <li className="pl-2"><strong>Baixar</strong>: Salve seu PDF otimizado e leve instantaneamente. Compare com o original para garantir que a qualidade atenda às suas necessidades.</li>
+                    </ol>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Auditoria de Privacidade: A Segurança dos Seus Dados",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Verificação do Ciclo de Vida de Dados
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Carregamento Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Os arquivos são lidos do seu disco para a memória segura do navegador.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Compressão Cliente-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Nosso motor WebAssembly executa o algoritmo de compressão localmente. <strong>Nenhum dado sai do seu dispositivo.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Limpeza Automática</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Assim que você fecha a aba, a memória é destruída. Nenhum traço permanece.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "levels",
+                title: "Qual Nível de Compressão Escolher?",
+                content: (
+                    <div className="space-y-6">
+                        <p>Diferentes documentos requerem diferentes tipos de compressão. Veja como escolher a configuração certa:</p>
+                        <div className="grid md:grid-cols-3 gap-4">
+                            <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl">
+                                <h3 className="font-bold text-blue-800 mb-2">Compressão Recomendada</h3>
+                                <p className="text-sm text-blue-700">O melhor equilíbrio. Reduz significativamente o tamanho do arquivo sem perda visível de qualidade. Ideal para e-mails e uso diário.</p>
+                            </div>
+                            <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
+                                <h3 className="font-bold text-red-800 mb-2">Compressão Extrema</h3>
+                                <p className="text-sm text-red-700">Redução máxima de tamanho. Imagens terão qualidade inferior, mas o arquivo será o menor possível. Use para sites com limites estritos de upload.</p>
+                            </div>
+                            <div className="p-4 border border-green-200 bg-green-50 rounded-xl">
+                                <h3 className="font-bold text-green-800 mb-2">Baixa Compressão</h3>
+                                <p className="text-sm text-green-700">Redução mínima de tamanho, mas qualidade de imagem perfeita. Melhor para documentos com gráficos de alta resolução ou fotos detalhadas.</p>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Quando Você Precisa Comprimir PDFs",
+                content: (
+                    <div className="space-y-4">
+                        <p><strong>Limites de Anexo de E-mail</strong>: A maioria dos provedores de e-mail limita anexos a 10-25MB. Comprima relatórios grandes, apresentações ou documentos digitalizados para caber nesses limites.</p>
+                        <p><strong>Requisitos de Upload de Sites</strong>: Muitos portais governamentais (como Service Canada, CRA), inscrições universitárias e portais de emprego têm limites estritos de tamanho de arquivo (geralmente 5-10MB). A compressão garante que seus documentos atendam a esses requisitos.</p>
+                        <p><strong>Otimização de Armazenamento em Nuvem</strong>: Reduza sua pegada de armazenamento em nuvem comprimindo documentos arquivados, faturas antigas e materiais de referência que você precisa manter, mas raramente acessa.</p>
+                        <p><strong>Carregamento de Página Mais Rápido</strong>: Se você hospeda PDFs em um site, arquivos menores significam tempos de carregamento mais rápidos e melhor experiência do usuário, especialmente em dispositivos móveis.</p>
+                        <p><strong>Economia de Largura de Banda</strong>: Ao compartilhar documentos com colegas ou clientes, arquivos menores baixam mais rápido e usam menos dados—particularmente importante para equipes remotas ou usuários móveis.</p>
+                        <p><strong>Lotes de Digitalização Grandes</strong>: Documentos digitalizados (especialmente digitalizações coloridas em alta DPI) podem ser enormes. A compressão os torna gerenciáveis sem perda notável de qualidade para visualização na tela.</p>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas para Compressão de PDF",
+                content: (
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li><strong>Comece com 'Equilibrado' para Maioria dos Usos</strong>: Este nível oferece a melhor troca entre redução de tamanho de arquivo e qualidade mantida para documentos comerciais e pessoais típicos.</li>
+                        <li><strong>Use 'Bom' para Documentos Legais ou de Arquivo</strong>: Quando a integridade do documento é crítica (contratos, processos legais, registros oficiais), fique com a compressão sem perdas para preservar cada detalhe.</li>
+                        <li><strong>Reserve 'Extremo' para Situações Críticas de Tamanho</strong>: Use compressão máxima apenas quando você absolutamente deve atender a um limite de tamanho de arquivo e a qualidade for secundária.</li>
+                        <li><strong>Teste Antes do Processamento em Massa</strong>: Comprima um documento de amostra em diferentes níveis e revise a qualidade antes de processar em lote arquivos semelhantes.</li>
+                        <li><strong>Mantenha Cópias Originais</strong>: Sempre retenha originais não comprimidos de documentos importantes. A compressão é geralmente unidirecional—você não pode restaurar a qualidade perdida mais tarde.</li>
+                        <li><strong>Considere as Necessidades da Sua Audiência</strong>: Os destinatários imprimirão o documento? Visualizarão no celular? Os requisitos de qualidade variam conforme o caso de uso.</li>
+                    </ul>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns de Compressão e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: O arquivo não diminuiu o suficiente</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Se o seu PDF for principalmente texto, ele pode já estar tão pequeno quanto possível. Se contiver imagens, tente a configuração &quot;Compressão Extrema&quot;. Alguns PDFs já estão otimizados e não diminuirão significativamente.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: As imagens parecem desfocadas após a compressão</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Você provavelmente usou &quot;Compressão Extrema&quot;. Mude para &quot;Compressão Recomendada&quot; para equilibrar o tamanho e a clareza visual. Se a qualidade da imagem for crítica, use &quot;Baixa Compressão&quot;.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: A ferramenta está travada ou &quot;Processando&quot; para sempre</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Arquivos muito grandes (100MB+) podem levar alguns minutos, pois todo o processamento acontece na RAM do seu navegador. Certifique-se de ter memória livre suficiente fechando outras abas do navegador. Se demorar mais de 5 minutos, atualize e tente novamente.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Ainda muito grande após a compressão</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Se o modo 'Extremo' ainda não atender ao seu requisito de tamanho, considere dividir o documento usando nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta de dividir PDF</Link> ou remover imagens de alta resolução antes da compressão.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Meu texto permanecerá selecionável após a compressão?",
+                a: "Apenas no modo 'Bom' (sem perdas). Nos modos 'Equilibrado' e 'Extremo', renderizamos as páginas como imagens para obter maior compressão, o que achata o texto na imagem. Escolha o modo 'Bom' se precisar preservar a seleção de texto e funcionalidade de copiar e colar."
+            },
+            {
+                q: "É seguro comprimir documentos sensíveis aqui?",
+                a: "Não! Este é o principal benefício da nossa ferramenta. A compressão acontece inteiramente dentro do seu navegador web. Seu documento nunca é enviado para nenhum servidor, mantendo seus dados sensíveis privados e seguros no seu próprio dispositivo."
+            },
+            {
+                q: "Quanto menor meu PDF ficará?",
+                a: "Depende do nível de compressão que você escolher. A compressão 'Recomendada' é projetada para ser invisível ao olho humano. A compressão 'Extrema' reduzirá significativamente o tamanho do arquivo, mas pode resultar em imagens ligeiramente mais suaves. A qualidade do texto geralmente não é afetada."
+            },
+            {
+                q: "Posso comprimir PDFs protegidos por senha?",
+                a: "Você precisará desbloquear o PDF primeiro. Se você tiver a senha, use um visualizador de PDF para salvar uma cópia desprotegida ou use nossa ferramenta de Desbloquear PDF. Uma vez desbloqueado, você pode comprimi-lo livremente. Você pode reaplicar a proteção por senha após a compressão, se necessário."
+            },
+            {
+                q: "A compressão reduzirá a qualidade de impressão?",
+                a: "O modo 'Bom' preserva a qualidade de impressão total. O modo 'Equilibrado' (150 DPI) é adequado para impressão de escritório padrão. O modo 'Extremo' (96 DPI) pode mostrar degradação quando impresso, especialmente para imagens e detalhes finos. Para impressão profissional, fique com o modo 'Bom' ou os arquivos originais."
+            },
+            {
+                q: "Posso comprimir um PDF várias vezes?",
+                a: "Sim, mas com retornos decrescentes e perda de qualidade. Cada ciclo de compressão (especialmente em 'Equilibrado' ou 'Extremo') reduz ainda mais a qualidade. É melhor usar um nível de compressão mais alto de uma vez do que comprimir várias vezes."
+            },
+            {
+                q: "Qual é o tamanho máximo de arquivo que posso comprimir?",
+                a: "A maioria dos PDFs pode ser reduzida de 40% a 80% se contiverem muitas imagens. Documentos apenas de texto podem ter ganhos menores (10-20%), pois o texto já é altamente eficiente."
+            },
+            {
+                q: "A compressão remove metadados ou dados ocultos?",
+                a: "Sim! Embora o tamanho do arquivo mude, a estrutura do PDF permanece padrão. O arquivo comprimido abrirá em qualquer visualizador de PDF (Acrobat, Preview, Chrome, etc.) em qualquer dispositivo sem problemas."
+            }
+        ],
+
+        ctaTitle: "Pronto para Otimizar seu PDF?",
+        ctaButton: "Otimizar PDF Agora",
+        ctaSubtext: "Grátis, Seguro e Canadense.",
+        whyTitle: "Por que Processamento Local?",
+        whyDesc: "É mais rápido, mais seguro e mais privado.",
+        whyList: [
+            "Nenhum upload necessário",
+            "Dados ficam no dispositivo",
+            "Compressão ajustável"
+        ]
     }
 });
 
 export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const content = (getGuideContent(lang) as any)[lang] || getGuideContent(lang).en;
+    const content = getGuideContent(lang)[lang];
     const qa = translations[lang].features.compress.quickAnswer;
     const t = content;
 

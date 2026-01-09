@@ -441,13 +441,244 @@ La plupart des applis sont remplies de pubs. Notre site est réactif et fonction
         ctaTitle: "Prêt à diviser votre PDF ?",
         ctaButton: "Diviser PDF Maintenant",
         ctaSubtext: "Sans installation. Sans téléchargement. 100% Gratuit."
+    },
+    pt: {
+        seo: {
+            title: `Dividir PDF Grátis Online | Ferramenta Segura ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `O melhor divisor de PDF grátis online. Separe páginas, extraia intervalos e divida arquivos localmente. Sem uploads, 100% privado. Funciona no Windows, Mac e Mobile.`
+        },
+        h1: `O Guia Definitivo para Dividir PDF (${CURRENT_YEAR})`,
+        subtitle: "Como separar páginas de PDF, extrair intervalos específicos e dividir documentos com segurança sem fazer upload.",
+
+        intro: `Você está procurando um **separador de PDF grátis** que realmente mantém seus documentos privados? Você encontrou. Seja para extrair uma única página de um contrato, separar um relatório de 100 páginas em capítulos individuais ou apenas dividir um PDF para e-mail, ter um **divisor de PDF online** confiável é essencial.
+
+Ao contrário de outras ferramentas que forçam você a fazer upload de seus dados sensíveis para os servidores deles, **pdfcanada.ca** oferece uma solução de **software de divisão de PDF** que roda inteiramente no seu navegador. Isso significa que você tem a velocidade de um aplicativo de desktop com a conveniência de uma ferramenta online—tudo enquanto seus dados ficam seguros no seu dispositivo.
+
+Neste mega-guia, cobriremos tudo o que você precisa saber sobre dividir PDFs, desde escolher o **melhor separador de PDF grátis** até técnicas avançadas para profissionais.`,
+
+        quickAnswer: {
+            question: "Como divido um PDF em páginas separadas?",
+            answer: "Para dividir um PDF: 1) Vá para pdfcanada.ca/pt/split-pdf, 2) Envie seu arquivo PDF, 3) Selecione as páginas para extrair ou escolha 'Dividir Tudo', 4) Clique em 'Dividir PDF', 5) Baixe seus arquivos. O processamento é instantâneo e 100% local—seus arquivos nunca saem do seu dispositivo.",
+            time: "5-15 segundos",
+            cost: "Grátis para sempre",
+            privacy: "Processamento 100% offline",
+            tool: "Dividir PDF",
+            steps: [
+                { name: "Selecionar PDF", text: "Escolha o arquivo PDF do seu dispositivo." },
+                { name: "Escolher Intervalo", text: "Selecione páginas específicas ou extraia todas individualmente." },
+                { name: "Baixar", text: "Salve seus arquivos PDF separados instantaneamente." }
+            ]
+        },
+
+        sections: [
+            {
+                id: "why-split",
+                title: "Por que você precisa de um Divisor de PDF Local",
+                content: `A maioria das pessoas procura por um **divisor de pdf grátis**, mas muitas vezes ignoram a privacidade. Quando você usa um **divisor de pdf online** típico, o processo geralmente é assim:
+1. Você faz upload do seu arquivo para um servidor remoto.
+2. O servidor processa a divisão.
+3. Você baixa o resultado.
+
+**O Problema:** Seu arquivo fica no servidor de outra pessoa. Para documentos legais, registros médicos ou extratos financeiros, isso é um grande risco.
+
+**A Solução Privacy-First:** Nosso **separador de documentos pdf grátis** usa tecnologia WebAssembly especializada. Isso permite que seu navegador (Chrome, Safari, Edge) aja como o software. **Nenhum upload necessário.** Você obtém um **divisor de páginas pdf** que é mais rápido, mais seguro e funciona até mesmo offline.`
+            },
+            {
+                id: "privacy-audit",
+                title: "Auditoria de Privacidade: Para onde vão seus arquivos?",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 not-prose">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Shield className="text-green-500" size={24} />
+                            Verificação do Ciclo de Vida de Dados
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Carregamento Local</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Os arquivos são lidos do seu disco para a memória segura do navegador.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Divisão Cliente-Side</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Nosso motor WebAssembly divide as páginas localmente. <strong>0 bytes são enviados para qualquer servidor.</strong></p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                    <span className="font-bold text-green-600 dark:text-green-400">3</span>
+                                </div>
+                                <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white">Limpeza Automática</h5>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">Assim que você fecha a aba, a sandbox é limpa. Nenhum traço do seu documento permanece.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "how-to",
+                title: "Como Usar Nosso Divisor de PDF Grátis Online",
+                content: `Usar nosso **separador de arquivos pdf** é incrivelmente simples:
+
+### Passo 1: Selecione seu Arquivo
+Vá para nossa [Ferramenta de Dividir PDF](/${lang}/split-pdf). Clique ou arraste e solte seu arquivo.
+
+### Passo 2: Escolha seu Método
+*   **Extrair Páginas Específicas:** Ótimo para pegar apenas a capa ou uma cláusula específica (ex: "1, 3, 5-10").
+*   **Dividir em Páginas Únicas:** Ideal para separar uma pilha de faturas digitalizadas.
+
+### Passo 3: Baixar
+Clique em 'Dividir PDF'. Seus novos arquivos são gerados instantaneamente.`
+            },
+            {
+                id: "comparison",
+                title: "Comparação: Online vs. Offline vs. Software Profissional",
+                content: `Um **divisor de pdf online grátis** é melhor que um software pago? Vamos comparar.`
+            },
+            {
+                id: "use-cases",
+                title: "Fluxos de Trabalho da Indústria",
+                content: `### ⚖️ Profissionais Jurídicos
+Advogados frequentemente precisam de um **software divisor de pdf** para separar arquivos de casos massivos. Nosso ferramenta garante que o sigilo do cliente seja mantido.
+
+### 🏠 Agentes Imobiliários
+Agentes usam nosso **separador de páginas pdf** para extrair apenas as páginas de assinatura de longos contratos de compra.
+
+### 🏥 Médico e Acadêmico
+Pesquisadores e médicos usam nosso **divisor de pdf grátis** para separar registros de pacientes sem violar regulamentos de privacidade.`
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas e Dicas",
+                content: `**P: Meu PDF é protegido por senha.**
+R: A maioria dos **divisores de pdf online** falha aqui. Você deve remover a senha primeiro usando nossa ferramenta [Desbloquear PDF](/${lang}/unlock-pdf).
+
+**P: O arquivo é muito grande (500MB+).**
+R: É aqui que nosso **software divisor de pdf** local brilha. Porque não fazemos upload, podemos lidar com plantas de engenharia massivas.`
+            },
+            {
+                id: "os-guides",
+                title: "Como Dividir PDF em Diferentes Dispositivos",
+                content: `### Windows
+Esqueça "Imprimir para PDF". Nossa ferramenta funciona como um aplicativo nativo diretamente no Edge ou Chrome.
+
+### Mac
+O Preview é decente, mas nossa interface de arrastar e soltar oferece uma alternativa mais intuitiva.
+
+### Mobile (Android & iPhone)
+Precisa dividir um arquivo em movimento? Nosso **separador de documentos pdf grátis** é responsivo e funciona perfeitamente no Safari móvel e Chrome.`
+            }
+        ],
+
+        comparisonTable: {
+            title: "O Confronto Final de Separadores",
+            headers: ["Recurso", "pdfcanada.ca", "Adobe Acrobat Pro", "Ferramentas Online Genéricas"],
+            rows: [
+                ["Custo", "Grátis", "$20+/mês", "Grátis (geralmente)"],
+                ["Privacidade", "100% Local (Sem Upload)", "Local", "Enviado para Servidor ⚠️"],
+                ["Velocidade", "Instantâneo", "Rápido", "Lento (Envio/Recebimento)"],
+                ["Sem Marca d'água", "✅", "✅", "❌ (Frequentemente limitado)"],
+                ["Funciona Offline", "✅ (PWA)", "✅", "❌"],
+                ["Instalação", "Não", "Sim (Pesado)", "Não"]
+            ]
+        },
+
+        faq: [
+            {
+                q: "Qual é o melhor divisor de PDF grátis?",
+                a: "Para privacidade e velocidade, uma ferramenta local baseada em navegador como pdfcanada.ca é a melhor opção. Combina a conveniência online com a segurança offline."
+            },
+            {
+                q: "Posso usar offline?",
+                a: "Sim! Uma vez que a página carrega, nossa aplicação é armazenada em cache no seu navegador. Você pode desconectar a internet e continuar usando."
+            },
+            {
+                q: "É grátis e sem marca d'água?",
+                a: "Absolutamente. Não adicionamos marcas d'água aos seus documentos. Você obtém arquivos de qualidade profissional, totalmente grátis."
+            },
+            {
+                q: "Como divido um PDF no celular?",
+                a: "Abra pdfcanada.ca/pt/split-pdf no seu navegador móvel. Selecione seu arquivo, toque nas páginas para extrair e toque em dividir."
+            },
+            {
+                q: "Posso extrair intervalos de páginas específicos?",
+                a: "Sim! Você pode digitar '1, 5-10, 15' para extrair essas páginas exatas em um único PDF ou dividi-las individualmente."
+            },
+            {
+                q: "Por que meu PDF protegido não divide?",
+                a: "PDFs protegidos devem ser desbloqueados primeiro. Use nossa ferramenta Desbloquear PDF (você precisará da senha) antes de dividir."
+            },
+            {
+                q: "Como divido um PDF em páginas individuais?",
+                a: "Selecione o modo 'Dividir em Páginas Únicas'. Nossa ferramenta separará automaticamente cada página em seu próprio arquivo PDF."
+            },
+            {
+                q: "Qual é o tamanho máximo do arquivo?",
+                a: "Como a divisão acontece localmente, não há limite de servidor. Seu limite é a RAM do seu dispositivo. A maioria lida facilmente com 200MB+."
+            },
+            {
+                q: "A divisão afeta a qualidade?",
+                a: "Não, preserva 100% da qualidade original. Não re-comprimimos imagens. As páginas extraídas são idênticas às originais."
+            },
+            {
+                q: "É seguro usar um divisor de PDF online?",
+                a: "Depende. Se a ferramenta faz upload, há risco. Conosco, 'Online' significa 'no navegador'. Seus arquivos nunca saem do seu dispositivo."
+            }
+        ],
+
+        ctaTitle: "Pronto para Dividir seu PDF?",
+        ctaButton: "Dividir PDF Agora",
+        ctaSubtext: "Sem instalação. Sem upload. 100% Grátis."
     }
 });
+
+const LABELS = {
+    fr: {
+        privacy: { title: "100% Privé", desc: "Aucun fichier n'est envoyé sur nos serveurs." },
+        instant: { title: "Instantané", desc: "Traitement local ultra-rapide." },
+        anywhere: { title: "Partout", desc: "Windows, Mac, iPhone & Android." },
+        breadcrumbs: {
+            home: 'Accueil',
+            guides: 'Guides',
+            split: 'Diviser PDF'
+        }
+    },
+    pt: {
+        privacy: { title: "100% Privado", desc: "Nenhum arquivo é enviado para nossos servidores." },
+        instant: { title: "Instantâneo", desc: "Processamento local ultra-rápido." },
+        anywhere: { title: "Em Qualquer Lugar", desc: "Windows, Mac, iPhone e Android." },
+        breadcrumbs: {
+            home: 'Início',
+            guides: 'Guias',
+            split: 'Dividir PDF'
+        }
+    },
+    en: {
+        privacy: { title: "100% Private", desc: "No files are ever sent to our servers." },
+        instant: { title: "Instant", desc: "Blazing fast local processing." },
+        anywhere: { title: "Anywhere", desc: "Works on Windows, Mac, iPhone & Android." },
+        breadcrumbs: {
+            home: 'Home',
+            guides: 'Guides',
+            split: 'Split PDF'
+        }
+    }
+};
 
 export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
     const qa = translations[lang].features.split.quickAnswer;
+    const labels = LABELS[lang as keyof typeof LABELS] || LABELS.en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -477,9 +708,9 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: lang === 'fr' ? '/fr/guides/split-pdf' : '/guides/split-pdf' }
+                    { name: labels.breadcrumbs.home, path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: labels.breadcrumbs.guides, path: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: labels.breadcrumbs.split, path: lang === 'en' ? '/guides/split-pdf' : `/${lang}/guides/split-pdf` }
                 ]}
             />
             <PageLayout
@@ -487,9 +718,9 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Split size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', href: '#' }
+                    { name: labels.breadcrumbs.home, href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: labels.breadcrumbs.guides, href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: labels.breadcrumbs.split, href: '#' }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
@@ -501,18 +732,18 @@ export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-16 md:mb-20">
                         <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
                             <Lock className="text-canada-red mb-3 sm:mb-4 w-6 h-6 sm:w-8 sm:h-8" />
-                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{lang === 'fr' ? "100% Privé" : "100% Private"}</h3>
-                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Aucun fichier n'est envoyé sur nos serveurs." : "No files are ever sent to our servers."}</p>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{labels.privacy.title}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{labels.privacy.desc}</p>
                         </div>
                         <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm">
                             <Zap className="text-canada-red mb-3 sm:mb-4 w-6 h-6 sm:w-8 sm:h-8" />
-                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{lang === 'fr' ? "Instantané" : "Instant"}</h3>
-                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Traitement local ultra-rapide." : "Blazing fast local processing."}</p>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{labels.instant.title}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{labels.instant.desc}</p>
                         </div>
                         <div className="p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-gray-900 rounded-xl sm:rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-sm sm:col-span-2 md:col-span-1">
                             <Globe className="text-canada-red mb-3 sm:mb-4 w-6 h-6 sm:w-8 sm:h-8" />
-                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{lang === 'fr' ? "Partout" : "Anywhere"}</h3>
-                            <p className="text-sm sm:text-base text-gray-500">{lang === 'fr' ? "Windows, Mac, iPhone & Android." : "Works on Windows, Mac, iPhone & Android."}</p>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{labels.anywhere.title}</h3>
+                            <p className="text-sm sm:text-base text-gray-500">{labels.anywhere.desc}</p>
                         </div>
                     </div>
 

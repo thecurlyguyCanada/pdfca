@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { FileCode, Shield, Zap } from 'lucide-react';
+import { FileCode, Shield, Zap, CheckCircle } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -14,7 +14,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: `ASPX to PDF Converter | Print Source Code ${CURRENT_YEAR}`,
@@ -59,10 +59,20 @@ const getGuideContent = (lang: Language) => ({
             {
                 q: "Can I convert other code files?",
                 a: "Yes, you can upload other text-based code files if they are supported by the file picker, or rename them."
+            },
+            {
+                q: "Is my code secure?",
+                a: "Absolutely. The conversion happens entirely in your browser using WebAssembly. Your proprietary code never leaves your computer."
             }
         ],
         cta: "Archive Your Code",
-        ctaBtn: "Convert ASPX to PDF"
+        ctaBtn: "Convert ASPX to PDF",
+        quickAnswer: {
+            question: "How to convert ASPX code to PDF?",
+            answer: "Use the secure ASPX to PDF tool on pdfcanada.ca. It formats your source code into a printable PDF locally in your browser.",
+            tool: "ASPX to PDF",
+            steps: ["Upload ASPX", "Process Locally", "Download PDF"]
+        }
     },
     fr: {
         seo: {
@@ -71,7 +81,7 @@ const getGuideContent = (lang: Language) => ({
         },
         h1: "Convertir ASPX en PDF",
         subtitle: "Créez une documentation lisible à partir de vos fichiers source.",
-        intro: "Besoin de documenter votre projet ASP.NET ? Notre outil ASPX en PDF convertit vos fichiers de code en documents PDF propres et formatés.",
+        intro: "Besoin de documenter votre projet ASP.NET ? Notre outil ASPX en PDF convertit vos fichiers de code en documents PDF propres et formatés avec une police à chasse fixe, parfaits pour l'archivage.",
         sections: [
             {
                 id: "how-it-works",
@@ -81,8 +91,9 @@ const getGuideContent = (lang: Language) => ({
                         <p>L'outil lit vos fichiers source .aspx et les formate sur des pages PDF en utilisant une police adaptée au code. Il gère les sauts de ligne et la pagination automatiquement.</p>
                         <h4 className="font-bold text-lg mt-4 mb-2">Avantages :</h4>
                         <ul className="list-disc pl-5 space-y-2">
-                            <li><strong>Formatage Propre :</strong> Préserve l'indentation.</li>
-                            <li><strong>Sécurisé :</strong> Le code est traité localement.</li>
+                            <li><strong>Formatage Propre :</strong> Préserve l'indentation et la structure.</li>
+                            <li><strong>Sécurisé :</strong> Le code est traité localement, jamais envoyé à un serveur.</li>
+                            <li><strong>Documentation Rapide :</strong> Transformez des bases de code en PDF en quelques secondes.</li>
                         </ul>
                     </div>
                 )
@@ -93,7 +104,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4">
                         <li><strong>Sélectionner :</strong> Choisissez votre fichier .aspx.</li>
-                        <li><strong>Convertir :</strong> L'outil génère le PDF.</li>
+                        <li><strong>Convertir :</strong> L'outil génère une version PDF de votre code.</li>
                         <li><strong>Sauvegarder :</strong> Téléchargez la documentation.</li>
                     </ol>
                 )
@@ -106,17 +117,86 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je convertir d'autres fichiers ?",
-                a: "Oui, la plupart des fichiers texte fonctionnent."
+                a: "Oui, la plupart des fichiers de code texte fonctionnent correctement."
+            },
+            {
+                q: "Mon code est-il sécurisé ?",
+                a: "Absolument. La conversion se fait entièrement dans votre navigateur via WebAssembly. Votre code propriétaire ne quitte jamais votre ordinateur."
             }
         ],
         cta: "Archiver Votre Code",
-        ctaBtn: "Convertir ASPX en PDF"
+        ctaBtn: "Convertir ASPX en PDF",
+        quickAnswer: {
+            question: "Comment convertir du code ASPX en PDF ?",
+            answer: "Utilisez l'outil sécurisé ASPX en PDF de pdfcanada.ca. Il formate votre code source en un PDF imprimable localement dans votre navigateur.",
+            tool: "ASPX en PDF",
+            steps: ["Téléverser ASPX", "Traitement Local", "Télécharger PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Conversor ASPX para PDF | Imprimir Código Fonte ${CURRENT_YEAR}`,
+            desc: `Converta arquivos fonte ASP.NET (ASPX) em documentação PDF imprimível. Formatação de código limpa, 100% privado e seguro.`
+        },
+        h1: "Converter ASPX para PDF",
+        subtitle: "Crie documentação legível a partir de seus arquivos de código.",
+        intro: "Precisa documentar seu projeto ASP.NET ou imprimir seu código para revisão? Nossa ferramenta ASPX para PDF converte arquivos de código em documentos PDF limpos e formatados em monoespaço, perfeitos para leitura e arquivamento.",
+        sections: [
+            {
+                id: "how-it-works",
+                title: "Como Funciona",
+                content: (
+                    <div className="space-y-4">
+                        <p>A ferramenta lê seus arquivos fonte .aspx baseados em texto e os formata em páginas PDF usando uma fonte amigável para código (Courier). Ela quebra linhas longas e pagina seu código automaticamente.</p>
+                        <h4 className="font-bold text-lg mt-4 mb-2">Benefícios:</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Formatação Limpa:</strong> Preserva indentação e estrutura.</li>
+                            <li><strong>Seguro:</strong> O código é processado localmente, nunca enviado a um servidor.</li>
+                            <li><strong>Documentação Rápida:</strong> Transforme bases de código em PDFs em segundos.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "steps",
+                title: "Como Converter ASPX para PDF",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4">
+                        <li><strong>Selecionar Arquivo:</strong> Escolha seu arquivo .aspx.</li>
+                        <li><strong>Converter:</strong> A ferramenta gera uma versão PDF do seu código.</li>
+                        <li><strong>Salvar:</strong> Baixe a documentação.</li>
+                    </ol>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Isso executa o código ASPX?",
+                a: "Não. Esta ferramenta converte o *texto do código fonte* em um documento PDF. Ela não executa nem renderiza a aplicação web."
+            },
+            {
+                q: "Posso converter outros arquivos de código?",
+                a: "Sim, você pode enviar outros arquivos de código baseados em texto se forem suportados, ou renomeá-los."
+            },
+            {
+                q: "Meu código está seguro?",
+                a: "Absolutamente. A conversão acontece inteiramente no seu navegador usando WebAssembly. Seu código proprietário nunca sai do seu computador."
+            }
+        ],
+        cta: "Arquivar Seu Código",
+        ctaBtn: "Converter ASPX para PDF",
+        quickAnswer: {
+            question: "Como converter código ASPX para PDF?",
+            answer: "Use a ferramenta segura ASPX para PDF no pdfcanada.ca. Ela formata seu código fonte em um PDF imprimível localmente no seu navegador.",
+            tool: "ASPX para PDF",
+            steps: ["Enviar ASPX", "Processamento Local", "Baixar PDF"]
+        }
     }
 });
 
 export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = {
         "@context": "https://schema.org",
@@ -138,7 +218,7 @@ export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             breadcrumbs={[
                 { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
                 { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'ASPX en PDF' : 'ASPX to PDF', href: '#' }
+                { name: lang === 'fr' ? 'ASPX em PDF' : 'ASPX to PDF', href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/aspx-to-pdf" lang={lang} schema={schema} />
@@ -159,10 +239,10 @@ export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir du code ASPX en PDF ?" : "How to convert ASPX code to PDF?"}
-                        answer={lang === 'fr' ? "Utilisez l'outil ASPX en PDF de pdfcanada.ca." : "Use the ASPX to PDF tool on pdfcanada.ca."}
-                        toolName="ASPX to PDF"
-                        steps={lang === 'fr' ? ["Ouvrir l'outil", "Sélectionner le fichier", "Télécharger"] : ["Open Tool", "Select File", "Download"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 
@@ -181,7 +261,7 @@ export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                 <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-xl">
                     <h3 className="text-3xl font-bold mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}/aspx-to-pdf`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
+                    <Link href={`/${lang}/ultimate-pdf-guide`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
                         {t.ctaBtn}
                     </Link>
                 </div>

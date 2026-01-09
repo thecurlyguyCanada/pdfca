@@ -813,7 +813,14 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Start Creating Your Form Now",
         ctaButton: "Make PDF Fillable",
-        ctaSubtext: "Free forever. Secure and local."
+        ctaSubtext: "Free forever. Secure and local.",
+        faqHeading: "Common Questions",
+        quickAnswer: {
+            question: "How do I make a PDF fillable for free?",
+            answer: "Use pdfcanada.ca's PDF form creator. Upload your PDF, drag and drop text fields, checkboxes, and signature areas, then download your interactive form. All processing happens locally - no servers involved.",
+            tool: "PDF Form Creator",
+            steps: ["Upload your PDF file", "Add interactive fields via drag-and-drop", "Download your fillable form"]
+        }
     },
     fr: {
         seo: {
@@ -1184,7 +1191,199 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Commencez à Créer Votre Formulaire Maintenant",
         ctaButton: "Rendre le PDF Remplissable",
-        ctaSubtext: "Gratuit pour toujours. Sécurisé et Local."
+        ctaSubtext: "Gratuit pour toujours. Sécurisé et Local.",
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment rendre un PDF remplissable gratuitement?",
+            answer: "Utilisez le créateur de formulaires PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez des champs de texte, cases à cocher et zones de signature, puis téléchargez votre formulaire interactif. Tout se fait localement sans aucun serveur.",
+            tool: "Créateur de Formulaires PDF",
+            steps: ["Téléchargez votre fichier PDF", "Ajoutez des champs interactifs par glisser-déposer", "Téléchargez votre formulaire remplissable"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Criar PDF Preenchível | Guia de Formulário Interativo ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Crie formulários preenchíveis profissionais gratuitamente. Nosso guia de ${CURRENT_YEAR} mostra como adicionar campos de texto a qualquer PDF com segurança sem enviar para um servidor.`
+        },
+        h1: "Como Tornar um PDF Preenchível Online de Graça",
+        subtitle: "O guia definitivo para transformar documentos estáticos em formulários PDF interativos e profissionais.",
+
+        intro: (
+            <>
+                Cansado de pedir aos clientes para imprimir, assinar à mão e digitalizar documentos de volta para você? Você precisa <strong>tornar seu PDF preenchível</strong>. Seja você um pequeno empresário ou um estudante, criar <strong>formulários PDF interativos</strong> é essencial. Nosso <strong>criador de formulários PDF gratuito</strong> permite adicionar campos de texto, caixas de seleção e lugares para assinatura em qualquer documento sem precisar de software caro como o Adobe Acrobat.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "what-is-fillable",
+                title: "O que é um PDF Preenchível?",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Um PDF preenchível (também conhecido como formulário PDF interativo) contém campos com os quais os usuários podem interagir diretamente. Em vez de ser uma imagem estática de um documento, inclui:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Campos de Entrada de Texto</strong>: Para nomes, datas e respostas detalhadas.</li>
+                            <li><strong>Caixas de Seleção</strong>: Para seleções de múltipla escolha.</li>
+                            <li><strong>Campos de Assinatura Digital</strong>: Para capturar autorização.</li>
+                            <li><strong>Botões de Rádio</strong>: Para selecionar uma opção de um grupo.</li>
+                            <li><strong>Menus Suspensos</strong>: Para selecionar de listas predefinidas.</li>
+                            <li><strong>Seletores de Data</strong>: Para formatação de data consistente.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "how-to",
+                title: "Passo a Passo: Crie Formulários PDF Preenchíveis em Minutos",
+                content: (
+                    <>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li>
+                                <strong>Envie Seu Documento PDF</strong>: Selecione o PDF que deseja tornar interativo usando nosso carregador local. O arquivo carrega instantaneamente no seu navegador.
+                            </li>
+                            <li>
+                                <strong>Projete o Layout do Formulário</strong>: Use o editor visual para colocar campos interativos. Clique no tipo de campo e depois clique no seu PDF onde deseja posicioná-lo.
+                            </li>
+                            <li>
+                                <strong>Configure as Propriedades do Campo</strong>: Defina nome, status obrigatório, valores padrão e formatação.
+                            </li>
+                            <li>
+                                <strong>Teste Seu Formulário</strong>: Use o modo de pré-visualização para testar todos os campos antes de finalizar.
+                            </li>
+                            <li>
+                                <strong>Salve e Distribua</strong>: Clique em 'Processar PDF' para baixar seu novo PDF interativo, pronto para compartilhar.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "field-types",
+                title: "Guia Completo de Tipos de Campo de Formulário PDF",
+                content: (
+                    <>
+                        <p className="mb-6">
+                            Entender qual tipo de campo usar é crucial para criar formulários eficazes:
+                        </p>
+                        <div className="space-y-4">
+                            <div className="p-4 border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20">
+                                <h4 className="font-bold mb-2">Campos de Texto</h4>
+                                <p className="text-sm mb-2"><strong>Melhor para</strong>: Nomes, endereços, e-mails, números de telefone.</p>
+                            </div>
+                            <div className="p-4 border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20">
+                                <h4 className="font-bold mb-2">Caixas de Seleção</h4>
+                                <p className="text-sm mb-2"><strong>Melhor para</strong>: Perguntas Sim/Não, confirmações, seleções múltiplas.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "privacy",
+                title: "Privacidade e Segurança: Por que o Processamento Local Importa",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Ao criar formulários preenchíveis, você geralmente trabalha com informações sensíveis. É por isso que o <strong>processamento local baseado em navegador</strong> é crítico.
+                        </p>
+                        <div className="grid md:grid-cols-2 gap-6 mb-6">
+                            <div className="p-6 border border-red-200 bg-red-50 dark:bg-red-900/20 rounded-xl">
+                                <h4 className="font-bold text-red-800 dark:text-red-400 mb-3">🔒 100% Privado e Seguro</h4>
+                                <p className="text-sm">
+                                    Seus arquivos PDF são processados inteiramente no seu navegador. Seus documentos <strong>nunca saem do seu dispositivo</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas Comuns",
+                content: (
+                    <>
+                        <div className="space-y-4">
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl">
+                                <h4 className="font-bold mb-2 text-red-900 dark:text-red-400">Problema: Campos não aceitam entrada no Adobe Reader</h4>
+                                <p className="text-sm"><strong>Solução</strong>: Verifique se os campos não estão como somente leitura e se o PDF não está protegido por senha.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "benefits",
+                title: "Por que Usar o Criador de Formulários PDF do pdfcanada.ca?",
+                content: (
+                    <>
+                        <p className="mb-6">
+                            Oferecemos um verdadeiro <strong>editor de formulários PDF gratuito</strong> com recursos de nível empresarial. Sem marcas d'água, sem limites.
+                        </p>
+                        <div className="bg-gradient-to-r from-canada-red to-red-700 p-8 rounded-2xl text-white mb-6">
+                            <h4 className="text-2xl font-bold mb-3">Comparação: pdfcanada.ca vs Adobe Acrobat DC</h4>
+                            <table className="min-w-full text-sm">
+                                <tr className="border-b border-white/30">
+                                    <th className="text-left py-2">Recurso</th>
+                                    <th className="text-left py-2">Adobe Acrobat DC</th>
+                                    <th className="text-left py-2 bg-white/20">pdfcanada.ca</th>
+                                </tr>
+                                <tr className="border-b border-white/20">
+                                    <td className="py-2">Preço</td>
+                                    <td className="py-2">R$ Premium/mês</td>
+                                    <td className="py-2 bg-white/10">R$ 0 (Grátis)</td>
+                                </tr>
+                                <tr className="border-b border-white/20">
+                                    <td className="py-2">Instalação de software</td>
+                                    <td className="py-2">Sim (Pesado)</td>
+                                    <td className="py-2 bg-white/10">Não (Navegador)</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-2">Privacidade</td>
+                                    <td className="py-2">Nuvem</td>
+                                    <td className="py-2 bg-white/10">100% Local</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "É realmente grátis?",
+                a: "Sim! Sem custos ocultos, limites ou marcas d'água. Use o quanto precisar, para sempre."
+            },
+            {
+                q: "Meus arquivos são enviados para seus servidores?",
+                a: "Não. Todo o processamento acontece localmente no seu navegador. Seus arquivos nunca saem do seu dispositivo, garantindo total privacidade."
+            },
+            {
+                q: "Os formulários funcionam em dispositivos móveis?",
+                a: "Sim, os PDFs preenchíveis funcionam na maioria dos leitores de PDF modernos em iOS e Android, incluindo Adobe Acrobat Reader."
+            },
+            {
+                q: "Posso adicionar campos de assinatura?",
+                a: "Sim, nosso ferramenta permite adicionar campos de assinatura onde os usuários podem desenhar ou digitar suas assinaturas."
+            },
+            {
+                q: "Como distribuo meu formulário?",
+                a: "Você pode enviar por e-mail, hospedar em seu site ou compartilhar via armazenamento em nuvem. Os destinatários podem preencher usando qualquer leitor de PDF padrão."
+            }
+        ],
+
+        ctaTitle: "Comece a Criar Seu Formulário Agora",
+        ctaButton: "Tornar PDF Preenchível",
+        ctaSubtext: "Grátis para sempre. Seguro e local.",
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como tornar um PDF preenchível de graça?",
+            answer: "Use o criador de formulários PDF do pdfcanada.ca. Envie seu PDF, arraste e solte campos de texto e caixas de seleção, depois baixe seu formulário interativo. Processamento 100% local.",
+            tool: "Criador de Formulários PDF",
+            steps: ["Envie seu arquivo PDF", "Adicione campos interativos arrastando", "Baixe seu formulário preenchível"]
+        }
     }
 });
 
@@ -1192,40 +1391,6 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
 
-    const schema = [
-        {
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": t.h1,
-            "description": t.seo.desc,
-            "step": [
-                { "@type": "HowToStep", "position": 1, "name": "Upload File", "text": "Select the PDF you want to make interactive." },
-                { "@type": "HowToStep", "position": 2, "name": "Add Fields", "text": "Drag and drop text fields and checkboxes onto the document." },
-                { "@type": "HowToStep", "position": 3, "name": "Save and Share", "text": "Click Process PDF to download your interactive version." }
-            ]
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": t.h1,
-            "description": t.seo.desc,
-            "datePublished": "2024-05-15",
-            "dateModified": "2025-12-24",
-            "author": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "url": "https://www.pdfcanada.ca"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png"
-                }
-            }
-        }
-    ];
 
     return (
         <>
@@ -1235,16 +1400,11 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                 canonicalPath="/guides/make-pdf-fillable"
                 faqs={t.faq}
                 lang={lang}
-                schema={schema}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment rendre un PDF remplissable gratuitement?" : "How do I make a PDF fillable for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez le créateur de formulaires PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez des champs de texte, cases à cocher et zones de signature, puis téléchargez votre formulaire interactif. Tout se fait localement sans aucun serveur."
-                        : "Use pdfcanada.ca's PDF form creator. Upload your PDF, drag and drop text fields, checkboxes, and signature areas, then download your interactive form. All processing happens locally - no servers involved.",
-                    tool: "PDF Form Creator",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier PDF", "Ajoutez des champs interactifs par glisser-déposer", "Téléchargez votre formulaire remplissable"]
-                        : ["Upload your PDF file", "Add interactive fields via drag-and-drop", "Download your fillable form"]
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -1309,7 +1469,7 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     {/* FAQ */}
                     {t.faq && (
                         <section className="bg-gray-50 dark:bg-gray-900/50 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl">
-                            <h2 className="text-xl sm:text-2xl font-black mb-6 sm:mb-8 text-center tracking-tight uppercase">Solutions to Common Problems</h2>
+                            <h2 className="text-xl sm:text-2xl font-black mb-6 sm:mb-8 text-center tracking-tight uppercase">{t.faqHeading}</h2>
                             <div className="grid gap-3 sm:gap-4 md:gap-6">
                                 {t.faq.map((item, i) => (
                                     <div key={i} className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
@@ -1322,14 +1482,10 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     )}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment rendre un PDF remplissable gratuitement?" : "How do I make a PDF fillable for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez le créateur de formulaires PDF de pdfcanada.ca. Téléchargez votre PDF, glissez-déposez des champs de texte, cases à cocher et zones de signature, puis téléchargez votre formulaire interactif. Tout se fait localement sans aucun serveur."
-                            : "Use pdfcanada.ca's PDF form creator. Upload your PDF, drag and drop text fields, checkboxes, and signature areas, then download your interactive form. All processing happens locally - no servers involved."}
-                        toolName="PDF Form Creator"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre fichier PDF", "Ajoutez des champs interactifs par glisser-déposer", "Téléchargez votre formulaire remplissable"]
-                            : ["Upload your PDF file", "Add interactive fields via drag-and-drop", "Download your fillable form"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

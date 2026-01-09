@@ -38,7 +38,14 @@ PDFs draw lines and text, but they don't understand "cells". A simple copy-paste
 3.  **Copy-Paste with Word:** Sometimes pasting into Word first, then copying to Excel, preserves structure better than direct pasting.
                 `
             }
-        ]
+        ],
+        faqHeading: "FAQ",
+        quickAnswer: {
+            question: "How do I convert PDF to Excel for free?",
+            answer: "Use pdfcanada.ca/pdf-to-excel. Upload your PDF, our tool extracts tables and converts them to .xlsx format instantly. No email required.",
+            tool: "PDF to Excel",
+            steps: ["Upload PDF", "Click Convert", "Download Excel file"]
+        }
     },
     fr: {
         intro: `
@@ -63,7 +70,46 @@ Les PDF dessinent des lignes et du texte, mais ne comprennent pas les "cellules"
 3.  **Copier-Coller avec Word :** Parfois, coller dans Word d'abord, puis copier vers Excel, préserve mieux la structure que le collage direct.
                 `
             }
-        ]
+        ],
+        faqHeading: "FAQ",
+        quickAnswer: {
+            question: "Comment convertir un PDF en Excel gratuitement ?",
+            answer: "Utilisez pdfcanada.ca/fr/pdf-to-excel. Téléversez votre PDF, notre outil extrait les tableaux et les convertit en format .xlsx instantanément.",
+            tool: "PDF vers Excel",
+            steps: ["Téléversez le PDF", "Cliquez sur Convertir", "Téléchargez le fichier Excel"]
+        }
+    },
+    pt: {
+        intro: `
+Dados presos em um PDF são inúteis. Para analisá-los, calculá-los ou classificá-los, você precisa deles no **Excel**.
+
+Este guia mostra como converter tabelas PDF em planilhas Excel editáveis (\`.xlsx\`) com precisão, preservando colunas e linhas.
+        `,
+        sections: [
+            {
+                id: 'challenges',
+                title: 'O Desafio com Tabelas em PDF',
+                content: `
+PDFs desenham linhas e texto, mas não entendem "células". Um simples copiar e colar geralmente resulta em todos os dados caindo em uma única coluna (A1), exigindo horas de limpeza.
+                `
+            },
+            {
+                id: 'solutions',
+                title: 'Métodos de Conversão',
+                content: `
+1.  **Recurso "Obter Dados" do Excel:** Versões modernas do Excel (2016+) podem importar PDFs diretamente via menu *Dados > Obter Dados > De Arquivo > De PDF*.
+2.  **Conversores Dedicados:** Ferramentas feitas para PDF-para-Excel usam análise espacial para detectar a estrutura de grade e colocar dados nas células corretas.
+3.  **Copiar-Colar com Word:** Às vezes, colar no Word primeiro, depois copiar para o Excel, preserva a estrutura melhor do que colar diretamente.
+                `
+            }
+        ],
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como converter PDF para Excel grátis?",
+            answer: "Use pdfcanada.ca/pt/pdf-to-excel. Envie seu PDF, nossa ferramenta extrai tabelas e converte para .xlsx instantaneamente.",
+            tool: "PDF para Excel",
+            steps: ["Envie o PDF", "Clique em Converter", "Baixe o arquivo Excel"]
+        }
     }
 });
 
@@ -79,6 +125,7 @@ export const PdfToExcelGuide: React.FC<GuideProps> = ({ lang }) => {
                 description={lang === 'en' ? 'Extract PDF tables to Excel accurately. Save hours of data entry.' : 'Extrayez les tableaux PDF vers Excel avec précision. Économisez des heures de saisie.'}
                 canonicalPath="/guides/pdf-to-excel"
                 lang={lang}
+                quickAnswer={t.quickAnswer}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },

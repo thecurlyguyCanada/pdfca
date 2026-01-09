@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor, FileCheck, AlertTriangle, Scale } from 'lucide-react';
+import { Mail, CheckCircle, Shield, Zap, ArrowRight, Printer, Smartphone, Monitor, FileCheck, AlertTriangle, Scale, MousePointer2 } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { AISnapshot } from '../../AISnapshot';
@@ -14,7 +14,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: string) => ({
     en: {
         seo: {
             title: `How to Save Email as PDF | Outlook, Gmail, iPhone & Android Guide ${CURRENT_YEAR}`,
@@ -261,7 +261,12 @@ const getGuideContent = (lang: Language) => ({
         ],
         ctaTitle: "Tired of Messy Email PDFs?",
         ctaButton: "Clean Up & Merge PDFs",
-        ctaSubtext: "100% Free, Secure, and Local."
+        ctaSubtext: "100% Free, Secure, and Local.",
+        quickAnswer: {
+            question: "How do I save an email as PDF?",
+            answer: "Open email → Click three dots (or File > Print) → Select 'Print' → Change destination to 'Save as PDF' → Save. Works on Gmail, Outlook, iOS, and Android.",
+            steps: ["Open the email", "Select Print", "Choose 'Save as PDF'", "Save the file"]
+        }
     },
     fr: {
         seo: {
@@ -509,38 +514,287 @@ const getGuideContent = (lang: Language) => ({
         ],
         ctaTitle: "Fatigué des PDF désordonnés ?",
         ctaButton: "Nettoyer et Fusionner les PDF",
-        ctaSubtext: "100 % Gratuit, Sécurisé et Local."
+        ctaSubtext: "100 % Gratuit, Sécurisé et Local.",
+        quickAnswer: {
+            question: "Comment enregistrer un courriel en PDF?",
+            answer: "Ouvrez le courriel → Cliquez sur les trois points (ou Fichier > Imprimer) → Sélectionnez 'Imprimer' → Changez la destination en 'Enregistrer au format PDF' → Sauvegardez. Fonctionne sur Gmail, Outlook, iOS et Android.",
+            steps: ["Ouvrez le courriel", "Sélectionnez Imprimer", "Choisissez 'Enregistrer au format PDF'", "Sauvegardez le fichier"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Salvar E-mail como PDF | Guia Outlook, Gmail, iPhone e Android ${CURRENT_YEAR}`,
+            desc: `O guia definitivo de ${CURRENT_YEAR} para salvar e-mails como PDF. Cobre Novo Outlook, Gmail, Apple Mail, iPhone e Android. Dicas legais e processamento em lote.`
+        },
+        h1: `Como Salvar E-mail como PDF: O Super Guia ${CURRENT_YEAR}`,
+        subtitle: "Um guia técnico completo para arquivar correspondências em qualquer dispositivo.",
+        intro: (
+            <>
+                Salvar um e-mail como PDF é uma habilidade crítica para profissionais jurídicos, assistentes administrativos e qualquer pessoa que precise de um registro permanente. Diferente de capturas de tela, um <strong>PDF (Portable Document Format)</strong> preserva metadados, carimbos de data, links e texto vetorial da mensagem original.
+                <br /><br />
+                Seja usando o <strong>Novo Outlook para Windows</strong>, <strong>Gmail no Android</strong> ou <strong>Apple Mail no macOS</strong>, este guia cobre todos os métodos. Também abordamos <strong>admissibilidade legal</strong>, <strong>padrões PDF/A</strong> e <strong>fluxos de trabalho em lote</strong>.
+            </>
+        ),
+        sections: [
+            {
+                id: "gmail",
+                title: "Método 1: Gmail (Desktop e Web)",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            A funcionalidade "Imprimir para PDF" do Gmail é robusta, mas escondida.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2"><strong>Abra o e-mail específico</strong> que deseja converter. Não selecione apenas na lista.</li>
+                            <li className="pl-2"><strong>Encontre o ícone &quot;Mais&quot;</strong>: Clique nos três pontos verticais (⋮) no <em>canto superior direito do e-mail</em>. <span className="text-red-500 font-bold">Aviso:</span> Não use o botão imprimir do navegador.</li>
+                            <li className="pl-2">Selecione <strong>Imprimir</strong> no menu suspenso. Uma nova janela limpa abrirá.</li>
+                            <li className="pl-2">No destino, selecione <strong>&quot;Salvar como PDF&quot;</strong> (Chrome/Edge) ou <strong>&quot;Microsoft Print to PDF&quot;</strong>.</li>
+                            <li className="pl-2"><strong>Clique em Salvar</strong> e escolha seu diretório local.</li>
+                        </ol>
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-100 dark:border-blue-800">
+                            <strong>Dica para Conversas Completas:</strong> Para salvar todo o histórico, clique no ícone de impressão da <em>conversa</em> (canto superior direito geral) em vez da mensagem individual.
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "new-outlook",
+                title: "Método 2: O \"Novo Outlook\" para Windows",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            O "Novo Outlook" da Microsoft mudou significativamente a interface. O antigo menu "Arquivo &gt; Imprimir" sumiu.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">Abra o e-mail no painel de leitura.</li>
+                            <li className="pl-2">Clique nos <strong>três pontos horizontais (...)</strong> no canto superior direito do cabeçalho da mensagem.</li>
+                            <li className="pl-2">Selecione <strong>Imprimir</strong>. Uma prévia aparecerá.</li>
+                            <li className="pl-2">Clique no botão <strong>Imprimir</strong> no topo desta prévia.</li>
+                            <li className="pl-2">No diálogo do sistema, defina a Impressora como <strong>&quot;Microsoft Print to PDF&quot;</strong>.</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "classic-outlook",
+                title: "Método 3: Outlook Clássico (Desktop)",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Para usuários corporativos no Outlook Clássico (Office 365 / 2019 / 2016):
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li className="pl-2">Selecione o e-mail.</li>
+                            <li className="pl-2">Vá em <strong>Arquivo &gt; Imprimir</strong>.</li>
+                            <li className="pl-2">Em Impressora, escolha <strong>Microsoft Print to PDF</strong>.</li>
+                            <li className="pl-2">Clique em <strong>Opções de Impressão</strong> se precisar incluir anexos (Nota: Isso imprime fisicamente os anexos; geralmente falha ao mesclar no PDF).</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "mac",
+                title: "Método 4: Mac (Apple Mail e Outlook)",
+                content: (
+                    <>
+                        <h4 className="font-bold text-lg mb-4 text-gray-900 dark:text-white">Apple Mail</h4>
+                        <ol className="list-decimal pl-5 space-y-4 mb-8">
+                            <li className="pl-2">Abra a mensagem.</li>
+                            <li className="pl-2">Selecione <strong>Arquivo &gt; Exportar como PDF...</strong> na barra de menu. Recurso nativo do Mac!</li>
+                            <li className="pl-2">Escolha o local para salvar.</li>
+                        </ol>
+
+                        <h4 className="font-bold text-lg mb-4 text-gray-900 dark:text-white">Outlook para Mac</h4>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li className="pl-2">Abra o e-mail.</li>
+                            <li className="pl-2">Pressione <strong>Command + P</strong>.</li>
+                            <li className="pl-2">Clique no botão <strong>PDF</strong> no canto inferior esquerdo do diálogo.</li>
+                            <li className="pl-2">Selecione <strong>Salvar como PDF</strong>.</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "ios",
+                title: "Método 5: iPhone e iPad (O Truque da \"Pinça\")",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            O iOS tem um gesto oculto que transforma qualquer prévia de impressão em arquivo PDF.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">Abra o e-mail no app Mail.</li>
+                            <li className="pl-2">Toque na <strong>seta Responder/Encaminhar</strong>.</li>
+                            <li className="pl-2">Role para baixo e toque em <strong>Imprimir</strong>.</li>
+                            <li className="pl-2">
+                                <strong>O Passo Secreto:</strong> Na tela de prévia, coloque dois dedos na imagem da página e <strong>faça o movimento de pinça para fora</strong> (como ampliar).
+                            </li>
+                            <li className="pl-2">A prévia abrirá em tela cheia. Agora é um PDF.</li>
+                            <li className="pl-2">Toque no ícone <strong>Compartilhar</strong> (topo direito) e selecione <strong>Salvar em Arquivos</strong>.</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "android",
+                title: "Método 6: Android (App Gmail)",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            O sistema de impressão nativo do Android lida com conversão PDF perfeitamente.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li className="pl-2">Abra o e-mail no app Gmail.</li>
+                            <li className="pl-2">Toque nos <strong>três pontos</strong> no canto superior do corpo do e-mail.</li>
+                            <li className="pl-2">Toque em <strong>Imprimir</strong>.</li>
+                            <li className="pl-2">No topo, no menu "Selecionar impressora", escolha <strong>Salvar como PDF</strong>.</li>
+                            <li className="pl-2">Toque no ícone redondo <strong>PDF</strong> para salvar na pasta Downloads.</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "legal-archiving",
+                title: "Admissibilidade Legal e Padrões PDF/A",
+                content: (
+                    <>
+                        <div className="flex items-start gap-4 mb-6">
+                            <Scale className="w-12 h-12 text-canada-red shrink-0" />
+                            <div>
+                                <h4 className="font-bold text-lg mb-2">Por que Capturas de Tela Não Bastam</h4>
+                                <p>
+                                    Fóruns legais frequentemente rejeitam prints pois são facilmente falsificados e faltam metadados. Um PDF exportado diretamente contém <strong>metadados de cabeçalho</strong> (De, Para, Data, Assunto) mais difíceis de fraudar.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <FileCheck className="w-12 h-12 text-blue-600 shrink-0" />
+                            <div>
+                                <h4 className="font-bold text-lg mb-2">O Padrão PDF/A</h4>
+                                <p>
+                                    Para arquivamento a longo prazo (10+ anos), considere converter seus PDFs salvos para o formato <strong>PDF/A</strong> (Arquivo). Isso garante que o documento permaneça legível no futuro incorporando todas as fontes.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "automation",
+                title: "Canto da Automação: Power Automate",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Para quem pergunta sobre <em>"Power Automate salvar email como pdf"</em>: Sim, o Microsoft Power Automate pode salvar e-mails automaticamente no OneDrive.
+                        </p>
+                        <p className="mb-4">
+                            Porém, isso requer uma <strong>Licença Premium</strong> e configuração complexa. Para a maioria das pessoas e PMEs, os métodos manuais acima são mais rápidos, grátis e menos propensos a erros.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas Comuns",
+                content: (
+                    <>
+                        <div className="space-y-6">
+                            <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-2xl border border-amber-100 dark:border-amber-800">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <AlertTriangle className="text-amber-600" /> Imagens Não Carregam?
+                                </h4>
+                                <p>
+                                    Se seu PDF tem caixas vazias em vez de imagens, verifique as configurações de privacidade do seu e-mail. Você deve clicar em <strong>"Baixar Imagens"</strong> ou "Sempre mostrar imagens" <em>antes</em> de gerar o PDF.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-lg mb-2">Texto Cortado / Margem Direita</h4>
+                                <p>
+                                    Isso acontece quando um e-mail contém uma imagem larga ou tabela HTML. Para corrigir:
+                                </p>
+                                <ul className="list-disc pl-5 mt-2">
+                                    <li>No diálogo de impressão, mude o <strong>Layout</strong> para <strong>Paisagem</strong>.</li>
+                                    <li>Ou mude a <strong>Escala</strong> de "Padrão" para <strong>"Ajustar à área de impressão"</strong> ou "Personalizado (80%)".</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
+        ],
+        faqTitle: "Perguntas Frequentes (FAQ) - Edição Completa",
+        faq: [
+            {
+                q: "Posso salvar um e-mail E seus anexos num único PDF?",
+                a: "A função 'Imprimir para PDF' NÃO inclui anexos automaticamente. Ela salva apenas o corpo do e-mail. Para incluir anexos, você deve salvá-los separadamente e usar nossa ferramenta Mesclar PDF para combinar tudo."
+            },
+            {
+                q: "Como salvar uma conversa inteira do Gmail em um PDF?",
+                a: "No Gmail, clique no ícone de impressão no topo direito da visualização da conversa (não no e-mail individual). Isso salvará todo o histórico em um único PDF de rolagem."
+            },
+            {
+                q: "Uma cópia PDF de e-mail é admissível no tribunal?",
+                a: "Geralmente sim, e é preferida sobre capturas de tela. Um PDF exportado corretamente preserva metadados essenciais para autenticação em processos legais."
+            },
+            {
+                q: "Como salvar vários e-mails como PDF de uma vez (em lote)?",
+                a: "A maioria dos webmails não suporta isso nativamente. Clientes Desktop como Outlook podem imprimir vários e-mails selecionados, mas o resultado varia. Softwares de terceiros geralmente são necessários para conversão em massa eficiente."
+            },
+            {
+                q: "Como remover cabeçalho/rodapé (URL, Data) do PDF?",
+                a: "Na prévia do Chrome/Edge, procure 'Mais definições' e desmarque 'Cabeçalhos e rodapés'. Isso remove a URL e data do topo e rodapé da página."
+            },
+            {
+                q: "Por que meu arquivo PDF ficou tão grande?",
+                a: "E-mails frequentemente contêm pixels de rastreamento ou imagens não otimizadas. Use nossa ferramenta Comprimir PDF para reduzir o tamanho em 50-80% sem perder clareza de texto."
+            },
+            {
+                q: "Como salvar e-mail como PDF no Android sem app?",
+                a: "Use a função nativa do app Gmail. Toque nos três pontos > Imprimir > Selecione 'Salvar como PDF'. Nenhum app extra necessário."
+            },
+            {
+                q: "Posso automatizar o salvamento de e-mails?",
+                a: "Sim, com Power Automate ou Zapier, mas geralmente requer assinaturas pagas. Para usuários gratuitos, o método manual é o mais confiável."
+            },
+            {
+                q: "Como salvar e-mail do Outlook como PDF no Mac?",
+                a: "Use Command+P e selecione 'Salvar como PDF' no menu suspenso PDF da caixa de diálogo. É nativo do macOS."
+            },
+            {
+                q: "O remetente sabe que salvei como PDF?",
+                a: "Não. Salvar ou imprimir é uma ação estritamente local. O remetente não recebe notificação."
+            }
+        ],
+        ctaTitle: "Cansado de PDFs bagunçados?",
+        ctaButton: "Limpar e Mesclar PDFs",
+        ctaSubtext: "100% Grátis, Seguro e Local.",
+        quickAnswer: {
+            question: "Como salvar um e-mail como PDF?",
+            answer: "Abra o e-mail → Clique nos três pontos (ou Arquivo > Imprimir) → Selecione 'Imprimir' → Mude o destino para 'Salvar como PDF' → Salve. Funciona no Gmail, Outlook, iOS e Android.",
+            steps: ["Abra o e-mail", "Selecione Imprimir", "Escolha 'Salvar como PDF'", "Salve o arquivo"]
+        }
     }
 });
 
 export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-
-    const quickAnswerData = {
-        question: lang === 'fr' ? "Comment enregistrer un courriel en PDF?" : "How do I save an email as PDF?",
-        answer: lang === 'fr'
-            ? "Ouvrez le courriel → Cliquez sur les trois points (ou Fichier > Imprimer) → Sélectionnez 'Imprimer' → Changez la destination en 'Enregistrer au format PDF' → Sauvegardez. Fonctionne sur Gmail, Outlook, iOS et Android."
-            : "Open email → Click three dots (or File > Print) → Select 'Print' → Change destination to 'Save as PDF' → Save. Works on Gmail, Outlook, iOS, and Android.",
-        steps: lang === 'fr'
-            ? ["Ouvrez le courriel", "Sélectionnez Imprimer", "Choisissez 'Enregistrer au format PDF'", "Sauvegardez le fichier"]
-            : ["Open the email", "Select Print", "Choose 'Save as PDF'", "Save the file"]
-    };
+    const localContent = getLocalContent(lang);
+    const t = (localContent as any)[lang] || (localContent as any).en;
 
     const schema = [
         {
             "@type": "HowTo",
             "name": t.h1,
             "description": t.seo.desc,
-            "step": [
-                { "@type": "HowToStep", "position": 1, "name": "Open Email", "text": "Open the email in Gmail, Outlook, or Apple Mail." },
-                { "@type": "HowToStep", "position": 2, "name": "Select Print", "text": "Navigate to the print options via the menu or shortcut." },
-                { "@type": "HowToStep", "position": 3, "name": "Choose Save as PDF", "text": "Select 'Save as PDF' from the printer list and save the file locally." }
-            ]
+            "step": t.quickAnswer ? t.quickAnswer.steps.map((step: string, i: number) => ({
+                "@type": "HowToStep",
+                "position": i + 1,
+                "name": `Step ${i + 1}`,
+                "text": step
+            })) : []
         },
         {
             "@type": "FAQPage",
-            "mainEntity": t.faq.map(f => ({
+            "mainEntity": t.faq.map((f: any) => ({
                 "@type": "Question",
                 "name": f.q,
                 "acceptedAnswer": {
@@ -580,7 +834,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
-                quickAnswer={quickAnswerData}
+                quickAnswer={t.quickAnswer}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -657,9 +911,9 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <AISnapshot
                         lang={lang}
-                        question={quickAnswerData.question}
-                        answer={quickAnswerData.answer}
-                        steps={quickAnswerData.steps}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        steps={t.quickAnswer.steps}
                     />
 
                     <RelatedTools lang={lang} currentPath="/guides/email-to-pdf" category="convert" />

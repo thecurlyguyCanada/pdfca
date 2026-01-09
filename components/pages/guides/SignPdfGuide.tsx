@@ -40,9 +40,26 @@ This guide explains how to add a secure signature to your PDF document.
 Once you create your signature, you can drag and drop it onto the signature line of any PDF.
                 `
             }
-        ]
+        ],
+        seo: {
+            title: 'Sign PDF Online Guide',
+            desc: 'How to add electronic signatures to PDF documents.'
+        },
+        h1: 'Sign PDF Online',
+        subtitle: 'Add legally binding electronic signatures.',
+        breadcrumbs: {
+            home: 'Home',
+            guides: 'Guides',
+            sign: 'Sign PDF'
+        }
     },
     fr: {
+        seo: {
+            title: 'Guide Signer PDF en Ligne',
+            desc: 'Comment ajouter des signatures électroniques aux documents PDF.'
+        },
+        h1: 'Signer PDF en Ligne',
+        subtitle: 'Ajoutez des signatures électroniques juridiquement contraignantes.',
         intro: `
 Imprimer, signer, scanner et envoyer des contrats par email appartient au passé. Les **signatures électroniques (e-Signatures)** sont plus rapides, plus faciles et juridiquement contraignantes dans la plupart des juridictions (y compris le Canada et les États-Unis).
 
@@ -67,7 +84,50 @@ Ce guide explique comment ajouter une signature sécurisée à votre document PD
 Une fois votre signature créée, vous pouvez la glisser-déposer sur la ligne de signature de n'importe quel PDF.
                 `
             }
-        ]
+        ],
+        breadcrumbs: {
+            home: 'Accueil',
+            guides: 'Guides',
+            sign: 'Signer PDF'
+        }
+    },
+    pt: {
+        seo: {
+            title: 'Guia Assinar PDF Online | Adicionar Assinaturas Eletrônicas',
+            desc: 'Como adicionar assinaturas eletrônicas seguras a documentos PDF. Grátis e juridicamente vinculativo.'
+        },
+        h1: 'Assinar PDF Online',
+        subtitle: 'Adicione assinaturas eletrônicas juridicamente vinculativas.',
+        intro: `
+Imprimir, assinar, digitalizar e enviar contratos por e-mail é coisa do passado. **Assinaturas eletrônicas (e-Signatures)** são mais rápidas, mais fáceis e juridicamente vinculativas na maioria das jurisdições (incluindo Brasil, Portugal, Canadá e EUA).
+
+Este guia explica como adicionar uma assinatura segura ao seu documento PDF.
+        `,
+        sections: [
+            {
+                id: 'types',
+                title: 'Assinaturas Eletrônicas vs. Digitais',
+                content: `
+*   **Assinatura Eletrônica (Padrão):** Uma imagem da sua assinatura colocada no documento. Válida para a maioria dos contratos comerciais, locações e acordos.
+*   **Assinatura Digital (Avançada):** Usa certificados criptográficos para provar identidade e garantir que o documento não foi alterado. Necessária para formulários governamentais e contratos de alta segurança.
+                `
+            },
+            {
+                id: 'how-to',
+                title: 'Como Assinar Online',
+                content: `
+1.  **Desenhar:** Use seu mouse ou trackpad para desenhar sua assinatura.
+2.  **Digitar:** Digite seu nome e escolha um estilo de fonte "manuscrita".
+3.  **Enviar:** Envie uma foto da sua assinatura em papel.
+Uma vez criada sua assinatura, você pode arrastá-la e soltá-la na linha de assinatura de qualquer PDF.
+                `
+            }
+        ],
+        breadcrumbs: {
+            home: 'Início',
+            guides: 'Guias',
+            sign: 'Assinar PDF'
+        }
     }
 });
 
@@ -79,24 +139,24 @@ export const SignPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Sign PDF Online Guide' : 'Guide Signer PDF en Ligne'}
-                description={lang === 'en' ? 'How to add electronic signatures to PDF documents.' : 'Comment ajouter des signatures électroniques aux documents PDF.'}
+                title={t.seo.title}
+                description={t.seo.desc}
                 canonicalPath="/guides/sign-pdf"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Signer PDF' : 'Sign PDF', path: lang === 'fr' ? '/fr/guides/sign-pdf' : '/guides/sign-pdf' }
+                    { name: t.breadcrumbs.home, path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbs.guides, path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbs.sign, path: lang === 'en' ? '/guides/sign-pdf' : `/${lang}/guides/sign-pdf` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Sign PDF Online' : 'Signer PDF en Ligne'}
-                subtitle={lang === 'en' ? 'Add legally binding electronic signatures.' : 'Ajoutez des signatures électroniques juridiquement contraignantes.'}
+                title={t.h1}
+                subtitle={t.subtitle}
                 icon={<PenTool size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Sign Online' : 'Signer en Ligne', href: lang === 'fr' ? '/fr/guides/sign-pdf' : '/guides/sign-pdf' }
+                    { name: t.breadcrumbs.home, href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbs.guides, href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbs.sign, href: lang === 'en' ? '/guides/sign-pdf' : `/${lang}/guides/sign-pdf` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

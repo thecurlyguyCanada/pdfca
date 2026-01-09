@@ -449,7 +449,14 @@ const getGuideContent = (lang: Language) => ({
         ctaButton: "Add Image to PDF Now",
         ctaSubtext: "Free, Secure, and Proudly Canadian.",
         whyTitle: "Privacy First Image Insertion",
-        whyDesc: "Don't upload personal photos to cloud servers. Use pdfcanada.ca to keep your data local and secure."
+        whyDesc: "Don't upload personal photos to cloud servers. Use pdfcanada.ca to keep your data local and secure.",
+        faqHeading: "Frequently Asked Questions",
+        quickAnswer: {
+            question: "How do I insert a picture into a PDF for free?",
+            answer: "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
+            tool: "PDF Sign & Edit Tool",
+            steps: ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
+        }
     },
     fr: {
         seo: {
@@ -513,60 +520,99 @@ const getGuideContent = (lang: Language) => ({
         ctaButton: "Ajouter une Image Maintenant",
         ctaSubtext: "Gratuit, Sécurisé et Fièrement Canadien.",
         whyTitle: "Insertion d'Images Privée",
-        whyDesc: "Ne téléchargez pas de photos personnelles sur des serveurs cloud. Utilisez pdfcanada.ca pour garder vos données locales et sécurisées."
+        whyDesc: "Ne téléchargez pas de photos personnelles sur des serveurs cloud. Utilisez pdfcanada.ca pour garder vos données locales et sécurisées.",
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment insérer une image dans un PDF gratuitement?",
+            answer: "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement.",
+            tool: "Outil Signer et Éditer PDF",
+            steps: ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Inserir Imagem em PDF | Guia Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Adicione imagens aos seus PDFs gratuitamente. Nosso guia de ${CURRENT_YEAR} mostra como inserir fotos com segurança no seu navegador sem uploads. Rápido, privado e canadense.`
+        },
+        h1: `Como Inserir uma Imagem em um PDF: O Guia de ${CURRENT_YEAR}`,
+        subtitle: "Melhore seus documentos adicionando fotos, logos e ilustrações com segurança.",
+
+        intro: (
+            <>
+                Precisa adicionar um logotipo a uma fatura, uma foto a um relatório ou uma ilustração a uma brochura? <strong>Inserir uma imagem em um PDF</strong> não deve ser complicado ou caro.
+                <br /><br />
+                Nossas ferramentas interativas permitem que você coloque imagens exatamente onde precisa, garantindo que seus documentos nunca saiam do seu dispositivo.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Como Adicionar Imagens",
+                content: (
+                    <ol className="list-decimal pl-5 space-y-4 mb-6">
+                        <li className="pl-2"><strong>Abra Seu Arquivo</strong>: Envie seu documento para nossa <Link href={`/${lang}/sign-pdf`} className="text-canada-red hover:underline font-medium">ferramenta de Assinar e Editar</Link>.</li>
+                        <li className="pl-2"><strong>Selecione 'Imagem'</strong>: Escolha a opção para adicionar uma imagem ou assinatura do seu dispositivo.</li>
+                        <li className="pl-2"><strong>Posicione e Redimensione</strong>: Clique na página para colocar sua imagem, depois arraste os cantos para redimensionar ou mova para o local perfeito.</li>
+                        <li className="pl-2"><strong>Salve e Baixe</strong>: Quando estiver satisfeito, clique em 'Assinar/Aplicar' e baixe seu PDF atualizado.</li>
+                    </ol>
+                )
+            },
+            {
+                id: "benefits",
+                title: "Por que usar o pdfcanada.ca?",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
+                            <h3 className="font-bold text-red-800 mb-2">100% Privado</h3>
+                            <p className="text-sm text-red-700">Suas imagens e PDFs são processados localmente. Ninguém mais vê seus arquivos sensíveis.</p>
+                        </div>
+                        <div className="p-4 border border-gray-200 bg-gray-50 rounded-xl">
+                            <h3 className="font-bold text-gray-800 mb-2">Alta Resolução</h3>
+                            <p className="text-sm text-gray-700">Mantemos a qualidade de suas imagens para que permaneçam nítidas e profissionais.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Quais formatos de imagem são suportados?",
+                a: "Você pode inserir formatos de imagem padrão como JPG, PNG e HEIC (fotos do iPhone)."
+            },
+            {
+                q: "Posso mover a imagem depois de colocá-la?",
+                a: "Sim! Nosso editor permite arrastar, redimensionar e até excluir imagens antes de salvar o documento final."
+            },
+            {
+                q: "Como insiro uma imagem em um PDF de graça?",
+                a: "Use a ferramenta Assinar PDF do pdfcanada.ca. Envie seu PDF, clique em 'Adicionar Imagem', selecione seu arquivo, posicione e baixe. Totalmente grátis."
+            },
+            {
+                q: "Inserir imagens reduz a qualidade do PDF?",
+                a: "Não. Preservamos a resolução original da sua imagem e qualidade do PDF."
+            }
+        ],
+
+        ctaTitle: "Melhore seu PDF hoje",
+        ctaButton: "Adicionar Imagem Agora",
+        ctaSubtext: "Grátis, Seguro e Orgulhosamente Canadense.",
+        whyTitle: "Inserção de Imagem com Privacidade",
+        whyDesc: "Não envie fotos pessoais para servidores na nuvem. Use pdfcanada.ca para manter seus dados locais e seguros.",
+        faqHeading: "Perguntas Frequentes",
+        quickAnswer: {
+            question: "Como inserir imagem em PDF grátis?",
+            answer: "Use a ferramenta Assinar PDF do pdfcanada.ca. Envie o PDF, clique em 'Adicionar Imagem', posicione a foto e baixe. Suporta JPG, PNG, HEIC. Processamento 100% local.",
+            tool: "Ferramenta Assinar e Editar PDF",
+            steps: ["Envie seu PDF", "Selecione 'Adicionar Imagem'", "Posicione e redimensione", "Baixe o PDF atualizado"]
+        }
     }
 });
 
 export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-
-    const quickAnswerData = {
-        question: lang === 'fr' ? "Comment insérer une image dans un PDF gratuitement?" : "How do I insert a picture into a PDF for free?",
-        answer: lang === 'fr'
-            ? "Utilisez l'outil Signer PDF de pdfcanada.ca. Téléchargez votre PDF, cliquez sur 'Ajouter une image', placez et redimensionnez votre photo, puis téléchargez. Supporte JPG, PNG et HEIC. Tout se fait localement."
-            : "Use pdfcanada.ca's Sign PDF tool. Upload your PDF, click 'Add Image', place and resize your picture, then download. Supports JPG, PNG, and HEIC. All processing happens locally.",
-        tool: "PDF Sign & Edit Tool",
-        steps: lang === 'fr'
-            ? ["Téléchargez votre PDF", "Sélectionnez 'Ajouter une image'", "Placez et redimensionnez", "Téléchargez le PDF modifié"]
-            : ["Upload your PDF", "Select 'Add Image'", "Place and resize", "Download updated PDF"]
-    };
-
-    const schema = [
-        {
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": t.h1,
-            "description": t.seo.desc,
-            "step": [
-                { "@type": "HowToStep", "position": 1, "name": "Open Tool", "text": "Upload PDF to the Sign & Edit tool." },
-                { "@type": "HowToStep", "position": 2, "name": "Select Image", "text": "Choose 'Add Image' from the options." },
-                { "@type": "HowToStep", "position": 3, "name": "Place Image", "text": "Click on the page to place and drag to resize." },
-                { "@type": "HowToStep", "position": 4, "name": "Download", "text": "Apply changes and download your updated PDF." }
-            ]
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": t.h1,
-            "description": t.seo.desc,
-            "datePublished": "2024-03-01",
-            "dateModified": "2025-12-24",
-            "author": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "url": "https://www.pdfcanada.ca"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "pdfcanada.ca",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://www.pdfcanada.ca/android-chrome-512x512.png"
-                }
-            }
-        }
-    ];
 
     return (
         <>
@@ -576,8 +622,12 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
                 canonicalPath="/guides/insert-picture-in-pdf"
                 faqs={t.faq}
                 lang={lang}
-                schema={schema}
-                quickAnswer={quickAnswerData}
+                quickAnswer={{
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
+                }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -660,10 +710,10 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <AISnapshot
                         lang={lang}
-                        question={quickAnswerData.question}
-                        answer={quickAnswerData.answer}
-                        steps={quickAnswerData.steps}
-                        toolName={quickAnswerData.tool}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        steps={t.quickAnswer.steps}
+                        toolName={t.quickAnswer.tool}
                     />
 
                     <RelatedTools lang={lang} currentPath="/guides/insert-picture-in-pdf" category="edit" />

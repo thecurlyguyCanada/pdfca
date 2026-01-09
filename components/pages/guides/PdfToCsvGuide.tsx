@@ -153,7 +153,13 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Stop Copying and Pasting.",
         ctaButton: "Extract PDF Data Now",
-        ctaSubtext: "Free, Secure, and Canadian. 📖"
+        ctaSubtext: "Free, Secure, and Canadian. 📖",
+        quickAnswer: {
+            question: "How to convert PDF bank statement to CSV?",
+            answer: "Use pdfcanada.ca's local converter. Drag your file and download the data in CSV or Excel format without any server uploads.",
+            tool: "PDF to CSV Tool",
+            steps: ["Upload PDF", "Merge Rows", "Export to CSV"]
+        }
     },
     fr: {
         seo: {
@@ -246,7 +252,130 @@ const getGuideContent = (lang: Language) => ({
 
         ctaTitle: "Arrêtez le copier-coller.",
         ctaButton: "Extraire les données PDF",
-        ctaSubtext: "Gratuit, sécurisé et canadien. 📖"
+        ctaSubtext: "Gratuit, sécurisé et canadien. 📖",
+        quickAnswer: {
+            question: "Comment convertir un relevé bancaire PDF en CSV ?",
+            answer: "Utilisez le convertisseur local de pdfcanada.ca. Glissez votre fichier et téléchargez les données en format CSV ou Excel sans téléversement.",
+            tool: "Outil PDF vers CSV",
+            steps: ["Importez le PDF", "Fusionnez les lignes", "Exportez en CSV"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Converter Extrato Bancário PDF para CSV e Excel | Grátis ${CURRENT_YEAR}`,
+            desc: `Como converter extratos bancários PDF para CSV, Excel e QBO de graça. Extração local segura e privada. Sem uploads.`
+        },
+        h1: `Como Converter PDF para CSV e Excel (Guia ${CURRENT_YEAR})`,
+        subtitle: "O guia definitivo para extrair dados financeiros sem comprometer a privacidade.",
+
+        intro: (
+            <>
+                <div className="flex items-center gap-4 mb-8 p-6 bg-red-50 dark:bg-red-900/10 rounded-3xl border border-red-100 dark:border-red-800">
+                    <Database className="text-canada-red shrink-0" size={32} />
+                    <p className="text-gray-700 dark:text-gray-300 font-medium italic">
+                        &quot;A maioria das ferramentas envia seus extratos para a nuvem. Nós não. Tudo é processado 100% localmente no seu computador.&quot;
+                    </p>
+                </div>
+                Extrair dados de <strong>tabelas PDF</strong> geralmente quebra a formatação. Seja você um contador conciliando <strong>extratos bancários</strong> ou um proprietário de empresa gerenciando faturas, a transição de PDF para CSV muitas vezes resulta em dados &quot;bagunçados&quot;.
+                <br /><br />
+                No <strong>pdfcanada.ca</strong>, criamos um <strong>Motor de Extração Espacial</strong> projetado especificamente para documentos financeiros. Neste guia, mostraremos como transformar PDFs complexos em arquivos <strong>Excel, CSV ou QBO</strong> limpos em segundos.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to-convert",
+                title: "Como Converter PDF para CSV Grátis (Sem Uploads)",
+                content: (
+                    <div className="space-y-4">
+                        <p>Siga estes passos para transformar seus documentos PDF em dados estruturados:</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Abra a Ferramenta:</strong> Vá para o <Link href={`/${lang}/pdf-to-csv`} className="text-canada-red hover:underline font-bold">conversor PDF para CSV</Link>.
+                            </li>
+                            <li>
+                                <strong>Selecione Seu Arquivo:</strong> Escolha seu extrato bancário ou fatura. Graças ao <strong>processamento local</strong>, os dados são analisados instantaneamente.
+                            </li>
+                            <li>
+                                <strong>Verifique a Prévia:</strong> Nosso motor mostra uma grade em tempo real. Use a opção <strong>&quot;Smart Merge&quot;</strong> se as descrições das transações ocuparem várias linhas.
+                            </li>
+                            <li>
+                                <strong>Baixe seu CSV/Excel:</strong> Clique em exportar. Seu arquivo é gerado diretamente no navegador.
+                            </li>
+                        </ol>
+                    </div>
+                )
+            },
+            {
+                id: "bank-statements",
+                title: "Otimizado para Extratos Bancários",
+                content: (
+                    <div className="space-y-4">
+                        <p>Os extratos bancários frequentemente usam um layout de várias linhas que é um pesadelo para conversores padrão. Se você já tentou <strong>salvar um extrato em PDF como CSV</strong>, sabe a frustração.</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-2">Por que nossa ferramenta é melhor para contabilidade:</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Fusão Inteligente:</strong> Detectamos automaticamente quando uma descrição de transação quebra linha e as unimos.</li>
+                            <li><strong>Normalização:</strong> Removemos símbolos de moeda e padronizamos datas para importação direta em softwares como <strong>XERO</strong> ou <strong>QuickBooks</strong>.</li>
+                            <li><strong>Exportação QBO:</strong> Uma das poucas ferramentas gratuitas que exporta diretamente para o formato <strong>WebConnect (.qbo)</strong>.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Vantagem de Segurança: Processamento Local",
+                content: (
+                    <div className="bg-gray-900 text-white rounded-3xl p-8 mb-8 border-l-8 border-canada-red">
+                        <div className="flex items-center gap-3 mb-4">
+                            <Shield className="text-canada-red" size={24} />
+                            <h4 className="text-xl font-bold">Sua Privacidade é Inviolável</h4>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">
+                            Dados financeiros são sensíveis. Ao usar conversores online padrão, seus dados vão para um servidor na nuvem.
+                            <br /><br />
+                            <strong>Nosso Compromisso:</strong> Usamos WebAssembly (WASM) para rodar a lógica de extração dentro do seu navegador. Seus arquivos nunca saem do seu dispositivo, garantindo total privacidade e segurança.
+                        </p>
+                    </div>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas",
+                content: (
+                    <div className="space-y-4 font-normal">
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded-xl">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-400 mb-1">Minhas colunas estão desalinhadas!</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300 text-sm">Isso geralmente acontece se o PDF usa estruturas de tabela invisíveis. Tente alternar <strong>&quot;Normalize Data&quot;</strong> no painel de configurações.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Qual a melhor maneira de converter extrato PDF para Excel?",
+                a: "Usar um conversor local como o pdfcanada.ca que suporta 'Smart Merge' para manter transações em uma única linha."
+            },
+            {
+                q: "É seguro converter extratos bancários online?",
+                a: "Apenas se a ferramenta processar os dados localmente. O pdfcanada.ca nunca envia seus arquivos para um servidor."
+            },
+            {
+                q: "Como transformo um PDF em arquivo CSV para QuickBooks?",
+                a: "Envie seu PDF, verifique a prévia e selecione a opção de exportação 'QBO' ou 'CSV'."
+            }
+        ],
+
+        ctaTitle: "Pare de Copiar e Colar.",
+        ctaButton: "Extrair Dados PDF Agora",
+        ctaSubtext: "Grátis, Seguro e Local. 📖",
+        quickAnswer: {
+            question: "Como converter extrato bancário PDF para CSV?",
+            answer: "Use o conversor local do pdfcanada.ca. Arraste seu arquivo e baixe os dados em formato CSV ou Excel sem uploads.",
+            tool: "Ferramenta PDF para CSV",
+            steps: ["Envie o PDF", "Mesclar Linhas", "Exportar para CSV"]
+        }
     }
 });
 
@@ -296,16 +425,7 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
-                quickAnswer={{
-                    question: lang === 'fr' ? "Comment convertir un relevé bancaire PDF en CSV ?" : "How to convert PDF bank statement to CSV?",
-                    answer: lang === 'fr'
-                        ? "Utilisez le convertisseur local de pdfcanada.ca. Glissez votre fichier et téléchargez les données en format CSV ou Excel sans téléversement."
-                        : "Use pdfcanada.ca's local converter. Drag your file and download the data in CSV or Excel format without any server uploads.",
-                    tool: "PDF to CSV Tool",
-                    steps: lang === 'fr'
-                        ? ["Importez le PDF", "Fusionnez les lignes", "Exportez en CSV"]
-                        : ["Upload PDF", "Merge Rows", "Export to CSV"],
-                }}
+                quickAnswer={t.quickAnswer}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
@@ -331,18 +451,18 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="grid md:grid-cols-3 gap-8 mb-20">
                         <div className="p-8 bg-green-50 dark:bg-green-900/10 rounded-[2rem] border border-green-100 dark:border-green-800 shadow-sm">
                             <Table className="text-green-600 mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Précision" : "High Precision"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Moteur spatial détectant les colonnes sans bordures." : "Spatial engine detects columns even without borders."}</p>
+                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Précision" : (lang === 'pt' ? "Precisão" : "High Precision")}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Moteur spatial détectant les colonnes sans bordures." : (lang === 'pt' ? "Motor espacial detecta colunas sem bordas." : "Spatial engine detects columns even without borders.")}</p>
                         </div>
                         <div className="p-8 bg-blue-50 dark:bg-blue-900/10 rounded-[2rem] border border-blue-100 dark:border-blue-800 shadow-sm">
                             <Lock className="text-blue-600 mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Confidentialité" : "Privacy First"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Traitement 100% local. Aucune donnée n'est envoyée." : "100% local processing. No data is ever sent."}</p>
+                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Confidentialité" : (lang === 'pt' ? "Privacidade" : "Privacy First")}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Traitement 100% local. Aucune donnée n'est envoyée." : (lang === 'pt' ? "Processamento local. Dados nunca enviados." : "100% local processing. No data is ever sent.")}</p>
                         </div>
                         <div className="p-8 bg-red-50 dark:bg-red-900/10 rounded-[2rem] border border-red-100 dark:border-red-800 shadow-sm">
                             <DollarSign className="text-canada-red mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Comptabilité" : "Accountant Ready"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Export QBO pour QuickBooks et Xero." : "QBO export for QuickBooks and Xero."}</p>
+                            <h3 className="text-xl font-bold mb-2">{lang === 'fr' ? "Comptabilité" : (lang === 'pt' ? "Contabilidade" : "Accountant Ready")}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Export QBO pour QuickBooks et Xero." : (lang === 'pt' ? "Exportação QBO para QuickBooks." : "QBO export for QuickBooks and Xero.")}</p>
                         </div>
                     </div>
 
@@ -367,14 +487,10 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {/* Interactive Snapshot */}
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment extraire les données bancaires d'un PDF ?" : "How to extract bank data from a PDF?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez pdfcanada.ca. Le convertisseur analyse la structure spatiale du PDF pour recréer le tableau en format CSV ou Excel instantanément."
-                            : "Use pdfcanada.ca. The converter analyzes the PDF's spatial structure to recreate the table in CSV or Excel format instantly."}
-                        toolName="PDF to CSV Tool"
-                        steps={lang === 'fr'
-                            ? ["Ouvrez le fichier", "Activer Smart Merge", "Téléchargez l'Excel"]
-                            : ["Open File", "Enable Smart Merge", "Download Excel"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

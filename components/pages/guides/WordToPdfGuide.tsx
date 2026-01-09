@@ -129,7 +129,13 @@ const getGuideContent = (lang: string) => ({
         ctaTitle: "Convert Your Document Now",
         ctaButton: "Start Word to PDF Conversion",
         ctaSubtext: "100% Free. Secure. Local.",
-        faqHeading: "Common Questions"
+        faqHeading: "Common Questions",
+        quickAnswer: {
+            question: "How do I convert Word to PDF for free?",
+            answer: "Use pdfcanada.ca's Word to PDF converter. Upload your .docx file, our engine converts it locally in your browser, then download your professional PDF. Your documents never leave your device - ideal for resumes, invoices, and legal documents.",
+            tool: "Word to PDF Converter",
+            steps: ["Upload your Word file (.docx)", "Automatic local conversion", "Download your PDF"]
+        }
     },
     fr: {
         seo: {
@@ -219,7 +225,130 @@ const getGuideContent = (lang: string) => ({
         ctaTitle: "Convertissez Votre Document Maintenant",
         ctaButton: "Commencer la Conversion Word en PDF",
         ctaSubtext: "100% Gratuit. Sécurisé. Local.",
-        faqHeading: "Questions Courantes"
+        faqHeading: "Questions Courantes",
+        quickAnswer: {
+            question: "Comment convertir Word en PDF gratuitement?",
+            answer: "Utilisez le convertisseur Word en PDF de pdfcanada.ca. Téléchargez votre fichier .docx, notre moteur le convertit localement dans votre navigateur, puis téléchargez votre PDF professionnel. Vos documents ne quittent jamais votre appareil - idéal pour les CV, factures et documents juridiques.",
+            tool: "Convertisseur Word en PDF",
+            steps: ["Téléchargez votre fichier Word (.docx)", "Conversion locale automatique", "Téléchargez votre PDF"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Como Converter Word para PDF | Tutorial Grátis e Seguro ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Aprenda a transformar DOCX em PDF instantaneamente. Nosso guia seguro de ${CURRENT_YEAR} mostra como converter Word para PDF localmente no seu dispositivo sem enviar arquivos sensíveis. Sem uploads, ferramenta 100% privada.`
+        },
+        h1: `Como Converter e Salvar Word como PDF (${CURRENT_YEAR})`,
+        subtitle: "A maneira mais simples de transformar qualquer documento Word em um arquivo PDF de alta qualidade instantaneamente.",
+        intro: "Precisa **converter um Word para um PDF**? Seja enviando um currículo, uma fatura ou um relatório formal, o PDF é o padrão para garantir que sua formatação permaneça exatamente como pretendido. **Como mudar um documento word para pdf** de graça? Nosso **conversor de Word para PDF** permite que você **salve um documento Word como PDF** sem esforço. Como roda localmente, você pode **trocar um documento Word para PDF** ou **transformar um doc word em pdf** sem se preocupar com seus dados comerciais ou pessoais sendo armazenados em um servidor aleatório.",
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Como Transformar um Documento Word em um PDF",
+                content: `Siga estes passos simples para **transformar Word em PDF** com segurança:
+1. **Envie Seu Arquivo .docx**: Clique para navegar ou arraste e solte seu documento Word em nosso conversor. Isso funciona para **converter doc word em pdf no mac**, Windows ou Linux.
+2. **Conversão Automática**: Nosso motor baseado em navegador começa imediatamente a processar seu documento. Ele vai **salvar word como pdf** preservando suas fontes, imagens e layout.
+3. **Pré-visualização (Opcional)**: Enquanto algumas ferramentas te atrasam, nós focamos na velocidade. Sua **conversão de word para pdf** acontece em milissegundos.
+4. **Baixe Seu PDF**: Em segundos, seu PDF profissional está pronto. **Exporte word para pdf** com sucesso e compartilhe com confiança.
+5. **Verifique a Formatação**: Abra o arquivo para garantir que se parece exatamente com o original. Esta é a melhor maneira de **fazer um pdf com word** sem perder qualidade.`
+            },
+            {
+                id: "mac-mobile",
+                title: "Como Converter Word para PDF no Mac, iPhone e Android",
+                content: `Nossa ferramenta é projetada para ser multiplataforma. Você não precisa do Microsoft Office para **salvar documento word como pdf no mac**.
+- **No Mac**: Simplesmente abra o Safari ou Chrome, visite nosso site e solte seu arquivo. Este é o método mais rápido para **converter word para pdf no mac** sem instalar software.
+- **No iPhone/iPad**: suporte melhorado para **como converter word para pdf no celular**. Toque em "Upload", selecione do seu aplicativo Arquivos e baixe o PDF de volta para o seu dispositivo.
+- **No Android**: Funciona diretamente do Chrome. **Transforme word em pdf** do seu Google Drive ou pasta de downloads local instantaneamente.`
+            },
+            {
+                id: "why-pdf",
+                title: "Por que Mudar de Word para PDF?",
+                content: `Quando você **muda word para pdf**, você ganha várias vantagens sobre enviar um arquivo .docx bruto:
+- **Visualização Universal**: Um PDF parece o mesmo em todo dispositivo. Se você **envia um documento word**, a formatação frequentemente quebra no celular.
+- **Segurança**: É mais difícil editar acidentalmente um PDF. **Faça word em pdf** para finalizar contratos, faturas e currículos.
+- **Tamanho do Arquivo**: **Exportar word para pdf** frequentemente reduz o tamanho do arquivo, tornando mais fácil enviar por email ou upload.
+- **Profissionalismo**: Enviar um PDF é o padrão da indústria. **Converter doc word para pdf** mostra que você se importa com a apresentação.`
+            },
+            {
+                id: "local-first",
+                title: "Privado e Seguro: Converta Word para PDF Localmente",
+                content: `Ao contrário de outras ferramentas que enviam seus dados, nós ajudamos você a **converter documento word para pdf grátis** e privadamente.
+- **Zero Uploads**: Nós **processamos o documento word para pdf** puramente no seu navegador.
+- **Confidencial**: Perfeito para documentos legais, registros médicos e extratos bancários.
+- **Rápido**: Sem atraso de rede. **mude doc word em pdf** tão rápido quanto seu computador pode pensar.`
+            },
+            {
+                id: "fillable-forms",
+                title: "Como Criar um PDF Preenchível no Word",
+                content: `Muitos usuários perguntam **como converter word para pdf preenchível**. Embora o Word tenha alguns recursos de formulário, o melhor fluxo de trabalho é:
+1. **Design no Word**: Faça o layout do seu texto e linhas.
+2. **Converter para PDF**: Use esta ferramenta para **transformar word em pdf**.
+3. **Adicionar Campos**: Use nossa ferramenta [Tornar Preenchível](/${lang}/make-fillable) para detectar linhas automaticamente e adicionar caixas de escrita.`
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas: Não Consegue Converter Word para PDF?",
+                content: `**Problema: Imagens estarem borradas.**
+**Correção**: **Salvar doc word como pdf** frequentemente comprime imagens. Garanta que suas imagens de origem sejam de alta resolução antes de você **exportar pdf para documento word** ou vice-versa.
+
+**Problema: Links não funcionam.**
+**Correção**: Quando você **muda word para pdf**, hiperlinks padrão geralmente sobrevivem. Garanta que eles estejam ativos (azul/sublinhado) no Word antes de converter.
+
+**Problema: Computador antigo?**
+**Correção**: Nossa ferramenta é leve. Mesmo em máquinas antigas, você pode **converter arquivo word para pdf no mac** ou PC sem travar seu navegador.`
+            }
+        ],
+
+        faq: [
+            {
+                q: "Esta ferramenta de conversão é realmente gratuita?",
+                a: "Sim! Sem limites, sem cartões de crédito, sem taxas ocultas. Apenas serviço canadense educado. Converta quantos documentos precisar, quando precisar."
+            },
+            {
+                q: "Funciona em dispositivos móveis?",
+                a: "Absolutamente. Você pode converter Word para PDF diretamente do seu navegador iPhone ou Android, escolhendo arquivos do seu armazenamento local, iCloud, Google Drive ou OneDrive. A interface se adapta para telas móveis para uso fácil em movimento."
+            },
+            {
+                q: "Posso converter arquivos .doc mais antigos (não .docx)?",
+                a: "Atualmente, focamos no formato moderno **.docx** (Word 2007 e mais recente). Se você tem um arquivo .doc antigo, recomendamos abri-lo no Word, Google Docs ou LibreOffice e salvá-lo como .docx antes de usar nossa ferramenta. Isso também garante melhor compatibilidade."
+            },
+            {
+                q: "Minha formatação ficará exatamente a mesma?",
+                a: "Na maioria dos casos, sim. Nosso conversor preserva fontes, estilos, imagens, tabelas, cabeçalhos, rodapés e layout de página. No entanto, documentos muito complexos com recursos avançados (objetos embutidos, macros, fontes personalizadas) podem exigir pequenos ajustes. Sempre revise o PDF antes de compartilhar."
+            },
+            {
+                q: "A conversão preserva hiperlinks e marcadores?",
+                a: "Sim! Hiperlinks, índice e referências cruzadas no seu documento Word são preservados como links clicáveis no PDF resultante. Marcadores e títulos também se convertem para marcadores PDF para fácil navegação."
+            },
+            {
+                q: "Qual é o tamanho máximo de arquivo que posso converter?",
+                a: "Como a conversão acontece localmente no seu navegador, o limite depende da RAM do seu dispositivo. A maioria dos computadores modernos lida facilmente com arquivos de até 50-100MB. Celulares podem ter limites menores. Documentos muito grandes podem levar mais tempo para processar."
+            },
+            {
+                q: "Posso converter documentos Word protegidos por senha?",
+                a: "Você precisará remover a senha primeiro. Abra o documento no Word, insira a senha, depois salve uma cópia sem proteção por senha antes de converter para PDF."
+            },
+            {
+                q: "Como converter um documento Word para PDF de graça?",
+                a: "Você pode usar nosso conversor online 100% gratuito. Simplesmente envie seu arquivo .docx, e nós o transformaremos em um PDF profissional localmente no seu navegador. Perfeito se você está se perguntando **como exportar word para pdf** sem pagar."
+            },
+            {
+                q: "Como salvar um documento Word como PDF no Mac ou Windows?",
+                a: "Enquanto ambos os SOs têm opções de 'Salvar Como', nossa ferramenta fornece uma saída consistente e de alta qualidade. Ela responde **como converter word para pdf no mac** ou **como mudar word para pdf** no Windows sem precisar instalar o Microsoft Office."
+            }
+        ],
+
+        ctaTitle: "Converta Seu Documento Agora",
+        ctaButton: "Começar Conversão Word para PDF",
+        ctaSubtext: "100% Grátis. Seguro. Local.",
+        faqHeading: "Perguntas Comuns",
+        quickAnswer: {
+            question: "Como converter Word para PDF de graça?",
+            answer: "Use o conversor Word para PDF do pdfcanada.ca. Envie seu arquivo .docx, nosso motor converte localmente no seu navegador, depois baixe seu PDF profissional. Seus documentos nunca saem do seu dispositivo - ideal para currículos, faturas e documentos legais.",
+            tool: "Conversor Word para PDF",
+            steps: ["Envie seu arquivo Word (.docx)", "Conversão local automática", "Baixe seu PDF"]
+        }
     }
 });
 
@@ -236,14 +365,10 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment convertir Word en PDF gratuitement?" : "How do I convert Word to PDF for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez le convertisseur Word en PDF de pdfcanada.ca. Téléchargez votre fichier .docx, notre moteur le convertit localement dans votre navigateur, puis téléchargez votre PDF professionnel. Vos documents ne quittent jamais votre appareil - idéal pour les CV, factures et documents juridiques."
-                        : "Use pdfcanada.ca's Word to PDF converter. Upload your .docx file, our engine converts it locally in your browser, then download your professional PDF. Your documents never leave your device - ideal for resumes, invoices, and legal documents.",
-                    tool: "Word to PDF Converter",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier Word (.docx)", "Conversion locale automatique", "Téléchargez votre PDF"]
-                        : ["Upload your Word file (.docx)", "Automatic local conversion", "Download your PDF"]
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -284,7 +409,7 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     {/* FAQ */}
                     <div className="my-10 sm:my-16 md:my-20">
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-6 sm:mb-8 md:mb-10 text-gray-900 dark:text-white">
-                            {lang === 'fr' ? "Questions Fréquentes" : "Common Questions"}
+                            {t.faqHeading}
                         </h3>
                         <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
@@ -312,14 +437,10 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir Word en PDF gratuitement?" : "How do I convert Word to PDF for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez le convertisseur Word en PDF de pdfcanada.ca. Téléchargez votre fichier .docx, notre moteur le convertit localement dans votre navigateur, puis téléchargez votre PDF professionnel. Vos documents ne quittent jamais votre appareil - idéal pour les CV, factures et documents juridiques."
-                            : "Use pdfcanada.ca's Word to PDF converter. Upload your .docx file, our engine converts it locally in your browser, then download your professional PDF. Your documents never leave your device - ideal for resumes, invoices, and legal documents."}
-                        toolName="Word to PDF Converter"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre fichier Word (.docx)", "Conversion locale automatique", "Téléchargez votre PDF"]
-                            : ["Upload your Word file (.docx)", "Automatic local conversion", "Download your PDF"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 

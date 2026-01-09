@@ -185,7 +185,13 @@ const getGuideContent = (lang: string) => ({
         ctaTitle: "Ready to Edit Your Document?",
         ctaButton: "Start PDF to Word Conversion",
         ctaSubtext: "100% Free. Secure. Canadian.",
-        faqHeading: "Common Questions"
+        faqHeading: "Common Questions",
+        quickAnswer: {
+            question: "How do I convert PDF to Word for free?",
+            answer: "Use pdfcanada.ca's PDF to Word converter. Upload your PDF, our engine extracts text and formatting locally in your browser, then download your editable .docx file. No signup needed.",
+            tool: "PDF to Word Converter",
+            steps: ["Upload your PDF file", "Local text extraction", "Download your Word file"]
+        }
     },
     fr: {
         seo: {
@@ -356,8 +362,191 @@ const getGuideContent = (lang: string) => ({
         ctaTitle: "Prêt à Modifier Votre Document ?",
         ctaButton: "Commencer la Conversion PDF en Word",
         ctaSubtext: "100% Gratuit. Sécurisé. Canadien.",
-        faqHeading: "Questions Courantes"
-    }
+        faqHeading: "Questions Fréquentes",
+        quickAnswer: {
+            question: "Comment convertir un PDF en Word gratuitement?",
+            answer: "Utilisez le convertisseur PDF vers Word de pdfcanada.ca. Téléchargez votre PDF, notre moteur extrait le texte et le formatage localement dans votre navigateur, puis téléchargez votre fichier .docx éditable. Pas d'inscription requise.",
+            tool: "Convertisseur PDF en Word",
+            steps: ["Téléchargez votre fichier PDF", "Extraction locale du texte", "Téléchargez votre fichier Word"]
+        }
+    },
+    pt: {
+        seo: {
+            title: `Converter PDF para Word | Guia Editável ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Aprenda como tornar seus PDFs editáveis. Nosso guia de ${CURRENT_YEAR} mostra como converter localmente PDF para Word com precisão e segurança sem cadastro.`
+        },
+        h1: "Como Converter PDF para Word: O Guia Definitivo",
+        subtitle: "Transforme seus PDFs somente leitura em documentos editáveis sem instalação de software ou compromissos de privacidade.",
+        intro: "Precisa editar um **documento PDF**? Todos nós já passamos por isso: você tem um contrato, currículo ou relatório que precisa de uma atualização rápida, mas só tem a versão em PDF. Nosso [conversor de PDF para Word](/${lang}/pdf-to-word) permite extrair texto e formatação básica para um arquivo **.docx** padrão. A melhor parte? Tudo acontece inteiramente no seu navegador, mantendo seus documentos sensíveis seguros.",
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Passo a Passo: Convertendo PDF para Word Editável",
+                content: `Siga estes passos simples para desbloquear seu PDF para edição:
+1. **Envie Seu Arquivo PDF**: Clique para navegar ou arraste e solte seu documento PDF no nosso [conversor de PDF para Word](/${lang}/pdf-to-word). O arquivo fica no seu dispositivo—nunca enviado para nossos servidores.
+2. **Extração Automática de Texto**: Nosso motor baseado no navegador começa imediatamente a extrair texto, formatação e informações básicas de layout do seu PDF.
+3. **Geração de Arquivo DOCX**: Construímos um novo arquivo Microsoft Word (.docx) com o conteúdo extraído, preservando a estrutura de parágrafos e estilo básico onde possível.
+4. **Pré-visualizar Qualidade (Opcional)**: Uma vez gerado, você pode abrir o arquivo para verificar a qualidade da extração antes de prosseguir com as edições.
+5. **Baixar Seu Arquivo Editável**: Em segundos, seu documento .docx editável está pronto. Salve-o e comece a fazer suas alterações no Word, Google Docs ou qualquer editor compatível.
+6. **Limpar Formatação**: Para PDFs complexos, você pode precisar ajustar tabelas, imagens ou layouts de várias colunas após a conversão. Documentos de texto simples geralmente requerem limpeza mínima.`
+            },
+            {
+                id: "why-word",
+                title: "Por que Converter PDF de volta para Word?",
+                content: `PDFs são excelentes para visualização e compartilhamento, mas são projetados para serem somente leitura. Ao converter para Word, você desbloqueia poderosos recursos de edição:
+- **Editar Conteúdo de Texto**: Corrija erros de digitação, atualize datas, altere informações de contato ou revise parágrafos inteiros em contratos, relatórios e formulários.
+- **Ajustar Layout e Design**: Mova imagens, redimensione gráficos, altere tamanhos de fonte, modifique margens e reestruture seções sem recriar todo o documento.
+- **Colaborar com Equipes**: O recurso "Controlar Alterações" do Word facilita para várias pessoas revisar e sugerir edições, o que é impossível com PDFs estáticos.
+- **Reutilizar Conteúdo**: Extraia seções de longos relatórios em PDF para criar novos documentos, apresentações ou resumos.
+- **Atualizar Modelos**: Converta formulários e modelos em PDF para o formato Word para que você possa personalizá-los para uso repetido.
+- **Acessibilidade**: Documentos do Word podem ser mais facilmente adaptados para leitores de tela e ferramentas de acessibilidade em comparação com formatos PDF bloqueados.`
+            },
+            {
+                id: "how-it-works",
+                title: "Como Funciona Nossa Conversão Local",
+                content: `A maioria dos conversores online faz upload do seu arquivo para um servidor na nuvem, onde ele é processado, armazenado (às vezes indefinidamente) e potencialmente acessado por terceiros. No pdfcanada.ca, usamos **tecnologia client-side** que funciona de maneira fundamentalmente diferente:
+
+1. **Extração Local**: Nosso motor de processamento de PDF lê os caracteres de texto, fontes e layout diretamente do PDF na memória do seu navegador. Nenhum upload necessário.
+2. **Geração DOCX**: Construímos uma nova estrutura de arquivo Word usando o conteúdo extraído e o empacotamos em um pacote .docx compatível com os padrões.
+3. **Download Instantâneo**: O arquivo é servido de volta para você imediatamente. Seus dados sensíveis nunca saem do seu dispositivo, nunca tocam nossos servidores.
+
+**Por Que Isso Importa:**
+- **Proteção de Privacidade**: Contratos confidenciais, registros médicos, documentos financeiros e informações pessoais permanecem 100% privados.
+- **Processamento Mais Rápido**: Sem tempos de espera de upload/download. A conversão acontece instantaneamente.
+- **Capacidade Offline**: Uma vez que a página carrega, você pode até desconectar da internet e continuar convertendo arquivos.
+- **Sem Restrições de Tamanho de Arquivo**: Ferramentas baseadas em servidor frequentemente limitam o tamanho dos arquivos. O nosso é limitado apenas pela memória do seu dispositivo.`
+            },
+            {
+                id: "use-cases",
+                title: "Casos de Uso Comuns para Conversão de PDF para Word",
+                content: `**Editando Contratos e Acordos**: Você recebeu um contrato em PDF que precisa de pequenas alterações antes de assinar. Converta para Word, faça suas edições (com Controlar Alterações) e depois converta de volta para PDF para assinatura.
+
+**Atualizando Documentos Antigos**: Você tem relatórios em PDF arquivados de 2020, mas precisa extrair seções para uma nova apresentação. Converta para Word, copie os parágrafos relevantes e evite redigitar tudo.
+
+**Modificações em Candidaturas de Emprego**: Um recrutador enviou uma descrição de trabalho em PDF, mas você quer personalizá-la para sua própria postagem. Converta para Word, modifique os requisitos e salve como um novo documento.
+
+**Preenchimento de Formulários Governamentais**: Alguns formulários governamentais são distribuídos como PDFs. Converter para Word permite preenchê-los digitalmente com formatação adequada antes de converter de volta para PDF para envio.
+
+**Revisões de Trabalhos Acadêmicos**: Seu orientador de tese marcou um PDF do seu rascunho. Converta para Word, incorpore o feedback usando Controlar Alterações e prepare a próxima versão eficientemente.
+
+**Revisão de Documentos Legais**: Advogados frequentemente precisam extrair cláusulas de jurisprudência ou precedentes em PDF. Quando você **formata PDF para Word**, pode destacar seções relevantes e inseri-las em novos resumos jurídicos facilmente.`
+            },
+            {
+                id: "resume-rebuilding",
+                title: "Reconstrução de Currículo",
+                content: "Você só tem seu currículo antigo em PDF. **Você pode transformar um PDF de volta para Word**? Absolutamente. Use nossa ferramenta para atualizar sua experiência de trabalho, habilidades e informações de contato sem redigitar."
+            },
+            {
+                id: "data-extraction",
+                title: "Extraindo Dados em vez de Texto?",
+                content: (
+                    <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-2xl border border-red-100 dark:border-red-800">
+                        <p className="text-gray-800 dark:text-gray-200">
+                            Se você está convertendo um PDF apenas para extrair os números (como extratos bancários ou planilhas), o Word pode não ser o melhor formato.
+                            <br /><br />
+                            Confira nosso <Link href={`/${lang}/guides/pdf-to-csv`} className="text-canada-red hover:underline font-bold">Guia PDF para CSV</Link> para aprender como extrair dados estruturados diretamente para Excel ou CSV com 100% de precisão.
+                        </p>
+                    </div>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas para Conversão de PDF para Word",
+                content: `**Antes de Converter:**
+- Verifique se seu PDF é baseado em texto ou imagens digitalizadas. Se digitalizado, use nossa ferramenta OCR primeiro para tornar o texto selecionável.
+- Entenda que layouts complexos (jornais multi-colunas, brochuras muito desenhadas) podem exigir ajustes significativos de formatação após a conversão.
+- Faça um backup do seu PDF original antes de converter, caso precise referenciar o layout original.
+
+**Para Melhores Resultados:**
+- PDFs simples e com muito texto (relatórios, ensaios, contratos) convertem com maior precisão e exigem limpeza mínima.
+- PDFs com fontes padrão (Arial, Times New Roman, Calibri) mantêm melhor formatação do que aqueles com fontes decorativas ou personalizadas incorporadas.
+- Layouts de coluna única convertem melhor do que designs multi-colunas. Espere ajustar manualmente estruturas de colunas complexas.
+- Tabelas podem exigir reformatação, especialmente se se estenderem por várias páginas ou tiverem células mescladas.
+
+**Após a Conversão:**
+- Sempre abra e revise o arquivo .docx resultante antes de fazer edições extensas para entender o que precisa de limpeza.
+- Verifique se títulos, parágrafos e listas mantiveram sua estrutura. Ajuste os estilos se necessário.
+- Verifique se imagens e gráficos estão posicionados corretamente. Você pode precisar reposicioná-los ou redimensioná-los manualmente.
+- Teste quaisquer tabelas extraídas adicionando/removendo linhas para garantir que a estrutura da tabela esteja intacta.
+- Execute uma verificação ortográfica—às vezes problemas de codificação de caracteres podem introduzir erros de digitação durante a conversão.`
+            },
+            {
+                id: "troubleshooting",
+                title: "Problemas Comuns de Conversão e Soluções",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: O texto está truncado ou tem caracteres estranhos</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: O PDF pode usar codificação de fonte personalizada ou fontes incorporadas que não se traduzem claramente. Tente copiar e colar o texto manualmente ou use uma ferramenta de conversão diferente para documentos especializados.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Imagens estão faltando ou pixeladas</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Imagens de baixa resolução no PDF permanecerão de baixa resolução no Word. Se as imagens estiverem faltando completamente, elas podem ser gráficos vetoriais que não converteram—você precisará reinseri-las manualmente.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: O layout está completamente quebrado com texto espalhado</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: O PDF provavelmente usa posicionamento complexo ou caixas de texto. Isso é comum em brochuras e revistas. Considere redigitar manualmente o conteúdo ou usar o PDF como referência visual enquanto reconstrói no Word.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: Tabelas estão malformadas ou faltando bordas</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: Tabelas em PDF frequentemente convertem imperfeitamente. Após a conversão, selecione a tabela no Word, vá para Design de Tabela e reaplique as bordas. Você pode precisar mesclar ou dividir células para corresponder ao layout original.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 mb-2">Problema: A conversão demora muito ou falha</h4>
+                            <p className="text-yellow-800"><strong>Solução</strong>: PDFs muito grandes (100+ páginas ou 50+ MB) podem sobrecarregar a memória do navegador. Tente dividir o PDF em seções menores usando nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta Organizar PDF</Link> e, em seguida, converta cada seção separadamente.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Existe um limite de tamanho de arquivo para conversão de PDF para Word?",
+                a: "Como a conversão acontece localmente no seu navegador, o limite depende da RAM disponível do seu computador. A maioria dos documentos padrão de até 50-100MB converte suavemente em segundos. Arquivos muito grandes podem demorar mais."
+            },
+            {
+                q: "Preciso criar uma conta ou me inscrever?",
+                a: "De jeito nenhum. Apenas envie, converta e baixe. Sem e-mail necessário, sem criação de conta, sem inscrições em boletins informativos. Acreditamos em ferramentas simples e diretas, sem barreiras desnecessárias."
+            },
+            {
+                q: "Posso converter PDFs digitalizados ou baseados em imagens para Word?",
+                a: "Para documentos digitalizados (imagens de texto em vez de texto selecionável real), recomendamos usar nossa ferramenta OCR (Reconhecimento Óptico de Caracteres) primeiro para tornar o texto selecionável e, em seguida, converter para Word. PDFs baseados em imagens sem OCR converterão, mas o resultado serão imagens incorporadas em um arquivo Word, não texto editável."
+            },
+            {
+                q: "O documento Word convertido ficará exatamente igual ao PDF?",
+                a: "Para PDFs simples baseados em texto, a conversão geralmente é muito precisa com necessidade mínima de ajustes de formatação. No entanto, layouts complexos com texto em várias colunas, gráficos avançados ou fontes personalizadas podem exigir limpeza manual no Word após a conversão."
+            },
+            {
+                q: "É seguro converter documentos confidenciais?",
+                a: "Absolutamente. Ao contrário de conversores baseados em nuvem que enviam seu arquivo para servidores remotos, nossa ferramenta processa tudo localmente no seu navegador. Seus contratos confidenciais, registros médicos, extratos financeiros e documentos pessoais nunca saem do seu dispositivo, tornando isso ideal para materiais sensíveis."
+            },
+            {
+                q: "Posso editar o arquivo Word imediatamente após a conversão?",
+                a: "Sim! A saída é um arquivo .docx padrão que abre no Microsoft Word, Google Docs, LibreOffice ou qualquer processador de texto compatível. Você pode começar a editar texto, ajustar formatação e fazer alterações imediatamente."
+            },
+            {
+                q: "O que acontece com hiperlinks e marcadores durante a conversão?",
+                a: "A maioria dos hiperlinks é preservada durante a conversão e permanece clicável no documento Word. No entanto, recursos específicos de PDF como marcadores podem não se traduzir perfeitamente. Sempre teste os links no documento convertido antes de compartilhar."
+            },
+            {
+                q: "Posso converter PDFs protegidos por senha?",
+                a: "Você precisará desbloquear o PDF primeiro. Se você tiver a senha, use um visualizador de PDF para abrir e salvar uma cópia desprotegida, ou use nossa ferramenta Desbloquear PDF. Uma vez desbloqueado, você pode convertê-lo para Word. A proteção por senha é removida durante a conversão."
+            }
+        ],
+
+        ctaTitle: "Pronto para Editar seu Documento?",
+        ctaButton: "Começar Conversão PDF para Word",
+        ctaSubtext: "100% Grátis. Seguro. Canadense.",
+        faqHeading: "Perguntas Comuns",
+        quickAnswer: {
+            question: "Como converto PDF para Word de graça?",
+            answer: "Use o conversor de PDF para Word do pdfcanada.ca. Envie seu PDF, nosso motor extrai texto e formatação localmente no seu navegador, depois baixe seu arquivo .docx editável. Sem cadastro necessário.",
+            tool: "Conversor PDF para Word",
+            steps: ["Envie seu arquivo PDF", "Extração local de texto", "Baixe seu arquivo Word"]
+        }
+    },
 });
 
 export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
@@ -375,14 +564,10 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                 datePublished="2024-04-10"
                 dateModified="2025-12-24"
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment convertir un PDF en Word gratuitement?" : "How do I convert PDF to Word for free?",
-                    answer: lang === 'fr'
-                        ? "Utilisez le convertisseur PDF vers Word de pdfcanada.ca. Téléchargez votre PDF, notre moteur extrait le texte et le formatage localement dans votre navigateur, puis téléchargez votre fichier .docx éditable. Pas d'inscription requise."
-                        : "Use pdfcanada.ca's PDF to Word converter. Upload your PDF, our engine extracts text and formatting locally in your browser, then download your editable .docx file. No signup needed.",
-                    tool: "PDF to Word Converter",
-                    steps: lang === 'fr'
-                        ? ["Téléchargez votre fichier PDF", "Extraction locale du texte", "Téléchargez votre fichier Word"]
-                        : ["Upload your PDF file", "Local text extraction", "Download your Word file"]
+                    question: t.quickAnswer.question,
+                    answer: t.quickAnswer.answer,
+                    tool: t.quickAnswer.tool,
+                    steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
@@ -423,7 +608,7 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     {/* FAQ */}
                     <div className="my-10 sm:my-16 md:my-20">
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-6 sm:mb-8 md:mb-10 text-gray-900 dark:text-white">
-                            {lang === 'fr' ? "Questions Fréquentes" : "Common Questions"}
+                            {t.faqHeading}
                         </h3>
                         <div className="grid gap-3 sm:gap-4 md:gap-6">
                             {t.faq.map((item: any, i: number) => (
@@ -451,14 +636,10 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     </div>
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment convertir un PDF en Word gratuitement?" : "How do I convert PDF to Word for free?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez le convertisseur PDF vers Word de pdfcanada.ca. Téléchargez votre PDF, notre moteur extrait le texte et le formatage localement dans votre navigateur, puis téléchargez votre fichier .docx éditable. Pas d'inscription requise."
-                            : "Use pdfcanada.ca's PDF to Word converter. Upload your PDF, our engine extracts text and formatting locally in your browser, then download your editable .docx file. No signup needed."}
-                        toolName="PDF to Word Converter"
-                        steps={lang === 'fr'
-                            ? ["Téléchargez votre fichier PDF", "Extraction locale du texte", "Téléchargez votre fichier Word"]
-                            : ["Upload your PDF file", "Local text extraction", "Download your Word file"]}
+                        question={t.quickAnswer.question}
+                        answer={t.quickAnswer.answer}
+                        toolName={t.quickAnswer.tool}
+                        steps={t.quickAnswer.steps}
                         lang={lang}
                     />
 
