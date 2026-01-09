@@ -356,7 +356,7 @@ export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
                 </div>
 
                 <div className="mt-20">
-                    <RelatedTools lang={lang} currentPath="/guides/pdf-to-ubl" category="business" />
+                    <RelatedTools lang={lang} currentPath="/guides/pdf-to-ubl" category="advanced" />
                 </div>
 
                 <div className="mt-20 border-t border-gray-200 dark:border-gray-800 pt-12">

@@ -273,7 +273,7 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 </div>
 
                 <div className="mt-20">
-                    <RelatedTools lang={lang} currentPath="/guides/php-to-pdf" category="developer" />
+                    <RelatedTools lang={lang} currentPath="/guides/php-to-pdf" category="advanced" />
                 </div>
 
                 <AuthorBio lang={lang} />

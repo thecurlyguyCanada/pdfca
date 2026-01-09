@@ -388,7 +388,7 @@ export const IpynbToPdfGuide: React.FC<IpynbToPdfGuideProps> = ({ lang }) => {
                     </div>
 
                     <div className="mt-16">
-                        <RelatedTools lang={lang} currentPath="/guides/ipynb-to-pdf" category="developer" />
+                        <RelatedTools lang={lang} currentPath="/guides/ipynb-to-pdf" category="advanced" />
                     </div>
 
                     <AuthorBio lang={lang} />
