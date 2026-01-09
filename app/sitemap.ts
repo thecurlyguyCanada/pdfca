@@ -5,7 +5,7 @@ import { getAllGuideSlugs } from '@/lib/guideConfig';
 const baseUrl = 'https://www.pdfcanada.ca';
 
 // Static pages that should be in sitemap
-const staticPages = ['about', 'howto', 'support', 'privacy', 'terms', 'pricing', 'surah-baqarah-pdf'];
+const staticPages = ['about', 'howto', 'support', 'privacy', 'terms', 'pricing', 'surah-baqarah-pdf', 'surah-yasin-pdf'];
 
 interface SitemapEntry {
     url: string;
