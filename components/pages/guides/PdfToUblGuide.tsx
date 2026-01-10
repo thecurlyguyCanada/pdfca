@@ -24,24 +24,28 @@ const getLocalContent = (lang: string) => ({
         h1: `Free PDF to UBL Converter`,
         subtitle: "The complete guide to creating compliant UBL 2.1 XML invoices from your PDF documents.",
 
-        intro: `In the modern world of business, sending a PDF invoice isn't always enough. Many governments and enterprise systems now require **Electronic Invoicing** in structured formats like **UBL (Universal Business Language)**.
+        intro: (
+            <>
+                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-600 text-white rounded-xl">
+                            <Database size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Ready to convert?</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Transform your invoice to UBL XML instantly.</p>
+                        </div>
+                    </div>
+                    <Link href="/en/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
+                        Go to Converter &rarr;
+                    </Link>
+                </div>
 
-At **pdfcanada.ca**, we've built a simple, private way to **convert PDF to UBL** automatically. Whether you're searching for "how to convert PDF to UBL", need a **PDF to UBL converter** for compliance, or a solution for **PDF naar UBL**, our tool handles it locally.
+                In the modern world of business, sending a PDF invoice isn't always enough. Many governments and enterprise systems now require **Electronic Invoicing** in structured formats like **UBL (Universal Business Language)**.
 
-<div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 my-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-  <div className="flex items-center gap-4">
-    <div className="p-3 bg-blue-600 text-white rounded-xl">
-       <Database size={24} />
-    </div>
-    <div>
-      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Ready to convert?</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">Transform your invoice to UBL XML instantly.</p>
-    </div>
-  </div>
-  <Link href="/en/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-    Go to Converter &rarr;
-  </Link>
-</div>`,
+                At **pdfcanada.ca**, we've built a simple, private way to **convert PDF to UBL** automatically. Whether you're searching for "how to convert PDF to UBL", need a **PDF to UBL converter** for compliance, or a solution for **PDF naar UBL**, our tool handles it locally.
+            </>
+        ),
 
         sections: [
             {
@@ -113,24 +117,28 @@ Click **Download UBL XML** to generate the final file. This file is compliant wi
         h1: `Convertisseur PDF vers UBL Gratuit`,
         subtitle: "Le guide pour créer des factures UBL 2.1 XML conformes à partir de vos documents PDF.",
 
-        intro: `Dans le monde des affaires moderne, envoyer une simple facture PDF ne suffit plus toujours. De nombreux gouvernements exigent désormais la **Facturation Électronique** dans des formats structurés comme **UBL**.
+        intro: (
+            <>
+                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-600 text-white rounded-xl">
+                            <Database size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Prêt à convertir ?</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Transformez votre facture en XML UBL instantanément.</p>
+                        </div>
+                    </div>
+                    <Link href="/fr/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
+                        Aller au Convertisseur &rarr;
+                    </Link>
+                </div>
 
-Chez **pdfcanada.ca**, nous avons créé un **convertisseur UBL** simple et privé pour transformer vos factures PDF lisibles par l'humain en fichiers XML UBL. Si vous cherchez comment mettre un **PDF en UBL**, vous êtes au bon endroit.
+                Dans le monde des affaires moderne, envoyer une simple facture PDF ne suffit plus toujours. De nombreux gouvernements exigent désormais la **Facturation Électronique** dans des formats structurés comme **UBL**.
 
-<div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 my-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-  <div className="flex items-center gap-4">
-    <div className="p-3 bg-blue-600 text-white rounded-xl">
-       <Database size={24} />
-    </div>
-    <div>
-      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Prêt à convertir ?</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">Transformez votre facture en XML UBL instantanément.</p>
-    </div>
-  </div>
-  <Link href="/fr/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-    Aller au Convertisseur &rarr;
-  </Link>
-</div>`,
+                Chez **pdfcanada.ca**, nous avons créé un **convertisseur UBL** simple et privé pour transformer vos factures PDF lisibles par l'humain en fichiers XML UBL. Si vous cherchez comment mettre un **PDF en UBL**, vous êtes au bon endroit.
+            </>
+        ),
 
         sections: [
             {
@@ -201,24 +209,28 @@ Cliquez pour générer le fichier conforme aux normes UBL 2.1.`
         h1: `Conversor PDF para UBL Gratuito`,
         subtitle: "O guia completo para criar faturas UBL 2.1 XML compatíveis a partir de seus PDFs.",
 
-        intro: `No mundo moderno dos negócios, enviar uma fatura em PDF nem sempre é suficiente. Muitos governos e empresas agora exigem **Faturamento Eletrônico** em formatos estruturados como **UBL (Universal Business Language)**.
+        intro: (
+            <>
+                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-600 text-white rounded-xl">
+                            <Database size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Pronto para converter?</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Transforme sua fatura em UBL XML instantaneamente.</p>
+                        </div>
+                    </div>
+                    <Link href="/pt/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
+                        Ir para o Conversor &rarr;
+                    </Link>
+                </div>
 
-No **pdfcanada.ca**, criamos uma maneira simples e privada de converter suas faturas PDF legíveis por humanos em arquivos XML UBL legíveis por máquina.
+                No mundo moderno dos negócios, enviar uma fatura em PDF nem sempre é suficiente. Muitos governos e empresas agora exigem **Faturamento Eletrônico** em formatos estruturados como **UBL (Universal Business Language)**.
 
-<div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 my-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-  <div className="flex items-center gap-4">
-    <div className="p-3 bg-blue-600 text-white rounded-xl">
-       <Database size={24} />
-    </div>
-    <div>
-      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Pronto para converter?</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">Transforme sua fatura em UBL XML instantaneamente.</p>
-    </div>
-  </div>
-  <Link href="/pt/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-    Ir para o Conversor &rarr;
-  </Link>
-</div>`,
+                No **pdfcanada.ca**, criamos uma maneira simples e privada de converter suas faturas PDF legíveis por humanos em arquivos XML UBL legíveis por máquina.
+            </>
+        ),
 
         sections: [
             {
