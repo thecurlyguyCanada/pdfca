@@ -64,6 +64,31 @@ Utiliser un "Visualiseur" permet à un humain de rendre ces données XML dans un
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+**XRechnung** é o padrão alemão para faturas eletrônicas específicas (e-invoicing). É um formato baseado em XML frequentemente incorporado ou acompanhando um PDF.
+
+Este guia explica como visualizar e validar esses arquivos de fatura especializados.
+        `,
+        sections: [
+            {
+                id: 'what-is-xrechnung',
+                title: 'O que é XRechnung?',
+                content: `
+XRechnung é um modelo de dados estruturado baseado na Norma Europeia EN 16931. Ao contrário de uma fatura PDF padrão projetada para humanos lerem, XRechnung é projetado para computadores processarem automaticamente.
+Usar um "Visualizador" permite que um humano renderize esses dados XML em um layout legível semelhante a um PDF.
+                `
+            },
+            {
+                id: 'zugferd',
+                title: 'ZUGFeRD vs. XRechnung',
+                content: `
+*   **ZUGFeRD:** Um formato híbrido. É um arquivo PDF regular com um arquivo XML anexado dentro dele. Você pode abri-lo em qualquer leitor de PDF.
+*   **XRechnung:** XML puro. Você não pode abri-lo em um leitor de PDF; você precisa de um visualizador especializado para renderizá-lo.
+                `
+            }
+        ]
     }
 });
 
@@ -75,24 +100,24 @@ export const XRechnungViewerGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'XRechnung Viewer Guide' : 'Guide Visualiseur XRechnung'}
-                description={lang === 'en' ? 'How to view and validate German XRechnung e-invoices.' : 'Comment visualiser et valider les e-factures allemandes XRechnung.'}
+                title={lang === 'en' ? 'XRechnung Viewer Guide' : lang === 'fr' ? 'Guide Visualiseur XRechnung' : 'Guia Visualizador XRechnung'}
+                description={lang === 'en' ? 'How to view and validate German XRechnung e-invoices.' : lang === 'fr' ? 'Comment visualiser et valider les e-factures allemandes XRechnung.' : 'Como visualizar e validar faturas eletrônicas alemãs XRechnung.'}
                 canonicalPath="/guides/xrechnung-viewer"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: 'XRechnung', path: lang === 'fr' ? '/fr/guides/xrechnung-viewer' : '/guides/xrechnung-viewer' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: 'XRechnung', path: lang === 'en' ? '/guides/xrechnung-viewer' : `/${lang}/guides/xrechnung-viewer` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'XRechnung Viewer' : 'Visualiseur XRechnung'}
-                subtitle={lang === 'en' ? 'Validate and view standard German e-invoices.' : 'Validez et visualisez les e-factures allemandes standards.'}
+                title={lang === 'en' ? 'XRechnung Viewer' : lang === 'fr' ? 'Visualiseur XRechnung' : 'Visualizador XRechnung'}
+                subtitle={lang === 'en' ? 'Validate and view standard German e-invoices.' : lang === 'fr' ? 'Validez et visualisez les e-factures allemandes standards.' : 'Valide e visualize faturas eletrônicas alemãs padrão.'}
                 icon={<FileText size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: 'XRechnung', href: lang === 'fr' ? '/fr/guides/xrechnung-viewer' : '/guides/xrechnung-viewer' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: 'XRechnung', href: lang === 'en' ? '/guides/xrechnung-viewer' : `/${lang}/guides/xrechnung-viewer` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

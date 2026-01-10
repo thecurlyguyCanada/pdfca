@@ -70,6 +70,34 @@ Les PDF sont des documents à mise en page fixe. Ils ne savent pas que "Titre" e
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Converter um PDF para Word é fácil, mas **manter a formatação** é difícil. Todos nós já vimos documentos convertidos onde imagens flutuam para fora da página, fontes quebram e tabelas viram algaravia.
+
+Este guia explica **como preservar a formatação** durante a conversão de PDF para Word.
+        `,
+        sections: [
+            {
+                id: 'why-formatting-breaks',
+                title: 'Por Que a Formatação Quebra?',
+                content: `
+PDFs são documentos de layout fixo. Eles não sabem que "Título" é um cabeçalho; eles apenas sabem que o texto está na posição (x, y). O Word é baseado em fluxo. Traduzir entre eles requer interpretação.
+*   **Layouts Complexos:** Colunas e imagens flutuantes são difíceis de interpretar.
+*   **Fontes Ausentes:** Se o seu PC não tiver a fonte do PDF, ela será substituída.
+                `
+            },
+            {
+                id: 'tips',
+                title: 'Dicas para uma Conversão Perfeita',
+                content: `
+1.  **Use Originais de Alta Qualidade:** Evite digitalizar cópias de cópias.
+2.  **Combine Fontes:** Garanta que você tenha as fontes usadas no PDF instaladas.
+3.  **Evite Gráficos Complexos:** Se possível, simplifique o documento antes de converter.
+4.  **Use Ferramentas Premium:** Ferramentas pagas como Adobe ou motores OCR especializados geralmente lidam com layout melhor do que conversores básicos gratuitos.
+                `
+            }
+        ]
     }
 });
 
@@ -81,24 +109,24 @@ export const PdfToWordFormattingGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Best PDF to Word Converter with Formatting' : 'Meilleur Convertisseur PDF en Word avec Mise en Page'}
-                description={lang === 'en' ? 'How to secure PDF to Word conversion keeping original formatting, fonts, and layout.' : 'Comment sécuriser la conversion PDF en Word en gardant la mise en page, les polices et le format.'}
+                title={lang === 'en' ? 'Best PDF to Word Converter with Formatting' : lang === 'fr' ? 'Meilleur Convertisseur PDF en Word avec Mise en Page' : 'Melhor Conversor PDF para Word com Formatação'}
+                description={lang === 'en' ? 'How to secure PDF to Word conversion keeping original formatting, fonts, and layout.' : lang === 'fr' ? 'Comment sécuriser la conversion PDF en Word en gardant la mise en page, les polices et le format.' : 'Como garantir a conversão de PDF para Word mantendo formatação original, fontes e layout.'}
                 canonicalPath="/guides/pdf-to-word-formatting"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Formatage PDF' : 'PDF Formatting', path: lang === 'fr' ? '/fr/guides/pdf-to-word-formatting' : '/guides/pdf-to-word-formatting' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'PDF Formatting' : lang === 'fr' ? 'Formatage PDF' : 'Formatação PDF', path: lang === 'en' ? '/guides/pdf-to-word-formatting' : `/${lang}/guides/pdf-to-word-formatting` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Keep PDF Formatting in Word' : 'Garder la Mise en Page PDF dans Word'}
-                subtitle={lang === 'en' ? 'Preserve layout, fonts, and images during conversion.' : 'Préservez la mise en page, les polices et les images pendant la conversion.'}
+                title={lang === 'en' ? 'Keep PDF Formatting in Word' : lang === 'fr' ? 'Garder la Mise en Page PDF dans Word' : 'Manter Formatação PDF no Word'}
+                subtitle={lang === 'en' ? 'Preserve layout, fonts, and images during conversion.' : lang === 'fr' ? 'Préservez la mise en page, les polices et les images pendant la conversion.' : 'Preserve layout, fontes e imagens durante a conversão.'}
                 icon={<Layout size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Formatting Guide' : 'Guide Formatage', href: lang === 'fr' ? '/fr/guides/pdf-to-word-formatting' : '/guides/pdf-to-word-formatting' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Formatting Guide' : lang === 'fr' ? 'Guide Formatage' : 'Guia Formatação', href: lang === 'en' ? '/guides/pdf-to-word-formatting' : `/${lang}/guides/pdf-to-word-formatting` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
@@ -108,23 +136,23 @@ export const PdfToWordFormattingGuide: React.FC<GuideProps> = ({ lang }) => {
                         <div className="p-6 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-100 dark:border-red-800">
                             <h3 className="flex items-center gap-2 font-bold text-red-700 dark:text-red-400 mb-4">
                                 <AlertTriangle size={20} />
-                                {lang === 'en' ? 'Common Issues' : 'Problèmes Courants'}
+                                {lang === 'en' ? 'Common Issues' : lang === 'fr' ? 'Problèmes Courants' : 'Problemas Comuns'}
                             </h3>
                             <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                <li>• {lang === 'en' ? 'Broken tables' : 'Tableaux cassés'}</li>
-                                <li>• {lang === 'en' ? 'Missing custom fonts' : 'Polices personnalisées manquantes'}</li>
-                                <li>• {lang === 'en' ? 'Shifted paragraphs' : 'Paragraphes décalés'}</li>
+                                <li>• {lang === 'en' ? 'Broken tables' : lang === 'fr' ? 'Tableaux cassés' : 'Tabelas quebradas'}</li>
+                                <li>• {lang === 'en' ? 'Missing custom fonts' : lang === 'fr' ? 'Polices personnalisées manquantes' : 'Fontes personalizadas ausentes'}</li>
+                                <li>• {lang === 'en' ? 'Shifted paragraphs' : lang === 'fr' ? 'Paragraphes décalés' : 'Parágrafos deslocados'}</li>
                             </ul>
                         </div>
                         <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-100 dark:border-green-800">
                             <h3 className="flex items-center gap-2 font-bold text-green-700 dark:text-green-400 mb-4">
                                 <CheckCircle size={20} />
-                                {lang === 'en' ? 'Our Solution' : 'Notre Solution'}
+                                {lang === 'en' ? 'Our Solution' : lang === 'fr' ? 'Notre Solution' : 'Nossa Solução'}
                             </h3>
                             <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                <li>• {lang === 'en' ? 'Intelligent layout detection' : 'Détection intelligente de mise en page'}</li>
-                                <li>• {lang === 'en' ? 'Font matching' : 'Correspondance de polices'}</li>
-                                <li>• {lang === 'en' ? 'Table reconstruction' : 'Reconstruction de tableaux'}</li>
+                                <li>• {lang === 'en' ? 'Intelligent layout detection' : lang === 'fr' ? 'Détection intelligente de mise en page' : 'Detecção inteligente de layout'}</li>
+                                <li>• {lang === 'en' ? 'Font matching' : lang === 'fr' ? 'Correspondance de polices' : 'Correspondência de fontes'}</li>
+                                <li>• {lang === 'en' ? 'Table reconstruction' : lang === 'fr' ? 'Reconstruction de tableaux' : 'Reconstrução de tabelas'}</li>
                             </ul>
                         </div>
                     </div>

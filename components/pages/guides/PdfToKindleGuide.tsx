@@ -66,6 +66,32 @@ Ce guide vous montre comment optimiser les documents pour la meilleure expérien
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Ler PDFs em um **Kindle** ou e-reader pode ser frustrante. O texto geralmente é muito pequeno e o zoom move a página em vez de redistribuir o texto. A solução? **Converter PDF para o formato Kindle (AZW3 ou KFX)** ou texto redistribuível.
+
+Este guia mostra como otimizar documentos para a melhor experiência de leitura em telas E-ink.
+        `,
+        sections: [
+            {
+                id: 'pdf-vs-kindle',
+                title: 'O Problema: Fixo vs. Redistribuível',
+                content: `
+*   **PDF:** Uma impressão digital. O layout é congelado. Em uma tela pequena, você vê uma página inteira minúscula.
+*   **Kindle (MOBI/AZW3):** Como uma página da web. O texto "flui" para se ajustar ao tamanho da tela, permitindo que você aumente o tamanho da fonte confortavelmente.
+                `
+            },
+            {
+                id: 'methods',
+                title: 'Métodos de Conversão',
+                content: `
+1.  **Send to Kindle (Email):** A ferramenta integrada da Amazon. Envie seu PDF para o seu endereço de e-mail do Kindle com o assunto "Convert". A Amazon tentará convertê-lo para você.
+2.  **Calibre (Melhor Ferramenta):** O canivete suíço dos e-books. O Calibre (software gratuito) permite configurações detalhadas de conversão, detecção de capítulos e edição de metadados.
+3.  **K2pdfopt:** Uma ferramenta especializada para otimizar PDF para telas pequenas sem alterar o formato (recorte inteligente e refluxo de bitmaps).
+                `
+            }
+        ]
     }
 });
 
@@ -77,24 +103,24 @@ export const PdfToKindleGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Convert PDF to Kindle Guide' : 'Guide Convertir PDF pour Kindle'}
-                description={lang === 'en' ? 'Optimize PDFs for Kindle reading. Convert to AZW3/MOBI.' : 'Optimisez les PDF pour la lecture Kindle. Convertissez en AZW3/MOBI.'}
+                title={lang === 'en' ? 'Convert PDF to Kindle Guide' : lang === 'fr' ? 'Guide Convertir PDF pour Kindle' : 'Guia Converter PDF para Kindle'}
+                description={lang === 'en' ? 'Optimize PDFs for Kindle reading. Convert to AZW3/MOBI.' : lang === 'fr' ? 'Optimisez les PDF pour la lecture Kindle. Convertissez en AZW3/MOBI.' : 'Otimize PDFs para leitura no Kindle. Converta para AZW3/MOBI.'}
                 canonicalPath="/guides/pdf-to-kindle"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'PDF vers Kindle' : 'PDF to Kindle', path: lang === 'fr' ? '/fr/guides/pdf-to-kindle' : '/guides/pdf-to-kindle' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'PDF to Kindle' : lang === 'fr' ? 'PDF vers Kindle' : 'PDF para Kindle', path: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'PDF to Kindle' : 'PDF vers Kindle'}
-                subtitle={lang === 'en' ? 'Read documents comfortably on your E-reader.' : 'Lisez des documents confortablement sur votre liseuse.'}
+                title={lang === 'en' ? 'PDF to Kindle' : lang === 'fr' ? 'PDF vers Kindle' : 'PDF para Kindle'}
+                subtitle={lang === 'en' ? 'Read documents comfortably on your E-reader.' : lang === 'fr' ? 'Lisez des documents confortablement sur votre liseuse.' : 'Leia documentos confortavelmente no seu E-reader.'}
                 icon={<Tablet size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'To Kindle' : 'Vers Kindle', href: lang === 'fr' ? '/fr/guides/pdf-to-kindle' : '/guides/pdf-to-kindle' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'To Kindle' : lang === 'fr' ? 'Vers Kindle' : 'Para Kindle', href: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

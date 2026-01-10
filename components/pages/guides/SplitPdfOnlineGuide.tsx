@@ -72,6 +72,35 @@ Ce guide vous montre comment diviser des fichiers PDF en ligne en toute sécurit
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Arquivos PDF grandes são difíceis de manusear. Se você tem um relatório de 500 páginas e precisa apenas do capítulo 3, ou digitalizou uma pilha de recibos e quer separá-los, **dividir** é a resposta.
+
+Este guia mostra como dividir arquivos PDF online com segurança.
+        `,
+        sections: [
+            {
+                id: 'split-methods',
+                title: 'Maneiras de Dividir um PDF',
+                content: `
+1.  **Extrair Páginas:** Selecione números de páginas específicos (ex: "1-5, 10") para criar um novo PDF contendo apenas essas páginas.
+2.  **Dividir em Arquivos Individuais:** Transforme um PDF de 10 páginas em 10 arquivos PDF separados de 1 página.
+3.  **Dividir por Intervalo:** Quebre um documento em pedaços iguais (ex: a cada 5 páginas).
+                `
+            },
+            {
+                id: 'how-to',
+                title: 'Como Dividir Online',
+                content: `
+1.  Vá para nossa ferramenta **Dividir PDF**.
+2.  Arraste e solte seu arquivo.
+3.  Clique nos ícones de "tesoura" entre as páginas ou selecione as páginas que deseja extrair.
+4.  Baixe seus novos arquivos menores.
+*Dica Profissional:* Use nossa ferramenta local para máxima privacidade. Dividindo contratos sensíveis? Não faça upload deles!
+                `
+            }
+        ]
     }
 });
 
@@ -83,24 +112,24 @@ export const SplitPdfOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Split PDF Online Guide' : 'Guide Diviser PDF en Ligne'}
-                description={lang === 'en' ? 'How to split PDF pages online. Extract pages or divide documents.' : 'Comment diviser des pages PDF en ligne. Extrayez des pages ou divisez des documents.'}
+                title={lang === 'en' ? 'Split PDF Online Guide' : lang === 'fr' ? 'Guide Diviser PDF en Ligne' : 'Guia Dividir PDF Online'}
+                description={lang === 'en' ? 'How to split PDF pages online. Extract pages or divide documents.' : lang === 'fr' ? 'Comment diviser des pages PDF en ligne. Extrayez des pages ou divisez des documents.' : 'Como dividir páginas PDF online. Extraia páginas ou divida documentos.'}
                 canonicalPath="/guides/split-pdf-online"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: lang === 'fr' ? '/fr/guides/split-pdf-online' : '/guides/split-pdf-online' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Split PDF' : lang === 'fr' ? 'Diviser PDF' : 'Dividir PDF', path: lang === 'en' ? '/guides/split-pdf-online' : `/${lang}/guides/split-pdf-online` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Split PDF Online' : 'Diviser PDF en Ligne'}
-                subtitle={lang === 'en' ? 'Extract pages or divide documents into parts.' : 'Extrayez des pages ou divisez des documents en parties.'}
+                title={lang === 'en' ? 'Split PDF Online' : lang === 'fr' ? 'Diviser PDF en Ligne' : 'Dividir PDF Online'}
+                subtitle={lang === 'en' ? 'Extract pages or divide documents into parts.' : lang === 'fr' ? 'Extrayez des pages ou divisez des documents en parties.' : 'Extraia páginas ou divida documentos em partes.'}
                 icon={<Scissors size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Split Online' : 'Diviser en Ligne', href: lang === 'fr' ? '/fr/guides/split-pdf-online' : '/guides/split-pdf-online' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Split Online' : lang === 'fr' ? 'Diviser en Ligne' : 'Dividir Online', href: lang === 'en' ? '/guides/split-pdf-online' : `/${lang}/guides/split-pdf-online` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

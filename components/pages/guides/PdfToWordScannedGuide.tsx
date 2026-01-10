@@ -68,6 +68,33 @@ La Reconnaissance Optique de Caractères (OCR) scanne l'image de votre document,
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Converter um **PDF digitalizado** é mais difícil do que um PDF comum porque o computador o vê como uma **imagem**, não texto. Para convertê-lo em um documento Word editável, você precisa de uma tecnologia chamada **OCR (Reconhecimento Óptico de Caracteres)**.
+
+Este guia explora as melhores maneiras de transformar imagens digitalizadas em texto editável.
+        `,
+        sections: [
+            {
+                id: 'what-is-ocr',
+                title: 'O que é OCR?',
+                content: `
+O Reconhecimento Óptico de Caracteres (OCR) digitaliza a imagem do seu documento, reconhece as formas das letras e as reconstrói como texto digital editável.
+*   **Sem OCR:** Você obtém um documento Word contendo uma imagem de texto.
+*   **Com OCR:** Você obtém texto real que pode excluir, digitar e pesquisar.
+                `
+            },
+            {
+                id: 'how-to-convert',
+                title: 'Como Converter PDF Digitalizado',
+                content: `
+1.  **Use uma ferramenta compatível com OCR:** Nem todos os conversores suportam digitalizações. Procure por recursos "OCR".
+2.  **Verifique a Qualidade da Imagem:** Digitalizações desfocadas ou escuras produzem erros. Garanta boa iluminação e contraste.
+3.  **Revise:** O OCR raramente é 100% perfeito. Sempre verifique números e nomes próprios.
+                `
+            }
+        ]
     }
 });
 
@@ -79,24 +106,24 @@ export const PdfToWordScannedGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Convert Scanned PDF to Word with OCR' : 'Convertir PDF Scanné en Word avec OCR'}
-                description={lang === 'en' ? 'How to edit scanned PDF documents by converting them to Word using OCR technology.' : 'Comment éditer des documents PDF scannés en les convertissant en Word avec la technologie OCR.'}
+                title={lang === 'en' ? 'Convert Scanned PDF to Word with OCR' : lang === 'fr' ? 'Convertir PDF Scanné en Word avec OCR' : 'Converter PDF Digitalizado para Word com OCR'}
+                description={lang === 'en' ? 'How to edit scanned PDF documents by converting them to Word using OCR technology.' : lang === 'fr' ? 'Comment éditer des documents PDF scannés en les convertissant en Word avec la technologie OCR.' : 'Como editar documentos PDF digitalizados convertendo-os para Word usando tecnologia OCR.'}
                 canonicalPath="/guides/pdf-to-word-scanned"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Scan vers Word' : 'Scan to Word', path: lang === 'fr' ? '/fr/guides/pdf-to-word-scanned' : '/guides/pdf-to-word-scanned' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Scan to Word' : lang === 'fr' ? 'Scan vers Word' : 'Scan para Word', path: lang === 'en' ? '/guides/pdf-to-word-scanned' : `/${lang}/guides/pdf-to-word-scanned` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Convert Scanned PDF to Word' : 'Convertir PDF Scanné en Word'}
-                subtitle={lang === 'en' ? 'Turn pictures of text into editable documents.' : 'Transformez des images de texte en documents modifiables.'}
+                title={lang === 'en' ? 'Convert Scanned PDF to Word' : lang === 'fr' ? 'Convertir PDF Scanné en Word' : 'Converter PDF Digitalizado para Word'}
+                subtitle={lang === 'en' ? 'Turn pictures of text into editable documents.' : lang === 'fr' ? 'Transformez des images de texte en documents modifiables.' : 'Transforme imagens de texto em documentos editáveis.'}
                 icon={<Scan size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Scanned PDF' : 'PDF Scanné', href: lang === 'fr' ? '/fr/guides/pdf-to-word-scanned' : '/guides/pdf-to-word-scanned' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Scanned PDF' : lang === 'fr' ? 'PDF Scanné' : 'PDF Digitalizado', href: lang === 'en' ? '/guides/pdf-to-word-scanned' : `/${lang}/guides/pdf-to-word-scanned` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
@@ -106,13 +133,17 @@ export const PdfToWordScannedGuide: React.FC<GuideProps> = ({ lang }) => {
                         <div className="flex-1 p-6 border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-xl relative">
                             <Camera className="mx-auto md:mx-0 w-12 h-12 text-gray-400 mb-4" />
                             <p className="font-mono text-sm text-gray-500">IMG_001.jpg</p>
-                            <p className="font-bold text-gray-900 dark:text-white">"Picture of Text"</p>
+                            <p className="font-bold text-gray-900 dark:text-white">
+                                {lang === 'en' ? '"Picture of Text"' : lang === 'fr' ? '"Image de Texte"' : '"Imagem de Texto"'}
+                            </p>
                         </div>
                         <div className="text-canada-red font-bold text-xl">→ OCR →</div>
                         <div className="flex-1 p-6 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-900/10">
                             <FileText className="mx-auto md:mx-0 w-12 h-12 text-blue-600 mb-4" />
                             <p className="font-mono text-sm text-blue-500">Document.docx</p>
-                            <p className="font-bold text-gray-900 dark:text-white">"Editable Text"</p>
+                            <p className="font-bold text-gray-900 dark:text-white">
+                                {lang === 'en' ? '"Editable Text"' : lang === 'fr' ? '"Texte Modifiable"' : '"Texto Editável"'}
+                            </p>
                         </div>
                     </div>
 

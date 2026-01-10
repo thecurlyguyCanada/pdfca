@@ -102,6 +102,50 @@ Si vous avez une mise en page personnalisée ou complexe, Adobe Acrobat Pro est 
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Há momentos em que **conversão online não é uma opção**. Talvez você tenha dados restritos, sem conexão com a internet ou políticas rígidas da empresa. Nesses casos, você precisa de um **conversor de PDF para Word offline** confiável.
+
+Este guia cobre os melhores métodos para converter seus documentos localmente no Windows e Mac.
+        `,
+        sections: [
+            {
+                id: 'why-offline',
+                title: 'Por Que Converter Offline?',
+                content: `
+Embora ferramentas online sejam convenientes, a conversão offline oferece benefícios únicos:
+*   **Segurança:** Seus arquivos nunca saem do seu dispositivo.
+*   **Velocidade:** Sem necessidade de carregar ou baixar arquivos grandes.
+*   **Independência:** Trabalhe sem conexão com a internet.
+                `
+            },
+            {
+                id: 'method-1-word',
+                title: 'Método 1: Usando Microsoft Word (Melhor para Texto)',
+                content: `
+Você sabia que o Microsoft Word tem um conversor de PDF integrado?
+1.  Abra o Microsoft Word.
+2.  Vá em **Arquivo > Abrir**.
+3.  Selecione seu arquivo PDF.
+4.  O Word solicitará que você converta o PDF. Clique em **OK**.
+5.  Revise e salve o documento como \`.docx\`.
+
+*Nota: Isso funciona melhor para documentos de texto simples. Layouts complexos podem se mover.*
+                `
+            },
+            {
+                id: 'method-2-adobe',
+                title: 'Método 2: Adobe Acrobat Pro (Melhor para Layout)',
+                content: `
+Se você tem um layout personalizado ou complexo, o Adobe Acrobat Pro é o padrão da indústria:
+1.  Abra o arquivo no Acrobat.
+2.  Clique na ferramenta **Exportar PDF** no painel direito.
+3.  Escolha **Microsoft Word** como seu formato de exportação.
+4.  Clique em **Exportar**.
+                `
+            }
+        ]
     }
 });
 
@@ -113,24 +157,24 @@ export const PdfToWordOfflineGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'PDF to Word Offline Converter Guide' : 'Guide Convertisseur PDF en Word Hors Ligne'}
-                description={lang === 'en' ? 'Convert PDF to Word locally without internet. Secure, private.' : 'Convertir PDF en Word localement sans internet. Sécurisé, privé.'}
+                title={lang === 'en' ? 'PDF to Word Offline Converter Guide' : lang === 'fr' ? 'Guide Convertisseur PDF en Word Hors Ligne' : 'Guia Conversor PDF para Word Offline'}
+                description={lang === 'en' ? 'Convert PDF to Word locally without internet. Secure, private.' : lang === 'fr' ? 'Convertir PDF en Word localement sans internet. Sécurisé, privé.' : 'Converter PDF para Word localmente sem internet. Seguro, privado.'}
                 canonicalPath="/guides/pdf-to-word-offline"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'PDF en Word Hors Ligne' : 'PDF to Word Offline', path: lang === 'fr' ? '/fr/guides/pdf-to-word-offline' : '/guides/pdf-to-word-offline' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'PDF to Word Offline' : lang === 'fr' ? 'PDF en Word Hors Ligne' : 'PDF para Word Offline', path: lang === 'en' ? '/guides/pdf-to-word-offline' : `/${lang}/guides/pdf-to-word-offline` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'PDF to Word Offline' : 'PDF en Word Hors Ligne'}
-                subtitle={lang === 'en' ? 'Secure local conversion without internet access.' : 'Conversion locale sécurisée sans accès internet.'}
+                title={lang === 'en' ? 'PDF to Word Offline' : lang === 'fr' ? 'PDF en Word Hors Ligne' : 'PDF para Word Offline'}
+                subtitle={lang === 'en' ? 'Secure local conversion without internet access.' : lang === 'fr' ? 'Conversion locale sécurisée sans accès internet.' : 'Conversão local segura sem acesso à internet.'}
                 icon={<WifiOff size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'How to Convert' : 'Comment Convertir', href: lang === 'fr' ? '/fr/guides/pdf-to-word-offline' : '/guides/pdf-to-word-offline' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'How to Convert' : lang === 'fr' ? 'Comment Convertir' : 'Como Converter', href: lang === 'en' ? '/guides/pdf-to-word-offline' : `/${lang}/guides/pdf-to-word-offline` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
@@ -139,23 +183,23 @@ export const PdfToWordOfflineGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="my-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
                             <WifiOff className="w-8 h-8 text-blue-600 mb-4" />
-                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? 'No Internet?' : 'Pas d\'Internet ?'}</h3>
+                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? 'No Internet?' : lang === 'fr' ? 'Pas d\'Internet ?' : 'Sem Internet?'}</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {lang === 'en' ? 'Works completely offline.' : 'Fonctionne complètement hors ligne.'}
+                                {lang === 'en' ? 'Works completely offline.' : lang === 'fr' ? 'Fonctionne complètement hors ligne.' : 'Funciona completamente offline.'}
                             </p>
                         </div>
                         <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl">
                             <Shield className="w-8 h-8 text-green-600 mb-4" />
-                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? '100% Secure' : '100% Sécurisé'}</h3>
+                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? '100% Secure' : lang === 'fr' ? '100% Sécurisé' : '100% Seguro'}</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {lang === 'en' ? 'Data stays on your PC.' : 'Les données restent sur votre PC.'}
+                                {lang === 'en' ? 'Data stays on your PC.' : lang === 'fr' ? 'Les données restent sur votre PC.' : 'Os dados ficam no seu PC.'}
                             </p>
                         </div>
                         <div className="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
                             <Laptop className="w-8 h-8 text-purple-600 mb-4" />
-                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? 'Native Speed' : 'Vitesse Native'}</h3>
+                            <h3 className="font-bold text-lg mb-2">{lang === 'en' ? 'Native Speed' : lang === 'fr' ? 'Vitesse Native' : 'Velocidade Nativa'}</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {lang === 'en' ? 'No upload/download wait.' : 'Pas d\'attente de téléchargement.'}
+                                {lang === 'en' ? 'No upload/download wait.' : lang === 'fr' ? 'Pas d\'attente de téléchargement.' : 'Sem espera de upload/download.'}
                             </p>
                         </div>
                     </div>
@@ -173,18 +217,20 @@ export const PdfToWordOfflineGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
-                        <h3 className="text-xl font-bold mb-4">{lang === 'en' ? 'Need a quick online fix?' : 'Besoin d\'une solution rapide en ligne ?'}</h3>
+                        <h3 className="text-xl font-bold mb-4">{lang === 'en' ? 'Need a quick online fix?' : lang === 'fr' ? 'Besoin d\'une solution rapide en ligne ?' : 'Precisa de uma solução rápida online?'}</h3>
                         <p className="mb-6 text-gray-600 dark:text-gray-400">
                             {lang === 'en'
                                 ? 'If you don\'t have Word installed, try our secure online converter. It processes files locally in your browser.'
-                                : 'Si vous n\'avez pas Word installé, essayez notre convertisseur en ligne sécurisé. Il traite les fichiers localement dans votre navigateur.'}
+                                : lang === 'fr'
+                                    ? 'Si vous n\'avez pas Word installé, essayez notre convertisseur en ligne sécurisé. Il traite les fichiers localement dans votre navigateur.'
+                                    : 'Se você não tem o Word instalado, experimente nosso conversor online seguro. Ele processa arquivos localmente no seu navegador.'}
                         </p>
                         <Link
                             href={`/${lang}/guides/pdf-to-word-online`}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-canada-red text-white rounded-lg hover:bg-red-700 transition-colors font-semibold"
                         >
                             <RefreshCw size={20} />
-                            {lang === 'en' ? 'Try Online Converter' : 'Essayer le convertisseur en ligne'}
+                            {lang === 'en' ? 'Try Online Converter' : lang === 'fr' ? 'Essayer le convertisseur en ligne' : 'Tentar Conversor Online'}
                         </Link>
                     </div>
 

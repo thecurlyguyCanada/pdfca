@@ -64,6 +64,31 @@ Pour fusionner de gros fichiers, vous avez besoin d'un outil qui traite des **fl
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Juntar pequenos PDFs é fácil, mas e se você tiver **centenas de arquivos** ou **gigabytes de dados**? Juntar PDFs grandes geralmente trava as ferramentas padrão do navegador porque elas ficam sem memória.
+
+Este guia explica como lidar com trabalhos de fusão massivos sem travar seu navegador.
+        `,
+        sections: [
+            {
+                id: 'why-crashes',
+                title: 'Por Que as Ferramentas Travam?',
+                content: `
+A maioria das ferramentas online tenta carregar todo o PDF na RAM do seu navegador. Se você juntar dez arquivos de 500MB, são 5GB de RAM—mais do que a maioria das abas tem permissão para usar.
+                `
+            },
+            {
+                id: 'solution',
+                title: 'A Solução: Fusão por Fluxo',
+                content: `
+Para juntar arquivos grandes, você precisa de uma ferramenta que processe **fluxos**. Ela lê a página 1 do Arquivo A, grava no novo arquivo e depois a esquece. Em seguida, lê a Página 2. Nunca mantém o arquivo inteiro na memória de uma só vez.
+*   **Nossa Ferramenta:** Usamos processamento local eficiente que pode lidar com arquivos significativamente maiores do que os uploaders de nuvem típicos, porque não precisamos fazer o upload do arquivo de 5GB primeiro!
+*   **Software de Desktop:** Para trabalhos realmente massivos (ex: 20.000 páginas), softwares de desktop como Adobe Acrobat ou PDFsam ainda são os reis.
+                `
+            }
+        ]
     }
 });
 
@@ -75,24 +100,24 @@ export const MergeLargePdfsGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Merge Large PDF Files Guide' : 'Guide Fusionner Gros Fichiers PDF'}
-                description={lang === 'en' ? 'How to combine massive PDF files without crashing your browser.' : 'Comment combiner des fichiers PDF massifs sans faire planter votre navigateur.'}
+                title={t.seo_title || (lang === 'en' ? 'Merge Large PDF Files Guide' : lang === 'fr' ? 'Guide Fusionner Gros Fichiers PDF' : 'Guia Mesclar Arquivos PDF Grandes')}
+                description={t.seo_desc || (lang === 'en' ? 'How to combine massive PDF files without crashing your browser.' : lang === 'fr' ? 'Comment combiner des fichiers PDF massifs sans faire planter votre navigateur.' : 'Como combinar arquivos PDF massivos sem travar seu navegador.')}
                 canonicalPath="/guides/merge-large-pdfs"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Fusionner Gros PDF' : 'Merge Large PDFs', path: lang === 'fr' ? '/fr/guides/merge-large-pdfs' : '/guides/merge-large-pdfs' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Merge Large PDFs' : lang === 'fr' ? 'Fusionner Gros PDF' : 'Mesclar PDFs Grandes', path: lang === 'en' ? '/guides/merge-large-pdfs' : `/${lang}/guides/merge-large-pdfs` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Merge Large PDFs' : 'Fusionner Gros PDF'}
-                subtitle={lang === 'en' ? 'Combine massive documents securely and efficiently.' : 'Combinez des documents massifs de manière sécurisée et efficace.'}
+                title={lang === 'en' ? 'Merge Large PDFs' : lang === 'fr' ? 'Fusionner Gros PDF' : 'Mesclar PDFs Grandes'}
+                subtitle={lang === 'en' ? 'Combine massive documents securely and efficiently.' : lang === 'fr' ? 'Combinez des documents massifs de manière sécurisée et efficace.' : 'Combine documentos massivos com segurança e eficiência.'}
                 icon={<Combine size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Merge Large' : 'Fusionner Gros', href: lang === 'fr' ? '/fr/guides/merge-large-pdfs' : '/guides/merge-large-pdfs' }
+                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'Merge Large' : lang === 'fr' ? 'Fusionner Gros' : 'Mesclar Grandes', href: lang === 'en' ? '/guides/merge-large-pdfs' : `/${lang}/guides/merge-large-pdfs` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
