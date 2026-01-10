@@ -215,6 +215,108 @@ const getGuideContent = (lang: Language) => ({
         ctaTitle: "Doute sur une pièce jointe ?",
         ctaButton: "Scanner le PDF",
         ctaSubtext: "Gratuit, Privé et Sécurisé. 🛡️"
+    },
+    pt: {
+        seo: {
+            title: `Analisar Segurança PDF e Detectar Phishing | Grátis ${CURRENT_YEAR}`,
+            desc: `Analise com segurança anexos PDF suspeitos em busca de links de phishing, malware e scripts ocultos. Processamento 100% local protege sua privacidade.`
+        },
+        h1: `Como Verificar a Segurança do PDF (Guia ${CURRENT_YEAR})`,
+        subtitle: "O guia completo para detectar PDFs maliciosos, tentativas de phishing e scripts ocultos sem arriscar seu dispositivo.",
+
+        intro: (
+            <>
+                <div className="flex items-center gap-4 mb-8 p-6 bg-blue-50 dark:bg-blue-900/10 rounded-3xl border border-blue-100 dark:border-blue-800">
+                    <Shield className="text-blue-600 shrink-0" size={32} />
+                    <p className="text-gray-700 dark:text-gray-300 font-medium italic">
+                        &quot;Abrir um anexo PDF pode acionar malware instantaneamente. Nossa ferramenta analisa a estrutura do arquivo com segurança dentro do seu navegador, para que você nunca precise executar o código.&quot;
+                    </p>
+                </div>
+                Cibercriminosos frequentemente usam <strong>anexos PDF</strong> para entregar malware ou enganar usuários para clicarem em links de phishing. Uma fatura ou recibo aparentemente inocente pode conter <strong>JavaScript</strong> embutido ou ações de início automático que comprometem seu computador.
+                <br /><br />
+                Na <strong>pdfcanada.ca</strong>, desenvolvemos um <strong>Analisador de Segurança Local</strong>. Neste guia, explicaremos como inspecionar PDFs suspeitos em busca de ameaças como scripts ocultos, conexões de IP externas e ações de lançamento maliciosas sem nunca abri-los no Adobe Reader.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to-scan",
+                title: "Como Escanear um PDF em Busca de Malware (com Segurança)",
+                content: (
+                    <div className="space-y-4">
+                        <p>Siga estas etapas para analisar um arquivo suspeito sem executar sua carga útil:</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Abra o Analisador:</strong> Vá para o <Link href={`/${lang}/analyze-pdf`} className="text-canada-red hover:underline font-bold">Analisador de Segurança PDF</Link>.
+                            </li>
+                            <li>
+                                <strong>Solte o Arquivo:</strong> Arraste e solte o PDF suspeito. Como usamos <strong>WebAssembly</strong>, o arquivo é analisado localmente. Ele NUNCA é enviado para nenhum servidor.
+                            </li>
+                            <li>
+                                <strong>Revise o Relatório:</strong> Olhe para a <strong>Pontuação de Risco</strong>. Sinalizamos elementos de alto risco como <code>/JS</code> (JavaScript), <code>/Launch</code> (Programas Externos) e <code>/URI</code> (Links).
+                            </li>
+                            <li>
+                                <strong>Use Visualização Segura:</strong> Mude para a aba &quot;Visualização Segura&quot; para ler o conteúdo do documento. Isso renderiza o PDF como uma imagem estática, neutralizando efetivamente qualquer click-jacking ou scripts de autoexecução.
+                            </li>
+                        </ol>
+                    </div>
+                )
+            },
+            {
+                id: "risk-factors",
+                title: "Ameaças Comuns em PDF que Detectamos",
+                content: (
+                    <div className="grid md:grid-cols-2 gap-4 mt-6">
+                        <div className="p-6 rounded-2xl bg-red-50 border border-red-100">
+                            <h4 className="font-bold text-red-900 mb-2 flex items-center gap-2"><AlertTriangle size={18} /> JavaScript Embutido</h4>
+                            <p className="text-sm text-red-800">Atacantes incorporam scripts que rodam assim que o PDF abre. Estes podem baixar vírus ou roubar cookies.</p>
+                        </div>
+                        <div className="p-6 rounded-2xl bg-orange-50 border border-orange-100">
+                            <h4 className="font-bold text-orange-900 mb-2 flex items-center gap-2"><Lock size={18} /> Ações de Lançamento</h4>
+                            <p className="text-sm text-orange-800">Comandos que tentam abrir programas externos como PowerShell ou Prompt de Comando para sequestrar seu sistema.</p>
+                        </div>
+                        <div className="p-6 rounded-2xl bg-yellow-50 border border-yellow-100">
+                            <h4 className="font-bold text-yellow-900 mb-2 flex items-center gap-2"><Eye size={18} /> Links de Phishing</h4>
+                            <p className="text-sm text-yellow-800">Links que parecem páginas de login legítimas, mas enviam suas credenciais para hackers. Inspecionamos o destino real da URL.</p>
+                        </div>
+                        <div className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                            <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><FileText size={18} /> Objetos Ocultos</h4>
+                            <p className="text-sm text-gray-800">Cargas maliciosas escondidas em objetos ou fluxos PDF não padrão para evitar assinaturas de antivírus.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "privacy-guarantee",
+                title: "Por que a Análise Local é Mais Segura",
+                content: (
+                    <div className="bg-gray-900 text-white rounded-3xl p-8 mb-8 border-l-8 border-green-500">
+                        <p className="text-gray-300 leading-relaxed">
+                            Enviar um arquivo suspeito para um scanner online pode ser arriscado se o arquivo contiver dados corporativos confidenciais. Nossa ferramenta roda estritamente no sandbox do seu navegador. <strong>O PDF nunca sai do seu computador.</strong> Isso permite que você inspecione ameaças potenciais em documentos confidenciais sem violar políticas de privacidade de dados.
+                        </p>
+                    </div>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Essa ferramenta pode simplificar um PDF para remover vírus?",
+                a: "Você pode usar nossa ferramenta 'Achatar PDF' após a inspeção para converter o documento em imagens puras, removendo efetivamente quaisquer scripts ativos ou código de malware."
+            },
+            {
+                q: "Isso substitui meu antivírus?",
+                a: "Não. Esta ferramenta é para análise comportamental e inspeção. Ela ajuda você a decidir se um arquivo é seguro para abrir. Você deve sempre manter seu antivírus do sistema atualizado."
+            },
+            {
+                q: "O que significa 'Visualização Segura'?",
+                a: "A Visualização Segura renderiza as páginas do PDF como imagens de canvas estáticas usando configurações rígidas que desativam toda a execução de scripts. Isso permite que você leia o texto sem acionar nenhum código oculto."
+            }
+        ],
+
+        ctaTitle: "Inseguro sobre esse anexo?",
+        ctaButton: "Escanear PDF Agora",
+        ctaSubtext: "Grátis, Privado e Seguro. 🛡️"
     }
 });
 
