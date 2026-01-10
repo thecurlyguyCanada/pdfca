@@ -676,6 +676,127 @@ const getGuideContent = (lang: Language) => ({
         cta: "Sécurisez les Données Patients",
         ctaBtn: "Commencer le Traitement Sûr",
         related: "Outils Cliniques"
+    },
+    pt: {
+        seo: {
+            title: `Ferramentas PDF Compatíveis com HIPAA/PIPEDA para Saúde ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Processe registros de pacientes, histórico médico, resultados de exames e formulários de seguro com segurança, sem que os dados saiam do seu dispositivo. Ferramentas PDF compatíveis com HIPAA e PIPEDA para profissionais de saúde.`
+        },
+        h1: `Segurança de PDF na Saúde: Processamento de Documentos Compatível com HIPAA e PIPEDA (${CURRENT_YEAR})`,
+        subtitle: "Um guia abrangente para profissionais de saúde, clínicas e hospitais sobre o gerenciamento de registros de pacientes e documentos médicos sem violar regulamentos.",
+        intro: (
+            <>
+                Na área da saúde, a privacidade dos dados não é apenas a melhor prática — é a lei. Violar **HIPAA** (EUA) ou **PIPEDA** (Canadá) pode resultar em multas massivas, processos criminais e perda de licença médica.
+                <br /><br />
+                O maior risco? **Processadores em nuvem de terceiros.** Cada vez que você faz upload de um registro de paciente para um conversor online, você cria uma cadeia de custódia de dados que não pode controlar.
+                <br /><br />
+                <strong>pdfcanada.ca</strong> oferece uma solução de nível clínico: ferramentas de processamento de PDF que funcionam inteiramente offline no seu navegador usando tecnologia WebAssembly, garantindo que os dados do paciente nunca toquem a internet aberta.
+            </>
+        ),
+        sections: [
+            {
+                id: "compliance-requirements",
+                title: "Entendendo a Conformidade HIPAA e PIPEDA",
+                content: (
+                    <>
+                        <p className="mb-4">Tanto a HIPAA quanto a PIPEDA têm requisitos rigorosos para o manuseio de Informações de Saúde Protegidas (PHI):</p>
+                        <div className="space-y-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-3">Requisitos da Regra de Privacidade HIPAA:</h4>
+                                <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                                    <li>Padrão mínimo necessário: Apenas acesse PHI necessário para a tarefa.</li>
+                                    <li>Salvaguardas técnicas: Criptografia e controles de acesso.</li>
+                                    <li>Acordos de Associado Comercial (BAA): Necessário para terceiros.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "compliance-gap",
+                title: "A Lacuna de Conformidade em Ferramentas na Nuvem",
+                content: (
+                    <>
+                        <p className="mb-4">A maioria das ferramentas PDF baseadas em nuvem cria sérios riscos de conformidade:</p>
+                        <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                            <li><strong>Sem BAA:</strong> A maioria das ferramentas gratuitas não assina BAA.</li>
+                            <li><strong>Armazenamento no Servidor:</strong> Cópias temporárias podem persistir em servidores desconhecidos.</li>
+                            <li><strong>Transferência Transfronteiriça:</strong> Dados podem sair da sua jurisdição legal.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "Auditoria de Privacidade: Arquitetura Técnica",
+                content: (
+                    <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Lock className="text-green-500" size={24} />
+                            Verificação do Ciclo de Vida de Dados
+                        </h4>
+                        <ul className="space-y-4">
+                            <li><strong>Carregamento Local:</strong> Arquivos lidos diretamente na memória do navegador.</li>
+                            <li><strong>Processamento WebAssembly:</strong> CPU local executa todas as operações. 0 bytes transmitidos.</li>
+                            <li><strong>Limpeza de Memória:</strong> Dados expurgados ao fechar a aba.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "clinical-use-cases",
+                title: "Casos de Uso Clínico",
+                content: (
+                    <>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-blue-100 dark:border-gray-700 shadow-sm">
+                                <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                    <FileCheck size={20} className="inline mr-2" /> Consolidação de Registros
+                                </h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Mescle resultados de laboratório e cartas de consulta em um arquivo único para upload no EMR/EHR.</p>
+                            </div>
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-blue-100 dark:border-gray-700 shadow-sm">
+                                <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                    <HeartPulse size={20} className="inline mr-2" /> Processamento de Sinistros
+                                </h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Comprima documentação volumosa para limites de upload de seguradoras.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas de Segurança",
+                content: (
+                    <div className="space-y-6">
+                        <p className="text-gray-700 dark:text-gray-300">1. Verifique o processamento local (use F12 Network tab).</p>
+                        <p className="text-gray-700 dark:text-gray-300">2. Mantenha estações de trabalho seguras e criptografadas.</p>
+                        <p className="text-gray-700 dark:text-gray-300">3. Feche as abas imediatamente após o uso para limpar a memória.</p>
+                    </div>
+                )
+            },
+            {
+                id: "faq",
+                title: "Perguntas Frequentes",
+                content: (
+                    <div className="space-y-4">
+                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h5 className="font-bold text-gray-900 dark:text-white mb-2">P: Preciso de um BAA?</h5>
+                            <p className="text-gray-700 dark:text-gray-300">R: Não, pois o processamento é local e nenhum dado é transmitido aos nossos servidores.</p>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h5 className="font-bold text-gray-900 dark:text-white mb-2">P: É compatível com HIPAA e PIPEDA?</h5>
+                            <p className="text-gray-700 dark:text-gray-300">R: Sim, a arquitetura local satisfaz os requisitos de privacidade e segurança de ambos.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+        cta: "Proteja Dados de Pacientes",
+        ctaBtn: "Iniciar Processamento Seguro",
+        related: "Ferramentas Clínicas"
     }
 });
 

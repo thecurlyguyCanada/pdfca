@@ -62,6 +62,30 @@ Chaque PDF contient des métadonnées : Titre, Auteur, Créateur, Date de Créat
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Um PDF é um formato de arquivo complexo contendo uma árvore de objetos, dicionários, fluxos e tabelas de referência cruzada. **Analisar** a estrutura interna de um PDF é essencial para depuração, perícia ou para entender por que um arquivo está corrompido.
+        `,
+        sections: [
+            {
+                id: 'metadata',
+                title: 'Inspecionar Metadados',
+                content: `
+Todo PDF contém metadados: Título, Autor, Criador, Data de Criação e Data de Modificação.
+*   **Aviso de Privacidade:** Metadados frequentemente revelam o software usado (ex: "Microsoft Word 2016") ou o caminho completo do arquivo original no computador do autor. Analisar isso pode revelar a proveniência.
+                `
+            },
+            {
+                id: 'structure',
+                title: 'Estrutura Interna',
+                content: `
+*   **Fontes:** Verifique quais fontes estão incorporadas vs. referenciadas.
+*   **Imagens:** Inspecione métodos de compressão de imagem (JPEG, Flate) e resolução.
+*   **Segurança:** Verifique níveis de criptografia (AES-128, AES-256) e sinalizadores de permissão.
+                `
+            }
+        ]
     }
 });
 

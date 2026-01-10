@@ -1210,7 +1210,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Cansado de pedir aos clientes para imprimir, assinar à mão e digitalizar documentos de volta para você? Você precisa <strong>tornar seu PDF preenchível</strong>. Seja você um pequeno empresário ou um estudante, criar <strong>formulários PDF interativos</strong> é essencial. Nosso <strong>criador de formulários PDF gratuito</strong> permite adicionar campos de texto, caixas de seleção e lugares para assinatura em qualquer documento sem precisar de software caro como o Adobe Acrobat.
+                Cansado de pedir aos clientes para imprimir, assinar à mão e digitalizar documentos de volta para você? Você precisa <strong>tornar seu PDF preenchível</strong>. Seja você um pequeno empresário no Brasil ou um estudante em Lisboa, criar <strong>formulários PDF interativos</strong> é essencial para um fluxo de trabalho moderno. Nosso <strong>criador de formulários PDF gratuito</strong> permite adicionar campos de texto, caixas de seleção, botões de rádio e lugares para assinatura em qualquer documento sem precisar de software caro como o Adobe Acrobat.
             </>
         ),
 
@@ -1231,6 +1231,12 @@ const getGuideContent = (lang: Language) => ({
                             <li><strong>Menus Suspensos</strong>: Para selecionar de listas predefinidas.</li>
                             <li><strong>Seletores de Data</strong>: Para formatação de data consistente.</li>
                         </ul>
+                        <p className="mb-4">
+                            Usar um <strong>criador de PDF preenchível online</strong> garante que seus documentos sejam fáceis de preencher e pareçam profissionais em qualquer dispositivo. Formulários preenchíveis são particularmente populares para submissões governamentais, contratos comerciais, formulários de admissão médica e documentos legais.
+                        </p>
+                        <p className="mb-4">
+                            Existem dois tipos principais de formulários PDF: <strong>AcroForms</strong> (formulários PDF tradicionais compatíveis com todos os leitores) e <strong>formulários XFA</strong> (Arquitetura de Formulários XML). Nossa ferramenta cria AcroForms, que têm compatibilidade universal com Adobe Acrobat Reader, Preview no Mac, visualizador de PDF do Chrome e aplicativos móveis de PDF.
+                        </p>
                     </>
                 )
             },
@@ -1241,21 +1247,39 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li>
-                                <strong>Envie Seu Documento PDF</strong>: Selecione o PDF que deseja tornar interativo usando nosso carregador local. O arquivo carrega instantaneamente no seu navegador.
+                                <strong>Envie Seu Documento PDF</strong>: Selecione o PDF que deseja tornar interativo usando nosso carregador local. Pode ser um modelo de contrato, formulário de emprego, pesquisa ou qualquer documento. O arquivo carrega instantaneamente no seu navegador—sem upload para servidor.
                             </li>
                             <li>
-                                <strong>Projete o Layout do Formulário</strong>: Use o editor visual para colocar campos interativos. Clique no tipo de campo e depois clique no seu PDF onde deseja posicioná-lo.
+                                <strong>Projete o Layout do Formulário</strong>: Use o editor visual para colocar campos interativos. Clique no tipo de campo (Texto, Caixa de Seleção, Assinatura, Data) e depois clique no seu PDF onde deseja posicioná-lo. Nossa ferramenta é otimizada para facilidade de uso.
                             </li>
                             <li>
-                                <strong>Configure as Propriedades do Campo</strong>: Defina nome, status obrigatório, valores padrão e formatação.
+                                <strong>Configure as Propriedades do Campo</strong>: Para cada campo, você pode definir:
+                                <ul className="list-disc pl-5 mt-2 space-y-1">
+                                    <li>Nome do campo (ex: "NomeCompleto", "Email")</li>
+                                    <li>Status obrigatório vs opcional</li>
+                                    <li>Valores padrão ou texto de espaço reservado</li>
+                                    <li>Formatação de texto</li>
+                                    <li>Regras de validação</li>
+                                </ul>
                             </li>
                             <li>
-                                <strong>Teste Seu Formulário</strong>: Use o modo de pré-visualização para testar todos os campos antes de finalizar.
+                                <strong>Teste Seu Formulário</strong>: Antes de finalizar, use o modo de pré-visualização para testar todos os campos. Tente digitar nas caixas de texto, marcar caixas de seleção e desenhar assinaturas para garantir que tudo funcione como esperado.
                             </li>
                             <li>
-                                <strong>Salve e Distribua</strong>: Clique em 'Processar PDF' para baixar seu novo PDF interativo, pronto para compartilhar.
+                                <strong>Salve e Distribua</strong>: Clique em 'Processar PDF' para baixar seu novo PDF interativo. O formulário agora está pronto para compartilhar via e-mail, armazenamento em nuvem ou seu site. Os destinatários podem preenchê-lo usando qualquer leitor de PDF moderno.
                             </li>
                         </ol>
+                        <p className="mb-4">
+                            Esta é a maneira mais <strong>segura de tornar um PDF preenchível</strong> porque processamos todas as edições localmente no seu navegador. Seus dados comerciais confidenciais ou informações de clientes nunca tocam nossos servidores.
+                        </p>
+                        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 mb-6">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-400 mb-2 flex items-center gap-2">
+                                <Clock size={20} /> Tempo Médio de Criação
+                            </h4>
+                            <p className="text-yellow-800 dark:text-yellow-300">
+                                A maioria dos usuários cria formulários preenchíveis profissionais em menos de 10 minutos. Um contrato simples de 1 página com campo de assinatura leva cerca de 3 minutos.
+                            </p>
+                        </div>
                     </>
                 )
             },
@@ -1265,16 +1289,117 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-6">
-                            Entender qual tipo de campo usar é crucial para criar formulários eficazes:
+                            Entender qual tipo de campo usar é crucial para criar formulários eficazes. Aqui está uma análise abrangente:
                         </p>
-                        <div className="space-y-4">
-                            <div className="p-4 border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20">
-                                <h4 className="font-bold mb-2">Campos de Texto</h4>
-                                <p className="text-sm mb-2"><strong>Melhor para</strong>: Nomes, endereços, e-mails, números de telefone.</p>
+                        <div className="space-y-6">
+                            <div className="border-l-4 border-blue-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <PencilLine size={20} className="text-blue-500" /> Campos de Texto
+                                </h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Nomes, endereços, endereços de e-mail, números de telefone, descrições, comentários</p>
+                                <p className="mb-2"><strong>Propriedades que você pode definir</strong>:</p>
+                                <ul className="list-disc pl-5 space-y-1 mb-2">
+                                    <li>Linha única vs multilinha (para respostas mais longas)</li>
+                                    <li>Limites de caracteres</li>
+                                    <li>Formatação de texto</li>
+                                </ul>
                             </div>
-                            <div className="p-4 border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20">
-                                <h4 className="font-bold mb-2">Caixas de Seleção</h4>
-                                <p className="text-sm mb-2"><strong>Melhor para</strong>: Perguntas Sim/Não, confirmações, seleções múltiplas.</p>
+
+                            <div className="border-l-4 border-green-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <CheckSquare size={20} className="text-green-500" /> Caixas de Seleção
+                                </h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Perguntas Sim/Não, confirmações de acordo, seleções múltiplas (escolha todas as que se aplicam)</p>
+                                <ul className="list-disc pl-5 space-y-1 mb-2">
+                                    <li>Aceitação de termos e condições ("Eu concordo...")</li>
+                                    <li>Preferências de opt-in/opt-out</li>
+                                    <li>Opções de seleção múltipla</li>
+                                </ul>
+                            </div>
+
+                            <div className="border-l-4 border-purple-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <FileText size={20} className="text-purple-500" /> Botões de Rádio
+                                </h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Selecionar exatamente uma opção de um grupo (escolhas mutuamente exclusivas)</p>
+                                <p className="mb-2"><strong>Como funcionam</strong>: Os botões de rádio são agrupados pelo nome. Quando um é selecionado, todos os outros no grupo são automaticamente desmarcados.</p>
+                                <ul className="list-disc pl-5 space-y-1 mb-2">
+                                    <li>Seleção de gênero</li>
+                                    <li>Método de pagamento</li>
+                                    <li>Classificações de satisfação</li>
+                                </ul>
+                            </div>
+
+                            <div className="border-l-4 border-red-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <PenTool size={20} className="text-red-500" /> Campos de Assinatura
+                                </h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Assinaturas digitais, rubricas, marcas de autorização</p>
+                                <p className="mb-2"><strong>Como funciona</strong>: Os usuários podem desenhar sua assinatura com um mouse (desktop) ou dedo (celular/tablet). A assinatura é incorporada diretamente no PDF.</p>
+                            </div>
+
+                            <div className="border-l-4 border-orange-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2">Menus Suspensos</h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Longas listas de opções onde exibir todas como botões de rádio seria impraticável</p>
+                                <ul className="list-disc pl-5 space-y-1 mb-2">
+                                    <li>Seleção de país ou estado</li>
+                                    <li>Títulos de cargos</li>
+                                    <li>Seleção de produtos</li>
+                                </ul>
+                            </div>
+
+                            <div className="border-l-4 border-teal-500 pl-6">
+                                <h4 className="font-bold text-lg mb-2">Campos de Data</h4>
+                                <p className="mb-2"><strong>Melhor para</strong>: Datas de nascimento, datas de início, datas de validade</p>
+                                <p className="text-sm italic text-gray-600 dark:text-gray-400">Exemplo de uso: "Data de Nascimento: [____-__-__]"</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Casos de Uso Reais para Formulários PDF Preenchíveis",
+                content: (
+                    <>
+                        <p className="mb-6">
+                            PDFs preenchíveis são usados em todas as indústrias. Aqui estão as aplicações mais comuns:
+                        </p>
+                        <div className="grid md:grid-cols-2 gap-6 mb-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h4 className="font-bold text-lg mb-3 text-blue-900 dark:text-blue-400">Negócios e Contratos</h4>
+                                <ul className="space-y-2 text-sm">
+                                    <li>✓ Acordos de serviço ao cliente</li>
+                                    <li>✓ Acordos de não divulgação (NDAs)</li>
+                                    <li>✓ Ordens de compra e faturas</li>
+                                    <li>✓ Formulários de cadastro de fornecedores</li>
+                                </ul>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h4 className="font-bold text-lg mb-3 text-green-900 dark:text-green-400">Recursos Humanos</h4>
+                                <ul className="space-y-2 text-sm">
+                                    <li>✓ Formulários de candidatura a emprego</li>
+                                    <li>✓ Documentos de integração de novos funcionários</li>
+                                    <li>✓ Solicitações de folga</li>
+                                    <li>✓ Avaliações de desempenho</li>
+                                </ul>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h4 className="font-bold text-lg mb-3 text-purple-900 dark:text-purple-400">Governo e Jurídico</h4>
+                                <ul className="space-y-2 text-sm">
+                                    <li>✓ Formulários fiscais</li>
+                                    <li>✓ Solicitações de imigração</li>
+                                    <li>✓ Documentos judiciais e declarações</li>
+                                    <li>✓ Solicitações de permissão municipal</li>
+                                </ul>
+                            </div>
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800">
+                                <h4 className="font-bold text-lg mb-3 text-orange-900 dark:text-orange-400">Saúde e Médico</h4>
+                                <ul className="space-y-2 text-sm">
+                                    <li>✓ Formulários de admissão de pacientes</li>
+                                    <li>✓ Questionários de histórico médico</li>
+                                    <li>✓ Formulários de consentimento</li>
+                                </ul>
                             </div>
                         </div>
                     </>
@@ -1286,14 +1411,118 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-4">
-                            Ao criar formulários preenchíveis, você geralmente trabalha com informações sensíveis. É por isso que o <strong>processamento local baseado em navegador</strong> é crítico.
+                            Ao criar formulários preenchíveis, você geralmente trabalha com informações sensíveis: dados de clientes, registros de funcionários ou informações financeiras. É por isso que o <strong>processamento local baseado em navegador</strong> é crítico.
                         </p>
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
                             <div className="p-6 border border-red-200 bg-red-50 dark:bg-red-900/20 rounded-xl">
                                 <h4 className="font-bold text-red-800 dark:text-red-400 mb-3">🔒 100% Privado e Seguro</h4>
-                                <p className="text-sm">
-                                    Seus arquivos PDF são processados inteiramente no seu navegador. Seus documentos <strong>nunca saem do seu dispositivo</strong>.
+                                <p className="text-sm mb-3">
+                                    Seus arquivos PDF são processados inteiramente no seu navegador usando WebAssembly. Seus documentos <strong>nunca saem do seu dispositivo</strong>—não são enviados para nossos servidores, nem armazenados na nuvem.
                                 </p>
+                            </div>
+                            <div className="p-6 border border-green-200 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                                <h4 className="font-bold text-green-800 dark:text-green-400 mb-3">✓ Sem Coleta de Dados</h4>
+                                <p className="text-sm">
+                                    O processamento local significa que há <strong>zero coleta de dados</strong>, zero retenção e zero risco de violação de dados.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl mb-4">
+                            <h4 className="font-bold mb-3">Comparação: Ferramentas na Nuvem vs pdfcanada.ca</h4>
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-gray-300 dark:border-gray-600">
+                                            <th className="text-left py-2 px-3">Recurso</th>
+                                            <th className="text-left py-2 px-3">Ferramentas na Nuvem</th>
+                                            <th className="text-left py-2 px-3 bg-green-100 dark:bg-green-900/30">pdfcanada.ca</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="border-b border-gray-200 dark:border-gray-700">
+                                            <td className="py-2 px-3 font-medium">Upload de arquivo para servidor</td>
+                                            <td className="py-2 px-3">✗ Sim (risco de segurança)</td>
+                                            <td className="py-2 px-3 bg-green-50 dark:bg-green-900/20">✓ Nunca</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-200 dark:border-gray-700">
+                                            <td className="py-2 px-3 font-medium">Retenção de dados</td>
+                                            <td className="py-2 px-3">✗ Horas a para sempre</td>
+                                            <td className="py-2 px-3 bg-green-50 dark:bg-green-900/20">✓ 0 segundos (apenas RAM)</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-200 dark:border-gray-700">
+                                            <td className="py-2 px-3 font-medium">Conta necessária</td>
+                                            <td className="py-2 px-3">✗ Geralmente sim</td>
+                                            <td className="py-2 px-3 bg-green-50 dark:bg-green-900/20">✓ Sem cadastro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas para Projetar Formulários PDF Preenchíveis",
+                content: (
+                    <>
+                        <p className="mb-6">
+                            Criar um formulário eficaz requer um design cuidadoso. Aqui estão as melhores práticas:
+                        </p>
+                        <div className="space-y-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
+                                <h4 className="font-bold text-lg mb-3">1. Use Rótulos de Campo Claros</h4>
+                                <p className="mb-2">❌ <strong>Ruim</strong>: "Nome:" (ambíguo)</p>
+                                <p className="mb-4">✅ <strong>Bom</strong>: "Nome Legal Completo (como aparece no documento de identidade)"</p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border-l-4 border-green-500">
+                                <h4 className="font-bold text-lg mb-3">2. Dimensione os Campos Adequadamente</h4>
+                                <p className="mb-2">O tamanho do campo fornece pistas visuais sobre o comprimento da resposta esperada. Campos curtos para códigos postais, campos longos para endereços.</p>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border-l-4 border-purple-500">
+                                <h4 className="font-bold text-lg mb-3">3. Agrupe Campos Relacionados</h4>
+                                <p className="mb-2">Use proximidade visual e títulos de seção para organizar: Informações Pessoais, Detalhes de Contato, Informações de Emprego.</p>
+                            </div>
+
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border-l-4 border-orange-500">
+                                <h4 className="font-bold text-lg mb-3">4. Marque Campos Obrigatórios Claramente</h4>
+                                <p className="mb-2">Use um indicador consistente. Abordagens comuns: Asterisco (*) ao lado do rótulo ou texto explícito "(Obrigatório)".</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "integration",
+                title: "Integração e Automação de Fluxo de Trabalho",
+                content: (
+                    <>
+                        <p className="mb-6">
+                            Criar o formulário é apenas o primeiro passo. Veja como integrar PDFs preenchíveis em seus fluxos de trabalho:
+                        </p>
+                        <div className="space-y-6">
+                            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                                <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Globe size={20} className="text-blue-500" /> Distribuição por E-mail
+                                </h4>
+                                <ol className="list-decimal pl-5 space-y-2 text-sm">
+                                    <li>Crie seu PDF preenchível usando pdfcanada.ca</li>
+                                    <li>Anexe o formulário a um e-mail</li>
+                                    <li>Os destinatários baixam, preenchem e devolvem o PDF completo</li>
+                                    <li>Você recebe os formulários preenchidos em sua caixa de entrada</li>
+                                </ol>
+                            </div>
+
+                            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                                <h4 className="font-bold text-lg mb-3">Incorporação em Site</h4>
+                                <p className="text-sm mb-3">Hospede seu PDF preenchível em seu site para download pelos clientes.</p>
+                            </div>
+
+                            <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                                <h4 className="font-bold text-lg mb-3">Extração e Processamento de Dados</h4>
+                                <p className="text-sm mb-3">Assim que receber os formulários preenchidos, você pode extrair os dados manualmente (lendo cada PDF) ou usando ferramentas automatizadas.</p>
                             </div>
                         </div>
                     </>
@@ -1304,10 +1533,34 @@ const getGuideContent = (lang: Language) => ({
                 title: "Solução de Problemas Comuns",
                 content: (
                     <>
-                        <div className="space-y-4">
-                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl">
-                                <h4 className="font-bold mb-2 text-red-900 dark:text-red-400">Problema: Campos não aceitam entrada no Adobe Reader</h4>
-                                <p className="text-sm"><strong>Solução</strong>: Verifique se os campos não estão como somente leitura e se o PDF não está protegido por senha.</p>
+                        <div className="space-y-6">
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h4 className="font-bold text-lg mb-2 text-red-900 dark:text-red-400">Problema: Campos não aceitam entrada no Adobe Reader</h4>
+                                <p className="text-sm mb-3"><strong>Causa</strong>: O PDF pode estar definido como somente leitura ou as propriedades do campo estão configuradas incorretamente.</p>
+                                <p className="text-sm font-medium mb-2"><strong>Soluções</strong>:</p>
+                                <ul className="list-disc pl-5 space-y-1 text-sm">
+                                    <li>Certifique-se de que os campos não estejam definidos como "Somente Leitura"</li>
+                                    <li>Verifique se o PDF não está protegido por senha</li>
+                                </ul>
+                            </div>
+
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800">
+                                <h4 className="font-bold text-lg mb-2 text-orange-900 dark:text-orange-400">Problema: Campo de assinatura não funciona no celular</h4>
+                                <p className="text-sm mb-3"><strong>Causa</strong>: Leitores de PDF móveis têm suporte variado para campos de assinatura.</p>
+                                <p className="text-sm font-medium mb-2"><strong>Soluções</strong>:</p>
+                                <ul className="list-disc pl-5 space-y-1 text-sm">
+                                    <li>Recomende o aplicativo Adobe Acrobat Reader móvel</li>
+                                    <li>Faça o campo de assinatura grande o suficiente para desenhar com o dedo</li>
+                                </ul>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h4 className="font-bold text-lg mb-2 text-purple-900 dark:text-purple-400">Problema: Dados do formulário desaparecem ao fechar</h4>
+                                <p className="text-sm mb-3"><strong>Causa</strong>: O usuário não salvou o PDF após preencher.</p>
+                                <p className="text-sm font-medium mb-2"><strong>Soluções</strong>:</p>
+                                <ul className="list-disc pl-5 space-y-1 text-sm">
+                                    <li>Adicione instruções claras: "Clique em Arquivo → Salvar após preencher"</li>
+                                </ul>
                             </div>
                         </div>
                     </>
@@ -1319,33 +1572,37 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <>
                         <p className="mb-6">
-                            Oferecemos um verdadeiro <strong>editor de formulários PDF gratuito</strong> com recursos de nível empresarial. Sem marcas d'água, sem limites.
+                            A maioria das ferramentas "gratuitas" online adiciona marcas d'água, limita você a poucas conversões ou força um cadastro. No pdfcanada.ca, oferecemos um verdadeiro <strong>editor de formulários PDF gratuito</strong> com recursos de nível empresarial:
                         </p>
-                        <div className="bg-gradient-to-r from-canada-red to-red-700 p-8 rounded-2xl text-white mb-6">
-                            <h4 className="text-2xl font-bold mb-3">Comparação: pdfcanada.ca vs Adobe Acrobat DC</h4>
-                            <table className="min-w-full text-sm">
-                                <tr className="border-b border-white/30">
-                                    <th className="text-left py-2">Recurso</th>
-                                    <th className="text-left py-2">Adobe Acrobat DC</th>
-                                    <th className="text-left py-2 bg-white/20">pdfcanada.ca</th>
-                                </tr>
-                                <tr className="border-b border-white/20">
-                                    <td className="py-2">Preço</td>
-                                    <td className="py-2">R$ Premium/mês</td>
-                                    <td className="py-2 bg-white/10">R$ 0 (Grátis)</td>
-                                </tr>
-                                <tr className="border-b border-white/20">
-                                    <td className="py-2">Instalação de software</td>
-                                    <td className="py-2">Sim (Pesado)</td>
-                                    <td className="py-2 bg-white/10">Não (Navegador)</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">Privacidade</td>
-                                    <td className="py-2">Nuvem</td>
-                                    <td className="py-2 bg-white/10">100% Local</td>
-                                </tr>
-                            </table>
+                        <div className="grid md:grid-cols-2 gap-6 mb-6">
+                            <div className="p-6 border border-red-200 bg-red-50 dark:bg-red-900/20 rounded-xl">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <Lock size={20} className="text-red-600" /> Arquitetura Focada em Privacidade
+                                </h4>
+                                <p className="text-sm">
+                                    Seus dados sensíveis ficam na sua máquina. Não podemos acessar seus arquivos porque eles nunca chegam aos nossos servidores.
+                                </p>
+                            </div>
+                            <div className="p-6 border border-green-200 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <CheckCircle size={20} className="text-green-600" /> Sem Conta Necessária
+                                </h4>
+                                <p className="text-sm">
+                                    Comece a editar instantaneamente—sem verificação de e-mail, sem criação de senha. Apenas envie e edite.
+                                </p>
+                            </div>
                         </div>
+                    </>
+                )
+            },
+            {
+                id: "seo-keywords",
+                title: "SEO e Palavras-chave de Pesquisa",
+                content: (
+                    <>
+                        <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                            Este guia cobre: <strong>como tornar um PDF preenchível</strong>, <strong>criador de formulário PDF gratuito</strong>, <strong>criador de PDF preenchível online</strong>, <strong>formulários PDF interativos</strong>, <strong>adicionar campos de texto ao PDF</strong>, <strong>criar PDF preenchível sem Adobe</strong>, <strong>gerador de PDF preenchível</strong>, <strong>tornar PDF editável</strong>, <strong>software de formulário PDF grátis</strong>, <strong>adicionar campo de assinatura ao PDF</strong>, <strong>criar AcroForms</strong>, <strong>formulário governamental PDF</strong>, <strong>PDF preenchível seguro</strong>, <strong>processamento de PDF local</strong>.
+                        </p>
                     </>
                 )
             }
@@ -1353,24 +1610,76 @@ const getGuideContent = (lang: Language) => ({
 
         faq: [
             {
-                q: "É realmente grátis?",
-                a: "Sim! Sem custos ocultos, limites ou marcas d'água. Use o quanto precisar, para sempre."
+                q: "É gratuito tornar um PDF preenchível neste site?",
+                a: "Sim! Não há custos ocultos, limites ou marcas d'água. É 100% gratuito. Diferente de outras ferramentas, o pdfcanada.ca oferece acesso ilimitado a todos os recursos sem custo—para sempre."
             },
             {
-                q: "Meus arquivos são enviados para seus servidores?",
-                a: "Não. Todo o processamento acontece localmente no seu navegador. Seus arquivos nunca saem do seu dispositivo, garantindo total privacidade."
+                q: "Posso adicionar um campo de assinatura ao meu PDF?",
+                a: "Absolutamente. Nossa ferramenta permite colocar espaços para assinatura. O campo de assinatura permite que os usuários desenhem sua assinatura com um mouse (desktop) ou dedo (celular/tablet), e a assinatura é incorporada diretamente no PDF."
             },
             {
-                q: "Os formulários funcionam em dispositivos móveis?",
-                a: "Sim, os PDFs preenchíveis funcionam na maioria dos leitores de PDF modernos em iOS e Android, incluindo Adobe Acrobat Reader."
+                q: "Preciso baixar algum software?",
+                a: "Não. Nossa ferramenta funciona inteiramente no seu navegador web (Chrome, Safari, Firefox, Edge) usando tecnologia WebAssembly avançada. Não há instalação de software, nem criação de conta."
             },
             {
-                q: "Posso adicionar campos de assinatura?",
-                a: "Sim, nosso ferramenta permite adicionar campos de assinatura onde os usuários podem desenhar ou digitar suas assinaturas."
+                q: "Meus arquivos PDF são enviados para seus servidores?",
+                a: "Não. Todo o processamento acontece localmente no seu navegador. Seus arquivos PDF nunca saem do seu dispositivo—não são enviados para nossos servidores, nem armazenados na nuvem."
             },
             {
-                q: "Como distribuo meu formulário?",
-                a: "Você pode enviar por e-mail, hospedar em seu site ou compartilhar via armazenamento em nuvem. Os destinatários podem preencher usando qualquer leitor de PDF padrão."
+                q: "Quais tipos de campos posso adicionar?",
+                a: "Você pode adicionar: campos de entrada de texto, caixas de seleção, botões de rádio, menus suspensos, campos de assinatura e seletores de data. Cada campo pode ser personalizado com propriedades."
+            },
+            {
+                q: "Meu PDF preenchível funcionará em dispositivos móveis?",
+                a: "Sim! PDFs preenchíveis criados com o pdfcanada.ca funcionam em todos os leitores de PDF modernos, incluindo aplicativos móveis como Adobe Acrobat Reader."
+            },
+            {
+                q: "Posso usar isso para formulários governamentais?",
+                a: "Absolutamente. Você pode adicionar campos a formulários fiscais, solicitações de imigração e permissões municipais, desde que o PDF original não esteja bloqueado."
+            },
+            {
+                q: "Os destinatários podem preencher o formulário em qualquer leitor de PDF?",
+                a: "Sim. Os PDFs preenchíveis usam o formato padrão AcroForm, suportado pelo Adobe Acrobat Reader, Preview no Mac, Chrome, Edge e a maioria dos apps móveis."
+            },
+            {
+                q: "Posso extrair dados de formulários preenchidos?",
+                a: "Sim. Você pode extrair dados manualmente ou usando ferramentas automatizadas como Adobe Acrobat Pro ou bibliotecas Python."
+            },
+            {
+                q: "Posso proteger meu PDF preenchível com senha?",
+                a: "Não diretamente na ferramenta de criação. No entanto, após criar seu PDF, você pode usar nossa ferramenta separada de proteção por senha."
+            },
+            {
+                q: "O que acontece se alguém preencher mas não salvar?",
+                a: "Os dados serão perdidos. Adicione instruções claras para salvar o PDF após o preenchimento."
+            },
+            {
+                q: "Posso tornar certos campos obrigatórios?",
+                a: "Sim, você pode marcar campos como 'Obrigatórios'. No entanto, a aplicação depende do leitor de PDF usado."
+            },
+            {
+                q: "Como achatar um formulário PDF depois de preenchido?",
+                a: "Achatamento converte campos interativos em texto estático. Use nossa ferramenta de Achatamento de PDF após o formulário ser preenchido para bloquear o conteúdo."
+            },
+            {
+                q: "Posso adicionar campos de cálculo?",
+                a: "Campos de cálculo básicos requerem JavaScript e não são suportados atualmente em nosso criador simples. Para isso, você precisaria do Adobe Acrobat Pro."
+            },
+            {
+                q: "Por que minhas caixas de seleção não funcionam independentemente?",
+                a: "Se elas têm o mesmo nome, agem como um grupo. Dê a cada caixa de seleção um nome único a menos que queira comportamento de botão de rádio."
+            },
+            {
+                q: "Qual o tamanho máximo do arquivo?",
+                a: "Depende da RAM do seu dispositivo, pois o processamento é local. A maioria consegue lidar com 50-100 MB. Para arquivos maiores, pode ficar lento."
+            },
+            {
+                q: "Posso criar formulários de várias páginas?",
+                a: "Sim, nossa ferramenta suporta PDFs de várias páginas. Você pode navegar e adicionar campos em qualquer página."
+            },
+            {
+                q: "Posso salvar meu modelo para reutilizar?",
+                a: "Sim. Salve o PDF preenchível no seu computador. Ele se torna seu modelo que você pode distribuir cópias."
             }
         ],
 
@@ -1380,9 +1689,9 @@ const getGuideContent = (lang: Language) => ({
         faqHeading: "Perguntas Frequentes",
         quickAnswer: {
             question: "Como tornar um PDF preenchível de graça?",
-            answer: "Use o criador de formulários PDF do pdfcanada.ca. Envie seu PDF, arraste e solte campos de texto e caixas de seleção, depois baixe seu formulário interativo. Processamento 100% local.",
+            answer: "Use o criador de formulários PDF do pdfcanada.ca. Envie seu PDF, arraste e solte campos de texto, caixas de seleção e áreas de assinatura, depois baixe seu formulário interativo. Processamento 100% local.",
             tool: "Criador de Formulários PDF",
-            steps: ["Envie seu arquivo PDF", "Adicione campos interativos arrastando", "Baixe seu formulário preenchível"]
+            steps: ["Envie seu arquivo PDF", "Adicione campos interativos por arrastar e soltar", "Baixe seu formulário preenchível"]
         }
     }
 });

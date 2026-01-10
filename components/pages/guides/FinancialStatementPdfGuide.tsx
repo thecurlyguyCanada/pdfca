@@ -250,6 +250,136 @@ For corporations, use the **SEC Electronic Filing and Submission Tool (e-FAST)**
         blogSection: { title: "", subtitle: "", articles: [] },
         faqTitle: "FAQ",
         faqs: []
+    },
+    pt: {
+        seo: {
+            title: `Guia de PDF de Declarações Financeiras Filipinas ${CURRENT_YEAR} | Modelos e Ferramentas BIR`,
+            desc: `Guia completo para Declarações Financeiras das Filipinas (${CURRENT_YEAR}). Baixe exemplos de Balanço e DRE, veja requisitos BIR/SEC e use ferramentas PDF gratuitas.`
+        },
+        h1: `Guia de PDF de Declarações Financeiras: Edição Filipinas (${CURRENT_YEAR})`,
+        subtitle: "O guia definitivo para empresas filipinas, contadores e estudantes. Crie, converta e gerencie declarações financeiras compatíveis com BIR.",
+        quickAnswer: {
+            question: "O que é um conjunto completo de declarações financeiras nas Filipinas?",
+            answer: "Nas Filipinas, um conjunto completo de declarações financeiras (FS) estritamente compatível com PFRS inclui 5 componentes: 1) Balanço Patrimonial, 2) Demonstração de Resultados, 3) Demonstração das Mutações do Patrimônio Líquido, 4) Fluxo de Caixa e 5) Notas Explicativas. Estes devem ser submetidos anualmente ao BIR e SEC.",
+            steps: ["Preparar Balancete", "Elaborar Balanço", "Criar DRE", "Compilar Notas", "Salvar como PDF"]
+        },
+        toolsHeading: "Ferramentas PDF Essenciais para Finanças",
+        toolsSubheading: "Ferramentas gratuitas e seguras para gerenciar seus documentos financeiros sem fazer upload de arquivos.",
+        tools: [
+            {
+                id: 'pdf-to-excel',
+                title: 'PDF para Excel',
+                desc: 'Extraia tabelas de declarações financeiras auditadas para arquivos Excel editáveis.',
+                icon: FileSpreadsheet,
+                link: '/pdf-to-excel',
+                color: 'from-green-500 to-emerald-600'
+            },
+            {
+                id: 'invoice-ocr',
+                title: 'OCR de Faturas',
+                desc: 'Digitalize recibos e faturas para seus registros contábeis instantaneamente.',
+                icon: FileText,
+                link: '/invoice-ocr',
+                color: 'from-blue-500 to-indigo-600'
+            },
+            {
+                id: 'merge-pdf',
+                title: 'Mesclar Relatórios',
+                desc: 'Combine Balanço, DRE e Notas em um único arquivo PDF.',
+                icon: Merge,
+                link: '/merge-pdf',
+                color: 'from-purple-500 to-violet-600'
+            },
+            {
+                id: 'barcode',
+                title: 'Gerador de Código de Barras',
+                desc: 'Crie códigos QR para rastreamento digital de documentos físicos.',
+                icon: QrCode,
+                link: '/barcode-generator',
+                color: 'from-orange-500 to-red-600'
+            }
+        ],
+        sections: [
+            {
+                id: 'financial-statement-basics',
+                title: 'Exemplos de Declarações Financeiras e Componentes',
+                content: `
+Uma **declaração financeira** é o boletim escolar de uma empresa. Compreender estes documentos é crucial para a conformidade com o Bureau of Internal Revenue (BIR) e a Securities and Exchange Commission (SEC).
+
+### 1. Declaração de Posição Financeira (Balanço Patrimonial)
+Muitas vezes chamado de **balanço patrimonial**, representa a saúde financeira da sua empresa em um momento específico.
+
+**Fórmula:**  
+*> Ativos = Passivos + Patrimônio Líquido*
+
+### 2. Demonstração de Resultados Abrangentes (DRE)
+Relata seu desempenho financeiro durante um período. Detalha como a receita líquida é transformada em lucro ou prejuízo.
+
+### 3. Demonstração dos Fluxos de Caixa
+Mostra o movimento de dinheiro dentro e fora da empresa (Operacional, Investimento, Financiamento).
+
+### 4. Demonstração das Mutações do Patrimônio Líquido
+Detalha as mudanças no interesse do proprietário na empresa durante o período.
+
+### 5. Notas às Demonstrações Financeiras
+Obrigatórias. Fornecem a explicação narrativa para os números nas outras quatro declarações.
+`
+            },
+            {
+                id: 'audited-statements',
+                title: 'Declarações Financeiras Auditadas nas Filipinas',
+                content: `
+Quando você precisa de **declarações financeiras auditadas**? 
+De acordo com o BIR e SEC, empresas devem submeter FS auditadas por um CPA independente se atenderem a limites específicos (ex: Vendas Brutas > ₱3.000.000).
+`
+            },
+            {
+                id: 'filing-guide',
+                title: 'Como Arquivar: Requisitos BIR e SEC',
+                content: `
+### 1. Submissão BIR (eAFS)
+O BIR agora usa o sistema **eAFS (Electronic Audited Financial Statements)**.
+- **Formato**: Apenas PDF.
+- **Prazo**: Normalmente **15 de abril**.
+
+### 2. Submissão SEC (e-FAST)
+Para corporações, use o **SEC Electronic Filing and Submission Tool (e-FAST)**.
+`
+            }
+        ],
+        blogSection: {
+            title: "Recursos Financeiros e Guias",
+            subtitle: "Mergulhos profundos em tópicos de contabilidade.",
+            articles: [
+                {
+                    title: "Como Criar uma Declaração Financeira",
+                    summary: "Guia passo a passo para iniciantes.",
+                    readTime: "8 min de leitura",
+                    topics: ["Contabilidade", "Tutorial"]
+                },
+                {
+                    title: "Entendendo PFRS para PMEs",
+                    summary: "Explicação simplificada dos padrões filipinos.",
+                    readTime: "6 min de leitura",
+                    topics: ["Conformidade", "Padrões"]
+                }
+            ]
+        },
+        faqTitle: "Perguntas Frequentes",
+        faqs: [
+            {
+                q: "Qual a diferença entre Declarações Financeiras específicas?",
+                a: "O Balanço mostra o que você possui e deve. a DRE mostra seu desempenho ao longo do tempo."
+            },
+            {
+                q: "Eu realmente preciso de um contador?",
+                a: "Se suas vendas anuais forem inferiores a ₱3.000.000, você não é estritamente obrigado a ter auditoria, mas um guarda-livros é recomendado."
+            },
+            {
+                q: "Posso usar Excel?",
+                a: "Sim, rascunhe em Excel, mas converta para PDF para submissão ao BIR/SEC."
+            }
+        ]
     }
 });
 

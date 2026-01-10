@@ -61,6 +61,29 @@ const getHubContent = (lang: string) => ({
                 filter: (slug: string) => ['analyze-pdf', 'barcode-generator', 'edit-xfa-pdf'].includes(slug)
             }
         ]
+    },
+    pt: {
+        seo: {
+            title: `Hub OCR & Análise PDF | Extrair Dados & Texto ${CURRENT_YEAR}`,
+            desc: `Guia avançado de extração de dados PDF. Aprenda sobre OCR, análise de faturas, conversão UBL e análise interna de PDF.`
+        },
+        h1: "Hub OCR & Análise PDF",
+        subtitle: "Vá além da visualização. Extraia dados, analise estruturas e automatize fluxos de trabalho.",
+        intro: "PDFs são mais do que apenas papel digital—eles são contêineres para dados aprimorados. Nossos guias de **OCR & Análise** são projetados para desenvolvedores, contadores e usuários avançados que precisam obter dados *para fora* de PDFs.\n\nDe **Reconhecimento Óptico de Caracteres (OCR)** a **Conversão de Faturas UBL**, esses guias avançados desbloqueiam o potencial oculto de seus documentos.",
+        categories: [
+            {
+                id: 'extraction',
+                title: "Extração de Dados",
+                desc: "Extraia texto e dados de tabela de documentos.",
+                filter: (slug: string) => ['invoice-ocr', 'pdf-to-ubl', 'xrechnung-viewer', 'extract-pdf-images'].includes(slug)
+            },
+            {
+                id: 'analysis',
+                title: "Análise & Internos",
+                desc: "Inspecione o código subjacente e a estrutura.",
+                filter: (slug: string) => ['analyze-pdf', 'barcode-generator', 'edit-xfa-pdf'].includes(slug)
+            }
+        ]
     }
 });
 

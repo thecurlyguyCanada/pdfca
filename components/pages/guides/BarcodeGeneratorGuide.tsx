@@ -64,6 +64,31 @@ Ne collez jamais un code-barres JPEG flou dans un PDF ! Si imprimé sur une impr
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Adicionar **Códigos de Barras** ou **QR Codes** em PDFs é essencial para gestão de inventário, ingressos de eventos e etiquetas de envio.
+
+Este guia explica como gerar códigos baseados em vetores que permanecem escaneáveis em qualquer tamanho de impressão.
+        `,
+        sections: [
+            {
+                id: 'barcode-types',
+                title: 'Tipos Comuns de Código',
+                content: `
+*   **QR Code (2D):** Popular para URLs, senhas WiFi e vCards. Alta capacidade.
+*   **Code 128 (1D):** Código de barras alfanumérico padrão usado em logística e transporte.
+*   **UPC/EAN:** Códigos de produtos de varejo (apenas números).
+                `
+            },
+            {
+                id: 'vector-importance',
+                title: 'Por que Usar Códigos de Barras Vetoriais?',
+                content: `
+Nunca cole um código de barras JPEG borrado em um PDF! Se impresso em uma impressora de baixa resolução ou redimensionado, ele pode abranger vários pontos de impressão e tornar-se ilegível. Sempre use códigos de barras **vetoriais** (comando SVG/PDF) para garantir que as linhas sejam nítidas e escaneáveis por qualquer leitor.
+                `
+            }
+        ]
     }
 });
 

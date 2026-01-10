@@ -1018,6 +1018,474 @@ const getGuideContent = (lang: Language) => ({
         cta: "Protégez Vos Clients",
         ctaBtn: "Outils Juridiques Sécurisés",
         related: "Outils Éthiques"
+    },
+    pt: {
+        seo: {
+            title: `Ferramentas PDF Seguras para Juristas ${CURRENT_YEAR} | Sigilo Advogado-Cliente | pdfcanada.ca`,
+            desc: `Ferramentas PDF compatíveis com PIPEDA para advogados canadenses. Proteja o sigilo profissional com processamento 100% local. Combine documentos, redacte arquivos e organize evidências sem uploads. Conformidade garantida.`
+        },
+        h1: `Soberania Digital para Advogados: PDF com Segurança`,
+        subtitle: "Como combinar, dividir e redactar arquivos de clientes sem nunca enviá-los para a nuvem.",
+
+        intro: (
+            <>
+                Para profissionais jurídicos, <strong>confidencialidade não é opcional</strong> &ndash; é a base da sua prática.
+                <br /><br />
+                No entanto, hábitos inseguros são comuns. Ao enviar o affidavit de um cliente para um "Juntador de PDF Online Grátis", você está potencialmente renunciando ao <strong>Sigilo Advogado-Cliente</strong> ao entregar dados a terceiros.
+                <br /><br />
+                Construímos o <strong>pdfcanada.ca</strong> como uma solução "Zero-Trust". Seus arquivos são processados localmente em sua máquina, garantindo que você mantenha a cadeia de custódia absoluta sobre suas evidências.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "cyber-threat-landscape",
+                title: "Crise de Cibersegurança: Escritórios sob Ataque",
+                content: (
+                    <>
+                        <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800 mb-6">
+                            <h4 className="font-bold text-red-900 dark:text-red-300 mb-3">A Realidade Alarmante</h4>
+                            <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                De acordo com a <strong>Law Society of England and Wales</strong>, <span className="font-bold text-red-600 dark:text-red-400">65% dos escritórios de advocacia foram vítimas de incidentes cibernéticos</span>, mas 35% ainda não têm plano de mitigação.
+                            </p>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Escritórios canadenses são alvos atrativos pois detêm informações completas dos clientes: registros financeiros, históricos médicos, propriedade intelectual e negociações confidenciais—tudo protegido pelo sigilo profissional.
+                            </p>
+                        </div>
+
+                        <h4 className="font-bold text-lg mb-3">Por que Escritórios são Alvos Principais:</h4>
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-slate-50 dark:bg-slate-900 p-5 rounded-lg border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold mb-2">1. Concentração de Dados de Alto Valor</h5>
+                                <p className="text-gray-700 dark:text-gray-300">Uma única violação pode expor milhares de comunicações privilegiadas, detalhes de fusões, patentes e estratégias de litígio.</p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-900 p-5 rounded-lg border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold mb-2">2. Vulnerabilidades na Cadeia de Custódia</h5>
+                                <p className="text-gray-700 dark:text-gray-300">Ao enviar evidências para servidores de terceiros, você perde a cadeia de custódia, tornando as provas potencialmente inadmissíveis.</p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-900 p-5 rounded-lg border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold mb-2">3. Exposição a Negligência Profissional</h5>
+                                <p className="text-gray-700 dark:text-gray-300">Usar serviços de nuvem inseguros pode constituir negligência profissional, expondo advogados a processos disciplinares.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "privilege-risk",
+                title: "O Risco da 'Nuvem' para o Sigilo Profissional",
+                content: (
+                    <>
+                        <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-xl border-l-4 border-amber-500 mb-6 font-medium text-amber-900 dark:text-amber-200">
+                            "Os advogados devem tomar medidas razoáveis para garantir que o uso da tecnologia não exponha inadvertidamente dados de clientes ou comprometa o sigilo profissional."
+                            <div className="text-sm mt-2 opacity-75">&minus; Federação das Sociedades de Direito do Canadá, Código Modelo de Conduta Profissional</div>
+                        </div>
+
+                        <p className="mb-4">
+                            Ao usar "Ferramentas PDF Online Grátis" ou serviços como Adobe Creative Cloud, seus arquivos viajam para servidores que podem estar nos EUA ou em outras jurisdições. Isso cria riscos:
+                        </p>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-3">1. O CLOUD Act (EUA)</h4>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Autoridades dos EUA podem obrigar provedores (Microsoft, Adobe, Google) a entregar dados armazenados em seus servidores <strong>independentemente da localização física</strong>. Arquivos de clientes em servidores canadenses de empresas americanas estão sujeitos a intimações dos EUA.
+                                </p>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-3">2. Erosão da Doutrina de Terceiros</h4>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Ao compartilhar dados com terceiros (nuvem, ferramenta online), tribunais podem considerar que o privilégio foi renunciado. A Suprema Corte do Canadá decidiu que o privilégio pode ser renunciado inadvertidamente sem medidas de confidencialidade adequadas.
+                                </p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h4 className="font-bold text-red-900 dark:text-red-300 mb-3">3. Obrigações de Notificação de Violação</h4>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Sob a PIPEDA, se um provedor de nuvem sofrer uma violação, <strong>você (o advogado) é responsável</strong> por notificar os clientes, arcando com danos à reputação e penalidades.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h4 className="font-bold text-slate-900 dark:text-slate-300 mb-3">4. Mineração de Metadados</h4>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Ferramentas gratuitas podem analisar metadados para inteligência competitiva. Sua estratégia de caso pode ser revertida através da análise de padrões documentais.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "law-society-obligations",
+                title: "Requisitos de Segurança da Sociedade de Direito",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Cada sociedade de direito no Canadá adotou obrigações de competência tecnológica. Elas vão além da PIPEDA para proteger especificamente o sigilo advogado-cliente.
+                        </p>
+
+                        <h4 className="font-bold text-lg mb-3">Obrigações Centrais:</h4>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">1. Dever de Competência Tecnológica</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Advogados devem entender os riscos da tecnologia. Isso inclui saber para onde vão os dados do cliente ao clicar em "Upload".
+                                </p>
+                            </div>
+
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h5 className="font-bold text-blue-900 dark:text-blue-300 mb-3">2. Medidas de Segurança Razoáveis</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Firmas devem implementar "medidas razoáveis". Tribunais consideraram que o upload de documentos privilegiados não criptografados para servidores terceiros falha nesse padrão.
+                                </p>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h5 className="font-bold text-purple-900 dark:text-purple-300 mb-3">3. Soberania de Dados</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Muitas sociedades exigem consentimento explícito antes de transferir dados para fora do Canadá. Usar ferramentas dos EUA sem autorização pode violar isso.
+                                </p>
+                            </div>
+
+                            <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
+                                <h5 className="font-bold text-amber-900 dark:text-amber-300 mb-3">4. Diligência Devida de Fornecedores</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Antes de usar serviços terceiros, advogados devem verificar a segurança. A maioria das ferramentas "grátis" possui Termos de Serviço que violam obrigações de sigilo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border-l-4 border-red-500 mb-6">
+                            <h5 className="font-bold text-red-900 dark:text-red-300 mb-3">Risco Disciplinar</h5>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Sociedades de direito disciplinaram advogados por falhas de segurança de dados. O uso de ferramentas PDF inseguras expõe profissionais a riscos semelhantes.
+                            </p>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "pipeda-compliance",
+                title: "Conformidade PIPEDA para Escritórios",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            A PIPEDA aplica-se a escritórios de advocacia no setor privado. Mesmo com o sigilo profissional, firmas devem cumprir os 10 Princípios da PIPEDA ao lidar com informações pessoais.
+                        </p>
+
+                        <h4 className="font-bold text-lg mb-3">Requisitos PIPEDA para PDF:</h4>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h5 className="font-bold text-blue-900 dark:text-blue-300 mb-3">Princípio 4: Limitação da Coleta</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Firmas devem limitar a coleta ao necessário. Serviços terceiros podem coletar metadados excessivos, violando este princípio.
+                                </p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">Princípio 7: Salvaguardas</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Documentos jurídicos exigem o mais alto nível de proteção. O processamento local garante risco zero de transmissão.
+                                </p>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h5 className="font-bold text-purple-900 dark:text-purple-300 mb-3">Princípio 4.3: Consentimento</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Transferir dados para terceiros exige consentimento. O processamento local (pdfcanada.ca) elimina essa necessidade pois não há transferência.
+                                </p>
+                            </div>
+
+                            <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
+                                <h5 className="font-bold text-amber-900 dark:text-amber-300 mb-3">Relatório de Violação</h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Violações com "risco real de dano significativo" devem ser reportadas ao Comissário de Privacidade e aos clientes. Serviços em nuvem aumentam esse risco.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                            <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">Processamento Local = Conformidade by Design</h5>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Com o pdfcanada.ca, dados nunca saem do seu dispositivo. Isso garante conformidade PIPEDA automática: sem transferências, sem risco de notificação de violação, sem preocupações transfronteiriças.
+                            </p>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "local-solution",
+                title: "A Solução Local-First: Arquitetura Zero-Trust",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            O pdfcanada.ca implementa um <strong>modelo de segurança 'Zero-Trust'</strong>. Nossas ferramentas rodam via <strong>WebAssembly</strong> diretamente no seu navegador—seus arquivos são processados inteiramente na sua máquina local.
+                        </p>
+
+                        <h4 className="font-bold text-lg mb-3">Arquitetura Técnica:</h4>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h5 className="font-bold text-blue-900 dark:text-blue-300 mb-3">1. Processamento Client-Side Apenas</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Todas as operações (fundir, dividir, comprimir) ocorrem na memória (RAM) do navegador. Arquivos nunca são enviados para nossos servidores.
+                                </p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">2. Sem Logs no Servidor</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Não podemos registrar atividades ou conteúdos pois nunca os recebemos. Nossos servidores apenas entregam o código da aplicação.
+                                </p>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                                <h5 className="font-bold text-purple-900 dark:text-purple-300 mb-3">3. Ambiente Efêmero</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Ao fechar a aba, todos os dados são purgados da RAM. Nenhum arquivo temporário é gravado no disco.
+                                </p>
+                            </div>
+
+                            <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
+                                <h5 className="font-bold text-amber-900 dark:text-amber-300 mb-3">4. Cadeia de Custódia Absoluta</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Arquivos nunca saem da sua posse, preservando a admissibilidade de evidências e integridade forense.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border-l-4 border-green-500">
+                            <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">Declaração de Conformidade</h5>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Esta arquitetura satisfaz os requisitos das sociedades de direito canadenses. Nenhuma diligência de fornecedor é necessária porque não há fornecedor com acesso aos seus dados.
+                            </p>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "workflows",
+                title: "Fluxos de Trabalho Jurídicos Comuns",
+                content: (
+                    <>
+                        <h4 className="font-bold text-lg mb-4">Otimize Sua Prática Mantendo o Sigilo:</h4>
+
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <FileText className="text-blue-500" size={20} />
+                                    1. <Link href={`/${lang}/merge-pdf`} className="hover:underline text-blue-600">Compilação de Exibições Judiciais</Link>
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Combine 50+ affidavits e relatórios em um único Registro. Mantenha a ordem cronológica e formatação original.
+                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                                    Comum para: Litígio civil, direito de família, tribunais administrativos.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Lock className="text-red-500" size={20} />
+                                    2. <Link href={`/${lang}/flatten-pdf`} className="hover:underline text-red-600">Preparação para Redação (Achatar)</Link>
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Achate PDFs antes de redactar para impedir a remoção de camadas. Crítico para pedidos de Liberdade de Informação e descoberta.
+                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                                    Comum para: Respostas FOIA, logs de privilégio, descoberta comercial.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Briefcase className="text-green-500" size={20} />
+                                    3. Extração de Páginas de Assinatura
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Extraia páginas de assinatura de contratos longos para execução e depois funda-as de volta ao contrato mestre.
+                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                                    Comum para: Imobiliário, fechamentos corporativos, M&A.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Globe className="text-purple-500" size={20} />
+                                    4. Proteção Transfronteiriça
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Processe arquivos sem acionar regulamentos de transferência de dados (GDPR, PIPL). Essencial para clientes internacionais.
+                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                                    Comum para: Arbitragem internacional, imigração.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Scale className="text-amber-500" size={20} />
+                                    5. <Link href={`/${lang}/compress-pdf`} className="hover:underline text-amber-600">Organização de Descoberta</Link>
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Organize milhares de documentos e comprima digitalizações grandes para atender limites de tamanho de e-filing.
+                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                                    Comum para: Ações coletivas, disputas comerciais.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Shield className="text-blue-600" size={20} />
+                                    6. Compilação de Log de Privilégio
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Crie versões redactadas de documentos privilegiados. Separe comunicações privilegiadas de registros comerciais.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <Gavel className="text-red-600" size={20} />
+                                    7. Integridade de Evidência Criminal
+                                </h5>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    Preserve metadados e integridade forense de PDFs de divulgação.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas de Segurança",
+                content: (
+                    <>
+                        <h4 className="font-bold text-lg mb-4">Implementando um Fluxo Seguro:</h4>
+
+                        <div className="space-y-4">
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">✓ FAÇA: Use Ferramentas Locais</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Faça do pdfcanada.ca seu padrão. Treine a equipe para usar processamento local.
+                                </p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">✓ FAÇA: Achate Antes de Redactar</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Sempre achate camadas para evitar que a parte contrária remova as redações.
+                                </p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">✓ FAÇA: Remova Metadados</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Limpe metadados (rastreamento de alterações, autores) antes da divulgação.
+                                </p>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                                <h5 className="font-bold text-green-900 dark:text-green-300 mb-3">✓ FAÇA: Backups Isolados</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Mantenha backups offline de evidências originais em drives criptografados.
+                                </p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h5 className="font-bold text-red-900 dark:text-red-300 mb-3">✗ NÃO FAÇA: Upload para Ferramentas Gratuitas</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Ferramentas "grátis" vendem dados ou análises. Isso viola o sigilo profissional.
+                                </p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h5 className="font-bold text-red-900 dark:text-red-300 mb-3">✗ NÃO FAÇA: Assumir que a Nuvem é Segura</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Até armazenamento criptografado está sujeito a Termos de Serviço de terceiros e CLOUD Act.
+                                </p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h5 className="font-bold text-red-900 dark:text-red-300 mb-3">✗ NÃO FAÇA: Email Não Criptografado</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    Use email criptografado ou portais seguros.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "faq",
+                title: "Perguntas Frequentes",
+                content: (
+                    <>
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: Posso usar pdfcanada.ca para arquivos sob sigilo profissional?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Sim. O processamento é 100% local. Nunca temos acesso aos seus documentos.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: O processamento local cumpre a PIPEDA?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Sim. Elimina riscos de transmissão e acesso de terceiros, oferecendo as salvaguardas mais altas.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: O que acontece com os arquivos após o processamento?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Eles existem apenas na RAM durante a sessão. Ao fechar a aba, são purgados.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: Preciso de consentimento do cliente?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Não, pois não há divulgação a terceiros. Ferramentas de nuvem exigiriam consentimento.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: Como documentar a conformidade?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Declare em suas políticas que todo processamento PDF é feito localmente para garantir o sigilo.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: Funciona para transações transfronteiriças?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> Sim. O processamento local evita restrições de transferência de dados internacionais.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <h5 className="font-bold text-lg mb-3">Q: E se já uso Adobe Acrobat Pro?</h5>
+                                <p className="text-gray-700 dark:text-gray-300">
+                                    <strong>R:</strong> A versão Desktop é segura, mas pdfcanada.ca não exige login (evitando rastreamento) e é transparente. Use para os casos mais sensíveis.
+                                </p>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
+        ],
+
+        cta: "Proteja Seus Clientes",
+        ctaBtn: "Ferramentas Seguras",
+        related: "Ferramentas Éticas"
     }
 });
 

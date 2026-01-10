@@ -405,6 +405,164 @@ const getGuideContent = (lang: Language) => ({
         ctaTitle: "Besoin d'aplatir votre PDF maintenant ?",
         ctaButton: "Utiliser notre outil d'aplatissement",
         ctaSubtext: "Gratuit, sécurisé et canadien."
+    },
+    pt: {
+        seo: {
+            title: `Como Editar PDFs XFA | Guia Técnico Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: "Desbloqueie e edite formulários PDF baseados em XFA com segurança. Nosso guia técnico mostra como gerenciar formulários dinâmicos localmente sem enviar dados privados."
+        },
+        h1: "Como Editar um PDF XFA: O Guia da Impressora Adobe PDF",
+        subtitle: "Achate formulários dinâmicos em PDFs padrão e editáveis usando a solução alternativa oficial recomendada.",
+        intro: (
+            <>
+                PDFs XFA (XML Forms Architecture) são um formato especializado projetado para o motor proprietário da Adobe. Por serem dinâmicos e baseados em XML, muitas vezes não podem ser editados ou sequer abertos por ferramentas de PDF padrão.
+                <br /><br />
+                A maneira mais confiável de <strong>editar um PDF XFA</strong> é &quot;achatá-lo&quot;, imprimindo-o para uma impressora virtual de PDF. Isso converte a estrutura dinâmica em um PDF estático padrão que pode ser modificado como qualquer outro documento.
+            </>
+        ),
+        sections: [
+            {
+                id: "concept",
+                title: "O que é Achatamento?",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Quando você imprime um formulário XFA para uma impressora PDF, você está essencialmente &quot;assando&quot; a camada visual. O XML dinâmico é renderizado e essa aparência é capturada como conteúdo estático.
+                        </p>
+                        <div className="grid md:grid-cols-2 gap-6 bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl mb-4">
+                            <div>
+                                <h4 className="font-bold text-canada-red mb-2 uppercase text-xs tracking-widest">O Achatamento Remove</h4>
+                                <ul className="text-sm space-y-1 list-disc pl-4 opacity-80">
+                                    <li>Campos de formulário interativos</li>
+                                    <li>Cálculos e validações</li>
+                                    <li>Ações JavaScript</li>
+                                    <li>Subformulários dinâmicos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-green-600 mb-2 uppercase text-xs tracking-widest">O Achatamento Preserva</h4>
+                                <ul className="text-sm space-y-1 list-disc pl-4 opacity-80">
+                                    <li>Layout visual e texto</li>
+                                    <li>Valores preenchidos</li>
+                                    <li>Imagens e bordas</li>
+                                    <li>Tabelas e linhas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p className="text-sm italic text-gray-700 dark:text-gray-300">
+                            👉 Procurando uma maneira rápida de achatar PDFs padrão? Tente nossa <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">Ferramenta de Achatamento de PDF</Link>.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "windows-steps",
+                title: "Instruções Passo a Passo (Windows)",
+                content: (
+                    <>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li>
+                                <strong>Abrir no Acrobat</strong>: Inicie seu PDF XFA no Adobe Acrobat Desktop. Você pode ver uma mensagem dizendo &quot;Edição não suportada&quot;—isso é normal.
+                            </li>
+                            <li>
+                                <strong>Abrir Diálogo de Impressão</strong>: Pressione <code>Ctrl + P</code> ou vá para <code>Arquivo → Imprimir</code>.
+                            </li>
+                            <li>
+                                <strong>Selecionar Impressora</strong>: No menu suspenso, escolha <strong>Adobe PDF</strong>.
+                            </li>
+                            <li>
+                                <strong>Revisar Configurações</strong>: Garanta que &quot;Páginas para Imprimir&quot; esteja em &quot;Tudo&quot; e &quot;Dimensionamento&quot; esteja em &quot;Tamanho&quot;. Evite &quot;Imprimir como Imagem&quot; a menos que tenha problemas de renderização.
+                            </li>
+                            <li>
+                                <strong>Salvar o Arquivo</strong>: Clique em <strong>Imprimir</strong>. Escolha um novo nome de arquivo (ex: <code>achatado_editavel.pdf</code>) e salve-o.
+                            </li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "macos-steps",
+                title: "Instruções Passo a Passo (macOS)",
+                content: (
+                    <>
+                        <p className="mb-4">O macOS usa o motor PDF integrado do sistema em vez de uma entrada de impressora dedicada &quot;Adobe PDF&quot;.</p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li><strong>Abra o PDF</strong> como de costume em seu visualizador.</li>
+                            <li>Pressione <code>Command + P</code> para abrir o diálogo de impressão.</li>
+                            <li>Procure o <strong>menu suspenso PDF</strong> no canto inferior esquerdo do diálogo.</li>
+                            <li>Selecione <strong>Salvar como PDF</strong>.</li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "post-flattening",
+                title: "O Que Fazer Após o Achatamento",
+                content: (
+                    <>
+                        <p className="mb-4">Uma vez achatado, seu arquivo se comporta como um PDF padrão. Agora você pode usar várias ferramentas para refiná-lo:</p>
+                        <div className="flex flex-wrap gap-3">
+                            <Link href={`/${lang}/ocr-pdf`} className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl text-sm font-medium hover:border-canada-red transition-colors">
+                                <Zap size={14} className="text-canada-red" /> Executar OCR para tornar o texto editável
+                            </Link>
+                            <Link href={`/${lang}/sign-pdf`} className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl text-sm font-medium hover:border-canada-red transition-colors">
+                                <Edit3 size={14} className="text-canada-red" /> Adicionar assinatura segura
+                            </Link>
+                            <Link href={`/${lang}/compress-pdf`} className="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl text-sm font-medium hover:border-canada-red transition-colors">
+                                <Trash2 size={14} className="text-canada-red" /> Comprimir para tamanho menor
+                            </Link>
+                        </div>
+                    </>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Por que não posso simplesmente usar 'Editar PDF' diretamente?",
+                a: "Formulários XFA são estruturas XML dinâmicas que editores de PDF padrão não conseguem interpretar. Eles foram projetados especificamente para o motor da Adobe. A solução da impressora cria um instantâneo visual estático que qualquer ferramenta pode entender."
+            },
+            {
+                q: "O texto será editável imediatamente após o achatamento?",
+                a: "Às vezes. Dependendo de como o formulário foi criado, o texto pode ser convertido em contornos vetoriais. Se você não conseguir selecionar palavras após o achatamento, use nossa ferramenta OCR para recuperar texto editável."
+            },
+            {
+                q: "E se alguns campos aparecerem em branco no PDF achatado?",
+                a: "Certifique-se de que o formulário esteja totalmente renderizado e todos os campos obrigatórios preenchidos antes de imprimir. Alguns campos dinâmicos XFA só aparecem quando certas condições são atendidas."
+            },
+            {
+                q: "Posso achatar PDFs XFA sem o Adobe Acrobat?",
+                a: "Difícil, mas possível. Algumas alternativas: 1) Conversores XFA online (mas com problemas de privacidade), 2) LibreOffice Draw (sucesso limitado), 3) Foxit Reader com Imprimir para PDF. O Adobe Acrobat continua sendo a opção mais confiável."
+            },
+            {
+                q: "Por que agências governamentais ainda usam formulários XFA?",
+                a: "O XFA foi criado no início dos anos 2000, quando PDFs interativos eram novidade. Muitas agências (CRA, IRCC, IRS) investiram pesadamente nesses sistemas e ainda não migraram. AcroForms modernos estão substituindo-os gradualmente."
+            },
+            {
+                q: "Qual a diferença entre XFA e AcroForms?",
+                a: "AcroForms são o padrão universal de formulários PDF. XFA é a extensão proprietária da Adobe com capacidades XML dinâmicas. AcroForms funcionam em qualquer lugar; XFA só funciona plenamente no Adobe."
+            },
+            {
+                q: "Posso editar um PDF XFA no meu celular ou tablet?",
+                a: "PDFs XFA geralmente não renderizam corretamente em dispositivos móveis. Os formulários aparecem em branco ou quebrados. Sua melhor opção é achatar em um computador desktop primeiro."
+            },
+            {
+                q: "Por que meu formulário XFA aparece em branco no Chrome ou Firefox?",
+                a: "Navegadores não suportam XFA. Você verá uma página em branco ou uma mensagem 'Aguarde...'. Você deve baixar e abrir no Adobe Reader."
+            },
+            {
+                q: "Existe uma maneira de achatar vários PDFs XFA em lote?",
+                a: "Sim, o Adobe Acrobat Pro suporta processamento em lote via Assistente de Ação. Você pode criar uma ação que imprime cada PDF para a impressora Adobe PDF."
+            },
+            {
+                q: "O achatamento afeta a validade legal do meu formulário?",
+                a: "O achatamento preserva todo o conteúdo visível, incluindo dados preenchidos. No entanto, se você precisar enviar um formulário interativo para uma agência, pode ser necessário enviar o original XFA."
+            }
+        ],
+        whyTitle: "Por que isso funciona?",
+        whyDesc: "Imprimir para PDF captura o 'estado visual' do formulário XFA, convertendo a lógica XML complexa em instruções geométricas de PDF simples que qualquer editor pode entender.",
+        ctaTitle: "Precisa achatar seu PDF agora?",
+        ctaButton: "Use Nossa Ferramenta de Achatamento",
+        ctaSubtext: "Gratuito, Seguro e Canadense."
     }
 });
 

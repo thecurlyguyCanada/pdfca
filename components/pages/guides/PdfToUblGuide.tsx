@@ -179,36 +179,37 @@ No **pdfcanada.ca**, criamos uma maneira simples e privada de converter suas fat
             {
                 id: "what-is-ubl",
                 title: "O que é UBL?",
-                content: `**UBL** é um formato XML padrão para documentos comerciais. Diferente de um PDF, o UBL é composto por dados estruturados.
+                content: `**UBL** é um formato XML padrão para documentos comerciais como faturas e pedidos de compra. Diferente de um PDF, que é uma "imagem" de um documento, o UBL é composto por dados estruturados que computadores podem ler automaticamente.
 
 **Por que usar UBL?**
-*   **Automação:** Importação direta em sistemas contábeis.
-*   **Conformidade:** Padrão para faturamento eletrônico.
-*   **Precisão:** Reduz erros de digitação manual.`
+*   **Automação:** Sistemas podem importar faturas UBL diretamente sem entrada manual.
+*   **Conformidade:** É o padrão para Faturamento Eletrônico (E-Invoicing) em muitas regiões (como Peppol na Europa).
+*   **Precisão:** Reduz erros causados por digitação manual.`
             },
             {
                 id: "how-to",
                 title: "Como converter fatura PDF para UBL XML",
-                content: `Usar nosso conversor **PDF para UBL** é rápido e seguro:
+                content: `Usar nosso conversor **PDF para UBL** é rápido e seguro. Veja como funciona:
 
 ### Passo 1: Envie sua Fatura
-Vá para nossa ferramenta e envie sua fatura PDF.
+Vá para nossa **Ferramenta PDF para UBL** e envie sua fatura PDF. Suportamos faturas PDF padrão geradas pela maioria dos softwares de contabilidade.
 
-### Passo 2: Extração Automática
-Nossa IA local verifica seu documento em busca de informações importantes como Vendedor, Data e Valores.
+### Passo 2: Extração Automática de Dados
+Nossa IA local verifica seu documento em busca de informações importantes: Nome do Vendedor, ID da Fatura, Data e Valores.
 
 ### Passo 3: Verifique e Edite
-Como cada PDF é diferente, verifique os dados extraídos para garantir precisão.
+Como cada PDF é diferente, mostramos os dados extraídos para verificação. Garantir que o formato da data (AAAA-MM-DD) e o código da moeda estejam corretos é importante.
 
 ### Passo 4: Baixe o XML UBL
-Clique para gerar o arquivo compatível com os padrões UBL 2.1.`
+Clique em **Baixar XML UBL** para gerar o arquivo final. Este arquivo está em conformidade com os padrões UBL 2.1.`
             },
             {
                 id: "compliance",
                 title: "Conformidade de Faturamento Eletrônico",
-                content: `Nossa ferramenta gera XML **UBL 2.1** válido.
-*   **Estrutura:** Esquema padrão UBL Invoice-2.
-*   **Privacidade:** Processamento 100% local para sua segurança.`
+                content: `Embora nossa ferramenta gere XML **UBL 2.1** válido, os requisitos de faturamento eletrônico variam por país e rede (como Peppol).
+
+*   **Estrutura:** Usamos o esquema padrão UBL Invoice-2.
+*   **Privacidade:** Como processamos localmente, você mantém total controle sobre seus dados de conformidade.`
             }
         ],
 

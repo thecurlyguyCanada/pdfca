@@ -380,13 +380,202 @@ const getGuideContent = (lang: Language) => ({
         cta: "Passez aux Outils PDF Sécurisés et Locaux",
         ctaBtn: "Commencer l'Édition Privée",
         related: "Explorer les Outils"
+    },
+    pt: {
+        seo: {
+            title: `Ferramentas PDF Privadas ${CURRENT_YEAR}: A Revolução do Processamento Local | pdfcanada.ca`,
+            desc: `Por que as melhores ferramentas de PDF gratuitas em ${CURRENT_YEAR} são locais. Um mergulho profundo na privacidade, WebAssembly e por que você deve parar de enviar documentos para a nuvem.`
+        },
+        h1: `O Futuro das Ferramentas PDF: Por que o Processamento Local Vence em ${CURRENT_YEAR}`,
+        subtitle: "Uma análise técnica e focada na privacidade da mudança do Cloud SaaS para o processamento de PDF Nativo do Navegador (Local).",
+
+        sections: [
+            {
+                id: "intro",
+                title: "A Crise de Privacidade da Nuvem",
+                content: (
+                    <>
+                        Na última década, &quot;ferramentas online gratuitas&quot; vinham com um preço oculto: sua privacidade. Para <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline decoration-dashed">fundir um PDF</Link>, você tinha que enviá-lo para um servidor remoto. Para <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline decoration-dashed">comprimir um contrato</Link>, você o enviava para um data center em uma jurisdição desconhecida.
+                        <br /><br />
+                        Em ${CURRENT_YEAR}, o paradigma mudou. Com violações de dados de alto perfil expondo milhões de documentos sensíveis, confiar em processadores baseados na nuvem para <strong>Dados de Alta Sensibilidade</strong> (<Link href={`/${lang}/guides/legal-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Jurídico</Link>, <Link href={`/${lang}/guides/healthcare-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Médico</Link>, <Link href={`/${lang}/guides/finance-pdf-guide`} className="bg-canada-red/10 text-canada-red px-1 rounded hover:bg-canada-red/20 transition-colors">Financeiro</Link>) não é mais um risco viável para profissionais.
+                        <br /><br />
+                        Este guia explora o surgimento do <strong>Software Local-First</strong> e por que ferramentas como <Link href={`/${lang}`} className="font-bold text-gray-900 dark:text-gray-100 hover:text-canada-red">pdfcanada.ca</Link> representam o futuro mais seguro e rápido da gestão de documentos digitais.
+                    </>
+                )
+            },
+            {
+                id: "technical-architecture",
+                title: "Como Funciona o Processamento Local (WebAssembly)",
+                content: (
+                    <>
+                        Como um site pode editar um PDF sem um servidor? O segredo está no <strong>WebAssembly (Wasm)</strong>.
+                        <br /><br />
+                        Tradicionalmente, navegadores web eram limitados a tarefas básicas. Cálculos complexos (como a compressão de um PDF de 50 Mo) tinham que ser enviados para um servidor poderoso. WebAssembly mudou isso permitindo a execução de código quase nativo diretamente no seu navegador.
+                        <br /><br />
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+                            <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">A Diferença de Arquitetura:</h4>
+                            <ul className="space-y-4">
+                                <li className="flex items-start gap-3">
+                                    <CloudOff className="shrink-0 text-red-500 mt-1" />
+                                    <div>
+                                        <strong>Ferramentas na Nuvem (Legado):</strong> Upload &rarr; Fila do Servidor &rarr; Processamento &rarr; Download.
+                                        <div className="text-sm text-gray-500">Risco: Interceptação de dados, retenção no servidor, problemas de jurisdição.</div>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Cpu className="shrink-0 text-green-500 mt-1" />
+                                    <div>
+                                        <strong>Ferramentas Locais (pdfcanada.ca):</strong> Carregamento do Motor do Navegador &rarr; Processamento Instantâneo.
+                                        <div className="text-sm text-gray-500">Benefício: Latência zero, 100% soberania de dados, funciona offline.</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "competitor-comparison",
+                title: "Análise de Mercado: A Lacuna de Privacidade",
+                content: (
+                    <>
+                        Nem todas as ferramentas &quot;gratuitas&quot; são criadas iguais. Muitos serviços populares dependem de um modelo de negócios que incentiva a criação de contas de usuário e o armazenamento de arquivos em seu ecossistema.
+                        <br /><br />
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="border-b dark:border-gray-700">
+                                        <th className="py-4 font-bold">Recurso</th>
+                                        <th className="py-4 text-canada-red">PDF Canada</th>
+                                        <th className="py-4 text-gray-500">Gigantes da Nuvem (ex: iLovePDF)</th>
+                                        <th className="py-4 text-gray-500">Apps Desktop (ex: Acrobat)</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-sm">
+                                    <tr className="border-b dark:border-gray-800">
+                                        <td className="py-3 font-medium">Localização dos Dados</td>
+                                        <td className="py-3 text-green-600 font-bold">Seu Dispositivo (RAM)</td>
+                                        <td className="py-3">Servidor Nuvem Remoto</td>
+                                        <td className="py-3">Seu Dispositivo (SSD)</td>
+                                    </tr>
+                                    <tr className="border-b dark:border-gray-800">
+                                        <td className="py-3 font-medium">Velocidade de Processamento</td>
+                                        <td className="py-3 text-green-600 font-bold">Instantané (Sem Envio)</td>
+                                        <td className="py-3">Lento (Depende do Envio)</td>
+                                        <td className="py-3">Rápido</td>
+                                    </tr>
+                                    <tr className="border-b dark:border-gray-800">
+                                        <td className="py-3 font-medium">Custo</td>
+                                        <td className="py-3 text-green-600 font-bold">100% Grátis</td>
+                                        <td className="py-3">Grátis Limitado + Pago</td>
+                                        <td className="py-3">Licença Cara</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="py-3 font-medium">Instalação</td>
+                                        <td className="py-3 text-green-600 font-bold">Nenhuma (Web)</td>
+                                        <td className="py-3">Nenhuma (Web)</td>
+                                        <td className="py-3">Instalação Pesada</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "privacy-audit",
+                title: "A Auditoria de Privacidade: O que realmente acontece?",
+                content: (
+                    <>
+                        Quando você usa uma ferramenta como nosso <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">Fusor de PDF</Link>, aqui está o ciclo de vida exato dos dados:
+                        <br /><br />
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li><strong>Seleção:</strong> Você seleciona arquivos do seu computador. O navegador pede permissão para lê-los na memória.</li>
+                            <li><strong>Sandboxing:</strong> Os arquivos são carregados em um espaço de memória &quot;Sandbox&quot; seguro dentro do Chrome/Edge/Firefox. Esse espaço é isolado da internet.</li>
+                            <li><strong>Execução:</strong> Nosso motor javascript executa a operação localmente. Sua CPU faz o trabalho.</li>
+                            <li><strong>Salvar:</strong> O navegador gera um novo arquivo &quot;Blob&quot; e o coloca na sua pasta de downloads.</li>
+                            <li><strong>Limpeza:</strong> Assim que você fecha a aba, essa memória é apagada pelo navegador. <strong>Nós nunca vimos seu arquivo.</strong></li>
+                        </ol>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Casos de Uso Críticos para Processamento Local",
+                content: (
+                    <>
+                        Quem precisa deste nível de segurança?
+                        <br /><br />
+                        <strong>1. Profissionais Jurídicos:</strong> Enviar contratos de clientes para um servidor de terceiros pode violer acordos de confidencialidade. O processamento local garante que o privilégio seja mantido.
+                        <br /><br />
+                        <strong>2. Provedores de Saúde:</strong> Dados de pacientes são estritamente regulamentados. Usar uma ferramenta local elimina o risco de violação de dados causada por um hack de provedor de nuvem.
+                        <br /><br />
+                        <strong>3. Instituições Financeiras:</strong> Declarações fiscais, extratos bancários e pedidos de empréstimo contêm ouro para roubo de identidade. Mantenha-os fora da nuvem.
+                    </>
+                )
+            }
+        ],
+
+        faqTitle: "FAQ: Ferramentas PDF Privadas",
+        faqs: [
+            {
+                q: "É seguro usar ferramentas PDF gratuitas para extratos bancários?",
+                a: "Apenas se a ferramenta usar processamento 'Local-Client-Side'. Conversores de nuvem tradicionais enviam seu extrato para um servidor, criando um risco de segurança. pdfcanada.ca é seguro para documentos sensíveis."
+            },
+            {
+                q: "Como saber se uma ferramenta PDF é privada?",
+                a: "Desligue seu WiFi. Se a ferramenta ainda funcionar (como a nossa faz após carregar), ela está processando localmente. Se falhar, requer um servidor."
+            },
+            {
+                q: "Por que o processamento local é mais rápido?",
+                a: "Ele elimina as etapas de 'Upload' e 'Download'. Fundir dez arquivos de 50 Mo na nuvem requer a transferência de 500 Mo de dados. Localmente, acontece em segundos."
+            },
+            {
+                q: "Meu empregador pode ver meus arquivos se eu usar pdfcanada.ca?",
+                a: "Se você estiver usando o navegador do trabalho, seu TI pode ver que você visitou o pdfcanada.ca, mas não podem ver o conteúdo dos seus arquivos, pois nada é transmitido para um servidor."
+            },
+            {
+                q: "O que é WebAssembly e por que é importante para a privacidade?",
+                a: "WebAssembly (Wasm) é uma tecnologia que executa código em velocidade quase nativa diretamente no seu navegador. Permite operações complexas como manipulação de PDF sem servidor."
+            },
+            {
+                q: "Existem operações PDF que requerem um servidor?",
+                a: "Para a maioria das operações—fundir, dividir, comprimir, girar, converter—o processamento local funciona perfeitamente. A única exceção é o OCR avançado, que pode opcionalmente usar servidores de IA."
+            },
+            {
+                q: "Quanto tempo meus arquivos ficam na memória do navegador?",
+                a: "Apenas até você fechar a aba. Uma vez que você navega para outro lugar ou fecha a aba, o navegador limpa automaticamente essa memória sandbox."
+            },
+            {
+                q: "O pdfcanada.ca está em conformidade com as leis de privacidade?",
+                a: "Sim. Como nunca recebemos ou armazenamos seus arquivos, não há dados pessoais para gerenciar. Seus documentos permanecem no seu dispositivo."
+            },
+            {
+                q: "Posso usar essas ferramentas para documentos jurídicos confidenciais?",
+                a: "Absolutamente. O processamento local mantém o privilégio advogado-cliente, uma vez que os documentos nunca saem do seu dispositivo."
+            },
+            {
+                q: "O que acontece se o pdfcanada.ca ficar offline?",
+                a: "Se você já carregou a página, a ferramenta continua funcionando mesmo se nossos servidores caírem. O código é armazenado em cache no seu navegador."
+            }
+        ],
+
+        cta: "Mude para Ferramentas PDF Seguras e Locais Hoje",
+        ctaBtn: "Começar Edição Privada",
+        related: "Explorar Ferramentas",
+        quickAnswer: {
+            question: "Ferramentas PDF são privadas?",
+            answer: "As ferramentas do pdfcanada.ca são 100% privadas. Elas rodam inteiramente no seu navegador via WebAssembly, então seus arquivos nunca são enviados para um servidor.",
+            tool: "Ferramentas PDF Locais",
+            steps: ["Abra a ferramenta", "Use offline", "Salva no dispositivo"]
+        }
     }
 });
 
 export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang].features.privatePdf.quickAnswer;
+    const qa = translations[lang]?.features?.privatePdf?.quickAnswer || (t as any).quickAnswer || translations['en'].features.privatePdf.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",
@@ -430,8 +619,8 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Private PDF Tools', path: '/guides/private-pdf-tools' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'fr' ? '/fr' : '/pt' },
+                    { name: lang === 'fr' ? 'Outils Privés' : lang === 'pt' ? 'Ferramentas Privadas' : 'Private PDF Tools', path: lang === 'fr' ? '/fr/guides/private-pdf-tools' : lang === 'pt' ? '/pt/guides/private-pdf-tools' : '/guides/private-pdf-tools' }
                 ]}
             />
             <PageLayout
@@ -439,8 +628,8 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Lock size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', href: '/' },
-                    { name: 'Privacy Guide', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'fr' ? '/fr' : '/pt' },
+                    { name: lang === 'fr' ? 'Guide Privé' : lang === 'pt' ? 'Guia de Privacidade' : 'Privacy Guide', href: '#' }
                 ]}
             >
                 <div className="w-full py-8">
@@ -448,7 +637,7 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                     {/* Table of Contents */}
                     <div className="bg-indigo-50/50 dark:bg-indigo-900/10 p-6 rounded-3xl border border-indigo-100 dark:border-indigo-800/30 mb-16">
                         <h3 className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-4 flex items-center gap-2">
-                            <Activity size={16} /> Table of Contents
+                            <Activity size={16} /> {lang === 'fr' ? 'Table des Matières' : lang === 'pt' ? 'Índice' : 'Table of Contents'}
                         </h3>
                         <nav className="grid md:grid-cols-2 gap-y-3 gap-x-12">
                             {t.sections.map((section: any, idx: number) => (
@@ -468,11 +657,11 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="flex flex-wrap justify-center gap-8 mb-20 py-8 border-y border-gray-100 dark:border-gray-800">
                         <div className="flex items-center gap-2 text-gray-500">
                             <Shield size={20} className="text-green-600" />
-                            <span className="text-sm font-medium">Zero-Knowledge Architecture</span>
+                            <span className="text-sm font-medium">{lang === 'fr' ? 'Architecture Zéro-Connaissance' : lang === 'pt' ? 'Arquitetura Zero-Conhecimento' : 'Zero-Knowledge Architecture'}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-500">
                             <Server size={20} className="text-gray-400" />
-                            <span className="text-sm font-medium line-through">Cloud Processing</span>
+                            <span className="text-sm font-medium line-through">{lang === 'fr' ? 'Traitement Cloud' : lang === 'pt' ? 'Processamento Nuvem' : 'Cloud Processing'}</span>
                         </div>
                     </div>
 

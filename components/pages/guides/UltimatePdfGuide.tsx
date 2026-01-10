@@ -526,6 +526,243 @@ const getGuideContent = (lang: Language) => ({
         cta: "Prêt à prendre le contrôle de vos documents?",
         ctaBtn: "Voir tous les outils",
         related: "Plus de ressources"
+    },
+    pt: {
+        seo: {
+            title: `Guia Definitivo ${CURRENT_YEAR} de Ferramentas PDF | Domine Seus Documentos | pdfcanada.ca`,
+            desc: `Domine o gerenciamento de PDF com nosso guia definitivo de ${CURRENT_YEAR}. Aprenda a editar, fundir e converter PDFs com segurança usando ferramentas locais. Sem uploads, 100% privado.`
+        },
+        h1: `O Guia Definitivo para Gerenciamento Moderno de PDF (Edição ${CURRENT_YEAR})`,
+        subtitle: "Um mergulho abrangente em edição, conversão e segurança de seus documentos PDF sem software caro.",
+
+        sections: [
+            {
+                id: "intro",
+                title: "Introdução: Por Que PDFs Ainda Dominam o Mundo",
+                content: (
+                    <>
+                        No cenário de comunicação digital em rápida evolução, o formato PDF (Portable Document Format) permanece uma pedra angular inabalável. Criado pela Adobe no início dos anos 90, o PDF foi projetado para resolver um único problema crítico: como compartilhar documentos que parecem exatamente iguais em qualquer dispositivo.
+                        <br /><br />
+                        Hoje, bilhões de PDFs são criados todos os anos. No entanto, embora o formato tenha permanecido estável, nossos requisitos cresceram. Precisamos <Link href={`/${lang}/guides/delete-pdf-pages`} className="text-canada-red hover:underline decoration-dashed">apagar páginas</Link>, assinar contratos e converter formatos.
+                        <br /><br />
+                        Este guia serve como um farol para qualquer pessoa que queira navegar nessas tarefas sem cair na "armadilha da assinatura". Exploraremos como a tecnologia moderna permite <strong>ferramentas de PDF gratuitas online</strong> que são mais rápidas e seguras do que seus ancestrais de desktop.
+                    </>
+                )
+            },
+            {
+                id: "ecosystem",
+                title: "O Ecossistema PDF: 4 Pilares de Maestria",
+                content: (
+                    <>
+                        Para dominar o gerenciamento de PDF, ajuda entender as quatro principais categorias de ferramentas disponíveis para você. Organizamos nossos recursos em hubs centrais para cada um:
+                        <br /><br />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <Link href={`/${lang}/guides/pdf-conversions`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">1. Hub de Conversão</h4>
+                                <p className="text-sm text-gray-600">Converta PDF para Word, Excel, PowerPoint, Imagens e formatos de e-book.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-editing`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">2. Hub de Edição</h4>
+                                <p className="text-sm text-gray-600">Fundir, dividir, comprimir, girar, apagar páginas e cortar documentos.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-security`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">3. Hub de Segurança</h4>
+                                <p className="text-sm text-gray-600">Proteger, desbloquear e redigir informações sensíveis usando criptografia local.</p>
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-ocr-analysis`} className="block p-6 bg-white border border-gray-200 rounded-xl hover:border-canada-red hover:shadow-lg transition-all group">
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-canada-red mb-2">4. OCR e Análise</h4>
+                                <p className="text-sm text-gray-600">Extrair texto de digitalizações, analisar metadados e gerar códigos de barras.</p>
+                            </Link>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "privacy-revolution",
+                title: "A Revolução da Privacidade: Processamento Local-First",
+                content: (
+                    <>
+                        Por anos, usar um "editor de PDF online" significava fazer upload de seus arquivos privados para o servidor de um estranho. Isso criou uma enorme vulnerabilidade para documentos sensíveis como declarações fiscais ou registros médicos.
+                        <br /><br />
+                        <strong>pdfcanada.ca</strong> é construído sobre uma filosofia "Local-First". Usamos WebAssembly para rodar o motor de PDF <em>dentro do seu navegador</em>.
+                        <ul className="list-disc pl-5 mt-4 space-y-2">
+                            <li><strong>Zero Upload</strong>: Seu documento nunca sai da sua RAM.</li>
+                            <li><strong>Isolamento Físico</strong>: Mesmo se nossos servidores desaparecessem, a ferramenta ainda funcionaria na sua página carregada.</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "deleting-pages",
+                title: "Eficiência 101: Apagando e Reordenando Páginas",
+                content: (
+                    <>
+                        Seja um relatório de 200 páginas onde você só precisa do resumo, ou um contrato digitalizado com páginas fantasmas, saber como <strong>apagar páginas PDF</strong> é uma enorme economia de tempo.
+                        <br /><br />
+                        Nossa <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Ferramenta de Apagar Páginas PDF</Link> permite que você veja toda a estrutura do documento de relance. Você pode clicar para selecionar e remover páginas instantaneamente.
+                    </>
+                )
+            },
+            {
+                id: "rotation-fix",
+                title: "A Luta do Scanner: Dominando a Rotação de PDF",
+                content: (
+                    <>
+                        Todos nós já passamos por isso: você abre um PDF e ele está de lado. Visualizadores padrão podem deixar você girar a <em>visualização</em>, mas raramente deixam você salvar a alteração.
+                        <br /><br />
+                        Usar uma <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta Girar PDF</Link> dedicada corrige isso permanentemente. Isso atualiza os metadados do arquivo, garantindo que o destinatário veja exatamente o que você vê.
+                    </>
+                )
+            },
+            {
+                id: "conversion-magic",
+                title: "Magia da Conversão: HEIC, EPUB e Mais",
+                content: (
+                    <>
+                        O mundo dos formatos digitais é bagunçado. iPhones usam HEIC, Kindles querem EPUBs, e empresas exigem PDFs.
+                        <br /><br />
+                        <strong>HEIC para PDF</strong>: Se você está lutando para abrir fotos de iPhone no Windows, nosso <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">Conversor HEIC</Link> preenche essa lacuna com segurança.
+                        <br /><br />
+                        <strong>Conversão de eBook</strong>: Precisa ler um PDF em uma tela pequena? Converter <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF para EPUB</Link> permite que o texto se reajuste confortavelmente no seu e-reader.
+                    </>
+                )
+            },
+            {
+                id: "financial-data",
+                title: "Dados Financeiros: PDF para CSV e Excel",
+                content: (
+                    <>
+                        Para contadores e proprietários de pequenas empresas, o maior obstáculo é <strong>extrair dados de extratos bancários</strong>. Digitar transações manualmente é propenso a erros e incrivelmente lento.
+                        <br /><br />
+                        Nosso <Link href={`/${lang}/guides/pdf-to-csv`} className="text-canada-red hover:underline font-bold text-lg underline decoration-canada-red/30">Guia PDF para CSV</Link> explica como usar nosso motor de extração espacial para transformar extratos bancários PDF bagunçados em dados estruturados para QuickBooks ou Excel.
+                    </>
+                )
+            },
+            {
+                id: "ocr-search",
+                title: "Desbloqueando Texto: O Poder do OCR",
+                content: (
+                    <>
+                        Um PDF digitalizado é muitas vezes apenas um "contêiner para imagens". O computador vê pixels, não palavras.
+                        <br /><br />
+                        <strong>Reconhecimento Óptico de Caracteres (OCR)</strong> cria uma camada de texto transparente sobre sua digitalização. Usando nossa <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">Ferramenta OCR PDF</Link>, você pode tornar qualquer documento digitalizado pesquisável (Ctrl+F) e copiável.
+                    </>
+                )
+            },
+            {
+                id: "interactive-pdfs",
+                title: "Documentos Interativos: Formulários Preenchíveis",
+                content: (
+                    <>
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                            <h4 className="font-bold text-canada-red mb-2 italic">Dica Pro:</h4>
+                            Documentos estáticos são uma relíquia. Se você precisa que um cliente forneça informações, não o faça imprimir e digitalizar.
+                        </div>
+                        <br /><br />
+                        Aprender a <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">criar PDFs preenchíveis</Link> transforma um documento plano em uma poderosa ferramenta de coleta de dados com campos de texto e caixas de seleção.
+                    </>
+                )
+            },
+            {
+                id: "canadian-identity",
+                title: "A Filosofia do 'Canadense Educado'",
+                content: (
+                    <>
+                        Por que "pdfcanada.ca"? Em um mundo de gigantes tecnológicos globais, há valor em serviços locais de nicho.
+                        <br /><br />
+                        Priorizamos <strong>Utilidade sobre Lucro</strong> e <strong>Privacidade como um Direito</strong>. Ao fornecer ferramentas de PDF canadenses gratuitas, visamos apoiar estudantes e pequenas empresas que apenas querem realizar suas tarefas com segurança.
+                    </>
+                )
+            },
+            {
+                id: "conclusion",
+                title: "Conclusão: Empoderando Seu Espaço de Trabalho Digital",
+                content: (
+                    <>
+                        Dominar o PDF é sobre escolher ferramentas que respeitam seu tempo e dados.
+                        <br /><br />
+                        O poder que costumava exigir uma licença de $500 agora está disponível gratuitamente no seu navegador. Da próxima vez que precisar editar um documento, lembre-se de que a maneira segura está bem aqui, processada localmente na sua própria máquina.
+                    </>
+                )
+            }
+        ],
+
+        faqTitle: "Perguntas Frequentes sobre Ferramentas PDF",
+        faqs: [
+            {
+                q: "O que torna o pdfcanada.ca diferente de outras ferramentas PDF?",
+                a: (
+                    <>
+                        Ao contrário dos grandes serviços, usamos processamento 'Local-First'. Seus arquivos nunca são enviados para um servidor; a edição acontece inteiramente na memória do seu navegador. Isso significa processamento mais rápido, total <Link href={`/${lang}/guides/private-pdf-tools`} className="text-canada-red hover:underline decoration-dashed">privacidade</Link>, e sem limites de tamanho de arquivo.
+                    </>
+                )
+            },
+            {
+                q: "Existe um limite para o tamanho do arquivo que posso processar?",
+                a: "Como o processamento é feito no seu hardware, não impomos limites arbitrários de servidor. Você pode processar arquivos maiores do que a maioria das ferramentas em nuvem permite—tipicamente até a RAM disponível do seu dispositivo."
+            },
+            {
+                q: "Preciso criar uma conta para usar essas ferramentas?",
+                a: "Não. Sem conta, sem e-mail, sem login necessário. Apenas visite a ferramenta que você precisa e comece a trabalhar imediatamente. Acreditamos em produtividade sem atrito."
+            },
+            {
+                q: "Posso usar essas ferramentas PDF no meu celular ou tablet?",
+                a: "Absolutamente. Todas as nossas ferramentas são totalmente responsivas e funcionam em iOS (iPhone/iPad), celulares e tablets Android. A experiência móvel é otimizada para toque."
+            },
+            {
+                q: "Essas ferramentas são realmente 100% gratuitas?",
+                a: "Sim, completamente gratuitas sem taxas ocultas, sem versão 'Pro', sem marcas d'água e sem limites de uso diário. Somos apoiados pela filosofia do 'Canadense Educado' de fornecer valor genuíno."
+            },
+            {
+                q: "Como editar um PDF digitalizado do qual não consigo selecionar texto?",
+                a: (
+                    <>
+                        Use nossa <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">ferramenta OCR (Reconhecimento Óptico de Caracteres)</Link>. Ela analisa as imagens digitalizadas e cria uma camada de texto pesquisável e selecionável sobre o seu documento.
+                    </>
+                )
+            },
+            {
+                q: "Posso fundir vários PDFs em um único documento?",
+                a: (
+                    <>
+                        Sim, nossa <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">ferramenta Fundir PDF</Link> permite combinar PDFs ilimitados em um único arquivo. Arraste e solte seus arquivos, organize-os na ordem desejada e clique em fundir.
+                    </>
+                )
+            },
+            {
+                q: "Qual é o melhor formato para converter meu PDF para e-readers?",
+                a: (
+                    <>
+                        Para e-readers como Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">converta para o formato EPUB</Link>. O EPUB permite que o texto se reajuste com base no tamanho da tela e preferências de fonte.
+                    </>
+                )
+            },
+            {
+                q: "Posso proteger meu PDF com senha após a edição?",
+                a: "Sim, use nossa ferramenta Proteger PDF para adicionar criptografia por senha ao seu documento. Você pode definir uma senha necessária para abrir o arquivo."
+            },
+            {
+                q: "Como remover uma senha de um PDF que possuo?",
+                a: "Use nossa ferramenta Desbloquear PDF. Você precisará saber a senha atual. Uma vez inserida, podemos remover a proteção e salvar uma nova versão desbloqueada."
+            }
+        ],
+
+        cta: "Pronto para assumir o controle dos seus documentos?",
+        ctaBtn: "Explorar Todas as Ferramentas",
+        related: "Mais Recursos",
+
+        // At-a-Glance Summary (Portuguese)
+        atGlance: {
+            title: "Maestria em PDF: Resumo",
+            items: [
+                { label: "Ferramentas Disponíveis", value: "20+ ferramentas PDF grátis" },
+                { label: "Melhor Para", value: "Estudantes, profissionais, pequenas empresas" },
+                { label: "Privacidade", value: "Processamento 100% local — sem uploads" },
+                { label: "Custo", value: "Grátis para sempre, sem taxas ocultas" },
+                { label: "Plataforma", value: "Funciona em qualquer dispositivo com navegador" },
+                { label: "Velocidade", value: "Processamento instantâneo (sem espera de upload)" }
+            ]
+        }
     }
 });
 

@@ -531,6 +531,294 @@ Cliquez sur **Exporter vers Excel** pour télécharger un fichier .xlsx, ou **Co
         ctaTitle: "Arrêtez de taper, commencez à scanner.",
         ctaButton: "Essayer l'OCR Facture",
         ctaSubtext: "Extrayez vos données en quelques secondes. 100% Privé."
+    },
+    pt: {
+        seo: {
+            title: `Conversor Grátis de Fatura PDF para Excel | Scanner OCR ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Converta faturas PDF para Excel/CSV gratuitamente. Nosso scanner OCR com IA extrai datas, valores e nomes de fornecedores localmente. 100% privado e seguro.`
+        },
+        h1: `Conversor Grátis de Fatura PDF para Excel (${CURRENT_YEAR})`,
+        subtitle: "O guia completo para extração automatizada de dados de faturas usando tecnologia OCR privada e local.",
+
+        intro: `Cansado de digitar manualmente dados de faturas PDF em planilhas? Você não está sozinho. A entrada manual de dados é lenta, propensa a erros e, francamente, um desperdício do seu tempo valioso. Seja você um freelancer gerenciando despesas ou proprietário de uma pequena empresa lidando com dezenas de contas, um **conversor de fatura PDF para Excel** confiável pode economizar horas toda semana.
+
+No **pdfcanada.ca**, construímos a ferramenta de **OCR de fatura** mais privada do mundo. Enquanto a maioria dos serviços envia seus documentos financeiros sensíveis para servidores na nuvem, nossa ferramenta processa tudo diretamente no seu navegador. Isso significa que seus dados financeiros nunca saem do seu dispositivo, mantendo você em conformidade e seguro.
+
+Neste guia, mostraremos como usar nosso **scanner gratuito de faturas** para extrair dados para Excel, CSV ou para sua área de transferência instantaneamente.`,
+
+        sections: [
+            {
+                id: "what-is-ocr",
+                title: "O que é OCR de Fatura?",
+                content: `**OCR (Reconhecimento Óptico de Caracteres)** para faturas é uma tecnologia que "lê" o texto dentro de seus arquivos PDF ou de imagem. Ele não vê apenas uma imagem; ele entende o que é um **Nome do Fornecedor**, o que é um **ID da Fatura** e qual número é o **Valor Total Devido**.
+
+Nossa ferramenta usa uma abordagem híbrida:
+1.  **Extração de Texto:** Se seu PDF foi gerado por software (como QuickBooks ou Xero), extraímos o texto diretamente com 100% de precisão.
+2.  **OCR Tesseract:** Se seu PDF for um documento em papel digitalizado, usamos **Tesseract.js** para realizar o reconhecimento de caracteres baseado em IA localmente em sua máquina.
+
+### Como Funciona a Tecnologia OCR
+O **processamento de faturas** tradicional exigia entrada manual de dados—ler cada campo e digitá-lo em planilhas. O OCR moderno automatiza isso:
+- **Reconhecimento de Padrões**: A IA identifica layouts típicos de faturas e posições de campos
+- **Processamento de Linguagem Natural**: Entende o contexto ("Fatura #" vs "Total Devido")
+- **Validação de Dados**: Verifica se as datas são válidas e se os valores incluem decimais corretamente
+- **Suporte Multi-Formato**: Funciona com faturas padrão, recibos, contas e extratos`
+            },
+            {
+                id: "how-to",
+                title: "Como Converter Fatura PDF para Excel Grátis",
+                content: `Usar nossa ferramenta de **extração de dados de fatura** é simples. Siga estes passos:
+
+### Passo 1: Envie Sua Fatura
+Navegue até nossa [Ferramenta de OCR de Fatura](/${lang}/invoice-ocr). Clique em 'Selecionar Arquivo' ou arraste seu PDF de fatura para o navegador. Suportamos:
+- PDFs gerados por software (QuickBooks, FreshBooks, Xero, Wave)
+- Faturas em papel digitalizadas
+- Recibos fotografados de dispositivos móveis
+- Anexos de fatura por e-mail (encaminhados como PDF)
+
+### Passo 2: Digitalização Automática
+Nosso motor digitalizará automaticamente o documento. Ele procura por campos-chave:
+*   **Nome do Fornecedor:** A empresa que enviou a conta
+*   **Endereço do Fornecedor:** Localização comercial para registros fiscais
+*   **Número/ID da Fatura:** O código de referência único
+*   **Data da Fatura:** Quando a fatura foi emitida
+*   **Data de Vencimento:** Prazo de pagamento
+*   **Valor Total:** O saldo final incluindo impostos
+*   **Valor do Imposto:** GST/HST/PST/QST para faturas canadenses
+*   **Subtotal:** Valor antes dos impostos
+*   **Itens de Linha:** Produtos ou serviços individuais (onde disponível)
+
+### Passo 3: Verifique e Edite
+Revise os dados extraídos no formulário à direita. Nosso OCR atinge 95%+ de precisão em PDFs limpos, mas você deve sempre verificar:
+- **Valores**: Garanta que os pontos decimais estejam corretos ($1.234,56 não $123.456)
+- **Datas**: Verifique se o formato mês/dia/ano corresponde às suas configurações regionais
+- **Nomes de Fornecedores**: Corrija erros de OCR nos nomes das empresas para consistência
+- **Números de Faturas**: Códigos alfanuméricos às vezes podem ser mal lidos
+
+### Passo 4: Exporte para Excel ou CSV
+Clique em **Exportar para Excel** para baixar um arquivo .xlsx formatado com:
+- Colunas de data formatadas corretamente (compatível com Excel)
+- Formatação de moeda com símbolos de $
+- Cabeçalhos para cada campo (Fornecedor, Data, Valor, etc.)
+- Pronto para importar no QuickBooks, Xero, FreshBooks ou tabelas dinâmicas do Excel
+
+Alternativamente, clique em **Copiar Dados** para colar diretamente em:
+- Software de contabilidade (QuickBooks Desktop, Sage)
+- Aplicativos de rastreamento de despesas (Expensify, Concur)
+- Google Sheets ou Excel
+- Bancos de dados personalizados ou sistemas ERP`
+            },
+            {
+                id: "use-cases",
+                title: "Casos de Uso Comuns de OCR de Fatura",
+                content: `### Contabilidade de Pequenas Empresas
+**Processamento Mensal de Despesas**
+- Processe 20-50 faturas de fornecedores mensalmente sem digitação manual
+- Extraia contas de serviços públicos, faturas de fornecedores e taxas de serviço
+- Crie relatórios de despesas mensais em Excel para contadores
+- Rastreie créditos fiscais de GST/HST automaticamente
+
+**Preparação Fiscal de Fim de Ano**
+- Digitalize todas as despesas comerciais para declaração de impostos da CRA
+- Crie planilhas categorizadas para formulários T2125 ou T2
+- Comprove deduções com dados de faturas organizados e pesquisáveis
+- Reduza o risco de auditoria com registros precisos e verificáveis
+
+### Fluxos de Trabalho de Freelancers e Contratados
+**Gestão de Faturas de Clientes**
+- Rastreie pagamentos recebidos de clientes
+- Crie relatórios de envelhecimento de faturas (30/60/90 dias de atraso)
+- Exporte para Excel para previsão de fluxo de caixa
+- Integre com FreshBooks ou Wave Accounting
+
+**Reembolso de Despesas**
+- Digitalize recibos de refeições de negócios, viagens, equipamentos
+- Extraia valores para pedidos de reembolso
+- Crie relatórios de despesas para clientes ou empregadores
+- Armazene cópias digitais em vez de recibos em papel`
+            },
+            {
+                id: "accuracy",
+                title: "Maximizando a Precisão do OCR",
+                content: `### Dicas para Melhores Resultados
+**Digitalizações de Alta Qualidade**
+- **300 DPI ou superior**: Essencial para reconhecimento de texto pequeno
+- **Alinhamento reto**: Corte e gire faturas para ficarem perfeitamente verticais
+- **Boa iluminação**: Evite sombras, brilho ou manchas escuras em documentos digitalizados
+- **Contraste**: Texto preto sobre fundo branco funciona melhor (evite papel colorido)
+
+**Otimização do Formato de Arquivo**
+- **PDFs de software**: Quase 100% de precisão (PDFs do QuickBooks, Xero)
+- **Digitalizações limpas**: 95%+ de precisão em faturas impressas claramente
+- **Fotos de celular**: 80-90% de precisão (use apps de scanner como Adobe Scan para melhores resultados)
+
+### Erros Comuns de OCR e Como Corrigi-los
+**Confusão de Números**
+- "0" (zero) vs "O" (letra O): Revise os valores cuidadosamente
+- "1" (um) vs "l" (L minúsculo) vs "I" (i maiúsculo): Verifique números de fatura
+- "5" vs "S", "8" vs "B": Verifique totais e datas
+
+**Problemas de Formato de Data**
+- MM/DD/AAAA vs DD/MM/AAAA: Faturas canadenses frequentemente usam formato dia primeiro
+- Datas curtas ("15/01/25"): Verifique o século (2025 vs 1925)
+
+**Símbolos de Moeda**
+- $ USD vs $ CAD: O OCR vê o símbolo, mas não a moeda—adicione manualmente se necessário
+- Formatos europeus (€1.234,56): Decimal vs vírgula pode inverter`
+            },
+            {
+                id: "privacy",
+                title: "Por Que a Privacidade Importa para Documentos Financeiros",
+                content: `Faturas contêm informações sensíveis: endereços, detalhes bancários e histórico de compras. Ao usar um **scanner de fatura online** genérico, você frequentemente dá permissão para armazenar e potencialmente analisar seus dados.
+
+**A Diferença do pdfcanada.ca:**
+*   **Sem Uploads:** Seus arquivos ficam na RAM do seu navegador
+*   **Processamento Local:** A IA roda na *sua* CPU, não no nosso servidor
+*   **Conformidade PIPEDA/GDPR:** Como não coletamos dados, somos a escolha mais segura para conformidade empresarial
+
+### Riscos de Privacidade Financeira
+**O Que Serviços de OCR na Nuvem Fazem com Seus Dados**
+- Armazenam faturas em seus servidores (às vezes permanentemente)
+- Analisam padrões de compra para fins de marketing
+- Compartilham nomes de fornecedores com corretores de dados
+- Usam dados de faturas para treinar modelos de IA (seus dados se tornam o produto deles)
+
+**O Processamento Local Protege Você**
+- **Segredos Comerciais**: Nomes de fornecedores e preços permanecem privados
+- **Confidencialidade do Cliente**: Faturas de serviços profissionais (jurídicos, médicos) permanecem seguras
+- **Inteligência Competitiva**: Impeça concorrentes de analisar seus padrões de gastos
+- **Conformidade Regulatória**: PIPEDA (Canadá), GDPR (UE) exigem manuseio rigoroso de dados`
+            },
+            {
+                id: "integration",
+                title: "Integrando com Software de Contabilidade",
+                content: `### Fluxos de Integração Direta
+**QuickBooks Desktop/Online**
+1. Exporte dados da fatura para Excel de nossa ferramenta OCR
+2. Abra o QuickBooks e vá para Arquivo → Utilitários → Importar → Arquivos Excel
+3. Mapeie colunas (Fornecedor → Nome, Valor → Total, Data → Data)
+4. Revise e confirme a importação
+5. O QuickBooks cria entradas de conta automaticamente
+
+**Usuários Avançados de Excel**
+**Tabelas Dinâmicas para Análise**
+- Exporte 6 meses de faturas para um arquivo Excel
+- Crie tabela dinâmica com Fornecedor nas linhas, Mês nas colunas, Soma do Valor como valores
+- Identifique tendências de gastos, variações sazonais e concentração de fornecedores
+
+**Formatação Condicional**
+- Destaque faturas vencidas (Data + 30 dias < HOJE())
+- Sinalize grandes valores (>$5.000) para revisão de aprovação`
+            },
+            {
+                id: "benefits",
+                title: "Benefícios de Usar um Scanner Automatizado de Faturas",
+                content: `### Economia de Tempo e Eficiência
+*   **Poupe Tempo:** Extraia 10 campos em 2 segundos em vez de digitar por 2 minutos (60x mais rápido)
+*   **Processamento em Lote:** Lide com 50 faturas rapidamente
+*   **Multi-Dispositivo:** Processe faturas do desktop, laptop, tablet ou celular
+
+### Precisão e Redução de Erros
+*   **Elimine Erros de Digitação:** A IA não cansa e troca "0" por "8"
+*   **Formatação Consistente:** Datas sempre em AAAA-MM-DD, valores sempre com 2 decimais
+*   **Regras de Validação:** O OCR sinaliza valores suspeitos
+
+### Economia de Custo
+*   **Custo Zero:** Obtenha recursos de **software de extração de faturas** de nível profissional por $0
+*   **Sem Taxas por Fatura:** Diferente de serviços em nuvem cobrando $0,10-0,50 por fatura
+*   **Volume Ilimitado:** Processe 10 ou 10.000 faturas—mesmo preço $0`
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas de OCR",
+                content: `### Fatura Não Envia ou Digitaliza
+**Problemas de Formato de Arquivo**
+- Certifique-se de que o arquivo é realmente um PDF
+- Converta imagens JPG/PNG para PDF primeiro
+- Verifique o tamanho do arquivo—PDFs muito grandes (50+ MB) podem precisar de compressão
+
+**Compatibilidade do Navegador**
+- Use o Chrome, Firefox, Edge ou Safari mais recente
+- Habilite o JavaScript (necessário para processamento OCR)
+
+### Baixa Precisão de Extração
+**Problemas de Qualidade de Digitalização**
+- Digitalize novamente em DPI mais alto (300+ recomendado)
+- Achate faturas amassadas antes de digitalizar
+- Use aplicativo de scanner (Adobe Scan, Microsoft Lens) em vez da câmera do telefone
+
+**Erros de Validação de Dados**
+**Valores Suspeitos**
+- $1234 vs $12,34: Ponto decimal ausente—revise qualquer valor abaixo de $100
+- $10.000,00 vs $1.000,00: Erros de zero extra—verifique grandes valores`
+            }
+        ],
+
+        faq: [
+            {
+                q: "O OCR de fatura é realmente grátis?",
+                a: "Sim! Como todas as ferramentas no pdfcanada.ca, o conversor de fatura para excel é 100% gratuito, sem limites, sem marcas d'água e sem taxas ocultas."
+            },
+            {
+                q: "Vocês suportam faturas digitalizadas/manuscritas?",
+                a: "Suportamos todos os PDFs digitalizados usando OCR. Faturas impressas limpas atingem 95%+ de precisão. Notas manuscritas são mais difíceis (60-70% de precisão), mas nossa IA tentará a extração. Sempre verifique resultados manuscritos."
+            },
+            {
+                q: "Posso extrair múltiplas faturas de uma vez?",
+                a: "Atualmente, processamos uma fatura por vez para garantir a maior precisão. Você pode processar faturas sequencialmente e exportar para o mesmo arquivo Excel."
+            },
+            {
+                q: "Quais formatos de arquivo posso enviar?",
+                a: "Suportamos exclusivamente arquivos PDF. Para imagens JPG, PNG ou HEIC, converta-as para PDF primeiro usando nossa ferramenta de imagem para PDF."
+            },
+            {
+                q: "Quão precisa é a extração OCR?",
+                a: "A precisão depende da qualidade da fatura: PDFs gerados por software atingem quase 100%. Digitalizações limpas chegam a 95%+. Fotos de celular são 80-90% precisas. Sempre verifique os dados extraídos."
+            },
+            {
+                q: "Posso exportar para o QuickBooks diretamente?",
+                a: "Exporte para Excel primeiro, depois importe o arquivo Excel no QuickBooks usando Arquivo → Utilitários → Importar → Arquivos Excel."
+            },
+            {
+                q: "A ferramenta armazena meus dados de fatura?",
+                a: "Não. Todo o processamento OCR acontece localmente no seu navegador usando JavaScript. Sua fatura nunca é enviada para nossos servidores."
+            },
+            {
+                q: "Como lidar com faturas em moeda estrangeira?",
+                a: "O OCR detecta símbolos de moeda ($, €, £, ¥) mas não converte moedas. Se seu fornecedor cobra em USD e você precisa em CAD, converta manualmente antes de entrar no software de contabilidade."
+            },
+            {
+                q: "A ferramenta funciona em dispositivos móveis?",
+                a: "Sim! Use o Safari no iPhone/iPad ou Chrome no Android. A ferramenta se adapta a telas menores."
+            },
+            {
+                q: "Posso extrair itens de linha (produtos/serviços individuais)?",
+                a: "Nossa ferramenta extrai valores totais com alta precisão. A extração de itens de linha é experimental e pode não funcionar para todos os formatos de fatura. Foque nos totais para resultados mais confiáveis."
+            },
+            {
+                q: "O que fazer se o OCR não encontrar um campo?",
+                a: "Se o OCR deixar um campo em branco, digite manualmente os dados no formulário antes de exportar. Os dados editados serão exportados para o Excel."
+            },
+            {
+                q: "Posso exportar para CSV em vez de Excel?",
+                a: "Atualmente, exportamos para Excel (.xlsx) por padrão. Para obter CSV, abra o arquivo Excel exportado e use 'Salvar Como → CSV'."
+            },
+            {
+                q: "Como verificar a precisão do OCR?",
+                a: "Sempre verifique os valores extraídos em relação ao PDF original. Procure por: colocação do ponto decimal, formato da data e ortografia do nome do fornecedor."
+            },
+            {
+                q: "Posso usar isso para preparação fiscal (CRA)?",
+                a: "Sim! Exporte todas as despesas comerciais para o Excel, categorize e forneça a planilha ao seu contador. Mantenha as faturas originais para auditoria da CRA."
+            },
+            {
+                q: "E se minha fatura estiver em francês?",
+                a: "O OCR lida bem com faturas em francês. Rótulos de campos como 'Numéro de facture', 'Date', 'Montant total' são reconhecidos."
+            }
+        ],
+
+        ctaTitle: "Pare de Digitar, Comece a Digitalizar.",
+        ctaButton: "Testar OCR de Fatura Agora",
+        ctaSubtext: "Extraia dados para Excel em segundos. 100% Privado."
     }
 });
 

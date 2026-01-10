@@ -245,19 +245,23 @@ export const PhishingPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 quickAnswer={{
-                    question: lang === 'fr' ? "Comment vérifier si un PDF est sûr ?" : "How to check if a PDF is safe?",
+                    question: lang === 'fr' ? "Comment vérifier si un PDF est sûr ?" : lang === 'pt' ? "Como verificar se um PDF é seguro?" : "How to check if a PDF is safe?",
                     answer: lang === 'fr'
                         ? "Utilisez l'analyseur local de pdfcanada.ca. Il scanne la structure du fichier pour détecter les scripts malveillants sans les exécuter."
-                        : "Use pdfcanada.ca's local analyzer. It scans the file structure for malicious scripts without executing them.",
-                    tool: "PDF Security Analyzer",
+                        : lang === 'pt'
+                            ? "Use o analisador local da pdfcanada.ca. Ele escaneia a estrutura do arquivo em busca de scripts maliciosos sem executá-los."
+                            : "Use pdfcanada.ca's local analyzer. It scans the file structure for malicious scripts without executing them.",
+                    tool: lang === 'pt' ? "Analisador de Segurança PDF" : "PDF Security Analyzer",
                     steps: lang === 'fr'
                         ? ["Importez le PDF", "Vérifiez le score", "Utilisez l'Aperçu Sécurisé"]
-                        : ["Upload PDF", "Check Score", "Use Safe Preview"],
+                        : lang === 'pt'
+                            ? ["Envie o PDF", "Verifique a Pontuação", "Use Visualização Segura"]
+                            : ["Upload PDF", "Check Score", "Use Safe Preview"],
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Analyse Sécurité' : 'Security Analysis', path: lang === 'fr' ? '/fr/guides/analyze-pdf' : '/guides/analyze-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'fr' ? '/fr' : '/pt' },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Analyse Sécurité' : lang === 'pt' ? 'Análise Segurança' : 'Security Analysis', path: lang === 'fr' ? '/fr/guides/analyze-pdf' : lang === 'pt' ? '/pt/guides/analyze-pdf' : '/guides/analyze-pdf' }
                 ]}
             />
             <PageLayout
@@ -265,9 +269,9 @@ export const PhishingPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Shield size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Analyse PDF' : 'Analyze PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'fr' ? '/fr' : '/pt' },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Analyse PDF' : lang === 'pt' ? 'Analisar PDF' : 'Analyze PDF', href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
@@ -279,18 +283,18 @@ export const PhishingPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-16 sm:mb-18 md:mb-20">
                         <div className="p-6 sm:p-8 bg-green-50 dark:bg-green-900/10 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-green-100 dark:border-green-800 shadow-sm">
                             <CheckCircle2 className="text-green-600 mb-3 sm:mb-4" size={28} />
-                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Sans Exécution" : "No Execution"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Analyse statique de la structure du fichier." : "Static analysis of file structure."}</p>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Sans Exécution" : lang === 'pt' ? "Sem Execução" : "No Execution"}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Analyse statique de la structure du fichier." : lang === 'pt' ? "Análise estática da estrutura do arquivo." : "Static analysis of file structure."}</p>
                         </div>
                         <div className="p-6 sm:p-8 bg-blue-50 dark:bg-blue-900/10 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-blue-100 dark:border-blue-800 shadow-sm">
                             <Lock className="text-blue-600 mb-3 sm:mb-4" size={28} />
-                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Vie Privée" : "Total Privacy"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Le fichier ne quitte jamais votre appareil." : "File never leaves your device."}</p>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Vie Privée" : lang === 'pt' ? "Privacidade Total" : "Total Privacy"}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Le fichier ne quitte jamais votre appareil." : lang === 'pt' ? "O arquivo nunca sai do seu dispositivo." : "File never leaves your device."}</p>
                         </div>
                         <div className="p-6 sm:p-8 bg-red-50 dark:bg-red-900/10 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-red-100 dark:border-red-800 shadow-sm">
                             <Eye className="text-canada-red mb-3 sm:mb-4" size={28} />
-                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Aperçu Sécurisé" : "Safe Preview"}</h3>
-                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Visualisez le contenu sans scripts." : "View content with scripts disabled."}</p>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{lang === 'fr' ? "Aperçu Sécurisé" : lang === 'pt' ? "Visualização Segura" : "Safe Preview"}</h3>
+                            <p className="text-sm text-gray-500">{lang === 'fr' ? "Visualisez le contenu sans scripts." : lang === 'pt' ? "Visualize conteúdo sem scripts." : "View content with scripts disabled."}</p>
                         </div>
                     </div>
 
@@ -315,14 +319,18 @@ export const PhishingPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     {/* Interactive Snapshot */}
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment scanner un fichier PDF ?" : "How to scan a PDF file?"}
+                        question={lang === 'fr' ? "Comment scanner un fichier PDF ?" : lang === 'pt' ? "Como escanear um arquivo PDF?" : "How to scan a PDF file?"}
                         answer={lang === 'fr'
                             ? "Utilisez l'analyseur sur pdfcanada.ca. Il décompose la structure interne du PDF pour trouver les menaces cachées."
-                            : "Use the analyzer on pdfcanada.ca. It parses the internal PDF structure to find hidden threats."}
+                            : lang === 'pt'
+                                ? "Use o analisador em pdfcanada.ca. Ele decompõe a estrutura interna do PDF para encontrar ameaças ocultas."
+                                : "Use the analyzer on pdfcanada.ca. It parses the internal PDF structure to find hidden threats."}
                         toolName="Security Analyzer"
                         steps={lang === 'fr'
                             ? ["Ouvrez l'outil", "Importez le PDF", "Vérifiez les liens"]
-                            : ["Open Tool", "Import PDF", "Check Links"]}
+                            : lang === 'pt'
+                                ? ["Abra a Ferramenta", "Importe PDF", "Verifique Links"]
+                                : ["Open Tool", "Import PDF", "Check Links"]}
                         lang={lang}
                     />
 

@@ -349,7 +349,8 @@ const getGuideContent = (lang: string) => ({
             tool: "Conversor Word para PDF",
             steps: ["Envie seu arquivo Word (.docx)", "Conversão local automática", "Baixe seu PDF"]
         }
-    }
+    },
+
 });
 
 export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {

@@ -375,6 +375,138 @@ const getGuideContent = (lang: Language) => ({
         cta: "Compressez Sûrement",
         ctaBtn: "Optimiser Docs Finances",
         related: "Outils Finance"
+    },
+    pt: {
+        seo: {
+            title: `Ferramentas de PDF Seguras para Declarações Fiscais e Documentos Financeiros ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Comprima, mescle e organize declarações fiscais, extratos bancários e relatórios financeiros com segurança sem fazer upload para servidores. Proteja-se contra roubo de identidade com processamento local de PDF.`
+        },
+        h1: `Segurança de Documentos Financeiros: Processamento Seguro de PDF (${CURRENT_YEAR})`,
+        subtitle: "Um guia abrangente para profissionais fiscais e indivíduos sobre o gerenciamento seguro de declarações fiscais e dados financeiros sensíveis.",
+
+        intro: (
+            <>
+                A temporada de impostos e relatórios financeiros traz um desafio técnico frustrante: <strong>"Arquivo Muito Grande - Upload Rejeitado."</strong>
+                <br /><br />
+                A tentação perigosa? Pesquisar "Compressor de PDF Gratuito" e clicar no primeiro resultado. <strong>Absolutamente não faça isso.</strong>
+                <br /><br />
+                Sua declaração de imposto, extratos bancários e relatórios contêm tudo o que um ladrão de identidade sonha: SIN/SSN, endereço, renda. Fazer upload desses documentos em serviços de nuvem cria um <strong>risco catastrófico de roubo de identidade</strong>.
+                <br /><br />
+                <strong>pdfcanada.ca</strong> oferece segurança de nível financeiro: <Link href={`/${lang}/compress-pdf`} className="text-green-600 hover:underline font-medium">comprimir declarações</Link>, <Link href={`/${lang}/merge-pdf`} className="text-green-600 hover:underline font-medium">mesclar extratos</Link> — tudo sem que um único byte toque em servidores externos.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "identity-theft-risks",
+                title: "Riscos de Roubo de Identidade: Por que PDFs Financeiros são Alvos",
+                content: (
+                    <>
+                        <p className="mb-4">Documentos financeiros representam a "superfície de ataque completa" para ladrões de identidade. Uma única declaração comprometida fornece tudo o que é necessário para:</p>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h4 className="font-bold text-red-900 dark:text-red-300 mb-3">1. Abrir Contas de Crédito Fraudulentas</h4>
+                                <p className="text-gray-700 dark:text-gray-300">Com seu SIN/SSN e dados, criminosos solicitam cartões de crédito e empréstimos em seu nome.</p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h4 className="font-bold text-red-900 dark:text-red-300 mb-3">2. Apresentar Declarações Fiscais Fraudulentas</h4>
+                                <p className="text-gray-700 dark:text-gray-300">Ladrões solicitam reembolsos falsos antes que você apresente sua declaração legítima.</p>
+                            </div>
+
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+                                <h4 className="font-bold text-red-900 dark:text-red-300 mb-3">3. Acessar Contas Bancárias</h4>
+                                <p className="text-gray-700 dark:text-gray-300">Extratos revelam números de contas e padrões de transação usados para ataques de tomada de conta.</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-300 mb-3">⚠️ O Risco do Servidor</h4>
+                            <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                                <li><strong>Violações de servidor acontecem constantemente.</strong></li>
+                                <li><strong>Arquivos temporários não são realmente temporários.</strong></li>
+                                <li><strong>Sem responsabilidade por violações</strong> em ferramentas gratuitas.</li>
+                            </ul>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "secure-local-processing",
+                title: "Como o Processamento Local Protege Dados Financeiros",
+                content: (
+                    <>
+                        <p className="mb-4"><strong>pdfcanada.ca</strong> elimina o risco do servidor inteiramente através da tecnologia WebAssembly:</p>
+
+                        <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 mb-6">
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                        <span className="font-bold text-green-600 dark:text-green-400">1</span>
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-gray-900 dark:text-white">Carregamento Local de Arquivos</h5>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">Seu arquivo carrega diretamente na memória do navegador. Nenhuma transmissão de rede ocorre.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                        <span className="font-bold text-green-600 dark:text-green-400">2</span>
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-gray-900 dark:text-white">Processamento no Navegador</h5>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">Todas as operações (compressão, fusão) acontecem usando a CPU local. <strong>0 bytes transmitidos.</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "financial-use-cases",
+                title: "Cenários Comuns",
+                content: (
+                    <>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-green-100 dark:border-gray-700 shadow-sm">
+                                <h4 className="font-bold text-green-600 dark:text-green-400 mb-2">
+                                    <FileText size={20} className="inline mr-2" /> Compressão de Declaração Fiscal
+                                </h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Reduza arquivos para limites de upload da Receita sem perder qualidade ou expor dados.</p>
+                            </div>
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-green-100 dark:border-gray-700 shadow-sm">
+                                <h4 className="font-bold text-green-600 dark:text-green-400 mb-2">
+                                    <DollarSign size={20} className="inline mr-2" /> Consolidação de Extratos
+                                </h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Mescle vários meses de extratos bancários em um único arquivo cronológico para pedidos de empréstimo.</p>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "faq",
+                title: "Perguntas Frequentes",
+                content: (
+                    <div className="space-y-4">
+                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h5 className="font-bold text-gray-900 dark:text-white mb-2">P: É seguro comprimir minha declaração aqui?</h5>
+                            <p className="text-gray-700 dark:text-gray-300">R: Sim. Toda compressão acontece localmente no seu navegador. Seu arquivo nunca é enviado para nossos servidores.</p>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h5 className="font-bold text-gray-900 dark:text-white mb-2">P: Profissionais podem usar isso?</h5>
+                            <p className="text-gray-700 dark:text-gray-300">R: Absolutamente. Contadores usam nossas ferramentas locais para garantir a proteção de dados dos clientes.</p>
+                        </div>
+                    </div>
+                )
+            }
+        ],
+
+        cta: "Comprima com Segurança",
+        ctaBtn: "Otimizar Docs Financeiros",
+        related: "Ferramentas Financeiras"
     }
 });
 

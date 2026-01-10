@@ -151,6 +151,74 @@ const getGuideContent = (lang: string) => ({
         ctaTitle: "Réduisez Votre PDF Maintenant",
         ctaButton: "Compresser PDF",
         ctaSubtext: "Rapide • Sécurisé • Gratuit",
+    },
+    pt: {
+        seo: {
+            title: `Comprimir PDF Online | Reduzir Tamanho do Arquivo Grátis ${CURRENT_YEAR}`,
+            desc: `Comprimir PDF online gratuitamente. Reduza o tamanho do arquivo PDF significativamente sem perder qualidade. Compressão segura baseada em navegador que mantém seus documentos privados.`
+        },
+        h1: "Comprimir PDF Online: Reduzir Tamanho Gratuitamente",
+        subtitle: "A maneira mais segura de reduzir arquivos PDF diretamente no seu navegador sem enviá-los para um servidor.",
+        intro: "Precisa **comprimir PDF online** para enviar por e-mail ou fazer upload em um portal? Muitas ferramentas online forçam você a fazer upload de seus documentos sensíveis em seus servidores. Nosso [Compressor de PDF Online](/${lang}/compress-pdf) é diferente. Ele roda inteiramente no seu navegador web, usando o poder do seu computador para processar os dados. Isso significa que você obtém **arquivos menores** com **risco zero de privacidade**.",
+
+        sections: [
+            {
+                id: "online-compression-benefits",
+                title: "Por que Comprimir PDF Online Conosco?",
+                content: `A maioria dos compressores online "gratuitos" tem um custo oculto: sua privacidade. Eles exigem que você faça upload do seu arquivo, processe-o na nuvem deles e depois faça o download.
+- **Nossa Abordagem**: Usamos WebAssembly avançado para executar a lógica de compressão **no seu dispositivo**.
+- **Sem Uploads**: Seu arquivo nunca sai do seu computador.
+- **Sem Limites**: Comprima quantos arquivos quiser, quantas vezes quiser.
+- **Resultados Instantâneos**: Como não há tempo de upload/download, geralmente é mais rápido que ferramentas na nuvem.`
+            },
+            {
+                id: "how-to-compress",
+                title: "Como Reduzir o Tamanho do PDF Online",
+                content: `1. **Abra a Ferramenta**: Navegue até nossa [Ferramenta de Comprimir PDF](/${lang}/compress-pdf).
+2. **Selecione o Arquivo**: Arraste e solte seu arquivo PDF grande.
+3. **Escolha o Nível**: Selecione o nível de compressão desejado (Baixo, Médio, Alto).
+4. **Comprima**: Veja a ferramenta reduzir seu arquivo localmente.
+5. **Salvar**: Baixe seu PDF otimizado imediatamente.
+
+*Nota: Para compressão máxima, escolha "Alto", mas "Médio" geralmente oferece o melhor equilíbrio entre tamanho e qualidade.*`
+            },
+            {
+                id: "security-privacy",
+                title: "Compressão Privada e Segura",
+                content: `Segurança é nossa prioridade máxima. Quando você usa nosso **compressor de PDF online**:
+- **Zero Transferência de Dados**: O conteúdo do seu documento nunca é enviado pela internet.
+- **Sem Cópias**: Não mantemos cópia do seu arquivo porque nunca o recebemos.
+- **Conformidade**: Perfeito para contratos legais, registros médicos e demonstrações financeiras que exigem privacidade estrita.`
+            },
+            {
+                id: "quality",
+                title: "A Compressão Arruína a Qualidade?",
+                content: "Não se for feita corretamente. Nossa ferramenta otimiza inteligentemente imagens e remove metadados redundantes. Você provavelmente não notará diferença na qualidade visual na tela, mas o tamanho do arquivo será significativamente menor. Isso o torna perfeito para anexos de e-mail e uploads na web."
+            }
+        ],
+
+        faq: [
+            {
+                q: "Este compressor de PDF online é gratuito?",
+                a: "Sim, 100% gratuito. Sem taxas ocultas, sem necessidade de cartão de crédito."
+            },
+            {
+                q: "Quanto o tamanho do meu arquivo vai diminuir?",
+                a: "Depende do conteúdo. PDFs com muito texto reduzem pouco, mas PDFs com muitas imagens podem reduzir 50-80%."
+            },
+            {
+                q: "É seguro para documentos sensíveis?",
+                a: "Absolutamente. Como o arquivo nunca sai do seu navegador, é tão seguro quanto editá-lo offline."
+            },
+            {
+                q: "Preciso instalar software?",
+                a: "Não. Tudo acontece dentro do seu navegador web (Chrome, Safari, Edge, Firefox)."
+            }
+        ],
+
+        ctaTitle: "Reduza Seu PDF Agora",
+        ctaButton: "Comprimir PDF",
+        ctaSubtext: "Rápido • Seguro • Grátis",
     }
 });
 

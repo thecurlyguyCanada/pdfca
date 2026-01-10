@@ -494,6 +494,440 @@ const getGuideContent = (lang: Language) => ({
         ctaTitle: "Prêt à utiliser le suppresseur de pages PDF ?",
         ctaButton: "Supprimer les pages",
         ctaSubtext: "Gratuit, rapide et sécurisé."
+    },
+    pt: {
+        seo: {
+            title: `Como Excluir Páginas de PDF | Guia Grátis e Privado ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Aprenda como remover páginas de PDF com segurança. Nosso guia definitivo de ${CURRENT_YEAR} mostra como excluir páginas localmente em qualquer dispositivo sem uploads. Grátis e privado.`
+        },
+        h1: `Como Remover Páginas de PDF: O Guia de ${CURRENT_YEAR}`,
+        subtitle: "Um passo a passo completo sobre como remover páginas de um PDF—indesejadas, em branco ou sensíveis—com segurança e de graça.",
+
+        intro: (
+            <>
+                Procurando um <strong>removedor de páginas PDF</strong> confiável? Todos nós já passamos por isso: você digitaliza um contrato e percebe que a página 3 está de cabeça para baixo, ou precisa remover páginas de um PDF para compartilhar apenas o resumo executivo com sua equipe.
+                <br /><br />
+                Antigamente, saber <strong>como remover páginas de um PDF</strong> exigia software caro. Hoje, você pode usar nossa ferramenta local para excluir páginas em segundos sem uploads arriscados.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "how-to",
+                title: "Como Remover Páginas de um PDF em Segundos",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Usar um <strong>removedor de páginas PDF</strong> não precisa ser complicado. Nossa ferramenta é projetada para ser intuitiva, permitindo que você veja todas as suas páginas e as remova com um único clique.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Abra o Removedor</strong>: Use nossa <Link href={`/${lang}/pdf-page-remover`} className="text-canada-red hover:underline font-medium">ferramenta Removedor de Páginas PDF</Link>. Como é local-first, ela carrega seu documento sem enviá-lo para nenhum servidor.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Selecione as Páginas</strong>: Clique nas miniaturas que representam as páginas que você deseja remover. Um ícone de lixeira aparecerá sobre as páginas selecionadas.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Baixe o Resultado</strong>: Clique em 'Remover Páginas' e seu PDF atualizado será salvo no seu dispositivo imediatamente.
+                            </li>
+                        </ol>
+                        <p className="mb-4">
+                            Este processo funciona para <strong>remover páginas de arquivos PDF</strong> de qualquer tamanho, seja para <strong>excluir páginas de PDF</strong> de um memorando de 3 páginas ou de um relatório de 300 páginas. A interface fornece miniaturas visuais, facilitando a identificificação exata de quais páginas remover.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "privacy",
+                title: "Remoção de Páginas PDF Segura e Protegida",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Quando você pesquisa <strong>como remover páginas de um PDF</strong>, a maioria dos resultados exige que você envie seu documento para um servidor na nuvem. Isso é um risco enorme de privacidade para documentos sensíveis.
+                        </p>
+                        <p className="mb-4">
+                            O <strong>pdfcanada.ca</strong> é diferente. Processamos tudo localmente no seu navegador. Seus arquivos nunca saem do seu computador, garantindo 100% de privacidade e segurança.
+                        </p>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Por Que o Processamento Local Importa</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Sem violações de dados</strong>: Seus arquivos nunca tocam nossos servidores, eliminando o risco de acesso por terceiros</li>
+                            <li><strong>Conformidade com PIPEDA</strong>: As leis de privacidade canadenses exigem manuseio rigoroso de dados—o processamento local garante conformidade automática</li>
+                            <li><strong>Documentos confidenciais</strong>: Contratos, NDAs, registros financeiros e documentos médicos permanecem 100% privados</li>
+                            <li><strong>Exclusão instantânea</strong>: Páginas sensíveis são removidas imediatamente sem logs de servidor ou armazenamento em nuvem</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "use-cases",
+                title: "Cenários Comuns para Remover Páginas PDF",
+                content: (
+                    <>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Uso Empresarial e Profissional</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Redação de contratos</strong>: Remova páginas de preços confidenciais antes de compartilhar propostas com parceiros</li>
+                            <li><strong>Resumos de relatórios</strong>: Extraia resumos executivos removendo apêndices detalhados</li>
+                            <li><strong>Limpeza de apresentações</strong>: Exclua slides de rascunho ou conteúdo desatualizado antes da distribuição final</li>
+                            <li><strong>Gerenciamento de faturas</strong>: Remova notas internas ou detalhes de pagamento sensíveis de faturas para clientes</li>
+                            <li><strong>Documentos de licitação</strong>: Limpe submissões de propostas removendo páginas de revisão interna</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Acadêmico e Pesquisa</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Edição de teses</strong>: Remova capítulos de rascunho ou seções de pesquisa desatualizadas</li>
+                            <li><strong>Submissões de jornais</strong>: Exclua materiais suplementares para atender aos limites de páginas</li>
+                            <li><strong>Trabalhos de estudantes</strong>: Remova páginas de feedback do instrutor antes de arquivar</li>
+                            <li><strong>Artigos de pesquisa</strong>: Extraia seções específicas para colaboração ou citação</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Pessoal e Administrativo</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Documentos fiscais</strong>: Remova formulários desnecessários de submissões</li>
+                            <li><strong>Registros médicos</strong>: Exclua prescrições desatualizadas ou resultados de testes redundantes</li>
+                            <li><strong>Documentos legais</strong>: Remova listas de testemunhas ou notas internas de processos judiciais</li>
+                            <li><strong>Documentos digitalizados</strong>: Exclua páginas em branco criadas durante a digitalização em massa</li>
+                            <li><strong>Personalização de e-books</strong>: Remova capítulos indesejados ou páginas promocionais de PDFs comprados</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "technical",
+                title: "Entendendo a Estrutura da Página PDF",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Quando você <strong>remove uma página de um PDF</strong>, não está apenas excluindo uma imagem—está modificando a estrutura interna do PDF. Entender isso ajuda a garantir resultados limpos e sem erros.
+                        </p>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">O Que Acontece Durante a Remoção da Página</h3>
+                        <ul className="list-disc pl-5 space-y-3 mb-6">
+                            <li><strong>Exclusão do objeto de página</strong>: O dicionário da página PDF e os fluxos de conteúdo associados são removidos</li>
+                            <li><strong>Atualizações de referência</strong>: Estruturas de árvore de páginas e tabelas de referência cruzada são reconstruídas</li>
+                            <li><strong>Preservação de marcadores</strong>: Links internos e marcadores são atualizados automaticamente para apontar para as páginas corretas</li>
+                            <li><strong>Ajuste de metadados</strong>: A contagem de páginas e as propriedades do documento são recalculadas</li>
+                            <li><strong>Manuseio de campos de formulário</strong>: Elementos interativos em páginas excluídas são removidos do dicionário do formulário</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Preservação da Qualidade</h3>
+                        <p className="mb-4">
+                            Nosso <strong>removedor de páginas PDF</strong> garante que a remoção de páginas não degrade a qualidade do conteúdo restante. Ao contrário de algumas ferramentas que re-renderizam PDFs (causando perda de qualidade), manipulamos a estrutura do PDF diretamente:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li>Fontes originais e gráficos vetoriais permanecem imaculados</li>
+                            <li>Configurações de compressão de imagem são preservadas</li>
+                            <li>Perfis de cores e recursos incorporados permanecem intactos</li>
+                            <li>A conformidade PDF/A é mantida (se presente no original)</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "best-practices",
+                title: "Melhores Práticas para Remoção de Páginas PDF",
+                content: (
+                    <>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Antes de Remover Páginas</h3>
+                        <ul className="list-disc pl-5 space-y-3 mb-6">
+                            <li><strong>Crie um backup</strong>: Sempre mantenha uma cópia original antes de <strong>excluir páginas de arquivos PDF</strong></li>
+                            <li><strong>Revise os números das páginas</strong>: PDFs podem ter numeração personalizada (i, ii, iii vs 1, 2, 3)—verifique se você está removendo as páginas corretas</li>
+                            <li><strong>Verifique os marcadores</strong>: Revise o índice para garantir que as páginas removidas não quebrem a navegação do documento</li>
+                            <li><strong>Considere o tamanho do arquivo</strong>: Remover páginas reduz o tamanho do arquivo, mas recursos órfãos podem permanecer—use ferramentas de compressão depois, se necessário</li>
+                            <li><strong>Verifique permissões</strong>: Alguns PDFs têm restrições de edição—remova a proteção por senha primeiro, se necessário</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Após a Remoção</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Teste a funcionalidade</strong>: Abra o novo PDF e verifique se todos os links, formulários e elementos interativos funcionam</li>
+                            <li><strong>Verifique o fluxo da página</strong>: Garanta que as páginas restantes mantenham a continuidade lógica</li>
+                            <li><strong>Valide a conformidade</strong>: Se o documento tiver requisitos regulatórios (PDF/A, acessibilidade), revalide</li>
+                            <li><strong>Atualize metadados</strong>: Modifique os campos de título, autor e descrição se a remoção da página alterar o escopo do documento</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Operações em Lote</h3>
+                        <p className="mb-4">
+                            Quando você precisa <strong>remover páginas de vários PDFs</strong>:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li>Processe arquivos um de cada vez para evitar problemas de memória do navegador</li>
+                            <li>Use convenções de nomenclatura consistentes (ex: "contrato_v2_limpo.pdf")</li>
+                            <li>Mantenha uma planilha rastreando quais páginas foram removidas de cada arquivo</li>
+                            <li>Verifique os primeiros arquivos completamente antes de processar todo o lote</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "comparison",
+                title: "Comparação: Removedores de Páginas PDF Grátis vs Pagos",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Muitos usuários se perguntam se precisam de software caro como o <strong>Adobe Acrobat</strong> para <strong>excluir páginas de arquivos PDF</strong>. Aqui está uma comparação honesta:
+                        </p>
+
+                        <div className="overflow-x-auto mb-6">
+                            <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                                <thead>
+                                    <tr className="bg-gray-100 dark:bg-gray-700">
+                                        <th className="px-4 py-3 text-left font-bold">Recurso</th>
+                                        <th className="px-4 py-3 text-left font-bold">pdfcanada.ca (Grátis)</th>
+                                        <th className="px-4 py-3 text-left font-bold">Adobe Acrobat DC ($240/ano)</th>
+                                        <th className="px-4 py-3 text-left font-bold">Ferramentas Online (Anúncios)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-t dark:border-gray-700">
+                                        <td className="px-4 py-3">Remoção de página</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Ilimitado</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Ilimitado</td>
+                                        <td className="px-4 py-3 text-yellow-600">Limitado</td>
+                                    </tr>
+                                    <tr className="border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+                                        <td className="px-4 py-3">Privacidade (processamento local)</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ 100% local</td>
+                                        <td className="px-4 py-3 text-yellow-600">Apenas Desktop</td>
+                                        <td className="px-4 py-3 text-red-600 font-bold">✗ Upload na nuvem</td>
+                                    </tr>
+                                    <tr className="border-t dark:border-gray-700">
+                                        <td className="px-4 py-3">Custo</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Grátis</td>
+                                        <td className="px-4 py-3 text-red-600">$240/ano</td>
+                                        <td className="px-4 py-3 text-yellow-600">Grátis com anúncios</td>
+                                    </tr>
+                                    <tr className="border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+                                        <td className="px-4 py-3">Limite de tamanho de arquivo</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Sem limite</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Sem limite</td>
+                                        <td className="px-4 py-3 text-red-600">50 MB típico</td>
+                                    </tr>
+                                    <tr className="border-t dark:border-gray-700">
+                                        <td className="px-4 py-3">Instalação necessária</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Apenas navegador</td>
+                                        <td className="px-4 py-3 text-red-600">✗ App Desktop</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Apenas navegador</td>
+                                    </tr>
+                                    <tr className="border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+                                        <td className="px-4 py-3">Funciona offline</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Após primeiro carregamento</td>
+                                        <td className="px-4 py-3 text-green-600 font-bold">✓ Modo Desktop</td>
+                                        <td className="px-4 py-3 text-red-600">✗ Requer conexão</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p className="mb-4">
+                            <strong>Resumo</strong>: Apenas para remoção de páginas, software caro é desnecessário. No entanto, o Adobe Acrobat oferece recursos avançados como OCR, criação de formulários e edição profissional de PDF que justificam o custo para usuários intensivos.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de Problemas Comuns",
+                content: (
+                    <>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Arquivo Não Carrega</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Proteção por senha</strong>: Remova a senha usando nossa ferramenta de descriptografia primeiro</li>
+                            <li><strong>PDF corrompido</strong>: Tente reparar o arquivo com <Link href={`/${lang}/flatten-pdf`} className="text-canada-red hover:underline">achatamento de PDF</Link></li>
+                            <li><strong>Arquivos muito grandes</strong>: Arquivos acima de 500 MB podem exigir mais RAM—feche outras abas do navegador</li>
+                            <li><strong>Formato não suportado</strong>: Certifique-se de que o arquivo é realmente um PDF (algumas digitalizações são salvas como imagens)</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Páginas Não Excluídas</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Compatibilidade do navegador</strong>: Use Chrome, Firefox ou Safari (versões mais recentes)</li>
+                            <li><strong>JavaScript desativado</strong>: Ative o JavaScript nas configurações do navegador</li>
+                            <li><strong>Restrições de edição</strong>: Alguns PDFs têm permissões que bloqueiam modificações</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Problemas de Saída</h3>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Links quebrados</strong>: Hiperlinks internos podem precisar de ajuste manual se apontavam para páginas removidas</li>
+                            <li><strong>Tamanho do arquivo inalterado</strong>: Recursos órfãos permanecem—use <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">compressão de PDF</Link> para otimizar</li>
+                            <li><strong>Marcadores incorretos</strong>: Atualize manualmente o índice após grandes remoções de páginas</li>
+                        </ul>
+                    </>
+                )
+            },
+            {
+                id: "alternatives",
+                title: "Métodos Alternativos e Quando Usá-los",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Embora nosso <strong>removedor de páginas PDF</strong> seja otimizado para exclusão rápida de páginas, outras abordagens podem ser melhores para cenários específicos:
+                        </p>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Extrair em Vez de Excluir</h3>
+                        <p className="mb-4">
+                            Se você quiser <strong>manter apenas páginas específicas</strong> de um PDF grande, considere usar nosso <Link href={`/${lang}/split-pdf`} className="text-canada-red hover:underline font-medium">Divisor de PDF</Link> para extrair as páginas desejadas em um novo documento. Isso é mais eficiente do que remover centenas de páginas individualmente.
+                        </p>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Reorganizar Documentos Complexos</h3>
+                        <p className="mb-4">
+                            Para documentos que precisam tanto de remoção quanto de reordenação de páginas, use nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-medium">ferramenta Organizar PDF</Link>, que permite arrastar e soltar páginas em qualquer ordem enquanto remove as indesejadas.
+                        </p>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Redigir Conteúdo nas Páginas</h3>
+                        <p className="mb-4">
+                            Se você precisar <strong>ocultar conteúdo específico</strong> sem remover páginas inteiras, a redação é mais apropriada. Isso remove permanentemente texto ou imagens, mantendo a estrutura da página intacta.
+                        </p>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Mesclar Após Remoção</h3>
+                        <p className="mb-4">
+                            Para criar um novo documento a partir de páginas espalhadas por vários PDFs, primeiro remova as páginas indesejadas de cada arquivo, depois use o <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-medium">Mesclar PDF</Link> para combinar os documentos limpos.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "seo-keywords",
+                title: "Técnicas Avançadas de Remoção de Páginas",
+                content: (
+                    <>
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Removendo Páginas em Branco Automaticamente</h3>
+                        <p className="mb-4">
+                            A digitalização em massa frequentemente cria <strong>páginas PDF em branco</strong> entre documentos. Enquanto nossa ferramenta mostra miniaturas para identificar manualmente páginas em branco, você pode acelerar o processo:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                            <li>Rolando pelas miniaturas rapidamente—páginas em branco são fáceis de detectar visualmente</li>
+                            <li>Usando o zoom do navegador (Cmd/Ctrl + rolagem) para ver mais páginas de uma vez</li>
+                            <li>Selecionando várias páginas em branco segurando Shift e clicando</li>
+                        </ul>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Excluindo Intervalo de Páginas</h3>
+                        <p className="mb-4">
+                            Para <strong>excluir várias páginas PDF</strong> de uma vez:
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-2 mb-6">
+                            <li>Clique na primeira página do intervalo que deseja remover</li>
+                            <li>Segure Shift e clique na última página do intervalo</li>
+                            <li>Todas as páginas entre elas serão selecionadas automaticamente</li>
+                            <li>Clique em "Remover Páginas" para excluí-las todas simultaneamente</li>
+                        </ol>
+
+                        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Preservando Números de Página Após Remoção</h3>
+                        <p className="mb-4">
+                            Quando você <strong>remove uma página de um PDF</strong>, as páginas subsequentes são renumeradas automaticamente. Se você precisar manter os números de página originais para citações ou referências:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-2 mb-4">
+                            <li>Insira páginas em branco como espaços reservados em vez de excluir</li>
+                            <li>Use ferramentas de edição de PDF para ajustar o esquema de numeração de páginas</li>
+                            <li>Adicione notas de rodapé explicando os números de página ausentes em documentos oficiais</li>
+                        </ul>
+                    </>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Como remover páginas de um PDF gratuitamente?",
+                a: "Simplesmente use nossa ferramenta Removedor de Páginas PDF! Envie seu documento, selecione as páginas que deseja excluir e baixe a nova versão. É 100% grátis e acontece localmente no seu navegador—sem assinaturas, sem taxas ocultas, sem limitações de teste."
+            },
+            {
+                q: "Como removo páginas de um PDF no Mac ou PC?",
+                a: "Nossa ferramenta funciona em qualquer navegador moderno. Seja no Windows ou macOS, você pode remover páginas de um PDF sem instalar nenhum software. Basta abrir seu navegador, carregar a ferramenta e começar a remover páginas imediatamente."
+            },
+            {
+                q: "Posso excluir várias páginas de um PDF de uma vez?",
+                a: "Sim! Clique em várias miniaturas de páginas para selecioná-las, ou use Shift+Clique para selecionar um intervalo de páginas. Todas as páginas selecionadas serão removidas simultaneamente quando você clicar em 'Remover Páginas'."
+            },
+            {
+                q: "Como removo uma única página de um PDF?",
+                a: "Clique na miniatura da página que deseja remover, depois clique no botão 'Remover Páginas'. A página será excluída e as páginas restantes serão renumeradas automaticamente."
+            },
+            {
+                q: "Remover páginas reduzirá o tamanho do meu arquivo PDF?",
+                a: "Sim, remover páginas reduz o tamanho do arquivo proporcionalmente. No entanto, se fontes ou imagens incorporadas forem compartilhadas entre as páginas, alguns recursos podem permanecer. Para redução máxima de tamanho, use nossa ferramenta de compressão de PDF após a remoção da página."
+            },
+            {
+                q: "É seguro remover páginas de PDFs confidenciais?",
+                a: "Absolutamente. Nossa ferramenta processa tudo localmente no seu navegador. Seus arquivos nunca são enviados para nenhum servidor, garantindo privacidade completa para contratos, registros médicos, documentos financeiros e outros arquivos sensíveis."
+            },
+            {
+                q: "Posso remover páginas de um PDF protegido por senha?",
+                a: "Você precisará remover a senha primeiro usando nossa ferramenta de desbloqueio de PDF. Uma vez removida a senha, você pode excluir páginas livremente. O PDF de saída também estará sem senha, a menos que você o re-encripte."
+            },
+            {
+                q: "Como excluir páginas em branco de um PDF digitalizado?",
+                a: "Nossa ferramenta exibe miniaturas visuais de todas as páginas. Páginas em branco aparecem como caixas brancas vazias, facilitando a identificação. Clique em todas as miniaturas de páginas em branco e remova-as todas de uma vez."
+            },
+            {
+                q: "Os números das páginas serão atualizados após a remoção das páginas?",
+                a: "Sim, a numeração interna de páginas do PDF é atualizada automaticamente. No entanto, se as páginas tiverem números impressos (como em um livro digitalizado), esses permanecerão como parte do conteúdo da página. Apenas a contagem estrutural de páginas do PDF muda."
+            },
+            {
+                q: "Posso desfazer a remoção da página após o download?",
+                a: "Não—uma vez que você baixe o PDF modificado, as páginas removidas são excluídas permanentemente desse arquivo. Sempre mantenha um backup do seu PDF original antes de remover páginas, caso precise delas mais tarde."
+            },
+            {
+                q: "Como remover páginas específicas de um PDF grande (100+ páginas)?",
+                a: "Use nossa visualização de miniaturas para rolar rapidamente pelas páginas. Clique em cada página que deseja remover ou use Shift+Clique para selecionar intervalos. Para PDFs muito grandes, considere dividir o documento primeiro se você precisar apenas de uma pequena seção."
+            },
+            {
+                q: "Remover páginas afeta a qualidade do PDF?",
+                a: "Não. Nossa ferramenta manipula a estrutura do PDF diretamente sem re-renderizar. Fontes, imagens e gráficos vetoriais nas páginas restantes mantêm sua qualidade e resolução originais."
+            },
+            {
+                q: "Posso remover páginas de um PDF no meu iPhone ou Android?",
+                a: "Sim! Nossa ferramenta baseada na web funciona em navegadores móveis. A interface se adapta a telas menores, permitindo que você toque nas miniaturas para selecionar páginas para remoção. O processamento acontece localmente no seu dispositivo."
+            },
+            {
+                q: "Como remover páginas de um PDF e salvar como um novo arquivo?",
+                a: "Após selecionar as páginas para remover e clicar em 'Remover Páginas', seu navegador baixará automaticamente o PDF modificado. Você pode então renomeá-lo ou salvá-lo em uma pasta específica. O arquivo original permanece inalterado."
+            },
+            {
+                q: "Remover páginas quebrará links internos ou marcadores?",
+                a: "Marcadores e links são atualizados automaticamente para refletir a nova estrutura da página. No entanto, se um marcador apontava para uma página excluída, ele será removido ou ajustado para a página restante mais próxima."
+            },
+            {
+                q: "Posso remover páginas de documentos de arquivo PDF/A?",
+                a: "Sim, mas remover páginas pode quebrar a conformidade PDF/A se você excluir metadados essenciais ou elementos de estrutura. Após a remoção, valide o PDF em relação aos padrões PDF/A se a conformidade for necessária."
+            },
+            {
+                q: "Como remover páginas de um PDF digitalizado sem perder texto OCR?",
+                a: "Se o seu PDF tiver uma camada de texto OCR, remover páginas preservará o texto OCR nas páginas restantes. A camada de texto pesquisável permanece intacta para todas as páginas que você mantiver."
+            },
+            {
+                q: "Qual a diferença entre excluir páginas e dividir um PDF?",
+                a: "Excluir páginas remove-as permanentemente e mantém as páginas restantes em um arquivo. Dividir cria arquivos PDF separados de diferentes intervalos de páginas. Use a remoção de página quando quiser descartar conteúdo; use a divisão quando quiser manter tudo, mas organizá-lo de forma diferente."
+            },
+            {
+                q: "Posso remover páginas de um PDF assinado digitalmente?",
+                a: "Remover páginas de um PDF assinado invalidará a assinatura digital, pois a assinatura cobre todo o documento. Após a remoção da página, você precisará assinar novamente o PDF se uma assinatura válida for necessária."
+            },
+            {
+                q: "Como remover a primeira ou última página de um PDF?",
+                a: "Clique na miniatura da primeira ou última página, depois clique em 'Remover Páginas'. Isso é comumente necessário para remover capas, isenções legais ou páginas de publicidade de PDFs baixados."
+            },
+            {
+                q: "Sua ferramenta funciona offline após o primeiro carregamento?",
+                a: "Sim! Uma vez que a página carrega, nossa ferramenta armazena em cache o código necessário. Você pode processar PDFs offline desde que não feche a aba do navegador ou limpe seu cache."
+            },
+            {
+                q: "Posso remover páginas de PDFs de formulário (formulários preenchíveis)?",
+                a: "Sim, mas esteja ciente de que os campos de formulário nas páginas excluídas também serão removidos. Se a lógica do formulário referenciar páginas excluídas, você pode precisar ajustar os cálculos do formulário ou as regras de validação posteriormente."
+            },
+            {
+                q: "Como remover páginas contendo informações sensíveis antes de compartilhar?",
+                a: "Identifique páginas com dados confidenciais usando a pré-visualização de miniaturas, selecione-as e remova. Para segurança extra, verifique se o PDF de saída não contém metadados ocultos verificando as propriedades do documento."
+            },
+            {
+                q: "Qual é o tamanho máximo de PDF que posso processar?",
+                a: "Não há limite rígido, mas as restrições de memória do navegador se aplicam. A maioria dos computadores modernos pode lidar com PDFs de até 500 MB facilmente. Para arquivos extremamente grandes (1 GB+), feche outros aplicativos para liberar RAM."
+            },
+            {
+                q: "Posso remover página sim, página não (páginas pares ou ímpares)?",
+                a: "Sim, embora você precise selecionar as páginas manualmente. Clique na primeira página ímpar/par, depois Shift+Clique pelo documento, selecionando página sim, página não. Isso é útil para separar digitalizações duplex."
+            }
+        ],
+
+        ctaTitle: "Pronto para Usar o Removedor de Páginas PDF?",
+        ctaButton: "Começar a Remover Páginas",
+        ctaSubtext: "Nenhuma conta necessária. 100% Grátis e Privado."
     }
 });
 

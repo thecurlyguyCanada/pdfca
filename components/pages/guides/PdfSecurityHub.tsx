@@ -73,6 +73,35 @@ const getHubContent = (lang: string) => ({
                 filter: (slug: string) => ['flatten-pdf', 'analyze-pdf', 'edit-xfa-pdf'].includes(slug)
             }
         ]
+    },
+    pt: {
+        seo: {
+            title: `Hub de Segurança e Privacidade PDF | Proteger e Segurar PDF ${CURRENT_YEAR}`,
+            desc: `O guia definitivo para segurança de PDF. Aprenda sobre proteção por senha, processamento local, conformidade legal e como proteger seus documentos.`
+        },
+        h1: "Hub de Segurança PDF",
+        subtitle: "Proteja seus dados sensíveis. Guias de segurança líderes da indústria para profissionais.",
+        intro: "Em uma era de violações de dados e vigilância na nuvem, **a segurança de documentos é fundamental**. Seja você um advogado protegendo o sigilo do cliente, um médico lidando com registros de pacientes ou apenas alguém que deseja manter seus impostos privados, esses guias são para você.\n\nNós nos especializamos em **segurança local em primeiro lugar**. Ao contrário de outros sites, defendemos e construímos ferramentas que verificam que NENHUM dado sai do seu dispositivo.",
+        categories: [
+            {
+                id: 'core-security',
+                title: "Segurança Essencial",
+                desc: "Proteção essencial para cada usuário.",
+                filter: (slug: string) => ['ultimate-pdf-guide', 'private-pdf-tools'].includes(slug)
+            },
+            {
+                id: 'industry',
+                title: "Específico da Indústria",
+                desc: "Guias de conformidade para setores regulamentados.",
+                filter: (slug: string) => ['legal-pdf-tools', 'healthcare-pdf-security', 'finance-pdf-security'].includes(slug)
+            },
+            {
+                id: 'actions',
+                title: "Ações de Segurança",
+                desc: "Medidas ativas para proteger seus arquivos.",
+                filter: (slug: string) => ['flatten-pdf', 'analyze-pdf', 'edit-xfa-pdf'].includes(slug)
+            }
+        ]
     }
 });
 

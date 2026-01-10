@@ -66,6 +66,32 @@ Ce guide explique comment réduire les fichiers sans les ruiner.
                 `
             }
         ]
+    },
+    pt: {
+        intro: `
+Comprimir um PDF geralmente significa sacrificar a qualidade. As imagens ficam borradas e o texto pode ficar serrilhado. Mas não precisa ser assim. A **compressão sem perdas** permite reduzir o tamanho do arquivo mantendo o documento exatamente igual.
+
+Este guia explica como reduzir arquivos sem arruiná-los.
+        `,
+        sections: [
+            {
+                id: 'lossy-vs-lossless',
+                title: 'Com Perda vs. Sem Perda',
+                content: `
+*   **Com Perda (Padrão):** Exclui dados para economizar espaço. Reduz a resolução da imagem (ex: 300dpi -> 72dpi). Bom para e-mail, ruim para impressão.
+*   **Sem Perda (Alta Qualidade):** Reorganiza os dados para ser mais eficiente sem excluir informações de pixel. Remove metadados, fontes não utilizadas e objetos redundantes.
+                `
+            },
+            {
+                id: 'how-to',
+                title: 'Como Comprimir Sem Perdas',
+                content: `
+1.  **Remover Metadados:** PDFs contêm dados ocultos como histórico de edição e miniaturas. Remover isso economiza espaço sem tocar no conteúdo da página.
+2.  **Otimizar Fontes:** Subconjunto de fontes para incluir apenas os caracteres realmente usados no documento (ex: se você usa apenas 'A', não incorpore todo o alfabeto).
+3.  **Limpar Estrutura:** Remova objetos invisíveis e otimize a árvore de objetos interna (Linearização / Fast Web View).
+                `
+            }
+        ]
     }
 });
 

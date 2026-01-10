@@ -149,6 +149,73 @@ Nous agissons comme une location d'outils : nous vous donnons l'agrafeuse numér
         ctaTitle: "Combinez Vos PDF Maintenant",
         ctaButton: "Fusionner PDF",
         ctaSubtext: "Simple • Sécurisé • Instantané",
+    },
+    pt: {
+        seo: {
+            title: `Juntar PDF Online | Combinar Arquivos Grátis e Seguro ${CURRENT_YEAR}`,
+            desc: `Junte vários arquivos PDF online gratuitamente. Combine documentos em um só com segurança no seu navegador. Sem limite de arquivos, sem uploads.`
+        },
+        h1: "Juntar PDF Online: Combine Arquivos com Segurança",
+        subtitle: "A maneira mais segura de combinar vários documentos PDF em um único arquivo usando seu navegador web.",
+        intro: "Procurando **juntar PDF online** mas preocupado em enviar seus contratos privados ou documentos pessoais? Você está certo em ser cauteloso. A maioria das ferramentas envia seus arquivos para um servidor para juntá-los. Nossa [Ferramenta Juntar PDF](/${lang}/merge-pdf) é diferente. Ela une suas páginas usando o processador do seu próprio computador, direto nesta janela. **Sem uploads. Sem espera. Sem risco.**",
+
+        sections: [
+            {
+                id: "how-it-works",
+                title: "Como Nosso Juntador Online Funciona (e Por Que é Mais Seguro)",
+                content: `Ferramentas online tradicionais agem como um serviço de envio: você envia seus arquivos, eles fazem o trabalho e mandam de volta.
+Nós agimos como um aluguel de ferramentas: nós damos o "grampeador digital" (nosso código) e você faz o trabalho você mesmo na sua própria mesa (seu navegador).
+- **Seus Arquivos Ficam Aqui**: Eles nunca viajam pela internet.
+- **Estritamente Confidencial**: Como nunca vemos seus arquivos, não podemos vazá-los.
+- **Ultra Rápido**: Não precisa esperar por uploads ou downloads.`
+            },
+            {
+                id: "step-by-step",
+                title: "Como Combinar PDFs Online",
+                content: `1. **Vá para o Juntador**: Visite nossa [Ferramenta Juntar PDF](/${lang}/merge-pdf).
+2. **Adicione Arquivos**: Arraste e solte todos os arquivos PDF que você deseja combinar.
+3. **Reordene**: Arraste as miniaturas para mudar a ordem (ex: coloque a capa primeiro).
+4. **Junte**: Clique em "Juntar PDF". O navegador irá costurá-los instantaneamente.
+5. **Baixe**: Salve seu novo documento combinado.`
+            },
+            {
+                id: "capabilities",
+                title: "O Que Você Pode Juntar?",
+                content: `Nossa ferramenta online é poderosa o suficiente para lidar com:
+- **Contratos**: Combine páginas assinadas com termos e condições.
+- **Faturas**: Junte vários recibos em um único relatório de despesas.
+- **Trabalho Escolar**: Junte diferentes partes de um trabalho em uma única entrega.
+- **E-Books**: Combine capítulos em um livro completo.`
+            },
+            {
+                id: "compatibility",
+                title: "Funciona em Todos os Dispositivos",
+                content: "Como é uma ferramenta baseada em navegador, você pode juntar PDFs online usando seu **iPhone, Android, Mac ou PC Windows**. Nenhuma instalação de aplicativo é necessária."
+            }
+        ],
+
+        faq: [
+            {
+                q: "Existe um limite de quantos arquivos posso juntar?",
+                a: "Não há limite rígido nosso. Você pode juntar dezenas de arquivos de uma vez, limitado apenas pela memória do seu computador (RAM)."
+            },
+            {
+                q: "Posso reordenar as páginas antes de juntar?",
+                a: "Sim! Nossa ferramenta permite visualizar e arrastar e soltar arquivos para obter a sequência perfeita antes de realizar a fusão."
+            },
+            {
+                q: "É realmente grátis?",
+                a: "Sim. Oferecemos esta ferramenta gratuitamente para ajudá-lo a gerenciar seus documentos sem precisar de software caro."
+            },
+            {
+                q: "Meus dados estão seguros?",
+                a: "Sim. Como em todas as nossas ferramentas, o processamento acontece localmente. Seus documentos nunca são enviados para nossos servidores."
+            }
+        ],
+
+        ctaTitle: "Combine Seus PDFs Agora",
+        ctaButton: "Juntar PDFs",
+        ctaSubtext: "Simples • Seguro • Instantâneo",
     }
 });
 

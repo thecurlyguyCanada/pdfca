@@ -280,6 +280,139 @@ const getGuideContent = (lang: Language) => ({
         ],
         cta: "Commencer à Rogner",
         ctaBtn: "Rogner les Marges PDF"
+    },
+    pt: {
+        seo: {
+            title: `Cortar Margens PDF | Remover Espaço em Branco Grátis ${CURRENT_YEAR}`,
+            desc: `Como cortar margens brancas de documentos PDF. Ajuste o tamanho dos seus PDFs gratuitamente e com segurança localmente.`
+        },
+        h1: "Como Cortar (Trim) Margens de PDF",
+        subtitle: "Remova excesso de espaço em branco e limpe seus documentos instantaneamente.",
+        intro: (
+            <>
+                Você tem um PDF com <strong>margens brancas excessivas</strong> que dificultam a leitura em dispositivos móveis ou tablets? Ou talvez você precise "aparar" (trim) artefatos de digitalização das bordas.
+                <br /><br />
+                Aparar um PDF (também conhecido como crop) permite reenquadrar o conteúdo do seu documento. Com nossa <strong>Ferramenta de Corte Grátis</strong>, você pode definir estritamente a área visível de suas páginas, removendo efetivamente cabeçalhos, rodapés ou espaços vazios—tudo sem enviar seus arquivos sensíveis para um servidor.
+            </>
+        ),
+        sections: [
+            {
+                id: "what-is-trimming",
+                title: "O que significa Cortar (Trim) um PDF?",
+                content: (
+                    <div className="space-y-4">
+                        <p>Cortar um PDF é o processo de ajustar a "CropBox" visível das páginas do documento. Ao contrário de deletar conteúdo, cortar age como uma moldura de janela—você decide qual parte da página aparece e esconde o resto.</p>
+                        <h4 className="font-bold text-lg mt-4 mb-2">Casos de Uso Comuns:</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Otimização de Impressão:</strong> Preparar um documento para um tamanho de papel específico (ex: A4 para Carta) cortando bordas não imprimíveis.</li>
+                            <li><strong>Leitura em E-Reader:</strong> Remover bordas brancas massivas para que o texto pareça maior e mais legível em telas de Kindle, Kobo ou tablet.</li>
+                            <li><strong>Limpeza de Digitalizações:</strong> Remover marcas de furos, sombras de grampeador ou bordas pretas de digitalização de documentos digitalizados.</li>
+                            <li><strong>Foco:</strong> Isolar um gráfico, tabela ou imagem específica para uma apresentação.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "how-to-trim",
+                title: "Passo a Passo: Como Cortar um PDF Online",
+                content: (
+                    <div className="space-y-4">
+                        <p>Nossa ferramenta roda inteiramente no seu navegador, garantindo que seus documentos privados permaneçam privados. Veja como usar:</p>
+                        <ol className="list-decimal pl-5 space-y-4">
+                            <li>
+                                <strong>Abra a Ferramenta de Corte:</strong> Vá para nossa <Link href={`/${lang}/crop-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta de Corte PDF</Link>.
+                            </li>
+                            <li>
+                                <strong>Selecione o Arquivo:</strong> Clique em "Selecionar PDF" ou arraste e solte seu arquivo.
+                            </li>
+                            <li>
+                                <strong>Defina a Área de Corte:</strong>
+                                <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>Use as alças visuais na pré-visualização para arrastar as bordas para dentro.</li>
+                                    <li>A área <em>dentro</em> da caixa clara é o que será mantido.</li>
+                                    <li>Tudo <em>fora</em> da área escurecida será cortado.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Aplicar a Todas as Páginas (Opcional):</strong> Se seu documento tem margens consistentes (como um livro), marque a opção "Aplicar a Todas as Páginas" para cortar cada página de forma idêntica em um clique.
+                            </li>
+                            <li>
+                                <strong>Baixar:</strong> Clique em "Cortar PDF" para processar o arquivo e baixar seu novo documento cortado.
+                            </li>
+                        </ol>
+                    </div>
+                )
+            },
+            {
+                id: "pro-tips",
+                title: "Dicas Profissionais para um Corte Perfeito",
+                content: (
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-100 dark:border-yellow-800">
+                        <ul className="space-y-3">
+                            <li className="flex items-start gap-3">
+                                <Zap className="text-yellow-600 mt-1 flex-shrink-0" size={20} />
+                                <div>
+                                    <strong>Meça Duas Vezes:</strong> Verifique algumas páginas diferentes (ex: página 1, 10 e 50) para garantir que sua caixa de corte não corte acidentalmente números de página ou cabeçalhos que possam mudar de posição.
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <Maximize className="text-yellow-600 mt-1 flex-shrink-0" size={20} />
+                                <div>
+                                    <strong>Deixe Espaço:</strong> Não corte <em>muito</em> perto do texto. Deixar uma pequena margem de 5mm garante que o texto não pareça apertado e evita cortes acidentais durante a impressão.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "trim-vs-delete",
+                title: "Cortar vs Deletar Páginas",
+                content: (
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+                        <p className="mb-4">É fácil confundir a terminologia. De qual ferramenta você precisa?</p>
+                        <ul className="space-y-3">
+                            <li className="flex items-start gap-3">
+                                <Crop className="text-blue-600 mt-1" size={20} />
+                                <div>
+                                    <strong>Cortar/Trim:</strong> Altera as <em>dimensões</em> da página (ex: remover margens).
+                                    <br />
+                                    <Link href={`/${lang}/crop-pdf`} className="text-blue-600 hover:underline">Usar Ferramenta Cortar &rarr;</Link>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <Scissors className="text-red-600 mt-1" size={20} />
+                                <div>
+                                    <strong>Deletar/Cut:</strong> Remove <em>páginas inteiras</em> do arquivo.
+                                    <br />
+                                    <Link href={`/${lang}/delete-pdf-pages`} className="text-red-600 hover:underline">Usar Ferramenta Deletar Páginas &rarr;</Link>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                )
+            }
+        ],
+        faq: [
+            {
+                q: "Cortar um PDF reduz o tamanho do arquivo?",
+                a: "Nem sempre. Cortar geralmente apenas esconde o conteúdo fora da caixa de corte (CropBox) em vez de deletar fisicamente os dados. O tamanho do arquivo muitas vezes permanece similar. Para reduzir significativamente o tamanho, use nossa ferramenta Comprimir PDF após cortar."
+            },
+            {
+                q: "Posso cortar páginas individualmente?",
+                a: "Sim! Por padrão, você ajusta a caixa de corte para a página atual. Se quiser aplicar o mesmo corte a todo o documento (ex: para um livro), use o recurso 'Aplicar a Todos'."
+            },
+            {
+                q: "O corte é permanente?",
+                a: "Para a maioria dos visualizadores e impressoras, sim—o conteúdo é escondido. No entanto, software de edição de PDF sofisticado às vezes pode recuperar o conteúdo escondido, já que é apenas mascarado, não apagado. Se precisar ocultar permanentemente informações sensíveis, use uma ferramenta de redação."
+            },
+            {
+                q: "Por que meu PDF cortado está borrado?",
+                a: "O corte em si não muda a resolução. Se seu PDF parece borrado, pode ter sido uma digitalização de baixa resolução para começar. Cortar apenas dá zoom no conteúdo, o que pode tornar o borrão existente mais óbvio."
+            }
+        ],
+        cta: "Começar a Cortar",
+        ctaBtn: "Cortar Margens PDF"
     }
 });
 

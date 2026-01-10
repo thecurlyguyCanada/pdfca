@@ -161,6 +161,79 @@ La plupart des convertisseurs en ligne fonctionnent en téléchargeant votre fic
         ctaTitle: "Convertissez Votre PDF En Ligne Maintenant",
         ctaButton: "Aller au Convertisseur",
         ctaSubtext: "Sans Email • Sans Install • Sans Attente",
+    },
+    pt: {
+        seo: {
+            title: `PDF para Word Online | Conversor Grátis Sem Cadastro ${CURRENT_YEAR}`,
+            desc: `Converta PDF para Word online de graça. Sem instalação de software, sem e-mail necessário. Conversão segura baseada no navegador que mantém seus arquivos privados.`
+        },
+        h1: "PDF para Word Online: Grátis e Seguro",
+        subtitle: "A maneira mais segura de converter documentos diretamente no seu navegador sem instalar software.",
+        intro: "Procurando um conversor de **PDF para Word online** que não pede seu endereço de e-mail? Você encontrou. Diferente de outras ferramentas \"gratuitas\" que obrigam você a se cadastrar ou colocam marca d'água em seus documentos, nossa [Ferramenta Online de PDF para Word](/${lang}/pdf-to-word) funciona instantaneamente no seu navegador web. Usamos tecnologia WebAssembly avançada para processar seus arquivos **diretamente no seu dispositivo**, o que significa que você tem a conveniência de uma ferramenta online com a segurança de um software offline.",
+
+        sections: [
+            {
+                id: "online-vs-software",
+                title: "Conversor Online vs. Software Instalado",
+                content: `Por que encher seu computador com software pesado como Adobe Acrobat quando você pode converter **PDF para Word online**?
+- **Sem Instalação**: Economize espaço em disco e evite instaladores de software suspeitos.
+- **Acesso Instantâneo**: Funciona no Chrome, Edge, Safari e Firefox.
+- **Sempre Atualizado**: Você sempre usa a versão mais recente do nosso motor de conversão.
+- **Compatível com Dispositivos Móveis**: Converta arquivos no seu iPad, tablet Android ou telefone tão facilmente quanto em um desktop.
+
+Mais importante, nossa implementação específica oferece o melhor dos dois mundos: **acessibilidade online** com **segurança local**.`
+            },
+            {
+                id: "how-to-online",
+                title: "Como Converter PDF para Word Online (Passo a Passo)",
+                content: `1. **Acesse a Ferramenta**: Visite nosso [Conversor de PDF para Word](/${lang}/pdf-to-word).
+2. **Selecione Seu Arquivo**: Arraste seu arquivo PDF diretamente para a janela do navegador.
+3. **Aguarde o Processamento**: Você verá uma barra de "Processando". É nosso motor lendo a estrutura do PDF localmente.
+4. **Baixe**: Clique no botão de download para salvar seu novo arquivo .DOCX.
+
+*Dica Pro: Você pode até desligar seu Wi-Fi depois que a página carregar. A ferramenta ainda funcionará! É assim que é "online" mas "local".*`
+            },
+            {
+                id: "security",
+                title: "É Seguro Converter PDFs Online?",
+                content: `Esta é a pergunta nº 1 que recebemos. Para a maioria dos sites, a resposta é "talvez". Para nós, a resposta é **SIM**.
+                
+A maioria dos conversores online funciona fazendo upload do seu arquivo para um servidor na nuvem. Isso é arriscado porque:
+- Você não sabe quem tem acesso a esse servidor.
+- Seu arquivo pode ser hackeado durante o upload.
+- A empresa pode vender seus dados ou endereço de e-mail.
+
+**Nós somos diferentes.** Construímos um motor personalizado que roda **dentro do seu navegador web**. Quando você usa nossa ferramenta de PDF para Word online, seu documento nunca é enviado para nós. Ele fica na memória RAM do seu computador. É matematicamente impossível vermos seus arquivos.`
+            },
+            {
+                id: "formatting",
+                title: "Preservando a Formatação Online",
+                content: "Um dos maiores desafios da conversão online é manter o layout intacto. Nosso motor é ajustado para reconhecer:\n- **Parágrafos**: Distingue entre corpo de texto e cabeçalhos.\n- **Tabelas**: Tenta reconstruir linhas e colunas no Word.\n- **Listas**: Marcadores e listas numeradas são detectados e formatados corretamente.\n\nEmbora nenhum conversor seja perfeito, nossa ferramenta online rivaliza com softwares de desktop pagos em precisão."
+            }
+        ],
+
+        faq: [
+            {
+                q: "Este conversor de PDF para Word online é realmente grátis?",
+                a: "Sim! É 100% grátis. Não limitamos o número de arquivos que você pode converter e não colocamos marca d'água em seus documentos Word."
+            },
+            {
+                q: "Preciso de internet rápida para usar isso?",
+                a: "Não. Como o processamento acontece no seu computador (não em um servidor), sua velocidade de internet não importa muito. Uma vez que a ferramenta carrega, é super rápida."
+            },
+            {
+                q: "Posso usar isso em um computador público?",
+                a: "Sim, e é mais seguro do que instalar software. Apenas certifique-se de limpar sua pasta 'Downloads' quando terminar."
+            },
+            {
+                q: "Quais navegadores são suportados?",
+                a: "Suportamos todos os navegadores modernos, incluindo Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari."
+            }
+        ],
+
+        ctaTitle: "Converta Seu PDF Online Agora",
+        ctaButton: "Ir para o Conversor",
+        ctaSubtext: "Sem E-mail • Sem Instalação • Sem Espera",
     }
 });
 

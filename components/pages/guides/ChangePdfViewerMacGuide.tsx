@@ -430,6 +430,214 @@ const getGuideContent = (lang: Language) => ({
         ctaTitle: "Besoin de Modifier des PDF Sans Installer de Logiciel ?",
         ctaButton: "Essayez Nos Outils PDF Gratuits",
         ctaSubtext: "Fusionner, compresser, diviser et convertir — tout dans votre navigateur."
+    },
+    pt: {
+        seo: {
+            title: `Como Alterar o Visualizador de PDF Padrão no Mac | Guia ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Aprenda como alterar seu visualizador de PDF padrão no Mac do Preview para Adobe Acrobat, Chrome ou qualquer outro leitor. Instruções passo a passo para macOS Sonoma, Ventura e anteriores.`
+        },
+        h1: `Como Alterar o Visualizador de PDF Padrão no Mac (${CURRENT_YEAR})`,
+        subtitle: "Defina Adobe Acrobat, Chrome ou qualquer leitor de PDF como padrão — passo a passo para todas as versões do macOS.",
+
+        intro: (
+            <>
+                Por padrão, o macOS usa o <strong>Preview</strong> para abrir arquivos PDF. Embora o Preview seja um visualizador básico capaz, você pode preferir um aplicativo diferente como <strong>Adobe Acrobat Reader</strong>, <strong>PDF Expert</strong>, ou até mesmo seu navegador web para visualizar PDFs.
+                <br /><br />
+                Este guia mostra exatamente como alterar seu visualizador de PDF padrão no Mac usando o método <strong>Obter Informações</strong> — a maneira mais confiável que funciona em todas as versões do macOS, incluindo Sonoma, Ventura, Monterey e anteriores.
+            </>
+        ),
+
+        sections: [
+            {
+                id: "method-get-info",
+                title: "Método: Alterar Visualizador de PDF Usando Obter Informações",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Este é o método oficial da Apple e funciona em <strong>todas as versões do macOS</strong>. Ele altera permanentemente qual aplicativo abre arquivos PDF.
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-4 mb-6">
+                            <li className="pl-2">
+                                <strong>Encontre qualquer arquivo PDF</strong> no seu Mac. Você pode usar o Finder para navegar até uma pasta contendo um PDF, ou procurar por um usando o Spotlight (Cmd + Espaço, depois digite &quot;.pdf&quot;).
+                            </li>
+                            <li className="pl-2">
+                                <strong>Clique com o botão direito (ou Control-clique)</strong> no arquivo PDF para abrir o menu de contexto.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Selecione &quot;Obter Informações&quot;</strong> no menu. Você também pode selecionar o arquivo e pressionar <kbd className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">Cmd + I</kbd>.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Expanda a seção &quot;Abrir com&quot;</strong> clicando no triângulo ao lado (se estiver recolhido).
+                            </li>
+                            <li className="pl-2">
+                                <strong>Clique no menu suspenso</strong> mostrando o aplicativo padrão atual (provavelmente Preview) e selecione seu visualizador de PDF preferido na lista — como Adobe Acrobat Reader, PDF Expert, Skim ou seu navegador.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Clique em &quot;Alterar Tudo...&quot;</strong> — este é o passo crucial! Este botão aplica sua escolha a <em>todos</em> os arquivos PDF, não apenas a este.
+                            </li>
+                            <li className="pl-2">
+                                <strong>Confirme a alteração</strong> clicando em &quot;Continuar&quot; na caixa de diálogo que aparece.
+                            </li>
+                        </ol>
+                        <div className="p-4 bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 rounded">
+                            <p className="text-green-800 dark:text-green-200">
+                                <strong>Pronto!</strong> A partir de agora, clicar duas vezes em qualquer arquivo PDF o abrirá no aplicativo escolhido em vez do Preview.
+                            </p>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "popular-viewers",
+                title: "Visualizadores de PDF Populares para Mac",
+                content: (
+                    <>
+                        <p className="mb-4">Aqui estão os visualizadores de PDF mais populares para Mac e seus pontos fortes:</p>
+                        <div className="space-y-4">
+                            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Preview (Integrado)</h4>
+                                <p className="text-gray-600 dark:text-gray-400 mb-2">O visualizador padrão da Apple. Rápido, leve e lida com anotações básicas. Melhor para visualização rápida e marcação simples.</p>
+                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Gratuito • Pré-instalado</span>
+                            </div>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Adobe Acrobat Reader</h4>
+                                <p className="text-gray-600 dark:text-gray-400 mb-2">Padrão da indústria. Perfeito para visualizar PDFs exatamente como pretendido, preencher formulários e adicionar assinaturas.</p>
+                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Versão gratuita disponível</span>
+                            </div>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">PDF Expert</h4>
+                                <p className="text-gray-600 dark:text-gray-400 mb-2">App nativo do Mac com edição avançada. Ótimo para usuários intensivos de PDF que precisam editar texto, mesclar arquivos e anotar extensivamente.</p>
+                                <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">Pago • Compra única</span>
+                            </div>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Google Chrome / Microsoft Edge</h4>
+                                <p className="text-gray-600 dark:text-gray-400 mb-2">Visualização de PDF integrada nos navegadores. Conveniente se você acessa PDFs frequentemente da web.</p>
+                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Gratuito</span>
+                            </div>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Skim</h4>
+                                <p className="text-gray-600 dark:text-gray-400 mb-2">Leitor de código aberto projetado para artigos acadêmicos. Recursos como anotações tornam ideal para pesquisadores.</p>
+                                <span className="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Gratuito • Código Aberto</span>
+                            </div>
+                        </div>
+                    </>
+                )
+            },
+            {
+                id: "switch-back-preview",
+                title: "Como Voltar para o Preview",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Mudou de ideia? Veja como restaurar o Preview como seu visualizador de PDF padrão:
+                        </p>
+                        <ol className="list-decimal pl-5 space-y-3 mb-6">
+                            <li className="pl-2">Clique com o botão direito em qualquer arquivo PDF</li>
+                            <li className="pl-2">Selecione &quot;Obter Informações&quot; (ou pressione <kbd className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">Cmd + I</kbd>)</li>
+                            <li className="pl-2">Na seção &quot;Abrir com&quot;, selecione <strong>Preview</strong> no menu suspenso</li>
+                            <li className="pl-2">Clique em &quot;Alterar Tudo...&quot; e confirme</li>
+                        </ol>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            O Preview será novamente seu aplicativo de PDF padrão.
+                        </p>
+                    </>
+                )
+            },
+            {
+                id: "troubleshooting",
+                title: "Resolução de Problemas Comuns",
+                content: (
+                    <div className="space-y-4">
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-200 mb-2">O aplicativo não aparece na lista?</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300">Clique em &quot;Outro...&quot; na parte inferior da lista. Navegue até sua pasta Aplicativos e selecione o visualizador de PDF desejado. Certifique-se de que o app esteja instalado corretamente em /Applications.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-200 mb-2">O botão &quot;Alterar Tudo&quot; está desativado?</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300">Certifique-se de ter selecionado um aplicativo diferente do padrão atual. O botão só é ativado quando você faz uma alteração.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-200 mb-2">As alterações não persistem após reiniciar?</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300">Tente redefinir o Launch Services via Terminal.</p>
+                        </div>
+                        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded">
+                            <h4 className="font-bold text-yellow-900 dark:text-yellow-200 mb-2">PDFs ainda abrem no Safari?</h4>
+                            <p className="text-yellow-800 dark:text-yellow-300">Isso é uma configuração do navegador. No Safari: Ajustes → Geral → desmarque &quot;Abrir arquivos seguros após download&quot;.</p>
+                        </div>
+                    </div>
+                )
+            },
+            {
+                id: "browser-alternative",
+                title: "Por que Considerar Ferramentas de PDF Baseadas em Navegador?",
+                content: (
+                    <>
+                        <p className="mb-4">
+                            Embora os visualizadores de PDF desktop sejam ótimos para leitura, eles geralmente são limitados para <strong>editar, mesclar, comprimir ou converter PDFs</strong>. É aí que as ferramentas online brilham.
+                        </p>
+                        <div className="p-6 bg-gray-900 text-white rounded-2xl">
+                            <h4 className="font-bold mb-3 flex items-center gap-2">
+                                <FileText size={20} className="text-canada-red" />
+                                pdfcanada.ca — A Alternativa Focada em Privacidade
+                            </h4>
+                            <p className="text-gray-300 mb-4">
+                                Em vez de instalar softwares pesados, use nossas ferramentas gratuitas online para mesclar, dividir, comprimir e converter PDFs. Tudo é processado localmente no seu navegador — seus arquivos nunca saem do seu Mac.
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                <Link href="/pt/merge-pdf" className="bg-canada-red hover:bg-canada-darkRed text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                                    Mesclar PDF
+                                </Link>
+                                <Link href="/pt/compress-pdf" className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                                    Comprimir PDF
+                                </Link>
+                                <Link href="/pt/split-pdf" className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                                    Dividir PDF
+                                </Link>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
+        ],
+
+        faq: [
+            {
+                q: "Como altero meu visualizador de PDF padrão no Mac?",
+                a: "Clique com o botão direito em qualquer PDF, selecione 'Obter Informações' (ou Cmd+I), expanda 'Abrir com', escolha seu app preferido e clique em 'Alterar Tudo...' e confirme."
+            },
+            {
+                q: "Como volto a usar o Preview como padrão?",
+                a: "Siga os mesmos passos: Clique direito no PDF → Obter Informações → Abrir com → selecione Preview → Alterar Tudo."
+            },
+            {
+                q: "Por que meu Mac não abre PDFs no Adobe Acrobat?",
+                a: "Você precisa definir o Adobe Acrobat como padrão via Obter Informações → Abrir com → Alterar Tudo. Apenas instalar não o torna padrão automaticamente."
+            },
+            {
+                q: "Posso definir visualizadores diferentes para arquivos diferentes?",
+                a: "Sim! Se você pular o 'Alterar Tudo', a mudança se aplica apenas àquele arquivo específico."
+            },
+            {
+                q: "Como tornar o Chrome meu visualizador de PDF padrão?",
+                a: "Em Obter Informações → Abrir com, clique em 'Outro...', navegue até Aplicativos e selecione Google Chrome. Clique em 'Alterar Tudo'."
+            },
+            {
+                q: "Alterar o visualizador afeta a edição de PDF?",
+                a: "Sim. O Preview tem anotações básicas, o Adobe Acrobat Reader permite preencher formulários, enquanto o PDF Expert oferece edição completa."
+            },
+            {
+                q: "Por que os PDFs ainda abrem no Safari?",
+                a: "O Safari tem seu próprio manipulador. Vá em Ajustes → Geral e desmarque 'Abrir arquivos seguros após download'."
+            },
+            {
+                q: "Existe atalho de teclado para mudar o app padrão?",
+                a: "Não diretamente, mas você pode acessar rapidamente Obter Informações com Cmd+I após selecionar o arquivo."
+            }
+        ],
+
+        ctaTitle: "Precisa Editar PDFs Sem Instalar Software?",
+        ctaButton: "Experimente Nossas Ferramentas Gratuitas",
+        ctaSubtext: "Mesclar, comprimir, dividir e converter — tudo no seu navegador."
     }
 });
 

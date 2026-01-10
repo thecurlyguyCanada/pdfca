@@ -85,6 +85,41 @@ const getHubContent = (lang: string) => ({
                 filter: (slug: string) => ['make-pdf-fillable', 'insert-picture-in-pdf', 'sign-pdf'].includes(slug)
             }
         ]
+    },
+    pt: {
+        seo: {
+            title: `Hub de Edição de PDF | Mesclar, Dividir, Comprimir e Editar PDF ${CURRENT_YEAR}`,
+            desc: `O guia completo para edição de PDF. Aprenda como mesclar, dividir, comprimir, girar e modificar PDFs. Ferramentas gratuitas, seguras e baseadas em navegador.`
+        },
+        h1: "Hub de Edição de PDF",
+        subtitle: "Assuma o controle de seus documentos. Modifique, organize e aperfeiçoe seus PDFs.",
+        intro: "PDFs são famosos por serem difíceis de editar—isso é intencional. Mas às vezes você precisa fazer alterações. Seja para **combinar vários relatórios**, **remover uma página sensível** ou **reduzir um arquivo** para enviá-lo por e-mail, nossos guias de edição mostram como fazer isso de forma eficiente.\n\nPriorizamos a edição **não destrutiva** e **segura**. Nossas ferramentas e guias ajudam você a modificar seus arquivos sem comprometer a qualidade ou sua privacidade.",
+        categories: [
+            {
+                id: 'structure',
+                title: "Estrutura e Organização",
+                desc: "Altere a estrutura da página. Mescle arquivos, divida documentos ou reordene páginas.",
+                filter: (slug: string) => ['merge-pdf', 'merge-pdf-online', 'merge-large-pdfs', 'split-pdf', 'split-pdf-online', 'organize-pdf', 'delete-pdf-pages', 'pdf-page-remover'].includes(slug)
+            },
+            {
+                id: 'optimization',
+                title: "Tamanho e Otimização",
+                desc: "Torne seus arquivos menores e mais rápidos para compartilhar.",
+                filter: (slug: string) => ['compress-pdf', 'compress-pdf-online', 'compress-pdf-no-quality-loss', 'flatten-pdf'].includes(slug)
+            },
+            {
+                id: 'visuals',
+                title: "Ajustes Visuais",
+                desc: "Corrija problemas de orientação e layout.",
+                filter: (slug: string) => ['rotate-pdf', 'crop-pdf', 'trim-pdf'].includes(slug)
+            },
+            {
+                id: 'content',
+                title: "Edição de Conteúdo",
+                desc: "Adicione interações e conteúdo ao seu PDF.",
+                filter: (slug: string) => ['make-pdf-fillable', 'insert-picture-in-pdf', 'sign-pdf'].includes(slug)
+            }
+        ]
     }
 });
 

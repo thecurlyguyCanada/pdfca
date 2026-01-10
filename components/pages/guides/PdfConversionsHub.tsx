@@ -97,6 +97,47 @@ const getHubContent = (lang: string) => ({
                 filter: (slug: string) => ['pdf-to-epub', 'epub-to-pdf', 'cbr-to-pdf', 'acsm-to-pdf', 'pdf-to-kindle'].includes(slug)
             }
         ]
+    },
+    pt: {
+        seo: {
+            title: `Hub de Conversão de PDF | Converter PDF para Word, Excel, JPG ${CURRENT_YEAR}`,
+            desc: `O guia definitivo para conversões de PDF. Aprenda como converter PDF para Word, Excel, PowerPoint, JPG e mais. Tutoriais gratuitos, seguros e locais.`
+        },
+        h1: "Hub de Conversão de PDF",
+        subtitle: "Domine a arte da conversão de arquivos. Transforme qualquer documento em PDF e vice-versa.",
+        intro: "Bem-vindo ao recurso mais abrangente para **conversões de PDF** na web. Se você está tentando editar um PDF bloqueado convertendo-o para Word, ou arquivando seus e-mails como documentos PDF seguros, temos um guia para você.\n\nNossa filosofia é simples: **mantenha local**. Todos os nossos guias focam em ferramentas e métodos que respeitam sua privacidade, processando arquivos diretamente no seu dispositivo sempre que possível.",
+        categories: [
+            {
+                id: 'pdf-to-office',
+                title: "PDF para Office (Word, Excel, etc.)",
+                desc: "Desbloqueie seus dados. Converta PDFs somente leitura em documentos Office editáveis.",
+                filter: (slug: string) => ['pdf-to-word', 'pdf-to-word-online', 'pdf-to-word-offline', 'pdf-to-word-formatting', 'pdf-to-word-scanned', 'pdf-to-excel', 'pdf-to-csv'].includes(slug)
+            },
+            {
+                id: 'office-to-pdf',
+                title: "Documentos Office para PDF",
+                desc: "Crie documentos profissionais e compartilháveis a partir de seus rascunhos.",
+                filter: (slug: string) => ['word-to-pdf', 'rtf-to-pdf', 'email-to-pdf'].includes(slug)
+            },
+            {
+                id: 'developer',
+                title: "Desenvolvedor e Formatos de Dados",
+                desc: "Converta arquivos de código e dados estruturados (XML, UBL).",
+                filter: (slug: string) => ['pdf-to-xml', 'pdf-to-ubl', 'aspx-to-pdf', 'php-to-pdf'].includes(slug)
+            },
+            {
+                id: 'images',
+                title: "Imagens e PDF",
+                desc: "Gerencie conteúdo visual. Converta fotos, digitalizações e gráficos.",
+                filter: (slug: string) => ['heic-to-pdf', 'gif-to-pdf', 'insert-picture-in-pdf'].includes(slug)
+            },
+            {
+                id: 'ebooks',
+                title: "E-Books e Formatos Especializados",
+                desc: "Converta livros e quadrinhos para seu e-reader favorito.",
+                filter: (slug: string) => ['pdf-to-epub', 'epub-to-pdf', 'cbr-to-pdf', 'acsm-to-pdf', 'pdf-to-kindle'].includes(slug)
+            }
+        ]
     }
 });
 
