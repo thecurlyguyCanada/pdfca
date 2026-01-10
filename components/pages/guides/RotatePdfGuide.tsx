@@ -602,9 +602,9 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Pivoter PDF' : 'Rotate PDF', path: lang === 'fr' ? '/fr/guides/rotate-pdf' : '/guides/rotate-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', path: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'Pivoter PDF' : lang === 'pt' ? 'Girar PDF' : 'Rotate PDF', path: lang === 'fr' ? '/fr/guides/rotate-pdf' : '/guides/rotate-pdf' }
                 ]}
             />
             <PageLayout

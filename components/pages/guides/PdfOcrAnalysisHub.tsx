@@ -109,9 +109,9 @@ export const PdfOcrAnalysisHub: React.FC<HubProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Scan size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: t.h1, href: lang === 'fr' ? '/fr/guides/pdf-ocr-analysis' : '/guides/pdf-ocr-analysis' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.h1, href: '#' }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

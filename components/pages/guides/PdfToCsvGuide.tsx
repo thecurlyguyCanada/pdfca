@@ -427,9 +427,9 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF vers CSV' : 'PDF to CSV', path: lang === 'fr' ? '/fr/guides/pdf-to-csv' : '/guides/pdf-to-csv' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', path: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'Guide PDF vers CSV' : lang === 'pt' ? 'Guia PDF para CSV' : 'PDF to CSV Guide', path: '#' }
                 ]}
             />
             <PageLayout

@@ -628,7 +628,7 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Lock size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'fr' ? '/fr' : '/pt' },
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
                     { name: lang === 'fr' ? 'Guide Privé' : lang === 'pt' ? 'Guia de Privacidade' : 'Privacy Guide', href: '#' }
                 ]}
             >

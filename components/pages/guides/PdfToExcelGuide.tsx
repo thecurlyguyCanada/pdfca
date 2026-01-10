@@ -137,9 +137,9 @@ export const PdfToExcelGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={lang === 'en' ? 'Unlock your data. Convert tables to spreadsheets.' : 'Libérez vos données. Convertissez des tableaux en feuilles de calcul.'}
                 icon={<FileSpreadsheet size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'To Excel' : 'Vers Excel', href: lang === 'fr' ? '/fr/guides/pdf-to-excel' : '/guides/pdf-to-excel' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'en' ? 'To Excel' : lang === 'pt' ? 'Para Excel' : 'Vers Excel', href: '#' }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

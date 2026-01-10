@@ -276,9 +276,9 @@ export const PdfToXmlGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<FileCode size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'PDF en XML' : 'PDF to XML', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                { name: lang === 'fr' ? 'Guide PDF vers XML' : lang === 'pt' ? 'Guia PDF para XML' : 'PDF to XML Guide', href: '#' }
             ]}
         >
             <SEO
