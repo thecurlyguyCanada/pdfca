@@ -48,11 +48,11 @@ interface PageRendererProps {
     onMoveToPage: (id: string, newPageIndex: number) => void;
     onHistoryCommit: () => void;
     activeTool: 'pan' | 'select';
-    onVisibilityChange: (isVisible: boolean) => void;
+    onVisibilityChange: (pageIndex: number, isVisible: boolean) => void;
     selectedEntryId: string | null;
     onSelectEntry: (id: string | null) => void;
     isMobile: boolean;
-    onPageClick?: () => void;
+    onPageClick?: (pageIndex: number) => void;
     t: TranslationType;
 }
 
@@ -101,7 +101,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         const observer = new IntersectionObserver(([entry]) => {
             const visible = entry.isIntersecting;
             setIsVisible(visible);
-            onVisibilityChange(visible);
+            onVisibilityChange(pageIndex, visible);
         }, {
             threshold: [0, 0.01, 0.1, 0.5],
             rootMargin: '400px 0px 400px 0px'
@@ -165,7 +165,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
         const target = e.target as HTMLElement;
         if (target.tagName !== 'DIV' && target.tagName !== 'CANVAS') return;
 
-        onPageClick?.();
+        onPageClick?.(pageIndex);
         if (activeTool === 'select') {
             onSelectEntry(null);
         }
@@ -211,7 +211,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
                         onSelectEntry(entry.id);
-                        onPageClick?.();
+                        onPageClick?.(pageIndex);
                     }}
                     onDragStop={(_, d) => {
                         const x = Math.max(0, Math.min(d.x, pageSize.width - entry.width * pageSize.width));
@@ -223,7 +223,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         if (activeTool !== 'select') return;
                         e.stopPropagation();
                         onSelectEntry(entry.id);
-                        onPageClick?.();
+                        onPageClick?.(pageIndex);
                     }}
                     onResizeStop={(_, __, ref, ___, position) => {
                         onEntryUpdate(entry.id, {
@@ -434,6 +434,16 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
         }, 300);
         return () => clearTimeout(timer);
     }, [previewZoom]);
+
+    const entriesByPage = useMemo(() => {
+        const map = new Map<number, SignatureEntry[]>();
+        for (let i = 0; i < pageCount; i++) map.set(i, []);
+        entries.forEach(entry => {
+            const pageEntries = map.get(entry.pageIndex);
+            if (pageEntries) pageEntries.push(entry);
+        });
+        return map;
+    }, [entries, pageCount]);
 
     const vibrate = useCallback((ms: number = 10) => {
         if (ms > 40) triggerHaptic('success');
@@ -929,17 +939,17 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                                     pdfJsDoc={pdfJsDoc}
                                     zoom={debouncedZoom}
                                     displayZoom={previewZoom}
-                                    entries={entries.filter(e => e.pageIndex === idx)}
+                                    entries={entriesByPage.get(idx) || []}
                                     onEntryUpdate={updateEntry}
                                     onEntryDelete={removeEntry}
                                     onMoveToPage={moveToPage}
                                     onHistoryCommit={commitToHistory}
                                     activeTool={activeTool}
-                                    onVisibilityChange={(isVisible: boolean) => reportVisibility(idx, isVisible)}
+                                    onVisibilityChange={reportVisibility}
                                     selectedEntryId={selectedEntryId}
                                     onSelectEntry={setSelectedEntryId}
                                     isMobile={isMobile}
-                                    onPageClick={() => setActivePage(idx)}
+                                    onPageClick={setActivePage}
                                     t={t}
                                 />
                             </div>
