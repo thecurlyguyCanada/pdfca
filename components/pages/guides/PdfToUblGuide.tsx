@@ -142,28 +142,16 @@ Click **Download** to receive your \`.xml\` file. You can now import this into a
         h1: `Convertisseur PDF vers UBL Gratuit`,
         subtitle: "Le guide complet pour créer des factures UBL 2.1 XML conformes à partir de vos documents PDF.",
 
-        intro: (
-            <>
-                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 bg-blue-600 text-white rounded-xl">
-                            <Database size={24} />
-                        </div>
-                        <div>
-                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Prêt à convertir ?</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Transformez votre facture en XML UBL instantanément.</p>
-                        </div>
-                    </div>
-                    <Link href="/fr/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-                        Aller au Convertisseur &rarr;
-                    </Link>
-                </div>
+        toolCta: {
+            title: "Prêt à convertir ?",
+            subtitle: "Transformez votre facture en XML UBL instantanément.",
+            buttonText: "Aller au Convertisseur",
+            link: "/fr/pdf-to-ubl"
+        },
 
-                Dans l'économie numérique actuelle, envoyer une simple facture PDF ne suffit plus. Les gouvernements et les grandes entreprises exigent de plus en plus la **Facturation Électronique** utilisant des formats de données structurés comme **UBL**.
+        intro: `Dans l'économie numérique actuelle, envoyer une simple facture PDF ne suffit plus. Les gouvernements et les grandes entreprises exigent de plus en plus la **Facturation Électronique** utilisant des formats de données structurés comme **UBL**.
 
-                Chez **pdfcanada.ca**, nous fournissons une solution **axée sur la confidentialité** pour convertir automatiquement vos factures PDF en fichiers XML UBL 2.1. Que vous naviguiez dans les exigences **Peppol**, cherchiez une solution pour **PDF vers UBL**, ou souhaitiez simplement moderniser votre facturation, notre outil est là pour vous.
-            </>
-        ),
+Chez **pdfcanada.ca**, nous fournissons une solution **axée sur la confidentialité** pour convertir automatiquement vos factures PDF en fichiers XML UBL 2.1. Que vous naviguiez dans les exigences **Peppol**, cherchiez une solution pour **PDF vers UBL**, ou souhaitiez simplement moderniser votre facturation, notre outil est là pour vous.`,
 
         sections: [
             {
@@ -257,28 +245,16 @@ Cliquez sur **Télécharger** pour recevoir votre fichier \`.xml\`. Vous pouvez 
         h1: `Conversor PDF para UBL Gratuito`,
         subtitle: "O guia completo para criar faturas UBL 2.1 XML compatíveis a partir de seus PDFs.",
 
-        intro: (
-            <>
-                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 bg-blue-600 text-white rounded-xl">
-                            <Database size={24} />
-                        </div>
-                        <div>
-                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Pronto para converter?</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Transforme sua fatura em UBL XML instantaneamente.</p>
-                        </div>
-                    </div>
-                    <Link href="/pt/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-                        Ir para o Conversor &rarr;
-                    </Link>
-                </div>
+        toolCta: {
+            title: "Pronto para converter?",
+            subtitle: "Transforme sua fatura em UBL XML instantaneamente.",
+            buttonText: "Ir para o Conversor",
+            link: "/pt/pdf-to-ubl"
+        },
 
-                Na economia digital atual, enviar uma simples fatura em PDF não é mais suficiente. Governos e grandes empresas exigem cada vez mais o **Faturamento Eletrônico** usando formatos de dados estruturados como **UBL**.
+        intro: `Na economia digital atual, enviar uma simples fatura em PDF não é mais suficiente. Governos e grandes empresas exigem cada vez mais o **Faturamento Eletrônico** usando formatos de dados estruturados como **UBL**.
 
-                No **pdfcanada.ca**, fornecemos uma solução **focada na privacidade** para converter automaticamente suas faturas PDF em arquivos XML UBL 2.1. Seja você navegando pelos requisitos do **Peppol** ou simplesmente modernizando seu faturamento, nossa ferramenta está aqui para ajudar.
-            </>
-        ),
+No **pdfcanada.ca**, fornecemos uma solução **focada na privacidade** para converter automaticamente suas faturas PDF em arquivos XML UBL 2.1. Seja você navegando pelos requisitos do **Peppol** ou simplesmente modernizando seu faturamento, nossa ferramenta está aqui para ajudar.`,
 
         sections: [
             {
@@ -387,9 +363,18 @@ export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<FileCode size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'PDF ver UBL' : 'PDF to UBL', href: '#' }
+                {
+                    name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home',
+                    href: lang === 'en' ? '/' : `/${lang}`
+                },
+                {
+                    name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides',
+                    href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide`
+                },
+                {
+                    name: lang === 'fr' ? 'PDF ver UBL' : lang === 'pt' ? 'PDF para UBL' : 'PDF to UBL',
+                    href: '#'
+                }
             ]}
         >
             <SEO
@@ -408,8 +393,27 @@ export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
             />
 
             <div className="w-full py-12">
-                <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
-                    <MarkdownContent content={t.intro} />
+                <div className="max-w-none mb-16 text-gray-600 dark:text-gray-300">
+                    {t.toolCta && (
+                        <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm not-prose">
+                            <div className="flex items-center gap-4">
+                                <div className="p-3 bg-blue-600 text-white rounded-xl">
+                                    <Database size={24} />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">{t.toolCta.title}</h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.toolCta.subtitle}</p>
+                                </div>
+                            </div>
+                            <Link href={t.toolCta.link} className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
+                                {t.toolCta.buttonText} &rarr;
+                            </Link>
+                        </div>
+                    )}
+
+                    <div className="prose prose-xl dark:prose-invert max-w-none">
+                        <MarkdownContent content={t.intro as string} />
+                    </div>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
