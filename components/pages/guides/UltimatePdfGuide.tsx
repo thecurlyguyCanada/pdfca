@@ -799,7 +799,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://www.pdfcanada.ca${lang === 'fr' ? '/fr' : ''}/guides/ultimate-pdf-guide`
+            "@id": `https://www.pdfcanada.ca${lang === 'en' ? '' : '/' + lang}/guides/ultimate-pdf-guide`
         }
     };
 
@@ -827,8 +827,8 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<BookOpen size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', href: '/' },
-                    { name: 'Ultimate Guide', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guide Ultime' : lang === 'pt' ? 'Guia Definitivo' : 'Ultimate Guide', href: '#' }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
@@ -854,7 +854,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     {/* Table of Contents */}
                     <div className="bg-blue-50/50 dark:bg-blue-900/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-blue-100 dark:border-blue-800/30 mb-8 sm:mb-12 md:mb-16">
                         <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 sm:mb-4 flex items-center gap-2">
-                            <MousePointer2 size={16} /> {lang === 'fr' ? 'Table des matières' : 'Table of Contents'}
+                            <MousePointer2 size={16} /> {lang === 'fr' ? 'Table des matières' : lang === 'pt' ? 'Índice' : 'Table of Contents'}
                         </h3>
                         <nav className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 sm:gap-y-3 gap-x-6 sm:gap-x-12">
                             {t.sections.map((section: any, idx: number) => (
@@ -874,11 +874,11 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-16 md:mb-20 py-4 sm:py-6 md:py-8 border-y border-gray-100 dark:border-gray-800">
                         <div className="flex items-center gap-2 text-gray-500">
                             <Shield size={18} className="text-canada-red sm:w-5 sm:h-5" />
-                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? '100% Privé' : '100% Private'}</span>
+                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? '100% Privé' : lang === 'pt' ? '100% Privado' : '100% Private'}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-500">
                             <Globe size={18} className="text-canada-red sm:w-5 sm:h-5" />
-                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? 'Traitement Local' : 'Local Processing'}</span>
+                            <span className="text-xs sm:text-sm font-medium">{lang === 'fr' ? 'Traitement Local' : lang === 'pt' ? 'Processamento Local' : 'Local Processing'}</span>
                         </div>
                     </div>
 

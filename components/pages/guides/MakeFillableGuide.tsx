@@ -1716,9 +1716,9 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF Remplissable' : 'Make PDF Fillable', path: lang === 'fr' ? '/fr/guides/make-pdf-fillable' : '/guides/make-pdf-fillable' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', path: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'PDF Remplissable' : lang === 'pt' ? 'Criar PDF Preenchível' : 'Make PDF Fillable', path: lang === 'en' ? '/guides/make-pdf-fillable' : `/${lang}/guides/make-pdf-fillable` }
                 ]}
             />
             <PageLayout
@@ -1726,8 +1726,8 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<PenTool size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
                     { name: lang === 'fr' ? 'PDF Remplissable' : 'Make PDF Fillable', href: '#' }
                 ]}
             >

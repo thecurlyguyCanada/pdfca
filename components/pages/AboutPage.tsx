@@ -289,8 +289,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'À Propos' : 'About', path: lang === 'fr' ? '/fr/about' : '/about' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'À Propos' : lang === 'pt' ? 'Sobre' : 'About', path: lang === 'en' ? '/about' : `/${lang}/about` }
                 ]}
             />
             <PageLayout
@@ -298,8 +298,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Leaf size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
-                    { name: lang === 'fr' ? 'À Propos' : 'About', href: lang === 'fr' ? '/fr/about' : '/about' }
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'À Propos' : 'About', href: lang === 'en' ? '/about' : `/${lang}/about` }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
@@ -414,23 +414,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                     {/* Popular Tools - Internal Linking */}
                     <section className="mb-20">
                         <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6 text-center">
-                            {lang === 'fr' ? 'Nos Outils Populaires' : 'Our Popular Tools'}
+                            {lang === 'fr' ? 'Nos Outils Populaires' : lang === 'pt' ? 'Nossas Ferramentas Populares' : 'Our Popular Tools'}
                         </h2>
                         <p className="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
                             {lang === 'fr'
                                 ? 'Découvrez les outils que des milliers de Canadiens utilisent chaque jour pour gérer leurs PDF.'
-                                : 'Explore the tools thousands of Canadians use every day to manage their PDFs.'}
+                                : lang === 'pt'
+                                    ? 'Explore as ferramentas que milhares de canadenses usam todos os dias para gerenciar seus PDFs.'
+                                    : 'Explore the tools thousands of Canadians use every day to manage their PDFs.'}
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {[
-                                { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: '/merge-pdf' },
-                                { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: '/compress-pdf' },
-                                { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: '/split-pdf' },
-                                { name: lang === 'fr' ? 'Supprimer Pages' : 'Delete Pages', path: '/delete-pdf-pages' },
-                                { name: lang === 'fr' ? 'Pivoter PDF' : 'Rotate PDF', path: '/rotate-pdf' },
-                                { name: lang === 'fr' ? 'Signer PDF' : 'Sign PDF', path: '/sign-pdf' },
-                                { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: '/pdf-to-word' },
-                                { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: '/word-to-pdf' },
+                                { name: lang === 'fr' ? 'Fusionner PDF' : lang === 'pt' ? 'Juntar PDF' : 'Merge PDF', path: '/merge-pdf' },
+                                { name: lang === 'fr' ? 'Compresser PDF' : lang === 'pt' ? 'Comprimir PDF' : 'Compress PDF', path: '/compress-pdf' },
+                                { name: lang === 'fr' ? 'Diviser PDF' : lang === 'pt' ? 'Dividir PDF' : 'Split PDF', path: '/split-pdf' },
+                                { name: lang === 'fr' ? 'Supprimer Pages' : lang === 'pt' ? 'Remover Páginas' : 'Delete Pages', path: '/delete-pdf-pages' },
+                                { name: lang === 'fr' ? 'Pivoter PDF' : lang === 'pt' ? 'Girar PDF' : 'Rotate PDF', path: '/rotate-pdf' },
+                                { name: lang === 'fr' ? 'Signer PDF' : lang === 'pt' ? 'Assinar PDF' : 'Sign PDF', path: '/sign-pdf' },
+                                { name: lang === 'fr' ? 'PDF vers Word' : lang === 'pt' ? 'PDF para Word' : 'PDF to Word', path: '/pdf-to-word' },
+                                { name: lang === 'fr' ? 'Word vers PDF' : lang === 'pt' ? 'Word para PDF' : 'Word to PDF', path: '/word-to-pdf' },
                             ].map((tool, i) => (
                                 <Link
                                     key={i}
@@ -448,7 +450,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                                 href={`/${lang}/guides/ultimate-pdf-guide`}
                                 className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-bold transition-colors"
                             >
-                                {lang === 'fr' ? 'Voir le Guide Ultime PDF →' : 'View Ultimate PDF Guide →'}
+                                {lang === 'fr' ? 'Voir le Guide Ultime PDF →' : lang === 'pt' ? 'Ver Guia Definitivo PDF →' : 'View Ultimate PDF Guide →'}
                             </Link>
                         </div>
                     </section>

@@ -462,12 +462,22 @@ export const TrimPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     ))}
 
                     <AISnapshot
-                        question={lang === 'fr' ? "Comment rogner les marges d'un PDF ?" : "How to trim PDF margins?"}
-                        answer={lang === 'fr'
-                            ? "Utilisez l'outil 'Recadrer PDF' de pdfcanada.ca. Sélectionnez la zone à conserver et appliquez le changement. Le contenu hors zone sera masqué."
-                            : "Use the 'Crop PDF' tool on pdfcanada.ca. Select the area you want to keep and apply the change. Content outside the box will be hidden."}
+                        question={
+                            lang === 'fr' ? "Comment rogner les marges d'un PDF ?" :
+                                lang === 'pt' ? "Como cortar margens de PDF?" :
+                                    "How to trim PDF margins?"
+                        }
+                        answer={
+                            lang === 'fr' ? "Utilisez l'outil 'Recadrer PDF' de pdfcanada.ca. Sélectionnez la zone à conserver et appliquez le changement. Le contenu hors zone sera masqué." :
+                                lang === 'pt' ? "Use a ferramenta 'Cortar PDF' do pdfcanada.ca. Selecione a área que deseja manter e aplique a alteração. O conteúdo fora da caixa será ocultado." :
+                                    "Use the 'Crop PDF' tool on pdfcanada.ca. Select the area you want to keep and apply the change. Content outside the box will be hidden."
+                        }
                         toolName="Crop PDF"
-                        steps={lang === 'fr' ? ["Ouvrir l'outil Recadrer", "Sélectionner la zone", "Télécharger"] : ["Open Crop Tool", "Select Area", "Download"]}
+                        steps={
+                            lang === 'fr' ? ["Ouvrir l'outil Recadrer", "Sélectionner la zone", "Télécharger"] :
+                                lang === 'pt' ? ["Abrir Ferramenta Cortar", "Selecionar Área", "Baixar"] :
+                                    ["Open Crop Tool", "Select Area", "Download"]
+                        }
                         lang={lang}
                     />
 
