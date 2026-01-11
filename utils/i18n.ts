@@ -1934,7 +1934,7 @@ export const translations: Record<Language, any> = {
     toolDeleteDesc: "Enlever les pages inutiles d'un PDF gratuitement.",
     toolFlatten: "Non modifiable",
     toolFlattenDesc: "Aplatir le PDF.",
-    toolPdfPageRemover: "Suppresseur de pages PDF online",
+    toolPdfPageRemover: "Suppresseur de pages PDF en ligne",
     toolPdfPageRemoverDesc: "Enlever des pages du PDF en ligne.",
 
     toolRotate: "Pivoter PDF",
@@ -1979,7 +1979,7 @@ export const translations: Record<Language, any> = {
     toolMergeDesc: "Combiner plusieurs PDFs.",
     toolSplit: "Diviser PDF",
     toolSplitDesc: "Séparer en pages.",
-    toolExtract: "Extraire Pages PDF online",
+    toolExtract: "Extraire Pages PDF en ligne",
     toolExtractDesc: "Extraire pages PDF en ligne gratuitement.",
     toolPdfToXml: "PDF en XML",
     toolPdfToXmlDesc: "Extraire données structurées.",
@@ -2176,7 +2176,7 @@ export const translations: Record<Language, any> = {
         },
         {
           question: "Ai-je besoin d'une carte de crédit ?",
-          answer: "No, aucune carte ni inscription requise."
+          answer: "Non, aucune carte ni inscription requise."
         },
         {
           question: "Pourquoi est-ce gratuit ?",
@@ -2326,7 +2326,7 @@ export const translations: Record<Language, any> = {
     makeFillableGuide: "Guia Criar Formulário",
     cropPdfGuide: "Guia Cortar PDF",
     splitPdfGuide: "Guia Dividir PDF",
-    flattenPdfGuide: "Guia Achar PDF",
+    flattenPdfGuide: "Guia Achatar PDF",
     invoiceOcrGuide: "Guia OCR de Fatura",
     wordToPdfGuide: "Guia Word para PDF",
     pdfToWordGuide: "Guia PDF para Word",
@@ -3074,7 +3074,7 @@ export const translations: Record<Language, any> = {
 
     // Buttons
     btnRemove: "Remover Páginas",
-    btnRotate: "Alicar Rotação",
+    btnRotate: "Aplicar Rotação",
     btnFlatten: "Tornar Não-Editável",
     btnCrop: "Cortar PDF",
     btnConvert: "Converter Arquivo",
@@ -3136,7 +3136,7 @@ export const translations: Record<Language, any> = {
     footerBuilt: "Orgulhosamente feito no Canadá.",
     footerMade: "Feito com",
     footerLocation: "e Maple Syrup em Toronto, ON.",
-    footerRights: "Todos os direitos reservados, sorry.",
+    footerRights: "Todos os direitos reservados, desculpe.",
     footerTagline: "A ferramenta PDF favorita do Canadá.",
     footerPrivacyNotice: "Nós não rastreamos você.",
     termsService: "Termos de Serviço",
