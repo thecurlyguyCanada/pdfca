@@ -37,14 +37,15 @@ export async function generateMetadata({
     const path = `/guides/${slug}`;
 
     const guideMeta = ALL_GUIDES.find(g => g.slug === slug);
+    const isPt = lang === 'pt';
     const isFr = lang === 'fr';
 
     const title = guideMeta
-        ? (isFr ? guideMeta.titleFr : guideMeta.titleEn)
+        ? (isPt ? (guideMeta.titlePt || guideMeta.titleEn) : (isFr ? guideMeta.titleFr : guideMeta.titleEn))
         : (slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ') + ' | Guide');
 
     const description = guideMeta
-        ? (isFr ? guideMeta.descFr : guideMeta.descEn)
+        ? (isPt ? (guideMeta.descPt || guideMeta.descEn) : (isFr ? guideMeta.descFr : guideMeta.descEn))
         : `Learn more about ${slug.replace(/-/g, ' ')} with our comprehensive guide on pdfcanada.ca.`;
 
     const ogImage = getAssetUrl(URLS.OG_IMAGE);
@@ -57,6 +58,7 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en${path}`,
                 'fr-CA': `${baseUrl}/fr${path}`,
+                'pt-BR': `${baseUrl}/pt${path}`,
                 'x-default': `${baseUrl}/en${path}`,
             },
         },
@@ -65,7 +67,7 @@ export async function generateMetadata({
             description: description,
             url: `${baseUrl}/${lang}${path}`,
             siteName: 'pdfcanada.ca',
-            locale: isFr ? 'fr_CA' : 'en_CA',
+            locale: isPt ? 'pt_BR' : (isFr ? 'fr_CA' : 'en_CA'),
             type: 'article',
             images: [
                 {
@@ -91,7 +93,7 @@ export default async function GuidePage({
     params: Promise<{ lang: Locale; slug: string }>;
 }) {
     const { lang, slug } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = lang as Language;
     const GuideComponent = GUIDE_MAP[slug];
 
     if (!GuideComponent) {
@@ -100,19 +102,20 @@ export default async function GuidePage({
 
     // Get guide metadata for SEO
     const guideMeta = ALL_GUIDES.find(g => g.slug === slug);
+    const isPt = lang === 'pt';
     const isFr = lang === 'fr';
 
     const title = guideMeta
-        ? (isFr ? guideMeta.titleFr : guideMeta.titleEn)
+        ? (isPt ? (guideMeta.titlePt || guideMeta.titleEn) : (isFr ? guideMeta.titleFr : guideMeta.titleEn))
         : slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
 
     const description = guideMeta
-        ? (isFr ? guideMeta.descFr : guideMeta.descEn)
+        ? (isPt ? (guideMeta.descPt || guideMeta.descEn) : (isFr ? guideMeta.descFr : guideMeta.descEn))
         : `Learn more about ${slug.replace(/-/g, ' ')} with our comprehensive guide.`;
 
     // Breadcrumbs for SEO
     const breadcrumbs = [
-        { name: isFr ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: isPt ? 'Início' : (isFr ? 'Accueil' : 'Home'), path: `/${lang}` },
         { name: isFr ? 'Guides' : 'Guides', path: `/${lang}/guides` },
         { name: title, path: `/${lang}/guides/${slug}` },
     ];

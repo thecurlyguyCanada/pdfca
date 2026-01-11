@@ -2,8 +2,10 @@ export interface GuideMetadata {
     slug: string;
     titleEn: string;
     titleFr: string;
+    titlePt?: string; // Optional: Portuguese title
     descEn: string;
     descFr: string;
+    descPt?: string; // Optional: Portuguese description
     category: 'Privacy & Security' | 'Editing' | 'Conversion' | 'Advanced';
     icon: string;
 }
