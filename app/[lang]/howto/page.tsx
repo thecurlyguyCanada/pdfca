@@ -18,10 +18,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'Comment utiliser les outils PDF' : 'How to Use PDF Tools',
+        title: lang === 'fr' ? 'Comment utiliser les outils PDF' : (lang === 'pt' ? 'Como Usar Ferramentas PDF' : 'How to Use PDF Tools'),
         description: lang === 'fr'
             ? 'Apprenez à utiliser nos outils PDF gratuits basés sur le navigateur avec nos instructions étape par étape.'
-            : 'Learn how to use our free, browser-based PDF tools with our step-by-step instructions.',
+            : (lang === 'pt'
+                ? 'Aprenda a usar nossas ferramentas PDF gratuitas baseadas em navegador com instruções passo a passo.'
+                : 'Learn how to use our free, browser-based PDF tools with our step-by-step instructions.'),
         path: '/howto',
         lang
     });

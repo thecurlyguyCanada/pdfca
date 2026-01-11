@@ -18,13 +18,15 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
+        title: lang === 'fr' ? 'Politique de confidentialité' : (lang === 'pt' ? 'Política de Privacidade' : 'Privacy Policy'),
         description: lang === 'fr'
             ? 'Découvrez comment nous protégeons votre vie privée. Le traitement local signifie que vos fichiers ne quittent jamais votre appareil.'
-            : 'Learn how we protect your privacy. Local-first processing means your files never leave your device.',
+            : (lang === 'pt'
+                ? 'Saiba como protegemos sua privacidade. Processamento local significa que seus arquivos nunca saem do seu dispositivo.'
+                : 'Learn how we protect your privacy. Local-first processing means your files never leave your device.'),
         path: '/privacy',
         lang,
-        keywords: ['privacy', 'security', 'PIPEDA', 'data protection']
+        keywords: lang === 'fr' ? ['confidentialité', 'sécurité', 'protection'] : (lang === 'pt' ? ['privacidade', 'segurança', 'proteção'] : ['privacy', 'security', 'PIPEDA', 'data protection'])
     });
 }
 

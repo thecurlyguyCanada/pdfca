@@ -18,10 +18,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'Support et Aide' : 'Support & Help',
+        title: lang === 'fr' ? 'Support et Aide' : (lang === 'pt' ? 'Suporte e Ajuda' : 'Support & Help'),
         description: lang === 'fr'
             ? 'Obtenez de l aide pour nos outils PDF. Trouvez des réponses aux questions courantes et contactez notre équipe.'
-            : 'Get help with our PDF tools. Find answers to common questions and contact our support team.',
+            : (lang === 'pt'
+                ? 'Obtenha ajuda com nossas ferramentas PDF. Encontre respostas para perguntas comuns e entre em contato com nossa equipe.'
+                : 'Get help with our PDF tools. Find answers to common questions and contact our support team.'),
         path: '/support',
         lang
     });

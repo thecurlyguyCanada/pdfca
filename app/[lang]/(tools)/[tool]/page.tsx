@@ -97,7 +97,7 @@ export default async function ToolPage({
 
     // Breadcrumbs for SEO component
     const breadcrumbs = [
-        { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
         { name: localizedConfig.title, path: `/${lang}/${config.slug}` },
     ];
 

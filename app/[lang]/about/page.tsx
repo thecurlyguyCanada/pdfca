@@ -18,15 +18,17 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'À propos de nous' : 'About Us',
+        title: lang === 'fr' ? 'À propos de nous' : (lang === 'pt' ? 'Sobre Nós' : 'About Us'),
         description: lang === 'fr'
             ? 'En savoir plus sur pdfcanada.ca, notre mission et notre engagement à fournir des outils PDF gratuits, sécurisés et locaux.'
-            : 'Learn more about pdfcanada.ca, our mission, and our commitment to providing free, secure, and local-first PDF tools.',
+            : (lang === 'pt'
+                ? 'Saiba mais sobre pdfcanada.ca, nossa missão e nosso compromisso em fornecer ferramentas PDF gratuitas, seguras e locais.'
+                : 'Learn more about pdfcanada.ca, our mission, and our commitment to providing free, secure, and local-first PDF tools.'),
         path: '/about',
         lang,
         keywords: lang === 'fr'
             ? ['à propos', 'mission', 'sécurité PDF']
-            : ['about us', 'mission', 'secure PDF tools']
+            : (lang === 'pt' ? ['sobre nós', 'missão', 'ferramentas PDF seguras'] : ['about us', 'mission', 'secure PDF tools'])
     });
 }
 

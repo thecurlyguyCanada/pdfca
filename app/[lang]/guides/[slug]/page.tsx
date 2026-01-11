@@ -116,7 +116,7 @@ export default async function GuidePage({
     // Breadcrumbs for SEO
     const breadcrumbs = [
         { name: isPt ? 'Início' : (isFr ? 'Accueil' : 'Home'), path: `/${lang}` },
-        { name: isFr ? 'Guides' : 'Guides', path: `/${lang}/guides` },
+        { name: isPt ? 'Guias' : (isFr ? 'Guides' : 'Guides'), path: `/${lang}/guides` },
         { name: title, path: `/${lang}/guides/${slug}` },
     ];
 

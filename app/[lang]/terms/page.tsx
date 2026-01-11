@@ -18,10 +18,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? "Conditions d'utilisation" : 'Terms of Service',
+        title: lang === 'fr' ? "Conditions d'utilisation" : (lang === 'pt' ? 'Termos de Serviço' : 'Terms of Service'),
         description: lang === 'fr'
             ? "Consultez nos conditions d'utilisation et les modalités de service pour les outils pdfcanada.ca."
-            : 'Read our terms of service and usage conditions for pdfcanada.ca tools.',
+            : (lang === 'pt'
+                ? 'Leia nossos termos de serviço e condições de uso das ferramentas pdfcanada.ca.'
+                : 'Read our terms of service and usage conditions for pdfcanada.ca tools.'),
         path: '/terms',
         lang
     });
