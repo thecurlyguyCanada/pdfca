@@ -8,6 +8,7 @@ import { PageLayout } from '../../PageLayout';
 import { getGuideContent } from '../../../utils/guideContent';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AuthorBio } from '../../AuthorBio';
+import { ToolPromo } from '../../ToolPromo';
 import Link from 'next/link';
 
 interface GuideProps {
@@ -121,6 +122,7 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
+                    <ToolPromo tool="barcode-generator" lang={lang} />
                     <MarkdownContent content={t.intro} />
 
                     {t.sections.map((section: any) => (

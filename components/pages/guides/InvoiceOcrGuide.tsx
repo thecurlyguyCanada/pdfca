@@ -10,6 +10,7 @@ import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
 import { MarkdownContent } from '../../MarkdownContent';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -875,6 +876,7 @@ export const InvoiceOcrGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <ToolPromo tool="invoice-ocr" lang={lang} />
                     <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-12 sm:mb-14 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>

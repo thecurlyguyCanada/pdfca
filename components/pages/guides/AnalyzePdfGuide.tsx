@@ -9,6 +9,7 @@ import { getGuideContent } from '../../../utils/guideContent';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AuthorBio } from '../../AuthorBio';
 import Link from 'next/link';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -118,6 +119,7 @@ export const AnalyzePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
+                    <ToolPromo tool="analyze-pdf" lang={lang} />
                     <MarkdownContent content={t.intro} />
 
                     {t.sections.map((section: any) => (

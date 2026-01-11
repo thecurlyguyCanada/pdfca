@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -1732,6 +1733,7 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">
+                    <ToolPromo tool="make-pdf-fillable" lang={lang} />
                     <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
                         {t.intro}
                     </p>

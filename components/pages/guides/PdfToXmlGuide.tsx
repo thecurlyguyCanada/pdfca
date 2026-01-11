@@ -8,6 +8,7 @@ import { PageLayout } from '../../PageLayout';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AuthorBio } from '../../AuthorBio';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 import Link from 'next/link';
 
 interface GuideProps {
@@ -297,6 +298,7 @@ export const PdfToXmlGuide: React.FC<GuideProps> = ({ lang }) => {
             />
 
             <div className="w-full py-12">
+                <ToolPromo tool="pdf-to-xml" lang={lang} />
                 {/* Intro */}
                 <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
                     <MarkdownContent content={t.intro} />

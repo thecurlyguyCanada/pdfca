@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -3491,6 +3492,7 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="space-y-12 text-gray-700 dark:text-gray-300">
+                    <ToolPromo tool="pdf-to-epub" lang={lang} />
                     {/* Intro */}
                     <p className="text-lg leading-relaxed">{t.intro}</p>
 

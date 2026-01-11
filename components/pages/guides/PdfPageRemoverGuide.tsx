@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -972,6 +973,7 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">
+                    <ToolPromo tool="pdf-page-remover" lang={lang} />
                     <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-4 sm:pl-6 py-2 text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>

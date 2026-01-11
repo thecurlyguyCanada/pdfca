@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -618,6 +619,7 @@ export const RotatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">
+                    <ToolPromo tool="rotate-pdf" lang={lang} />
                     <div className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
                         {t.intro}
                     </div>

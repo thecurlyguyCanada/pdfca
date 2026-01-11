@@ -10,6 +10,7 @@ import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
 import { MarkdownContent } from '../../MarkdownContent';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -271,6 +272,7 @@ export const RtfToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             />
 
             <div className="w-full py-12 space-y-16">
+                <ToolPromo tool="rtf-to-pdf" lang={lang} />
                 <div className="prose prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                     <MarkdownContent content={t.intro} />
                 </div>

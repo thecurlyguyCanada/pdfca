@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -438,6 +439,7 @@ export const CbrToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
+                    <ToolPromo tool="cbr-to-pdf" lang={lang} />
                     {/* Intro */}
                     <div className="prose prose-base md:prose-lg lg:prose-xl dark:prose-invert mb-12 sm:mb-14 md:mb-16 max-w-none text-gray-600 dark:text-gray-400">
                         {t.intro}

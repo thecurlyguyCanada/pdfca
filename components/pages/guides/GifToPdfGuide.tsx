@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { RelatedTools } from '../../RelatedTools';
 import { AuthorBio } from '../../AuthorBio';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -223,6 +224,7 @@ export const GifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/gif-to-pdf" lang={lang} schema={schema} />
 
             <div className="w-full py-12">
+                <ToolPromo tool="gif-to-pdf" lang={lang} />
                 <div className="prose prose-xl dark:prose-invert max-w-none mb-16 text-gray-600 dark:text-gray-300">
                     <div className="p-8 bg-slate-50 dark:bg-slate-900 rounded-3xl mb-12 border border-slate-200 dark:border-slate-800">
                         {t.intro}

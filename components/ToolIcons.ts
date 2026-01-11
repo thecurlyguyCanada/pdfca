@@ -1,0 +1,36 @@
+import {
+    Trash2, RotateCw, FileDown, LayoutGrid, Scissors, FileSearch, Crop,
+    Image, BookOpen, Smartphone, Tablet, FormInput, PenTool, Layers,
+    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck
+} from 'lucide-react';
+
+export const TOOL_ICONS: Record<string, React.ElementType> = {
+    'delete-pdf-pages': Trash2,
+    'rotate-pdf': RotateCw,
+    'compress-pdf': FileDown,
+    'merge-pdf': LayoutGrid,
+    'split-pdf': Scissors,
+    'extract-pdf-pages': FileSearch,
+    'crop-pdf': Crop,
+    'heic-to-pdf': Image,
+    'epub-to-pdf': BookOpen,
+    'pdf-to-epub': Smartphone,
+    'pdf-to-kindle': Tablet,
+    'make-pdf-fillable': FormInput,
+    'sign-pdf': PenTool,
+    'organize-pdf': Layers,
+    'pdf-to-word': FileText,
+    'word-to-pdf': FileCode,
+    'make-pdf-non-editable': Lock,
+    'pdf-page-remover': Trash2,
+    'cbr-to-pdf': Ghost,
+    'pdf-to-xml': FileCode,
+    'xml-to-pdf': FileCode,
+    'excel-to-pdf': FileSpreadsheet,
+    'rtf-to-pdf': FileText,
+    'invoice-ocr': Eye,
+    'barcode-generator': Barcode,
+    'pdf-to-csv': Table,
+    'pdf-to-excel': FileSpreadsheet,
+    'analyze-pdf': ShieldCheck,
+};

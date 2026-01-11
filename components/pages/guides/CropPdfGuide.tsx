@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -797,6 +798,7 @@ export const CropPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">
+                    <ToolPromo tool="crop-pdf" lang={lang} />
                     <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none italic border-l-4 border-canada-red pl-4 sm:pl-6 py-2">
                         {t.intro}
                     </div>

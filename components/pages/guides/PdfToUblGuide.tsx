@@ -10,6 +10,7 @@ import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
 import { MarkdownContent } from '../../MarkdownContent';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -483,6 +484,7 @@ export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
             />
 
             <div className="w-full py-12">
+                <ToolPromo tool="pdf-to-ubl" lang={lang} />
                 <div className="max-w-none mb-16 text-gray-600 dark:text-gray-300">
                     {t.toolCta && (
                         <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm not-prose">

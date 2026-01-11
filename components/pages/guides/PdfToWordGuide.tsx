@@ -10,6 +10,7 @@ import { AuthorBio } from '../../AuthorBio';
 import { RelatedTools } from '../../RelatedTools';
 import { AISnapshot } from '../../AISnapshot';
 import { MarkdownContent } from '../../MarkdownContent';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -586,6 +587,7 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
+                    <ToolPromo tool="pdf-to-word" lang={lang} />
                     <div className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 md:mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>
