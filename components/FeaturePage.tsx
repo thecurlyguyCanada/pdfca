@@ -18,7 +18,7 @@ interface FeaturePageProps {
         steps?: string[];
         faq?: { question: string; answer: string }[];
     };
-    lang: 'en' | 'fr';
+    lang: 'en' | 'fr' | 'pt';
     t: typeof translations['en'];
     onNavigateHome: () => void;
     toolSchemas?: any[];
@@ -36,7 +36,7 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
 }) => {
     // Generate breadcrumbs for better SERP display
     const breadcrumbs = [
-        { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+        { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
         { name: content.h1, path: tool.path }
     ];
 
