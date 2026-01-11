@@ -678,7 +678,7 @@ const LABELS = {
 export const SplitPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang].features.split.quickAnswer;
+    const qa = translations[lang].split.quickAnswer;
     const labels = LABELS[lang as keyof typeof LABELS] || LABELS.en;
 
     const schema = {

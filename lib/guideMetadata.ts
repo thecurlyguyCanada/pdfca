@@ -520,6 +520,241 @@ export const ALL_GUIDES: GuideMetadata[] = [
         descFr: 'Visualisez et validez les normes de facture électronique allemandes.',
         category: 'Advanced',
         icon: '🇩🇪'
+
+    },
+    // New Guides - Image Tools
+    {
+        slug: 'image-to-pdf',
+        titleEn: 'Image to PDF Guide',
+        titleFr: 'Guide Image vers PDF',
+        titlePt: 'Guia Imagem para PDF',
+        descEn: 'Convert generic image files to PDF format.',
+        descFr: 'Convertir des fichiers image génériques au format PDF.',
+        descPt: 'Converta arquivos de imagem genéricos para o formato PDF.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'jpg-to-pdf',
+        titleEn: 'JPG to PDF Guide',
+        titleFr: 'Guide JPG vers PDF',
+        titlePt: 'Guia JPG para PDF',
+        descEn: 'Convert JPG images to PDF documents.',
+        descFr: 'Convertir des images JPG en documents PDF.',
+        descPt: 'Converta imagens JPG em documentos PDF.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'jpeg-to-pdf',
+        titleEn: 'JPEG to PDF Guide',
+        titleFr: 'Guide JPEG vers PDF',
+        titlePt: 'Guia JPEG para PDF',
+        descEn: 'Convert JPEG photos to PDF.',
+        descFr: 'Convertir des photos JPEG en PDF.',
+        descPt: 'Converta fotos JPEG para PDF.',
+        category: 'Conversion',
+        icon: '📷'
+    },
+    {
+        slug: 'png-to-pdf',
+        titleEn: 'PNG to PDF Guide',
+        titleFr: 'Guide PNG vers PDF',
+        titlePt: 'Guia PNG para PDF',
+        descEn: 'Convert PNG images with transparency to PDF.',
+        descFr: 'Convertir des images PNG avec transparence en PDF.',
+        descPt: 'Converta imagens PNG com transparência para PDF.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'pdf-to-image',
+        titleEn: 'PDF to Image Guide',
+        titleFr: 'Guide PDF vers Image',
+        titlePt: 'Guia PDF para Imagem',
+        descEn: 'Convert PDF pages to image files.',
+        descFr: 'Convertir des pages PDF en fichiers image.',
+        descPt: 'Converta páginas de PDF para arquivos de imagem.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'pdf-to-jpg',
+        titleEn: 'PDF to JPG Guide',
+        titleFr: 'Guide PDF vers JPG',
+        titlePt: 'Guia PDF para JPG',
+        descEn: 'Save PDF pages as standard JPG images.',
+        descFr: 'Enregistrer des pages PDF comme images JPG standard.',
+        descPt: 'Salve páginas de PDF como imagens JPG padrão.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'pdf-to-png',
+        titleEn: 'PDF to PNG Guide',
+        titleFr: 'Guide PDF vers PNG',
+        titlePt: 'Guia PDF para PNG',
+        descEn: 'Extract high-quality PNGs from PDF.',
+        descFr: 'Extraire des PNG de haute qualité depuis un PDF.',
+        descPt: 'Extraia PNGs de alta qualidade de PDFs.',
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    // New Guides - Office Tools
+    {
+        slug: 'excel-to-pdf',
+        titleEn: 'Excel to PDF Guide',
+        titleFr: 'Guide Excel vers PDF',
+        titlePt: 'Guia Excel para PDF',
+        descEn: 'Convert spreadsheets to PDF documents.',
+        descFr: 'Convertir des feuilles de calcul en documents PDF.',
+        descPt: 'Converta planilhas em documentos PDF.',
+        category: 'Conversion',
+        icon: '📊'
+    },
+    {
+        slug: 'ppt-to-pdf',
+        titleEn: 'PPT to PDF Guide',
+        titleFr: 'Guide PPT vers PDF',
+        titlePt: 'Guia PPT para PDF',
+        descEn: 'Convert presentations to PDF slides.',
+        descFr: 'Convertir des présentations en diapositives PDF.',
+        descPt: 'Converta apresentações em slides PDF.',
+        category: 'Conversion',
+        icon: '📽️'
+    },
+    {
+        slug: 'pdf-to-ppt',
+        titleEn: 'PDF to PPT Guide',
+        titleFr: 'Guide PDF vers PPT',
+        titlePt: 'Guia PDF para PPT',
+        descEn: 'Convert PDF to editable PowerPoint slides.',
+        descFr: 'Convertir PDF en diapositives PowerPoint modifiables.',
+        descPt: 'Converta PDF para slides PowerPoint editáveis.',
+        category: 'Conversion',
+        icon: '📽️'
+    },
+    {
+        slug: 'odt-to-pdf',
+        titleEn: 'ODT to PDF Guide',
+        titleFr: 'Guide ODT vers PDF',
+        titlePt: 'Guia ODT para PDF',
+        descEn: 'Convert OpenDocument Text files to PDF.',
+        descFr: 'Convertir des fichiers OpenDocument Text en PDF.',
+        descPt: 'Converta arquivos OpenDocument Text para PDF.',
+        category: 'Conversion',
+        icon: '📝'
+    },
+    {
+        slug: 'pages-to-pdf',
+        titleEn: 'Pages to PDF Guide',
+        titleFr: 'Guide Pages vers PDF',
+        titlePt: 'Guia Pages para PDF',
+        descEn: 'Convert Apple Pages documents to PDF.',
+        descFr: 'Convertir des documents Apple Pages en PDF.',
+        descPt: 'Converta documentos Apple Pages para PDF.',
+        category: 'Conversion',
+        icon: '🍎'
+    },
+    {
+        slug: 'html-to-pdf',
+        titleEn: 'HTML to PDF Guide',
+        titleFr: 'Guide HTML vers PDF',
+        titlePt: 'Guia HTML para PDF',
+        descEn: 'Save HTML files and code as PDF.',
+        descFr: 'Enregistrer des fichiers HTML et du code en PDF.',
+        descPt: 'Salve arquivos HTML e código como PDF.',
+        category: 'Conversion',
+        icon: '🌐'
+    },
+    // New Guides - Utility
+    {
+        slug: 'extract-pdf-pages',
+        titleEn: 'Extract PDF Pages Guide',
+        titleFr: 'Guide Extraire Pages PDF',
+        titlePt: 'Guia Extrair Páginas PDF',
+        descEn: 'Create new PDFs from selected pages.',
+        descFr: 'Créer de nouveaux PDF à partir de pages sélectionnées.',
+        descPt: 'Crie novos PDFs a partir de páginas selecionadas.',
+        category: 'Editing',
+        icon: '📄'
+    },
+    {
+        slug: 'xml-to-pdf',
+        titleEn: 'XML to PDF Guide',
+        titleFr: 'Guide XML vers PDF',
+        titlePt: 'Guia XML para PDF',
+        descEn: 'Visualize XML data as a PDF document.',
+        descFr: 'Visualiser des données XML en tant que document PDF.',
+        descPt: 'Visualize dados XML como um documento PDF.',
+        category: 'Conversion',
+        icon: '⚙️'
+    },
+    {
+        slug: 'avif-to-pdf',
+        titleEn: "How to Convert AVIF to PDF & PDF to AVIF",
+        titleFr: "Comment Convertir AVIF en PDF et PDF en AVIF",
+        titlePt: "Como Converter AVIF para PDF e PDF para AVIF",
+        descEn: "Convert modern AVIF images to PDF or PDF to AVIF for maximum compatibility. Secure local conversion.",
+        descFr: "Convertissez des images AVIF modernes en PDF ou des PDF en AVIF. Conversion locale sécurisée.",
+        descPt: "Converta imagens AVIF modernas para PDF ou PDF para AVIF. Conversão local segura.",
+        category: 'Conversion',
+        icon: '🖼️'
+    },
+    {
+        slug: 'ipynb-to-pdf',
+        titleEn: "Convert IPYNB to PDF | Jupyter Notebook Converter",
+        titleFr: "Convertir IPYNB en PDF | Convertisseur Jupyter",
+        titlePt: "Converter IPYNB para PDF | Conversor Jupyter",
+        descEn: "Free, secure tool to convert Jupyter Notebooks (.ipynb) to PDF. Preserves code and privacy.",
+        descFr: "Outil gratuit pour convertir des Jupyter Notebooks (.ipynb) en PDF. Préserve le code et la confidentialité.",
+        descPt: "Ferramenta gratuita para converter Jupyter Notebooks (.ipynb) para PDF. Preserva código e privacidade.",
+        category: 'Conversion',
+        icon: '💻'
+    },
+    {
+        slug: 'change-pdf-viewer-mac',
+        titleEn: "How to Change Default PDF Viewer on Mac",
+        titleFr: "Comment Changer le Lecteur PDF par Défaut sur Mac",
+        titlePt: "Como Alterar o Visualizador de PDF Padrão no Mac",
+        descEn: "Step-by-step guide to change your default PDF viewer from Preview to Adobe Acrobat or others on macOS.",
+        descFr: "Guide étape par étape pour changer votre lecteur PDF par défaut de Preview vers Adobe Acrobat sur macOS.",
+        descPt: "Guia passo a passo para alterar seu visualizador de PDF padrão do Preview para Adobe Acrobat no macOS.",
+        category: 'Advanced',
+        icon: '🖥️'
+    },
+    {
+        slug: 'phishing-pdf-guide',
+        titleEn: "Analyze PDF Security & Detect Phishing",
+        titleFr: "Analyser la Sécurité PDF et Détecter l'Hameçonnage",
+        titlePt: "Analisar Segurança PDF e Detectar Phishing",
+        descEn: "Safely analyze suspicious PDF attachments for phishing links and malware without opening them.",
+        descFr: "Analysez en toute sécurité les pièces jointes PDF suspectes pour détecter l'hameçonnage sans les ouvrir.",
+        descPt: "Analise com segurança anexos PDF suspeitos em busca de phishing e malware sem abri-los.",
+        category: 'Privacy & Security',
+        icon: '🛡️'
+    },
+    {
+        slug: 'financial-statement-pdf',
+        titleEn: "Financial Statement PDF Guide: Philippines Edition",
+        titleFr: "Guide des États Financiers PDF (Édition Philippines)",
+        titlePt: "Guia de PDF de Declarações Financeiras: Edição Filipinas",
+        descEn: "Definitive guide for Filipino businesses on creating and converting BIR-compliant financial statements.",
+        descFr: "Guide définitif pour les entreprises philippines sur la création d'états financiers conformes au BIR.",
+        descPt: "Guia definitivo para empresas filipinas sobre como criar declarações financeiras compatíveis com BIR.",
+        category: 'Advanced',
+        icon: '📊'
+    },
+    {
+        slug: 'pdf-to-jpeg',
+        titleEn: "PDF to JPEG | Convert PDF Pages to Images",
+        titleFr: "PDF en JPEG | Convertir les Pages PDF en Images",
+        titlePt: "PDF para JPEG | Converter Páginas PDF em Imagens",
+        descEn: "Convert PDF pages into high-quality JPEG images. Free and secure local extraction.",
+        descFr: "Convertissez des pages PDF en images JPEG de haute qualité. Extraction locale gratuite.",
+        descPt: "Converta páginas PDF em imagens JPEG de alta qualidade. Extração local gratuita.",
+        category: 'Conversion',
+        icon: '📷'
     }
 ];
 

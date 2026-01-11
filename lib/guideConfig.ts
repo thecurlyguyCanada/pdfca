@@ -54,6 +54,20 @@ import { AnalyzePdfGuide } from '@/components/pages/guides/AnalyzePdfGuide';
 import { BarcodeGeneratorGuide } from '@/components/pages/guides/BarcodeGeneratorGuide';
 import { XRechnungViewerGuide } from '@/components/pages/guides/XRechnungViewerGuide';
 import { FinancialStatementPdfGuide } from '@/components/pages/guides/FinancialStatementPdfGuide';
+import { ImageToPdfGuide } from '@/components/pages/guides/ImageToPdfGuide';
+import { PdfToImageGuide } from '@/components/pages/guides/PdfToImageGuide';
+import { ExcelToPdfGuide } from '@/components/pages/guides/ExcelToPdfGuide';
+import { PptToPdfGuide } from '@/components/pages/guides/PptToPdfGuide';
+import { PdfToPptGuide } from '@/components/pages/guides/PdfToPptGuide';
+import { OdtToPdfGuide } from '@/components/pages/guides/OdtToPdfGuide';
+import { PagesToPdfGuide } from '@/components/pages/guides/PagesToPdfGuide';
+import { HtmlToPdfGuide } from '@/components/pages/guides/HtmlToPdfGuide';
+import { ExtractPdfPagesGuide } from '@/components/pages/guides/ExtractPdfPagesGuide';
+import { XmlToPdfGuide } from '@/components/pages/guides/XmlToPdfGuide';
+import { AvifToPdfGuide } from '@/components/pages/guides/AvifToPdfGuide';
+import { IpynbToPdfGuide } from '@/components/pages/guides/IpynbToPdfGuide';
+import { ChangePdfViewerMacGuide } from '@/components/pages/guides/ChangePdfViewerMacGuide';
+
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
@@ -116,6 +130,29 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'barcode-generator': BarcodeGeneratorGuide,
     'xrechnung-viewer': XRechnungViewerGuide,
     'financial-statement-pdf': FinancialStatementPdfGuide,
+    // New mappings
+    'image-to-pdf': ImageToPdfGuide,
+    'jpg-to-pdf': ImageToPdfGuide,
+    'jpeg-to-pdf': ImageToPdfGuide,
+    'png-to-pdf': ImageToPdfGuide,
+    'pdf-to-image': PdfToImageGuide,
+    'pdf-to-jpg': PdfToImageGuide,
+    'pdf-to-jpeg': PdfToImageGuide,
+    'pdf-to-png': PdfToImageGuide,
+    'excel-to-pdf': ExcelToPdfGuide,
+    'ppt-to-pdf': PptToPdfGuide,
+    'pdf-to-ppt': PdfToPptGuide,
+    'odt-to-pdf': OdtToPdfGuide,
+    'pages-to-pdf': PagesToPdfGuide,
+    'html-to-pdf': HtmlToPdfGuide,
+    'extract-pdf-pages': ExtractPdfPagesGuide,
+    'xml-to-pdf': XmlToPdfGuide,
+    'avif-to-pdf': AvifToPdfGuide,
+    'ipynb-to-pdf': IpynbToPdfGuide,
+    'change-pdf-viewer-mac': ChangePdfViewerMacGuide,
+
+    'make-pdf-non-editable': FlattenPdfGuide,
+
 };
 
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

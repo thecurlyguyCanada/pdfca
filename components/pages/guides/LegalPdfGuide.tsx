@@ -1492,7 +1492,7 @@ const getGuideContent = (lang: Language) => ({
 export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang].features.legalPdf.quickAnswer;
+    const qa = translations[lang].legalPdf.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",

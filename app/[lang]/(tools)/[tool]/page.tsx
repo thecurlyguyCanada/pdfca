@@ -104,15 +104,18 @@ export default async function ToolPage({
     // Get tool-specific FAQs from i18n
     const t = translations[currentLang];
     const toolKey = config.i18nKey || tool.replace(/-/g, '');
-    const toolFaqs = t.features?.[toolKey]?.faq || [];
+    // en uses top-level keys, fr/pt might be nested but should be flattened to match en.
+    // For now, access via any to allow dynamic lookup on TranslationStructure
+    const toolContent = (t as any)[toolKey];
+    const toolFaqs = toolContent?.faq || [];
 
     // Prepare FAQs with enhanced schema including HowTo steps
     const faqs = toolFaqs.map((faq: any) => ({
         q: faq.question,
         a: faq.answer,
         // Add HowTo steps for process-oriented FAQs
-        ...(t.features?.[toolKey]?.steps && {
-            howTo: t.features[toolKey].steps.map((step: string, idx: number) => ({
+        ...(toolContent?.steps && {
+            howTo: toolContent.steps.map((step: string, idx: number) => ({
                 name: `Step ${idx + 1}`,
                 text: step
             }))

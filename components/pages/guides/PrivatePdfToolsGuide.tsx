@@ -575,7 +575,7 @@ const getGuideContent = (lang: Language) => ({
 export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
     const guideContent = getGuideContent(lang);
     const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
-    const qa = translations[lang]?.features?.privatePdf?.quickAnswer || (t as any).quickAnswer || translations['en'].features.privatePdf.quickAnswer;
+    const qa = translations[lang]?.privatePdf?.quickAnswer || (t as any).quickAnswer || translations['en'].privatePdf.quickAnswer;
 
     const schema = {
         "@context": "https://schema.org",

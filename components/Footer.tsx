@@ -93,15 +93,15 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
 
                {/* Column 3: Editing Guides */}
                <div className="lg:col-span-1">
-                  <FooterSection title={lang === 'fr' ? 'Hubs & Guides' : (lang === 'pt' ? 'Hubs & Guias' : 'Guide Hubs')}>
+                  <FooterSection title={t.footerHubsGuides}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuide}</Link></li>
+                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuideLabel}</Link></li>
                         <li className="pt-2 mt-2 border-t border-white/10"></li>
-                        <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {lang === 'fr' ? 'Conversion' : (lang === 'pt' ? 'Conversões' : 'Conversions')}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {lang === 'fr' ? 'Édition' : (lang === 'pt' ? 'Edição' : 'Editing')}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Sécurité' : (lang === 'pt' ? 'Segurança' : 'Security')}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {lang === 'fr' ? 'OCR & Analyse' : (lang === 'pt' ? 'OCR & Análise' : 'OCR & Analysis')}</Link></li>
-                        <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{lang === 'fr' ? 'Voir Tous les Guides →' : (lang === 'pt' ? 'Ver Todos os Guias →' : 'View All Guides →')}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.footerConversions}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.footerEditing}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.footerSecurityTitle}</Link></li>
+                        <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {t.footerOcrAnalysis}</Link></li>
+                        <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{t.footerViewAllGuides}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -125,27 +125,27 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
 
                {/* Column 5: Resources */}
                <div className="lg:col-span-1">
-                  <FooterSection title={lang === 'fr' ? 'Ressources' : (lang === 'pt' ? 'Recursos' : 'Resources')}>
+                  <FooterSection title={t.footerResources}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{lang === 'fr' ? 'À Propos' : (lang === 'pt' ? 'Sobre Nós' : 'About Us')}</Link></li>
+                        <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{t.footerAboutUs}</Link></li>
                         <li><Link href={`/${lang}/howto`} className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
                         <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
-                        <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Tarification' : (lang === 'pt' ? 'Preços' : 'Pricing')}</Link></li>
+                        <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{t.footerPricing}</Link></li>
                         {/* Security & Privacy Guides */}
                         <li className="pt-3 mt-3 border-t border-white/10">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Sécurité' : (lang === 'pt' ? 'Segurança' : 'Security')}</span>
+                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{t.footerSecurityTitle}</span>
                         </li>
-                        <li><Link href={`/${lang}/guides/private-pdf-tools`} className="hover:text-white transition-colors">{lang === 'fr' ? 'Outils PDF Privés' : (lang === 'pt' ? 'Ferramentas PDF Privadas' : 'Private PDF Tools')}</Link></li>
-                        <li><Link href={`/${lang}/guides/finance-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Finance' : (lang === 'pt' ? 'Segurança PDF Financeiro' : 'Finance PDF Security')}</Link></li>
-                        <li><Link href={`/${lang}/guides/legal-pdf-tools`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Juridique' : (lang === 'pt' ? 'PDF Jurídico' : 'Legal PDF Security')}</Link></li>
-                        <li><Link href={`/${lang}/guides/healthcare-pdf-security`} className="hover:text-white transition-colors">{lang === 'fr' ? 'PDF Santé' : (lang === 'pt' ? 'PDF Saúde' : 'Healthcare PDF')}</Link></li>
+                        <li><Link href={`/${lang}/guides/private-pdf-tools`} className="hover:text-white transition-colors">{t.footerPrivatePdf}</Link></li>
+                        <li><Link href={`/${lang}/guides/finance-pdf-security`} className="hover:text-white transition-colors">{t.footerFinanceSecurity}</Link></li>
+                        <li><Link href={`/${lang}/guides/legal-pdf-tools`} className="hover:text-white transition-colors">{t.footerLegalSecurity}</Link></li>
+                        <li><Link href={`/${lang}/guides/healthcare-pdf-security`} className="hover:text-white transition-colors">{t.footerHealthcareSecurity}</Link></li>
                         <li className="pt-3 mt-3 border-t border-white/10">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{lang === 'fr' ? 'Téléchargements' : (lang === 'pt' ? 'Downloads' : 'Downloads')}</span>
+                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{t.footerDownloads}</span>
                         </li>
-                        <li><Link href={`/${lang}/surah-baqarah-pdf`} className="hover:text-white transition-colors font-semibold text-green-400">{lang === 'fr' ? 'Sourate Baqarah PDF' : (lang === 'pt' ? 'Surata Baqarah PDF' : 'Surah Baqarah PDF')}</Link></li>
-                        <li><Link href={`/${lang}/surah-yasin-pdf`} className="hover:text-white transition-colors font-semibold text-emerald-400">{lang === 'fr' ? 'Sourate Yasin PDF' : (lang === 'pt' ? 'Surata Yasin PDF' : 'Surah Yasin PDF')}</Link></li>
+                        <li><Link href={`/${lang}/surah-baqarah-pdf`} className="hover:text-white transition-colors font-semibold text-green-400">{t.footerSurahBaqarah}</Link></li>
+                        <li><Link href={`/${lang}/surah-yasin-pdf`} className="hover:text-white transition-colors font-semibold text-emerald-400">{t.footerSurahYasin}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

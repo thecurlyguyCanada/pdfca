@@ -627,7 +627,7 @@ const getGuideContent = (lang: Language) => ({
 
 export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
     const content = getGuideContent(lang)[lang];
-    const qa = translations[lang].features.compress.quickAnswer;
+    const qa = translations[lang].compress.quickAnswer;
     const t = content;
 
     return (
