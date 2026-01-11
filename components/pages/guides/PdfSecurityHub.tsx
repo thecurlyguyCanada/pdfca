@@ -117,7 +117,7 @@ export const PdfSecurityHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-security"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'fr' ? 'Sécurité' : 'Security', path: lang === 'fr' ? '/fr/guides/pdf-security' : '/guides/pdf-security' }
                 ]}

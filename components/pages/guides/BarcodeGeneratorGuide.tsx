@@ -105,7 +105,7 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 canonicalPath="/guides/barcode-generator"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'fr' ? 'Générateur Code-barres' : 'Barcode Generator', path: lang === 'fr' ? '/fr/guides/barcode-generator' : '/guides/barcode-generator' }
                 ]}
@@ -115,7 +115,7 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={lang === 'en' ? 'Add scannable codes to your documents.' : 'Ajoutez des codes scannables à vos documents.'}
                 icon={<QrCode size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'en' ? 'Barcode' : 'Code-barres', href: lang === 'fr' ? '/fr/guides/barcode-generator' : '/guides/barcode-generator' }
                 ]}

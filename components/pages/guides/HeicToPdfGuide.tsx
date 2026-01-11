@@ -600,7 +600,7 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'HEIC en PDF' : 'HEIC to PDF', path: lang === 'fr' ? '/fr/guides/heic-to-pdf' : '/guides/heic-to-pdf' }
                 ]}
@@ -610,7 +610,7 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<FileImage size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'HEIC en PDF' : 'HEIC to PDF', href: '#' }
                 ]}

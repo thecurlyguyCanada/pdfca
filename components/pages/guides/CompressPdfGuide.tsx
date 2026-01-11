@@ -643,7 +643,7 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 quickAnswer={qa}
                 faqs={t.faq.map((f: any) => ({ q: f.q, a: f.a }))}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' }
                 ]}

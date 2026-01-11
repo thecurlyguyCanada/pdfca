@@ -135,7 +135,7 @@ export const PdfEditingHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-editing"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'fr' ? 'Édition' : 'Editing', path: lang === 'fr' ? '/fr/guides/pdf-editing' : '/guides/pdf-editing' }
                 ]}

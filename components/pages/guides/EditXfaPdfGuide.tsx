@@ -588,7 +588,7 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Éditer PDF XFA' : 'Edit XFA PDF', path: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : '/guides/edit-xfa-pdf' }
                 ]}
@@ -598,7 +598,7 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Printer size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Éditer PDF XFA' : 'Edit XFA PDF', href: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : '/guides/edit-xfa-pdf' }
                 ]}

@@ -244,7 +244,7 @@ export const MergePdfOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Add files", "Reorder", "Merge & Download"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: lang === 'fr' ? '/fr/guides/merge-pdf' : '/guides/merge-pdf' },
                     { name: lang === 'fr' ? 'En Ligne' : 'Online', path: lang === 'fr' ? '/fr/guides/merge-pdf-online' : '/guides/merge-pdf-online' }

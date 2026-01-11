@@ -570,7 +570,7 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: lang === 'fr' ? '/fr/guides/pdf-to-word' : '/guides/pdf-to-word' }
                 ]}

@@ -625,7 +625,7 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Upload your PDF", "Automatic processing flattens each page", "Download your protected PDF"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'PDF Non-Modifiable' : 'Make PDF Non-Editable', path: lang === 'fr' ? '/fr/guides/make-pdf-non-editable' : '/guides/make-pdf-non-editable' }
                 ]}

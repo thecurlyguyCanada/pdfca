@@ -956,7 +956,7 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Upload your PDF file", "Select pages to remove", "Download your cleaned PDF"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Suppresseur de Pages PDF' : 'PDF Page Remover', path: lang === 'fr' ? '/fr/guides/pdf-page-remover' : '/guides/pdf-page-remover' }
                 ]}

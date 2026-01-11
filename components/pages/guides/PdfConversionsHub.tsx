@@ -156,7 +156,7 @@ export const PdfConversionsHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-conversions"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'fr' ? 'Conversions' : 'Conversions', path: lang === 'fr' ? '/fr/guides/pdf-conversions' : '/guides/pdf-conversions' }
                 ]}

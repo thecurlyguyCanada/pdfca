@@ -247,7 +247,7 @@ export const CompressPdfOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Open tool", "Choose level", "Download"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' },
                     { name: lang === 'fr' ? 'En Ligne' : 'Online', path: lang === 'fr' ? '/fr/guides/compress-pdf-online' : '/guides/compress-pdf-online' }
@@ -258,7 +258,7 @@ export const CompressPdfOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Wifi size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
                     { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', href: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' },
                     { name: lang === 'fr' ? 'En Ligne' : 'Online', href: lang === 'fr' ? '/fr/guides/compress-pdf-online' : '/guides/compress-pdf-online' }

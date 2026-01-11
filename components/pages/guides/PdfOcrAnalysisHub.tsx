@@ -99,7 +99,7 @@ export const PdfOcrAnalysisHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-ocr-analysis"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'fr' ? '/fr' : '/' },
+                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
                     { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
                     { name: lang === 'fr' ? 'OCR & Analyse' : 'OCR & Analysis', path: lang === 'fr' ? '/fr/guides/pdf-ocr-analysis' : '/guides/pdf-ocr-analysis' }
                 ]}
