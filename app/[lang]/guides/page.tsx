@@ -34,6 +34,10 @@ export async function generateMetadata({
             title: 'Alle PDF-Anleitungen & Tutorials | pdfcanada.ca',
             description: 'Durchstöbern Sie unsere komplette Sammlung von PDF-Anleitungen. Lernen Sie, wie Sie PDFs zusammenführen, teilen, komprimieren, konvertieren und sichern.',
         },
+        pt: {
+            title: 'Todos os Guias & Tutoriais PDF | pdfcanada.ca',
+            description: 'Navegue por nossa coleção completa de guias PDF. Aprenda a juntar, dividir, comprimir, converter e proteger PDFs com tutoriais especializados.',
+        },
     };
 
     const content = metadata[lang] || metadata.en;
@@ -74,6 +78,10 @@ export default async function GuidesPage({
             title: 'Alle PDF-Anleitungen & Tutorials',
             desc: 'Durchstöbern Sie unsere komplette Sammlung von PDF-Anleitungen. Lernen Sie, wie Sie PDFs verarbeiten.',
         },
+        pt: {
+            title: 'Todos os Guias & Tutoriais PDF',
+            desc: 'Navegue por nossa coleção completa de guias PDF. Aprenda a juntar, dividir, comprimir, converter e proteger PDFs.',
+        },
     };
 
     const t = seoData[currentLang] || seoData.en;
@@ -82,7 +90,7 @@ export default async function GuidesPage({
     const courseSchema = {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": currentLang === 'fr' ? "Maîtrise PDF Complète" : "Complete PDF Mastery Course",
+        "name": currentLang === 'fr' ? "Maîtrise PDF Complète" : (currentLang === 'pt' ? "Dominío Completo de PDF" : "Complete PDF Mastery Course"),
         "description": t.desc,
         "provider": {
             "@type": "Organization",
@@ -91,7 +99,7 @@ export default async function GuidesPage({
         },
         "educationalLevel": "Beginner to Advanced",
         "isAccessibleForFree": true,
-        "inLanguage": currentLang === 'fr' ? "fr-CA" : "en-CA",
+        "inLanguage": currentLang === 'fr' ? "fr-CA" : (currentLang === 'pt' ? "pt-BR" : "en-CA"),
         "hasCourseInstance": {
             "@type": "CourseInstance",
             "courseMode": "online",
@@ -128,8 +136,8 @@ export default async function GuidesPage({
                 lang={currentLang}
                 canonicalPath="/guides"
                 breadcrumbs={[
-                    { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
-                    { name: currentLang === 'fr' ? 'Guides' : 'Guides', path: `/${lang}/guides` }
+                    { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: currentLang === 'fr' ? 'Guides' : (currentLang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides` }
                 ]}
                 schema={[courseSchema, itemListSchema]}
             />

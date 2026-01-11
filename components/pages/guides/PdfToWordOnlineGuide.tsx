@@ -262,10 +262,10 @@ export const PdfToWordOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Open online tool", "Drag PDF file", "Save Word doc"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: lang === 'fr' ? '/fr/guides/pdf-to-word' : '/guides/pdf-to-word' },
-                    { name: lang === 'fr' ? 'En Ligne' : 'Online', path: lang === 'fr' ? '/fr/guides/pdf-to-word-online' : '/guides/pdf-to-word-online' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'PDF vers Word' : (lang === 'pt' ? 'PDF para Word' : 'PDF to Word'), path: lang === 'fr' ? '/fr/guides/pdf-to-word' : (lang === 'pt' ? '/pt/guides/pdf-to-word' : '/guides/pdf-to-word') },
+                    { name: lang === 'fr' ? 'En Ligne' : (lang === 'pt' ? 'Online' : 'Online'), path: lang === 'fr' ? '/fr/guides/pdf-to-word-online' : (lang === 'pt' ? '/pt/guides/pdf-to-word-online' : '/guides/pdf-to-word-online') }
                 ]}
             />
             <PageLayout

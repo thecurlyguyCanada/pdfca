@@ -842,8 +842,8 @@ export const HealthcarePdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Stethoscope size={32} />}
             breadcrumbs={[
-                { name: 'Home', href: '/' },
-                { name: 'Health', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Santé' : (lang === 'pt' ? 'Saúde' : 'Health'), href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/healthcare-pdf-security" lang={lang} schema={schema} />

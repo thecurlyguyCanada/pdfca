@@ -818,8 +818,8 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Ultimate PDF Guide', path: '/guides/ultimate-pdf-guide' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guide Ultime PDF' : lang === 'pt' ? 'Guia Definitivo de PDF' : 'Ultimate PDF Guide', path: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` }
                 ]}
             />
             <PageLayout

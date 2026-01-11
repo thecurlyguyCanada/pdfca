@@ -188,7 +188,7 @@ export default async function Page({
                 canonicalPath={`/${lang}`}
                 faqs={faqs}
                 breadcrumbs={[
-                    { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` }
+                    { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` }
                 ]}
             />
             <HomePageServer lang={currentLang} />

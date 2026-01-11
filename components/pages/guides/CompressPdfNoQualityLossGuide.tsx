@@ -108,9 +108,9 @@ export const CompressPdfNoQualityLossGuide: React.FC<GuideProps> = ({ lang }) =>
                 canonicalPath="/guides/compress-pdf-no-quality-loss"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Compression Sans Perte' : 'Lossless Compression', path: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'Compression Sans Perte' : (lang === 'pt' ? 'Compressão Sem Perdas' : 'Lossless Compression'), path: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : (lang === 'pt' ? '/pt/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss') }
                 ]}
             />
             <PageLayout
@@ -118,9 +118,9 @@ export const CompressPdfNoQualityLossGuide: React.FC<GuideProps> = ({ lang }) =>
                 subtitle={lang === 'en' ? 'Shrink files while keeping them sharp for printing.' : 'Réduisez les fichiers tout en les gardant nets pour l\'impression.'}
                 icon={<Minimize2 size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Lossless' : 'Sans Perte', href: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'Sans Perte' : (lang === 'pt' ? 'Sem Perdas' : 'Lossless'), href: lang === 'fr' ? '/fr/guides/compress-pdf-no-quality-loss' : (lang === 'pt' ? '/pt/guides/compress-pdf-no-quality-loss' : '/guides/compress-pdf-no-quality-loss') }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

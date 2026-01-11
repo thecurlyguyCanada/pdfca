@@ -437,9 +437,9 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<FileSpreadsheet size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF vers CSV' : 'PDF to CSV', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'PDF vers CSV' : (lang === 'pt' ? 'PDF para CSV' : 'PDF to CSV'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">

@@ -277,9 +277,9 @@ export const IpynbToPdfGuide: React.FC<IpynbToPdfGuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<NotebookIcon className="w-10 h-10 text-orange-600" />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'IPYNB en PDF' : 'IPYNB to PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'IPYNB en PDF' : (lang === 'pt' ? 'IPYNB para PDF' : 'IPYNB to PDF'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-12 py-12">

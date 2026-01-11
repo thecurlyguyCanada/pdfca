@@ -18,8 +18,8 @@ export const SorryPage: React.FC<PageProps> = ({ lang }) => {
                 canonicalPath="/sorry"
                 lang={lang}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Sorry Policy', path: '/sorry' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Politique de Désolé' : lang === 'pt' ? 'Política de Desculpas' : 'Sorry Policy', path: lang === 'en' ? '/sorry' : `/${lang}/sorry` }
                 ]}
             />
             <PageLayout title={t.sorryTitle} icon={<AlertTriangle size={32} />}>

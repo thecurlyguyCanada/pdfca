@@ -215,9 +215,9 @@ export const GifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<FileImage size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'GIF em PDF' : 'GIF to PDF', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                { name: lang === 'fr' ? 'GIF en PDF' : (lang === 'pt' ? 'GIF para PDF' : 'GIF to PDF'), href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/gif-to-pdf" lang={lang} schema={schema} />

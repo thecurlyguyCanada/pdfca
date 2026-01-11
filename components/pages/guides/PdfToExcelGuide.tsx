@@ -127,9 +127,9 @@ export const PdfToExcelGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'PDF vers Excel' : 'PDF to Excel', path: lang === 'fr' ? '/fr/guides/pdf-to-excel' : '/guides/pdf-to-excel' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'PDF vers Excel' : (lang === 'pt' ? 'PDF para Excel' : 'PDF to Excel'), path: lang === 'fr' ? '/fr/guides/pdf-to-excel' : (lang === 'pt' ? '/pt/guides/pdf-to-excel' : '/guides/pdf-to-excel') }
                 ]}
             />
             <PageLayout

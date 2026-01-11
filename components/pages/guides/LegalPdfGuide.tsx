@@ -1532,8 +1532,8 @@ export const LegalPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Scale size={32} />}
             breadcrumbs={[
-                { name: 'Home', href: '/' },
-                { name: 'Legal', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Juridique' : (lang === 'pt' ? 'Jurídico' : 'Legal'), href: '#' }
             ]}
         >
             <SEO

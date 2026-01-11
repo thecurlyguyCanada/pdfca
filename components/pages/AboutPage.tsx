@@ -298,8 +298,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Leaf size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'À Propos' : 'About', href: lang === 'en' ? '/about' : `/${lang}/about` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'À Propos' : (lang === 'pt' ? 'Sobre' : 'About'), href: lang === 'en' ? '/about' : `/${lang}/about` }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">

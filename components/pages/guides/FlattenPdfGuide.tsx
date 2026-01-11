@@ -625,9 +625,9 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Upload your PDF", "Automatic processing flattens each page", "Download your protected PDF"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF Non-Modifiable' : 'Make PDF Non-Editable', path: lang === 'fr' ? '/fr/guides/make-pdf-non-editable' : '/guides/make-pdf-non-editable' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'PDF Non-Modifiable' : (lang === 'pt' ? 'Tornar PDF Não Editável' : 'Make PDF Non-Editable'), path: lang === 'fr' ? '/fr/guides/make-pdf-non-editable' : (lang === 'pt' ? '/pt/guides/make-pdf-non-editable' : '/guides/make-pdf-non-editable') }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Lock size={32} />}>

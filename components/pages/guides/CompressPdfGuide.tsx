@@ -644,8 +644,8 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq.map((f: any) => ({ q: f.q, a: f.a }))}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: lang === 'fr' ? '/fr/guides/compress-pdf' : '/guides/compress-pdf' }
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Compresser PDF' : (lang === 'pt' ? 'Comprimir PDF' : 'Compress PDF'), path: lang === 'fr' ? '/fr/guides/compress-pdf' : (lang === 'pt' ? '/pt/guides/compress-pdf' : '/guides/compress-pdf') }
                 ]}
             />
             <PageLayout title={t.h1} subtitle={t.subtitle} icon={<Scissors size={32} />}>

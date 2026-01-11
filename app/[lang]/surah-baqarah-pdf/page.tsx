@@ -248,7 +248,7 @@ export default async function SurahBaqarahPage({
     const faqs = getFaqs(currentLang);
 
     const breadcrumbs = [
-        { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
         { name: t.title, path: `/${lang}/surah-baqarah-pdf` },
     ];
 

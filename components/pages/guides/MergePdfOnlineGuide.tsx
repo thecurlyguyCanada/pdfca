@@ -244,10 +244,10 @@ export const MergePdfOnlineGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Add files", "Reorder", "Merge & Download"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: lang === 'fr' ? '/fr/guides/merge-pdf' : '/guides/merge-pdf' },
-                    { name: lang === 'fr' ? 'En Ligne' : 'Online', path: lang === 'fr' ? '/fr/guides/merge-pdf-online' : '/guides/merge-pdf-online' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Fusionner PDF' : (lang === 'pt' ? 'Mesclar PDF' : 'Merge PDF'), path: lang === 'fr' ? '/fr/guides/merge-pdf' : (lang === 'pt' ? '/pt/guides/merge-pdf' : '/guides/merge-pdf') },
+                    { name: lang === 'fr' ? 'En Ligne' : (lang === 'pt' ? 'Online' : 'Online'), path: lang === 'fr' ? '/fr/guides/merge-pdf-online' : (lang === 'pt' ? '/pt/guides/merge-pdf-online' : '/guides/merge-pdf-online') }
                 ]}
             />
             <PageLayout

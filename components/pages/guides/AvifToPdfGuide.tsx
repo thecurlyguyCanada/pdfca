@@ -312,9 +312,9 @@ export const AvifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'AVIF & PDF' : 'AVIF & PDF', path: lang === 'fr' ? '/fr/guides/avif-to-pdf' : '/guides/avif-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: 'AVIF & PDF', path: `/${lang}/guides/avif-to-pdf` }
                 ]}
             />
             <PageLayout
@@ -322,9 +322,9 @@ export const AvifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<FileImage size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'AVIF & PDF' : 'AVIF & PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: 'AVIF & PDF', href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">

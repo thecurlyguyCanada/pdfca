@@ -600,9 +600,9 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'HEIC en PDF' : 'HEIC to PDF', path: lang === 'fr' ? '/fr/guides/heic-to-pdf' : '/guides/heic-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'HEIC en PDF' : (lang === 'pt' ? 'HEIC para PDF' : 'HEIC to PDF'), path: lang === 'fr' ? '/fr/guides/heic-to-pdf' : (lang === 'pt' ? '/pt/guides/heic-to-pdf' : '/guides/heic-to-pdf') }
                 ]}
             />
             <PageLayout
@@ -610,9 +610,9 @@ export const HeicToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<FileImage size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'HEIC en PDF' : 'HEIC to PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'HEIC en PDF' : (lang === 'pt' ? 'HEIC para PDF' : 'HEIC to PDF'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">

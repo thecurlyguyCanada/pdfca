@@ -135,9 +135,9 @@ export const PdfEditingHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-editing"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Édition' : 'Editing', path: lang === 'fr' ? '/fr/guides/pdf-editing' : '/guides/pdf-editing' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'Édition' : (lang === 'pt' ? 'Edição' : 'Editing'), path: lang === 'fr' ? '/fr/guides/pdf-editing' : (lang === 'pt' ? '/pt/guides/pdf-editing' : '/guides/pdf-editing') }
                 ]}
             />
             <PageLayout

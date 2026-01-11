@@ -434,9 +434,9 @@ export const FinancialStatementPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides' },
-                    { name: 'Financial Statement PDF', path: '/guides/financial-statement-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'PDF États Financiers' : (lang === 'pt' ? 'PDF Declarações Financeiras' : 'Financial Statement PDF'), path: lang === 'fr' ? '/fr/guides/financial-statement-pdf' : (lang === 'pt' ? '/pt/guides/financial-statement-pdf' : '/guides/financial-statement-pdf') }
                 ]}
             />
             <PageLayout
@@ -444,9 +444,9 @@ export const FinancialStatementPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<BarChart3 size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', href: '/' },
-                    { name: 'Guides', href: '/guides' },
-                    { name: 'Financial Statement PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: lang === 'fr' ? 'PDF États Financiers' : (lang === 'pt' ? 'PDF Declarações Financeiras' : 'Financial Statement PDF'), href: '#' }
                 ]}
             >
                 <div className="w-full py-8 space-y-20">

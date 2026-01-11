@@ -26,8 +26,8 @@ export const MakePdfFillablePage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 steps={steps}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'How to Make a PDF Fillable', path: '/how-to-make-a-pdf-fillable' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Rendre un PDF remplissable' : lang === 'pt' ? 'Como Tornar um PDF Preenchível' : 'How to Make a PDF Fillable', path: lang === 'en' ? '/how-to-make-a-pdf-fillable' : `/${lang}/how-to-make-a-pdf-fillable` }
                 ]}
             />
             <PageLayout title={t.fillablePageTitle} subtitle={t.fillablePageSubtitle} icon={<PenTool size={32} />}>

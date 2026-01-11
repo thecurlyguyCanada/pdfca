@@ -581,9 +581,9 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Guides', path: '/guides/ultimate-pdf-guide' },
-                    { name: 'Organize PDF', path: '/guides/organize-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Organiser PDF' : (lang === 'pt' ? 'Organizar PDF' : 'Organize PDF'), path: lang === 'fr' ? '/fr/guides/organize-pdf' : (lang === 'pt' ? '/pt/guides/organize-pdf' : '/guides/organize-pdf') }
                 ]}
             />
             <PageLayout
@@ -591,9 +591,9 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Move size={32} />}
                 breadcrumbs={[
-                    { name: 'Home', href: '/' },
-                    { name: 'Guides', href: '/guides/ultimate-pdf-guide' },
-                    { name: 'Organize PDF Guide', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'Organiser PDF' : (lang === 'pt' ? 'Organizar PDF' : 'Organize PDF Guide'), href: '#' }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

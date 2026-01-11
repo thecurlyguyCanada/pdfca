@@ -22,10 +22,10 @@ export function Breadcrumb({ items, lang }: BreadcrumbProps) {
             <Link
                 href={`/${lang}`}
                 className="flex items-center gap-1 text-gray-500 hover:text-canada-red transition-colors"
-                aria-label={lang === 'fr' ? 'Accueil' : 'Home'}
+                aria-label={lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home')}
             >
                 <Home size={16} aria-hidden="true" />
-                <span className="sr-only">{lang === 'fr' ? 'Accueil' : 'Home'}</span>
+                <span className="sr-only">{lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home')}</span>
             </Link>
 
             {items.map((item, index) => (

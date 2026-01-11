@@ -296,9 +296,9 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Key size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                { name: lang === 'fr' ? 'ACSM em PDF' : 'ACSM to PDF', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides/ultimate-pdf-guide` },
+                { name: lang === 'fr' ? 'ACSM en PDF' : (lang === 'pt' ? 'ACSM para PDF' : 'ACSM to PDF'), href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/acsm-to-pdf" lang={lang} schema={schema} />

@@ -32,8 +32,8 @@ export const PricingPage: React.FC<PageProps> = ({ lang }) => {
                 schema={pricingSchema}
                 faqs={t.pricingPage.faq.map((item: { question: string, answer: string }) => ({ q: item.question, a: item.answer }))}
                 breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Pricing', path: '/pricing' }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Tarification' : lang === 'pt' ? 'Preços' : 'Pricing', path: lang === 'en' ? '/pricing' : `/${lang}/pricing` }
                 ]}
             />
             <div className="max-w-5xl mx-auto px-6 py-12 animate-fade-in">

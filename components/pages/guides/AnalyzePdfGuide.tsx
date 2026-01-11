@@ -102,9 +102,9 @@ export const AnalyzePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 canonicalPath="/guides/analyze-pdf"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Analyser PDF' : 'Analyze PDF', path: lang === 'fr' ? '/fr/guides/analyze-pdf' : '/guides/analyze-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides` },
+                    { name: lang === 'fr' ? 'Analyser PDF' : (lang === 'pt' ? 'Analisar PDF' : 'Analyze PDF'), path: `/${lang}/guides/analyze-pdf` }
                 ]}
             />
             <PageLayout
@@ -112,9 +112,9 @@ export const AnalyzePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={lang === 'en' ? 'Deep dive into PDF internals and metadata.' : 'Plongée profonde dans les internes et métadonnées PDF.'}
                 icon={<Microscope size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Analysis' : 'Analyse', href: lang === 'fr' ? '/fr/guides/analyze-pdf' : '/guides/analyze-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides` },
+                    { name: lang === 'fr' ? 'Analyse' : (lang === 'pt' ? 'Análise' : 'Analysis'), href: `/${lang}/guides/analyze-pdf` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

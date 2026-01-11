@@ -229,7 +229,7 @@ export default async function SurahYasinPage({
     ];
 
     const breadcrumbs = [
-        { name: currentLang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
+        { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
         { name: t.title, path: `/${lang}/surah-yasin-pdf` },
     ];
 

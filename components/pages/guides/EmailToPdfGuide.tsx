@@ -836,9 +836,9 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Courriel en PDF' : 'Email to PDF', path: lang === 'fr' ? '/fr/guides/email-to-pdf' : '/guides/email-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Courriel en PDF' : (lang === 'pt' ? 'E-mail para PDF' : 'Email to PDF'), path: lang === 'fr' ? '/fr/guides/email-to-pdf' : (lang === 'pt' ? '/pt/guides/email-to-pdf' : '/guides/email-to-pdf') }
                 ]}
             />
 
@@ -847,9 +847,9 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Mail size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Courriel en PDF' : 'Email to PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Courriel en PDF' : (lang === 'pt' ? 'E-mail para PDF' : 'Email to PDF'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">

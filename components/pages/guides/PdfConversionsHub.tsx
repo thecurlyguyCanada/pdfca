@@ -156,9 +156,9 @@ export const PdfConversionsHub: React.FC<HubProps> = ({ lang }) => {
                 canonicalPath="/guides/pdf-conversions"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Conversions' : 'Conversions', path: lang === 'fr' ? '/fr/guides/pdf-conversions' : '/guides/pdf-conversions' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'Conversions' : (lang === 'pt' ? 'Conversões' : 'Conversions'), path: lang === 'fr' ? '/fr/guides/pdf-conversions' : (lang === 'pt' ? '/pt/guides/pdf-conversions' : '/guides/pdf-conversions') }
                 ]}
             />
             <PageLayout

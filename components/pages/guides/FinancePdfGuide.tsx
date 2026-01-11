@@ -547,8 +547,8 @@ export const FinancePdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Landmark size={32} />}
             breadcrumbs={[
-                { name: 'Home', href: '/' },
-                { name: 'Finance', href: '#' }
+                { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
+                { name: lang === 'fr' ? 'Finance' : lang === 'pt' ? 'Finanças' : 'Finance', href: '#' }
             ]}
         >
             <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/finance-pdf-security" lang={lang} schema={schema} />

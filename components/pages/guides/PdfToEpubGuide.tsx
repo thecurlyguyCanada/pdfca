@@ -3475,9 +3475,9 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Choose your PDF file", "Automatic local conversion", "Download your EPUB"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'PDF en EPUB' : 'PDF to EPUB', path: lang === 'fr' ? '/fr/guides/pdf-to-epub' : '/guides/pdf-to-epub' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'PDF en EPUB' : (lang === 'pt' ? 'PDF para EPUB' : 'PDF to EPUB'), path: lang === 'fr' ? '/fr/guides/pdf-to-epub' : (lang === 'pt' ? '/pt/guides/pdf-to-epub' : '/guides/pdf-to-epub') }
                 ]}
             />
             <PageLayout

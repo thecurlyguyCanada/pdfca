@@ -28,8 +28,8 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase();
             guides = guides.filter(g =>
-                (lang === 'en' ? g.titleEn : g.titleFr).toLowerCase().includes(query) ||
-                (lang === 'en' ? g.descEn : g.descFr).toLowerCase().includes(query)
+                (lang === 'fr' ? g.titleFr : g.titleEn).toLowerCase().includes(query) ||
+                (lang === 'fr' ? g.descFr : g.descEn).toLowerCase().includes(query)
             );
         }
 
@@ -47,7 +47,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
     };
 
     const getCategoryLabel = (category: GuideMetadata['category'] | 'All') => {
-        if (category === 'All') return lang === 'en' ? 'All Guides' : 'Tous les Guides';
+        if (category === 'All') return lang === 'fr' ? 'Tous les Guides' : (lang === 'pt' ? 'Todos os Guias' : 'All Guides');
         return category;
     };
 
@@ -59,12 +59,14 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                 <div className="max-w-7xl mx-auto px-6 py-20 relative">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-gray-900 via-canada-red to-gray-900 dark:from-white dark:via-canada-red dark:to-white bg-clip-text text-transparent">
-                            {lang === 'en' ? 'PDF Guides & Tutorials' : 'Guides & Tutoriels PDF'}
+                            {lang === 'fr' ? 'Guides & Tutoriels PDF' : (lang === 'pt' ? 'Guias & Tutoriais PDF' : 'PDF Guides & Tutorials')}
                         </h1>
                         <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
-                            {lang === 'en'
-                                ? 'Master every PDF task with our comprehensive guides. From basic editing to advanced security.'
-                                : 'Maîtrisez chaque tâche PDF avec nos guides complets. De l\'édition de base à la sécurité avancée.'}
+                            {lang === 'fr'
+                                ? 'Maîtrisez chaque tâche PDF avec nos guides complets. De l\'édition de base à la sécurité avancée.'
+                                : (lang === 'pt'
+                                    ? 'Domine cada tarefa PDF com nossos guias abrangentes. Da edição básica à segurança avançada.'
+                                    : 'Master every PDF task with our comprehensive guides. From basic editing to advanced security.')}
                         </p>
 
                         {/* Search Bar */}
@@ -72,7 +74,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                             <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                             <input
                                 type="text"
-                                placeholder={lang === 'en' ? 'Search guides...' : 'Rechercher des guides...'}
+                                placeholder={lang === 'fr' ? 'Rechercher des guides...' : (lang === 'pt' ? 'Pesquisar guias...' : 'Search guides...')}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:border-canada-red focus:outline-none transition-colors text-lg"
@@ -84,8 +86,8 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                             <button
                                 onClick={() => setSelectedCategory('All')}
                                 className={`px-6 py-3 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${selectedCategory === 'All'
-                                        ? 'bg-canada-red text-white shadow-lg shadow-red-500/30'
-                                        : 'bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-800 hover:border-canada-red'
+                                    ? 'bg-canada-red text-white shadow-lg shadow-red-500/30'
+                                    : 'bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-800 hover:border-canada-red'
                                     }`}
                             >
                                 {getCategoryIcon('All')}
@@ -96,8 +98,8 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                                     key={category}
                                     onClick={() => setSelectedCategory(category)}
                                     className={`px-6 py-3 rounded-full font-bold text-sm transition-all flex items-center gap-2 ${selectedCategory === category
-                                            ? 'bg-canada-red text-white shadow-lg shadow-red-500/30'
-                                            : 'bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-800 hover:border-canada-red'
+                                        ? 'bg-canada-red text-white shadow-lg shadow-red-500/30'
+                                        : 'bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-800 hover:border-canada-red'
                                         }`}
                                 >
                                     {getCategoryIcon(category)}
@@ -114,7 +116,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                 {filteredGuides.length === 0 ? (
                     <div className="text-center py-20">
                         <p className="text-xl text-gray-500 dark:text-gray-400">
-                            {lang === 'en' ? 'No guides found.' : 'Aucun guide trouvé.'}
+                            {lang === 'fr' ? 'Aucun guide trouvé.' : (lang === 'pt' ? 'Nenhum guia encontrado.' : 'No guides found.')}
                         </p>
                     </div>
                 ) : (
@@ -138,17 +140,17 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
 
                                 {/* Title */}
                                 <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-3 group-hover:text-canada-red transition-colors">
-                                    {lang === 'en' ? guide.titleEn : guide.titleFr}
+                                    {lang === 'fr' ? guide.titleFr : guide.titleEn}
                                 </h3>
 
                                 {/* Description */}
                                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                    {lang === 'en' ? guide.descEn : guide.descFr}
+                                    {lang === 'fr' ? guide.descFr : guide.descEn}
                                 </p>
 
                                 {/* Arrow Indicator */}
                                 <div className="mt-6 flex items-center gap-2 text-canada-red font-bold text-sm group-hover:gap-4 transition-all">
-                                    {lang === 'en' ? 'Read Guide' : 'Lire le Guide'}
+                                    {lang === 'fr' ? 'Lire le Guide' : (lang === 'pt' ? 'Ler Guia' : 'Read Guide')}
                                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                                 </div>
                             </Link>

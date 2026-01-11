@@ -141,9 +141,11 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
         const utterance = new SpeechSynthesisUtterance(
             lang === 'fr'
                 ? `Lecture de ${title}. Cette fonctionnalité nécessite une extraction de texte avancée.`
-                : `Reading ${title}. Full audio reading requires advanced text extraction.`
+                : (lang === 'pt'
+                    ? `Lendo ${title}. A leitura de áudio completa requer extração avançada de texto.`
+                    : `Reading ${title}. Full audio reading requires advanced text extraction.`)
         );
-        utterance.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+        utterance.lang = lang === 'fr' ? 'fr-FR' : (lang === 'pt' ? 'pt-BR' : 'en-US');
         utterance.onend = () => setIsSpeaking(false);
         setIsSpeaking(true);
         window.speechSynthesis.speak(utterance);

@@ -109,7 +109,7 @@ export function HomePageServer({ lang }: Props) {
                             {t.selectToolTitle}
                         </h2>
 
-                        <nav aria-label={lang === 'fr' ? 'Outils PDF disponibles' : 'Available PDF tools'}>
+                        <nav aria-label={lang === 'fr' ? 'Outils PDF disponibles' : (lang === 'pt' ? 'Ferramentas PDF disponíveis' : 'Available PDF tools')}>
                             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                                 {tools.map(({ slug, title, Icon }) => (
                                     <li key={slug}>
@@ -137,23 +137,23 @@ export function HomePageServer({ lang }: Props) {
                         <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
                             <div>
                                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                                    {lang === 'fr' ? 'Guides & Tutoriels' : 'Guides & Tutorials'}
+                                    {lang === 'fr' ? 'Guides & Tutoriels' : (lang === 'pt' ? 'Guias & Tutoriais' : 'Guides & Tutorials')}
                                 </h2>
                                 <p className="text-gray-600">
-                                    {lang === 'fr' ? 'Apprenez à maîtriser vos documents PDF' : 'Master your PDF documents with our expert guides'}
+                                    {lang === 'fr' ? 'Apprenez à maîtriser vos documents PDF' : (lang === 'pt' ? 'Domine seus documentos PDF com nossos guias especializados' : 'Master your PDF documents with our expert guides')}
                                 </p>
                             </div>
                             <Link href={`/${lang}/guides`} className="text-canada-red font-bold hover:text-canada-darkRed flex items-center gap-2">
-                                {lang === 'fr' ? 'Voir tous les guides' : 'View all guides'} <ArrowRight size={16} />
+                                {lang === 'fr' ? 'Voir tous les guides' : (lang === 'pt' ? 'Ver todos os guias' : 'View all guides')} <ArrowRight size={16} />
                             </Link>
                         </div>
 
                         <div className="grid md:grid-cols-4 gap-6">
                             {[
-                                { title: lang === 'fr' ? 'Guide Ultime PDF' : 'Ultimate PDF Guide', desc: lang === 'fr' ? 'Le manuel complet pour tous les outils.' : 'The complete manual for all PDF tools.', slug: 'ultimate-pdf-guide', icon: BookOpen },
-                                { title: lang === 'fr' ? 'Conversion vers Word' : 'PDF to Word Guide', desc: lang === 'fr' ? 'Convertir documents scannés et natifs.' : 'Convert scanned and native documents.', slug: 'pdf-to-word', icon: FileText },
-                                { title: lang === 'fr' ? 'Fusionner des PDF' : 'Merge PDF Guide', desc: lang === 'fr' ? 'Combiner plusieurs fichiers en un seul.' : 'Combine multiple files into one.', slug: 'merge-pdf', icon: LayoutGrid },
-                                { title: lang === 'fr' ? 'Sécurité & Privée' : 'Security Guide', desc: lang === 'fr' ? 'Protéger vos données sensibles.' : 'Protect your sensitive data.', slug: 'pdf-security', icon: ShieldCheck }
+                                { title: lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo PDF' : 'Ultimate PDF Guide'), desc: lang === 'fr' ? 'Le manuel complet pour tous les outils.' : (lang === 'pt' ? 'O manual completo para todas as ferramentas.' : 'The complete manual for all PDF tools.'), slug: 'ultimate-pdf-guide', icon: BookOpen },
+                                { title: lang === 'fr' ? 'Conversion vers Word' : (lang === 'pt' ? 'Guia PDF para Word' : 'PDF to Word Guide'), desc: lang === 'fr' ? 'Convertir documents scannés et natifs.' : (lang === 'pt' ? 'Converter documentos digitalizados e nativos.' : 'Convert scanned and native documents.'), slug: 'pdf-to-word', icon: FileText },
+                                { title: lang === 'fr' ? 'Fusionner des PDF' : (lang === 'pt' ? 'Guia Juntar PDF' : 'Merge PDF Guide'), desc: lang === 'fr' ? 'Combiner plusieurs fichiers en un seul.' : (lang === 'pt' ? 'Combine vários arquivos em um só.' : 'Combine multiple files into one.'), slug: 'merge-pdf', icon: LayoutGrid },
+                                { title: lang === 'fr' ? 'Sécurité & Privée' : (lang === 'pt' ? 'Guia de Segurança' : 'Security Guide'), desc: lang === 'fr' ? 'Protéger vos données sensibles.' : (lang === 'pt' ? 'Proteja seus dados sensíveis.' : 'Protect your sensitive data.'), slug: 'pdf-security', icon: ShieldCheck }
                             ].map((guide, i) => (
                                 <Link key={i} href={`/${lang}/guides/${guide.slug}`} className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-canada-red hover:shadow-md transition-all group">
                                     <div className="w-10 h-10 bg-canada-red/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-canada-red transition-colors">
@@ -169,19 +169,21 @@ export function HomePageServer({ lang }: Props) {
                     {/* SEO Text Block */}
                     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                            {lang === 'fr' ? 'Outils PDF Canadiens Gratuits' : 'Free Canadian PDF Tools'}
+                            {lang === 'fr' ? 'Outils PDF Canadiens Gratuits' : (lang === 'pt' ? 'Ferramentas PDF Canadenses Gratuitas' : 'Free Canadian PDF Tools')}
                         </h2>
                         <p className="text-gray-600 leading-relaxed" data-ai-summary="true">
                             {lang === 'fr'
                                 ? 'pdfcanada.ca offre une suite complète d\'outils PDF gratuits qui fonctionnent entièrement dans votre navigateur. Fusionnez, divisez, compressez, convertissez et signez des PDF sans jamais télécharger vos fichiers sur un serveur. Tous les traitements se font localement sur votre appareil, garantissant une confidentialité totale de vos documents. Conforme aux normes canadiennes PIPEDA.'
-                                : 'pdfcanada.ca offers a complete suite of free PDF tools that work entirely in your browser. Merge, split, compress, convert, and sign PDFs without ever uploading your files to a server. All processing happens locally on your device, ensuring complete privacy of your documents. Compliant with Canadian PIPEDA standards.'}
+                                : (lang === 'pt'
+                                    ? 'pdfcanada.ca oferece um conjunto completo de ferramentas PDF gratuitas que funcionam inteiramente no seu navegador. Junte, divida, comprima, converta e assine PDFs sem nunca enviar seus arquivos para um servidor. Todo o processamento acontece localmente no seu dispositivo, garantindo total privacidade dos seus documentos. Em conformidade com os padrões canadenses PIPEDA.'
+                                    : 'pdfcanada.ca offers a complete suite of free PDF tools that work entirely in your browser. Merge, split, compress, convert, and sign PDFs without ever uploading your files to a server. All processing happens locally on your device, ensuring complete privacy of your documents. Compliant with Canadian PIPEDA standards.')}
                         </p>
                     </section>
 
                     {/* FAQ Section */}
                     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
                         <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
-                            {lang === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
+                            {lang === 'fr' ? 'Questions Fréquentes' : (lang === 'pt' ? 'Perguntas Frequentes' : 'Frequently Asked Questions')}
                         </h2>
                         <div className="space-y-6">
                             {t.seo.homeFaq.map((faq: { q: string, a: string }, i: number) => (

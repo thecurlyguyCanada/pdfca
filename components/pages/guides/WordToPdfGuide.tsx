@@ -372,9 +372,9 @@ export const WordToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: t.quickAnswer.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: lang === 'fr' ? '/fr/guides/word-to-pdf' : '/guides/word-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'Word vers PDF' : (lang === 'pt' ? 'Word para PDF' : 'Word to PDF'), path: `/${lang}/guides/word-to-pdf` }
                 ]}
             />
             <PageLayout

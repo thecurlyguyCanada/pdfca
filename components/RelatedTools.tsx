@@ -18,29 +18,29 @@ interface RelatedToolsProps {
 
 const getTools = (lang: Language) => ({
     edit: [
-        { name: lang === 'fr' ? 'Supprimer Pages PDF' : 'Delete PDF Pages', path: '/delete-pdf-pages', entity: lang === 'fr' ? 'Outil de suppression de pages PDF gratuit' : 'Free PDF page deletion tool' },
-        { name: lang === 'fr' ? 'Pivoter PDF' : 'Rotate PDF', path: '/rotate-pdf', entity: lang === 'fr' ? 'Outil de rotation PDF en ligne' : 'Online PDF rotation tool' },
-        { name: lang === 'fr' ? 'Recadrer PDF' : 'Crop PDF', path: '/crop-pdf', entity: lang === 'fr' ? 'Outil de recadrage PDF gratuit' : 'Free PDF cropping tool' },
-        { name: lang === 'fr' ? 'Compresser PDF' : 'Compress PDF', path: '/compress-pdf', entity: lang === 'fr' ? 'Outil de compression PDF' : 'PDF compression tool' },
-        { name: lang === 'fr' ? 'Aplatir PDF' : 'Flatten PDF', path: '/make-pdf-non-editable', entity: lang === 'fr' ? 'Convertisseur PDF en image' : 'PDF to image converter' },
+        { name: lang === 'fr' ? 'Supprimer Pages PDF' : (lang === 'pt' ? 'Excluir Páginas PDF' : 'Delete PDF Pages'), path: '/delete-pdf-pages', entity: lang === 'fr' ? 'Outil de suppression de pages PDF gratuit' : (lang === 'pt' ? 'Ferramenta gratuita de exclusão de páginas PDF' : 'Free PDF page deletion tool') },
+        { name: lang === 'fr' ? 'Pivoter PDF' : (lang === 'pt' ? 'Girar PDF' : 'Rotate PDF'), path: '/rotate-pdf', entity: lang === 'fr' ? 'Outil de rotation PDF en ligne' : (lang === 'pt' ? 'Ferramenta de rotação de PDF online' : 'Online PDF rotation tool') },
+        { name: lang === 'fr' ? 'Recadrer PDF' : (lang === 'pt' ? 'Cortar PDF' : 'Crop PDF'), path: '/crop-pdf', entity: lang === 'fr' ? 'Outil de recadrage PDF gratuit' : (lang === 'pt' ? 'Ferramenta gratuita de corte de PDF' : 'Free PDF cropping tool') },
+        { name: lang === 'fr' ? 'Compresser PDF' : (lang === 'pt' ? 'Comprimir PDF' : 'Compress PDF'), path: '/compress-pdf', entity: lang === 'fr' ? 'Outil de compression PDF' : (lang === 'pt' ? 'Ferramenta de compressão de PDF' : 'PDF compression tool') },
+        { name: lang === 'fr' ? 'Aplatir PDF' : (lang === 'pt' ? 'Achatar PDF' : 'Flatten PDF'), path: '/make-pdf-non-editable', entity: lang === 'fr' ? 'Convertisseur PDF en image' : (lang === 'pt' ? 'Conversor de PDF para imagem' : 'PDF to image converter') },
     ],
     organize: [
-        { name: lang === 'fr' ? 'Fusionner PDF' : 'Merge PDF', path: '/merge-pdf', entity: lang === 'fr' ? 'Outil de fusion de fichiers PDF' : 'PDF file merge tool' },
-        { name: lang === 'fr' ? 'Diviser PDF' : 'Split PDF', path: '/split-pdf', entity: lang === 'fr' ? 'Outil de division PDF' : 'PDF splitting tool' },
-        { name: lang === 'fr' ? 'Organiser PDF' : 'Organize PDF', path: '/organize-pdf', entity: lang === 'fr' ? 'Outil de réorganisation de pages PDF' : 'PDF page organizer tool' },
-        { name: lang === 'fr' ? 'Signer PDF' : 'Sign PDF', path: '/sign-pdf', entity: lang === 'fr' ? 'Signature électronique PDF' : 'PDF electronic signature tool' },
-        { name: lang === 'fr' ? 'Rendre Modifiable' : 'Make Fillable', path: '/make-pdf-fillable', entity: lang === 'fr' ? 'Créateur de formulaires PDF' : 'PDF form creator tool' },
+        { name: lang === 'fr' ? 'Fusionner PDF' : (lang === 'pt' ? 'Juntar PDF' : 'Merge PDF'), path: '/merge-pdf', entity: lang === 'fr' ? 'Outil de fusion de fichiers PDF' : (lang === 'pt' ? 'Ferramenta de fusão de arquivos PDF' : 'PDF file merge tool') },
+        { name: lang === 'fr' ? 'Diviser PDF' : (lang === 'pt' ? 'Dividir PDF' : 'Split PDF'), path: '/split-pdf', entity: lang === 'fr' ? 'Outil de division PDF' : (lang === 'pt' ? 'Ferramenta de divisão de PDF' : 'PDF splitting tool') },
+        { name: lang === 'fr' ? 'Organiser PDF' : (lang === 'pt' ? 'Organizar PDF' : 'Organize PDF'), path: '/organize-pdf', entity: lang === 'fr' ? 'Outil de réorganisation de pages PDF' : (lang === 'pt' ? 'Ferramenta de organização de páginas PDF' : 'PDF page organizer tool') },
+        { name: lang === 'fr' ? 'Signer PDF' : (lang === 'pt' ? 'Assinar PDF' : 'Sign PDF'), path: '/sign-pdf', entity: lang === 'fr' ? 'Signature électronique PDF' : (lang === 'pt' ? 'Assinatura eletrônica de PDF' : 'PDF electronic signature tool') },
+        { name: lang === 'fr' ? 'Rendre Modifiable' : (lang === 'pt' ? 'Tornar Preenchível' : 'Make Fillable'), path: '/make-pdf-fillable', entity: lang === 'fr' ? 'Créateur de formulaires PDF' : (lang === 'pt' ? 'Criador de formulários PDF' : 'PDF form creator tool') },
     ],
     convert: [
-        { name: lang === 'fr' ? 'PDF vers Word' : 'PDF to Word', path: '/pdf-to-word', entity: lang === 'fr' ? 'Convertisseur PDF en Word DOCX' : 'PDF to Word DOCX converter' },
-        { name: lang === 'fr' ? 'Word vers PDF' : 'Word to PDF', path: '/word-to-pdf', entity: lang === 'fr' ? 'Convertisseur Word DOCX en PDF' : 'Word DOCX to PDF converter' },
-        { name: lang === 'fr' ? 'Excel vers PDF' : 'Excel to PDF', path: '/excel-to-pdf', entity: lang === 'fr' ? 'Convertisseur Excel en PDF' : 'Excel to PDF converter' },
-        { name: lang === 'fr' ? 'HEIC vers PDF' : 'HEIC to PDF', path: '/heic-to-pdf', entity: lang === 'fr' ? 'Convertisseur photos iPhone HEIC en PDF' : 'iPhone HEIC photo to PDF converter' },
-        { name: lang === 'fr' ? 'EPUB vers PDF' : 'EPUB to PDF', path: '/epub-to-pdf', entity: lang === 'fr' ? 'Convertisseur ebook EPUB en PDF' : 'EPUB ebook to PDF converter' },
-        { name: lang === 'fr' ? 'PDF vers EPUB' : 'PDF to EPUB', path: '/pdf-to-epub', entity: lang === 'fr' ? 'Convertisseur PDF en ebook EPUB' : 'PDF to EPUB ebook converter' },
-        { name: lang === 'fr' ? 'PDF vers XML' : 'PDF to XML', path: '/pdf-to-xml', entity: lang === 'fr' ? 'Extracteur de données PDF en XML' : 'PDF to XML data extractor' },
-        { name: lang === 'fr' ? 'XML vers PDF' : 'XML to PDF', path: '/xml-to-pdf', entity: lang === 'fr' ? 'Convertisseur XML en PDF' : 'XML to PDF converter' },
-        { name: lang === 'fr' ? 'OCR Factures' : 'Invoice OCR', path: '/invoice-ocr', entity: lang === 'fr' ? 'Extracteur de données de facturation PDF' : 'PDF invoice data extractor' },
+        { name: lang === 'fr' ? 'PDF vers Word' : (lang === 'pt' ? 'PDF para Word' : 'PDF to Word'), path: '/pdf-to-word', entity: lang === 'fr' ? 'Convertisseur PDF en Word DOCX' : (lang === 'pt' ? 'Conversor de PDF para Word DOCX' : 'PDF to Word DOCX converter') },
+        { name: lang === 'fr' ? 'Word vers PDF' : (lang === 'pt' ? 'Word para PDF' : 'Word to PDF'), path: '/word-to-pdf', entity: lang === 'fr' ? 'Convertisseur Word DOCX en PDF' : (lang === 'pt' ? 'Conversor de Word DOCX para PDF' : 'Word DOCX to PDF converter') },
+        { name: lang === 'fr' ? 'Excel vers PDF' : (lang === 'pt' ? 'Excel para PDF' : 'Excel to PDF'), path: '/excel-to-pdf', entity: lang === 'fr' ? 'Convertisseur Excel en PDF' : (lang === 'pt' ? 'Conversor de Excel para PDF' : 'Excel to PDF converter') },
+        { name: lang === 'fr' ? 'HEIC vers PDF' : (lang === 'pt' ? 'HEIC para PDF' : 'HEIC to PDF'), path: '/heic-to-pdf', entity: lang === 'fr' ? 'Convertisseur photos iPhone HEIC en PDF' : (lang === 'pt' ? 'Conversor de fotos HEIC do iPhone para PDF' : 'iPhone HEIC photo to PDF converter') },
+        { name: lang === 'fr' ? 'EPUB vers PDF' : (lang === 'pt' ? 'EPUB para PDF' : 'EPUB to PDF'), path: '/epub-to-pdf', entity: lang === 'fr' ? 'Convertisseur ebook EPUB en PDF' : (lang === 'pt' ? 'Conversor de ebook EPUB para PDF' : 'EPUB ebook to PDF converter') },
+        { name: lang === 'fr' ? 'PDF vers EPUB' : (lang === 'pt' ? 'PDF para EPUB' : 'PDF to EPUB'), path: '/pdf-to-epub', entity: lang === 'fr' ? 'Convertisseur PDF en ebook EPUB' : (lang === 'pt' ? 'Conversor de PDF para ebook EPUB' : 'PDF to EPUB ebook converter') },
+        { name: lang === 'fr' ? 'PDF vers XML' : (lang === 'pt' ? 'PDF para XML' : 'PDF to XML'), path: '/pdf-to-xml', entity: lang === 'fr' ? 'Extracteur de données PDF en XML' : (lang === 'pt' ? 'Extrator de dados PDF para XML' : 'PDF to XML data extractor') },
+        { name: lang === 'fr' ? 'XML vers PDF' : (lang === 'pt' ? 'XML para PDF' : 'XML to PDF'), path: '/xml-to-pdf', entity: lang === 'fr' ? 'Convertisseur XML en PDF' : (lang === 'pt' ? 'Conversor de XML para PDF' : 'XML to PDF converter') },
+        { name: lang === 'fr' ? 'OCR Factures' : (lang === 'pt' ? 'OCR de Faturas' : 'Invoice OCR'), path: '/invoice-ocr', entity: lang === 'fr' ? 'Extracteur de données de facturation PDF' : (lang === 'pt' ? 'Extrator de dados de faturamento PDF' : 'PDF invoice data extractor') },
     ],
 });
 
@@ -58,6 +58,13 @@ const content = {
         guidesTitle: 'Guides Utiles',
         viewAll: 'Voir Tous les Outils',
         exploreGuides: 'Explorer les Guides'
+    },
+    pt: {
+        toolsTitle: 'Ferramentas Relacionadas',
+        toolsSubtitle: 'Explore mais ferramentas PDF gratuitas',
+        guidesTitle: 'Guias Úteis',
+        viewAll: 'Ver Todas as Ferramentas',
+        exploreGuides: 'Explorar Guias'
     }
 };
 
@@ -147,7 +154,7 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
                             href={`/${lang}/guides/${guide.slug}`}
                             className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 hover:border-canada-red text-sm text-gray-600 dark:text-gray-400 hover:text-canada-red transition-all flex items-center gap-2"
                         >
-                            <span>{lang === 'fr' ? guide.titleFr : guide.titleEn}</span>
+                            <span>{lang === 'fr' ? guide.titleFr : (lang === 'pt' && guide.titlePt ? guide.titlePt : guide.titleEn)}</span>
                         </Link>
                     ))}
                     <Link

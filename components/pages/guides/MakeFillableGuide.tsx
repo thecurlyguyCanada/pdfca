@@ -1726,9 +1726,9 @@ export const MakeFillableGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<PenTool size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
-                    { name: lang === 'fr' ? 'PDF Remplissable' : 'Make PDF Fillable', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
+                    { name: lang === 'fr' ? 'PDF Remplissable' : (lang === 'pt' ? 'Criar PDF Preenchível' : 'Make PDF Fillable'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-10 md:space-y-12">

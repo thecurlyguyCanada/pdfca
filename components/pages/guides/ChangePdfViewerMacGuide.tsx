@@ -700,9 +700,9 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
                         : ["Find any PDF file", "Right-click → Get Info", "Open with → Select app", "Click Change All"]
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Changer Lecteur PDF Mac' : 'Change PDF Viewer Mac', path: lang === 'fr' ? '/fr/guides/change-pdf-viewer-mac' : '/guides/change-pdf-viewer-mac' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Changer Lecteur PDF Mac' : (lang === 'pt' ? 'Alterar Visualizador PDF Mac' : 'Change PDF Viewer Mac'), path: lang === 'fr' ? '/fr/guides/change-pdf-viewer-mac' : (lang === 'pt' ? '/pt/guides/change-pdf-viewer-mac' : '/guides/change-pdf-viewer-mac') }
                 ]}
             />
             <PageLayout
@@ -710,9 +710,9 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Apple size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide' },
-                    { name: lang === 'fr' ? 'Changer Lecteur PDF Mac' : 'Change PDF Viewer Mac', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                    { name: lang === 'fr' ? 'Changer Lecteur PDF Mac' : (lang === 'pt' ? 'Alterar Visualizador PDF Mac' : 'Change PDF Viewer Mac'), href: '#' }
                 ]}
             >
                 <div className="max-w-4xl mx-auto space-y-12">

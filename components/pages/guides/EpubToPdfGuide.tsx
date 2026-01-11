@@ -499,9 +499,9 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 schema={schema}
                 quickAnswer={t.quickAnswer}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'EPUB en PDF' : 'EPUB to PDF', path: lang === 'fr' ? '/fr/guides/epub-to-pdf' : '/guides/epub-to-pdf' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'EPUB en PDF' : (lang === 'pt' ? 'EPUB para PDF' : 'EPUB to PDF'), path: lang === 'fr' ? '/fr/guides/epub-to-pdf' : (lang === 'pt' ? '/pt/guides/epub-to-pdf' : '/guides/epub-to-pdf') }
                 ]}
             />
             <PageLayout
@@ -509,9 +509,9 @@ export const EpubToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<BookOpen size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'EPUB en PDF' : 'EPUB to PDF', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides' : (lang === 'pt' ? '/pt/guides' : '/guides') },
+                    { name: lang === 'fr' ? 'EPUB en PDF' : (lang === 'pt' ? 'EPUB para PDF' : 'EPUB to PDF'), href: '#' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">

@@ -105,9 +105,9 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 canonicalPath="/guides/barcode-generator"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', path: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'fr' ? 'Générateur Code-barres' : 'Barcode Generator', path: lang === 'fr' ? '/fr/guides/barcode-generator' : '/guides/barcode-generator' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides` },
+                    { name: lang === 'fr' ? 'Générateur Code-barres' : (lang === 'pt' ? 'Gerador de Código de Barras' : 'Barcode Generator'), path: `/${lang}/guides/barcode-generator` }
                 ]}
             />
             <PageLayout
@@ -115,9 +115,9 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={lang === 'en' ? 'Add scannable codes to your documents.' : 'Ajoutez des codes scannables à vos documents.'}
                 icon={<QrCode size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: lang === 'en' ? '/' : "/${lang}" },
-                    { name: lang === 'fr' ? 'Guides' : 'Guides', href: lang === 'fr' ? '/fr/guides' : '/guides' },
-                    { name: lang === 'en' ? 'Barcode' : 'Code-barres', href: lang === 'fr' ? '/fr/guides/barcode-generator' : '/guides/barcode-generator' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides` },
+                    { name: lang === 'fr' ? 'Code-barres' : (lang === 'pt' ? 'Código de Barras' : 'Barcode'), href: `/${lang}/guides/barcode-generator` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
