@@ -40,8 +40,8 @@ export function constructMetadata({
     });
     languages['x-default'] = `${BASE_URL}/${i18n.defaultLocale}${cleanPath}`;
 
-    // Format locale for OpenGraph (e.g., en_CA)
-    const underscoreLocale = `${lang}_CA`;
+    // Format locale for OpenGraph (e.g., en_CA, fr_CA, pt_BR)
+    const underscoreLocale = lang === 'pt' ? 'pt_BR' : `${lang}_CA`;
 
     return {
         title,

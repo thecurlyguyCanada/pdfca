@@ -15,7 +15,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
         "name": t.seo.privacyTitle,
         "description": t.seo.privacyDesc,
         "url": "https://www.pdfcanada.ca/privacy",
-        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA'
+        "inLanguage": lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA')
     };
     return (
         <>
@@ -26,16 +26,16 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 schema={privacySchema}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
-                    { name: lang === 'fr' ? 'Confidentialité' : 'Privacy Policy', path: `/${lang}/privacy` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Confidentialité' : (lang === 'pt' ? 'Política de Privacidade' : 'Privacy Policy'), path: `/${lang}/privacy` }
                 ]}
             />
             <PageLayout
                 title={t.privacyTitle}
                 icon={<Shield size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
-                    { name: lang === 'fr' ? 'Confidentialité' : 'Privacy', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Confidentialité' : (lang === 'pt' ? 'Privacidade' : 'Privacy'), href: '#' }
                 ]}
             >
                 <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-400">

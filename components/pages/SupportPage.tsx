@@ -31,16 +31,16 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                 schema={supportSchema}
                 faqs={t.supportPage.faq.map((item: { question: string, answer: string }) => ({ q: item.question, a: item.answer }))}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
-                    { name: lang === 'fr' ? 'Support' : 'Support', path: `/${lang}/support` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Support' : (lang === 'pt' ? 'Suporte' : 'Support'), path: `/${lang}/support` }
                 ]}
             />
             <PageLayout
                 title={translations[lang].navSupport}
                 icon={<Coffee size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
-                    { name: lang === 'fr' ? 'Support' : 'Support', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Support' : (lang === 'pt' ? 'Suporte' : 'Support'), href: '#' }
                 ]}
             >
                 <div className="text-center text-gray-600 dark:text-gray-400 space-y-8">
@@ -59,7 +59,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
 
                 {/* FAQ Section */}
                 <div className="mt-16 text-left max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">Frequently Asked Questions</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">{lang === 'fr' ? 'Foire aux questions' : (lang === 'pt' ? 'Perguntas Frequentes' : 'Frequently Asked Questions')}</h2>
                     <div className="space-y-6">
                         {t.supportPage.faq.map((item: { question: string, answer: string }, i: number) => (
                             <div key={i} className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 border border-gray-100 dark:border-gray-600">

@@ -15,7 +15,7 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
         "name": t.seo.termsTitle,
         "description": t.seo.termsDesc,
         "url": "https://www.pdfcanada.ca/terms",
-        "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA'
+        "inLanguage": lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA')
     };
     return (
         <>
@@ -26,16 +26,16 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 schema={termsSchema}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
-                    { name: lang === 'fr' ? "Conditions d'utilisation" : 'Terms of Service', path: `/${lang}/terms` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? "Conditions d'utilisation" : (lang === 'pt' ? 'Termos de Serviço' : 'Terms of Service'), path: `/${lang}/terms` }
                 ]}
             />
             <PageLayout
                 title={t.termsTitle}
                 icon={<FileText size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
-                    { name: lang === 'fr' ? 'Conditions' : 'Terms', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Conditions' : (lang === 'pt' ? 'Termos' : 'Terms'), href: '#' }
                 ]}
             >
                 <div className="space-y-6 text-gray-600 dark:text-gray-400">

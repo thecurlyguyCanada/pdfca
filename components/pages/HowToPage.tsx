@@ -26,16 +26,16 @@ export const HowToPage: React.FC<PageProps> = ({ lang }) => {
                 lang={lang}
                 steps={steps}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', path: `/${lang}` },
-                    { name: lang === 'fr' ? 'Comment Utiliser' : 'How To', path: `/${lang}/howto` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Comment Utiliser' : (lang === 'pt' ? 'Como Usar' : 'How To'), path: `/${lang}/howto` }
                 ]}
             />
             <PageLayout
                 title={t.howtoTitle}
                 icon={<HelpCircle size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : 'Home', href: `/${lang}` },
-                    { name: lang === 'fr' ? 'Guide' : 'How To', href: '#' }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Guide' : (lang === 'pt' ? 'Como Usar' : 'How To'), href: '#' }
                 ]}
             >
                 <div className="grid gap-6">
