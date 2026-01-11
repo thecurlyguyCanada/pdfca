@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Eye, Volume2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Loader2, X } from 'lucide-react';
-import { Language } from '@/utils/i18n';
+import { Language, translations } from '@/utils/i18n';
 
 interface PdfViewerProps {
     pdfUrl: string;
@@ -26,6 +26,8 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const pdfDocRef = useRef<any>(null);
+
+    const t = translations[lang];
 
     // Load PDF.js and render
     useEffect(() => {
@@ -158,28 +160,7 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
         }
     };
 
-    const translations = {
-        en: {
-            download: 'Download PDF',
-            viewOnline: 'View PDF Online',
-            listenAudio: 'Listen Audio',
-            page: 'Page',
-            of: 'of',
-            loading: 'Loading PDF...',
-            error: 'Error loading PDF',
-        },
-        fr: {
-            download: 'Télécharger PDF',
-            viewOnline: 'Voir PDF en ligne',
-            listenAudio: 'Écouter Audio',
-            page: 'Page',
-            of: 'sur',
-            loading: 'Chargement du PDF...',
-            error: 'Erreur de chargement',
-        }
-    };
 
-    const t = (translations as any)[lang] || translations.en;
 
     return (
         <div ref={containerRef} className="w-full">

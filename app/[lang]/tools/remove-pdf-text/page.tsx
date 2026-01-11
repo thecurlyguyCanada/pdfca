@@ -40,7 +40,7 @@ export default async function RemovePdfTextPage({ params }: { params: Promise<{ 
                     </div>
 
                     <div className="bg-white rounded-[2.5rem] shadow-premium overflow-hidden border border-gray-100">
-                        <PdfWhiteout />
+                        <PdfWhiteout lang={currentLang} />
                     </div>
                 </PageLayout>
             </main>

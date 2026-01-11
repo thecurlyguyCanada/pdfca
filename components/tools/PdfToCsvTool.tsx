@@ -112,8 +112,8 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                     <Database className="text-canada-red animate-bounce" size={40} />
                     <RefreshCcw className="absolute text-canada-red/40 animate-spin" size={64} strokeWidth={1} />
                 </div>
-                <h3 className="text-2xl font-black text-gray-900 tracking-tighter italic lowercase">analyzing spatial layout...</h3>
-                <p className="text-gray-500 font-bold mt-2">mapping columns and rows locally</p>
+                <h3 className="text-2xl font-black text-gray-900 tracking-tighter italic lowercase">{t.pdfToCsv?.analyzing || "analyzing spatial layout..."}</h3>
+                <p className="text-gray-500 font-bold mt-2">{t.pdfToCsv?.mapping || "mapping columns and rows locally"}</p>
 
                 {/* Progress Bar */}
                 <div className="mt-8 w-64 h-2 bg-gray-100 rounded-full overflow-hidden relative">
@@ -133,8 +133,8 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                 <div className="w-16 h-16 bg-red-100 text-canada-red rounded-full flex items-center justify-center mb-6">
                     <AlertCircle size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Extraction Failed</h3>
-                <p className="text-gray-600 mb-8">{error}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pdfToCsv?.extractionFailed || "Extraction Failed"}</h3>
+                <p className="text-gray-600 mb-8">{error || t.pdfToCsv?.extractionError || "We couldn't extract the table from this PDF."}</p>
                 <div className="bg-blue-50 p-4 rounded-xl text-xs text-blue-800 border border-blue-100 text-left">
                     <strong>Note:</strong> Some PDFs (like scanned receipts without OCR or graphical tables) are difficult to parse without manual intervention.
                 </div>
@@ -159,14 +159,14 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                         </div>
                         <div>
                             <h2 className="font-black text-xl text-gray-900 dark:text-white tracking-tight leading-none">
-                                {processedData?.rows.length || 0} Transactions Found
+                                {processedData?.rows.length || 0} {t.pdfToCsv?.transactionsFound || "Transactions Found"}
                             </h2>
                             <div className="flex items-center gap-2 mt-1">
                                 <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded-full">
-                                    <CheckCircle2 size={10} /> {Math.round((processedData?.confidence || 0) * 100)}% Confidence
+                                    <CheckCircle2 size={10} /> {Math.round((processedData?.confidence || 0) * 100)}% {t.pdfToCsv?.confidence || "Confidence"}
                                 </span>
                                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
-                                    <Clock size={10} /> Local Processing
+                                    <Clock size={10} /> {t.pdfToCsv?.localProcessing || "Local Processing"}
                                 </span>
                             </div>
                         </div>
@@ -207,14 +207,14 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                     <div className="p-6 space-y-8 min-w-[320px]">
                         <div>
                             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                                <Settings2 size={14} /> Extraction Options
+                                <Settings2 size={14} /> {t.pdfToCsv?.extractionOptions || "Extraction Options"}
                             </h3>
 
                             <div className="space-y-4">
                                 <label className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-canada-red transition-all group">
                                     <div className="flex flex-col gap-0.5">
-                                        <span className="font-bold text-sm text-gray-900 dark:text-white">Smart Multiline Merge</span>
-                                        <span className="text-[10px] text-gray-500 max-w-[180px]">Joins wrapped descriptions into single rows</span>
+                                        <span className="font-bold text-sm text-gray-900 dark:text-white">{t.pdfToCsv?.smartMerge || "Smart Multiline Merge"}</span>
+                                        <span className="text-[10px] text-gray-500 max-w-[180px]">{t.pdfToCsv?.smartMergeDesc || "Joins wrapped descriptions into single rows"}</span>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -226,8 +226,8 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
 
                                 <label className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-canada-red transition-all group">
                                     <div className="flex flex-col gap-0.5">
-                                        <span className="font-bold text-sm text-gray-900 dark:text-white">Financial Normalization</span>
-                                        <span className="text-[10px] text-gray-500 max-w-[180px]">Standardizes dates and cleans currency symbols</span>
+                                        <span className="font-bold text-sm text-gray-900 dark:text-white">{t.pdfToCsv?.normalization || "Financial Normalization"}</span>
+                                        <span className="text-[10px] text-gray-500 max-w-[180px]">{t.pdfToCsv?.normalizationDesc || "Standardizes dates and cleans currency symbols"}</span>
                                     </div>
                                     <input
                                         type="checkbox"
@@ -241,10 +241,10 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
 
                         <div className="bg-canada-red/5 p-4 rounded-2xl border border-canada-red/10">
                             <h4 className="text-[10px] font-black text-canada-red uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <Activity size={12} /> AI Insight
+                                <Activity size={12} /> {t.pdfToCsv?.aiInsight || "AI Insight"}
                             </h4>
                             <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed italic font-medium">
-                                "Our spatial detector noticed this looks like a <strong>Bank Statement</strong>. We've automatically optimized column gutters for account reconciliation."
+                                "{t.pdfToCsv?.aiMessage || "Our spatial detector noticed this looks like a Bank Statement. We've automatically optimized column gutters for account reconciliation."}"
                             </p>
                         </div>
                     </div>
@@ -292,7 +292,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                         {(!processedData || processedData.rows.length === 0) && (
                                             <tr>
                                                 <td colSpan={100} className="p-12 text-center text-gray-400 italic">
-                                                    Upload a PDF to see transactions here
+                                                    {t.pdfToCsv?.uploadPrompt || "Upload a PDF to see transactions here"}
                                                 </td>
                                             </tr>
                                         )}
@@ -316,9 +316,9 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] px-4">
                             <div className="flex items-center gap-4">
                                 <span className="flex items-center gap-1.5"><Table size={12} /> Format: CSV/XLSX/QBO</span>
-                                <span className="flex items-center gap-1.5"><Shield size={12} /> Privacy: 100% Offline</span>
+                                <span className="flex items-center gap-1.5"><Shield size={12} /> {t.pdfToCsv?.privacy || "Privacy: 100% Offline"}</span>
                             </div>
-                            <p>Powered by PDFCA Spatial Engine 2.0</p>
+                            <p>{t.pdfToCsv?.poweredBy || "Powered by PDFCA Spatial Engine 2.0"}</p>
                         </div>
                     </div>
                 </div>

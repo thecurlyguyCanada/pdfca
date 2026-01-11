@@ -61,6 +61,12 @@ export const translations: Record<Language, any> = {
     drawTitle: "Draw",
     typeTitle: "Type",
     btnCreate: "Create",
+    loading: "Loading...",
+    clickToUpload: "Click to upload PDF",
+    error: "Error",
+    viewOnline: "View PDF Online",
+    listenAudio: "Listen Audio",
+    page: "Page",
 
 
 
@@ -1150,6 +1156,38 @@ export const translations: Record<Language, any> = {
       fallbackAlert: "Scanned image detected. Using Tesseract (slower)...",
       successMsg: "Invoice data extracted successfully!"
     },
+    pdfToUbl: {
+      title: "UBL 2.1 Generator",
+      vendor: "Vendor Details",
+      customer: "Customer Details",
+      invoice: "Invoice Data",
+      items: "Line Items",
+      totals: "Totals & Tax",
+      download: "Download UBL XML",
+      scan: "Rescan PDF",
+      scanError: "Failed to extract invoice data. Please verify the PDF."
+    },
+    pdfToCsv: {
+      analyzing: "analyzing spatial layout...",
+      mapping: "mapping columns and rows locally",
+      extractionFailed: "Extraction Failed",
+      extractionError: "We couldn't extract the table from this PDF.",
+      transactionsFound: "Transactions Found",
+      confidence: "Confidence",
+      localProcessing: "Local Processing",
+      extractionOptions: "Extraction Options",
+      smartMerge: "Smart Multiline Merge",
+      smartMergeDesc: "Joins wrapped descriptions into single rows",
+      normalization: "Financial Normalization",
+      normalizationDesc: "Standardizes dates and cleans currency symbols",
+      aiInsight: "AI Insight",
+      aiMessage: "Our spatial detector noticed this looks like a Bank Statement.",
+      showingRows: "Showing {visible} of {total} rows",
+      loadMore: "Load More Rows",
+      uploadPrompt: "Upload a PDF to see transactions here",
+      privacy: "Privacy: 100% Offline",
+      poweredBy: "Powered by PDFCA Spatial Engine 2.0"
+    },
     barcode: {
       title: "Code 128 Barcode Generator",
       subtitle: "Professional barcode generation with bulk support, multiple formats, and advanced customization",
@@ -1270,6 +1308,12 @@ export const translations: Record<Language, any> = {
     drawTitle: "Dessiner",
     typeTitle: "Taper",
     btnCreate: "Créer",
+    loading: "Chargement...",
+    clickToUpload: "Cliquez pour téléverser le PDF",
+    error: "Erreur",
+    viewOnline: "Voir PDF en ligne",
+    listenAudio: "Écouter Audio",
+    page: "Page",
 
 
 
@@ -1823,6 +1867,7 @@ export const translations: Record<Language, any> = {
         ],
         faq: [
           { question: "Quelles données sont extraites ?", answer: "Le texte, sa position, et les dimensions des pages sont conservés dans la structure XML." },
+          { question: "Puis-je convertir des PDF scannés en XML ?", answer: "Pour les documents scannés, nous recommandons d'utiliser d'abord l'OCR pour extraire le texte, puis de convertir en XML." },
           { question: "Est-ce sécurisé ?", answer: "Oui, le parsing se fait localement. Vos données ne sont jamais envoyées ailleurs." }
         ]
       },
@@ -1839,7 +1884,8 @@ export const translations: Record<Language, any> = {
         ],
         faq: [
           { question: "Quels fichiers XML sont supportés ?", answer: "Les fichiers XML standards. Le contenu textuel est extrait et mis en page." },
-          { question: "Puis-je personnaliser le style ?", answer: "Pour l'instant, le style est standardisé pour une lisibilité maximale." }
+          { question: "Puis-je personnaliser le style ?", answer: "Pour l'instant, le style est standardisé pour une lisibilité maximale." },
+          { question: "Y a-t-il une limite de taille ?", answer: "Il n'y a pas de limite stricte, mais les gros fichiers peuvent être plus lents. Tout est traité localement." }
         ]
       },
       excelToPdf: {
@@ -2251,6 +2297,38 @@ export const translations: Record<Language, any> = {
       fallbackAlert: "Image détectée. Utilisation de Tesseract (plus lent)...",
       successMsg: "Données extraites avec succès !"
     },
+    pdfToUbl: {
+      title: "Générateur UBL 2.1",
+      vendor: "Détails du Fournisseur",
+      customer: "Détails du Client",
+      invoice: "Données de Facture",
+      items: "Articles",
+      totals: "Totaux & Taxes",
+      download: "Télécharger XML UBL",
+      scan: "Rescanner PDF",
+      scanError: "Échec de l'extraction. Veuillez vérifier le PDF."
+    },
+    pdfToCsv: {
+      analyzing: "analyse de la mise en page...",
+      mapping: "mappage des colonnes et lignes localement",
+      extractionFailed: "Échec de l'extraction",
+      extractionError: "Nous n'avons pas pu extraire le tableau de ce PDF.",
+      transactionsFound: "Transactions trouvées",
+      confidence: "Confiance",
+      localProcessing: "Traitement Local",
+      extractionOptions: "Options d'Extraction",
+      smartMerge: "Fusion Multiligne Intelligente",
+      smartMergeDesc: "Fusionne les descriptions sur plusieurs lignes",
+      normalization: "Normalisation Financière",
+      normalizationDesc: "Standardise les dates et nettoie les symboles monétaires",
+      aiInsight: "Aperçu IA",
+      aiMessage: "Notre détecteur a remarqué que cela ressemble à un relevé bancaire.",
+      showingRows: "Affichage de {visible} sur {total} lignes",
+      loadMore: "Charger plus de lignes",
+      uploadPrompt: "Téléversez un PDF pour voir les transactions",
+      privacy: "Confidentialité : 100% Hors ligne",
+      poweredBy: "Propulsé par PDFCA Spatial Engine 2.0"
+    },
     barcode: {
       title: "Générateur de Code-Barres Code 128",
       subtitle: "Génération professionnelle de codes-barres avec support en masse, formats multiples et personnalisation avancée",
@@ -2371,6 +2449,12 @@ export const translations: Record<Language, any> = {
     drawTitle: "Desenhar",
     typeTitle: "Digitar",
     btnCreate: "Criar",
+    loading: "Carregando...",
+    clickToUpload: "Clique para enviar PDF",
+    error: "Erro",
+    viewOnline: "Ver PDF Online",
+    listenAudio: "Ouvir Áudio",
+    page: "Página",
 
     // Compress Tool
     sizeReduced: "Tamanho Reduzido",
@@ -3234,6 +3318,38 @@ export const translations: Record<Language, any> = {
       newScan: "Escanear Outra",
       fallbackAlert: "Imagem detectada. Usando Tesseract...",
       successMsg: "Dados extraídos com sucesso!"
+    },
+    pdfToUbl: {
+      title: "Gerador UBL 2.1",
+      vendor: "Detalhes do Fornecedor",
+      customer: "Detalhes do Cliente",
+      invoice: "Dados da Fatura",
+      items: "Itens",
+      totals: "Totais & Impostos",
+      download: "Baixar UBL XML",
+      scan: "Digitalizar PDF",
+      scanError: "Falha ao extrair dados. Verifique o PDF."
+    },
+    pdfToCsv: {
+      analyzing: "analisando layout espacial...",
+      mapping: "mapeando colunas e linhas localmente",
+      extractionFailed: "Falha na Extração",
+      extractionError: "Não conseguimos extrair a tabela deste PDF.",
+      transactionsFound: "Transações Encontradas",
+      confidence: "Confiança",
+      localProcessing: "Processamento Local",
+      extractionOptions: "Opções de Extração",
+      smartMerge: "Fusão Multilinha Inteligente",
+      smartMergeDesc: "Junta descrições em várias linhas",
+      normalization: "Normalização Financeira",
+      normalizationDesc: "Padroniza datas e limpa símbolos monetários",
+      aiInsight: "Insight de IA",
+      aiMessage: "Nosso detector notou que isso parece um extrato bancário.",
+      showingRows: "Mostrando {visible} de {total} linhas",
+      loadMore: "Carregar Mais Linhas",
+      uploadPrompt: "Envie um PDF para ver as transações",
+      privacy: "Privacidade: 100% Offline",
+      poweredBy: "Desenvolvido por PDFCA Spatial Engine 2.0"
     },
     barcode: {
       title: "Gerador Código Barras Code 128",

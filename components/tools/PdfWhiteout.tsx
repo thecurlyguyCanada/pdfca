@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { Upload, Download, Eraser, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, X, Loader2 } from 'lucide-react';
 import { initPdfWorker } from '../../utils/pdfUtils';
+import { translations, Language } from '../../utils/i18n';
 
 interface Selection {
     x: number;
@@ -12,7 +13,12 @@ interface Selection {
     height: number;
 }
 
-export default function PdfWhiteout() {
+interface PdfWhiteoutProps {
+    lang: Language;
+}
+
+export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
+    const t = translations[lang];
     const [pdfFile, setPdfFile] = useState<File | null>(null);
     const [pdfBytes, setPdfBytes] = useState<Uint8Array | null>(null);
     const [numPages, setNumPages] = useState<number>(0);
@@ -59,7 +65,7 @@ export default function PdfWhiteout() {
                 await pdf.destroy();
             } catch (error) {
                 console.error("Error loading PDF:", error);
-                alert("Failed to load PDF. Please try again.");
+                alert(t.readErr || "Failed to load PDF. Please try again.");
                 setPdfFile(null);
                 setPdfBytes(null);
             } finally {
@@ -98,7 +104,7 @@ export default function PdfWhiteout() {
                 await pdf.destroy();
             } catch (error) {
                 console.error("Error loading PDF:", error);
-                alert("Failed to load PDF. Please try again.");
+                alert(t.readErr || "Failed to load PDF. Please try again.");
                 setPdfFile(null);
                 setPdfBytes(null);
             } finally {
@@ -315,7 +321,7 @@ export default function PdfWhiteout() {
                                 </div>
                             )}
                             <p className="mb-2 text-xl font-bold text-gray-700">
-                                {isLoading ? 'Loading PDF...' : 'Click to upload PDF'}
+                                {isLoading ? t.loading : t.clickToUpload}
                             </p>
                             <p className="text-sm">or drag and drop your file here</p>
                         </div>
@@ -364,7 +370,7 @@ export default function PdfWhiteout() {
                                     }`}
                             >
                                 {isApplying ? <Loader2 size={18} className="animate-spin" /> : <Eraser size={18} />}
-                                {isApplying ? 'Applying...' : 'Apply Whiteout'}
+                                {isApplying ? (t.processing || 'Applying...') : (t.toolFlatten || 'Apply Whiteout')}
                             </button>
 
                             <button
@@ -372,7 +378,7 @@ export default function PdfWhiteout() {
                                 className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl font-bold text-sm hover:bg-black transition-all shadow-lg hover:shadow-gray-900/20 active:scale-95"
                             >
                                 <Download size={18} />
-                                Download
+                                {t.download}
                             </button>
                         </div>
                     </div>
