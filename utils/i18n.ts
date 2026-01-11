@@ -3424,3 +3424,28 @@ export const translations: Record<Language, any> = {
 
 
 export type TranslationType = typeof translations.en;
+
+// Breadcrumb utility helpers for consistent localization
+export const getLocalizedHome = (lang: Language): string => {
+  return lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home');
+};
+
+export const getLocalizedGuides = (lang: Language): string => {
+  return lang === 'pt' ? 'Guias' : 'Guides';
+};
+
+export const getHomePath = (lang: Language): string => {
+  return lang === 'en' ? '/' : `/${lang}`;
+};
+
+export const getGuidesPath = (lang: Language): string => {
+  return `/${lang}/guides`;
+};
+
+// Helper to create standardized breadcrumbs
+export const createBreadcrumbs = (lang: Language, items: { name: string; path: string }[]) => {
+  return [
+    { name: getLocalizedHome(lang), path: getHomePath(lang) },
+    ...items
+  ];
+};
