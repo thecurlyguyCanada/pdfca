@@ -1,17 +1,9 @@
 import React from 'react';
 import { Microscope } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
-import { SEO } from '../../SEO';
-import { PageLayout } from '../../PageLayout';
-import { MarkdownContent } from '../../MarkdownContent';
-import { AuthorBio } from '../../AuthorBio';
-import { ToolPromo } from '../../ToolPromo';
+import { GuideTemplate, GuideContent } from './GuideTemplate';
 
-interface GuideProps {
-    lang: Language;
-}
-
-const getLocalContent = (lang: string) => ({
+const contentMap: Record<string, GuideContent> = {
     en: {
         seoTitle: 'Analyze PDF Structure Guide',
         seoDesc: 'Inspect PDF internals, metadata, and fonts.',
@@ -105,56 +97,17 @@ Todo PDF contém metadados: Título, Autor, Criador, Data de Criação e Data de
             }
         ]
     }
-});
+};
 
-export const AnalyzePdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const localContent = getLocalContent(lang);
-    const t = (localContent as any)[lang] || (localContent as any).en;
+export const AnalyzePdfGuide: React.FC<{ lang: Language }> = ({ lang }) => {
+    const content = contentMap[lang] || contentMap.en;
 
     return (
-        <div className="bg-white dark:bg-gray-950">
-            <SEO
-                title={t.seoTitle}
-                description={t.seoDesc}
-                canonicalPath="/guides/analyze-pdf"
-                lang={lang}
-                breadcrumbs={[
-                    { name: t.breadcrumbHome, path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: t.breadcrumbGuides, path: lang === 'en' ? '/guides' : `/${lang}/guides` },
-                    { name: t.breadcrumbTool, path: lang === 'en' ? '/guides/analyze-pdf' : `/${lang}/guides/analyze-pdf` }
-                ]}
-            />
-            <PageLayout
-                title={t.title}
-                subtitle={t.subtitle}
-                icon={<Microscope size={32} />}
-                breadcrumbs={[
-                    { name: t.breadcrumbHome, href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: t.breadcrumbGuides, href: lang === 'en' ? '/guides' : `/${lang}/guides` },
-                    { name: t.breadcrumbTool, href: lang === 'en' ? '/guides/analyze-pdf' : `/${lang}/guides/analyze-pdf` }
-                ]}
-            >
-                <div className="w-full py-4 sm:py-6 md:py-8">
-                    <ToolPromo tool="analyze-pdf" lang={lang} />
-                    <MarkdownContent content={t.intro} />
-
-                    {t.sections.map((section: any) => (
-                        <section key={section.id} className="mb-12">
-                            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                                <div className="w-2 h-8 bg-canada-red rounded-full" />
-                                {section.title}
-                            </h2>
-                            <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
-                                <MarkdownContent content={section.content} />
-                            </div>
-                        </section>
-                    ))}
-
-                    <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
-                        <AuthorBio lang={lang} />
-                    </div>
-                </div>
-            </PageLayout>
-        </div>
+        <GuideTemplate
+            lang={lang}
+            slug="analyze-pdf"
+            icon={<Microscope size={32} />}
+            content={content}
+        />
     );
 };
