@@ -38,8 +38,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang,
                             href={getSwitchPath(locale)}
                             onClick={() => triggerHaptic('light')}
                             className={`px-4 py-2 rounded-xl text-sm font-bold border ${currentLang === locale
-                                    ? 'bg-canada-red text-white border-canada-red'
-                                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
+                                ? 'bg-canada-red text-white border-canada-red'
+                                : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
                                 }`}
                         >
                             {locale.toUpperCase()}
@@ -51,21 +51,21 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang,
     }
 
     return (
-        <div className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center gap-2 sm:gap-3 shadow-glass hover:shadow-premium group/lang">
+        <div className="text-[11px] font-black bg-white/40 md:bg-white hover:bg-white border border-white/60 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-[background-color,transform] duration-150 active:scale-95 flex items-center shadow-glass hover:shadow-premium group/lang">
             {i18n.locales.map((locale, index) => (
                 <React.Fragment key={locale}>
                     <Link
                         href={getSwitchPath(locale)}
                         onClick={() => triggerHaptic('light')}
-                        className={`${currentLang === locale
-                                ? 'text-canada-red cursor-default'
-                                : 'text-modern-neutral-700 hover:text-gray-900'
+                        className={`px-2 py-1.5 sm:px-3 sm:py-1.5 rounded-full transition-colors ${currentLang === locale
+                            ? 'text-canada-red cursor-default'
+                            : 'text-modern-neutral-700 hover:text-gray-900 hover:bg-gray-100/50'
                             }`}
                     >
                         {locale.toUpperCase()}
                     </Link>
                     {index < i18n.locales.length - 1 && (
-                        <div className="w-px h-3 bg-gray-300" />
+                        <div className="w-px h-3 bg-gray-300 mx-0.5" />
                     )}
                 </React.Fragment>
             ))}
