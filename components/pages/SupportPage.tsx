@@ -48,7 +48,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                         {t.supportPage.content}
                     </p>
                     <p>
-                        If you like what we do, tell a friend. That&apos;s the Canadian way.
+                        {lang === 'fr' ? "Si vous aimez ce que nous faisons, parlez-en à un ami. C'est la manière canadienne." : (lang === 'pt' ? 'Se você gosta do que fazemos, conte a um amigo. Esse é o jeito canadense.' : "If you like what we do, tell a friend. That's the Canadian way.")}
                     </p>
                     <div className="pt-8">
                         <a href="https://buy.stripe.com/8x228t4yIdCx2mE2ic6Zy04" target="_blank" rel="noopener noreferrer" className="inline-block bg-canada-red text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-canada-darkRed transition-colors">
