@@ -1,17 +1,17 @@
 import type { ToolConfig } from './toolConfig';
 import { ORGANIZATION } from '@/config/organization';
 import { URLS, getFullUrl, getAssetUrl } from '@/config/urls';
-import type { Language } from '@/utils/i18n';
+import { Language, translations } from '@/utils/i18n';
 
-export function generateWebsiteSchema() {
+export function generateWebsiteSchema(lang: Language = 'en') {
+  const t = translations[lang];
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${URLS.DOMAIN}/#website`,
     name: 'pdfcanada.ca',
     url: URLS.DOMAIN,
-    description:
-      'Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.',
+    description: t.seo.homeDesc,
     inLanguage: ['en-CA', 'fr-CA', 'pt-BR'],
     potentialAction: {
       '@type': 'SearchAction',
@@ -24,7 +24,8 @@ export function generateWebsiteSchema() {
   };
 }
 
-export function generateOrganizationSchema() {
+export function generateOrganizationSchema(lang: Language = 'en') {
+  const t = translations[lang];
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -45,12 +46,12 @@ export function generateOrganizationSchema() {
       addressCountry: 'CA',
     },
     foundingDate: ORGANIZATION.foundingDate,
-    description:
-      'Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.',
+    description: t.seo.homeDesc,
   };
 }
 
-export function generateLocalBusinessSchema() {
+export function generateLocalBusinessSchema(lang: Language = 'en') {
+  const t = translations[lang];
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'ProfessionalService'],
@@ -65,8 +66,7 @@ export function generateLocalBusinessSchema() {
       height: 512,
     },
     image: getAssetUrl(URLS.OG_IMAGE),
-    description:
-      "Canada's premier free PDF tools service. Privacy-first, browser-based PDF processing for all Canadians. Merge, split, compress, convert, and sign PDFs - all locally in your browser.",
+    description: t.seo.homeDesc,
     address: {
       '@type': 'PostalAddress',
       addressLocality: ORGANIZATION.location.city,

@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-canada-red focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
       >
-        Skip to main content
+        {t.seo.skipToContent}
       </a>
       <header
         className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header will-change-[box-shadow]"

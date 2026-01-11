@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Upload, Mail, Download, CheckCircle2, AlertCircle, Loader2, Sparkles, Paperclip, User, Calendar, FileText } from 'lucide-react';
-import { Language } from '../../utils/i18n';
+import { Language, translations } from '../../utils/i18n';
 import { triggerHaptic } from '../../utils/haptics';
 import { convertEmlToPdf, parseEml, ParsedEmail } from '../../utils/emlUtils';
 
@@ -12,6 +12,7 @@ interface EmlToPdfToolProps {
 }
 
 export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialFile }) => {
+    const t = translations[lang];
     const [file, setFile] = useState<File | null>(initialFile || null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [result, setResult] = useState<Blob | null>(null);
@@ -244,7 +245,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                     className="w-full bg-canada-red text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-canada-red/20"
                                 >
                                     <Download className="w-6 h-6" />
-                                    <span>{lang === 'fr' ? 'Télécharger le PDF' : 'Download PDF'}</span>
+                                    <span>{t.download} PDF</span>
                                 </button>
                                 <button
                                     onClick={reset}

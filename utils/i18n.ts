@@ -67,6 +67,15 @@ export const translations: Record<Language, any> = {
     viewOnline: "View PDF Online",
     listenAudio: "Listen Audio",
     page: "Page",
+    step: "Step",
+    stepSelectTool: "Select Tool",
+    stepUploadPdf: "Upload PDF",
+    stepProcess: "Edit/Process",
+    faqTitle: "Frequently Asked Questions",
+    upload: "Upload",
+    select: "Select",
+    fillify: "Fillify (Magic)",
+    download: "Download",
 
 
 
@@ -159,6 +168,19 @@ export const translations: Record<Language, any> = {
           a: "Use our PDF to Word tool. It extracts text and basic structure from your PDF into a .docx file. For best results, use PDFs with selectable text rather than scanned images."
         }
       ],
+      homeHowToFiles: "Select Files",
+      homeHowToFilesDesc: "Choose the PDF files you want to merge",
+      homeHowToOrder: "Arrange Order",
+      homeHowToOrderDesc: "Drag and drop files to set the merge order",
+      homeHowToMergeDl: "Download Result",
+      homeHowToMergeDlDesc: "Click merge and download your combined PDF",
+      homeHowToUpload: "Upload PDF",
+      homeHowToUploadDesc: "Select the PDF file you want to convert",
+      homeHowToProcess: "Process Conversion",
+      homeHowToProcessDesc: "Our tool extracts text and structure automatically",
+      homeHowToWordDl: "Download Word File",
+      homeHowToWordDlDesc: "Save the converted .docx file to your device",
+      skipToContent: "Skip to main content",
       pricingTitle: "Free PDF Tools Pricing | Only $0 Forever | pdfcanada.ca",
       pricingDesc: "Unbelievably free PDF tools. $0 CAD for unlimited file conversions, merges, and edits. No hidden fees, no subscriptions, just polite Canadian service.",
       privacyTitle: "Privacy Policy & Data Security | pdfcanada.ca",
@@ -205,6 +227,8 @@ export const translations: Record<Language, any> = {
     },
     supportPage: {
       content: "We're a small team of developers based in Toronto, Ontario, dedicated to building the most polite and private PDF tools on the internet. Unlike big corporations that harvest your data, we built pdfcanada.ca to process everything locally on your device. Your files never leave your computer. By supporting us, you're backing indie Canadian software and helping us maintain a free utility for everyone.",
+      canadianWayText: "If you like what we do, tell a friend. That's the Canadian way.",
+      faqTitle: "Frequently Asked Questions",
       faq: [
         {
           question: "How can I support pdfcanada.ca?",
@@ -976,7 +1000,6 @@ export const translations: Record<Language, any> = {
     addSignature: "Add Signature",
     addInitials: "Add Initials",
     signUpload: "Upload",
-    select: "Select",
     pan: "Pan",
     newSignature: "New signature",
     newInitials: "New initials",
@@ -1042,7 +1065,6 @@ export const translations: Record<Language, any> = {
     workingDesc: "Scanning for fields and fixing that up for you, eh.",
     doneTitle: "Beauty! It's done.",
     doneDesc: "Your file is ready.",
-    download: "Download",
     doAnother: "Do another one",
     backToHome: "Back to Tools",
 
@@ -1109,6 +1131,8 @@ export const translations: Record<Language, any> = {
     privacyTitle: "Privacy Policy",
     privacyText1: "At pdfcanada.ca, we believe that your business is your business. Because we process files locally on your device using WebAssembly technology, your documents never actually upload to our servers.",
     privacyText2: "We don't use cookies to track you across the web. We don't sell your data. We don't even ask for your email. It's just you and your PDF.",
+    privacyGuaranteeTitle: "Local Processing Guarantee",
+    privacyGuaranteeText: "We do not operate backend servers for file processing. Everything happens right here in your browser using WebAssembly.",
 
     termsTitle: "Terms of Service",
     termsText1: "By using this service, you agree to be nice.",
@@ -1245,7 +1269,9 @@ export const translations: Record<Language, any> = {
       errorGenerate: "Failed to generate barcode. Please check the input.",
       errorFile: "Failed to parse file. Please check the format.",
       errorExport: "Failed to export PDF",
-      errorMinBarcodes: "Please add at least one barcode"
+      errorMinBarcodes: "Please add at least one barcode",
+      downloadTitle: "Download or Copy",
+      downloadDesc: "Choose your export format (PNG, SVG, or PDF) and click Download. You can also copy individual barcodes to clipboard or export all barcodes as a multi-page PDF."
     },
     kindleSettings: "Kindle Optimization",
     kindleSettingsDesc: "Choose how your PDF is optimized for Kindle",
@@ -1314,6 +1340,15 @@ export const translations: Record<Language, any> = {
     viewOnline: "Voir PDF en ligne",
     listenAudio: "Écouter Audio",
     page: "Page",
+    step: "Étape",
+    stepSelectTool: "Choisir un outil",
+    stepUploadPdf: "Téléverser PDF",
+    stepProcess: "Éditer/Traiter",
+    faqTitle: "Foire aux questions",
+    upload: "Téléverser",
+    select: "Sélectionner",
+    fillify: "Remplir (Magique)",
+    download: "Télécharger",
 
 
 
@@ -1405,6 +1440,19 @@ export const translations: Record<Language, any> = {
           a: "Utilisez notre outil PDF en Word. Il extrait le texte et la structure de base de votre PDF vers un fichier .docx. Pour de meilleurs résultats, utilisez des PDF avec du texte sélectionnable plutôt que des images scannées."
         }
       ],
+      homeHowToFiles: "Sélectionner les fichiers",
+      homeHowToFilesDesc: "Choisissez les fichiers PDF à fusionner",
+      homeHowToOrder: "Organiser l'ordre",
+      homeHowToOrderDesc: "Glissez-déposez pour définir l'ordre de fusion",
+      homeHowToMergeDl: "Télécharger le résultat",
+      homeHowToMergeDlDesc: "Cliquez sur fusionner et téléchargez votre PDF combiné",
+      homeHowToUpload: "Téléverser PDF",
+      homeHowToUploadDesc: "Sélectionnez le fichier PDF à convertir",
+      homeHowToProcess: "Traiter la conversion",
+      homeHowToProcessDesc: "Notre outil extrait automatiquement le texte et la structure",
+      homeHowToWordDl: "Télécharger le fichier Word",
+      homeHowToWordDlDesc: "Enregistrez le fichier .docx converti sur votre appareil",
+      skipToContent: "Passer au contenu principal",
       pricingTitle: "Tarifs - pdfcanada.ca | Toujours Gratuit",
       pricingDesc: "Nos prix sont simples : 0 $ CAD pour tout le monde. Conversions illimitées et traitement local.",
       privacyTitle: "Politique de Confidentialité et Sécurité des Données | pdfcanada.ca",
@@ -2085,7 +2133,7 @@ export const translations: Record<Language, any> = {
     addSignature: "Ajouter Signature",
     addInitials: "Ajouter Initiales",
     signUpload: "Téléverser",
-    select: "Sélectionner",
+
     pan: "Panoramique",
     newSignature: "Nouvelle signature",
     newInitials: "Nouvelles initiales",
@@ -2129,7 +2177,7 @@ export const translations: Record<Language, any> = {
     workingDesc: "On scanne pour les champs et on arrange ça.",
     doneTitle: "C'est tiguidou !",
     doneDesc: "Votre fichier est prêt.",
-    download: "Télécharger",
+
     doAnother: "En faire un autre",
     backToHome: "Retour aux outils",
 
@@ -2200,7 +2248,9 @@ export const translations: Record<Language, any> = {
 
     privacyTitle: "Politique de Confidentialité",
     privacyText1: "Chez pdfcanada.ca, vos affaires sont vos affaires. Parce qu'on traite les fichiers localement, vos documents ne sont jamais envoyés sur nos serveurs.",
-    privacyText2: "On n'utilise pas de cookies pour vous suivre. On ne vend pas vos données. C'est juste vous et votre PDF.",
+    privacyText2: "On n'utilise pas de cookies pour vous suivre. On ne vend pas vos données. On ne demande même pas votre email. C'est juste vous et votre PDF.",
+    privacyGuaranteeTitle: "Garantie de traitement local",
+    privacyGuaranteeText: "Nous n'exploitons pas de serveurs backend pour le traitement des fichiers. Tout se passe ici même dans votre navigateur avec WebAssembly.",
 
     termsTitle: "Conditions d'utilisation",
     termsText1: "En utilisant ce service, vous acceptez d'être gentil.",
@@ -2256,6 +2306,8 @@ export const translations: Record<Language, any> = {
     },
     supportPage: {
       content: "Nous sommes une petite équipe à Toronto. Contrairement aux grandes entreprises, nous traitons tout localement sur votre appareil. En nous soutenant, vous aidez le logiciel canadien indépendant.",
+      canadianWayText: "Si vous aimez ce que nous faisons, parlez-en à un ami. C'est la manière canadienne.",
+      faqTitle: "Foire aux questions",
       faq: [
         {
           question: "Comment soutenir pdfcanada.ca ?",
@@ -2386,7 +2438,9 @@ export const translations: Record<Language, any> = {
       errorGenerate: "Échec de la génération du code-barres. Veuillez vérifier l'entrée.",
       errorFile: "Échec de l'analyse du fichier. Veuillez vérifier le format.",
       errorExport: "Échec de l'export PDF",
-      errorMinBarcodes: "Veuillez ajouter au moins un code-barres"
+      errorMinBarcodes: "Veuillez ajouter au moins un code-barres",
+      downloadTitle: "Télécharger ou Copier",
+      downloadDesc: "Choisissez votre format (PNG, SVG, PDF) et cliquez sur Télécharger. Vous pouvez aussi copier les codes-barres ou tout exporter en PDF multi-pages."
     },
     kindleSettings: "Optimisation Kindle",
     kindleSettingsDesc: "Choisissez comment votre PDF est optimisé pour Kindle",
@@ -2455,6 +2509,15 @@ export const translations: Record<Language, any> = {
     viewOnline: "Ver PDF Online",
     listenAudio: "Ouvir Áudio",
     page: "Página",
+    step: "Passo",
+    stepSelectTool: "Escolher Ferramenta",
+    stepUploadPdf: "Carregar PDF",
+    stepProcess: "Editar/Processar",
+    faqTitle: "Perguntas Frequentes",
+    upload: "Carregar",
+    select: "Selecionar",
+    fillify: "Preencher (Mágico)",
+    download: "Baixar",
 
     // Compress Tool
     sizeReduced: "Tamanho Reduzido",
@@ -2528,6 +2591,19 @@ export const translations: Record<Language, any> = {
           a: "Use nossa ferramenta PDF para Word para extrair texto e estrutura."
         }
       ],
+      homeHowToFiles: "Selecionar Arquivos",
+      homeHowToFilesDesc: "Escolha os arquivos PDF para juntar",
+      homeHowToOrder: "Organizar Ordem",
+      homeHowToOrderDesc: "Arraste e solte para definir a ordem",
+      homeHowToMergeDl: "Baixar Resultado",
+      homeHowToMergeDlDesc: "Clique em juntar e baixe seu PDF combinado",
+      homeHowToUpload: "Carregar PDF",
+      homeHowToUploadDesc: "Selecione o arquivo PDF para converter",
+      homeHowToProcess: "Processar Conversão",
+      homeHowToProcessDesc: "Nossa ferramenta extrai texto e estrutura automaticamente",
+      homeHowToWordDl: "Baixar Arquivo Word",
+      homeHowToWordDlDesc: "Salve o arquivo .docx convertido no seu dispositivo",
+      skipToContent: "Ir para o conteúdo principal",
       pricingTitle: "Preço Ferramentas PDF Gratuitas | Apenas $0 | pdfcanada.ca",
       pricingDesc: "Ferramentas PDF incrivelmente gratuitas. $0 CAD para conversões ilimitadas.",
       privacyTitle: "Política de Privacidade e Segurança | pdfcanada.ca",
@@ -2558,6 +2634,8 @@ export const translations: Record<Language, any> = {
     },
     supportPage: {
       content: "Somos uma pequena equipe de desenvolvedores baseada em Toronto, dedicada a construir ferramentas PDF privadas.",
+      canadianWayText: "Se você gosta do que fazemos, conte a um amigo. Esse é o jeito canadense.",
+      faqTitle: "Perguntas Frequentes",
       faq: [
         { question: "Como posso apoiar?", answer: "Compartilhe nossas ferramentas!" },
         { question: "Para onde vai minha doação?", answer: "Custos de servidor e café." },
@@ -3139,7 +3217,7 @@ export const translations: Record<Language, any> = {
     addSignature: "Adicionar Assinatura",
     addInitials: "Adicionar Iniciais",
     signUpload: "Upload",
-    select: "Selecionar",
+
     pan: "Mover",
     newSignature: "Nova Assinatura",
     newInitials: "Novas Iniciais",
@@ -3205,7 +3283,7 @@ export const translations: Record<Language, any> = {
     workingDesc: "Escaneando campos.",
     doneTitle: "Beleza! Está pronto.",
     doneDesc: "Seu arquivo está pronto.",
-    download: "Baixar",
+
     doAnother: "Fazer outro",
     backToHome: "Voltar",
 
@@ -3272,6 +3350,8 @@ export const translations: Record<Language, any> = {
     privacyTitle: "Política de Privacidade",
     privacyText1: "No pdfcanada.ca, acreditamos que seus assuntos são seus assuntos. Como processamos arquivos localmente no seu dispositivo usando tecnologia WebAssembly, seus documentos nunca são enviados para nossos servidores.",
     privacyText2: "Não usamos cookies para rastreá-lo. Não vendemos seus dados. Nem pedimos seu email. É só você e seu PDF.",
+    privacyGuaranteeTitle: "Garantia de Processamento Local",
+    privacyGuaranteeText: "Não operamos servidores backend para processamento de arquivos. Tudo acontece aqui mesmo no seu navegador usando WebAssembly.",
 
     termsTitle: "Termos de Serviço",
     termsText1: "Ao usar este serviço, você concorda em ser gentil.",
@@ -3408,7 +3488,9 @@ export const translations: Record<Language, any> = {
       errorGenerate: "Falha ao gerar",
       errorFile: "Falha ao ler arquivo",
       errorExport: "Falha exportar",
-      errorMinBarcodes: "Adicione um código"
+      errorMinBarcodes: "Adicione um código",
+      downloadTitle: "Baixar ou Copiar",
+      downloadDesc: "Escolha seu formato (PNG, SVG, PDF) e clique em Baixar. Você também pode copiar códigos de barras ou exportar tudo como PDF de várias páginas."
     },
     kindleSettings: "Otimização Kindle",
     kindleSettingsDesc: "Escolha como otimizar.",

@@ -11,10 +11,10 @@ interface PageProps {
 export const HowToPage: React.FC<PageProps> = ({ lang }) => {
     const t = translations[lang];
     const steps = [
-        { name: 'Select Tool', text: t.howtoStep1 },
-        { name: 'Upload PDF', text: t.howtoStep2 },
-        { name: 'Edit/Process', text: t.howtoStep3 },
-        { name: 'Download', text: t.howtoStep4 }
+        { name: t.stepSelectTool, text: t.howtoStep1 },
+        { name: t.stepUploadPdf, text: t.howtoStep2 },
+        { name: t.stepProcess, text: t.howtoStep3 },
+        { name: t.download, text: t.howtoStep4 }
     ];
 
     return (

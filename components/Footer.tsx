@@ -160,11 +160,11 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                   <div className="flex items-center gap-4">
                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">
                         <ShieldCheck className="w-3.5 h-3.5 text-green-500/70" />
-                        Privacy First
+                        {t.hpPrivacyTitle}
                      </div>
                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-modern-neutral-300">
                         <Heart className="w-3.5 h-3.5 text-canada-red/70" />
-                        100% Free
+                        {t.hpFreeTitle}
                      </div>
                   </div>
                </div>

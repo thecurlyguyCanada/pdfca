@@ -877,8 +877,8 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                         <div className="flex items-start gap-4">
                             <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
                             <div>
-                                <h3 className="font-semibold mb-1">Download or Copy</h3>
-                                <p className="text-gray-700 text-sm">Choose your export format (PNG, SVG, or PDF) and click Download. You can also copy individual barcodes to clipboard or export all barcodes as a multi-page PDF.</p>
+                                <h3 className="font-semibold mb-1">{t.barcode?.downloadTitle || 'Download or Copy'}</h3>
+                                <p className="text-gray-700 text-sm">{t.barcode?.downloadDesc || 'Choose your export format (PNG, SVG, or PDF) and click Download. You can also copy individual barcodes to clipboard or export all barcodes as a multi-page PDF.'}</p>
                             </div>
                         </div>
                     </div>

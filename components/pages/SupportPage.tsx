@@ -48,7 +48,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
                         {t.supportPage.content}
                     </p>
                     <p>
-                        {lang === 'fr' ? "Si vous aimez ce que nous faisons, parlez-en à un ami. C'est la manière canadienne." : (lang === 'pt' ? 'Se você gosta do que fazemos, conte a um amigo. Esse é o jeito canadense.' : "If you like what we do, tell a friend. That's the Canadian way.")}
+                        {t.supportPage.canadianWayText}
                     </p>
                     <div className="pt-8">
                         <a href="https://buy.stripe.com/8x228t4yIdCx2mE2ic6Zy04" target="_blank" rel="noopener noreferrer" className="inline-block bg-canada-red text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-canada-darkRed transition-colors">
@@ -59,7 +59,7 @@ export const SupportPage: React.FC<PageProps> = ({ lang }) => {
 
                 {/* FAQ Section */}
                 <div className="mt-16 text-left max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">{lang === 'fr' ? 'Foire aux questions' : (lang === 'pt' ? 'Perguntas Frequentes' : 'Frequently Asked Questions')}</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">{t.supportPage.faqTitle}</h2>
                     <div className="space-y-6">
                         {t.supportPage.faq.map((item: { question: string, answer: string }, i: number) => (
                             <div key={i} className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 border border-gray-100 dark:border-gray-600">

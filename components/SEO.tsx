@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Language } from '../utils/i18n';
+import { Language, translations } from '../utils/i18n';
 import { URLS, getFullUrl, getAssetUrl } from '../config/urls';
 import { ORGANIZATION } from '../config/organization';
 
@@ -48,74 +48,6 @@ interface SEOProps {
   };
 }
 
-// Fixed schemas
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${URLS.DOMAIN}/#organization`,
-  "name": ORGANIZATION.name,
-  "url": URLS.DOMAIN,
-  "logo": {
-    "@type": "ImageObject",
-    "url": getAssetUrl(URLS.ANDROID_ICON),
-    "width": 512,
-    "height": 512
-  },
-  "sameAs": URLS.SAME_AS,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": ORGANIZATION.location.city,
-    "addressRegion": ORGANIZATION.location.province,
-    "addressCountry": "CA"
-  },
-  "foundingDate": ORGANIZATION.foundingDate,
-  "description": "Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser."
-};
-
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  "@id": `${URLS.DOMAIN}/#localbusiness`,
-  "name": `${ORGANIZATION.name} - Free PDF Tools`,
-  "alternateName": ORGANIZATION.name,
-  "url": URLS.DOMAIN,
-  "logo": {
-    "@type": "ImageObject",
-    "url": getAssetUrl(URLS.ANDROID_ICON),
-    "width": 512,
-    "height": 512
-  },
-  "image": getAssetUrl(URLS.OG_IMAGE),
-  "description": "Canada's premier free PDF tools service. Privacy-first, browser-based PDF processing for all Canadians.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": ORGANIZATION.location.postalCode,
-    "addressLocality": ORGANIZATION.location.city,
-    "addressRegion": "ON",
-    "postalCode": ORGANIZATION.location.postalCode,
-    "addressCountry": "CA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": ORGANIZATION.coordinates.toronto.latitude,
-    "longitude": ORGANIZATION.coordinates.toronto.longitude
-  },
-  "priceRange": ORGANIZATION.priceRange,
-  "currenciesAccepted": "CAD",
-  "paymentAccepted": "Not Applicable - Free Service"
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${URLS.DOMAIN}/#website`,
-  "name": ORGANIZATION.name,
-  "url": URLS.DOMAIN,
-  "description": "Free, secure PDF tools built in Canada. All processing happens locally in your browser.",
-  "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
-  "inLanguage": ["en-CA", "fr-CA", "pt-BR"]
-};
-
 /**
  * SEO Component (Server Component)
  * Focuses strictly on Structured Data (JSON-LD) generation for Next.js 15+
@@ -144,9 +76,78 @@ export function SEO({
   video
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
+  const t = translations[lang];
 
   const safeTitle = typeof title === 'string' ? title : '';
   const schemaName = safeTitle.includes('|') ? safeTitle.split('|')[0].trim() : safeTitle;
+
+  // Fixed schemas
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${URLS.DOMAIN}/#organization`,
+    "name": ORGANIZATION.name,
+    "url": URLS.DOMAIN,
+    "logo": {
+      "@type": "ImageObject",
+      "url": getAssetUrl(URLS.ANDROID_ICON),
+      "width": 512,
+      "height": 512
+    },
+    "sameAs": URLS.SAME_AS,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": ORGANIZATION.location.city,
+      "addressRegion": ORGANIZATION.location.province,
+      "addressCountry": "CA"
+    },
+    "foundingDate": ORGANIZATION.foundingDate,
+    "description": t.seo.homeDesc
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": `${URLS.DOMAIN}/#localbusiness`,
+    "name": `${ORGANIZATION.name} - Free PDF Tools`,
+    "alternateName": ORGANIZATION.name,
+    "url": URLS.DOMAIN,
+    "logo": {
+      "@type": "ImageObject",
+      "url": getAssetUrl(URLS.ANDROID_ICON),
+      "width": 512,
+      "height": 512
+    },
+    "image": getAssetUrl(URLS.OG_IMAGE),
+    "description": t.seo.homeDesc,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": ORGANIZATION.location.postalCode,
+      "addressLocality": ORGANIZATION.location.city,
+      "addressRegion": "ON",
+      "postalCode": ORGANIZATION.location.postalCode,
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": ORGANIZATION.coordinates.toronto.latitude,
+      "longitude": ORGANIZATION.coordinates.toronto.longitude
+    },
+    "priceRange": ORGANIZATION.priceRange,
+    "currenciesAccepted": "CAD",
+    "paymentAccepted": "Not Applicable - Free Service"
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${URLS.DOMAIN}/#website`,
+    "name": ORGANIZATION.name,
+    "url": URLS.DOMAIN,
+    "description": t.seo.homeDesc,
+    "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
+    "inLanguage": ["en-CA", "fr-CA", "pt-BR"]
+  };
 
   // 1. Add Core Schemas
   if (!noOrganization) {

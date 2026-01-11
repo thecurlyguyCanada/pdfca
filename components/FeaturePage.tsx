@@ -42,7 +42,7 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
 
     // Format steps for HowTo schema
     const howToSteps = content.steps?.map((step, i) => ({
-        name: `Step ${i + 1}`,
+        name: `${t.step} ${i + 1}`,
         text: step
     }));
 
@@ -106,7 +106,7 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
 
                     {content.faq && (
                         <div className="mt-12">
-                            <h3 className="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h3>
+                            <h3 className="text-2xl font-bold text-gray-800 mb-6">{t.faqTitle}</h3>
                             <div className="space-y-6">
                                 {content.faq.map((item, i) => (
                                     <div key={i} className="bg-gray-50 rounded-xl p-6 border border-gray-100">

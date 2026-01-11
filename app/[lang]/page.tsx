@@ -159,22 +159,23 @@ export default async function Page({
     const t = translations[currentLang];
 
     // Prepare FAQs with enhanced schema
-    const faqs = t.seo.homeFaq.map((faq: { q: string, a: string }) => ({
+    // Prepare FAQs with enhanced schema
+    const faqs = t.seo.homeFaq.map((faq: { q: string, a: string }, index: number) => ({
         q: faq.q,
         a: faq.a,
-        // Add HowTo steps for process-related FAQs
-        ...(faq.q.includes('merge') && {
+        // Add HowTo steps for process-related FAQs (Merge is index 4, Convert is index 5)
+        ...((index === 4) && {
             howTo: [
-                { name: 'Select Files', text: 'Choose the PDF files you want to merge' },
-                { name: 'Arrange Order', text: 'Drag and drop files to set the merge order' },
-                { name: 'Download Result', text: 'Click merge and download your combined PDF' }
+                { name: t.seo.homeHowToFiles, text: t.seo.homeHowToFilesDesc },
+                { name: t.seo.homeHowToOrder, text: t.seo.homeHowToOrderDesc },
+                { name: t.seo.homeHowToMergeDl, text: t.seo.homeHowToMergeDlDesc }
             ]
         }),
-        ...(faq.q.includes('convert') && {
+        ...((index === 5) && {
             howTo: [
-                { name: 'Upload PDF', text: 'Select the PDF file you want to convert' },
-                { name: 'Process Conversion', text: 'Our tool extracts text and structure automatically' },
-                { name: 'Download Word File', text: 'Save the converted .docx file to your device' }
+                { name: t.seo.homeHowToUpload, text: t.seo.homeHowToUploadDesc },
+                { name: t.seo.homeHowToProcess, text: t.seo.homeHowToProcessDesc },
+                { name: t.seo.homeHowToWordDl, text: t.seo.homeHowToWordDlDesc }
             ]
         })
     }));

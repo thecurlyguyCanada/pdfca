@@ -188,7 +188,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                     className="w-full bg-canada-red text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-canada-red/20"
                                 >
                                     <Download className="w-6 h-6" />
-                                    <span>{lang === 'fr' ? 'Télécharger le PDF' : 'Download PDF'}</span>
+                                    <span>{t.download} PDF</span>
                                 </button>
                                 <button
                                     onClick={reset}
