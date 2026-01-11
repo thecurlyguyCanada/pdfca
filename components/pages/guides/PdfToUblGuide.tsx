@@ -25,28 +25,9 @@ const getLocalContent = (lang: string) => ({
         h1: `Free PDF to UBL Converter`,
         subtitle: "The complete guide to creating compliant UBL 2.1 XML invoices from your PDF documents.",
 
-        intro: (
-            <>
-                <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 bg-blue-600 text-white rounded-xl">
-                            <Database size={24} />
-                        </div>
-                        <div>
-                            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Ready to convert?</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Transform your invoice to UBL XML instantly.</p>
-                        </div>
-                    </div>
-                    <Link href="/en/pdf-to-ubl" className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-                        Go to Converter &rarr;
-                    </Link>
-                </div>
+        intro: `In the modern digital economy, sending a simple PDF invoice is no longer sufficient for many transactions. Governments and large enterprises increasingly mandate **Electronic Invoicing (E-Invoicing)** using structured data formats like **UBL (Universal Business Language)**.
 
-                In the modern digital economy, sending a simple PDF invoice is no longer sufficient for many transactions. Governments and large enterprises increasingly mandate **Electronic Invoicing (E-Invoicing)** using structured data formats like **UBL (Universal Business Language)**.
-
-                At **pdfcanada.ca**, we provide a robust, **privacy-first solution** to automatically convert your human-readable PDF invoices into machine-readable UBL 2.1 XML files. Whether you are navigating **Peppol** requirements, looking for a **PDF naar UBL** solution, or simply need to modernize your billing, our tool has you covered.
-            </>
-        ),
+At **pdfcanada.ca**, we provide a robust, **privacy-first solution** to automatically convert your human-readable PDF invoices into machine-readable UBL 2.1 XML files. Whether you are navigating **Peppol** requirements, looking for a **PDF naar UBL** solution, or simply need to modernize your billing, our tool has you covered.`,
 
         sections: [
             {
@@ -233,12 +214,7 @@ You can now import this XML into accounting software like **Xero**, **QuickBooks
         h1: `Convertisseur PDF vers UBL Gratuit`,
         subtitle: "Le guide complet pour créer des factures UBL 2.1 XML conformes à partir de vos documents PDF.",
 
-        toolCta: {
-            title: "Prêt à convertir ?",
-            subtitle: "Transformez votre facture en XML UBL instantanément.",
-            buttonText: "Aller au Convertisseur",
-            link: "/fr/pdf-to-ubl"
-        },
+
 
         intro: `Dans l'économie numérique actuelle, envoyer une simple facture PDF ne suffit plus. Les gouvernements et les grandes entreprises exigent de plus en plus la **Facturation Électronique** utilisant des formats de données structurés comme **UBL**.
 
@@ -336,12 +312,7 @@ Cliquez sur **Télécharger** pour recevoir votre fichier \`.xml\`. Vous pouvez 
         h1: `Conversor PDF para UBL Gratuito`,
         subtitle: "O guia completo para criar faturas UBL 2.1 XML compatíveis a partir de seus PDFs.",
 
-        toolCta: {
-            title: "Pronto para converter?",
-            subtitle: "Transforme sua fatura em UBL XML instantaneamente.",
-            buttonText: "Ir para o Conversor",
-            link: "/pt/pdf-to-ubl"
-        },
+
 
         intro: `Na economia digital atual, enviar uma simples fatura em PDF não é mais suficiente. Governos e grandes empresas exigem cada vez mais o **Faturamento Eletrônico** usando formatos de dados estruturados como **UBL**.
 
@@ -486,22 +457,7 @@ export const PdfToUblGuide: React.FC<GuideProps> = ({ lang }) => {
             <div className="w-full py-12">
                 <ToolPromo tool="pdf-to-ubl" lang={lang} />
                 <div className="max-w-none mb-16 text-gray-600 dark:text-gray-300">
-                    {t.toolCta && (
-                        <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm not-prose">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-blue-600 text-white rounded-xl">
-                                    <Database size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">{t.toolCta.title}</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.toolCta.subtitle}</p>
-                                </div>
-                            </div>
-                            <Link href={t.toolCta.link} className="whitespace-nowrap px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-                                {t.toolCta.buttonText} &rarr;
-                            </Link>
-                        </div>
-                    )}
+
 
                     <div className="prose prose-xl dark:prose-invert max-w-none">
                         <MarkdownContent content={t.intro as string} />
