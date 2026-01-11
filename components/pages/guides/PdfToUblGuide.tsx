@@ -52,53 +52,143 @@ const getLocalContent = (lang: string) => ({
                 id: "what-is-ubl-peppol",
                 title: "Understanding UBL, Peppol, and E-Invoicing",
                 content: `### What is UBL?
-**UBL (Universal Business Language)** is a standard royalty-free library of standard electronic XML business documents. Unlike a PDF, which is essentially a digital image of paper, UBL is **structured data**. This means a computer system can read the "Total Amount" directly without guessing where it is on the page.
+
+**UBL (Universal Business Language)** is a standard royalty-free library of standard electronic XML business documents developed by OASIS. Unlike a PDF, which is essentially a digital image of paper, UBL is **structured data**. This means a computer system can read the "Total Amount" directly without guessing where it is on the page.
+
+UBL was designed to provide a common XML vocabulary for business documents such as invoices, purchase orders, and shipping notices. The key benefits include:
+
+- **Interoperability**: Different systems can communicate seamlessly
+- **Automation**: Reduces manual data entry and human error
+- **Compliance**: Meets government e-invoicing mandates worldwide
+- **Cost Savings**: Reduces processing time and paper costs
 
 ### The Role of Peppol & XRechnung
-*   **Peppol:** A network protocol used primarily in Europe (and increasingly globally like in Singapore and Australia) for exchanging e-invoices. Peppol relies heavily on the **UBL BIS Billing 3.0** standard.
-*   **XRechnung:** The specific German standard for e-invoicing (CII or UBL).
-*   **Factur-X:** A hybrid format (PDF + XML) used in France and Germany.
 
-Our tool generates **Standard UBL 2.1**, which serves as the foundational layer for most of these compliance frameworks.`
+- **Peppol (Pan-European Public Procurement Online)**: A network protocol used primarily in Europe (and increasingly globally including Singapore, Australia, and New Zealand) for exchanging e-invoices. Peppol relies heavily on the **UBL BIS Billing 3.0** standard. Over 300,000 businesses worldwide use Peppol for B2B and B2G transactions.
+
+- **XRechnung**: The specific German standard for e-invoicing, mandatory for all suppliers to federal government agencies since November 2020. It can be based on CII (Cross Industry Invoice) or UBL formats.
+
+- **Factur-X / ZUGFeRD**: A hybrid format (PDF + embedded XML) used in France and Germany. It combines human-readable PDF with machine-readable XML data for maximum flexibility.
+
+- **FatturaPA**: The Italian e-invoicing standard, mandatory for all B2B transactions in Italy.
+
+Our tool generates **Standard UBL 2.1**, which serves as the foundational layer for most of these compliance frameworks. This means your converted files are ready for further validation against specific country requirements.`
             },
             {
                 id: "privacy-security",
                 title: "Why Local Conversion Matters for Financial Data",
-                content: `When dealing with invoices, privacy is paramount. Your documents contain sensitive data: **Vendor Tax IDs**, **Client Addresses**, and **Transaction Values**.
+                content: `When dealing with invoices, privacy is paramount. Your documents contain highly sensitive business data:
 
-Most online converters ask you to upload your PDF to their cloud server. This creates a risk:
-1.  **Data Interception:** Files can be intercepted during upload.
-2.  **Data Retention:** Servers might store your invoice indefinitely.
-3.  **Data Mining:** Free services often "read" your data for analytics.
+- **Vendor Tax IDs and Registration Numbers**
+- **Client Names and Addresses**
+- **Bank Account Details (IBAN, BIC/SWIFT)**
+- **Transaction Values and Pricing**
+- **Product or Service Descriptions**
 
-**The pdfcanada.ca Advantage:**
-We use advanced **WebAssembly (WASM)** and browser-native OCR to process your PDF **entirely on your device**. Your invoice never leaves your computer. We physically cannot see your data.`
+### The Risks of Cloud-Based Converters
+
+Most online converters ask you to upload your PDF to their cloud server. This creates several serious risks:
+
+1. **Data Interception**: Files can be intercepted during upload over insecure connections.
+
+2. **Data Retention**: Servers might store your invoice indefinitely for "quality improvement" or other purposes.
+
+3. **Data Mining**: Free services often analyze your data for advertising insights or sell aggregated data to third parties.
+
+4. **Compliance Violations**: Uploading client data to third-party servers may violate GDPR, PIPEDA, or industry-specific regulations like HIPAA.
+
+5. **Security Breaches**: Cloud servers are attractive targets for hackers seeking financial data.
+
+### The pdfcanada.ca Advantage
+
+We use advanced **WebAssembly (WASM)** and browser-native OCR to process your PDF **entirely on your device**. Here's what this means:
+
+- Your invoice **never leaves your computer**
+- We physically **cannot see your data** - our servers receive nothing
+- No data is logged, stored, or transmitted
+- Works offline once the page is loaded
+- Compliant with GDPR, PIPEDA, and data sovereignty requirements
+
+This zero-upload architecture makes pdfcanada.ca the only truly private solution for converting sensitive financial documents.`
             },
             {
                 id: "technical-mapping",
                 title: "How It Works: From PDF to UBL Tags",
-                content: `Our engine uses a smart extraction layer to map visual text to UBL XML tags. Here is what happens under the hood:
+                content: `Our engine uses a sophisticated smart extraction layer to map visual text from your PDF to UBL XML tags. Here is what happens under the hood:
 
-*   **Vendor Recognition:** We look for keywords like "IBAN", "VAT", and "Tax ID" to identify the \`cac:AccountingSupplierParty\`.
-*   **Line Item Extraction:** Tables are parsed to identify descriptions, quantities, and unit prices, converting them into \`cac:InvoiceLine\` elements.
-*   **Total Calculation:** We verify that the \`cbc:TaxAmount\` + \`cbc:LineExtensionAmount\` matches the \`cbc:PayableAmount\`.
+### Invoice Header Recognition
 
-This ensures that the XML output is not just valid code, but mathematically accurate business data.`
+- **Supplier Identification**: We look for keywords like "IBAN", "VAT", "Tax ID", "GST/HST", and "From:" to identify the \`cac:AccountingSupplierParty\` element.
+
+- **Customer Identification**: Keywords like "Bill To:", "Customer:", and "Ship To:" help map the \`cac:AccountingCustomerParty\`.
+
+- **Document Metadata**: Invoice numbers, dates, and due dates are extracted and mapped to \`cbc:ID\`, \`cbc:IssueDate\`, and \`cbc:DueDate\`.
+
+### Line Item Extraction
+
+Tables are parsed using intelligent column detection to identify:
+
+- Product descriptions → \`cbc:Name\`
+- Quantities → \`cbc:InvoicedQuantity\`
+- Unit prices → \`cbc:PriceAmount\`
+- Line totals → \`cbc:LineExtensionAmount\`
+- Tax rates → \`cac:TaxCategory\`
+
+Each row becomes a complete \`cac:InvoiceLine\` element with all required sub-elements.
+
+### Total Calculation & Validation
+
+We mathematically verify that your invoice balances correctly:
+
+- Sum of line items = \`cbc:LineExtensionAmount\`
+- Tax calculations match declared \`cbc:TaxAmount\`
+- Final total equals \`cbc:PayableAmount\`
+
+This ensures that the XML output is not just valid code, but **mathematically accurate business data** that will pass automated validation checks.`
             },
             {
                 id: "how-to",
                 title: "Step-by-Step Conversion Guide",
                 content: `### Step 1: Upload Your Invoice
-Navigate to the **PDF to UBL Tool** and select your PDF invoice. The tool works best with native PDFs (created from Word/Excel) but includes OCR for scanned documents.
+
+Navigate to the **PDF to UBL Tool** and select your PDF invoice. The tool works best with native PDFs (created from Word, Excel, or accounting software) but includes OCR for scanned documents.
+
+**Supported file types:**
+- Native PDFs with embedded text (best accuracy)
+- Scanned PDFs (uses OCR engine)
+- Image files (PNG, JPG - converted via OCR)
 
 ### Step 2: Automatic Data Analysis
-Our local AI scans the document structure. It identifies the **Invoice Date** (mapped to \`cbc:IssueDate\`) and **Currency** (mapped to \`cbc:DocumentCurrencyCode\`).
+
+Our local AI scans the document structure using pattern recognition and natural language processing. It automatically identifies:
+
+- **Invoice Date** → mapped to \`cbc:IssueDate\` in YYYY-MM-DD format
+- **Due Date** → mapped to \`cbc:DueDate\`
+- **Currency** → mapped to \`cbc:DocumentCurrencyCode\` (CAD, USD, EUR, etc.)
+- **Invoice Number** → mapped to \`cbc:ID\`
+- **Tax Registration Numbers** → mapped to appropriate party elements
 
 ### Step 3: Verification & Editing
-Since UBL requires strict formatting (e.g., dates must be **YYYY-MM-DD**), we provide a preview screen where you can correct any misread fields before generating the XML.
+
+Since UBL requires strict formatting (e.g., all dates must be **YYYY-MM-DD**, currency codes must be ISO 4217), we provide a comprehensive preview screen where you can:
+
+- Review all extracted data fields
+- Correct any misread or missing information
+- Add optional elements not found in the PDF
+- Validate tax calculations
+
+This step ensures maximum accuracy before generating the final XML.
 
 ### Step 4: Download Valid XML
-Click **Download** to receive your \`.xml\` file. You can now import this into accounting software like Xero, Quickbooks, or submit it via a Peppol access point.`
+
+Click **Download** to receive your \`.xml\` file. The generated UBL 2.1 Invoice document includes:
+
+- Complete namespace declarations
+- All required and optional elements
+- Proper encoding (UTF-8)
+- Ready for import into accounting systems
+
+You can now import this XML into accounting software like **Xero**, **QuickBooks**, **SAP**, or **Oracle**, or submit it via a **Peppol Access Point** for B2B/B2G transactions.`
             }
         ],
 
