@@ -12,7 +12,7 @@ export function generateWebsiteSchema() {
     url: URLS.DOMAIN,
     description:
       'Free, secure, and privacy-focused PDF tools built in Canada. All processing happens locally in your browser.',
-    inLanguage: ['en-CA', 'fr-CA'],
+    inLanguage: ['en-CA', 'fr-CA', 'pt-BR'],
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -141,7 +141,7 @@ export function generateSoftwareApplicationSchema(toolConfig: ToolConfig, lang: 
     },
     datePublished: '2024-01-01',
     dateModified: new Date().toISOString().split('T')[0],
-    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+    inLanguage: lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA'),
     // 2026: Entity connections for Knowledge Graph density
     isAccessibleForFree: true,
     countryOfOrigin: {
@@ -187,7 +187,7 @@ export function generateArticleSchema(options: {
         url: getAssetUrl(URLS.ANDROID_ICON),
       },
     },
-    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA',
+    inLanguage: lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA'),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${URLS.DOMAIN}/${lang}/guides/${slug}`,

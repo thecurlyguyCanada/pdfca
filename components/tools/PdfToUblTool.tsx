@@ -217,7 +217,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                     {canvasRef ? (
                         <img
                             src={canvasRef.toDataURL()}
-                            alt="Invoice"
+                            alt={t.pdfToUbl?.invoice || "Invoice Preview"}
                             className="shadow-2xl rounded-sm max-w-[95%] h-auto object-contain transition-all duration-500 ease-out"
                             style={{ opacity: isScanning ? 0.5 : 1, filter: isScanning ? 'blur(2px)' : 'none' }}
                         />
@@ -489,8 +489,8 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                         onClick={handleDownload}
                         disabled={!isValid}
                         className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isValid
-                                ? 'bg-canada-red hover:bg-canada-darkRed text-white hover:scale-[1.01] active:scale-[0.99]'
-                                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                            ? 'bg-canada-red hover:bg-canada-darkRed text-white hover:scale-[1.01] active:scale-[0.99]'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                             }`}
                     >
                         <Download size={20} />

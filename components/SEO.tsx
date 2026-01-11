@@ -113,7 +113,7 @@ const websiteSchema = {
   "url": URLS.DOMAIN,
   "description": "Free, secure PDF tools built in Canada. All processing happens locally in your browser.",
   "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
-  "inLanguage": ["en-CA", "fr-CA"]
+  "inLanguage": ["en-CA", "fr-CA", "pt-BR"]
 };
 
 /**
@@ -258,7 +258,7 @@ export function SEO({
       "url": image
     },
     "isPartOf": { "@id": `${URLS.DOMAIN}/#website` },
-    "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
+    "inLanguage": lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA'),
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [".hero-title", ".hero-desc", ".ai-snapshot-answer", "h1", "h2", "[data-ai-summary]"]
