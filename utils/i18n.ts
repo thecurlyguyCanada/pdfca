@@ -2088,12 +2088,12 @@ export const translations: Record<Language, any> = {
     backToHome: "Retour aux outils",
 
     errorTitle: "Ah zut !",
-    genericError: "Quelque chose a mal tourné. Désolé !",
+    genericError: "Quelque chose a mal tourné. Détails techniques : {detail}",
     fileTypeErr: "Désolé, mais on n'accepte pas ce type de fichier.",
     readErr: "Désolé, on n'a pas pu lire ce fichier.",
     passwordErr: "Ce PDF est protégé par mot de passe. Veuillez le déverrouiller d'abord.",
     corruptPdfErr: "Le fichier PDF semble corrompu ou invalide.",
-    conversionErr: "Échec de la conversion du fichier. Il est peut-être trop complexe ou endommagé.",
+    conversionErr: "Échec de la conversion du fichier. Détails techniques : {detail}",
     emptyEpubErr: "Impossible d'extraire le texte de cet EPUB.",
 
     // Nav
@@ -3130,9 +3130,9 @@ export const translations: Record<Language, any> = {
     genericError: "Algo deu errado. Detalhes: {detail}",
     fileTypeErr: "Desculpe, não aceitamos esse tipo de arquivo.",
     readErr: "Desculpe, não conseguimos ler o arquivo.",
-    passwordErr: "Este PDF está protegido por senha.",
+    passwordErr: "Este PDF está protegido por senha. Por favor, desbloqueie primeiro.",
     corruptPdfErr: "O arquivo PDF parece corrompido.",
-    conversionErr: "Ops! Falha ao converter arquivo.",
+    conversionErr: "Ops! Falha ao converter arquivo. Detalhes: {detail}",
     emptyEpubErr: "Não foi possível extrair texto.",
 
     // Nav
