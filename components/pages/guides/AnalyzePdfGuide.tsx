@@ -1,14 +1,10 @@
-'use client';
-
 import React from 'react';
-import { Microscope, FileSearch, Code } from 'lucide-react';
+import { Microscope } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
-import { getGuideContent } from '../../../utils/guideContent';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AuthorBio } from '../../AuthorBio';
-import Link from 'next/link';
 import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
@@ -17,6 +13,13 @@ interface GuideProps {
 
 const getLocalContent = (lang: string) => ({
     en: {
+        seoTitle: 'Analyze PDF Structure Guide',
+        seoDesc: 'Inspect PDF internals, metadata, and fonts.',
+        title: 'Analyze PDF Structure',
+        subtitle: 'Deep dive into PDF internals and metadata.',
+        breadcrumbHome: 'Home',
+        breadcrumbGuides: 'Guides',
+        breadcrumbTool: 'Analyze PDF',
         intro: `
 A PDF is complex file format containing a tree of objects, dictionaries, streams, and cross-reference tables. **Analyzing** a PDF's internal structure is essential for debugging, forensics, or understanding why a file is corrupted.
         `,
@@ -41,6 +44,13 @@ Every PDF contains metadata: Title, Author, Creator, CreationDate, and ModDate.
         ]
     },
     fr: {
+        seoTitle: 'Guide Analyser Structure PDF',
+        seoDesc: 'Inspectez les internes PDF, métadonnées et polices.',
+        title: 'Analyser Structure PDF',
+        subtitle: 'Plongée profonde dans les internes et métadonnées PDF.',
+        breadcrumbHome: 'Accueil',
+        breadcrumbGuides: 'Guides',
+        breadcrumbTool: 'Analyser PDF',
         intro: `
 Un PDF est un format de fichier complexe contenant un arbre d'objets, des dictionnaires, des flux et des tables de références croisées. **Analyser** la structure interne d'un PDF est essentiel pour le débogage, la criminalistique ou comprendre pourquoi un fichier est corrompu.
         `,
@@ -65,6 +75,13 @@ Chaque PDF contient des métadonnées : Titre, Auteur, Créateur, Date de Créat
         ]
     },
     pt: {
+        seoTitle: 'Guia Analisar Estrutura PDF',
+        seoDesc: 'Inspecione internos PDF, metadados e fontes.',
+        title: 'Analisar Estrutura PDF',
+        subtitle: 'Mergulho profundo nos internos e metadados do PDF.',
+        breadcrumbHome: 'Início',
+        breadcrumbGuides: 'Guias',
+        breadcrumbTool: 'Analisar PDF',
         intro: `
 Um PDF é um formato de arquivo complexo contendo uma árvore de objetos, dicionários, fluxos e tabelas de referência cruzada. **Analisar** a estrutura interna de um PDF é essencial para depuração, perícia ou para entender por que um arquivo está corrompido.
         `,
@@ -91,31 +108,30 @@ Todo PDF contém metadados: Título, Autor, Criador, Data de Criação e Data de
 });
 
 export const AnalyzePdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
     const localContent = getLocalContent(lang);
     const t = (localContent as any)[lang] || (localContent as any).en;
 
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Analyze PDF Structure Guide' : 'Guide Analyser Structure PDF'}
-                description={lang === 'en' ? 'Inspect PDF internals, metadata, and fonts.' : 'Inspectez les internes PDF, métadonnées et polices.'}
+                title={t.seoTitle}
+                description={t.seoDesc}
                 canonicalPath="/guides/analyze-pdf"
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: `/${lang}/guides` },
-                    { name: lang === 'fr' ? 'Analyser PDF' : (lang === 'pt' ? 'Analisar PDF' : 'Analyze PDF'), path: `/${lang}/guides/analyze-pdf` }
+                    { name: t.breadcrumbHome, path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbGuides, path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbTool, path: lang === 'en' ? '/guides/analyze-pdf' : `/${lang}/guides/analyze-pdf` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Analyze PDF Structure' : 'Analyser Structure PDF'}
-                subtitle={lang === 'en' ? 'Deep dive into PDF internals and metadata.' : 'Plongée profonde dans les internes et métadonnées PDF.'}
+                title={t.title}
+                subtitle={t.subtitle}
                 icon={<Microscope size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides` },
-                    { name: lang === 'fr' ? 'Analyse' : (lang === 'pt' ? 'Análise' : 'Analysis'), href: `/${lang}/guides/analyze-pdf` }
+                    { name: t.breadcrumbHome, href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbGuides, href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbTool, href: lang === 'en' ? '/guides/analyze-pdf' : `/${lang}/guides/analyze-pdf` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">

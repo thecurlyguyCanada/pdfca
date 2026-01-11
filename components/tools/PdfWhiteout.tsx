@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { Upload, Download, Eraser, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, X, Loader2 } from 'lucide-react';
 import { initPdfWorker } from '../../utils/pdfUtils';
@@ -113,7 +113,7 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
         }
     };
 
-    const renderPage = async () => {
+    const renderPage = useCallback(async () => {
         if (!pdfBytes || !canvasRef.current) return;
 
         // Race condition prevention: increment render ID and capture it
@@ -162,12 +162,11 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
         } catch (error) {
             console.error('Error rendering PDF:', error);
         }
-    };
+    }, [pdfBytes, currPage, scale, selection]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         renderPage();
-    }, [pdfBytes, currPage, scale, selection, renderTrigger]);
+    }, [renderPage, renderTrigger]);
 
     const getMousePos = (e: React.MouseEvent) => {
         if (!canvasRef.current) return { x: 0, y: 0 };
@@ -323,7 +322,7 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
                             <p className="mb-2 text-xl font-bold text-gray-700">
                                 {isLoading ? t.loading : t.clickToUpload}
                             </p>
-                            <p className="text-sm">or drag and drop your file here</p>
+                            <p className="text-sm">{lang === 'fr' ? 'ou glissez-déposez votre fichier ici' : (lang === 'pt' ? 'ou arraste e solte seu arquivo aqui' : 'or drag and drop your file here')}</p>
                         </div>
                         <input type="file" className="hidden" accept=".pdf,application/pdf" onChange={handleFileChange} disabled={isLoading} />
                     </label>
@@ -400,13 +399,13 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
                         {/* Hints */}
                         {isDragging && (
                             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md pointer-events-none z-50">
-                                Release to select area
+                                {lang === 'fr' ? 'Relâchez pour sélectionner' : (lang === 'pt' ? 'Solte para selecionar' : 'Release to select area')}
                             </div>
                         )}
                         {!isDragging && !selection && (
                             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/90 text-gray-800 border border-gray-200 px-4 py-2 rounded-full text-sm font-medium shadow-xl backdrop-blur-md pointer-events-none z-50 flex items-center gap-2">
                                 <Eraser size={14} className="text-red-500" />
-                                Draw a box over text to remove
+                                {lang === 'fr' ? 'Dessinez un cadre sur le texte à supprimer' : (lang === 'pt' ? 'Desenhe uma caixa sobre o texto para remover' : 'Draw a box over text to remove')}
                             </div>
                         )}
                     </div>

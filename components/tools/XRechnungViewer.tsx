@@ -401,7 +401,7 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                                 <div className="text-3xl font-black text-canada-red">{formatCurrency(data.totals.due || data.totals.gross, data.metadata.currency)}</div>
                                 {data.metadata.dueDate && (
                                     <div className="text-xs font-medium text-gray-500 mt-2 flex items-center justify-end gap-1">
-                                        <Calendar size={12} /> Due: {formatDate(data.metadata.dueDate)}
+                                        <Calendar size={12} /> {t.due || 'Due'}: {formatDate(data.metadata.dueDate)}
                                     </div>
                                 )}
                             </div>
@@ -427,7 +427,7 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                                 </div>
                                 {data.seller.vatId && (
                                     <p className="text-sm text-gray-400 mt-4 flex items-center gap-2">
-                                        <ShieldCheck size={14} /> VAT ID: {data.seller.vatId}
+                                        <ShieldCheck size={14} /> {t.vatId || 'VAT ID'}: {data.seller.vatId}
                                     </p>
                                 )}
                             </div>
@@ -446,7 +446,7 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                                     <p>{data.buyer.country}</p>
                                 </div>
                                 {data.buyer.id && (
-                                    <p className="text-sm text-gray-400 mt-4">Customer ID: {data.buyer.id}</p>
+                                    <p className="text-sm text-gray-400 mt-4">{t.customerId || 'Customer ID'}: {data.buyer.id}</p>
                                 )}
                             </div>
                         </div>
@@ -489,7 +489,7 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                                     <tr key={idx} className="group">
                                         <td className="py-6 pr-4 align-top">
                                             <div className="font-bold text-gray-900 text-lg group-hover:text-canada-red transition-colors">{item.description}</div>
-                                            {item.id && <div className="text-xs text-gray-400 mt-1 font-mono">Sku: {item.id}</div>}
+                                            {item.id && <div className="text-xs text-gray-400 mt-1 font-mono">{t.sku || 'Sku'}: {item.id}</div>}
                                         </td>
                                         <td className="py-6 px-4 text-center align-top font-medium text-gray-600">
                                             {item.quantity} <span className="text-xs text-gray-400">{item.unit}</span>
@@ -530,19 +530,19 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                                     <div className="text-sm space-y-2 text-gray-600">
                                         {data.payment.bankName && (
                                             <div className="flex justify-between max-w-xs border-b border-gray-100 pb-1">
-                                                <span>Bank:</span>
+                                                <span>{t.bank || 'Bank'}:</span>
                                                 <span className="font-medium text-gray-900">{data.payment.bankName}</span>
                                             </div>
                                         )}
                                         {data.payment.iban && (
                                             <div className="flex justify-between max-w-xs border-b border-gray-100 pb-1">
-                                                <span>IBAN:</span>
+                                                <span>{t.iban || 'IBAN'}:</span>
                                                 <span className="font-mono font-medium text-gray-900">{data.payment.iban}</span>
                                             </div>
                                         )}
                                         {data.payment.bic && (
                                             <div className="flex justify-between max-w-xs border-b border-gray-100 pb-1">
-                                                <span>BIC/SWIFT:</span>
+                                                <span>{t.bicSwift || 'BIC/SWIFT'}:</span>
                                                 <span className="font-mono font-medium text-gray-900">{data.payment.bic}</span>
                                             </div>
                                         )}
@@ -574,7 +574,7 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                 <div className="p-6 bg-gray-50 border-t border-gray-100 text-center text-xs text-gray-400 print:hidden">
                     <span className="flex items-center justify-center gap-2">
                         <ShieldCheck size={14} />
-                        Processed securely in your browser. No data is uploaded to any server.
+                        {t.secureProcessing || 'Processed securely in your browser. No data is uploaded to any server.'}
                     </span>
                 </div>
             </div>

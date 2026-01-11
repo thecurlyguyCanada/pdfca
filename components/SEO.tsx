@@ -169,7 +169,7 @@ export function SEO({
   const navUrls = [
     "/delete-pdf-pages", "/rotate-pdf", "/merge-pdf", "/split-pdf", "/compress-pdf"
   ];
-  const langPrefix = lang === 'fr' ? '/fr' : '';
+  const langPrefix = lang === 'en' ? '' : `/${lang}`;
   allSchemas.push({
     "@context": "https://schema.org",
     "@type": "SiteNavigationElement",

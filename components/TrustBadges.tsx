@@ -3,39 +3,39 @@ import { Shield, Leaf, Lock, CheckCircle2, Zap, Heart } from 'lucide-react';
 
 interface TrustBadgesProps {
     variant?: 'horizontal' | 'grid';
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'pt';
 }
 
 export const TrustBadges: React.FC<TrustBadgesProps> = ({ variant = 'horizontal', lang = 'en' }) => {
     const badges = [
         {
             icon: Shield,
-            label: lang === 'fr' ? 'Confidentialité Prioritaire' : 'Privacy First',
+            label: lang === 'fr' ? 'Confidentialité Prioritaire' : (lang === 'pt' ? 'Privacidade em Primeiro Lugar' : 'Privacy First'),
             color: 'text-canada-red',
         },
         {
             icon: Leaf,
-            label: lang === 'fr' ? 'Fièrement Canadien' : 'Proudly Canadian',
+            label: lang === 'fr' ? 'Fièrement Canadien' : (lang === 'pt' ? 'Orgulhosamente Canadense' : 'Proudly Canadian'),
             color: 'text-canada-red',
         },
         {
             icon: Lock,
-            label: lang === 'fr' ? 'Aucun Téléchargement' : 'No Upload Required',
+            label: lang === 'fr' ? 'Aucun Téléchargement' : (lang === 'pt' ? 'Sem Upload Necessário' : 'No Upload Required'),
             color: 'text-canada-red',
         },
         {
             icon: CheckCircle2,
-            label: lang === 'fr' ? '100% Gratuit' : '100% Free',
+            label: lang === 'fr' ? '100% Gratuit' : (lang === 'pt' ? '100% Gratuito' : '100% Free'),
             color: 'text-green-600',
         },
         {
             icon: Zap,
-            label: lang === 'fr' ? 'Traitement Local' : 'Local Processing',
+            label: lang === 'fr' ? 'Traitement Local' : (lang === 'pt' ? 'Processamento Local' : 'Local Processing'),
             color: 'text-amber-500',
         },
         {
             icon: Heart,
-            label: lang === 'fr' ? 'Fait avec Amour' : 'Made with Love',
+            label: lang === 'fr' ? 'Fait avec Amour' : (lang === 'pt' ? 'Feito com Amor' : 'Made with Love'),
             color: 'text-pink-500',
         },
     ];

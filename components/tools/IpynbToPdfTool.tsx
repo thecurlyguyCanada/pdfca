@@ -37,7 +37,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
             setError(null);
             triggerHaptic('light');
         } else if (selectedFile) {
-            setError(lang === 'fr' ? 'Format de fichier non supporté. Veuillez utiliser .ipynb' : 'Unsupported file format. Please use .ipynb');
+            setError(lang === 'fr' ? 'Format de fichier non supporté. Veuillez utiliser .ipynb' : (lang === 'pt' ? 'Formato de arquivo não suportado. Use .ipynb' : 'Unsupported file format. Please use .ipynb'));
             triggerHaptic('error');
         }
     };
@@ -63,7 +63,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
             triggerHaptic('success');
         } catch (err) {
             console.error(err);
-            setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : 'Conversion failed. Please check your file.');
+            setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : (lang === 'pt' ? 'Falha na conversão. Por favor, verifique seu arquivo.' : 'Conversion failed. Please check your file.'));
             triggerHaptic('error');
         } finally {
             clearInterval(progressInterval);
@@ -105,16 +105,16 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                 <NotebookIcon className="w-10 h-10 text-orange-600 dark:text-orange-400" />
                             </div>
                             <h3 className="text-2xl font-bold text-modern-neutral-900 dark:text-white mb-3 tracking-tight">
-                                {lang === 'fr' ? 'Convertir Jupyter Notebook en PDF' : 'Convert Jupyter Notebook to PDF'}
+                                {lang === 'fr' ? 'Convertir Jupyter Notebook en PDF' : (lang === 'pt' ? 'Converter Jupyter Notebook para PDF' : 'Convert Jupyter Notebook to PDF')}
                             </h3>
                             <p className="text-modern-neutral-500 dark:text-modern-neutral-400 max-w-md mx-auto leading-relaxed">
                                 {lang === 'fr'
                                     ? 'Déposez votre fichier .ipynb ici pour une conversion instantanée et privée.'
-                                    : 'Drop your .ipynb file here for instant, private conversion.'}
+                                    : (lang === 'pt' ? 'Solte seu arquivo .ipynb aqui para conversão instantânea e privada.' : 'Drop your .ipynb file here for instant, private conversion.')}
                             </p>
                             <div className="mt-8 flex items-center gap-2 px-6 py-3 bg-modern-neutral-900 dark:bg-white text-white dark:text-modern-neutral-900 rounded-xl font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
                                 <Upload className="w-5 h-5" />
-                                <span>{lang === 'fr' ? 'Choisir un Fichier' : 'Choose File'}</span>
+                                <span>{lang === 'fr' ? 'Choisir un Fichier' : (lang === 'pt' ? 'Escolher Arquivo' : 'Choose File')}</span>
                             </div>
                         </div>
                     </label>
@@ -138,7 +138,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                 onClick={reset}
                                 className="text-sm font-bold text-modern-neutral-400 hover:text-canada-red transition-colors whitespace-nowrap"
                             >
-                                {lang === 'fr' ? 'Changer de fichier' : 'Change file'}
+                                {lang === 'fr' ? 'Changer de fichier' : (lang === 'pt' ? 'Alterar arquivo' : 'Change file')}
                             </button>
                         </div>
 
@@ -158,12 +158,12 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                 {isProcessing ? (
                                     <>
                                         <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
-                                        <span>{lang === 'fr' ? 'Conversion de votre Notebook...' : 'Converting Notebook...'}</span>
+                                        <span>{lang === 'fr' ? 'Conversion de votre Notebook...' : (lang === 'pt' ? 'Convertendo seu Notebook...' : 'Converting Notebook...')}</span>
                                     </>
                                 ) : (
                                     <>
                                         <Sparkles className="w-6 h-6 text-orange-400" />
-                                        <span>{lang === 'fr' ? 'Générer le PDF' : 'Generate PDF'}</span>
+                                        <span>{lang === 'fr' ? 'Générer le PDF' : (lang === 'pt' ? 'Gerar PDF' : 'Generate PDF')}</span>
                                     </>
                                 )}
                                 {isProcessing && (
@@ -180,7 +180,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                 <div className="p-4 bg-green-50 dark:bg-green-500/10 border border-green-100 dark:border-green-500/20 rounded-2xl flex items-center gap-3 mb-4 animate-in slide-in-from-top-2">
                                     <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
                                     <p className="text-sm font-medium text-green-600 dark:text-green-400">
-                                        {lang === 'fr' ? 'Conversion réussie ! Votre PDF est prêt.' : 'Conversion successful! Your PDF is ready.'}
+                                        {lang === 'fr' ? 'Conversion réussie ! Votre PDF est prêt.' : (lang === 'pt' ? 'Conversão bem-sucedida! Seu PDF está pronto.' : 'Conversion successful! Your PDF is ready.')}
                                     </p>
                                 </div>
                                 <button
@@ -194,7 +194,7 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
                                     onClick={reset}
                                     className="w-full text-sm font-bold text-modern-neutral-500 hover:text-modern-neutral-900 dark:hover:text-white transition-colors py-2"
                                 >
-                                    {lang === 'fr' ? 'Convertir un autre fichier' : 'Convert another file'}
+                                    {lang === 'fr' ? 'Convertir un autre fichier' : (lang === 'pt' ? 'Converter outro arquivo' : 'Convert another file')}
                                 </button>
                             </div>
                         )}
@@ -202,12 +202,12 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
 
                     <div className="bg-orange-50 dark:bg-orange-500/5 rounded-3xl p-6 md:p-8 border border-orange-100/50 dark:border-orange-500/10">
                         <h5 className="font-bold text-orange-900 dark:text-orange-200 mb-2">
-                            {lang === 'fr' ? 'Traitement 100% Local' : '100% Local Processing'}
+                            {lang === 'fr' ? 'Traitement 100% Local' : (lang === 'pt' ? 'Processamento 100% Local' : '100% Local Processing')}
                         </h5>
                         <p className="text-sm text-orange-800/70 dark:text-orange-300/60 leading-relaxed">
                             {lang === 'fr'
                                 ? 'Contrairement aux autres convertisseurs, pdfcanada.ca traite votre Notebook directement dans votre navigateur. Votre code et vos données ne quittent jamais votre ordinateur.'
-                                : 'Unlike other converters, pdfcanada.ca processes your Notebook directly in your browser. Your code and data never leave your computer.'}
+                                : (lang === 'pt' ? 'Ao contrário de outros conversores, pdfcanada.ca processa seu Notebook diretamente no navegador. Seu código e dados nunca saem do seu computador.' : 'Unlike other converters, pdfcanada.ca processes your Notebook directly in your browser. Your code and data never leave your computer.')}
                         </p>
                     </div>
                 </div>

@@ -338,7 +338,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                 <div className="text-center py-12 md:py-16">
                     <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/${isDesktop ? '100' : '80'} border border-white/40 shadow-premium mb-6`}>
                         <GripVertical size={16} className="text-canada-red" />
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">{t.reorderFiles || (lang === 'en' ? 'Reorder Files' : 'Réorganiser')}</span>
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-900 uppercase">{t.reorderFiles || (lang === 'fr' ? 'Réorganiser' : (lang === 'pt' ? 'Reordenar Arquivos' : 'Reorder Files'))}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-[1000] text-gray-900 tracking-tighter mb-4">{t.toolMerge}</h2>
                     <p className="text-gray-600 font-medium max-w-md mx-auto">{t.toolMergeDesc}</p>

@@ -10,6 +10,10 @@ export const getGuideContent = (lang: Language) => {
         fr: {
             processing: "Traitement...",
             download: "Télécharger",
+        },
+        pt: {
+            processing: "Processando...",
+            download: "Baixar",
         }
     };
 };

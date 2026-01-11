@@ -51,7 +51,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
             loadPreview(selectedFile);
             triggerHaptic('light');
         } else if (selectedFile) {
-            setError(lang === 'fr' ? 'Format de fichier non supporté. Veuillez utiliser .eml' : 'Unsupported file format. Please use .eml');
+            setError(lang === 'fr' ? 'Format de fichier non supporté. Veuillez utiliser .eml' : (lang === 'pt' ? 'Formato de arquivo não suportado. Use .eml' : 'Unsupported file format. Please use .eml'));
             triggerHaptic('error');
         }
     };
@@ -76,7 +76,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
             triggerHaptic('success');
         } catch (err) {
             console.error(err);
-            setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : 'Conversion failed. Please check your file.');
+            setError(lang === 'fr' ? 'Échec de la conversion. Veuillez vérifier votre fichier.' : (lang === 'pt' ? 'Falha na conversão. Por favor, verifique seu arquivo.' : 'Conversion failed. Please check your file.'));
             triggerHaptic('error');
         } finally {
             clearInterval(progressInterval);
@@ -121,16 +121,16 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                 <Mail className="w-10 h-10 text-blue-600 dark:text-blue-400" />
                             </div>
                             <h3 className="text-2xl font-bold text-modern-neutral-900 dark:text-white mb-3 tracking-tight">
-                                {lang === 'fr' ? 'Convertir Email (EML) en PDF' : 'Convert Email (EML) to PDF'}
+                                {lang === 'fr' ? 'Convertir Email (EML) en PDF' : (lang === 'pt' ? 'Converter Email (EML) para PDF' : 'Convert Email (EML) to PDF')}
                             </h3>
                             <p className="text-modern-neutral-500 dark:text-modern-neutral-400 max-w-md mx-auto leading-relaxed">
                                 {lang === 'fr'
                                     ? 'Déposez votre fichier .eml ici pour une conversion instantanée et privée.'
-                                    : 'Drop your .eml file here for instant, private conversion.'}
+                                    : (lang === 'pt' ? 'Solte seu arquivo .eml aqui para conversão instantânea e privada.' : 'Drop your .eml file here for instant, private conversion.')}
                             </p>
                             <div className="mt-8 flex items-center gap-2 px-6 py-3 bg-modern-neutral-900 dark:bg-white text-white dark:text-modern-neutral-900 rounded-xl font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
                                 <Upload className="w-5 h-5" />
-                                <span>{lang === 'fr' ? 'Choisir un Fichier' : 'Choose File'}</span>
+                                <span>{lang === 'fr' ? 'Choisir un Fichier' : (lang === 'pt' ? 'Escolher Arquivo' : 'Choose File')}</span>
                             </div>
                         </div>
                     </label>
@@ -155,7 +155,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                 onClick={reset}
                                 className="text-sm font-bold text-modern-neutral-400 hover:text-canada-red transition-colors whitespace-nowrap"
                             >
-                                {lang === 'fr' ? 'Changer de fichier' : 'Change file'}
+                                {lang === 'fr' ? 'Changer de fichier' : (lang === 'pt' ? 'Alterar arquivo' : 'Change file')}
                             </button>
                         </div>
 
@@ -168,12 +168,12 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                 <div className="space-y-2 text-sm">
                                     <div className="flex items-center gap-2 text-modern-neutral-600 dark:text-modern-neutral-400">
                                         <User size={14} className="shrink-0 text-blue-500" />
-                                        <span className="font-medium">{lang === 'fr' ? 'De:' : 'From:'}</span>
+                                        <span className="font-medium">{lang === 'fr' ? 'De:' : (lang === 'pt' ? 'De:' : 'From:')}</span>
                                         <span className="truncate">{truncate(preview.from, 50)}</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-modern-neutral-600 dark:text-modern-neutral-400">
                                         <User size={14} className="shrink-0 text-green-500" />
-                                        <span className="font-medium">{lang === 'fr' ? 'À:' : 'To:'}</span>
+                                        <span className="font-medium">{lang === 'fr' ? 'À:' : (lang === 'pt' ? 'Para:' : 'To:')}</span>
                                         <span className="truncate">{truncate(preview.to, 50)}</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-modern-neutral-600 dark:text-modern-neutral-400">
@@ -184,8 +184,8 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                     {preview.attachments.length > 0 && (
                                         <div className="flex items-center gap-2 text-modern-neutral-600 dark:text-modern-neutral-400">
                                             <Paperclip size={14} className="shrink-0 text-purple-500" />
-                                            <span className="font-medium">{lang === 'fr' ? 'Pièces jointes:' : 'Attachments:'}</span>
-                                            <span>{preview.attachments.length} {lang === 'fr' ? 'fichier(s)' : 'file(s)'}</span>
+                                            <span className="font-medium">{lang === 'fr' ? 'Pièces jointes:' : (lang === 'pt' ? 'Anexos:' : 'Attachments:')}</span>
+                                            <span>{preview.attachments.length} {lang === 'fr' ? 'fichier(s)' : (lang === 'pt' ? 'arquivo(s)' : 'file(s)')}</span>
                                         </div>
                                     )}
                                 </div>
@@ -215,12 +215,12 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                 {isProcessing ? (
                                     <>
                                         <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
-                                        <span>{lang === 'fr' ? 'Conversion de l\'email...' : 'Converting Email...'}</span>
+                                        <span>{lang === 'fr' ? 'Conversion de l\'email...' : (lang === 'pt' ? 'Convertendo email...' : 'Converting Email...')}</span>
                                     </>
                                 ) : (
                                     <>
                                         <Sparkles className="w-6 h-6 text-blue-400" />
-                                        <span>{lang === 'fr' ? 'Générer le PDF' : 'Generate PDF'}</span>
+                                        <span>{lang === 'fr' ? 'Générer le PDF' : (lang === 'pt' ? 'Gerar PDF' : 'Generate PDF')}</span>
                                     </>
                                 )}
                                 {isProcessing && (
@@ -237,7 +237,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                 <div className="p-4 bg-green-50 dark:bg-green-500/10 border border-green-100 dark:border-green-500/20 rounded-2xl flex items-center gap-3 mb-4 animate-in slide-in-from-top-2">
                                     <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
                                     <p className="text-sm font-medium text-green-600 dark:text-green-400">
-                                        {lang === 'fr' ? 'Conversion réussie ! Votre PDF est prêt.' : 'Conversion successful! Your PDF is ready.'}
+                                        {lang === 'fr' ? 'Conversion réussie ! Votre PDF est prêt.' : (lang === 'pt' ? 'Conversão bem-sucedida! Seu PDF está pronto.' : 'Conversion successful! Your PDF is ready.')}
                                     </p>
                                 </div>
                                 <button
@@ -251,7 +251,7 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
                                     onClick={reset}
                                     className="w-full text-sm font-bold text-modern-neutral-500 hover:text-modern-neutral-900 dark:hover:text-white transition-colors py-2"
                                 >
-                                    {lang === 'fr' ? 'Convertir un autre email' : 'Convert another email'}
+                                    {lang === 'fr' ? 'Convertir un autre email' : (lang === 'pt' ? 'Converter outro email' : 'Convert another email')}
                                 </button>
                             </div>
                         )}
@@ -259,12 +259,12 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
 
                     <div className="bg-blue-50 dark:bg-blue-500/5 rounded-3xl p-6 md:p-8 border border-blue-100/50 dark:border-blue-500/10">
                         <h5 className="font-bold text-blue-900 dark:text-blue-200 mb-2">
-                            {lang === 'fr' ? 'Traitement 100% Local' : '100% Local Processing'}
+                            {lang === 'fr' ? 'Traitement 100% Local' : (lang === 'pt' ? 'Processamento 100% Local' : '100% Local Processing')}
                         </h5>
                         <p className="text-sm text-blue-800/70 dark:text-blue-300/60 leading-relaxed">
                             {lang === 'fr'
                                 ? 'Contrairement aux autres convertisseurs, pdfcanada.ca traite vos emails directement dans votre navigateur. Vos messages privés ne quittent jamais votre ordinateur.'
-                                : 'Unlike other converters, pdfcanada.ca processes your emails directly in your browser. Your private messages never leave your computer.'}
+                                : (lang === 'pt' ? 'Ao contrário de outros conversores, pdfcanada.ca processa seus emails diretamente no navegador. Suas mensagens privadas nunca saem do seu computador.' : 'Unlike other converters, pdfcanada.ca processes your emails directly in your browser. Your private messages never leave your computer.')}
                         </p>
                     </div>
                 </div>

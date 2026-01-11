@@ -213,6 +213,11 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         onSelectEntry(entry.id);
                         onPageClick?.(pageIndex);
                     }}
+                    onDrag={(_, d) => {
+                        const x = Math.max(0, Math.min(d.x, pageSize.width - entry.width * pageSize.width));
+                        const y = Math.max(0, Math.min(d.y, pageSize.height - entry.height * pageSize.height));
+                        onEntryUpdate(entry.id, { x: x / pageSize.width, y: y / pageSize.height });
+                    }}
                     onDragStop={(_, d) => {
                         const x = Math.max(0, Math.min(d.x, pageSize.width - entry.width * pageSize.width));
                         const y = Math.max(0, Math.min(d.y, pageSize.height - entry.height * pageSize.height));
@@ -224,6 +229,14 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         e.stopPropagation();
                         onSelectEntry(entry.id);
                         onPageClick?.(pageIndex);
+                    }}
+                    onResize={(_, __, ref, ___, position) => {
+                        onEntryUpdate(entry.id, {
+                            width: ref.offsetWidth / pageSize.width,
+                            height: ref.offsetHeight / pageSize.height,
+                            x: position.x / pageSize.width,
+                            y: position.y / pageSize.height
+                        });
                     }}
                     onResizeStop={(_, __, ref, ___, position) => {
                         onEntryUpdate(entry.id, {
@@ -243,7 +256,7 @@ const PageRendererBase: React.FC<PageRendererProps> = ({
                         top: true, right: true, bottom: true, left: true,
                         topRight: true, bottomRight: true, bottomLeft: true, topLeft: true
                     } : false}
-                    enableUserSelectHack={false}
+                    enableUserSelectHack={true}
                     resizeHandleStyles={{
                         topLeft: { width: isMobile ? 64 : 24, height: isMobile ? 64 : 24, top: isMobile ? -32 : -12, left: isMobile ? -32 : -12, background: '#3b82f6', borderRadius: '50%', border: '4px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nwse-resize', touchAction: 'none', pointerEvents: 'auto' },
                         topRight: { width: isMobile ? 64 : 24, height: isMobile ? 64 : 24, top: isMobile ? -32 : -12, right: isMobile ? -32 : -12, background: '#3b82f6', borderRadius: '50%', border: '4px solid white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 100, cursor: 'nesw-resize', touchAction: 'none', pointerEvents: 'auto' },

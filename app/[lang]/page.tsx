@@ -6,6 +6,8 @@ import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { SEO } from '@/components/SEO';
 
+import { constructMetadata } from '@/lib/metadata';
+
 // Static generation with ISR
 export const revalidate = 3600;
 
@@ -27,10 +29,6 @@ const metadata: Record<string, { title: string; description: string }> = {
         title: 'Ferramentas PDF Gratuitas Canadá | Serviço Online Seguro Sem Upload',
         description: 'As Ferramentas PDF Canadenses Educadas. 100% gratuito e seguro. Junte, comprima, divida e converta PDFs diretamente no seu navegador. Sem uploads—seus arquivos nunca saem do seu dispositivo.',
     },
-    de: {
-        title: 'Kostenlose PDF-Tools Kanada | Online & Sicher Ohne Upload',
-        description: 'Die höflichen kanadischen PDF-Tools. 100% kostenlos und sicher. PDFs direkt im Browser zusammenführen, komprimieren, teilen und konvertieren. Kein Upload—Ihre Dateien verlassen nie Ihr Gerät.',
-    },
 };
 
 import { URLS } from '@/config/urls';
@@ -41,7 +39,6 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const baseUrl = URLS.DOMAIN;
     const content = metadata[lang] || metadata.en;
 
     const getKeywords = (l: Locale) => {
@@ -91,62 +88,13 @@ export async function generateMetadata({
         ];
     };
 
-    return {
+    return constructMetadata({
         title: content.title,
         description: content.description,
+        path: '/',
+        lang,
         keywords: getKeywords(lang),
-        authors: [{ name: 'pdfcanada.ca', url: baseUrl }],
-        creator: 'pdfcanada.ca',
-        publisher: 'pdfcanada.ca',
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                'max-video-preview': -1,
-                'max-image-preview': 'large',
-                'max-snippet': -1,
-            },
-        },
-        alternates: {
-            canonical: `${baseUrl}/${lang}`,
-            languages: {
-                'en-CA': `${baseUrl}/en`,
-                'fr-CA': `${baseUrl}/fr`,
-                'pt-BR': `${baseUrl}/pt`,
-                'x-default': `${baseUrl}/en`,
-            },
-        },
-        openGraph: {
-            type: 'website',
-            locale: lang === 'fr' ? 'fr_CA' : (lang === 'pt' ? 'pt_BR' : 'en_CA'),
-            alternateLocale: lang === 'fr' ? 'en_CA' : undefined, // Add more if needed or just remove to rely on defaults
-            url: `${baseUrl}/${lang}`,
-            siteName: 'pdfcanada.ca',
-            title: content.title,
-            description: content.description,
-            images: [
-                {
-                    url: `${baseUrl}/og-image.png`,
-                    width: 1200,
-                    height: 630,
-                    alt: lang === 'fr' ? 'Outils PDF Gratuits Canada' : (lang === 'pt' ? 'Ferramentas PDF Gratuitas Canadá' : 'Free PDF Tools Canada'),
-                },
-            ],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: content.title,
-            description: content.description,
-            images: [`${baseUrl}/og-image.png`],
-            creator: '@pdfcanada',
-        },
-        // verification: {
-        //     google: 'google-site-verification=placeholder',
-        // },
-        category: 'technology',
-    };
+    });
 }
 
 export default async function Page({

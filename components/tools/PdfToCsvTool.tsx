@@ -26,10 +26,11 @@ import {
     TableData
 } from '@/utils/csvExtractor';
 import { triggerHaptic } from '@/utils/haptics';
+import { translations } from '@/utils/i18n';
 
 interface PdfToCsvToolProps {
     file: File;
-    t: any;
+    t: typeof translations.en;
 }
 
 export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {

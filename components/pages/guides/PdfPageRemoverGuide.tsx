@@ -15,7 +15,7 @@ interface GuideProps {
     lang: Language;
 }
 
-const getGuideContent = (lang: Language) => ({
+const getLocalContent = (lang: Language) => ({
     en: {
         seo: {
             title: `How to Delete PDF Pages | Free & Private ${CURRENT_YEAR} Guide | pdfcanada.ca`,
@@ -933,8 +933,8 @@ const getGuideContent = (lang: Language) => ({
 });
 
 export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
-    const guideContent = getGuideContent(lang);
-    const t = guideContent[lang as keyof typeof guideContent] || guideContent.en;
+    const localContent = getLocalContent(lang);
+    const t = localContent[lang as keyof typeof localContent] || localContent.en;
 
     return (
         <>

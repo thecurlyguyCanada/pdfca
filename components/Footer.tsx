@@ -9,7 +9,6 @@ import { MapleLeaf } from './MapleLeaf';
 
 interface FooterProps {
    lang: Language;
-   onNavigate?: (view: any, path?: string) => void;
 }
 
 const FooterSection = ({ title, children }: { title: string, children: React.ReactNode }) => {

@@ -14,12 +14,90 @@ import {
 } from 'lucide-react';
 import { analyzePdfSecurity, SecurityAnalysisResult } from '@/utils/securityAnalyzer';
 import { initPdfWorker } from '@/utils/pdfUtils';
+import { Language } from '@/utils/i18n';
+
+const phishingTranslations = {
+    en: {
+        securityReport: 'Security Report',
+        linkInspector: 'Link Inspector',
+        safePreview: 'Safe Preview',
+        scanning: 'Deep Scanning PDF Structure...',
+        scanningDesc: 'Checking object streams, JavaScript catalogs, and action dictionaries.',
+        noThreats: 'No Threats Found',
+        riskDetected: 'Risk Detected',
+        safeSummary: 'This document appears free of common malware vectors and malicious scripts.',
+        riskSummary: 'This document contains elements often used in phishing attacks. Proceed with caution.',
+        embeddedJs: 'Embedded JavaScript',
+        embeddedJsDesc: 'Scripts that execute automatically. Often used for malware.',
+        launchActions: 'Launch Actions',
+        launchActionsDesc: 'Attempts to launch external programs (e.g., cmd.exe).',
+        suspiciousLinks: 'Suspicious Links',
+        suspiciousLinksDesc: 'Links to IP addresses or dangerous domains.',
+        embeddedFiles: 'Embedded Files',
+        embeddedFilesDesc: 'Hidden attachments that may contain viruses.',
+        extractedLinks: 'Extracted Hyperlinks',
+        noLinks: 'No links found in this document.',
+        page: 'Page',
+        safeModePreview: 'Safe Mode Preview',
+        jsDisabled: 'JavaScript execution is disabled in this preview.'
+    },
+    fr: {
+        securityReport: 'Rapport de Sécurité',
+        linkInspector: 'Inspecteur de Liens',
+        safePreview: 'Aperçu Sécurisé',
+        scanning: 'Analyse approfondie de la structure PDF...',
+        scanningDesc: 'Vérification des flux d\'objets, catalogues JavaScript et dictionnaires d\'actions.',
+        noThreats: 'Aucune Menace Détectée',
+        riskDetected: 'Risque Détecté',
+        safeSummary: 'Ce document semble exempt de vecteurs de logiciels malveillants courants et de scripts malveillants.',
+        riskSummary: 'Ce document contient des éléments souvent utilisés dans les attaques de phishing. Procédez avec prudence.',
+        embeddedJs: 'JavaScript Intégré',
+        embeddedJsDesc: 'Scripts qui s\'exécutent automatiquement. Souvent utilisés pour les logiciels malveillants.',
+        launchActions: 'Actions de Lancement',
+        launchActionsDesc: 'Tentatives de lancer des programmes externes (ex: cmd.exe).',
+        suspiciousLinks: 'Liens Suspects',
+        suspiciousLinksDesc: 'Liens vers des adresses IP ou des domaines dangereux.',
+        embeddedFiles: 'Fichiers Intégrés',
+        embeddedFilesDesc: 'Pièces jointes cachées pouvant contenir des virus.',
+        extractedLinks: 'Hyperliens Extraits',
+        noLinks: 'Aucun lien trouvé dans ce document.',
+        page: 'Page',
+        safeModePreview: 'Aperçu en Mode Sécurisé',
+        jsDisabled: 'L\'exécution JavaScript est désactivée dans cet aperçu.'
+    },
+    pt: {
+        securityReport: 'Relatório de Segurança',
+        linkInspector: 'Inspetor de Links',
+        safePreview: 'Prévia Segura',
+        scanning: 'Analisando Estrutura do PDF...',
+        scanningDesc: 'Verificando fluxos de objetos, catálogos JavaScript e dicionários de ações.',
+        noThreats: 'Nenhuma Ameaça Encontrada',
+        riskDetected: 'Risco Detectado',
+        safeSummary: 'Este documento parece estar livre de vetores de malware comuns e scripts maliciosos.',
+        riskSummary: 'Este documento contém elementos frequentemente usados em ataques de phishing. Prossiga com cuidado.',
+        embeddedJs: 'JavaScript Incorporado',
+        embeddedJsDesc: 'Scripts que executam automaticamente. Frequentemente usados para malware.',
+        launchActions: 'Ações de Lançamento',
+        launchActionsDesc: 'Tentativas de iniciar programas externos (ex: cmd.exe).',
+        suspiciousLinks: 'Links Suspeitos',
+        suspiciousLinksDesc: 'Links para endereços IP ou domínios perigosos.',
+        embeddedFiles: 'Arquivos Incorporados',
+        embeddedFilesDesc: 'Anexos ocultos que podem conter vírus.',
+        extractedLinks: 'Hyperlinks Extraídos',
+        noLinks: 'Nenhum link encontrado neste documento.',
+        page: 'Página',
+        safeModePreview: 'Prévia em Modo Seguro',
+        jsDisabled: 'A execução de JavaScript está desativada nesta prévia.'
+    }
+};
 
 interface PhishingDetectorToolProps {
     file: File;
+    lang?: Language;
 }
 
-export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file }) => {
+export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file, lang = 'en' }) => {
+    const t = phishingTranslations[lang] || phishingTranslations.en;
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [result, setResult] = useState<SecurityAnalysisResult | null>(null);
     const [activeTab, setActiveTab] = useState<'report' | 'links' | 'preview'>('report');
@@ -166,14 +244,14 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'report' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <Shield size={18} />
-                                <span className="font-medium">Security Report</span>
+                                <span className="font-medium">{t.securityReport}</span>
                             </button>
                             <button
                                 onClick={() => setActiveTab('links')}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'links' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <LinkIcon size={18} />
-                                <span className="font-medium">Link Inspector</span>
+                                <span className="font-medium">{t.linkInspector}</span>
                                 {result && result.details.links.length > 0 && (
                                     <span className="ml-auto bg-gray-700 text-white text-xs py-0.5 px-2 rounded-full">
                                         {result.details.links.length}
@@ -185,7 +263,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'preview' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <Eye size={18} />
-                                <span className="font-medium">Safe Preview</span>
+                                <span className="font-medium">{t.safePreview}</span>
                             </button>
                         </nav>
                     </div>
@@ -196,8 +274,8 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                     {isAnalyzing ? (
                         <div className="h-full flex flex-col items-center justify-center p-12 bg-white rounded-3xl border border-gray-100 min-h-[400px]">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-canada-red mb-4"></div>
-                            <p className="text-gray-500 font-medium">Deep Scanning PDF Structure...</p>
-                            <p className="text-xs text-gray-400 mt-2">Checking object streams, JavaScript catalogs, and action dictionaries.</p>
+                            <p className="text-gray-500 font-medium">{t.scanning}</p>
+                            <p className="text-xs text-gray-400 mt-2">{t.scanningDesc}</p>
                         </div>
                     ) : result ? (
                         <div className="bg-white rounded-[2rem] p-8 shadow-xl shadow-gray-200/50 border border-gray-100 min-h-[500px]">
@@ -210,7 +288,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                         <div>
                                             <div className="flex items-center gap-3 mb-1">
                                                 <h2 className="text-3xl font-black text-gray-900">
-                                                    {result.riskLevel === 'SAFE' ? 'No Threats Found' : `${result.riskLevel} Risk Detected`}
+                                                    {result.riskLevel === 'SAFE' ? t.noThreats : `${result.riskLevel} ${t.riskDetected}`}
                                                 </h2>
                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getRiskColor(result.riskLevel)}`}>
                                                     SCORE: {result.score}/100
@@ -218,8 +296,8 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                             </div>
                                             <p className="text-gray-500">
                                                 {result.riskLevel === 'SAFE'
-                                                    ? "This document appears free of common malware vectors and malicious scripts."
-                                                    : "This document contains elements often used in phishing attacks. Proceed with caution."
+                                                    ? t.safeSummary
+                                                    : t.riskSummary
                                                 }
                                             </p>
                                         </div>
@@ -227,24 +305,24 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
 
                                     <div className="grid md:grid-cols-2 gap-4">
                                         <RiskItem
-                                            label="Embedded JavaScript"
+                                            label={t.embeddedJs}
                                             detected={result.details.hasJavascript}
-                                            desc="Scripts that execute automatically. Often used for malware."
+                                            desc={t.embeddedJsDesc}
                                         />
                                         <RiskItem
-                                            label="Launch Actions"
+                                            label={t.launchActions}
                                             detected={result.details.hasLaunchActions}
-                                            desc="Attempts to launch external programs (e.g., cmd.exe)."
+                                            desc={t.launchActionsDesc}
                                         />
                                         <RiskItem
-                                            label="Suspicious Links"
+                                            label={t.suspiciousLinks}
                                             detected={result.details.links.some(l => l.isSuspicious)}
-                                            desc="Links to IP addresses or dangerous domains."
+                                            desc={t.suspiciousLinksDesc}
                                         />
                                         <RiskItem
-                                            label="Embedded Files"
+                                            label={t.embeddedFiles}
                                             detected={result.details.embeddedFiles.length > 0}
-                                            desc="Hidden attachments that may contain viruses."
+                                            desc={t.embeddedFilesDesc}
                                         />
                                     </div>
                                 </div>
@@ -252,11 +330,11 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
 
                             {activeTab === 'links' && (
                                 <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                                    <h3 className="text-xl font-bold mb-6">Extracted Hyperlinks</h3>
+                                    <h3 className="text-xl font-bold mb-6">{t.extractedLinks}</h3>
                                     {result.details.links.length === 0 ? (
                                         <div className="text-center py-12 text-gray-400">
                                             <LinkIcon className="mx-auto mb-4 opacity-50" size={48} />
-                                            <p>No links found in this document.</p>
+                                            <p>{t.noLinks}</p>
                                         </div>
                                     ) : (
                                         result.details.links.map((link, i) => (
@@ -268,7 +346,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                                     <div>
                                                         <div className="font-mono text-sm font-medium text-gray-800 mb-1">{link.url}</div>
                                                         <div className="flex items-center gap-4 text-xs">
-                                                            <span className="text-gray-500">Page {link.page}</span>
+                                                            <span className="text-gray-500">{t.page} {link.page}</span>
                                                             {link.isSuspicious && (
                                                                 <span className="text-red-600 font-bold">{link.reason}</span>
                                                             )}
@@ -284,7 +362,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                             {activeTab === 'preview' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                                     <div className="flex items-center justify-between mb-6">
-                                        <h3 className="text-xl font-bold">Safe Mode Preview</h3>
+                                        <h3 className="text-xl font-bold">{t.safeModePreview}</h3>
                                         <div className="flex items-center gap-2">
                                             <button
                                                 disabled={previewPage <= 1}
@@ -310,7 +388,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                     </div>
                                     <p className="text-center text-xs text-gray-400 mt-4">
                                         <ShieldCheck size={12} className="inline mr-1" />
-                                        JavaScript execution is disabled in this preview.
+                                        {t.jsDisabled}
                                     </p>
                                 </div>
                             )}

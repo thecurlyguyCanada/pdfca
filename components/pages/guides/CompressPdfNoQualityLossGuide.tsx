@@ -103,8 +103,8 @@ export const CompressPdfNoQualityLossGuide: React.FC<GuideProps> = ({ lang }) =>
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Compress PDF Without Losing Quality' : 'Compresser PDF Sans Perdre de Qualité'}
-                description={lang === 'en' ? 'How to reduce PDF file size while maintaining high quality images and text.' : 'Comment réduire la taille du fichier PDF tout en maintenant des images et du texte de haute qualité.'}
+                title={lang === 'fr' ? 'Compresser PDF Sans Perdre de Qualité' : (lang === 'pt' ? 'Comprimir PDF Sem Perder Qualidade' : 'Compress PDF Without Losing Quality')}
+                description={lang === 'fr' ? 'Comment réduire la taille du fichier PDF tout en maintenant des images et du texte de haute qualité.' : (lang === 'pt' ? 'Como reduzir o tamanho do arquivo PDF mantendo imagens e texto de alta qualidade.' : 'How to reduce PDF file size while maintaining high quality images and text.')}
                 canonicalPath="/guides/compress-pdf-no-quality-loss"
                 lang={lang}
                 breadcrumbs={[
@@ -114,8 +114,8 @@ export const CompressPdfNoQualityLossGuide: React.FC<GuideProps> = ({ lang }) =>
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Compress PDF No Quality Loss' : 'Compresser PDF Sans Perte'}
-                subtitle={lang === 'en' ? 'Shrink files while keeping them sharp for printing.' : 'Réduisez les fichiers tout en les gardant nets pour l\'impression.'}
+                title={lang === 'fr' ? 'Compresser PDF Sans Perte' : (lang === 'pt' ? 'Comprimir PDF Sem Perdas' : 'Compress PDF No Quality Loss')}
+                subtitle={lang === 'fr' ? 'Réduisez les fichiers tout en les gardant nets pour l\'impression.' : (lang === 'pt' ? 'Reduza arquivos mantendo-os nítidos para impressão.' : 'Shrink files while keeping them sharp for printing.')}
                 icon={<Minimize2 size={32} />}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },

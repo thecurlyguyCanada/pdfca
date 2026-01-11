@@ -53,7 +53,7 @@ export function SocialShare({ url, title, lang, className = '' }: SocialSharePro
         }
     ];
 
-    const shareLabel = lang === 'fr' ? 'Partager' : 'Share';
+    const shareLabel = lang === 'fr' ? 'Partager' : (lang === 'pt' ? 'Compartilhar' : 'Share');
 
     return (
         <div className={`flex items-center gap-2 ${className}`}>
@@ -68,7 +68,7 @@ export function SocialShare({ url, title, lang, className = '' }: SocialSharePro
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`${shareLabel} ${lang === 'fr' ? 'sur' : 'on'} ${link.name}`}
+                        aria-label={`${shareLabel} ${lang === 'fr' ? 'sur' : (lang === 'pt' ? 'no' : 'on')} ${link.name}`}
                         className={`p-2 rounded-lg text-gray-600 bg-gray-100 border border-gray-200 transition-all duration-200 ${link.color}`}
                     >
                         {link.icon}

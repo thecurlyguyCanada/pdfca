@@ -101,8 +101,8 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'PDF Barcode & QR Code Guide' : 'Guide Code-barres & QR Code PDF'}
-                description={lang === 'en' ? 'How to add scannable vector barcodes and QR codes to PDFs.' : 'Comment ajouter des codes-barres et QR codes vectoriels scannables aux PDF.'}
+                title={lang === 'fr' ? 'Guide Code-barres & QR Code PDF' : (lang === 'pt' ? 'Guia de Código de Barras e QR Code para PDF' : 'PDF Barcode & QR Code Guide')}
+                description={lang === 'fr' ? 'Comment ajouter des codes-barres et QR codes vectoriels scannables aux PDF.' : (lang === 'pt' ? 'Como adicionar códigos de barras vetoriais e QR codes escaneáveis em PDFs.' : 'How to add scannable vector barcodes and QR codes to PDFs.')}
                 canonicalPath="/guides/barcode-generator"
                 lang={lang}
                 breadcrumbs={[
@@ -112,8 +112,8 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'Generate PDF Barcodes' : 'Générer Codes-barres PDF'}
-                subtitle={lang === 'en' ? 'Add scannable codes to your documents.' : 'Ajoutez des codes scannables à vos documents.'}
+                title={lang === 'fr' ? 'Générer Codes-barres PDF' : (lang === 'pt' ? 'Gerar Códigos de Barras em PDF' : 'Generate PDF Barcodes')}
+                subtitle={lang === 'fr' ? 'Ajoutez des codes scannables à vos documents.' : (lang === 'pt' ? 'Adicione códigos escaneáveis aos seus documentos.' : 'Add scannable codes to your documents.')}
                 icon={<QrCode size={32} />}
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
