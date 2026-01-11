@@ -2096,6 +2096,10 @@ export const translations: Record<Language, any> = {
     conversionErr: "Échec de la conversion du fichier. Il est peut-être trop complexe ou endommagé.",
     emptyEpubErr: "Impossible d'extraire le texte de cet EPUB.",
 
+    // Nav
+    navTools: "Outils",
+    navGuides: "Guides",
+    navAbout: "À propos",
     navHowTo: "Aide",
     navSupport: "Soutenir local",
     navPricing: "Tarifs",
