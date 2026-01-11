@@ -128,7 +128,7 @@ export default async function SurahBaqarahPage({
     params: Promise<{ lang: Locale }>;
 }) {
     const { lang } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = lang as Language;
 
     const content = {
         en: {

@@ -59,7 +59,7 @@ export default async function GuidesPage({
     params: Promise<{ lang: Locale }>;
 }) {
     const { lang } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = lang as Language;
 
     const seoData: Record<string, { title: string; desc: string }> = {
         en: {

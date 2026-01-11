@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: Promise<{ lang: Locale }> }) {
     const { lang } = await params;
-    const currentLang = (lang === 'fr' ? 'fr' : 'en') as Language;
+    const currentLang = lang as Language;
 
     return (
         <div className="min-h-screen flex flex-col">

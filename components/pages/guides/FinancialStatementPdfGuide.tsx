@@ -384,8 +384,9 @@ Para corporações, use o **SEC Electronic Filing and Submission Tool (e-FAST)**
 });
 
 export const FinancialStatementPdfGuide: React.FC<GuideProps> = ({ lang }) => {
-    const t = getGuideContent(lang)[lang === 'fr' ? 'fr' : 'en'];
-    const isEnglish = lang !== 'fr';
+    const content = getGuideContent(lang);
+    const t = content[lang] || content['en'];
+    const isEnglish = lang === 'en';
 
     // Fallback content for French structure to prevent crash if empty
     if (!isEnglish && t.sections.length === 0) {
