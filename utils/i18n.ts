@@ -3144,6 +3144,63 @@ export const translations: Record<Language, any> = {
     sorryPolicy: "Política de Desculpas",
     makeFillableFooter: "Como tornar um PDF preenchível",
 
+    // Pages Content
+    pricingTitle: "Preço Simples",
+    pricingSubtitle: "Preços honestos para pessoas honestas.",
+    freePlan: "O Plano 'Amigão'",
+    freeCost: "$0 CAD",
+    freeFeature1: "Conversões PDF ilimitadas",
+    freeFeature2: "Sem conta necessária",
+    freeFeature3: "Mensagens de erro educadas",
+    freeFeature4: "Processamento local (Seguro)",
+    enterprisePlan: "O Plano 'Double Double'",
+    enterpriseCost: "$0 CAD",
+    enterpriseFeature1: "Tudo do plano Amigão",
+    enterpriseFeature2: "Pedimos desculpas duas vezes mais",
+    enterpriseFeature3: "Entrega prioritária de maple syrup (opcional)",
+
+    // Timbits Support Tier
+    timbitsPlan: "A Gorjeta 'Timbits'",
+    timbitsCost: "$1 CAD",
+    timbitsDesc: "Uma moedinha faz diferença!",
+    timbitsFeature1: "Manter servidores funcionando",
+    timbitsFeature2: "Financiar novos recursos e ferramentas",
+    timbitsFeature3: "Apoiar devs canadenses independentes",
+    timbitsFeature4: "Receber nossos agradecimentos",
+    timbitsButton: "Doar uma Moeda",
+
+    privacyTitle: "Política de Privacidade",
+    privacyText1: "No pdfcanada.ca, acreditamos que seus assuntos são seus assuntos. Como processamos arquivos localmente no seu dispositivo usando tecnologia WebAssembly, seus documentos nunca são enviados para nossos servidores.",
+    privacyText2: "Não usamos cookies para rastreá-lo. Não vendemos seus dados. Nem pedimos seu email. É só você e seu PDF.",
+
+    termsTitle: "Termos de Serviço",
+    termsText1: "Ao usar este serviço, você concorda em ser gentil.",
+    termsText2: "Por favor, não use nossas ferramentas para coisas ilegais. Isso não é legal.",
+    termsText3: "Fornecemos este serviço 'como está'. Se quebrar, sentimos muito, mas não podemos ser responsabilizados por dados perdidos. Sempre faça backup!",
+
+    sorryTitle: "Nossa Política Oficial de Desculpas",
+    sorryText1: "No caso improvável de algo dar errado:",
+    sorryList1: "1. Vamos pedir desculpas imediatamente.",
+    sorryList2: "2. Vamos tentar consertar.",
+    sorryList3: "3. Vamos pedir desculpas de novo, só por segurança.",
+
+    howtoTitle: "Como Funciona",
+    howtoStep1: "Selecione uma ferramenta do painel principal.",
+    howtoStep2: "Escolha seu arquivo (PDF, HEIC ou EPUB).",
+    howtoStep3: "Siga as instruções educadas na tela.",
+    howtoStep4: "Baixe seu novo arquivo. Fácil assim.",
+
+    fillablePageTitle: "Como tornar um PDF preenchível",
+    fillablePageSubtitle: "O guia educado para criar formulários interativos.",
+    fillableIntro: "Quer criar um documento onde as pessoas possam digitar? Usamos tecnologia inteligente para encontrar linhas e caixas automaticamente.",
+    fillableStep1: "Envie seu PDF para nossa ferramenta 'Tornar PDF Preenchível'.",
+    fillableStep2: "Selecione as páginas onde você quer que as pessoas possam digitar.",
+    fillableStep3: "Encontramos automaticamente linhas '_____' e caixas '[ ]' e as tornamos interativas.",
+    fillableStep4: "Baixe e compartilhe. Seus destinatários agora podem digitar diretamente na página.",
+    fillableProTip: "Dica Pro: Use sublinhados padrão para melhores resultados de detecção.",
+    fillableWhy: "Por que usar nossa ferramenta?",
+    fillableWhyText: "A maioria dos softwares que fazem isso custam muito caro. Nós fazemos de graça, localmente no seu dispositivo, porque é a coisa certa a fazer.",
+
     invoiceOcr: {
       dragDrop: "Arraste & Solte Fatura",
       clickUpload: "ou Clique para Upload",
