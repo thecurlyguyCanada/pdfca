@@ -142,7 +142,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                     onClick={handleExtraction}
                     className="mt-6 px-6 py-2 bg-gray-900 text-white rounded-full font-bold text-sm hover:scale-105 transition-transform"
                 >
-                    Try Again
+                    {t.btnTryAgain || 'Try Again'}
                 </button>
             </div>
         );

@@ -201,7 +201,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
         <div className="flex flex-col items-center justify-center h-full p-8 text-red-600 bg-red-50 rounded-xl m-4 border border-red-100">
             <AlertTriangle className="w-12 h-12 mb-4" />
             <p className="font-bold">{error}</p>
-            <button onClick={handleScan} className="mt-4 px-6 py-2 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition">Try Again</button>
+            <button onClick={handleScan} className="mt-4 px-6 py-2 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition">{t.btnTryAgain || 'Try Again'}</button>
         </div>
     );
 
