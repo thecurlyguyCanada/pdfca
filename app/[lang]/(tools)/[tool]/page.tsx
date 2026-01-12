@@ -95,6 +95,8 @@ export default async function ToolPage({
         description: config.description[lang] || config.description['en'],
     };
 
+    const featureList = config.featureList?.[currentLang] || config.featureList?.['en'];
+
     // Breadcrumbs for SEO component
     const breadcrumbs = [
         { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
@@ -132,6 +134,7 @@ export default async function ToolPage({
                 breadcrumbs={breadcrumbs}
                 price="0"
                 faqs={faqs}
+                featureList={featureList}
             />
 
             <div className="mesh-bg" aria-hidden="true" />

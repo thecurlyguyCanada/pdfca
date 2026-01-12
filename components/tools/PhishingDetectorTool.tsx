@@ -123,7 +123,9 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             // Clean up
             await pdf.destroy();
         } catch (error) {
-            console.error(error);
+            if (process.env.NODE_ENV === 'development') {
+                console.error(error);
+            }
         } finally {
             setIsAnalyzing(false);
         }
@@ -241,6 +243,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                         <nav className="space-y-2">
                             <button
                                 onClick={() => setActiveTab('report')}
+                                aria-label={t.securityReport || "Security Report"}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'report' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <Shield size={18} />
@@ -248,6 +251,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                             </button>
                             <button
                                 onClick={() => setActiveTab('links')}
+                                aria-label={t.linkInspector || "Link Inspector"}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'links' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <LinkIcon size={18} />
@@ -260,6 +264,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                             </button>
                             <button
                                 onClick={() => setActiveTab('preview')}
+                                aria-label={t.safePreview || "Safe Preview"}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === 'preview' ? 'bg-gray-900 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <Eye size={18} />
@@ -367,6 +372,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                             <button
                                                 disabled={previewPage <= 1}
                                                 onClick={() => setPreviewPage(p => p - 1)}
+                                                aria-label="Previous Page"
                                                 className="p-2 hover:bg-gray-100 rounded-lg disabled:opacity-50"
                                             >
                                                 ←
@@ -375,6 +381,7 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
                                             <button
                                                 disabled={previewPage >= numPages}
                                                 onClick={() => setPreviewPage(p => p + 1)}
+                                                aria-label="Next Page"
                                                 className="p-2 hover:bg-gray-100 rounded-lg disabled:opacity-50"
                                             >
                                                 →

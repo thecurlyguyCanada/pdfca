@@ -37,8 +37,8 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
         {t.seo.skipToContent}
       </a>
       <header
-        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white sticky top-4 z-[60] border border-modern-glassBorder shadow-glass mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header will-change-[box-shadow]"
-        style={{ marginTop: 'max(16px, var(--safe-area-inset-top))' }}
+        className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 bg-white/95 md:bg-white sticky top-2 sm:top-4 z-[60] border border-modern-glassBorder shadow-sm md:shadow-glass mx-3 sm:mx-4 md:mx-auto max-w-7xl rounded-[1.75rem] sm:rounded-[2.5rem] transition-shadow duration-200 hover:shadow-premium group/header will-change-[box-shadow]"
+        style={{ marginTop: 'max(8px, var(--safe-area-inset-top))' }}
       >
         <Link
           href={`/${lang}`}
@@ -123,43 +123,58 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
               </button>
             </div>
 
-            <nav className="flex flex-col p-6 gap-2 pt-4">
+            <nav className="flex flex-col p-6 gap-4 pt-4">
               <LanguageSelector currentLang={lang} mobile={true} />
 
-              <div className="h-4" /> {/* Spacer */}
+              <div className="h-6" /> {/* Spacer */}
 
               <Link
                 href={`/${lang}`}
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-left text-2xl font-black text-gray-900 py-5 px-6 rounded-3xl hover:bg-gray-50 flex items-center border border-transparent active:scale-95 transition-all"
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t.navTools}
               </Link>
               <Link
                 href={`/${lang}/about`}
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-left text-2xl font-black text-gray-900 py-5 px-6 rounded-3xl hover:bg-gray-50 flex items-center border border-transparent active:scale-95 transition-all"
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t.navAbout}
               </Link>
               <Link
                 href={`/${lang}/howto`}
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-left text-2xl font-black text-gray-900 py-5 px-6 rounded-3xl hover:bg-gray-50 flex items-center border border-transparent active:scale-95 transition-all"
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t.navHowTo}
               </Link>
               <Link
                 href={`/${lang}/support`}
-                className="text-left text-lg font-semibold text-gray-800 py-4 px-5 rounded-2xl hover:bg-gray-50 flex items-center border border-transparent"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-left text-2xl font-black text-gray-900 py-5 px-6 rounded-3xl hover:bg-gray-50 flex items-center border border-transparent active:scale-95 transition-all"
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t.navSupport}
               </Link>
               <Link
                 href={`/${lang}/guides`}
-                className="text-left text-lg font-semibold text-canada-red py-4 px-5 rounded-2xl hover:bg-red-50 flex items-center border border-transparent"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-left text-2xl font-black text-canada-red py-5 px-6 rounded-3xl bg-red-50/50 hover:bg-red-50 flex items-center border border-transparent active:scale-95 transition-all"
+                onClick={() => {
+                  triggerHaptic('light');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t.navGuides}
               </Link>

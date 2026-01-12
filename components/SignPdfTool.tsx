@@ -997,9 +997,9 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <button
                         onClick={() => { triggerHaptic('light'); scrollToPage(Math.max(0, activePage - 1)); }}
                         disabled={activePage === 0}
-                        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
+                        className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
                     >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={24} />
                     </button>
                     <div className="flex flex-col items-center min-w-[60px]">
                         <span className="font-bold text-gray-800 text-sm">{t.pageNumber?.replace('{number}', String(activePage + 1))}</span>
@@ -1008,9 +1008,9 @@ export const SignPdfTool: React.FC<SignPdfToolProps> = ({
                     <button
                         onClick={() => { triggerHaptic('light'); scrollToPage(Math.min(pageCount - 1, activePage + 1)); }}
                         disabled={activePage === pageCount - 1}
-                        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
+                        className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 disabled:opacity-30"
                     >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={24} />
                     </button>
                 </div>
                 <button

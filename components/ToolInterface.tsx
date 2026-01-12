@@ -4,39 +4,46 @@ import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { FileText, X, Shield, RotateCw, Info, ZoomIn, ZoomOut, GripVertical, RotateCcw, RefreshCcw, Image as ImageIcon, BookOpen, Plus, Search, FileSearch } from 'lucide-react';
 
-// Lazy load large/interactive components
+const ToolLoaderSkeleton = () => (
+    <div className="flex flex-col h-[600px] w-full bg-gray-50/50 animate-pulse p-6 gap-6">
+        <div className="h-16 w-full bg-gray-200 rounded-2xl mb-4" />
+        <div className="flex-1 w-full bg-gray-200 rounded-[2.5rem]" />
+        <div className="h-20 w-full bg-gray-200 rounded-3xl mt-4" />
+    </div>
+);
+
 // Lazy load large/interactive components
 const SignPdfTool = dynamic(() => import('./SignPdfTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const CropPdfTool = dynamic(() => import('./CropPdfTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const InvoiceOcrTool = dynamic(() => import('./tools/InvoiceOcrTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const BarcodeGeneratorTool = dynamic(() => import('./tools/BarcodeGeneratorTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const PdfToCsvTool = dynamic(() => import('./tools/PdfToCsvTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const PhishingDetectorTool = dynamic(() => import('./tools/PhishingDetectorTool'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const XRechnungViewer = dynamic(() => import('./tools/XRechnungViewer'), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 const PdfToUblTool = dynamic(() => import('./tools/PdfToUblTool').then(mod => mod.PdfToUblTool), {
     ssr: false,
-    loading: () => <div className="flex items-center justify-center p-20"><RefreshCcw className="animate-spin text-canada-red" /></div>
+    loading: () => <ToolLoaderSkeleton />
 });
 
 
@@ -108,9 +115,9 @@ const SortableThumbnail: React.FC<{
 
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}
-            className={`relative cursor-grab active:cursor-grabbing touch-none ${isDragging ? 'scale-105 shadow-2xl z-50' : 'z-1'}`}
+            className={`relative cursor-grab active:cursor-grabbing touch-none transition-all duration-200 ${isDragging ? 'scale-110 shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-50' : 'z-1 hover:scale-[1.02]'}`}
         >
-            <div className="absolute top-2 left-2 z-10 w-8 h-8 bg-canada-red text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg border-2 border-white">
+            <div className="absolute top-2 left-2 z-[31] w-10 h-10 bg-canada-red text-white rounded-full flex items-center justify-center text-base font-black shadow-lg border-4 border-white">
                 {position}
             </div>
             {/* Enlarged Drag Handle for Mobile */}
@@ -157,8 +164,17 @@ const SortableFileItem: React.FC<{
                 <p className="font-medium truncate text-gray-900 dark:text-white max-w-[200px] md:max-w-md">{file.name}</p>
                 <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
             </div>
-            <button onClick={(e) => { e.stopPropagation(); onRemove(id); }} className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-500 rounded-lg transition-colors shrink-0" onPointerDown={e => e.stopPropagation()}>
-                <X size={20} />
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    triggerHaptic('light'); // Feedback on remove
+                    onRemove(id);
+                }}
+                className="w-12 h-12 flex items-center justify-center hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-600 rounded-xl transition-colors shrink-0 active:scale-90"
+                onPointerDown={e => e.stopPropagation()}
+                aria-label="Remove file"
+            >
+                <X size={24} />
             </button>
         </div>
     );
@@ -276,7 +292,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
         const tool = tools.find(t => t.tool === currentTool);
         return (
             <div
-                className={`flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/${isDesktop ? '95' : '60'} border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-700 active:scale-[0.99] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover`}
+                className={`flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center cursor-pointer group m-4 md:m-8 rounded-[3rem] bg-white/${isDesktop ? '95' : '60'} border-2 border-dashed border-gray-200/50 hover:border-canada-red/40 transition-all duration-700 active:scale-[0.99] active:shadow-[0_0_30px_rgba(220,38,38,0.1)] relative overflow-hidden group/drop shadow-bento hover:shadow-bento-hover`}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                     e.preventDefault();
@@ -284,7 +300,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         processFile(e.dataTransfer.files[0]);
                     }
                 }}
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() => { triggerHaptic('light'); fileInputRef.current?.click(); }}
             >
                 {/* Dynamic Background Glow - Disabled on Desktop */}
                 {!isDesktop && <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/0 group-hover/drop:from-red-500/5 group-hover/drop:to-orange-500/5 transition-all duration-1000 pointer-events-none" />}
@@ -315,7 +331,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
                 <div className="mt-14 group-hover/drop:translate-y-[-8px] transition-transform duration-700">
                     <div className="bg-modern-neutral-900 hover:bg-black text-white px-14 py-6 rounded-full font-black text-lg shadow-2xl shadow-modern-neutral-900/20 flex items-center gap-4 transition-all">
-                        <Plus size={24} strokeWidth={4} />
+                        <div className="animate-pulse-slow">
+                            <Plus size={24} strokeWidth={4} />
+                        </div>
                         {t.selectFile}
                     </div>
                 </div>
@@ -374,16 +392,16 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     </button>
                 </div>
 
-                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-[70]">
+                <div className="fixed left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-[70]" style={{ bottom: 'max(32px, calc(env(safe-area-inset-bottom) + 12px))' }}>
                     <div className={`bg-white/${isDesktop ? '100' : '95'} border border-modern-glassBorder p-4 rounded-[2.5rem] shadow-glass flex gap-3 animate-slide-up`}>
                         <button
-                            onClick={onSoftReset}
+                            onClick={() => { triggerHaptic('light'); onSoftReset(); }}
                             className="flex-1 px-8 py-4 rounded-full bg-gray-100 text-gray-900 font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition-all active:scale-95"
                         >
                             {t.btnCancel || 'Cancel'}
                         </button>
                         <button
-                            onClick={() => onAction()}
+                            onClick={() => { triggerHaptic('medium'); onAction(); }}
                             disabled={files.length < 2}
                             aria-label="Merge PDF files into one document"
                             className="flex-[2] px-8 py-4 rounded-full bg-canada-red text-white font-bold text-sm uppercase tracking-widest hover:bg-canada-darkRed transition-all active:scale-95 disabled:opacity-30 disabled:grayscale shadow-xl shadow-red-500/10"
@@ -482,8 +500,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                         )}
                                     </div>
 
-                                    {/* Quick Actions for Mobile */}
-                                    <div className="flex gap-2 mb-4 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+                                    {/* Quick Actions (Hidden on Mobile, moved to bottom bar) */}
+                                    <div className="hidden md:flex gap-2 mb-4 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
                                         <button
                                             onClick={() => {
                                                 triggerHaptic('light');
@@ -543,7 +561,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
 
 
                             {currentTool === ToolType.ROTATE && (
-                                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 pt-2">
+                                <div className="hidden md:flex items-center justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide sticky top-0 bg-gray-50/95 pt-2">
                                     <button onClick={() => rotateAll('left')} className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2.5 md:py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-canada-red/50 hover:text-canada-red active:scale-95 active:border-canada-red active:text-canada-red active:bg-red-50 transition-all text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap min-h-[44px]">
                                         <RotateCcw size={16} /> <span className="hidden sm:inline">{t.rotateAllLeft}</span><span className="sm:hidden">Left</span>
                                     </button>
@@ -605,7 +623,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div
                             className={`grid gap-3 md:gap-4 lg:gap-6 transition-all duration-300 w-full ${isDesktop ? 'p-2' : ''}`}
                             style={{
-                                gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom)}px, 1fr))`
+                                gridTemplateColumns: isDesktop
+                                    ? `repeat(auto-fill, minmax(${Math.max(minThumbnailWidth, baseThumbnailWidth * previewZoom)}px, 1fr))`
+                                    : 'repeat(2, 1fr)'
                             }}
                         >
                             {Array.from({ length: pageCount }).map((_, idx) => (
@@ -710,53 +730,59 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                                 <p className="text-sm text-gray-500">{t.selectCompression || "Choose how much to reduce file size"}</p>
                             </div>
 
-                            <div className="grid grid-cols-1 gap-3 md:gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 <button
                                     onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('good'); }}
-                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'good' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                                    className={`relative p-4 rounded-2xl border-2 text-left transition-all active:scale-[0.98] flex flex-col items-center text-center gap-3 ${compressionLevel === 'good' ? 'border-canada-red bg-red-50 shadow-md ring-1 ring-canada-red' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
                                 >
-                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'good' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
-                                        <FileSearch size={24} />
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${compressionLevel === 'good' ? 'bg-canada-red text-white' : 'bg-gray-100 text-gray-400'}`}>
+                                        <FileSearch size={20} />
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="font-black text-gray-900 text-base md:text-lg">{t.compressGood || 'Good Quality'}</div>
-                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressGoodDesc || 'Best quality, selectable text preserved'}</div>
-                                        <div className="text-[10px] font-bold text-green-600 mt-1 uppercase tracking-wider">~10-30% smaller</div>
+                                    <div>
+                                        <div className="font-bold text-gray-900 text-sm">{t.compressGood || 'Good'}</div>
+                                        <div className="text-[10px] font-bold text-green-600 mt-0.5 uppercase tracking-wide">~20% smaller</div>
                                     </div>
-                                    {compressionLevel === 'good' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
+                                    {compressionLevel === 'good' && (
+                                        <div className="absolute top-3 right-3 text-canada-red">
+                                            <div className="w-2 h-2 rounded-full bg-canada-red ring-2 ring-red-100" />
+                                        </div>
+                                    )}
                                 </button>
 
                                 <button
                                     onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('balanced'); }}
-                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                                    className={`relative p-4 rounded-2xl border-2 text-left transition-all active:scale-[0.98] flex flex-col items-center text-center gap-3 ${compressionLevel === 'balanced' ? 'border-canada-red bg-red-50 shadow-md ring-1 ring-canada-red z-10' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
                                 >
-                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'balanced' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
-                                        <FileSearch size={24} />
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${compressionLevel === 'balanced' ? 'bg-canada-red text-white' : 'bg-gray-100 text-gray-400'}`}>
+                                        <FileSearch size={20} />
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="font-black text-gray-900 text-base md:text-lg flex items-center gap-2">
-                                            {t.compressBalanced || 'Balanced'}
-                                            <span className="text-[10px] font-bold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full uppercase">Recommended</span>
+                                    <div>
+                                        <div className="font-bold text-gray-900 text-sm">{t.compressBalanced || 'Balanced'}</div>
+                                        <div className="text-[10px] font-bold text-orange-500 mt-0.5 uppercase tracking-wide">~50% smaller</div>
+                                    </div>
+                                    {compressionLevel === 'balanced' && (
+                                        <div className="absolute top-3 right-3 text-canada-red">
+                                            <div className="w-2 h-2 rounded-full bg-canada-red ring-2 ring-red-100" />
                                         </div>
-                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressBalancedDesc || 'Good quality, optimized for sharing'}</div>
-                                        <div className="text-[10px] font-bold text-orange-600 mt-1 uppercase tracking-wider">~40-60% smaller</div>
-                                    </div>
-                                    {compressionLevel === 'balanced' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
+                                    )}
                                 </button>
 
                                 <button
                                     onClick={() => { triggerHaptic('light'); setCompressionLevel && setCompressionLevel('extreme'); }}
-                                    className={`p-5 md:p-6 rounded-2xl border-2 text-left transition-all active:scale-[0.98] min-h-[88px] flex items-center gap-4 ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50 shadow-lg shadow-red-500/10' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                                    className={`relative p-4 rounded-2xl border-2 text-left transition-all active:scale-[0.98] flex flex-col items-center text-center gap-3 ${compressionLevel === 'extreme' ? 'border-canada-red bg-red-50 shadow-md ring-1 ring-canada-red' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
                                 >
-                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${compressionLevel === 'extreme' ? 'bg-canada-red text-white' : 'bg-gray-200 text-gray-500'}`}>
-                                        <FileSearch size={24} />
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${compressionLevel === 'extreme' ? 'bg-canada-red text-white' : 'bg-gray-100 text-gray-400'}`}>
+                                        <FileSearch size={20} />
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="font-black text-gray-900 text-base md:text-lg">{t.compressExtreme || 'Maximum Compression'}</div>
-                                        <div className="text-xs md:text-sm text-gray-500 mt-0.5">{t.compressExtremeDesc || 'Smallest size, images may lose detail'}</div>
-                                        <div className="text-[10px] font-bold text-red-600 mt-1 uppercase tracking-wider">~70-90% smaller</div>
+                                    <div>
+                                        <div className="font-bold text-gray-900 text-sm">{t.compressExtreme || 'Extreme'}</div>
+                                        <div className="text-[10px] font-bold text-red-600 mt-0.5 uppercase tracking-wide">~80% smaller</div>
                                     </div>
-                                    {compressionLevel === 'extreme' && <div className="w-6 h-6 bg-canada-red rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white rounded-full" /></div>}
+                                    {compressionLevel === 'extreme' && (
+                                        <div className="absolute top-3 right-3 text-canada-red">
+                                            <div className="w-2 h-2 rounded-full bg-canada-red ring-2 ring-red-100" />
+                                        </div>
+                                    )}
                                 </button>
                             </div>
 
@@ -868,11 +894,69 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             </div>
 
             {/* Footer Action - Hidden for Sign Tool as it has its own sidebar/modal actions */}
-            {isSignTool || isCropTool || isCsvTool || isPhishingTool || isInvoiceTool ? null : (
+            {isSignTool || isCropTool || isCsvTool || isPhishingTool || isInvoiceTool || isPdfToUblTool ? null : (
                 <div
-                    className="p-3 md:p-4 border-t border-gray-100 bg-white"
+                    className="p-3 md:p-4 border-t border-gray-100 bg-white/95 backdrop-blur-md z-[60]"
                     style={{ paddingBottom: 'max(12px, calc(env(safe-area-inset-bottom) + 12px))' }}
                 >
+                    {/* Mobile Quick Actions Bar */}
+                    {!isDesktop && isPageSelectionTool && (
+                        <div className="flex gap-2 mb-3 overflow-x-auto pb-1 scrollbar-hide px-1">
+                            {currentTool !== ToolType.ROTATE ? (
+                                <>
+                                    <button
+                                        onClick={() => {
+                                            triggerHaptic('light');
+                                            const allPages = new Set(Array.from({ length: pageCount }, (_, i) => i));
+                                            setSelectedPages(allPages);
+                                        }}
+                                        className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-red-50 active:border-canada-red/30 transition-all uppercase tracking-wider"
+                                    >
+                                        {t.selectAll || 'All'}
+                                    </button>
+                                    <button
+                                        onClick={() => { triggerHaptic('light'); setSelectedPages(new Set()); }}
+                                        className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-gray-100 transition-all uppercase tracking-wider"
+                                    >
+                                        {t.selectNone || 'None'}
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            triggerHaptic('light');
+                                            const oddPages = new Set(Array.from({ length: pageCount }, (_, i) => i).filter(i => i % 2 === 0));
+                                            setSelectedPages(oddPages);
+                                        }}
+                                        className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-red-50 active:border-canada-red/30 transition-all uppercase tracking-wider"
+                                    >
+                                        {t.selectOdd || 'Odd'}
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            triggerHaptic('light');
+                                            const evenPages = new Set(Array.from({ length: pageCount }, (_, i) => i).filter(i => i % 2 === 1));
+                                            setSelectedPages(evenPages);
+                                        }}
+                                        className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-red-50 active:border-canada-red/30 transition-all uppercase tracking-wider"
+                                    >
+                                        {t.selectEven || 'Even'}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button onClick={() => { triggerHaptic('light'); rotateAll('left'); }} className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-red-50 active:border-canada-red/30 transition-all uppercase tracking-wider">
+                                        <RotateCcw size={14} /> {t.rotateAllLeft || 'Left'}
+                                    </button>
+                                    <button onClick={() => { triggerHaptic('light'); rotateAll('right'); }} className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-red-50 active:border-canada-red/30 transition-all uppercase tracking-wider">
+                                        <RotateCw size={14} /> {t.rotateAllRight || 'Right'}
+                                    </button>
+                                    <button onClick={() => { triggerHaptic('light'); resetRotations(); }} className="flex items-center gap-1.5 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-black text-gray-700 whitespace-nowrap active:bg-gray-100 transition-all uppercase tracking-wider">
+                                        <RefreshCcw size={14} /> {t.resetRotations || 'Reset'}
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    )}
+
                     <button
                         onClick={() => {
                             triggerHaptic('medium'); // Haptic for primary action

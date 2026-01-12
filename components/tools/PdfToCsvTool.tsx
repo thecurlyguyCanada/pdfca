@@ -173,27 +173,27 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-1 md:flex items-center gap-3 w-full md:w-auto">
                         <button
                             onClick={() => handleDownload('xlsx')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95"
+                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95 w-full md:w-auto"
                         >
-                            <FileSpreadsheet size={18} /> Excel
+                            <FileSpreadsheet size={20} /> Excel
                         </button>
                         <button
                             onClick={() => handleDownload('csv')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-modern-neutral-900 hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95"
+                            className="bg-modern-neutral-900 hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 w-full md:w-auto"
                         >
-                            <FileText size={18} /> CSV
+                            <FileText size={20} /> CSV
                         </button>
                         <button
                             onClick={() => handleDownload('qbo')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-canada-red hover:bg-canada-darkRed disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-red-500/20 transition-all active:scale-95"
+                            className="bg-canada-red hover:bg-canada-darkRed disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 transition-all active:scale-95 w-full md:w-auto"
                         >
-                            <Download size={18} /> QBO
+                            <Download size={20} /> QBO
                         </button>
                     </div>
                 </div>
@@ -207,9 +207,17 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                 `}>
                     <div className="p-6 space-y-8 min-w-[320px]">
                         <div>
-                            <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                                <Settings2 size={14} /> {t.pdfToCsv?.extractionOptions || "Extraction Options"}
-                            </h3>
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                                    <Settings2 size={14} /> {t.pdfToCsv?.extractionOptions || "Extraction Options"}
+                                </h3>
+                                <button
+                                    onClick={() => setShowOptions(false)}
+                                    className="md:hidden p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200"
+                                >
+                                    <ChevronDown size={16} />
+                                </button>
+                            </div>
 
                             <div className="space-y-4">
                                 <label className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-canada-red transition-all group">

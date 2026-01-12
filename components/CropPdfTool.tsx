@@ -305,6 +305,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                                         height: (cropBox.height / 100) * canvasRef.current.height
                                     }}
                                     onDragStop={(e, d) => {
+                                        triggerHaptic('light');
                                         if (!canvasRef.current) return;
                                         setCropBox(prev => ({
                                             ...prev,
@@ -313,6 +314,7 @@ export const CropPdfTool: React.FC<CropPdfToolProps> = ({
                                         }));
                                     }}
                                     onResizeStop={(e, direction, ref, delta, position) => {
+                                        triggerHaptic('medium');
                                         if (!canvasRef.current) return;
                                         setCropBox({
                                             width: (ref.offsetWidth / canvasRef.current!.width) * 100,

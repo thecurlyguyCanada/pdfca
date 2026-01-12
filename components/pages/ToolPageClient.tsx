@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ToolInterface } from '@/components/ToolInterface';
+import { SuccessOverlay } from '@/components/SuccessOverlay';
 import { translations, Language } from '@/utils/i18n';
 import { AppState, ToolType } from '@/utils/types';
 import { UI_CONFIG } from '@/config/ui';
@@ -54,6 +55,7 @@ interface ToolPageClientProps {
 
 export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [appState, setAppState] = useState<AppState>(AppState.SELECTING);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [pageCount, setPageCount] = useState<number>(0);
@@ -290,7 +292,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     setRotations({});
     setPageOrder([]);
     setDownloadUrl(null);
-    setDownloadName('');
     setDownloadName('');
     setErrorKey(null);
     setErrorMessage(null);
@@ -536,6 +537,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        setShowSuccess(true);
       }
 
     } catch (error) {
@@ -617,6 +619,15 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Success Overlay */}
+      {showSuccess && (
+        <SuccessOverlay
+          onReset={() => { setShowSuccess(false); onSoftReset(); }}
+          message={t.successTitle || "Success!"}
+          subMessage={t.successMessage || "Your file became 100% awesome."}
+        />
       )}
 
       {/* Loading Overlay */}

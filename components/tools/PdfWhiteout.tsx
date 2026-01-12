@@ -324,7 +324,7 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
                             </p>
                             <p className="text-sm">{lang === 'fr' ? 'ou glissez-déposez votre fichier ici' : (lang === 'pt' ? 'ou arraste e solte seu arquivo aqui' : 'or drag and drop your file here')}</p>
                         </div>
-                        <input type="file" className="hidden" accept=".pdf,application/pdf" onChange={handleFileChange} disabled={isLoading} />
+                        <input type="file" className="hidden" aria-label={(t as any).uploadFile || "Upload PDF File"} accept=".pdf,application/pdf" onChange={handleFileChange} disabled={isLoading} />
                     </label>
                 </div>
             )}
@@ -336,26 +336,26 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
                     {/* Toolbar */}
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-wrap items-center justify-between gap-4 sticky top-4 z-20">
                         <div className="flex items-center gap-4">
-                            <button onClick={resetFile} className="p-2 hover:bg-red-50 text-gray-500 hover:text-red-600 rounded-lg transition-colors" title="Close/Reset">
+                            <button onClick={resetFile} aria-label={(t as any).close || "Close"} className="p-2 hover:bg-red-50 text-gray-500 hover:text-red-600 rounded-lg transition-colors" title="Close/Reset">
                                 <X size={20} />
                             </button>
 
                             <div className="h-8 w-px bg-gray-200 hidden md:block"></div>
 
                             <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1">
-                                <button disabled={currPage <= 1} onClick={() => setCurrPage(p => p - 1)} className="p-1.5 hover:bg-white rounded-md disabled:opacity-30 transition-all shadow-sm">
+                                <button disabled={currPage <= 1} onClick={() => setCurrPage(p => p - 1)} aria-label={(t as any).prevPage || "Previous Page"} className="p-1.5 hover:bg-white rounded-md disabled:opacity-30 transition-all shadow-sm">
                                     <ChevronLeft size={18} />
                                 </button>
                                 <span className="text-xs font-bold w-20 text-center">{currPage} / {numPages}</span>
-                                <button disabled={currPage >= numPages} onClick={() => setCurrPage(p => p + 1)} className="p-1.5 hover:bg-white rounded-md disabled:opacity-30 transition-all shadow-sm">
+                                <button disabled={currPage >= numPages} onClick={() => setCurrPage(p => p + 1)} aria-label={(t as any).nextPage || "Next Page"} className="p-1.5 hover:bg-white rounded-md disabled:opacity-30 transition-all shadow-sm">
                                     <ChevronRight size={18} />
                                 </button>
                             </div>
 
                             <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1">
-                                <button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"><ZoomOut size={18} /></button>
+                                <button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} aria-label={(t as any).zoomOut || "Zoom Out"} className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"><ZoomOut size={18} /></button>
                                 <span className="text-xs font-bold w-12 text-center">{Math.round(scale * 100)}%</span>
-                                <button onClick={() => setScale(s => Math.min(3.0, s + 0.25))} className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"><ZoomIn size={18} /></button>
+                                <button onClick={() => setScale(s => Math.min(3.0, s + 0.25))} aria-label={(t as any).zoomIn || "Zoom In"} className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"><ZoomIn size={18} /></button>
                             </div>
                         </div>
 
@@ -363,6 +363,7 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
                             <button
                                 onClick={applyWhiteout}
                                 disabled={!selection || isApplying}
+                                aria-label={t.toolFlatten || "Apply Whiteout"}
                                 className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg ${selection && !isApplying
                                     ? 'bg-red-600 text-white hover:bg-red-700 hover:shadow-red-500/20 active:scale-95'
                                     : 'bg-gray-100 text-gray-400 cursor-not-allowed'
@@ -374,6 +375,7 @@ export default function PdfWhiteout({ lang }: PdfWhiteoutProps) {
 
                             <button
                                 onClick={downloadPdf}
+                                aria-label={t.download || "Download"}
                                 className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl font-bold text-sm hover:bg-black transition-all shadow-lg hover:shadow-gray-900/20 active:scale-95"
                             >
                                 <Download size={18} />

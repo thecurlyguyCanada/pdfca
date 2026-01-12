@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Trash2, FileText, RotateCw } from 'lucide-react';
+import { Trash2, FileText, RotateCw, Check } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
 
 interface PdfPageThumbnailProps {
@@ -186,6 +186,13 @@ const PdfPageThumbnailComponent: React.FC<PdfPageThumbnailProps> = ({
       aria-label={`${mode === 'delete' ? 'Delete' : 'Rotate'} page ${pageIndex + 1}`}
       aria-pressed={isSelected}
     >
+      {/* Selection Badge - Top Right */}
+      {isSelected && (mode === 'delete' || mode === 'select') && (
+        <div className="absolute top-2 right-2 bg-canada-red text-white w-7 h-7 rounded-full shadow-lg z-40 flex items-center justify-center animate-in zoom-in duration-200 border-2 border-white">
+          <Check size={16} strokeWidth={4} />
+        </div>
+      )}
+
       {/* Canvas for PDF Page - Wrapped for Rotation */}
       <div
         className="w-full h-full flex items-center justify-center transition-transform duration-300 ease-out p-1"

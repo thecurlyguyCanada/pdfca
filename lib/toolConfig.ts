@@ -9,6 +9,7 @@ export interface ToolConfig {
   keywords: Record<Locale, string[]>;
   accept?: string;
   i18nKey?: string;
+  featureList?: Record<Locale, string[]>;
 }
 
 export const TOOL_CONFIGS: ToolConfig[] = [
@@ -87,7 +88,12 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'comprimir pdf online'
       ]
     },
-    accept: '.pdf,application/pdf'
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Reduce PDF size by up to 90%', 'Three compression levels', 'Maintain document quality', 'Batch compression support'],
+      fr: ['Réduisez la taille PDF jusqu\'à 90%', 'Trois niveaux de compression', 'Maintenez la qualité qualité', 'Support compression par lot'],
+      pt: ['Reduza tamanho PDF até 90%', 'Três níveis de compressão', 'Mantenha qualidade documento', 'Suporte compressão em lote']
+    }
   },
   {
     slug: 'merge-pdf',
@@ -108,7 +114,12 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       fr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
       pt: ['juntar pdf', 'combinar pdf', 'unir pdf', 'mesclar pdf']
     },
-    accept: '.pdf,application/pdf'
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Combine unlimited PDFs', 'Drag and drop reordering', 'Client-side merging', 'No file size limits'],
+      fr: ['Combinez PDFs illimités', 'Réorganisation glisser-déposer', 'Fusion côté client', 'Aucune limite de taille'],
+      pt: ['Combine PDFs ilimitados', 'Reordenação arrastar e soltar', 'Fusão lado do cliente', 'Sem limites de tamanho']
+    }
   },
   {
     slug: 'split-pdf',
@@ -129,7 +140,12 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       fr: ['diviser PDF', 'séparer PDF', 'extraire pages PDF'],
       pt: ['dividir pdf', 'separar pdf', 'extrair páginas pdf']
     },
-    accept: '.pdf,application/pdf'
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Split by page ranges', 'Extract individual pages', 'Instant local processing', 'Secure splitting'],
+      fr: ['Diviser par plages de pages', 'Extraire pages individuelles', 'Traitement local instantané', 'Division sécurisée'],
+      pt: ['Dividir por intervalos', 'Extrair páginas individuais', 'Processamento local instantâneo', 'Divisão segura']
+    }
   },
   {
     slug: 'extract-pdf-pages',
@@ -419,7 +435,12 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'converter pdf word online'
       ]
     },
-    accept: '.pdf,application/pdf'
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Convert PDF to editable DOCX', 'Preserve formatting and layout', 'Extract text accurately', 'Works with scanned PDFs'],
+      fr: ['Convertir PDF en DOCX modifiable', 'Préserver formatage et mise en page', 'Extraire texte avec précision', 'Fonctionne avec PDF scannés'],
+      pt: ['Converter PDF para DOCX editável', 'Preservar formatação e layout', 'Extrair texto com precisão', 'Funciona com PDFs digitalizados']
+    }
   },
   {
     slug: 'word-to-pdf',

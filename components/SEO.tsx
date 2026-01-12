@@ -37,6 +37,7 @@ interface SEOProps {
   quickAnswer?: QuickAnswer;
   author?: Author;
   mentions?: { name: string; url?: string; sameAs?: string }[];
+  featureList?: string[];
   // Video support for enhanced SERP features
   video?: {
     name: string;
@@ -73,7 +74,8 @@ export function SEO({
   quickAnswer,
   author,
   mentions,
-  video
+  video,
+  featureList
 }: SEOProps) {
   const allSchemas: Record<string, any>[] = [];
   const t = translations[lang];
@@ -191,7 +193,7 @@ export function SEO({
       "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
       "permissions": "Local file access only - no server uploads",
       // 2026: Expanded featureList for AI agents to understand capabilities
-      "featureList": [
+      "featureList": featureList || [
         "Local PDF processing",
         "No server uploads",
         "PIPEDA compliant",

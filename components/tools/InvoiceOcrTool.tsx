@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Scan, FileSpreadsheet, Copy, Check, Loader2, RefreshCw, AlertTriangle, FileText, FileJson } from 'lucide-react';
+import { Scan, FileSpreadsheet, Copy, Check, Loader2, RefreshCw, AlertTriangle, FileText, FileJson, ChevronDown } from 'lucide-react';
 import { InvoiceData } from '@/utils/types';
 import { extractInvoiceData, initPdfWorker } from '@/utils/pdfUtils';
 import { triggerHaptic } from '@/utils/haptics';
@@ -341,6 +341,30 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
         );
     }
 
+    const AccordionItem: React.FC<{
+        title: string;
+        isOpen: boolean;
+        onToggle: () => void;
+        children: React.ReactNode;
+    }> = ({ title, isOpen, onToggle, children }) => (
+        <div className="border border-gray-100 rounded-xl overflow-hidden bg-white dark:bg-gray-800">
+            <button
+                onClick={onToggle}
+                className="w-full px-4 py-3 bg-gray-50/50 flex items-center justify-between font-bold text-gray-700 text-sm active:bg-gray-100"
+            >
+                {title}
+                <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+                    <ChevronDown size={16} />
+                </span>
+            </button>
+            {isOpen && <div className="p-4 space-y-4 animate-slide-down">{children}</div>}
+        </div>
+    );
+
+    // Inside Component
+    const [openSection, setOpenSection] = useState<string>('basic');
+    // ...
+
     return (
         <div className="flex flex-col lg:flex-row h-full gap-6 p-4 md:p-6 bg-gray-50 dark:bg-gray-900" ref={containerRef}>
             {/* Left: Preview */}
@@ -350,14 +374,11 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                 ) : (
                     <Loader2 className="animate-spin text-gray-400" />
                 )}
-
-                {/* Tesseract Badge if needed */}
-                {/* Could show overlay here */}
             </div>
 
             {/* Right: Data Form */}
-            <div className="w-full lg:w-[400px] flex flex-col gap-4">
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col gap-4 h-full">
+            <div className="w-full lg:w-[400px] flex flex-col gap-4 overflow-y-auto pb-20 custom-scrollbar">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col gap-4">
                     <div className="flex items-center justify-between mb-2">
                         <h3 className="font-bold text-xl flex items-center gap-2">
                             <Scan className="text-canada-red" />
@@ -387,172 +408,191 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                         </button>
                     </div>
 
-                    {/* Fields */}
-                    <div className="space-y-4 flex-1">
-                        <div>
-                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
-                                <input
-                                    type="checkbox"
-                                    checked={selectedFields.has('vendor')}
-                                    onChange={() => toggleFieldSelection('vendor')}
-                                    className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
-                                />
-                                {t.invoiceOcr?.fieldVendor || "Vendor"}
-                            </label>
-                            <input
-                                type="text"
-                                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-medium"
-                                value={data?.vendor || ''}
-                                onChange={(e) => setData(prev => prev ? ({ ...prev, vendor: e.target.value }) : null)}
-                                placeholder="Detected Vendor"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
-                                <input
-                                    type="checkbox"
-                                    checked={selectedFields.has('id')}
-                                    onChange={() => toggleFieldSelection('id')}
-                                    className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
-                                />
-                                {t.invoiceOcr?.fieldId || "Invoice ID"}
-                            </label>
-                            <input
-                                type="text"
-                                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-lg"
-                                value={data?.id || ''}
-                                onChange={(e) => setData(prev => prev ? ({ ...prev, id: e.target.value }) : null)}
-                                placeholder="INV-000"
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
+                    {/* Accordion Layout */}
+                    <div className="space-y-3">
+                        <AccordionItem
+                            title={t.invoiceOcr?.sectionBasic || "Basic Info"}
+                            isOpen={openSection === 'basic'}
+                            onToggle={() => { triggerHaptic('light'); setOpenSection(openSection === 'basic' ? '' : 'basic'); }}
+                        >
+                            {/* Vendor */}
                             <div>
                                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
                                     <input
                                         type="checkbox"
-                                        checked={selectedFields.has('date')}
-                                        onChange={() => toggleFieldSelection('date')}
+                                        checked={selectedFields.has('vendor')}
+                                        onChange={() => toggleFieldSelection('vendor')}
                                         className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
                                     />
-                                    Invoice Date
+                                    {t.invoiceOcr?.fieldVendor || "Vendor"}
                                 </label>
                                 <input
                                     type="text"
-                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
-                                    value={data?.date || ''}
-                                    onChange={(e) => setData(prev => prev ? ({ ...prev, date: e.target.value }) : null)}
-                                    placeholder="YYYY-MM-DD"
+                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-medium"
+                                    value={data?.vendor || ''}
+                                    onChange={(e) => setData(prev => prev ? ({ ...prev, vendor: e.target.value }) : null)}
+                                    placeholder="Detected Vendor"
                                 />
                             </div>
+
+                            {/* ID */}
                             <div>
                                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
                                     <input
                                         type="checkbox"
-                                        checked={selectedFields.has('dueDate')}
-                                        onChange={() => toggleFieldSelection('dueDate')}
+                                        checked={selectedFields.has('id')}
+                                        onChange={() => toggleFieldSelection('id')}
                                         className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
                                     />
-                                    Due Date
+                                    {t.invoiceOcr?.fieldId || "Invoice ID"}
                                 </label>
                                 <input
                                     type="text"
-                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
-                                    value={data?.dueDate || ''}
-                                    onChange={(e) => setData(prev => prev ? ({ ...prev, dueDate: e.target.value }) : null)}
-                                    placeholder="YYYY-MM-DD"
+                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-lg"
+                                    value={data?.id || ''}
+                                    onChange={(e) => setData(prev => prev ? ({ ...prev, id: e.target.value }) : null)}
+                                    placeholder="INV-000"
                                 />
                             </div>
-                        </div>
+                        </AccordionItem>
 
-                        <div>
-                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                        <AccordionItem
+                            title={t.invoiceOcr?.sectionDates || "Dates & PO"}
+                            isOpen={openSection === 'dates'}
+                            onToggle={() => { triggerHaptic('light'); setOpenSection(openSection === 'dates' ? '' : 'dates'); }}
+                        >
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedFields.has('date')}
+                                            onChange={() => toggleFieldSelection('date')}
+                                            className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                        />
+                                        Invoice Date
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
+                                        value={data?.date || ''}
+                                        onChange={(e) => setData(prev => prev ? ({ ...prev, date: e.target.value }) : null)}
+                                        placeholder="YYYY-MM-DD"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedFields.has('dueDate')}
+                                            onChange={() => toggleFieldSelection('dueDate')}
+                                            className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                        />
+                                        Due Date
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
+                                        value={data?.dueDate || ''}
+                                        onChange={(e) => setData(prev => prev ? ({ ...prev, dueDate: e.target.value }) : null)}
+                                        placeholder="YYYY-MM-DD"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedFields.has('poNumber')}
+                                        onChange={() => toggleFieldSelection('poNumber')}
+                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                    />
+                                    PO Number
+                                </label>
                                 <input
-                                    type="checkbox"
-                                    checked={selectedFields.has('poNumber')}
-                                    onChange={() => toggleFieldSelection('poNumber')}
-                                    className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                    type="text"
+                                    className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-mono"
+                                    value={data?.poNumber || ''}
+                                    onChange={(e) => setData(prev => prev ? ({ ...prev, poNumber: e.target.value }) : null)}
+                                    placeholder="PO-12345"
                                 />
-                                PO Number
-                            </label>
-                            <input
-                                type="text"
-                                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-mono"
-                                value={data?.poNumber || ''}
-                                onChange={(e) => setData(prev => prev ? ({ ...prev, poNumber: e.target.value }) : null)}
-                                placeholder="PO-12345"
-                            />
-                        </div>
+                            </div>
+                        </AccordionItem>
 
-                        <div className="grid grid-cols-3 gap-3">
-                            <div>
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedFields.has('subtotal')}
-                                        onChange={() => toggleFieldSelection('subtotal')}
-                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
-                                    />
-                                    Subtotal
-                                </label>
-                                <div className="relative">
-                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
-                                    <input
-                                        type="number"
-                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
-                                        value={data?.subtotal || ''}
-                                        onChange={(e) => setData(prev => prev ? ({ ...prev, subtotal: parseFloat(e.target.value) }) : null)}
-                                        placeholder="0.00"
-                                    />
+                        <AccordionItem
+                            title={t.invoiceOcr?.sectionFinancials || "Financials"}
+                            isOpen={openSection === 'financials'}
+                            onToggle={() => { triggerHaptic('light'); setOpenSection(openSection === 'financials' ? '' : 'financials'); }}
+                        >
+                            <div className="grid grid-cols-1 gap-3">
+                                <div>
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedFields.has('subtotal')}
+                                            onChange={() => toggleFieldSelection('subtotal')}
+                                            className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                        />
+                                        Subtotal
+                                    </label>
+                                    <div className="relative">
+                                        <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
+                                        <input
+                                            type="number"
+                                            className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
+                                            value={data?.subtotal || ''}
+                                            onChange={(e) => setData(prev => prev ? ({ ...prev, subtotal: parseFloat(e.target.value) }) : null)}
+                                            placeholder="0.00"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedFields.has('tax')}
+                                            onChange={() => toggleFieldSelection('tax')}
+                                            className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                        />
+                                        Tax
+                                    </label>
+                                    <div className="relative">
+                                        <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
+                                        <input
+                                            type="number"
+                                            className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
+                                            value={data?.tax || ''}
+                                            onChange={(e) => setData(prev => prev ? ({ ...prev, tax: parseFloat(e.target.value) }) : null)}
+                                            placeholder="0.00"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedFields.has('total')}
+                                            onChange={() => toggleFieldSelection('total')}
+                                            className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
+                                        />
+                                        Total
+                                    </label>
+                                    <div className="relative">
+                                        <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
+                                        <input
+                                            type="number"
+                                            className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-green-600"
+                                            value={data?.total || ''}
+                                            onChange={(e) => setData(prev => prev ? ({ ...prev, total: parseFloat(e.target.value) }) : null)}
+                                            placeholder="0.00"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedFields.has('tax')}
-                                        onChange={() => toggleFieldSelection('tax')}
-                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
-                                    />
-                                    Tax
-                                </label>
-                                <div className="relative">
-                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
-                                    <input
-                                        type="number"
-                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
-                                        value={data?.tax || ''}
-                                        onChange={(e) => setData(prev => prev ? ({ ...prev, tax: parseFloat(e.target.value) }) : null)}
-                                        placeholder="0.00"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2 mb-1">
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedFields.has('total')}
-                                        onChange={() => toggleFieldSelection('total')}
-                                        className="w-4 h-4 text-canada-red border-gray-300 rounded focus:ring-canada-red cursor-pointer"
-                                    />
-                                    Total
-                                </label>
-                                <div className="relative">
-                                    <span className="absolute left-2 top-3 text-gray-400 text-sm">{data?.currency || '$'}</span>
-                                    <input
-                                        type="number"
-                                        className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-green-600"
-                                        value={data?.total || ''}
-                                        onChange={(e) => setData(prev => prev ? ({ ...prev, total: parseFloat(e.target.value) }) : null)}
-                                        placeholder="0.00"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        </AccordionItem>
                     </div>
 
-                    {/* Actions */}
+                    {/* Actions - Keep existing */}
                     <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                         <div className="grid grid-cols-3 gap-2">
                             <button

@@ -311,7 +311,9 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
                 setLoading(false);
 
             } catch (err: any) {
-                console.error(err);
+                if (process.env.NODE_ENV === 'development') {
+                    console.error(err);
+                }
                 setError(err.message || t.errorParsingInvalid || "Unable to parse this file. It might not be a valid XRechnung/UBL XML.");
                 setLoading(false);
             }
@@ -370,12 +372,12 @@ export const XRechnungViewer: React.FC<XRechnungViewerProps> = ({ file, onClose,
 
                 {/* Fixed Toolbar */}
                 <div className="bg-gray-900 text-white p-4 flex justify-between items-center no-print sticky top-0 z-50 shadow-md">
-                    <button onClick={onClose} className="flex items-center gap-2 hover:bg-white/10 px-4 py-2 rounded-full transition-colors group">
+                    <button onClick={onClose} aria-label={t.back || "Back"} className="flex items-center gap-2 hover:bg-white/10 px-4 py-2 rounded-full transition-colors group">
                         <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
                         <span className="font-medium">{t.back || "Back"}</span>
                     </button>
                     <div className="flex gap-2">
-                        <button onClick={() => window.print()} className="flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 px-6 py-2 rounded-full transition-colors font-bold shadow-lg shadow-white/10 active:scale-95">
+                        <button onClick={() => window.print()} aria-label={t.print || "Print / PDF"} className="flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 px-6 py-2 rounded-full transition-colors font-bold shadow-lg shadow-white/10 active:scale-95">
                             <Printer size={18} />
                             <span className="hidden sm:inline">{t.print || "Print / PDF"}</span>
                         </button>

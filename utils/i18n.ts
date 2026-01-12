@@ -345,7 +345,7 @@ const en = {
       question: "How can I permanently rotate a PDF?",
       answer: "Use an online rotation tool to adjust page orientation (left or right) and save the changes permanently. Our tool is secure and handles rotation right in your browser.",
       tool: "Rotate PDF",
-      steps: ["Upload document", "Rotate pages visualy", "Save permanently"]
+      steps: ["Upload document", "Rotate pages visually", "Save permanently"]
     }
   },
   privatePdf: {

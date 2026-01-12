@@ -201,7 +201,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
         <div className="flex flex-col items-center justify-center h-full p-8 text-red-600 bg-red-50 rounded-xl m-4 border border-red-100">
             <AlertTriangle className="w-12 h-12 mb-4" />
             <p className="font-bold">{error}</p>
-            <button onClick={handleScan} className="mt-4 px-6 py-2 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition">{t.btnTryAgain || 'Try Again'}</button>
+            <button onClick={handleScan} aria-label={t.btnTryAgain || 'Try Again'} className="mt-4 px-6 py-2 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition">{t.btnTryAgain || 'Try Again'}</button>
         </div>
     );
 
@@ -255,7 +255,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                         </div>
                     </div>
 
-                    <button onClick={handleScan} className="p-2 hover:bg-gray-50 rounded-full text-gray-400 hover:text-gray-700 transition" title={ui.scan}>
+                    <button onClick={handleScan} aria-label={ui.scan || "Rescan PDF"} className="p-2 hover:bg-gray-50 rounded-full text-gray-400 hover:text-gray-700 transition" title={ui.scan}>
                         <RefreshCw size={18} />
                     </button>
                 </div>
@@ -264,12 +264,14 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                 <div className="flex border-b border-gray-100 px-6 shrink-0">
                     <button
                         onClick={() => setActiveTab('details')}
+                        aria-label="Invoice Details"
                         className={`py-3 mr-6 text-sm font-bold border-b-2 transition-colors ${activeTab === 'details' ? 'border-canada-red text-canada-red' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
                         Invoice Details
                     </button>
                     <button
                         onClick={() => setActiveTab('items')}
+                        aria-label="Line Items"
                         className={`py-3 mr-6 text-sm font-bold border-b-2 transition-colors ${activeTab === 'items' ? 'border-canada-red text-canada-red' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
                         Line Items ({data?.lineItems?.length || 0})
@@ -416,7 +418,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                                 <div className="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
                                     <h3 className="font-bold text-gray-700">{ui.items}</h3>
-                                    <button onClick={addLineItem} className="text-xs flex items-center gap-1 bg-canada-red text-white px-3 py-1.5 rounded-full font-bold hover:bg-canada-darkRed transition">
+                                    <button onClick={addLineItem} aria-label="Add Line Item" className="text-xs flex items-center gap-1 bg-canada-red text-white px-3 py-1.5 rounded-full font-bold hover:bg-canada-darkRed transition">
                                         <Plus size={12} /> Add Item
                                     </button>
                                 </div>
@@ -433,7 +435,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                                                         placeholder="Item description"
                                                     />
                                                 </div>
-                                                <button onClick={() => removeLineItem(idx)} className="mt-6 text-gray-300 hover:text-red-500 transition p-1">
+                                                <button onClick={() => removeLineItem(idx)} aria-label="Remove Line Item" className="mt-6 text-gray-300 hover:text-red-500 transition p-1">
                                                     <Trash size={16} />
                                                 </button>
                                             </div>
@@ -488,6 +490,7 @@ export const PdfToUblTool: React.FC<PdfToUblToolProps> = ({ file, pdfJsDoc, t })
                     <button
                         onClick={handleDownload}
                         disabled={!isValid}
+                        aria-label={ui.download || "Download UBL XML"}
                         className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isValid
                             ? 'bg-canada-red hover:bg-canada-darkRed text-white hover:scale-[1.01] active:scale-[0.99]'
                             : 'bg-gray-100 text-gray-400 cursor-not-allowed'
