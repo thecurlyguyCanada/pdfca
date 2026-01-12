@@ -9,6 +9,7 @@ import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AISnapshot } from '../../AISnapshot';
+import { ToolPromo } from '../../ToolPromo';
 
 interface GuideProps {
     lang: Language;
@@ -20,7 +21,7 @@ const getLocalContent = (lang: string) => ({
             title: "How to Convert AVIF to PDF & PDF to AVIF | Secure Modern Image Guide | pdfcanada.ca",
             desc: `Convert modern AVIF images to PDF or PDF to AVIF for maximum compatibility. Our ${CURRENT_YEAR} guide shows you how to convert securely in your browser without uploads. Perfect for CRA and Canadian portals.`
         },
-        h1: `AVIF to PDF & PDF to AVIF: The Ultimate ${CURRENT_YEAR} Master Guide`,
+        h1: `How to Print AVIF Files & Convert to PDF: The ${CURRENT_YEAR} Guide`,
         subtitle: "The most secure way to transform modern AVIF photos and PDF documents back and forth without leaving your browser.",
 
         intro: "The **AVIF (AV1 Image File Format)** is a revolutionary image format that provides superior compression compared to JPEG and WebP. However, because it's so new, many legacy applications and document portals in Canada don't yet support it. Conversely, sometimes you need to extract high-quality images from a PDF for use in modern web presentations. Whether you're converting **AVIF to PDF** or **PDF to AVIF**, our local-first tools ensure your files are processed securely and privately.",
@@ -38,6 +39,19 @@ const getLocalContent = (lang: string) => ({
 - **Transparency**: Supports alpha channels like PNG but with dramatically better compression.
 
 Despite these benefits, **compatibility remains the biggest hurdle**. Most Canadian government agencies (like the CRA) and professional PDF viewers do not support raw AVIF image embedding. Converting **AVIF to PDF** is the pragmatic solution to ensure your documents look perfect on every device.`
+            },
+            {
+                id: "how-to-print-avif",
+                title: "How to Print an AVIF File",
+                content: `![How to Print AVIF Workflow](/images/guides/print-avif-guide.png)
+
+Printing an AVIF file directly is often frustrating. Most operating systems (Windows, macOS) and printers **do not support printing AVIF files natively** yet. If you try to print, you might see blank pages or errors.
+
+**The Solution:**
+1.  **Convert to PDF**: Use our tool above to change your AVIF into a standardized PDF.
+2.  **Print the PDF**: Once converted, your image will print perfectly on any home or office printer.
+
+This method ensures your colors and layout are preserved exactly as you see them.`
             },
             {
                 id: "pdf-to-avif-guide",
@@ -146,7 +160,7 @@ While AVIF wins on technology, PDF wins on **standardization**. By converting AV
             title: `Comment Convertir AVIF en PDF et PDF en AVIF | Guide Complet | pdfcanada.ca`,
             desc: `Convertissez des images AVIF modernes en PDF ou des PDF en AVIF. Notre guide ${CURRENT_YEAR} vous montre comment faire en toute sécurité localement. Idéal pour l'ARC et Revenu Québec.`
         },
-        h1: `AVIF en PDF & PDF en AVIF : Le Guide de Maîtrise ${CURRENT_YEAR}`,
+        h1: `Comment Imprimer un Fichier AVIF et Convertir en PDF : Le Guide ${CURRENT_YEAR}`,
         subtitle: "La solution la plus sécurisée pour transformer vos photos AVIF et documents PDF d'avant en arrière sans quitter votre navigateur.",
 
         intro: "Le format **AVIF** offre une compression exceptionnelle, mais il n'est pas encore accepté partout. Que ce soit pour soumettre des documents à l'**ARC**, à **Revenu Québec** ou pour extraire des images de haute qualité d'un PDF, le format PDF et l'AVIF sont désormais interchangeables grâce à nos outils. Tout se passe localement sur votre appareil pour une confidentialité totale.",
@@ -159,6 +173,17 @@ While AVIF wins on technology, PDF wins on **standardization**. By converting AV
 - **Administration** : Les sites gouvernementaux (ARC, IRCC) exigent du PDF.
 - **Extraction** : Convertissez des PDF en AVIF pour obtenir des images ultra-légères pour votre site web ou vos présentations.
 - **Impression** : Le PDF garantit que vos images AVIF s'impriment exactement comme prévu.`
+            },
+            {
+                id: "imprimer-avif",
+                title: "Comment Imprimer un Fichier AVIF",
+                content: `![Flux de travail d'impression AVIF](/images/guides/print-avif-guide.png)
+
+Imprimer directement un fichier AVIF est souvent impossible. La plupart des imprimantes et systèmes ne supportent pas encore ce format.
+
+**La Solution :**
+1. **Convertissez en PDF** : Utilisez notre outil pour transformer votre AVIF en PDF standard.
+2. **Imprimez le PDF** : Une fois converti, votre image s'imprimera parfaitement.`
             },
             {
                 id: "guide-pdf-to-avif",
@@ -201,7 +226,7 @@ While AVIF wins on technology, PDF wins on **standardization**. By converting AV
             title: `Como Converter AVIF para PDF e PDF para AVIF | Guia Seguro | pdfcanada.ca`,
             desc: `Converta imagens AVIF modernas para PDF ou PDF para AVIF. Nosso guia de ${CURRENT_YEAR} mostra como converter com segurança no seu navegador sem uploads. Ideal para portais oficiais.`
         },
-        h1: `AVIF para PDF e PDF para AVIF: O Guia Mestre ${CURRENT_YEAR}`,
+        h1: `Como Imprimir Arquivos AVIF e Converter para PDF: Guia ${CURRENT_YEAR}`,
         subtitle: "A maneira mais segura de transformar fotos AVIF e documentos PDF sem sair do seu navegador.",
 
         intro: "O **AVIF (AV1 Image File Format)** é um formato de imagem revolucionário que oferece compressão superior ao JPEG e WebP. No entanto, por ser tão novo, muitos aplicativos legados e portais de documentos ainda não o suportam. Por outro lado, às vezes você precisa extrair imagens de alta qualidade de um PDF para uso na web. Seja convertendo **AVIF para PDF** ou **PDF para AVIF**, nossas ferramentas locais garantem que seus arquivos sejam processados com segurança e privacidade.",
@@ -219,6 +244,17 @@ While AVIF wins on technology, PDF wins on **standardization**. By converting AV
 - **Transparência**: Suporta canais alfa como PNG, mas com compressão drasticamente melhor.
 
 Apesar desses benefícios, a **compatibilidade continua sendo o maior obstáculo**. A maioria das agências governamentais e visualizadores de PDF profissionais não suporta a incorporação de imagens AVIF brutas. Converter **AVIF para PDF** é a solução pragmática para garantir que seus documentos pareçam perfeitos em todos os dispositivos.`
+            },
+            {
+                id: "imprimir-avif",
+                title: "Como Imprimir Arquivos AVIF",
+                content: `![Fluxo de impressão AVIF](/images/guides/print-avif-guide.png)
+
+Imprimir um arquivo AVIF diretamente geralmente não funciona. A maioria das impressoras não suporta este formato nativamente.
+
+**A Solução:**
+1. **Converta para PDF**: Use nossa ferramenta acima para transformar seu AVIF em um PDF padrão.
+2. **Imprima o PDF**: Uma vez convertido, sua imagem será impressa perfeitamente.`
             },
             {
                 id: "pdf-to-avif-guide",
@@ -328,6 +364,7 @@ export const AvifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">
+                    <ToolPromo tool="image-to-pdf" lang={lang} />
                     <div className="text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-16">
                         <MarkdownContent content={t.intro} />
                     </div>

@@ -1050,7 +1050,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'converter foto em pdf'
       ]
     },
-    accept: '.jpg,.jpeg,.png,.gif,.bmp,.webp,image/jpeg,image/png,image/gif,image/bmp,image/webp'
+    accept: '.jpg,.jpeg,.png,.gif,.bmp,.webp,.avif,image/jpeg,image/png,image/gif,image/bmp,image/webp,image/avif'
   },
 
   {
