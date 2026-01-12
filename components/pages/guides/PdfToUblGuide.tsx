@@ -59,7 +59,9 @@ Our tool generates **Standard UBL 2.1**, which serves as the foundational layer 
             {
                 id: "global-mandates",
                 title: "Global E-Invoicing Mandates: Country-by-Country Guide",
-                content: `Electronic invoicing is rapidly becoming mandatory worldwide. Here's the current landscape of e-invoicing mandates that make UBL conversion essential:
+                content: `![Global E-Invoicing Mandates Map](/images/guides/ubl-global-map.png)
+
+Electronic invoicing is rapidly becoming mandatory worldwide. Here's the current landscape of e-invoicing mandates that make UBL conversion essential:
 
 ### European Union
 
@@ -230,7 +232,9 @@ Our converter automatically generates all these elements with proper formatting 
             {
                 id: "technical-mapping",
                 title: "How It Works: From PDF to UBL Tags",
-                content: `Our engine uses a sophisticated smart extraction layer to map visual text from your PDF to UBL XML tags. Here is what happens under the hood:
+                content: `![PDF to UBL Conversion Workflow](/images/guides/ubl-workflow.png)
+
+Our engine uses a sophisticated smart extraction layer to map visual text from your PDF to UBL XML tags. Here is what happens under the hood:
 
 ### Invoice Header Recognition
 
@@ -509,7 +513,9 @@ Common integration patterns:
 
 
 
-        intro: `Dans l'économie numérique actuelle, envoyer une simple facture PDF ne suffit plus. Les gouvernements et les grandes entreprises exigent de plus en plus la **Facturation Électronique** utilisant des formats de données structurés comme **UBL**.
+        intro: `![Global E-Invoicing Mandates Map](/images/guides/ubl-global-map.png)
+
+Dans l'économie numérique actuelle, envoyer une simple facture PDF ne suffit plus. Les gouvernements et les grandes entreprises exigent de plus en plus la **Facturation Électronique** utilisant des formats de données structurés comme **UBL**.
 
 Chez **pdfcanada.ca**, nous fournissons une solution **axée sur la confidentialité** pour convertir automatiquement vos factures PDF en fichiers XML UBL 2.1. Que vous naviguiez dans les exigences **Peppol**, cherchiez une solution pour **PDF vers UBL**, ou souhaitiez simplement moderniser votre facturation, notre outil est là pour vous.`,
 
@@ -540,7 +546,9 @@ Nous utilisons la technologie **WebAssembly (WASM)** pour traiter votre PDF **en
             {
                 id: "technical-mapping",
                 title: "Comment ça marche : De PDF aux balises UBL",
-                content: `Notre moteur utilise une extraction intelligente pour faire correspondre le texte visuel aux balises XML UBL :
+                content: `![PDF to UBL Conversion Workflow](/images/guides/ubl-workflow.png)
+
+Notre moteur utilise une extraction intelligente pour faire correspondre le texte visuel aux balises XML UBL :
 
 *   **Identifiants Vendeur :** Nous repérons les mots-clés "TVA", "SIRET" pour identifier le \`cac:AccountingSupplierParty\`.
 *   **Lignes de Facture :** Les tableaux sont analysés pour identifier les descriptions et prix, les convertissant en éléments \`cac:InvoiceLine\`.
@@ -607,7 +615,9 @@ Cliquez sur **Télécharger** pour recevoir votre fichier \`.xml\`. Vous pouvez 
 
 
 
-        intro: `Na economia digital atual, enviar uma simples fatura em PDF não é mais suficiente. Governos e grandes empresas exigem cada vez mais o **Faturamento Eletrônico** usando formatos de dados estruturados como **UBL**.
+        intro: `![Global E-Invoicing Mandates Map](/images/guides/ubl-global-map.png)
+
+Na economia digital atual, enviar uma simples fatura em PDF não é mais suficiente. Governos e grandes empresas exigem cada vez mais o **Faturamento Eletrônico** usando formatos de dados estruturados como **UBL**.
 
 No **pdfcanada.ca**, fornecemos uma solução **focada na privacidade** para converter automaticamente suas faturas PDF em arquivos XML UBL 2.1. Seja você navegando pelos requisitos do **Peppol** ou simplesmente modernizando seu faturamento, nossa ferramenta está aqui para ajudar.`,
 
@@ -636,7 +646,9 @@ Usamos tecnologia **WebAssembly (WASM)** para processar seu PDF **inteiramente n
             {
                 id: "technical-mapping",
                 title: "Como funciona: De PDF para tags UBL",
-                content: `Nosso motor usa uma camada de extração inteligente para mapear texto visual para tags XML UBL:
+                content: `![PDF to UBL Conversion Workflow](/images/guides/ubl-workflow.png)
+
+Nosso motor usa uma camada de extração inteligente para mapear texto visual para tags XML UBL:
 
 *   **Reconhecimento de Fornecedor:** Identificamos palavras-chave como "CNPJ", "VAT" para identificar o \`cac:AccountingSupplierParty\`.
 *   **Extração de Itens:** Tabelas são analisadas para identificar descrições e preços, convertendo-os em elementos \`cac:InvoiceLine\`.
