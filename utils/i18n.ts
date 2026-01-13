@@ -1214,7 +1214,17 @@ const en = {
     transactions: "Transactions",
     credits: "Total Credits",
     debits: "Total Debits",
-    net: "Net Change"
+    net: "Net Change",
+    readyToConvert: "Ready to Convert",
+    selectAction: "How would you like to process this file?",
+    previewEdit: "Preview & Edit",
+    previewEditDesc: "View the data, merge columns, and verify before downloading.",
+    quickConvert: "Quick Convert",
+    quickConvertDesc: "Skip the preview and download the Excel file immediately.",
+    successTitle: "Conversion Successful!",
+    successDesc: "Your Excel file has been downloaded.",
+    viewData: "View Extracted Data",
+    convertAnother: "Convert Another"
   },
   barcode: {
     title: "Code 128 Barcode Generator",
@@ -2445,7 +2455,17 @@ export const translations: Record<Language, TranslationStructure> = {
       transactions: "Transactions",
       credits: "Crédits Totaux",
       debits: "Débits Totaux",
-      net: "Changement Net"
+      net: "Changement Net",
+      readyToConvert: "Prêt à convertir",
+      selectAction: "Comment souhaitez-vous traiter ce fichier ?",
+      previewEdit: "Aperçu & Édition",
+      previewEditDesc: "Visualisez les données, fusionnez les colonnes et vérifiez avant de télécharger.",
+      quickConvert: "Conversion Rapide",
+      quickConvertDesc: "Sautez l'aperçu et téléchargez le fichier Excel immédiatement.",
+      successTitle: "Conversion Réussie !",
+      successDesc: "Votre fichier Excel a été téléchargé.",
+      viewData: "Voir les Données Extraites",
+      convertAnother: "Convertir un Autre"
     },
     barcode: {
       title: "Générateur de Code-Barres Code 128",
@@ -3518,7 +3538,17 @@ export const translations: Record<Language, TranslationStructure> = {
       transactions: "Transações",
       credits: "Créditos Totais",
       debits: "Débitos Totais",
-      net: "Variação Líquida"
+      net: "Variação Líquida",
+      readyToConvert: "Pronto para Converter",
+      selectAction: "Como você gostaria de processar este arquivo?",
+      previewEdit: "Pré-visualizar e Editar",
+      previewEditDesc: "Visualize os dados, mescle colunas e verifique antes de baixar.",
+      quickConvert: "Conversão Rápida",
+      quickConvertDesc: "Pule a pré-visualização e baixe o arquivo Excel imediatamente.",
+      successTitle: "Conversão Bem-sucedida!",
+      successDesc: "Seu arquivo Excel foi baixado.",
+      viewData: "Ver Dados Extraídos",
+      convertAnother: "Converter Outro"
     },
     barcode: {
       title: "Gerador Código Barras Code 128",

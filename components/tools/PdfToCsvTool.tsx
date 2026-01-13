@@ -340,52 +340,136 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [showOptions, setShowOptions] = useState(true);
     const [visibleRows, setVisibleRows] = useState(50);
 
+    const [mode, setMode] = useState<'select' | 'extracting' | 'preview' | 'success'>('select');
+
     // Focus Management
     const [focusedCell, setFocusedCell] = useState<{ r: number, c: string } | null>(null);
 
-    const handleExtraction = useCallback(async () => {
-        setIsExtracting(true);
+    const processData = useCallback((data: TableData, merge: boolean, normalize: boolean) => {
+        let processed = { ...data };
+        if (merge) {
+            processed = mergeMultilineRows(processed);
+        }
+        if (normalize) {
+            processed = normalizeFinancialData(processed);
+        }
+        return processed;
+    }, []);
+
+    const handleExtraction = useCallback(async (autoDownload: boolean = false) => {
+        setMode('extracting');
         setError(null);
         setProgress(0);
 
         try {
-            // Simulated "Force OCR" param implies we might pass options to the extractor
-            // For now, we just re-run the extraction. In a real scenario, we'd pass { forceOCR }
             const data = await extractTableFromPdf(file, (p) => {
                 setProgress(p);
             });
             setOriginalData(data);
-            triggerHaptic('success');
+
+            // Immediate processing
+            const processed = processData(data, smartMerge, normalizeData);
+            setProcessedData(processed);
+
+            if (autoDownload) {
+                downloadAsExcel(processed, file.name.replace(/\.pdf$/i, '.xlsx'), 'xlsx');
+                triggerHaptic('success');
+                setMode('success');
+            } else {
+                setMode('preview');
+                triggerHaptic('success');
+            }
         } catch (err) {
             setError("We couldn't extract the table from this PDF. It might be an image, have a highly complex layout, or utilize unsupported fonts.");
             triggerHaptic('error');
-        } finally {
-            setIsExtracting(false);
+            setMode('preview'); // Show error state in preview components
         }
-    }, [file]);
+    }, [file, smartMerge, normalizeData, processData]);
 
+    // Update processed data when options change (only if already in preview)
     useEffect(() => {
-        handleExtraction();
-    }, [handleExtraction]);
+        if (originalData && mode === 'preview') {
+            const processed = processData(originalData, smartMerge, normalizeData);
+            setProcessedData(processed);
+        }
+    }, [smartMerge, normalizeData, originalData, mode, processData]);
 
-    // Apply processing whenever options change
-    useEffect(() => {
-        if (!originalData) return;
+    // Selection Screen
+    if (mode === 'select') {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center animate-in fade-in zoom-in duration-300">
+                <div className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full">
+                    <FileSpreadsheet size={48} className="text-blue-600 dark:text-blue-400" />
+                </div>
 
-        // Wrap heavy processing in timeout to let UI breathe or use another worker
-        // For now, these operations are fast enough on the main thread for mid-sized data
-        const timer = setTimeout(() => {
-            let data = { ...originalData };
-            if (smartMerge) {
-                data = mergeMultilineRows(data);
-            }
-            if (normalizeData) {
-                data = normalizeFinancialData(data);
-            }
-            setProcessedData(data);
-        }, 10);
-        return () => clearTimeout(timer);
-    }, [originalData, smartMerge, normalizeData]);
+                <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4 tracking-tight">
+                    {t.pdfToCsv?.readyToConvert || "Ready to Convert"}
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400 mb-12 max-w-md text-lg">
+                    {t.pdfToCsv?.selectAction || "How would you like to process this file?"}
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl">
+                    <button
+                        onClick={() => handleExtraction(false)}
+                        className="group flex flex-col items-center p-8 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-3xl hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                        <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                            <Table size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t.pdfToCsv?.previewEdit || "Preview & Edit"}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {t.pdfToCsv?.previewEditDesc || "View the data, merge columns, and verify before downloading."}
+                        </p>
+                    </button>
+
+                    <button
+                        onClick={() => handleExtraction(true)}
+                        className="group flex flex-col items-center p-8 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-3xl hover:border-green-500 dark:hover:border-green-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                        <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mb-6 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
+                            <Download size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t.pdfToCsv?.quickConvert || "Quick Convert"}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {t.pdfToCsv?.quickConvertDesc || "Skip the preview and download the Excel file immediately."}
+                        </p>
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    // Success Screen (for Quick Convert)
+    if (mode === 'success') {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center animate-in fade-in zoom-in duration-300">
+                <div className="w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6 text-green-600 dark:text-green-400 animate-bounce">
+                    <CheckCircle2 size={48} />
+                </div>
+                <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">
+                    {t.pdfToCsv?.successTitle || "Conversion Successful!"}
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400 mb-8 text-lg">
+                    {t.pdfToCsv?.successDesc || "Your Excel file has been downloaded."}
+                </p>
+                <div className="flex gap-4">
+                    <button
+                        onClick={() => setMode('preview')} // Go to preview
+                        className="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
+                    >
+                        {t.pdfToCsv?.viewData || "View Extracted Data"}
+                    </button>
+                    <button
+                        onClick={() => window.location.reload()} // Reset
+                        className="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-full font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                    >
+                        {t.pdfToCsv?.convertAnother || "Convert Another"}
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     // History Helpers
     const pushHistory = (newData: TableData) => {
@@ -549,7 +633,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                     <strong>Note:</strong> Some PDFs (like scanned receipts without OCR or graphical tables) are difficult to parse without manual intervention.
                 </div>
                 <button
-                    onClick={handleExtraction}
+                    onClick={() => handleExtraction(false)}
                     className="mt-6 px-6 py-2 bg-gray-900 text-white rounded-full font-bold text-sm hover:scale-105 transition-transform"
                 >
                     {t.btnTryAgain || 'Try Again'}

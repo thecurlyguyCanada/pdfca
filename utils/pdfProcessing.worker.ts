@@ -113,7 +113,8 @@ function extractTableData(allTextItems: TextItem[], numPages: number) {
         for (let i = 1; i < rowItems.length; i++) {
             const dist = rowItems[i].x - (rowItems[i - 1].x + rowItems[i - 1].w);
             // Dynamic proximity based on height (font size)
-            const proximity = rowItems[i].h * 1.5;
+            // Reduced to 0.5 to prevent merging of distinct columns in tight layouts
+            const proximity = rowItems[i].h * 0.5;
 
             if (dist < proximity) {
                 currentCell += " " + rowItems[i].str;

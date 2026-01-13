@@ -11,6 +11,10 @@
     - [x] Validation error & Regional mandate guides
 - [x] **Regression Fix**
     - [x] Fixed global CSS/Tailwind build cache corruption
+    - [x] Fixed PDF.js core/worker version mismatch (v4.10.38)
+- [x] **PDF to CSV Improvements**
+    - [x] Improved column extraction accuracy (spatial proximity tuning)
+    - [x] Added "Preview vs Quick Convert" workflow
 
 # Task: Add Portuguese Language Support (Scalable Architecture)
 
