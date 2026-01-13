@@ -1437,6 +1437,80 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: ['Extração XML estruturada', 'Mantém hierarquia do documento', '100% no navegador', 'Sem upload de arquivo']
     },
     accept: '.pdf,application/pdf'
+  },
+  {
+    slug: 'odg-to-pdf',
+    i18nKey: 'odgToPdf',
+    tool: ToolType.ODG_TO_PDF,
+    title: {
+      en: 'ODG to PDF Converter',
+      fr: 'Convertisseur ODG en PDF',
+      pt: 'Converter ODG para PDF'
+    },
+    description: {
+      en: 'Convert ODG files to PDF instantly. Transform LibreOffice Draw graphics to PDF format. 100% free and secure - all processing happens in your browser.',
+      fr: 'Convertissez vos fichiers ODG en PDF instantanément. Transformez vos graphiques LibreOffice Draw en format PDF. 100% gratuit et sécurisé.',
+      pt: 'Converta arquivos ODG para PDF instantaneamente. Transforme gráficos do LibreOffice Draw para formato PDF. 100% grátis e seguro - processamento local.'
+    },
+    keywords: {
+      en: [
+        'odg to pdf',
+        'convert odg to pdf',
+        'odg to pdf converter',
+        'convert odg file to pdf',
+        'online odg to pdf',
+        'how to convert odg to pdf',
+        'convert odg to pdf online free',
+        'convert odg to pdf without software',
+        'open odg file as pdf',
+        'export odg to pdf',
+        'what is an odg file',
+        'how to open odg file',
+        'odg file not opening',
+        'odg vs pdf',
+        'best odg to pdf converter'
+      ],
+      fr: [
+        'odg vers pdf',
+        'convertir odg en pdf',
+        'convertisseur odg en pdf',
+        'fichier odg en pdf',
+        'convertir un fichier odg en pdf',
+        'comment convertir odg en pdf',
+        'convertir odg en pdf en ligne',
+        'convertir odg en pdf gratuitement',
+        'convertir odg en pdf sans logiciel',
+        'exporter odg en pdf',
+        'quest-ce quun fichier odg',
+        'comment ouvrir un fichier odg',
+        'fichier odg ne souvre pas',
+        'différence entre odg et pdf',
+        'meilleur convertisseur odg en pdf'
+      ],
+      pt: [
+        'odg para pdf',
+        'converter odg para pdf',
+        'conversor odg para pdf',
+        'converter arquivo odg para pdf',
+        'transformar odg em pdf',
+        'como converter odg para pdf',
+        'converter odg para pdf online',
+        'converter odg para pdf grátis',
+        'converter odg para pdf sem instalar programa',
+        'exportar odg para pdf',
+        'o que é arquivo odg',
+        'como abrir arquivo odg',
+        'arquivo odg não abre',
+        'diferença entre odg e pdf',
+        'melhor conversor odg para pdf'
+      ]
+    },
+    featureList: {
+      en: ['Instant ODG to PDF conversion', 'Preserves vector graphics', '100% browser-based', 'No software installation'],
+      fr: ['Conversion ODG en PDF instantanée', 'Préserve les graphiques vectoriels', '100% navigateur', 'Sans installation'],
+      pt: ['Conversão ODG para PDF instantânea', 'Preserva gráficos vetoriais', '100% no navegador', 'Sem instalar programa']
+    },
+    accept: '.odg,application/vnd.oasis.opendocument.graphics'
   }
 ];
 
