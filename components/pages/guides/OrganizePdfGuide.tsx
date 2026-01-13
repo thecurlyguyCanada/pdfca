@@ -669,7 +669,7 @@ export const OrganizePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6">{t.ctaTitle}</h2>
                         <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-12 opacity-90">{t.ctaSubtext}</p>
                         <Link href={`/${lang}/organize-pdf`}
-                            className="bg-white text-canada-red px-8 py-3.5 sm:px-10 sm:py-4 md:px-12 md:py-5 lg:px-14 rounded-full font-black text-base sm:text-lg md:text-xl lg:text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl"
+                            className="inline-block bg-white text-canada-red px-6 py-3.5 sm:px-10 sm:py-4 md:px-12 md:py-5 lg:px-14 rounded-full font-black text-sm sm:text-lg md:text-xl lg:text-2xl hover:scale-105 active:scale-95 transition-all shadow-xl whitespace-normal max-w-full"
                         >
                             {t.ctaButton}
                         </Link>

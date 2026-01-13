@@ -25,7 +25,7 @@ const getGuideContent = (lang: Language) => ({
         h1: `Financial Statement PDF Guide: Philippines Edition (${CURRENT_YEAR})`,
         subtitle: "The definitive guide for Filipino businesses, accountants, and students. Create, convert, and manage BIR-compliant financial statements.",
 
-        // AEO Quick Answer Box - Optimized for "what is financial statement" (2.4K vol)
+        // AEO Quick Answer Box
         quickAnswer: {
             question: "What is a complete set of financial statements in the Philippines?",
             answer: "In the Philippines, a complete set of financial statements (FS) strictly compliant with PFRS includes 5 components: 1) Statement of Financial Position (Balance Sheet), 2) Statement of Comprehensive Income (Income Statement), 3) Statement of Changes in Equity, 4) Statement of Cash Flows, and 5) Notes to Financial Statements. These must be submitted annually to the BIR (Bureau of Internal Revenue) and SEC (for corporations).",
@@ -81,7 +81,7 @@ A **financial statement** is the report card of a business. In the Philippines, 
 Many business owners search for a **financial statement example** or **financial statement sample** to guide their preparation. Below, we break down the 5 mandatory components required by Philippine Financial Reporting Standards (PFRS).
 
 #### 1. Statement of Financial Position (Balance Sheet)
-Often called the **balance sheet**, this statement typically has the highest search volume ("statement of financial position" - 8.1K, "balance sheet" - 320+). It represents your company's financial health at a specific point in time.
+Often called the **balance sheet**, this statement represents your company's financial health at a specific point in time.
 
 **Formula:**  
 *> Assets = Liabilities + Equity*
@@ -115,7 +115,7 @@ Detals changes in the owner's interest in the company during the period, includi
 - Net income/loss for the year
 
 #### 5. Notes to Financial Statements
-*(High SEO Value: "notes to financial statements" - 1.6K searches)*
+
 Often overlooked, the **Notes to Financial Statements** are mandatory. They provide the narrative explanation for the numbers in the other four statements. 
 
 **What must be included?**
@@ -137,7 +137,7 @@ Under the implementation of the TRAIN Law and CREATE Law updates:
 - **Gross Quarterly Sales/Earnings > ₱3,000,000**: Mandatory CPA Audit.
 - **Gross Annual Sales < ₱3,000,000**: Optional audit; can submit unaudited FS (sworn definition).
 
-*(Search Volume for "audited financial statements bir": 590/mo)*
+
 
 ### The "Am I Compliance Ready?" Checklist
 Use this quick checklist before you file:
@@ -513,7 +513,7 @@ export const FinancialStatementPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                                 <h3 className="text-xl font-bold text-amber-900 dark:text-amber-300 mb-2">Pro Tip: Avoid "Return-to-Sender"</h3>
                                 <p className="text-amber-800 dark:text-amber-400">
                                     The most common reason for SEC rejection is missing pages in the PDF file.
-                                    Always check that your <strong>Auditor's Report</strong> and **Statement of Management Responsibility** are attached before merging.
+                                    Always check that your <strong>Auditor's Report</strong> and <strong>Statement of Management Responsibility</strong> are attached before merging.
                                 </p>
                             </div>
                         </div>
