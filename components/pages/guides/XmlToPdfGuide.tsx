@@ -35,14 +35,14 @@ export const XmlToPdfGuide: React.FC<Props> = ({ lang }) => {
             faqContent: `**Supportez-vous XSLT ?**\nActuellement nous appliquons un formatage standard.`
         },
         pt: {
-            subtitle: "Converter dados XML para PDF legível",
-            intro: `Transforme dados XML estruturados em um documento PDF legível. **${title}** renderiza árvores XML ou faturas em um layout limpo.`,
-            step1Title: "Como converter XML para PDF",
-            step1Content: `1.  **Selecionar**: Envie seu arquivo .xml.\n2.  **Formatar**: Aplicamos estilos básicos.\n3.  **Baixar**: Salve como PDF.`,
-            featuresTitle: "Casos de Uso",
-            featuresContent: `*   **Faturamento**: Visualize faturas eletrônicas.\n*   **Documentação**: Imprima arquivos de configuração.\n*   **Arquivamento**: Salve snapshots de dados.`,
-            faqTitle: "FAQ",
-            faqContent: `**Suporta XSLT?**\nAtualmente aplicamos uma formatação padrão.`
+            subtitle: "Converter arquivo XML em PDF online grátis",
+            intro: `Precisa **converter XML para PDF**? Transforme dados XML estruturados em um documento PDF legível. **${title}** permite converter arquivo XML em PDF, renderizando árvores XML ou notas fiscais eletrônicas em um layout limpo e profissional. Nossa ferramenta online gratuita processa tudo localmente no seu navegador.`,
+            step1Title: "Como transformar XML em PDF",
+            step1Content: `**Como converter um arquivo XML em PDF:**\n\n1.  **Selecione o arquivo**: Envie seu arquivo .xml clicando no botão ou arrastando.\n2.  **Formate automaticamente**: Nossa ferramenta aplica estilos ao XML automaticamente.\n3.  **Baixe o PDF**: Salve o resultado como PDF.\n\n**Dica:** Para converter XML em PDF grátis, use nossa ferramenta online que não requer instalação.`,
+            featuresTitle: "Casos de Uso para Converter XML para PDF",
+            featuresContent: `*   **Notas Fiscais**: Abra arquivo XML de NFe e converta para PDF legível.\n*   **Documentação Técnica**: Imprima arquivos de configuração XML.\n*   **Arquivamento**: Transforme XML em PDF para guardar snapshots de dados.\n*   **Compartilhamento**: Converta XML para PDF para enviar a clientes que não leem XML.`,
+            faqTitle: "Perguntas Frequentes",
+            faqContent: `**Como converter XML em PDF online?**\nUse nossa ferramenta gratuita. Basta fazer upload do arquivo XML e baixar o PDF.\n\n**Posso converter XML de nota fiscal em PDF?**\nSim! Nossa ferramenta suporta arquivos XML de NFe e outros formatos fiscais.\n\n**O conversor de XML para PDF é gratuito?**\nSim, 100% grátis e processado localmente no seu navegador.`
         }
     };
 

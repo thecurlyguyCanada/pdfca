@@ -1267,6 +1267,176 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: ['html para pdf', 'converter html', 'salvar web como pdf']
     },
     accept: '.html,.htm,text/html'
+  },
+  {
+    slug: 'ofx-to-excel',
+    i18nKey: 'ofxToExcel',
+    tool: ToolType.OFX_TO_EXCEL,
+    title: {
+      en: 'OFX to Excel Converter',
+      fr: 'Convertisseur OFX en Excel',
+      pt: 'Converter OFX para Excel'
+    },
+    description: {
+      en: 'Convert OFX bank statements to Excel instantly. Preview transactions, export to XLSX, CSV, QBO formats. 100% free and secure - all processing happens in your browser.',
+      fr: 'Convertissez vos relevés bancaires OFX en Excel instantanément. Prévisualisez les transactions, exportez en XLSX, CSV, QBO. 100% gratuit et sécurisé.',
+      pt: 'Converta extratos bancários OFX para Excel instantaneamente. Visualize transações, exporte para XLSX, CSV, QBO. 100% grátis e seguro - processamento local.'
+    },
+    keywords: {
+      en: ['ofx to excel', 'ofx converter', 'convert ofx file', 'ofx to csv', 'open ofx file', 'bank statement converter'],
+      fr: ['ofx en excel', 'convertisseur ofx', 'fichier ofx', 'relevé bancaire excel'],
+      pt: ['ofx para excel', 'converter ofx', 'abrir arquivo ofx', 'ofx para csv', 'extrato bancário excel', 'conversor ofx online', 'como abrir ofx no excel']
+    },
+    featureList: {
+      en: [
+        'Preview transactions before export',
+        'Multi-account OFX support',
+        'Export to Excel, CSV, QBO, QIF',
+        'Smart date normalization',
+        'Balance & statistics dashboard',
+        '100% client-side processing'
+      ],
+      fr: [
+        'Prévisualisez les transactions',
+        'Support multi-comptes OFX',
+        'Export Excel, CSV, QBO, QIF',
+        'Normalisation des dates',
+        'Tableau de bord statistiques',
+        'Traitement 100% local'
+      ],
+      pt: [
+        'Visualize transações antes de exportar',
+        'Suporte a múltiplas contas OFX',
+        'Exporte para Excel, CSV, QBO, QIF',
+        'Normalização inteligente de datas',
+        'Dashboard de saldo e estatísticas',
+        'Processamento 100% local'
+      ]
+    },
+    accept: '.ofx,.qfx,application/x-ofx'
+  },
+  {
+    slug: 'xml-to-pdf',
+    i18nKey: 'xmlToPdf',
+    tool: ToolType.XML_TO_PDF,
+    title: {
+      en: 'XML to PDF Converter',
+      fr: 'Convertisseur XML en PDF',
+      pt: 'Converter XML para PDF'
+    },
+    description: {
+      en: 'Convert XML files to PDF instantly. Transform XML documents into readable PDF format. 100% free and secure - all processing happens in your browser.',
+      fr: 'Convertissez vos fichiers XML en PDF instantanément. Transformez vos documents XML en format PDF lisible. 100% gratuit et sécurisé.',
+      pt: 'Converta arquivos XML para PDF instantaneamente. Transforme documentos XML em formato PDF legível. 100% grátis e seguro - processamento local.'
+    },
+    keywords: {
+      en: ['xml to pdf', 'convert xml to pdf', 'xml file to pdf', 'transform xml to pdf', 'xml converter', 'xml to pdf converter', 'ooxml to pdf'],
+      fr: ['xml en pdf', 'convertir xml en pdf', 'fichier xml en pdf', 'transformer xml en pdf', 'convertisseur xml'],
+      pt: [
+        'converter xml em pdf',
+        'converter xml para pdf',
+        'transformar xml em pdf',
+        'xml para pdf',
+        'conversor xml para pdf',
+        'conversor de xml para pdf',
+        'converte xml em pdf',
+        'converte xml para pdf',
+        'arquivo xml para pdf',
+        'arquivo xml em pdf',
+        'como converter xml em pdf',
+        'xml para pdf online',
+        'converter xml para pdf online',
+        'xml para pdf converter online',
+        'converter xml em pdf online',
+        'converter arquivo xml para pdf',
+        'converter arquivo xml em pdf',
+        'como transformar xml em pdf',
+        'como transformar um xml em pdf',
+        'como transformar arquivo xml em pdf',
+        'transformar arquivo xml em pdf',
+        'transformar arquivo xml para pdf',
+        'como converter arquivo xml para pdf',
+        'como converter arquivo xml em pdf',
+        'como converter um arquivo xml em pdf',
+        'como converter um arquivo xml para pdf',
+        'converter xml em pdf grátis',
+        'transformar xml em pdf grátis',
+        'transformar xml em pdf gratuito',
+        'conversor xml em pdf',
+        'conversor de xml em pdf',
+        'xml converter pdf',
+        'converter xml pdf',
+        'xml pra pdf',
+        'de xml para pdf',
+        'conversão xml para pdf',
+        'imprimir xml em pdf',
+        'abrir arquivo xml em pdf',
+        'ooxml to pdf'
+      ]
+    },
+    featureList: {
+      en: ['Instant XML to PDF conversion', 'Preserves structure', '100% browser-based', 'No file upload'],
+      fr: ['Conversion XML en PDF instantanée', 'Préserve la structure', '100% navigateur', 'Sans téléchargement'],
+      pt: ['Conversão XML para PDF instantânea', 'Preserva estrutura', '100% no navegador', 'Sem upload de arquivo']
+    },
+    accept: '.xml,application/xml,text/xml'
+  },
+  {
+    slug: 'pdf-to-xml',
+    i18nKey: 'pdfToXml',
+    tool: ToolType.PDF_TO_XML,
+    title: {
+      en: 'PDF to XML Converter',
+      fr: 'Convertisseur PDF en XML',
+      pt: 'Converter PDF para XML'
+    },
+    description: {
+      en: 'Convert PDF files to XML format. Extract structured data from PDF documents. 100% free and secure - all processing happens in your browser.',
+      fr: 'Convertissez vos fichiers PDF en format XML. Extrayez les données structurées des documents PDF. 100% gratuit et sécurisé.',
+      pt: 'Converta arquivos PDF para formato XML. Extraia dados estruturados de documentos PDF. 100% grátis e seguro - processamento local.'
+    },
+    keywords: {
+      en: ['pdf to xml', 'convert pdf to xml', 'pdf file to xml', 'pdf to xml converter', 'extract xml from pdf', 'save pdf as xml'],
+      fr: ['pdf en xml', 'convertir pdf en xml', 'fichier pdf en xml', 'convertisseur pdf en xml'],
+      pt: [
+        'converter pdf em xml',
+        'converter pdf para xml',
+        'pdf para xml',
+        'conversor pdf para xml',
+        'conversor pdf em xml',
+        'converte pdf em xml',
+        'converte pdf para xml',
+        'conversão pdf para xml',
+        'converter pdf em xml gratuito',
+        'converter pdf para xml gratuito',
+        'converter pdf em xml grátis',
+        'converter pdf para xml online',
+        'converter pdf em xml online',
+        'pdf para xml online',
+        'pdf para xml converter',
+        'pdf para xml converter online',
+        'pdf para xml grátis',
+        'como converter pdf em xml',
+        'como converter pdf para xml',
+        'transformar pdf em xml',
+        'transforma pdf em xml',
+        'transformar pdf para xml',
+        'transformar pdf em xml grátis',
+        'convert pdf to xml format',
+        'converter arquivo pdf em xml',
+        'converter arquivo pdf para xml',
+        'converter de pdf para xml',
+        'ilovepdf pdf para xml',
+        'transformar pdf em xml ilovepdf',
+        'converter pdf para xml ilovepdf'
+      ]
+    },
+    featureList: {
+      en: ['Extract structured XML', 'Maintains document hierarchy', '100% browser-based', 'No file upload'],
+      fr: ['Extraction XML structuré', 'Préserve la hiérarchie', '100% navigateur', 'Sans téléchargement'],
+      pt: ['Extração XML estruturada', 'Mantém hierarquia do documento', '100% no navegador', 'Sem upload de arquivo']
+    },
+    accept: '.pdf,application/pdf'
   }
 ];
 

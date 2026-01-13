@@ -17,6 +17,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
     // - - List item
     // - 1. Ordered list item
     // - New lines for paragraphs
+    // - Tables (simple pipe-based)
 
     const parseMarkdown = (text: string) => {
         // Process line by line
@@ -28,6 +29,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
 
         let currentList: React.ReactNode[] = [];
         let listType: 'ul' | 'ol' | null = null;
+        let currentTable: string[] = [];
 
         const flushList = () => {
             if (listType === 'ul') {
@@ -39,8 +41,75 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
             listType = null;
         };
 
+        const flushTable = () => {
+            if (currentTable.length === 0) return;
+
+            // Basic table parsing
+            // Row 0 is header
+            // Row 1 is separator (skip)
+            // Row 2+ are body
+
+            const rows = currentTable.map(row => {
+                // Remove leading/trailing pipes if present
+                const cleanRow = row.trim().replace(/^\||\|$/g, '');
+                return cleanRow.split('|').map(cell => cell.trim());
+            });
+
+            if (rows.length < 2) {
+                // Not a valid table, dump as text
+                currentTable.forEach((row, i) => {
+                    result.push(<p key={`p-table-fallback-${result.length}-${i}`} className="mb-0">{formatInline(row)}</p>);
+                });
+                currentTable = [];
+                return;
+            }
+
+            const headerRow = rows[0];
+            const bodyRows = rows.slice(2); // Skip separator row at index 1
+
+            result.push(
+                <div key={`table-${result.length}`} className="overflow-x-auto mb-6">
+                    <table className="min-w-full text-left border-collapse border border-gray-200 dark:border-gray-700">
+                        <thead>
+                            <tr className="bg-gray-50 dark:bg-gray-800">
+                                {headerRow.map((cell, i) => (
+                                    <th key={i} className="border border-gray-200 dark:border-gray-700 px-4 py-2 font-semibold text-sm">
+                                        {formatInline(cell)}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {bodyRows.map((row, rowIndex) => (
+                                <tr key={rowIndex} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    {row.map((cell, cellIndex) => (
+                                        <td key={cellIndex} className="border border-gray-200 dark:border-gray-700 px-4 py-2 text-sm">
+                                            {formatInline(cell)}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+            currentTable = [];
+        };
+
         lines.forEach((line, index) => {
             const trimmedLine = line.trim();
+
+            // Table detection
+            if (trimmedLine.startsWith('|')) {
+                if (listType !== null) flushList();
+                currentTable.push(trimmedLine);
+                return;
+            }
+
+            // If we hit a non-table line but have a table pending
+            if (currentTable.length > 0) {
+                flushTable();
+            }
 
             // Unordered list
             if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
@@ -62,6 +131,9 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
             // Empty line
             if (!trimmedLine) {
                 flushList();
+                // If we had a table, it was already flushed above because it didn't start with |
+                // But if we had consecutive empty lines, or just ended a block, safe to flush list.
+                // Table is already flushed by the checks above.
                 return;
             }
 
@@ -83,12 +155,16 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
         });
 
         flushList();
+        flushTable(); // Ensure any trailing table is flushed
         return result;
     };
 
     const formatInline = (text: string) => {
         // Basic inline formatting
         const parts: (string | React.ReactNode)[] = [text];
+
+        // Code: `text`
+        processPattern(parts, /`(.*?)`/g, (match) => <code key={Math.random()} className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm font-mono text-canada-red">{match}</code>);
 
         // Bold: **text**
         processPattern(parts, /\*\*(.*?)\*\*/g, (match) => <strong key={Math.random()}>{match}</strong>);
@@ -123,6 +199,17 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
                 </a>
             );
         }, true);
+
+        // Image: ![alt](url)
+        // Note: The regex for link above might consume images if not careful.
+        // Generally images start with ! so we should handle them separately or before links.
+        // But since this is a simple parser, let's add basic support if needed, or rely on the user using <img /> if they want complex stuff.
+        // Actually, looking at the regex, ![alt](url) would match the link regex `\[(.*?)\]\((.*?)\)` but include the !.
+        // Ideally we should fix the regex order or logic, but for now let's leave it as is to minimize regression, 
+        // as the user only complained about tables.
+
+        // Wait, I should add code block support if they have inline code like `cbc:ID`.
+        // I added it above as the first pattern.
 
         return parts;
     };
@@ -174,3 +261,4 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
         </div>
     );
 };
+
