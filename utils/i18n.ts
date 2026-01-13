@@ -1210,7 +1210,11 @@ const en = {
     loadMore: "Load More Rows",
     uploadPrompt: "Upload a PDF to see transactions here",
     privacy: "Privacy: 100% Offline",
-    poweredBy: "Powered by PDFCA Spatial Engine 2.0"
+    poweredBy: "Powered by PDFCA Spatial Engine 2.0",
+    transactions: "Transactions",
+    credits: "Total Credits",
+    debits: "Total Debits",
+    net: "Net Change"
   },
   barcode: {
     title: "Code 128 Barcode Generator",
@@ -2437,7 +2441,11 @@ export const translations: Record<Language, TranslationStructure> = {
       loadMore: "Charger plus de lignes",
       uploadPrompt: "Téléversez un PDF pour voir les transactions",
       privacy: "Confidentialité : 100% Hors ligne",
-      poweredBy: "Propulsé par PDFCA Spatial Engine 2.0"
+      poweredBy: "Propulsé par PDFCA Spatial Engine 2.0",
+      transactions: "Transactions",
+      credits: "Crédits Totaux",
+      debits: "Débits Totaux",
+      net: "Changement Net"
     },
     barcode: {
       title: "Générateur de Code-Barres Code 128",
@@ -3506,7 +3514,11 @@ export const translations: Record<Language, TranslationStructure> = {
       loadMore: "Carregar Mais Linhas",
       uploadPrompt: "Envie um PDF para ver as transações",
       privacy: "Privacidade: 100% Offline",
-      poweredBy: "Desenvolvido por PDFCA Spatial Engine 2.0"
+      poweredBy: "Desenvolvido por PDFCA Spatial Engine 2.0",
+      transactions: "Transações",
+      credits: "Créditos Totais",
+      debits: "Débitos Totais",
+      net: "Variação Líquida"
     },
     barcode: {
       title: "Gerador Código Barras Code 128",

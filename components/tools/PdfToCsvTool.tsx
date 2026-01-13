@@ -15,7 +15,8 @@ import {
     Activity,
     Database,
     Clock,
-    Shield
+    Shield,
+    Trash2
 } from 'lucide-react';
 import {
     extractTableFromPdf,
@@ -27,6 +28,157 @@ import {
 } from '@/utils/csvExtractor';
 import { triggerHaptic } from '@/utils/haptics';
 import { translations } from '@/utils/i18n';
+
+// Sub-components
+const EditableCell = ({
+    value,
+    onChange,
+    className
+}: {
+    value: string;
+    onChange: (val: string) => void;
+    className?: string;
+}) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [tempValue, setTempValue] = useState(value);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        setTempValue(value);
+    }, [value]);
+
+    useEffect(() => {
+        if (isEditing && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [isEditing]);
+
+    const handleBlur = () => {
+        setIsEditing(false);
+        if (tempValue !== value) {
+            onChange(tempValue);
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            handleBlur();
+        } else if (e.key === 'Escape') {
+            setTempValue(value);
+            setIsEditing(false);
+        }
+    };
+
+    if (isEditing) {
+        return (
+            <input
+                ref={inputRef}
+                value={tempValue}
+                onChange={(e) => setTempValue(e.target.value)}
+                onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
+                className={`w-full bg-white border-2 border-blue-500 rounded px-2 py-1 text-sm text-gray-900 outline-none ${className}`}
+            />
+        );
+    }
+
+    return (
+        <div
+            onClick={() => setIsEditing(true)}
+            className={`cursor-text hover:bg-gray-50 px-3 py-2 rounded transition-colors text-sm text-gray-700 min-h-[2rem] flex items-center ${className}`}
+        >
+            {value}
+        </div>
+    );
+};
+
+const TransactionCard = ({
+    row,
+    rowIndex,
+    headers,
+    onUpdate,
+    onDelete,
+    t
+}: {
+    row: Record<string, string>;
+    rowIndex: number;
+    headers: string[];
+    onUpdate: (header: string, val: string) => void;
+    onDelete: () => void;
+    t: any;
+}) => {
+    // Try to identify key fields for the header of the card
+    const dateKey = headers.find(h => h.toLowerCase().includes('date'));
+    const descKey = headers.find(h => h.toLowerCase().includes('desc') || h.toLowerCase().includes('particular') || h.toLowerCase().includes('detail'));
+    const amountKey = headers.find(h => h.toLowerCase().includes('amount') || h.toLowerCase().includes('credit') || h.toLowerCase().includes('debit') || h.toLowerCase().includes('balance'));
+
+    // Remaining fields
+    const otherHeaders = headers.filter(h => h !== dateKey && h !== descKey && h !== amountKey);
+
+    return (
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 relative group overflow-hidden">
+            {/* Delete Action (Swipe or Button) */}
+            <button
+                onClick={onDelete}
+                className="absolute top-2 right-2 p-2 text-gray-300 hover:text-red-500 transition-colors"
+                aria-label={t.btnDeleteEntry || "Delete"}
+            >
+                <Trash2 size={16} />
+            </button>
+
+            {/* Header: Date & Amount */}
+            <div className="flex justify-between items-start mb-2 pr-8">
+                <div className="flex-1">
+                    {dateKey ? (
+                        <EditableCell
+                            value={row[dateKey]}
+                            onChange={(val) => onUpdate(dateKey, val)}
+                            className="font-bold text-gray-900 dark:text-gray-100 text-base"
+                        />
+                    ) : (
+                        <span className="text-gray-400 text-xs italic">No Date</span>
+                    )}
+                </div>
+                {amountKey && (
+                    <div className="text-right">
+                        <EditableCell
+                            value={row[amountKey]}
+                            onChange={(val) => onUpdate(amountKey, val)}
+                            className={`font-mono font-black text-lg ${row[amountKey]?.includes('-') ? 'text-red-600' : 'text-green-600'} justify-end`}
+                        />
+                    </div>
+                )}
+            </div>
+
+            {/* Description */}
+            {descKey && (
+                <div className="mb-3">
+                    <EditableCell
+                        value={row[descKey]}
+                        onChange={(val) => onUpdate(descKey, val)}
+                        className="text-gray-800 dark:text-gray-200"
+                    />
+                </div>
+            )}
+
+            {/* Other Details Grid */}
+            {otherHeaders.length > 0 && (
+                <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-gray-100 dark:border-gray-700">
+                    {otherHeaders.map((header) => (
+                        <div key={header}>
+                            <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">{header}</p>
+                            <EditableCell
+                                value={row[header]}
+                                onChange={(val) => onUpdate(header, val)}
+                                className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50/50 dark:bg-gray-900/50"
+                            />
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
 
 interface PdfToCsvToolProps {
     file: File;
@@ -87,6 +239,51 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         }, 10);
         return () => clearTimeout(timer);
     }, [originalData, smartMerge, normalizeData]);
+
+    // Editing Logic
+    const updateCell = (rowIndex: number, header: string, value: string) => {
+        if (!processedData) return;
+        const newRows = [...processedData.rows];
+        newRows[rowIndex] = { ...newRows[rowIndex], [header]: value };
+        setProcessedData({ ...processedData, rows: newRows });
+    };
+
+    const deleteRow = (rowIndex: number) => {
+        if (!processedData) return;
+        const newRows = [...processedData.rows];
+        newRows.splice(rowIndex, 1);
+        setProcessedData({ ...processedData, rows: newRows });
+        triggerHaptic('medium');
+    };
+
+    // Derived Statistics
+    const stats = useMemo(() => {
+        if (!processedData) return null;
+        let credits = 0;
+        let debits = 0;
+        let count = 0;
+
+        processedData.rows.forEach(row => {
+            // Try to find amount column
+            const amountKey = Object.keys(row).find(k => k.toLowerCase().includes('amount') || k.toLowerCase().includes('balance') || k.toLowerCase().includes('credit') || k.toLowerCase().includes('debit'));
+            if (amountKey) {
+                const valStr = row[amountKey].replace(/[^0-9.-]/g, '');
+                const val = parseFloat(valStr);
+                if (!isNaN(val)) {
+                    if (val > 0) credits += val;
+                    else debits += Math.abs(val);
+                }
+            }
+            count++;
+        });
+
+        return {
+            credits,
+            debits,
+            net: credits - debits,
+            count
+        };
+    }, [processedData]);
 
     const handleDownload = (format: 'csv' | 'xlsx' | 'qbo') => {
         if (!processedData) return;
@@ -151,49 +348,54 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
 
     return (
         <div className="flex flex-col h-full bg-gray-50 dark:bg-gray-950">
-            {/* Toolbar */}
-            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm z-20">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-50 dark:bg-green-900/20 rounded-2xl flex items-center justify-center shadow-sm">
-                            <Table className="text-green-600" />
+            {/* Premium Financial Dashboard */}
+            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm z-20 sticky top-0">
+                <div className="max-w-7xl mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-1">
+                        <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-2xl border border-gray-100 dark:border-gray-700">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{t.pdfToCsv?.transactions || "Transactions"}</p>
+                            <p className="text-2xl font-black text-gray-900 dark:text-white">{stats?.count || 0}</p>
                         </div>
-                        <div>
-                            <h2 className="font-black text-xl text-gray-900 dark:text-white tracking-tight leading-none">
-                                {processedData?.rows.length || 0} {t.pdfToCsv?.transactionsFound || "Transactions Found"}
-                            </h2>
-                            <div className="flex items-center gap-2 mt-1">
-                                <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded-full">
-                                    <CheckCircle2 size={10} /> {Math.round((processedData?.confidence || 0) * 100)}% {t.pdfToCsv?.confidence || "Confidence"}
-                                </span>
-                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
-                                    <Clock size={10} /> {t.pdfToCsv?.localProcessing || "Local Processing"}
-                                </span>
-                            </div>
+                        <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-2xl border border-green-100 dark:border-green-900/30">
+                            <p className="text-[10px] font-bold text-green-600/70 uppercase tracking-widest mb-1">{t.pdfToCsv?.credits || "Total Credits"}</p>
+                            <p className="text-2xl font-black text-green-600">+{stats?.credits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        </div>
+                        <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-2xl border border-red-100 dark:border-red-900/30">
+                            <p className="text-[10px] font-bold text-red-600/70 uppercase tracking-widest mb-1">{t.pdfToCsv?.debits || "Total Debits"}</p>
+                            <p className="text-2xl font-black text-red-600">-{stats?.debits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-2xl border border-gray-100 dark:border-gray-700">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{t.pdfToCsv?.net || "Net Change"}</p>
+                            <p className={`text-2xl font-black ${stats && stats.net >= 0 ? 'text-gray-900 dark:text-white' : 'text-red-500'}`}>
+                                {stats?.net.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </p>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:flex items-center gap-3 w-full md:w-auto">
+                    {/* Actions */}
+                    <div className="grid grid-cols-3 gap-2 w-full xl:w-auto">
                         <button
                             onClick={() => handleDownload('xlsx')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95 w-full md:w-auto"
+                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white px-4 py-3 rounded-xl font-bold flex flex-col items-center justify-center gap-1 shadow-lg shadow-green-500/20 transition-all active:scale-95 text-xs uppercase tracking-wider"
                         >
-                            <FileSpreadsheet size={20} /> Excel
+                            <FileSpreadsheet size={18} /> Excel
                         </button>
                         <button
                             onClick={() => handleDownload('csv')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-modern-neutral-900 hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 w-full md:w-auto"
+                            className="bg-gray-900 hover:bg-black disabled:opacity-50 text-white px-4 py-3 rounded-xl font-bold flex flex-col items-center justify-center gap-1 shadow-lg transition-all active:scale-95 text-xs uppercase tracking-wider"
                         >
-                            <FileText size={20} /> CSV
+                            <FileText size={18} /> CSV
                         </button>
                         <button
                             onClick={() => handleDownload('qbo')}
                             disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-canada-red hover:bg-canada-darkRed disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-4 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 transition-all active:scale-95 w-full md:w-auto"
+                            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-4 py-3 rounded-xl font-bold flex flex-col items-center justify-center gap-1 shadow-lg shadow-blue-500/20 transition-all active:scale-95 text-xs uppercase tracking-wider"
                         >
-                            <Download size={20} /> QBO
+                            <Download size={18} /> QBO
                         </button>
                     </div>
                 </div>
@@ -270,7 +472,29 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                 <div className="flex-grow overflow-auto bg-gray-50 dark:bg-gray-950 p-4 md:p-8 custom-scrollbar">
                     <div className="max-w-7xl mx-auto">
                         <div className="bg-white dark:bg-gray-900 rounded-[2rem] shadow-premium overflow-hidden border border-white dark:border-gray-800">
-                            <div className="overflow-x-auto">
+                            {/* Mobile Card View */}
+                            <div className="md:hidden space-y-4 pb-4">
+                                {processedData?.rows.slice(0, visibleRows).map((row, rowIdx) => (
+                                    <TransactionCard
+                                        key={rowIdx}
+                                        row={row}
+                                        rowIndex={rowIdx}
+                                        headers={processedData.headers}
+                                        onUpdate={(h, v) => updateCell(rowIdx, h, v)}
+                                        onDelete={() => deleteRow(rowIdx)}
+                                        t={t}
+                                    />
+                                ))}
+                                {(!processedData || processedData.rows.length === 0) && (
+                                    <div className="p-12 text-center text-gray-400 italic bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-200">
+                                        <FileSpreadsheet className="mx-auto mb-2 opacity-50" />
+                                        {t.pdfToCsv?.uploadPrompt || "Upload a PDF to see transactions here"}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Desktop Table View */}
+                            <div className="hidden md:block overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead className="bg-gray-50 dark:bg-gray-800/50">
                                         <tr>
@@ -285,15 +509,22 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                     <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                                         {processedData?.rows.slice(0, visibleRows).map((row, rowIdx) => (
                                             <tr key={rowIdx} className="hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-colors group">
-                                                <td className="px-6 py-4 text-xs font-mono text-gray-400 border-r border-gray-50 dark:border-gray-800">{rowIdx + 1}</td>
+                                                <td className="px-6 py-4 text-xs font-mono text-gray-400 border-r border-gray-50 dark:border-gray-800 group-hover:text-red-500 cursor-pointer" onClick={() => deleteRow(rowIdx)}>
+                                                    <div className="flex items-center gap-2">
+                                                        <span>{rowIdx + 1}</span>
+                                                        <Trash2 size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    </div>
+                                                </td>
                                                 {processedData.headers.map((header, colIdx) => (
                                                     <td key={colIdx} className="px-6 py-4 min-w-[120px]">
-                                                        <span className={`text-sm ${header.toLowerCase().includes('amount') || header.toLowerCase().includes('balance')
-                                                            ? 'font-mono font-bold text-gray-900 dark:text-gray-100'
-                                                            : 'text-gray-600 dark:text-gray-400'
-                                                            }`}>
-                                                            {row[header]}
-                                                        </span>
+                                                        <EditableCell
+                                                            value={row[header]}
+                                                            onChange={(val) => updateCell(rowIdx, header, val)}
+                                                            className={`${header.toLowerCase().includes('amount') || header.toLowerCase().includes('balance')
+                                                                ? 'font-mono font-bold text-gray-900 dark:text-gray-100'
+                                                                : 'text-gray-600 dark:text-gray-400'
+                                                                }`}
+                                                        />
                                                     </td>
                                                 ))}
                                             </tr>

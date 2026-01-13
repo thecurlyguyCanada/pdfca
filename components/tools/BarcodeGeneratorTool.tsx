@@ -654,6 +654,14 @@ export const BarcodeGeneratorTool: React.FC<BarcodeGeneratorToolProps> = ({ file
                                         </button>
                                     )}
                                 </div>
+                                {!validateBarcodeText(item.text, format) && item.text && (
+                                    <p className="text-xs font-bold text-red-500 mb-4 ml-1 flex items-center gap-1.5 animate-pulse">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                                        {format === 'CODE128C'
+                                            ? (t.barcode?.errorNumeric || 'Code 128C requires numeric digits only (even length).')
+                                            : (t.barcode?.errorInvalid || 'Contains invalid characters for this format.')}
+                                    </p>
+                                )}
                                 {item.text ? (
                                     <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-dashed border-gray-200 dark:border-gray-700 p-8 flex flex-col items-center justify-center gap-6 group/canvas transition-colors hover:border-blue-300/50 dark:hover:border-blue-700/50">
                                         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />

@@ -46,7 +46,7 @@ const getPdfLib = async () => {
 // Lazy load JSZip
 const getJSZip = async () => {
   const JSZip = await import('jszip');
-  return JSZip.default;
+  return JSZip.default || JSZip;
 };
 
 // Lazy load heic2any

@@ -997,7 +997,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                             currentTool as any === ToolType.IMAGE_TO_PDF || currentTool as any === ToolType.JPEG_TO_PDF ||
                             currentTool as any === ToolType.GIF_TO_PDF || currentTool as any === ToolType.ODT_TO_PDF ||
                             currentTool as any === ToolType.PDF_TO_PPT || currentTool as any === ToolType.PPT_TO_PDF ||
-                            currentTool as any === ToolType.PAGES_TO_PDF || currentTool as any === ToolType.HTML_TO_PDF
+                            currentTool as any === ToolType.PAGES_TO_PDF || currentTool as any === ToolType.HTML_TO_PDF ||
+                            currentTool as any === ToolType.PDF_TO_KINDLE
                         ) && t.btnConvert}
                     </button>
                 </div>
