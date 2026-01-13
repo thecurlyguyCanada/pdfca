@@ -1,3 +1,17 @@
+# Project Status
+
+## Recent Completions (2026-01-13)
+- [x] **PDF to CSV Desktop Overhaul ("Best on Planet")**
+    - [x] Keyboard Navigation & Excel-like feel
+    - [x] Undo/Redo System
+    - [x] Force AI OCR Toggle
+    - [x] Sticky Headers / Freeze Panes
+- [x] **PDF to UBL Semantic SEO**
+    - [x] Long-tail keyword targeting
+    - [x] Validation error & Regional mandate guides
+- [x] **Regression Fix**
+    - [x] Fixed global CSS/Tailwind build cache corruption
+
 # Task: Add Portuguese Language Support (Scalable Architecture)
 
 - [/] Planning
