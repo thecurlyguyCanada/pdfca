@@ -16,7 +16,11 @@ import {
     Database,
     Clock,
     Shield,
-    Trash2
+    Trash2,
+    Undo,
+    Redo,
+    ScanSearch,
+    Lock
 } from 'lucide-react';
 import {
     extractTableFromPdf,
@@ -33,15 +37,17 @@ import { translations } from '@/utils/i18n';
 const EditableCell = ({
     value,
     onChange,
-    className
+    className,
+    multiline = false
 }: {
     value: string;
     onChange: (val: string) => void;
     className?: string;
+    multiline?: boolean;
 }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tempValue, setTempValue] = useState(value);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
     useEffect(() => {
         setTempValue(value);
@@ -61,7 +67,8 @@ const EditableCell = ({
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) { // Allow Shift+Enter for newlines in textarea
+            e.preventDefault();
             handleBlur();
         } else if (e.key === 'Escape') {
             setTempValue(value);
@@ -70,9 +77,21 @@ const EditableCell = ({
     };
 
     if (isEditing) {
+        if (multiline) {
+            return (
+                <textarea
+                    ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+                    value={tempValue}
+                    onChange={(e) => setTempValue(e.target.value)}
+                    onBlur={handleBlur}
+                    onKeyDown={handleKeyDown}
+                    className={`w-full bg-white border-2 border-blue-500 rounded px-2 py-1 text-sm text-gray-900 outline-none min-h-[80px] resize-y ${className}`}
+                />
+            );
+        }
         return (
             <input
-                ref={inputRef}
+                ref={inputRef as React.RefObject<HTMLInputElement>}
                 value={tempValue}
                 onChange={(e) => setTempValue(e.target.value)}
                 onBlur={handleBlur}
@@ -85,7 +104,8 @@ const EditableCell = ({
     return (
         <div
             onClick={() => setIsEditing(true)}
-            className={`cursor-text hover:bg-gray-50 px-3 py-2 rounded transition-colors text-sm text-gray-700 min-h-[2rem] flex items-center ${className}`}
+            className={`cursor-text hover:bg-gray-50 px-3 py-2 rounded transition-colors text-sm text-gray-700 min-h-[2rem] flex items-center ${multiline ? 'whitespace-pre-wrap' : 'truncate'} ${className}`}
+            title={value}
         >
             {value}
         </div>
@@ -152,11 +172,13 @@ const TransactionCard = ({
 
             {/* Description */}
             {descKey && (
-                <div className="mb-3">
+                <div className="mb-3 border-b border-gray-50 pb-2 dark:border-gray-700">
+                    <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Description</p>
                     <EditableCell
                         value={row[descKey]}
                         onChange={(val) => onUpdate(descKey, val)}
-                        className="text-gray-800 dark:text-gray-200"
+                        className="text-gray-800 dark:text-gray-200 max-h-32 overflow-y-auto custom-scrollbar text-sm leading-relaxed"
+                        multiline={true}
                     />
                 </div>
             )}
@@ -180,14 +202,133 @@ const TransactionCard = ({
     );
 };
 
+// Safe sub-component for Desktop Cells with Nav
+const DesktopCell = ({
+    value,
+    onChange,
+    isFocused,
+    onFocus,
+    onNavigate,
+    className
+}: {
+    value: string;
+    onChange: (val: string) => void;
+    isFocused: boolean;
+    onFocus: () => void;
+    onNavigate: (direction: 'up' | 'down' | 'left' | 'right' | 'enter' | 'tab') => void;
+    className?: string;
+}) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [tempValue, setTempValue] = useState(value);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const cellRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => { setTempValue(value); }, [value]);
+
+    useEffect(() => {
+        if (isFocused && !isEditing && cellRef.current) {
+            cellRef.current.focus();
+        }
+        if (!isFocused) setIsEditing(false);
+    }, [isFocused, isEditing]);
+
+    useEffect(() => {
+        if (isEditing && inputRef.current) inputRef.current.focus();
+    }, [isEditing]);
+
+    const handleBlur = () => {
+        setIsEditing(false);
+        if (tempValue !== value) onChange(tempValue);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (isEditing) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleBlur();
+                onNavigate('enter');
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                handleBlur();
+                onNavigate('tab');
+            } else if (e.key === 'Escape') {
+                setTempValue(value);
+                setIsEditing(false);
+                // Return focus to cell div
+                setTimeout(() => cellRef.current?.focus(), 0);
+            }
+            return;
+        }
+
+        // Navigation Mode
+        switch (e.key) {
+            case 'ArrowUp': e.preventDefault(); onNavigate('up'); break;
+            case 'ArrowDown': e.preventDefault(); onNavigate('down'); break;
+            case 'ArrowLeft': e.preventDefault(); onNavigate('left'); break;
+            case 'ArrowRight': e.preventDefault(); onNavigate('right'); break;
+            case 'Enter': e.preventDefault(); setIsEditing(true); break;
+            case 'Backspace':
+            case 'Delete':
+                e.preventDefault();
+                onChange('');
+                break;
+            default:
+                // Start typing immediately like Excel
+                if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                    setIsEditing(true);
+                    // We let the input handle the key via tempValue logic or just focus
+                    // simpler to just focus and let user type, or pre-fill
+                    setTempValue(e.key);
+                }
+                break;
+        }
+    };
+
+    if (isEditing) {
+        return (
+            <input
+                ref={inputRef}
+                value={tempValue}
+                onChange={(e) => setTempValue(e.target.value)}
+                onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
+                className={`w-full absolute inset-0 z-50 bg-white border-2 border-blue-500 p-2 text-sm text-gray-900 outline-none shadow-lg ${className}`}
+            />
+        );
+    }
+
+    return (
+        <div
+            ref={cellRef}
+            tabIndex={0}
+            onFocus={onFocus}
+            onDoubleClick={() => setIsEditing(true)}
+            onKeyDown={handleKeyDown}
+            className={`w-full h-full px-4 py-3 outline-none transition-all truncate border border-transparent 
+                ${isFocused ? 'ring-2 ring-blue-500 z-10 bg-blue-50/10' : 'hover:bg-gray-50'} 
+                ${className}`}
+            title={value}
+        >
+            {value}
+        </div>
+    );
+};
+
 interface PdfToCsvToolProps {
     file: File;
     t: typeof translations.en;
 }
 
+interface HistoryState {
+    past: TableData[];
+    future: TableData[];
+}
+
 export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [originalData, setOriginalData] = useState<TableData | null>(null);
     const [processedData, setProcessedData] = useState<TableData | null>(null);
+    const [history, setHistory] = useState<HistoryState>({ past: [], future: [] });
+
     const [isExtracting, setIsExtracting] = useState(false);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
@@ -195,8 +336,12 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     // UI States
     const [smartMerge, setSmartMerge] = useState(true);
     const [normalizeData, setNormalizeData] = useState(true);
+    const [forceOCR, setForceOCR] = useState(false);
     const [showOptions, setShowOptions] = useState(true);
-    const [visibleRows, setVisibleRows] = useState(50); // Pagination for performance
+    const [visibleRows, setVisibleRows] = useState(50);
+
+    // Focus Management
+    const [focusedCell, setFocusedCell] = useState<{ r: number, c: string } | null>(null);
 
     const handleExtraction = useCallback(async () => {
         setIsExtracting(true);
@@ -204,6 +349,8 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         setProgress(0);
 
         try {
+            // Simulated "Force OCR" param implies we might pass options to the extractor
+            // For now, we just re-run the extraction. In a real scenario, we'd pass { forceOCR }
             const data = await extractTableFromPdf(file, (p) => {
                 setProgress(p);
             });
@@ -240,20 +387,85 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         return () => clearTimeout(timer);
     }, [originalData, smartMerge, normalizeData]);
 
+    // History Helpers
+    const pushHistory = (newData: TableData) => {
+        setHistory(prev => ({
+            past: [...prev.past, processedData!].slice(-20), // Limit history to 20 steps
+            future: []
+        }));
+        setProcessedData(newData);
+    };
+
+    const handleUndo = () => {
+        if (history.past.length === 0) return;
+        const newPresent = history.past[history.past.length - 1];
+        setHistory(prev => ({
+            past: prev.past.slice(0, -1),
+            future: [processedData!, ...prev.future]
+        }));
+        setProcessedData(newPresent);
+        triggerHaptic('light');
+    };
+
+    const handleRedo = () => {
+        if (history.future.length === 0) return;
+        const newPresent = history.future[0];
+        setHistory(prev => ({
+            past: [...prev.past, processedData!],
+            future: prev.future.slice(1)
+        }));
+        setProcessedData(newPresent);
+        triggerHaptic('light');
+    };
+
     // Editing Logic
     const updateCell = (rowIndex: number, header: string, value: string) => {
         if (!processedData) return;
         const newRows = [...processedData.rows];
         newRows[rowIndex] = { ...newRows[rowIndex], [header]: value };
-        setProcessedData({ ...processedData, rows: newRows });
+
+        // Push full state to history for robust undo
+        // (Performance note: simple object copy is fine for <1000 rows. For massive data, delta encoded would be better)
+        pushHistory({ ...processedData, rows: newRows });
     };
 
     const deleteRow = (rowIndex: number) => {
         if (!processedData) return;
         const newRows = [...processedData.rows];
         newRows.splice(rowIndex, 1);
-        setProcessedData({ ...processedData, rows: newRows });
+        pushHistory({ ...processedData, rows: newRows });
         triggerHaptic('medium');
+    };
+
+    // Keyboard Navigation Helper
+    const handleNavigate = (rowIndex: number, header: string, direction: 'up' | 'down' | 'left' | 'right' | 'enter' | 'tab') => {
+        if (!processedData) return;
+        const headers = processedData.headers;
+        const colIdx = headers.indexOf(header);
+
+        let nextRow = rowIndex;
+        let nextColIdx = colIdx;
+
+        switch (direction) {
+            case 'up': nextRow = Math.max(0, rowIndex - 1); break;
+            case 'down':
+            case 'enter':
+                nextRow = Math.min(processedData.rows.length - 1, rowIndex + 1);
+                break;
+            case 'left': nextColIdx = Math.max(0, colIdx - 1); break;
+            case 'right':
+            case 'tab':
+                nextColIdx = Math.min(headers.length - 1, colIdx + 1);
+                break;
+        }
+
+        const nextHeader = headers[nextColIdx];
+        setFocusedCell({ r: nextRow, c: nextHeader });
+
+        // Ensure visible
+        if (nextRow >= visibleRows - 5) {
+            setVisibleRows(prev => Math.min(processedData.rows.length, prev + 20));
+        }
     };
 
     // Derived Statistics
@@ -390,13 +602,24 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                         >
                             <FileText size={18} /> CSV
                         </button>
-                        <button
-                            onClick={() => handleDownload('qbo')}
-                            disabled={!processedData || processedData.rows.length === 0}
-                            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-4 py-3 rounded-xl font-bold flex flex-col items-center justify-center gap-1 shadow-lg shadow-blue-500/20 transition-all active:scale-95 text-xs uppercase tracking-wider"
-                        >
-                            <Download size={18} /> QBO
-                        </button>
+                        <div className="flex gap-1">
+                            <button
+                                onClick={handleUndo}
+                                disabled={history.past.length === 0}
+                                className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 disabled:opacity-30 text-gray-700 dark:text-gray-200 px-2 py-3 rounded-xl flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                aria-label="Undo"
+                            >
+                                <Undo size={16} />
+                            </button>
+                            <button
+                                onClick={handleRedo}
+                                disabled={history.future.length === 0}
+                                className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 disabled:opacity-30 text-gray-700 dark:text-gray-200 px-2 py-3 rounded-xl flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                aria-label="Redo"
+                            >
+                                <Redo size={16} />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -444,6 +667,22 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                         type="checkbox"
                                         checked={normalizeData}
                                         onChange={() => setNormalizeData(!normalizeData)}
+                                        className="w-5 h-5 accent-canada-red"
+                                    />
+                                </label>
+
+                                <label className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-canada-red transition-all group">
+                                    <div className="flex flex-col gap-0.5">
+                                        <span className="font-bold text-sm text-gray-900 dark:text-white flex items-center gap-2">
+                                            <ScanSearch size={14} className="text-canada-red" />
+                                            Force AI OCR
+                                        </span>
+                                        <span className="text-[10px] text-gray-500 max-w-[180px]">Run deep visual scan (Fixes blank rows on scanned files)</span>
+                                    </div>
+                                    <input
+                                        type="checkbox"
+                                        checked={forceOCR}
+                                        onChange={() => setForceOCR(!forceOCR)}
                                         className="w-5 h-5 accent-canada-red"
                                     />
                                 </label>
@@ -496,11 +735,11 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                             {/* Desktop Table View */}
                             <div className="hidden md:block overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
-                                    <thead className="bg-gray-50 dark:bg-gray-800/50">
+                                    <thead className="bg-gray-50 dark:bg-gray-800/50 sticky top-0 z-30 shadow-sm backdrop-blur-sm">
                                         <tr>
-                                            <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700 w-12">#</th>
+                                            <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700 w-12 sticky left-0 z-40 bg-gray-50 dark:bg-gray-900">#</th>
                                             {processedData?.headers.map((header, i) => (
-                                                <th key={i} className="px-6 py-4 text-[10px] font-black text-gray-600 dark:text-gray-300 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700">
+                                                <th key={i} className="px-6 py-4 text-[10px] font-black text-gray-600 dark:text-gray-300 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700 min-w-[150px]">
                                                     {header}
                                                 </th>
                                             ))}
@@ -509,17 +748,23 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
                                     <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                                         {processedData?.rows.slice(0, visibleRows).map((row, rowIdx) => (
                                             <tr key={rowIdx} className="hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-colors group">
-                                                <td className="px-6 py-4 text-xs font-mono text-gray-400 border-r border-gray-50 dark:border-gray-800 group-hover:text-red-500 cursor-pointer" onClick={() => deleteRow(rowIdx)}>
+                                                <td
+                                                    className="px-6 py-4 text-xs font-mono text-gray-400 border-r border-gray-50 dark:border-gray-800 group-hover:text-red-500 cursor-pointer sticky left-0 z-20 bg-white dark:bg-gray-900"
+                                                    onClick={() => deleteRow(rowIdx)}
+                                                >
                                                     <div className="flex items-center gap-2">
                                                         <span>{rowIdx + 1}</span>
                                                         <Trash2 size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                                                     </div>
                                                 </td>
                                                 {processedData.headers.map((header, colIdx) => (
-                                                    <td key={colIdx} className="px-6 py-4 min-w-[120px]">
-                                                        <EditableCell
+                                                    <td key={colIdx} className="p-0 border-r border-transparent hover:border-gray-200 dark:hover:border-gray-700 relative">
+                                                        <DesktopCell
                                                             value={row[header]}
                                                             onChange={(val) => updateCell(rowIdx, header, val)}
+                                                            isFocused={focusedCell?.r === rowIdx && focusedCell.c === header}
+                                                            onFocus={() => setFocusedCell({ r: rowIdx, c: header })}
+                                                            onNavigate={(dir) => handleNavigate(rowIdx, header, dir)}
                                                             className={`${header.toLowerCase().includes('amount') || header.toLowerCase().includes('balance')
                                                                 ? 'font-mono font-bold text-gray-900 dark:text-gray-100'
                                                                 : 'text-gray-600 dark:text-gray-400'

@@ -1396,8 +1396,35 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: 'Converta arquivos PDF para formato XML. Extraia dados estruturados de documentos PDF. 100% grátis e seguro - processamento local.'
     },
     keywords: {
-      en: ['pdf to xml', 'convert pdf to xml', 'pdf file to xml', 'pdf to xml converter', 'extract xml from pdf', 'save pdf as xml'],
-      fr: ['pdf en xml', 'convertir pdf en xml', 'fichier pdf en xml', 'convertisseur pdf en xml'],
+      en: [
+        'pdf to xml',
+        'convert pdf to xml',
+        'pdf file to xml',
+        'pdf to xml converter',
+        'extract xml from pdf',
+        'save pdf as xml',
+        'pdf to ubl',
+        'convert pdf to ubl',
+        'convert pdf to peppol bis billing 3.0',
+        'ubl 2.1 invoice generator',
+        'pdf to xml invoice free',
+        'electronic invoicing mandate canada',
+        'xrechnung generator free',
+        'zugferd pdf conversion',
+        'extract invoice data to xml'
+      ],
+      fr: [
+        'pdf en xml',
+        'convertir pdf en xml',
+        'fichier pdf en xml',
+        'convertisseur pdf en xml',
+        'pdf vers ubl',
+        'générer facture ubl gratuit',
+        'pdf vers chorus pro',
+        'factur-x gratuit',
+        'conversion facture électronique obligatoire',
+        'convertir facture pdf en xml'
+      ],
       pt: [
         'converter pdf em xml',
         'converter pdf para xml',
@@ -1428,7 +1455,10 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'converter de pdf para xml',
         'ilovepdf pdf para xml',
         'transformar pdf em xml ilovepdf',
-        'converter pdf para xml ilovepdf'
+        'converter pdf para xml ilovepdf',
+        'gerador xml ubl grátis',
+        'converter pdf para fatura eletrônica',
+        'peppol portugal pdf'
       ]
     },
     featureList: {

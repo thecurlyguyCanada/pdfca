@@ -138,7 +138,37 @@ We use advanced **WebAssembly (WASM)** and browser-native OCR to process your PD
 - Works offline once the page is loaded
 - Compliant with GDPR, PIPEDA, and data sovereignty requirements
 
-This zero-upload architecture makes pdfcanada.ca the only truly private solution for converting sensitive financial documents.`
+This zero-upload architecture makes pdfcanada.ca the only truly private solution for converting sensitive financial documents.
+                `
+            },
+            {
+                id: "validation-errors",
+                title: "Common UBL Validation Errors & How to Fix Them",
+                content: `Using an automated validator like the **Peppol Testbed** or **VeFA**? Here are the most common errors and how our tool prevents them:
+
+### 1. "Peppol Business Rule Violation: BR-25"
+**Error:** "Each invoice line shall have an invoiced quantity unit of measure code."
+**Fix:** Our tool automatically defaults missing unit codes to "C62" (Unit) or maps detected text like "hours" to "HUR", ensuring compliance with ISO codes.
+
+### 2. "Gradient / Math Error"
+**Error:** "The sum of line extensions does not equal the tax exclusive amount."
+**Fix:** Rounding errors are the enemy of XML. Our engine performs "Banker's Rounding" (half-to-even) on every line item to ensure the total matches the sum of parts to the penny.
+
+### 3. "Missing Scheme ID"
+**Error:** "PartyTaxScheme must have a Tax Scheme with an ID."
+**Fix:** We automatically inject the standard \`WAT\` (VAT) or \`GST\` scheme IDs based on your country selection, so you don't need to know the XML codes.`
+            },
+            {
+                id: "regional-mandates",
+                title: "Regional Guide: Peppol vs. XRechnung vs. Factur-X",
+                content: `Different countries use different flavors of UBL. Here is how our PDF to UBL converter handles them:
+
+| Standard | Region | Description | Configuration |
+|----------|--------|-------------|---------------|
+| **Peppol BIS 3.0** | Europe, Singapore, AUS, NZ | The "International Standard". Strict business rules. | Default Output. Valid for cross-border trade. |
+| **XRechnung** | Germany (B2G) | Mandatory for German federal contracts. Stricter than standard UBL. | Our XML structure is compatible, but verify with KoSIT validator. |
+| **Factur-X** | France / Germany | Hybrid PDF + XML. | Use our "PDF to XML" to extract the XML layer only. |
+| **E-Invoicing** | Canada | No federal mandate yet, but based on UBL. | Ready for future CRA mandates. |`
             },
             {
                 id: "ubl-xml-structure",
@@ -453,6 +483,14 @@ Common integration patterns:
                 a: "Yes! We include a browser-based OCR engine powered by Tesseract.js that can read text from scanned images. Native PDFs (with embedded text) yield the best accuracy, but our OCR achieves 95%+ accuracy on clean scans."
             },
             {
+                q: "Is this compatible with Chorus Pro (France)?",
+                a: "Chorus Pro accepts UBL 2.1 XML files. Our output is standard UBL 2.1, which is the foundational format for Chorus Pro. However, for specific hybrid requirements (Factur-X), you might need to merge the XML back into a PDF/A-3."
+            },
+            {
+                q: "How do I fix 'Schema Validation Failed' errors?",
+                a: "Schema errors usually mean a required field is missing (like a VAT number). Use our tool's 'Preview & Edit' stage to ensure all headers, such as the 'Supplier Tax ID', are filled in before downloading."
+            },
+            {
                 q: "Why is the XML file so small compared to the PDF?",
                 a: "PDFs contain fonts, layout information, graphics, and formatting data. The UBL XML contains only the pure structured data (text and numbers), making it highly efficient for storage, transmission, and automated processing."
             },
@@ -541,7 +579,37 @@ Notre outil génère du **Standard UBL 2.1**, qui sert de base à la plupart de 
 La plupart des convertisseurs en ligne vous demandent de téléverser votre PDF sur leur serveur cloud. Cela crée un risque d'interception ou de conservation des données.
 
 **L'avantage pdfcanada.ca :**
-Nous utilisons la technologie **WebAssembly (WASM)** pour traiter votre PDF **entièrement sur votre appareil**. Votre facture ne quitte jamais votre ordinateur.`
+Nous utilisons la technologie **WebAssembly (WASM)** pour traiter votre PDF **entièrement sur votre appareil**. Votre facture ne quitte jamais votre ordinateur.
+                `
+            },
+            {
+                id: "validation-errors",
+                title: "Erreurs de Validation UBL Courantes & Solutions",
+                content: `Vous utilisez un validateur comme **Chorus Pro** ou **Peppol** ? Voici comment nous gérons les erreurs fréquentes :
+
+### 1. "Règle de Gestion : BR-25" (Unités de mesure)
+**Problème :** Code d'unité manquant (ex: "heures", "pièces").
+**Solution :** Notre outil mappe automatiquement les unités textes vers les codes ISO (ex: "HUR" pour heures, "C62" pour unités).
+
+### 2. "Erreur d'Arrondi / Mathématique"
+**Problème :** Le total ne correspond pas à la somme des lignes.
+**Solution :** XML est impitoyable. Notre moteur applique l'arrondi bancaire à chaque ligne pour garantir une précision au centime près.
+
+### 3. "Identifiant TVA Manquant"
+**Problème :** Le schéma de taxe n'est pas défini.
+**Solution :** Nous injectons automatiquement les codes \`WAT\` (TVA) ou \`GST\` selon le pays détecté.`
+            },
+            {
+                id: "regional-mandates",
+                title: "Guide Régional : Peppol, Chorus Pro et Factur-X",
+                content: `Chaque pays a ses spécificités. Voici comment nous nous adaptons :
+
+| Standard | Région | Détails | Configuration |
+|----------|--------|---------|---------------|
+| **Peppol BIS 3.0** | Europe (B2B/B2G) | Le standard international. | Sortie par défaut. Idéal pour l'export. |
+| **Chorus Pro** | France (B2G) | Portail obligatoire pour l'État. | Accepte notre XML UBL 2.1 natif. |
+| **Factur-X** | France / Allemagne | PDF + XML intégré. | Utilisez ce XML pour générer un Factur-X. |
+| **XRechnung** | Allemagne | Obligatoire pour le fédéral. | Structure compatible, à valider sur KoSIT. |`
             },
             {
                 id: "technical-mapping",
@@ -641,7 +709,36 @@ Nossa ferramenta gera **Standard UBL 2.1**, que serve como a camada fundamental 
 A maioria dos conversores online pede para você enviar seu PDF para o servidor deles. Isso cria um risco de interceptação ou retenção de dados.
 
 **A vantagem do pdfcanada.ca:**
-Usamos tecnologia **WebAssembly (WASM)** para processar seu PDF **inteiramente no seu dispositivo**. Sua fatura nunca sai do seu computador.`
+Usamos tecnologia **WebAssembly (WASM)** para processar seu PDF **inteiramente no seu dispositivo**. Sua fatura nunca sai do seu computador.
+                `
+            },
+            {
+                id: "validation-errors",
+                title: "Erros Comuns de Validação UBL e Correções",
+                content: `Erros ao validar no portal **e-Fatura** ou **Peppol**? Veja como evitamos problemas:
+
+### 1. "Código de Unidade Ausente (BR-25)"
+**Erro:** Falta unidade de medida (kg, horas, un).
+**Correção:** Mapeamos automaticamente textos como "unidade" para o código ISO "C62".
+
+### 2. "Erro Matemático de Arredondamento"
+**Erro:** A soma das linhas não bate com o total.
+**Correção:** Aplicamos arredondamento bancário em cada item para garantir precisão matemática absoluta no XML.
+
+### 3. "ID do Esquema Fiscal"
+**Erro:** Código do imposto não definido.
+**Correção:** Preenchemos automaticamente \`WAT\` (IVA) ou códigos locais baseados no país da fatura.`
+            },
+            {
+                id: "regional-mandates",
+                title: "Guia Regional: Peppol e Formatos Europeus",
+                content: `Diferentes países, diferentes regras. Veja a compatibilidade:
+
+| Padrão | Região | Descrição | Configuração |
+|--------|--------|-----------|--------------|
+| **Peppol BIS 3.0** | Europa / Global | Padrão internacional para B2B. | Saída padrão. Compatível. |
+| **CIUS-PT** | Portugal | Especificação nacional (eSPap). | Estrutura compatível com UBL 2.1. |
+| **Factur-X** | França / Alemanha | Híbrido PDF + XML. | Gere o XML aqui e anexe ao PDF. |`
             },
             {
                 id: "technical-mapping",
