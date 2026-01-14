@@ -162,15 +162,16 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
     const formatInline = (text: string) => {
         // Basic inline formatting
         const parts: (string | React.ReactNode)[] = [text];
+        let keyCounter = 0;
 
         // Code: `text`
-        processPattern(parts, /`(.*?)`/g, (match) => <code key={Math.random()} className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm font-mono text-canada-red">{match}</code>);
+        processPattern(parts, /`(.*?)`/g, (match) => <code key={`code-${keyCounter++}`} className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm font-mono text-canada-red">{match}</code>);
 
         // Bold: **text**
-        processPattern(parts, /\*\*(.*?)\*\*/g, (match) => <strong key={Math.random()}>{match}</strong>);
+        processPattern(parts, /\*\*(.*?)\*\*/g, (match) => <strong key={`bold-${keyCounter++}`}>{match}</strong>);
 
         // Italic: *text*
-        processPattern(parts, /\*(.*?)\*/g, (match) => <em key={Math.random()}>{match}</em>);
+        processPattern(parts, /\*(.*?)\*/g, (match) => <em key={`italic-${keyCounter++}`}>{match}</em>);
 
         // Link: [text](url)
         processPattern(parts, /\[(.*?)\]\((.*?)\)/g, (match, url) => {
@@ -179,7 +180,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
             if (isInternal) {
                 return (
                     <Link
-                        key={Math.random()}
+                        key={`link-${keyCounter++}`}
                         href={safeUrl}
                         className="text-canada-red hover:underline"
                     >
@@ -189,7 +190,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
             }
             return (
                 <a
-                    key={Math.random()}
+                    key={`ext-${keyCounter++}`}
                     href={safeUrl}
                     target="_blank"
                     rel="noopener noreferrer"

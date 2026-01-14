@@ -3439,7 +3439,7 @@ export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang }) => {
         "headline": t.h1,
         "description": t.seo.desc,
         "datePublished": "2024-04-15",
-        "dateModified": "2025-12-24",
+        "dateModified": "2026-01-14",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",

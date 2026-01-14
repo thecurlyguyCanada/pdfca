@@ -582,8 +582,8 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
         "@type": "TechArticle",
         "headline": t.h1,
         "description": t.seo.desc,
-        "datePublished": "2025-12-28",
-        "dateModified": "2025-12-28",
+        "datePublished": "2026-01-14",
+        "dateModified": "2026-01-14",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",

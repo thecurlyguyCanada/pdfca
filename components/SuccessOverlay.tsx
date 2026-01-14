@@ -56,3 +56,5 @@ export const SuccessOverlay: React.FC<SuccessOverlayProps> = ({ onReset, message
         </div>
     );
 };
+
+export default SuccessOverlay;

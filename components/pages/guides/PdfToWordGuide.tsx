@@ -563,7 +563,7 @@ export const PdfToWordGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 datePublished="2024-04-10"
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 quickAnswer={{
                     question: t.quickAnswer.question,
                     answer: t.quickAnswer.answer,

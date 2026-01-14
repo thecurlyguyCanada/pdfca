@@ -172,11 +172,11 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
         if (file) handleFile(file);
     }, [handleFile]);
 
-    const handleExport = useCallback((format: 'xlsx' | 'csv' | 'qbo' | 'qif') => {
+    const handleExport = useCallback(async (format: 'xlsx' | 'csv' | 'qbo' | 'qif') => {
         if (!selectedAccount) return;
         triggerHaptic('medium');
 
-        let content: string;
+        let content: string | Uint8Array;
         let mimeType: string;
         let extension: string;
 
@@ -198,14 +198,42 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
                 break;
             case 'xlsx':
             default:
-                // For Excel, use CSV with xlsx extension (Excel can open CSV)
-                content = transactionsToCSV(selectedAccount.transactions);
-                mimeType = 'text/csv';
+                // Generate proper Excel file using ExcelJS
+                const ExcelJS = (await import('exceljs')).default;
+                const workbook = new ExcelJS.Workbook();
+                const worksheet = workbook.addWorksheet('Transactions');
+
+                // Add header row
+                worksheet.columns = [
+                    { header: 'Date', key: 'date', width: 12 },
+                    { header: 'Description', key: 'name', width: 40 },
+                    { header: 'Memo', key: 'memo', width: 30 },
+                    { header: 'Amount', key: 'amount', width: 15 },
+                    { header: 'Type', key: 'type', width: 10 }
+                ];
+
+                // Add data rows
+                selectedAccount.transactions.forEach(trn => {
+                    worksheet.addRow({
+                        date: trn.date,
+                        name: trn.name,
+                        memo: trn.memo || '',
+                        amount: trn.amount,
+                        type: trn.type
+                    });
+                });
+
+                // Style header row
+                worksheet.getRow(1).font = { bold: true };
+
+                const buffer = await workbook.xlsx.writeBuffer();
+                content = new Uint8Array(buffer as ArrayBuffer);
+                mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
                 extension = 'xlsx';
                 break;
         }
 
-        const blob = new Blob([content], { type: mimeType });
+        const blob = new Blob([content as BlobPart], { type: mimeType });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;

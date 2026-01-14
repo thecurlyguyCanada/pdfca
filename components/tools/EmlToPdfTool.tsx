@@ -272,3 +272,5 @@ export const EmlToPdfTool: React.FC<EmlToPdfToolProps> = ({ lang, file: initialF
         </div>
     );
 };
+
+export default EmlToPdfTool;

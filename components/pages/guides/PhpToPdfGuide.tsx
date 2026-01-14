@@ -282,3 +282,5 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
         </PageLayout>
     );
 };
+
+export default PhpToPdfGuide;

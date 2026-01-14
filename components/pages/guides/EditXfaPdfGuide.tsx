@@ -580,7 +580,7 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 datePublished="2024-04-01"
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 quickAnswer={{
                     question: qa.question,
                     answer: qa.answer,

@@ -550,7 +550,7 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
                 lang={lang}
                 schema={schema}
                 datePublished="2024-01-15"
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 quickAnswer={{
                     question: t.quickAnswer.question,
                     answer: t.quickAnswer.answer,

@@ -64,7 +64,7 @@ export const FeaturePage: React.FC<FeaturePageProps> = ({
                 breadcrumbs={breadcrumbs}
                 steps={howToSteps}
                 faqs={faqItems}
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 datePublished="2024-01-15"
             />
 

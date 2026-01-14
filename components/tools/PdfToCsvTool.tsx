@@ -329,7 +329,6 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
     const [processedData, setProcessedData] = useState<TableData | null>(null);
     const [history, setHistory] = useState<HistoryState>({ past: [], future: [] });
 
-    const [isExtracting, setIsExtracting] = useState(false);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
 
@@ -364,7 +363,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         try {
             const data = await extractTableFromPdf(file, (p) => {
                 setProgress(p);
-            });
+            }, { forceOCR });
             setOriginalData(data);
 
             // Immediate processing
@@ -599,7 +598,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         }
     };
 
-    if (isExtracting) {
+    if (mode === 'extracting') {
         return (
             <div className="flex flex-col items-center justify-center p-20 text-center animate-pulse">
                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mb-6 relative">

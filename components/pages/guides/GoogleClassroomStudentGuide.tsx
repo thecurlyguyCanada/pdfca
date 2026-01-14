@@ -263,6 +263,37 @@ const getLocalContent = (lang: string) => ({
                 )
             },
             {
+                id: "navigating",
+                title: "2. Navegando na Interface",
+                content: (
+                    <div className="space-y-4">
+                        <p>Dentro de uma turma, você verá três abas principais:</p>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Mural:</strong> O feed social da turma. Aqui você vê anúncios e prazos.</li>
+                            <li><strong>Atividades:</strong> A aba mais importante. É onde todas as tarefas, provas e materiais estão organizados.</li>
+                            <li><strong>Pessoas:</strong> Uma lista dos seus professores e colegas.</li>
+                        </ul>
+                    </div>
+                )
+            },
+            {
+                id: "submitting",
+                title: "3. Enviando Trabalhos",
+                content: (
+                    <div className="space-y-4">
+                        <p>Enviar trabalhos é a função principal do Google Classroom. Siga estes passos:</p>
+                        <ol className="list-decimal pl-5 space-y-2">
+                            <li>Vá para a aba <strong>Atividades</strong> e clique em uma tarefa.</li>
+                            <li>Clique em <strong>Ver tarefa</strong> para ver todos os detalhes.</li>
+                            <li>Na seção "Seu trabalho" à direita, clique em <strong>+ Adicionar ou criar</strong>.</li>
+                            <li>Selecione a origem do arquivo (Google Drive, Link ou Upload).</li>
+                            <li>Após o upload, clique no botão <strong>Entregar</strong>. Confirme se necessário.</li>
+                        </ol>
+                        <p className="text-sm text-gray-500 italic">Nota: Se você não clicar em "Entregar", seu professor verá a tarefa como "Pendente".</p>
+                    </div>
+                )
+            },
+            {
                 id: "pdf-canada-help",
                 title: "4. Como as ferramentas PDF Canada podem ajudar",
                 content: (
@@ -273,7 +304,29 @@ const getLocalContent = (lang: string) => ({
                                 <h4 className="font-bold flex items-center gap-2 mb-2"><Layers size={18} /> Juntar Trabalhos</h4>
                                 <p className="text-sm">Tirou 5 fotos da lição? Use a ferramenta <Link href="/pt/merge-pdf" className="text-canada-red hover:underline">Juntar PDF</Link> para combiná-las em um único documento.</p>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+                                <h4 className="font-bold flex items-center gap-2 mb-2"><Upload size={18} /> Comprimir para Upload</h4>
+                                <p className="text-sm">Internet lenta? Use <Link href="/pt/compress-pdf" className="text-canada-red hover:underline">Comprimir PDF</Link> para reduzir o tamanho sem perder qualidade.</p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+                                <h4 className="font-bold flex items-center gap-2 mb-2"><CheckCircle size={18} /> Converter Imagens</h4>
+                                <p className="text-sm">Professores preferem PDFs. Use <Link href="/pt/image-to-pdf" className="text-canada-red hover:underline">Imagem para PDF</Link> para transformar fotos em documentos profissionais.</p>
+                            </div>
                         </div>
+                    </div>
+                )
+            },
+            {
+                id: "handling-pdfs",
+                title: "5. Trabalhando com PDFs no Classroom",
+                content: (
+                    <div className="space-y-4">
+                        <p>Professores frequentemente compartilham planilhas como PDF. Para preenchê-las:</p>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li><strong>Visualizar:</strong> Clique no arquivo para abrir uma prévia.</li>
+                            <li><strong>Abrir em nova janela:</strong> Clique nos três pontos -&gt; "Abrir em nova janela" para baixar ou imprimir.</li>
+                            <li><strong>Anotar:</strong> No celular, use o ícone de caneta para escrever. No computador, use nossa ferramenta <Link href="/pt/make-pdf-fillable" className="text-canada-red hover:underline">Tornar PDF Preenchível</Link>.</li>
+                        </ul>
                     </div>
                 )
             }
@@ -282,6 +335,14 @@ const getLocalContent = (lang: string) => ({
             {
                 q: "Como cancelar o envio de uma tarefa?",
                 a: "Volte à página da tarefa e clique em 'Cancelar envio'. Você poderá editar seus arquivos e enviar novamente."
+            },
+            {
+                q: "Os pais podem ver meu Google Classroom?",
+                a: "Os pais não podem entrar na turma diretamente, mas podem se inscrever para receber resumos por email sobre tarefas pendentes."
+            },
+            {
+                q: "Por que não consigo abrir um PDF que meu professor postou?",
+                a: "Você pode precisar de permissão. Peça ao seu professor para verificar as configurações de compartilhamento do arquivo no Google Drive."
             }
         ],
         cta: "Domine seus documentos",

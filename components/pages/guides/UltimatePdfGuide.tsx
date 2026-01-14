@@ -783,7 +783,7 @@ export const UltimatePdfGuide: React.FC<GuideProps> = ({ lang }) => {
             { "@type": "Thing", "name": "Data Privacy" }
         ],
         "datePublished": "2024-01-15",
-        "dateModified": "2025-12-29",
+        "dateModified": "2026-01-14",
         "author": {
             "@type": "Organization",
             "name": "pdfcanada.ca",

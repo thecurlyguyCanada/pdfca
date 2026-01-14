@@ -215,3 +215,5 @@ export const IpynbToPdfTool: React.FC<IpynbToPdfToolProps> = ({ lang, file: init
         </div>
     );
 };
+
+export default IpynbToPdfTool;

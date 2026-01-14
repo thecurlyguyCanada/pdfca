@@ -945,7 +945,7 @@ export const PdfPageRemoverGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 datePublished="2024-01-20"
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 quickAnswer={{
                     question: lang === 'fr' ? "Comment supprimer des pages d'un PDF gratuitement?" : "How do I remove pages from a PDF for free?",
                     answer: lang === 'fr'

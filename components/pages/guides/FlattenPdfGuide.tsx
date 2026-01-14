@@ -614,7 +614,7 @@ export const FlattenPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 faqs={t.faq}
                 lang={lang}
                 datePublished="2024-02-01"
-                dateModified="2025-12-24"
+                dateModified="2026-01-14"
                 quickAnswer={{
                     question: lang === 'fr' ? "Comment rendre un PDF non modifiable?" : "How do I make a PDF non-editable?",
                     answer: lang === 'fr'

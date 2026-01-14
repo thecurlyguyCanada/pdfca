@@ -456,7 +456,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             break;
 
           case ToolType.PHP_TO_PDF:
-            // @ts-ignore
             resultBlob = await convertPhpToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.(php|txt)$/i, '.pdf');
             break;
@@ -532,7 +531,6 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         }
       }
 
-      // Create download
       // Create download
       if (isMounted.current) {
         const url = URL.createObjectURL(new Blob([resultBlob as any]));

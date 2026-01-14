@@ -13,7 +13,7 @@ export interface TableData {
 // Reuse worker instance to avoid spawn overhead
 let worker: Worker | null = null;
 
-export function extractTableFromPdf(file: File, onProgress?: (p: number) => void): Promise<TableData> {
+export function extractTableFromPdf(file: File, onProgress?: (p: number) => void, options?: { forceOCR?: boolean }): Promise<TableData> {
     return new Promise((resolve, reject) => {
         if (!worker) {
             worker = new Worker(new URL('./pdfProcessing.worker.ts', import.meta.url));
@@ -37,7 +37,8 @@ export function extractTableFromPdf(file: File, onProgress?: (p: number) => void
         file.arrayBuffer().then(buffer => {
             worker?.postMessage({
                 fileBuffer: buffer,
-                strategy: 'spatial'
+                strategy: 'spatial',
+                forceOCR: options?.forceOCR || false
             }, [buffer]); // Transferable
         });
     });
