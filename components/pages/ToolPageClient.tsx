@@ -46,7 +46,8 @@ import {
   convertPdfToPpt,
   convertPptToPdf,
   convertPagesToPdf,
-  convertPdfToSvg
+  convertPdfToSvg,
+  convertTifToPdf
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -155,7 +156,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.IMAGE_TO_PDF,
         ToolType.ODT_TO_PDF,
         ToolType.PPT_TO_PDF,
-        ToolType.PAGES_TO_PDF
+        ToolType.PAGES_TO_PDF,
+        ToolType.TIF_TO_PDF
       ].includes(toolType);
 
       if (isConversionTool) {
@@ -518,6 +520,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.PDF_TO_SVG:
             resultBlob = await convertPdfToSvg(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '_vectors.zip');
+            break;
+
+          case ToolType.TIF_TO_PDF:
+            resultBlob = await convertTifToPdf(primaryFile);
+            outputName = primaryFile.name.replace(/\.(tif|tiff)$/i, '.pdf');
             break;
 
           default:

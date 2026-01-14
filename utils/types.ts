@@ -47,7 +47,8 @@ export enum ToolType {
     PDF_TO_UBL = 'PDF_TO_UBL',
     OFX_TO_EXCEL = 'OFX_TO_EXCEL',
     ODG_TO_PDF = 'ODG_TO_PDF',
-    PDF_TO_SVG = 'PDF_TO_SVG'
+    PDF_TO_SVG = 'PDF_TO_SVG',
+    TIF_TO_PDF = 'TIF_TO_PDF'
 }
 
 export enum AppState {

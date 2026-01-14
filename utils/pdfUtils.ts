@@ -3353,3 +3353,48 @@ export const convertPdfToSvg = async (file: File): Promise<Blob> => {
     await pdf.destroy();
   }
 };
+
+// TIF/TIFF to PDF conversion
+export const convertTifToPdf = async (file: File): Promise<Uint8Array> => {
+  const { PDFDocument } = await getPdfLib();
+
+  // Create image element to load the TIF
+  const img = new Image();
+  const url = URL.createObjectURL(file);
+
+  await new Promise((resolve, reject) => {
+    img.onload = resolve;
+    img.onerror = () => reject(new Error('Failed to load TIF image. Your browser may not support this TIFF format directly.'));
+    img.src = url;
+  });
+
+  // Draw to canvas to get image data
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error("Could not create canvas context");
+
+  ctx.drawImage(img, 0, 0);
+
+  // Get as JPEG for better PDF compatibility
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+  const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+
+  const doc = await PDFDocument.create();
+  const jpgImage = await doc.embedJpg(bytes);
+  const page = doc.addPage([jpgImage.width, jpgImage.height]);
+  page.drawImage(jpgImage, {
+    x: 0,
+    y: 0,
+    width: jpgImage.width,
+    height: jpgImage.height,
+  });
+
+  URL.revokeObjectURL(url);
+  canvas.width = 0;
+  canvas.height = 0;
+
+  addPdfMetadata(doc, 'TIF to PDF Conversion');
+  return await doc.save();
+};

@@ -1567,6 +1567,32 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       fr: ['Convertir PDF en vecteurs', 'Préserver la qualité', '100% navigateur', 'Télécharger en ZIP'],
       pt: ['Converter PDF para vetores', 'Preservar qualidade', '100% no navegador', 'Baixar como ZIP']
     }
+  },
+  {
+    slug: 'tif-to-pdf',
+    i18nKey: 'tifToPdf',
+    tool: ToolType.TIF_TO_PDF,
+    title: {
+      en: 'TIF to PDF',
+      fr: 'TIF vers PDF',
+      pt: 'TIF para PDF'
+    },
+    description: {
+      en: 'Convert TIF/TIFF images to PDF documents. Preserve image quality. Free, secure, browser-based conversion.',
+      fr: 'Convertissez les images TIF/TIFF en documents PDF. Préservez la qualité d\'image. Gratuit et sécurisé.',
+      pt: 'Converta imagens TIF/TIFF para documentos PDF. Preserve a qualidade da imagem. Grátis e seguro.'
+    },
+    keywords: {
+      en: ['TIF to PDF', 'TIFF to PDF', 'convert TIF to PDF', 'TIF converter', 'TIFF converter'],
+      fr: ['TIF vers PDF', 'TIFF vers PDF', 'convertir TIF en PDF', 'convertisseur TIF', 'convertisseur TIFF'],
+      pt: ['tif para pdf', 'tiff para pdf', 'converter tif em pdf', 'conversor tif', 'conversor tiff']
+    },
+    accept: '.tif,.tiff,image/tiff',
+    featureList: {
+      en: ['Convert TIF/TIFF to PDF', 'Preserve image quality', '100% browser-based', 'Multi-page TIFF support'],
+      fr: ['Convertir TIF/TIFF en PDF', 'Préserver la qualité', '100% navigateur', 'Support TIFF multi-pages'],
+      pt: ['Converter TIF/TIFF para PDF', 'Preservar qualidade', '100% no navegador', 'Suporte TIFF multi-páginas']
+    }
   }
 ];
 
