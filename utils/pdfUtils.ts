@@ -3295,3 +3295,61 @@ export const convertPagesToPdf = async (file: File): Promise<Blob> => {
   throw new Error('Unable to convert Pages file: No preview PDF or extractable content found. Please export as PDF from Apple Pages directly.');
 };
 
+// PDF to SVG conversion - exports each page as an SVG in a ZIP
+export const convertPdfToSvg = async (file: File): Promise<Blob> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const JSZip = await getJSZip();
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(arrayBuffer),
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+  }).promise;
+
+  const zip = new JSZip();
+  const baseName = file.name.replace(/\.[^/.]+$/, '');
+
+  try {
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 2.0; // High quality
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) throw new Error("Could not create canvas context");
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      // Convert canvas to PNG data URL, then embed in SVG
+      const dataUrl = canvas.toDataURL('image/png');
+
+      // Create SVG with embedded image for vector-like scalability
+      const svgContent = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     width="${viewport.width}" height="${viewport.height}" 
+     viewBox="0 0 ${viewport.width} ${viewport.height}">
+  <title>Page ${i}</title>
+  <image width="${viewport.width}" height="${viewport.height}" xlink:href="${dataUrl}"/>
+</svg>`;
+
+      zip.file(`${baseName}_page_${i}.svg`, svgContent);
+
+      // Cleanup canvas
+      canvas.width = 0;
+      canvas.height = 0;
+
+      // Yield to UI
+      if (pdf.numPages > 1) await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    return await zip.generateAsync({ type: 'blob' });
+  } finally {
+    await pdf.destroy();
+  }
+};

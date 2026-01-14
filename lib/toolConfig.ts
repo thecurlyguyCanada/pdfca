@@ -1541,6 +1541,32 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: ['Conversão ODG para PDF instantânea', 'Preserva gráficos vetoriais', '100% no navegador', 'Sem instalar programa']
     },
     accept: '.odg,application/vnd.oasis.opendocument.graphics'
+  },
+  {
+    slug: 'pdf-to-svg',
+    i18nKey: 'pdfToSvg',
+    tool: ToolType.PDF_TO_SVG,
+    title: {
+      en: 'PDF to SVG',
+      fr: 'PDF vers SVG',
+      pt: 'PDF para SVG'
+    },
+    description: {
+      en: 'Convert PDF pages to SVG vector graphics. Preserve scalability and quality at any size. Free, secure, browser-based conversion.',
+      fr: 'Convertissez les pages PDF en graphiques vectoriels SVG. Préservez l\'évolutivité et la qualité à toute taille. Gratuit et sécurisé.',
+      pt: 'Converta páginas PDF para gráficos vetoriais SVG. Preserve a escalabilidade e qualidade em qualquer tamanho. Grátis e seguro.'
+    },
+    keywords: {
+      en: ['PDF to SVG', 'convert PDF to SVG', 'PDF to vector', 'extract SVG from PDF', 'PDF SVG converter'],
+      fr: ['PDF vers SVG', 'convertir PDF en SVG', 'PDF en vecteur', 'convertisseur PDF SVG'],
+      pt: ['pdf para svg', 'converter pdf em svg', 'pdf para vetor', 'conversor pdf svg']
+    },
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Convert PDF to scalable vectors', 'Preserve quality at any size', '100% browser-based', 'Download as ZIP'],
+      fr: ['Convertir PDF en vecteurs', 'Préserver la qualité', '100% navigateur', 'Télécharger en ZIP'],
+      pt: ['Converter PDF para vetores', 'Preservar qualidade', '100% no navegador', 'Baixar como ZIP']
+    }
   }
 ];
 

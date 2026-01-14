@@ -45,7 +45,8 @@ import {
   convertOdtToPdf,
   convertPdfToPpt,
   convertPptToPdf,
-  convertPagesToPdf
+  convertPagesToPdf,
+  convertPdfToSvg
 } from '@/utils/pdfUtils';
 
 interface ToolPageClientProps {
@@ -512,6 +513,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           case ToolType.PAGES_TO_PDF:
             resultBlob = await convertPagesToPdf(primaryFile);
             outputName = primaryFile.name.replace(/\.pages$/i, '.pdf');
+            break;
+
+          case ToolType.PDF_TO_SVG:
+            resultBlob = await convertPdfToSvg(primaryFile);
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_vectors.zip');
             break;
 
           default:
