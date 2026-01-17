@@ -52,7 +52,21 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
                 disallow: ['/api/'],
             },
+            // Bing's media crawler for images and videos
+            {
+                userAgent: 'msnbot-media',
+                allow: '/',
+                disallow: ['/api/'],
+            },
+            // Bing's ad preview bot
+            {
+                userAgent: 'adidxbot',
+                allow: '/',
+                disallow: ['/api/'],
+            },
         ],
         sitemap: 'https://www.pdfcanada.ca/sitemap.xml',
+        // Host directive helps Bing understand canonical domain
+        host: 'https://www.pdfcanada.ca',
     };
 }

@@ -49,8 +49,9 @@ export async function POST(request: NextRequest) {
             ),
         };
 
-        // Submit to IndexNow API (Bing endpoint)
-        const response = await fetch('https://api.indexnow.org/IndexNow', {
+        // Submit to IndexNow API
+        // Bing is the primary consumer of IndexNow, submit to both endpoints
+        const bingResponse = await fetch('https://www.bing.com/indexnow', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -58,18 +59,41 @@ export async function POST(request: NextRequest) {
             body: JSON.stringify(indexNowPayload),
         });
 
-        if (response.ok || response.status === 202) {
+        // Also submit to generic IndexNow API for other search engines
+        const indexNowResponse = await fetch('https://api.indexnow.org/IndexNow', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(indexNowPayload),
+        });
+
+        // Check Bing response (primary for Bing SEO)
+        if (bingResponse.ok || bingResponse.status === 202) {
             return NextResponse.json({
                 success: true,
-                message: `Submitted ${limitedUrls.length} URLs to IndexNow`,
+                message: `Submitted ${limitedUrls.length} URLs to IndexNow (Bing + generic)`,
                 urls: limitedUrls,
+                bingStatus: bingResponse.status,
+                indexNowStatus: indexNowResponse.status,
             });
         }
 
-        const errorText = await response.text();
+        // If Bing fails, check if at least generic IndexNow worked
+        if (indexNowResponse.ok || indexNowResponse.status === 202) {
+            return NextResponse.json({
+                success: true,
+                message: `Submitted ${limitedUrls.length} URLs to IndexNow (generic only, Bing failed)`,
+                urls: limitedUrls,
+                bingStatus: bingResponse.status,
+                indexNowStatus: indexNowResponse.status,
+            });
+        }
+
+        const errorText = await bingResponse.text();
         return NextResponse.json(
             { error: 'IndexNow submission failed', details: errorText },
-            { status: response.status }
+            { status: bingResponse.status }
         );
     } catch (error) {
         console.error('IndexNow error:', error);

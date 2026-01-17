@@ -4,8 +4,13 @@
     <tile>
       <square70x70logo src="/favicon-32x32.png"/>
       <square150x150logo src="/android-chrome-192x192.png"/>
+      <wide310x150logo src="/og-image.png"/>
       <square310x310logo src="/android-chrome-512x512.png"/>
-      <TileColor>#FF0000</TileColor>
+      <TileColor>#dc2626</TileColor>
     </tile>
+    <notification>
+      <polling-uri src="https://www.pdfcanada.ca/feed.xml"/>
+      <frequency>1440</frequency>
+    </notification>
   </msapplication>
 </browserconfig>

@@ -163,6 +163,27 @@ export default async function RootLayout({
                 <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
                 {/* Preconnect for critical third parties */}
                 <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+
+                {/* Bing SEO: DNS prefetch for Bing resources */}
+                <link rel="dns-prefetch" href="https://www.bing.com" />
+                <link rel="dns-prefetch" href="https://api.indexnow.org" />
+
+                {/* Bing SEO: Microsoft Application meta tags */}
+                <meta name="msapplication-TileColor" content="#dc2626" />
+                <meta name="msapplication-config" content="/browserconfig.xml" />
+                <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
+                <meta name="msapplication-tooltip" content="Free PDF Tools Canada - pdfcanada.ca" />
+                <meta name="msapplication-starturl" content="/" />
+
+                {/* Bing SEO: Geo-targeting for Canada (Bing values local signals) */}
+                <meta name="geo.region" content="CA" />
+                <meta name="geo.placename" content="Canada" />
+                <meta name="geo.position" content="43.6532;-79.3832" />
+                <meta name="ICBM" content="43.6532, -79.3832" />
+
+                {/* Bing SEO: Content language declaration */}
+                <meta httpEquiv="content-language" content={lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA')} />
+
                 {/* RSS and JSON Feed autodiscovery */}
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />

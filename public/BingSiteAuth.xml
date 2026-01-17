@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<users>
+    <!-- 
+        Bing Site Verification File
+        
+        To complete verification:
+        1. Go to https://www.bing.com/webmasters
+        2. Sign in with your Microsoft account
+        3. Add site: https://www.pdfcanada.ca
+        4. Choose "XML file" verification method
+        5. Replace the user string below with your verification code
+        
+        Example: <user>1234567890ABCDEF1234567890ABCDEF</user>
+    -->
+    <user>YOUR_BING_VERIFICATION_CODE_HERE</user>
+</users>
