@@ -212,13 +212,16 @@ export const convertIpynbToPdf = async (file: File): Promise<Blob> => {
                             // Ensure Base64 prefix
                             const base64 = imgData.startsWith('data:image') ? imgData : `data:image/png;base64,${imgData.trim()}`;
 
-                            // Load image synchronously-ish to get dimensions
+                            // Load image synchronously-ish to get dimensions with timeout
                             const img = new Image();
-                            await new Promise((resolve, reject) => {
-                                img.onload = resolve;
-                                img.onerror = reject;
-                                img.src = base64;
-                            });
+                            await Promise.race([
+                                new Promise((resolve, reject) => {
+                                    img.onload = resolve;
+                                    img.onerror = reject;
+                                    img.src = base64;
+                                }),
+                                new Promise((_, reject) => setTimeout(() => reject(new Error('Image load timeout')), 5000))
+                            ]);
 
                             let imgW = img.width * 0.264583; // px to mm
                             let imgH = img.height * 0.264583;

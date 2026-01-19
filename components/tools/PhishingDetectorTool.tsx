@@ -119,9 +119,12 @@ export const PhishingDetectorTool: React.FC<PhishingDetectorToolProps> = ({ file
             const arrayBuffer = await f.arrayBuffer();
             const loadingTask = pdfjs.getDocument({ data: arrayBuffer });
             const pdf = await loadingTask.promise;
-            setNumPages(pdf.numPages);
-            // Clean up
-            await pdf.destroy();
+            try {
+                setNumPages(pdf.numPages);
+            } finally {
+                // Clean up - ensure PDF is always destroyed
+                if (pdf) await pdf.destroy();
+            }
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
                 console.error(error);

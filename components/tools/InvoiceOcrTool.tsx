@@ -550,7 +550,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                             type="number"
                                             className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
                                             value={data?.subtotal || ''}
-                                            onChange={(e) => setData(prev => prev ? ({ ...prev, subtotal: parseFloat(e.target.value) }) : null)}
+                                            onChange={(e) => {
+                                                const val = parseFloat(e.target.value);
+                                                setData(prev => prev ? ({ ...prev, subtotal: isNaN(val) ? 0 : val }) : null);
+                                            }}
                                             placeholder="0.00"
                                         />
                                     </div>
@@ -571,7 +574,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                             type="number"
                                             className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm"
                                             value={data?.tax || ''}
-                                            onChange={(e) => setData(prev => prev ? ({ ...prev, tax: parseFloat(e.target.value) }) : null)}
+                                            onChange={(e) => {
+                                                const val = parseFloat(e.target.value);
+                                                setData(prev => prev ? ({ ...prev, tax: isNaN(val) ? 0 : val }) : null);
+                                            }}
                                             placeholder="0.00"
                                         />
                                     </div>
@@ -592,7 +598,10 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
                                             type="number"
                                             className="w-full p-3 pl-7 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-green-600"
                                             value={data?.total || ''}
-                                            onChange={(e) => setData(prev => prev ? ({ ...prev, total: parseFloat(e.target.value) }) : null)}
+                                            onChange={(e) => {
+                                                const val = parseFloat(e.target.value);
+                                                setData(prev => prev ? ({ ...prev, total: isNaN(val) ? 0 : val }) : null);
+                                            }}
                                             placeholder="0.00"
                                         />
                                     </div>

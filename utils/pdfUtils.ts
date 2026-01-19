@@ -641,20 +641,23 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
               const canvas = document.createElement('canvas');
               canvas.width = img.width;
               canvas.height = img.height;
-              const ctx = canvas.getContext('2d');
-              if (ctx) {
-                const imageData = ctx.createImageData(img.width, img.height);
-                if (img.data.length === img.width * img.height * 3) {
-                  for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
-                    imageData.data[l] = img.data[k]; imageData.data[l + 1] = img.data[k + 1]; imageData.data[l + 2] = img.data[k + 2]; imageData.data[l + 3] = 255;
-                  }
-                } else { imageData.data.set(img.data); }
-                ctx.putImageData(imageData, 0, 0);
-                const dataUrl = canvas.toDataURL('image/png');
-                const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
-                const imageItem = { id: `img_${allImages.length}`, data: bytes, y, width, height };
-                pageImages.push(imageItem);
-                allImages.push(imageItem);
+              try {
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+                  const imageData = ctx.createImageData(img.width, img.height);
+                  if (img.data.length === img.width * img.height * 3) {
+                    for (let k = 0, l = 0; k < img.data.length; k += 3, l += 4) {
+                      imageData.data[l] = img.data[k]; imageData.data[l + 1] = img.data[k + 1]; imageData.data[l + 2] = img.data[k + 2]; imageData.data[l + 3] = 255;
+                    }
+                  } else { imageData.data.set(img.data); }
+                  ctx.putImageData(imageData, 0, 0);
+                  const dataUrl = canvas.toDataURL('image/png');
+                  const bytes = Uint8Array.from(atob(dataUrl.split(',')[1]), c => c.charCodeAt(0));
+                  const imageItem = { id: `img_${allImages.length}`, data: bytes, y, width, height };
+                  pageImages.push(imageItem);
+                  allImages.push(imageItem);
+                }
+              } finally {
                 canvas.width = 0; canvas.height = 0;
               }
             }
@@ -1951,9 +1954,9 @@ export const convertPdfToXml = async (file: File): Promise<Blob> => {
 
       for (const item of textContent.items as any[]) {
         if (item.str && item.str.trim()) {
-          const x = item.transform ? item.transform[4].toFixed(2) : '0';
-          const y = item.transform ? item.transform[5].toFixed(2) : '0';
-          const fontSize = item.transform ? item.transform[0].toFixed(2) : '12';
+          const x = (item.transform && item.transform.length > 4) ? item.transform[4].toFixed(2) : '0';
+          const y = (item.transform && item.transform.length > 5) ? item.transform[5].toFixed(2) : '0';
+          const fontSize = (item.transform && item.transform.length > 0) ? item.transform[0].toFixed(2) : '12';
           xmlContent += `      <text x="${x}" y="${y}" fontSize="${fontSize}">${escapeXml(item.str)}</text>\n`;
         }
       }

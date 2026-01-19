@@ -91,7 +91,7 @@ const extractVendorName = (lines: string[], cleanText: string): string | undefin
         }
 
         // Look for lines with mostly uppercase or title case (typical for company names)
-        const uppercaseRatio = (line.match(/[A-Z]/g) || []).length / line.length;
+        const uppercaseRatio = line.length > 0 ? (line.match(/[A-Z]/g) || []).length / line.length : 0;
         if (uppercaseRatio > 0.3) { // At least 30% uppercase
             return line;
         }

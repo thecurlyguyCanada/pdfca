@@ -72,7 +72,7 @@ export function mergeMultilineRows(data: TableData): TableData {
         let populatedCount = 0;
 
         for (const k of keys) {
-            if (current[k].trim() !== "") {
+            if (current[k] && current[k].trim() !== "") {
                 populatedCount++;
                 populatedKey = k;
             }
@@ -84,7 +84,7 @@ export function mergeMultilineRows(data: TableData): TableData {
                 populatedKey.toLowerCase().includes('payee'));
 
         if (isContinuation && populatedKey) {
-            pivot[populatedKey] = (pivot[populatedKey] + " " + current[populatedKey]).trim();
+            pivot[populatedKey] = ((pivot[populatedKey] || '') + " " + (current[populatedKey] || '')).trim();
         } else {
             mergedRows.push(pivot);
             pivot = { ...current };
@@ -240,4 +240,15 @@ NEWFILEUID:NONE
 </OFX>`;
 
     return ofx;
+}
+
+/**
+ * Terminate the worker to free up resources
+ * Call this when the component unmounts or when cleaning up
+ */
+export function terminateWorker() {
+    if (worker) {
+        worker.terminate();
+        worker = null;
+    }
 }
