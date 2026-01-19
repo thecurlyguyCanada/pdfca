@@ -15,7 +15,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * @see https://www.indexnow.org/
  */
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'pdfcanada-indexnow-key';
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || '3b1a7a9dcb8fcaad8b158395acc27d3a';
 const SITE_HOST = 'www.pdfcanada.ca';
 
 interface IndexNowRequest {
