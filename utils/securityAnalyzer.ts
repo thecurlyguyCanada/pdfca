@@ -41,21 +41,22 @@ export async function analyzePdfSecurity(file: File): Promise<SecurityAnalysisRe
     const loadingTask = pdfjs.getDocument({ data: arrayBuffer });
     const pdf = await loadingTask.promise;
 
-    const result: SecurityAnalysisResult = {
-        riskLevel: 'SAFE',
-        score: 0,
-        details: {
-            hasJavascript: false,
-            hasOpenAction: false,
-            hasLaunchActions: false,
-            hasSubmitForm: false,
-            embeddedFiles: [],
-            links: []
-        },
-        logs: []
-    };
+    try {
+        const result: SecurityAnalysisResult = {
+            riskLevel: 'SAFE',
+            score: 0,
+            details: {
+                hasJavascript: false,
+                hasOpenAction: false,
+                hasLaunchActions: false,
+                hasSubmitForm: false,
+                embeddedFiles: [],
+                links: []
+            },
+            logs: []
+        };
 
-    // 1. Analyze Document Catalog (Root)
+        // 1. Analyze Document Catalog (Root)
     // We can't access low-level objects easily via the high-level API,
     // so we rely on what is exposed via getMetadata and getJSActions (if available in this version)
     // or by traversing pages and annotations.
@@ -139,35 +140,40 @@ export async function analyzePdfSecurity(file: File): Promise<SecurityAnalysisRe
         }
     } catch (e) {
         // ignore
+        }
+
+        // 5. Calculate Score
+        let riskScore = 0;
+
+        if (result.details.hasJavascript) riskScore += 50;
+        if (result.details.hasLaunchActions) riskScore += 100; // Critical
+        if (result.details.hasOpenAction) riskScore += 20; // Suspicious
+        if (result.details.embeddedFiles.length > 0) riskScore += 30; // Malware vector
+
+        // Link Analysis
+        const suspiciousLinks = result.details.links.filter(l => l.isSuspicious);
+        if (suspiciousLinks.length > 0) riskScore += 20 * suspiciousLinks.length;
+
+        // IP address links are very sus
+        if (result.details.links.some(l => l.reason?.includes('IP Address'))) riskScore += 40;
+
+        result.score = Math.min(riskScore, 100);
+
+        if (result.score === 0) result.riskLevel = 'SAFE';
+        else if (result.score < 30) result.riskLevel = 'LOW';
+        else if (result.score < 70) result.riskLevel = 'MEDIUM';
+        else if (result.score < 90) result.riskLevel = 'HIGH';
+        else result.riskLevel = 'CRITICAL';
+
+        return result;
+    } finally {
+        // Clean up to prevent memory leak
+        try {
+            pdf.destroy();
+        } catch (e) {
+            // Ignore destroy errors
+        }
     }
-
-    // 5. Calculate Score
-    let riskScore = 0;
-
-    if (result.details.hasJavascript) riskScore += 50;
-    if (result.details.hasLaunchActions) riskScore += 100; // Critical
-    if (result.details.hasOpenAction) riskScore += 20; // Suspicious
-    if (result.details.embeddedFiles.length > 0) riskScore += 30; // Malware vector
-
-    // Link Analysis
-    const suspiciousLinks = result.details.links.filter(l => l.isSuspicious);
-    if (suspiciousLinks.length > 0) riskScore += 20 * suspiciousLinks.length;
-
-    // IP address links are very sus
-    if (result.details.links.some(l => l.reason?.includes('IP Address'))) riskScore += 40;
-
-    result.score = Math.min(riskScore, 100);
-
-    if (result.score === 0) result.riskLevel = 'SAFE';
-    else if (result.score < 30) result.riskLevel = 'LOW';
-    else if (result.score < 70) result.riskLevel = 'MEDIUM';
-    else if (result.score < 90) result.riskLevel = 'HIGH';
-    else result.riskLevel = 'CRITICAL';
-
-    // Clean up to prevent memory leak
-    pdf.destroy();
-
-    return result;
 }
 
 function checkSuspiciousUrl(url: string): { isSuspicious: boolean, reason?: string } {

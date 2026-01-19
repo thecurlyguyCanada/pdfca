@@ -38,9 +38,22 @@ function parseOFXDate(dateStr: string): string {
     // Remove timezone info if present (e.g., [GMT-3:BRT])
     const cleaned = dateStr.replace(/\[.*\]/, '').trim();
     if (cleaned.length >= 8) {
+        // Validate format is YYYYMMDD (8 digits)
+        if (!/^\d{8}/.test(cleaned)) return dateStr;
+
         const year = cleaned.substring(0, 4);
         const month = cleaned.substring(4, 6);
         const day = cleaned.substring(6, 8);
+
+        // Basic validation: year 1900-2100, month 01-12, day 01-31
+        const y = parseInt(year, 10);
+        const m = parseInt(month, 10);
+        const d = parseInt(day, 10);
+
+        if (y < 1900 || y > 2100 || m < 1 || m > 12 || d < 1 || d > 31) {
+            return dateStr;
+        }
+
         return `${year}-${month}-${day}`;
     }
     return dateStr;
@@ -128,7 +141,7 @@ function parseAccountStatement(block: string, isXML: boolean, type: 'bank' | 'cr
 
     // Extract balance
     const balanceStr = extract(block, 'BALAMT');
-    const balance = balanceStr ? parseFloat(balanceStr) : undefined;
+    const balance = balanceStr && !isNaN(parseFloat(balanceStr)) ? parseFloat(balanceStr) : undefined;
     const balanceDate = parseOFXDate(extract(block, 'DTASOF'));
 
     // Extract transactions

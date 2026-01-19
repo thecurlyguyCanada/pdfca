@@ -737,6 +737,7 @@ export const convertPdfToEpub = async (file: File): Promise<Blob> => {
       });
 
       filteredLines.forEach((line, lIdx) => {
+        if (line.length === 0) return; // Safety check for empty lines
         const lineText = cleanText(line.map(i => i.str).join(' '));
         const avgFontSize = line.reduce((acc, i) => acc + i.fontSize, 0) / line.length;
         const isMostlyBold = line.filter(i => i.isBold).length > line.length * 0.5;

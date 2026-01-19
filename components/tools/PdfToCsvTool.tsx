@@ -554,7 +554,7 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
 
     // Derived Statistics
     const stats = useMemo(() => {
-        if (!processedData) return null;
+        if (!processedData || !processedData.rows || processedData.rows.length === 0) return null;
         let credits = 0;
         let debits = 0;
         let count = 0;
