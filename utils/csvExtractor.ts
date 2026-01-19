@@ -34,13 +34,18 @@ export function extractTableFromPdf(file: File, onProgress?: (p: number) => void
 
         worker.addEventListener('message', handleMessage);
 
-        file.arrayBuffer().then(buffer => {
-            worker?.postMessage({
-                fileBuffer: buffer,
-                strategy: 'spatial',
-                forceOCR: options?.forceOCR || false
-            }, [buffer]); // Transferable
-        });
+        file.arrayBuffer()
+            .then(buffer => {
+                worker?.postMessage({
+                    fileBuffer: buffer,
+                    strategy: 'spatial',
+                    forceOCR: options?.forceOCR || false
+                }, [buffer]); // Transferable
+            })
+            .catch(error => {
+                worker?.removeEventListener('message', handleMessage);
+                reject(new Error(`Failed to read file: ${error.message}`));
+            });
     });
 }
 
@@ -140,20 +145,26 @@ export function downloadAsExcel(data: TableData, filename: string = "converted_p
         const csv = utils.sheet_to_csv(worksheet);
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = filename.replace('.xlsx', '.csv');
-        link.click();
-        URL.revokeObjectURL(url);
+        try {
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = filename.replace('.xlsx', '.csv');
+            link.click();
+        } finally {
+            URL.revokeObjectURL(url);
+        }
     } else {
         const buffer = write(workbook, { bookType: 'xlsx', type: 'array' });
         const blob = new Blob([buffer], { type: 'application/octet-stream' });
         const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = filename;
-        link.click();
-        URL.revokeObjectURL(url);
+        try {
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = filename;
+            link.click();
+        } finally {
+            URL.revokeObjectURL(url);
+        }
     }
 }
 
@@ -205,7 +216,7 @@ NEWFILEUID:NONE
         const amt = row['Amount'] || row['amount'] || "0";
         const memo = Object.values(row).join(' ').substring(0, 255);
         const name = (row['Description'] || row['desc'] || row['Payee'] || "Transaction").substring(0, 32);
-        const fitid = `${date.replace(/-/g, '')}${amt.replace(/./g, '')}${i}`;
+        const fitid = `${date.replace(/-/g, '')}${amt.replace(/\./g, '')}${i}`;
 
         ofx += `<STMTTRN>
 <TRNTYPE>OTHER</TRNTYPE>

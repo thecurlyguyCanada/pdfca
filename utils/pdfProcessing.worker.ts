@@ -107,6 +107,8 @@ function extractTableData(allTextItems: TextItem[], numPages: number) {
     // 3. Transform clustered rows
     const processedRows = rows.map(rowItems => {
         const line: string[] = [];
+        if (rowItems.length === 0) return line; // Safety check
+
         rowItems.sort((a, b) => a.x - b.x);
 
         let currentCell = rowItems[0].str;

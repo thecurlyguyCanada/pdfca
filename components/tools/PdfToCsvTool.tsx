@@ -472,19 +472,20 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
 
     // History Helpers
     const pushHistory = (newData: TableData) => {
+        if (!processedData) return;
         setHistory(prev => ({
-            past: [...prev.past, processedData!].slice(-20), // Limit history to 20 steps
+            past: [...prev.past, processedData].slice(-20), // Limit history to 20 steps
             future: []
         }));
         setProcessedData(newData);
     };
 
     const handleUndo = () => {
-        if (history.past.length === 0) return;
+        if (history.past.length === 0 || !processedData) return;
         const newPresent = history.past[history.past.length - 1];
         setHistory(prev => ({
             past: prev.past.slice(0, -1),
-            future: [processedData!, ...prev.future]
+            future: [processedData, ...prev.future]
         }));
         setProcessedData(newPresent);
         triggerHaptic('light');
@@ -588,11 +589,14 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
             const qboContent = generateQBO(processedData);
             const blob = new Blob([qboContent], { type: 'application/vnd.intu.qbo' });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = file.name.replace(/\.pdf$/i, '.qbo');
-            link.click();
-            URL.revokeObjectURL(url); // Clean up blob URL
+            try {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = file.name.replace(/\.pdf$/i, '.qbo');
+                link.click();
+            } finally {
+                URL.revokeObjectURL(url); // Clean up blob URL
+            }
         } else {
             downloadAsExcel(processedData, file.name.replace(/\.pdf$/i, `.${format}`), format);
         }

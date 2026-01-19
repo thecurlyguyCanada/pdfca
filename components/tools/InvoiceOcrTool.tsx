@@ -208,12 +208,15 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             const buffer = await workbook.xlsx.writeBuffer();
             const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `invoice_${data.id || 'scan'}.xlsx`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-            triggerHaptic('success');
+            try {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invoice_${data.id || 'scan'}.xlsx`;
+                a.click();
+                triggerHaptic('success');
+            } finally {
+                window.URL.revokeObjectURL(url);
+            }
         } catch (e) {
             if (process.env.NODE_ENV === 'development') {
                 console.error("Excel export failed", e);
@@ -276,12 +279,15 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             const csv = [headers.join(','), values.join(',')].join('\n');
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `invoice_${data.id || 'scan'}.csv`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-            triggerHaptic('success');
+            try {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invoice_${data.id || 'scan'}.csv`;
+                a.click();
+                triggerHaptic('success');
+            } finally {
+                window.URL.revokeObjectURL(url);
+            }
         } catch (e) {
             if (process.env.NODE_ENV === 'development') {
                 console.error("CSV export failed", e);
@@ -315,12 +321,15 @@ export const InvoiceOcrTool: React.FC<InvoiceOcrToolProps> = ({ file, pdfJsDoc, 
             const jsonString = JSON.stringify(exportData, null, 2);
             const blob = new Blob([jsonString], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `invoice_${data.id || 'scan'}.json`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-            triggerHaptic('success');
+            try {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invoice_${data.id || 'scan'}.json`;
+                a.click();
+                triggerHaptic('success');
+            } finally {
+                window.URL.revokeObjectURL(url);
+            }
         } catch (e) {
             if (process.env.NODE_ENV === 'development') {
                 console.error("JSON export failed", e);

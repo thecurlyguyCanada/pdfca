@@ -291,5 +291,6 @@ const normalizeAmount = (rawAmount: string): number => {
         }
     }
 
-    return parseFloat(normalized);
+    const result = parseFloat(normalized);
+    return isNaN(result) ? 0 : result;
 };

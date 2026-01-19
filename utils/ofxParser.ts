@@ -268,8 +268,8 @@ NEWFILEUID:NONE
 <ACCTTYPE>${account.accountType}
 </BANKACCTFROM>
 <BANKTRANLIST>
-<DTSTART>${account.transactions[0]?.date?.replace(/-/g, '') || dateStr}
-<DTEND>${account.transactions[account.transactions.length - 1]?.date?.replace(/-/g, '') || dateStr}
+<DTSTART>${account.transactions.length > 0 ? (account.transactions[0]?.date?.replace(/-/g, '') || dateStr) : dateStr}
+<DTEND>${account.transactions.length > 0 ? (account.transactions[account.transactions.length - 1]?.date?.replace(/-/g, '') || dateStr) : dateStr}
 `;
 
     for (const t of account.transactions) {
@@ -301,11 +301,11 @@ export function transactionsToQIF(transactions: OFXTransaction[], accountType: s
     let qif = `!Type:${accountType}\n`;
 
     for (const t of transactions) {
-        // Skip transactions without dates
+        // Skip transactions without dates or invalid format
         if (!t.date || !t.date.includes('-')) {
             continue;
         }
-        // Date in MM/DD/YYYY format
+        // Date comes in YYYY-MM-DD format, convert to MM/DD/YYYY for QIF
         const dateParts = t.date.split('-');
         if (dateParts.length !== 3) continue;
         const [year, month, day] = dateParts;

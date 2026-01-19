@@ -235,11 +235,14 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
 
         const blob = new Blob([content as BlobPart], { type: mimeType });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName.replace(/\.(ofx|qfx)$/i, `.${extension}`);
-        a.click();
-        URL.revokeObjectURL(url);
+        try {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName.replace(/\.(ofx|qfx)$/i, `.${extension}`);
+            a.click();
+        } finally {
+            URL.revokeObjectURL(url);
+        }
     }, [selectedAccount, fileName]);
 
     const reset = useCallback(() => {
