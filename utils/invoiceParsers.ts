@@ -105,7 +105,7 @@ const extractVendorName = (lines: string[], cleanText: string): string | undefin
         let currentIndex = 0;
         for (let i = 0; i < lines.length - 1; i++) {
             currentIndex += lines[i].length;
-            if (currentIndex > vatIndex) {
+            if (currentIndex > vatIndex && i > 0) {
                 // Previous line might be the vendor
                 const candidateLine = lines[i - 1];
                 if (candidateLine &&

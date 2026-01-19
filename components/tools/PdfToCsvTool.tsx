@@ -562,8 +562,8 @@ export const PdfToCsvTool: React.FC<PdfToCsvToolProps> = ({ file, t }) => {
         processedData.rows.forEach(row => {
             // Try to find amount column
             const amountKey = Object.keys(row).find(k => k.toLowerCase().includes('amount') || k.toLowerCase().includes('balance') || k.toLowerCase().includes('credit') || k.toLowerCase().includes('debit'));
-            if (amountKey) {
-                const valStr = row[amountKey].replace(/[^0-9.-]/g, '');
+            if (amountKey && row[amountKey]) {
+                const valStr = (row[amountKey] || '').replace(/[^0-9.-]/g, '');
                 const val = parseFloat(valStr);
                 if (!isNaN(val)) {
                     if (val > 0) credits += val;

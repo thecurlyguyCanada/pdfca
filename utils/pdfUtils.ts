@@ -416,7 +416,12 @@ export const signPdf = async (originalFile: File, signatureEntries: SignatureEnt
       if (!entry.dataUrl) continue;
 
       try {
-        const imageBytes = await fetch(entry.dataUrl).then(res => res.arrayBuffer());
+        // Fetch with timeout to prevent hanging
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
+        const imageBytes = await fetch(entry.dataUrl, { signal: controller.signal })
+          .then(res => res.arrayBuffer())
+          .finally(() => clearTimeout(timeout));
         let image;
 
         // Detect format from data URL or try both
@@ -1415,7 +1420,8 @@ export const convertWordToPdf = async (file: File): Promise<Blob> => {
       // Styles
       if (tagName.startsWith('h')) {
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(Math.max(12, 24 - (parseInt(tagName[1]) * 2)));
+        const headingLevel = parseInt(tagName[1]) || 1;
+        doc.setFontSize(Math.max(12, 24 - (headingLevel * 2)));
         y += 4; // Extra space before heading
       } else if (tagName === 'strong' || tagName === 'b') {
         doc.setFont("helvetica", "bold");
@@ -1562,7 +1568,8 @@ export const convertRtfToPdf = async (file: File): Promise<Blob> => {
       // Styles
       if (tagName.startsWith('h')) {
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(Math.max(12, 24 - (parseInt(tagName[1]) * 2)));
+        const headingLevel = parseInt(tagName[1]) || 1;
+        doc.setFontSize(Math.max(12, 24 - (headingLevel * 2)));
         y += 4; // Extra space before heading
       } else if (tagName === 'strong' || tagName === 'b') {
         doc.setFont("helvetica", "bold");
