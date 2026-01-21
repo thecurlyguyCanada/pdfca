@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Tablet, BookOpen, Smartphone } from 'lucide-react';
+import { Tablet, BookOpen, Smartphone, Mail, Settings, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { getGuideContent } from '../../../utils/guideContent';
 import { MarkdownContent } from '../../MarkdownContent';
 import { AuthorBio } from '../../AuthorBio';
-import Link from 'next/link';
 import { ToolPromo } from '../../ToolPromo';
+import { RelatedTools } from '../../RelatedTools';
+import Link from 'next/link';
 
 interface GuideProps {
     lang: Language;
@@ -17,82 +18,234 @@ interface GuideProps {
 
 const getLocalContent = (lang: string) => ({
     en: {
-        intro: `
-Reading PDFs on a **Kindle** or e-reader can be frustrating. The text is often too small, and zooming pans around the page instead of reflowing text. The solution? **Convert PDF to Kindle format (AZW3 or KFX)** or reflowable text.
+        seo_title: 'Convert PDF to Kindle (AZW3, KFX) | Best Settings for E-Readers',
+        seo_desc: 'Learn how to read PDFs comfortably on Kindle without zooming. Convert PDF to reflowable AZW3, EPUB, or KFX format for the best experience.',
+        intro: `Reading a standard PDF on a **Kindle** or e-reader is often a miserable experience.
 
-This guide shows you how to optimize documents for the best reading experience on E-ink screens.
-        `,
+Because PDFs have a fixed layout, the text is tiny on a 6-inch screen. You have to pinch and zoom for every line, scrolling left and right.
+
+The solution is to **convert PDF to a reflowable format** like AZW3 or KFX. This allows you to:
+*   Increase font size
+*   Change font style
+*   Use "Whispersync" across devices
+*   Read comfortably without panning
+
+This guide covers the best free methods to transform your documents for E-ink screens.`,
         sections: [
             {
-                id: 'pdf-vs-kindle',
-                title: 'The Problem: Fixed vs. Reflowable',
-                content: `
-*   **PDF:** A digital printout. Layout is frozen. On a small screen, you see a tiny full page.
-*   **Kindle (MOBI/AZW3):** Like a web page. Text "reflows" to fit the screen size, allowing you to increase font size comfortably.
-                `
+                id: 'formats',
+                title: 'Which Format is Best for Kindle?',
+                content: `**1. PDF (Poor)** -> *Avoid if possible.*
+Fixed layout. Good for comics or technical manuals, terrible for novels.
+
+**2. MOBI (Obsolete)** -> *Old standard.*
+Supported by old Kindles but limited formatting options. Amazon is phasing this out.
+
+**3. AZW3 (Great)** -> *Standard Reflowable.*
+Allows custom fonts and bold text functionality. Best for side-loading via USB.
+
+**4. KFX (Best)** -> *Modern Standard.*
+Supports advanced typesetting (hyphenation, ligatures). Best for the newest Paperwhite and Oasis devices.`
             },
             {
-                id: 'methods',
-                title: 'Conversion Methods',
-                content: `
-1.  **Send to Kindle (Email):** Amazon's built-in tool. Send your PDF to your Kindle email address with the subject "Convert". Amazon will try to convert it for you.
-2.  **Calibre (Best Tool):** The Swiss Army knife of e-books. Calibre (free software) allows detailed conversion settings, chapter detection, and metadata editing.
-3.  **K2pdfopt:** A specialized tool for optimizing PDF for small screens without changing the format (smart cropping and reflowing of bitmaps).
-                `
+                id: 'method-1-email',
+                title: 'Method 1: "Send to Kindle" (Easiest)',
+                content: `Amazon has a built-in conversion service.
+
+1.  Find your **Send-to-Kindle Email Address** (in Settings > Your Account on the device).
+2.  Open your email client (Gmail, Outlook).
+3.  Attach your PDF file.
+4.  **Crucial Step:** Set the subject line to **"Convert"**.
+5.  Send the email.
+
+**Pros:** Wireless delivery.
+**Cons:** Sometimes the conversion is messy; images might vanish.`
+            },
+            {
+                id: 'method-2-tool',
+                title: 'Method 2: Online Converter (Fastest)',
+                content: `If you want to sideload via USB or email doesn't work, use our free tool.
+
+1.  **Upload** your PDF to pdfcanada.ca.
+2.  Choose **"to Word"** or **"to EPUB"** (Kindle now supports EPUB via Send-to-Kindle).
+3.  **Process** the file.
+4.  **Download** and transfer to your device via USB cable (into the "documents" folder).`
+            },
+            {
+                id: 'troubleshooting',
+                title: 'Common Conversion Issues',
+                content: `**Issue: Line breaks appear in the middle of sentences.**
+*Cause:* The PDF has hard line breaks.
+*Fix:* Use a "Heuristic Processing" option in advanced tools like Calibre to detect and remove false line breaks.
+
+**Issue: Charts and tables are messed up.**
+*Cause:* Reflowable formats hate complex tables.
+*Fix:* Use **k2pdfopt** (specialized software) to optimize the PDF for small screens *without* converting it to text. It basically "shops" the PDF into small mobile-friendly chunks.`
+            },
+            {
+                id: 'faq',
+                title: 'Frequently Asked Questions',
+                content: `**Why doesn't my Kindle cover art show up?**
+This is a known Amazon bug with sideloaded books. You often need to reconnect the device to Calibre or use the "Email" method to get covers working.
+
+**Can I convert DRM-protected PDFs?**
+No. Our tools only work on DRM-free documents. You cannot legally strip DRM from purchased textbooks.
+
+**Is AZW3 better than MOBI?**
+Yes, absolutely. AZW3 supports bolder fonts and better spacing. Always choose AZW3 over MOBI for text-heavy books.`
             }
-        ]
+        ],
+        breadcrumbs: {
+            home: 'Home',
+            guides: 'Guides',
+            tool: 'PDF to Kindle'
+        }
     },
     fr: {
-        intro: `
-Lire des PDF sur un **Kindle** ou une liseuse peut être frustrant. Le texte est souvent trop petit et le zoom déplace la page au lieu de redistribuer le texte. La solution ? **Convertir PDF au format Kindle (AZW3 ou KFX)** ou texte redistribuable.
+        seo_title: 'Convertir PDF pour Kindle (AZW3, KFX) | Réglages Optimaux',
+        seo_desc: 'Apprenez à lire des PDF confortablement sur Kindle sans zoomer. Convertissez PDF en format redistribuable AZW3, EPUB ou KFX.',
+        intro: `Lire un PDF standard sur un **Kindle** est souvent une expérience misérable.
 
-Ce guide vous montre comment optimiser les documents pour la meilleure expérience de lecture sur écrans E-ink.
-        `,
+Parce que les PDF ont une mise en page fixe, le texte est minuscule sur un écran de 6 pouces. Vous devez zoomer pour chaque ligne.
+
+La solution est de **convertir le PDF en un format redistribuable** comme AZW3 ou KFX. Cela vous permet de :
+*   Augmenter la taille de la police
+*   Changer le style de police
+*   Lire confortablement sans défilement horizontal
+
+Ce guide couvre les meilleures méthodes gratuites pour transformer vos documents.`,
         sections: [
             {
-                id: 'pdf-vs-kindle',
-                title: 'Le Problème : Fixe vs Redistribuable',
-                content: `
-*   **PDF :** Une impression numérique. La mise en page est figée. Sur un petit écran, vous voyez une page complète minuscule.
-*   **Kindle (MOBI/AZW3) :** Comme une page web. Le texte "coule" pour s'adapter à la taille de l'écran, vous permettant d'augmenter la taille de la police confortablement.
-                `
+                id: 'formats',
+                title: 'Quel Format est le Meilleur ?',
+                content: `**1. PDF (Mauvais)**
+Mise en page fixe. Terrible pour les romans.
+
+**2. AZW3 (Super)**
+Permet les polices personnalisées. Idéal pour le transfert USB.
+
+**3. KFX (Meilleur)**
+Supporte la césure avancée. Idéal pour les appareils récents.`
             },
             {
-                id: 'methods',
-                title: 'Méthodes de Conversion',
-                content: `
-1.  **Send to Kindle (Email) :** L'outil intégré d'Amazon. Envoyez votre PDF à votre adresse email Kindle avec le sujet "Convert". Amazon essaiera de le convertir pour vous.
-2.  **Calibre (Meilleur Outil) :** Le couteau suisse des eBooks. Calibre (logiciel gratuit) permet des réglages de conversion détaillés, la détection de chapitres et l'édition de métadonnées.
-3.  **K2pdfopt :** Un outil spécialisé pour optimiser les PDF pour petits écrans sans changer le format (recadrage intelligent et reflow de bitmaps).
-                `
+                id: 'method-1-email',
+                title: 'Méthode 1 : "Send to Kindle" (Facile)',
+                content: `Amazon a un service de conversion intégré.
+
+1.  Trouvez votre **Email Kindle** (dans Paramètres).
+2.  Envoyez un email avec votre PDF en pièce jointe.
+3.  **Crucial :** Mettez le sujet **"Convert"**.
+
+**Avantages :** Sans fil.
+**Inconvénients :** Parfois désordonné.`
+            },
+            {
+                id: 'method-2-tool',
+                title: 'Méthode 2 : Convertisseur en Ligne',
+                content: `Utilisez notre outil gratuit.
+
+1.  **Téléversez** votre PDF.
+2.  convertissez en **Word** ou **EPUB**.
+3.  **Téléchargez** et transférez via USB.`
+            },
+            {
+                id: 'troubleshooting',
+                title: 'Problèmes Courants',
+                content: `**Problème : Sauts de ligne au milieu des phrases.**
+*Cause:* Le PDF a des sauts de ligne durs.
+*Solution:* Utilisez un traitement heuristique.
+
+**Problème : Tableaux cassés.**
+*Solution:* Les formats redistribuables gèrent mal les tableaux complexes. Gardez-les en PDF ou utilisez le mode paysage.`
+            },
+            {
+                id: 'faq',
+                title: 'Questions Fréquentes',
+                content: `**Pourquoi la couverture ne s'affiche pas ?**
+Bug connu avec les livres transférés par USB.
+
+**AZW3 est-il mieux que MOBI ?**
+Oui, absolument. Toujours choisir AZW3 pour le texte.`
             }
-        ]
+        ],
+        breadcrumbs: {
+            home: 'Accueil',
+            guides: 'Guides',
+            tool: 'PDF vers Kindle'
+        }
     },
     pt: {
-        intro: `
-Ler PDFs em um **Kindle** ou e-reader pode ser frustrante. O texto geralmente é muito pequeno e o zoom move a página em vez de redistribuir o texto. A solução? **Converter PDF para o formato Kindle (AZW3 ou KFX)** ou texto redistribuível.
+        seo_title: 'Converter PDF para Kindle (AZW3, KFX) | Melhores Configurações',
+        seo_desc: 'Aprenda a ler PDFs confortavelmente no Kindle sem zoom. Converta PDF para formato redistribuível AZW3, EPUB ou KFX.',
+        intro: `Ler um PDF padrão em um **Kindle** é frequentemente uma experiência miserável.
 
-Este guia mostra como otimizar documentos para a melhor experiência de leitura em telas E-ink.
-        `,
+Porque os PDFs têm um layout fixo, o texto é minúsculo em uma tela de 6 polegadas. Você tem que fazer pinça e zoom para cada linha.
+
+A solução é **converter PDF para um formato redistribuível** como AZW3 ou KFX. Isso permite:
+*   Aumentar o tamanho da fonte
+*   Mudar o estilo da fonte
+*   Ler confortavelmente sem rolagem horizontal
+
+Este guia cobre os melhores métodos gratuitos para transformar seus documentos.`,
         sections: [
             {
-                id: 'pdf-vs-kindle',
-                title: 'O Problema: Fixo vs. Redistribuível',
-                content: `
-*   **PDF:** Uma impressão digital. O layout é congelado. Em uma tela pequena, você vê uma página inteira minúscula.
-*   **Kindle (MOBI/AZW3):** Como uma página da web. O texto "flui" para se ajustar ao tamanho da tela, permitindo que você aumente o tamanho da fonte confortavelmente.
-                `
+                id: 'formats',
+                title: 'Qual Formato é o Melhor?',
+                content: `**1. PDF (Ruim)**
+Layout fixo. Terrível para romances.
+
+**2. AZW3 (Ótimo)**
+Permite fontes personalizadas. Ideal para transferência USB.
+
+**3. KFX (Melhor)**
+Suporta tipografia avançada. Ideal para dispositivos recentes.`
             },
             {
-                id: 'methods',
-                title: 'Métodos de Conversão',
-                content: `
-1.  **Send to Kindle (Email):** A ferramenta integrada da Amazon. Envie seu PDF para o seu endereço de e-mail do Kindle com o assunto "Convert". A Amazon tentará convertê-lo para você.
-2.  **Calibre (Melhor Ferramenta):** O canivete suíço dos e-books. O Calibre (software gratuito) permite configurações detalhadas de conversão, detecção de capítulos e edição de metadados.
-3.  **K2pdfopt:** Uma ferramenta especializada para otimizar PDF para telas pequenas sem alterar o formato (recorte inteligente e refluxo de bitmaps).
-                `
+                id: 'method-1-email',
+                title: 'Método 1: "Send to Kindle" (Fácil)',
+                content: `A Amazon tem um serviço de conversão integrado.
+
+1.  Encontre seu **E-mail Kindle** (nas Configurações).
+2.  Envie um e-mail com seu PDF em anexo.
+3.  **Crucial:** Coloque o assunto **"Convert"**.
+
+**Prós:** Sem fio.
+**Contras:** Às vezes bagunçado.`
+            },
+            {
+                id: 'method-2-tool',
+                title: 'Método 2: Conversor Online',
+                content: `Use nossa ferramenta gratuita.
+
+1.  **Envie** seu PDF.
+2.  Converta para **Word** ou **EPUB**.
+3.  **Baixe** e transfira via USB.`
+            },
+            {
+                id: 'troubleshooting',
+                title: 'Problemas Comuns',
+                content: `**Problema: Quebras de linha no meio de frases.**
+*Causa:* O PDF tem quebras de linha duras.
+*Solução:* Use processamento heurístico.
+
+**Problema: Tabelas quebradas.**
+*Solução:* Formatos redistribuíveis lidam mal com tabelas complexas. Mantenha em PDF ou use modo paisagem.`
+            },
+            {
+                id: 'faq',
+                title: 'Perguntas Frequentes',
+                content: `**Por que a capa não aparece?**
+Bug conhecido com livros transferidos via USB.
+
+**AZW3 é melhor que MOBI?**
+Sim, absolutamente. Sempre escolha AZW3 para texto.`
             }
-        ]
+        ],
+        breadcrumbs: {
+            home: 'Início',
+            guides: 'Guias',
+            tool: 'PDF para Kindle'
+        }
     }
 });
 
@@ -104,29 +257,56 @@ export const PdfToKindleGuide: React.FC<GuideProps> = ({ lang }) => {
     return (
         <div className="bg-white dark:bg-gray-950">
             <SEO
-                title={lang === 'en' ? 'Convert PDF to Kindle Guide' : lang === 'fr' ? 'Guide Convertir PDF pour Kindle' : 'Guia Converter PDF para Kindle'}
-                description={lang === 'en' ? 'Optimize PDFs for Kindle reading. Convert to AZW3/MOBI.' : lang === 'fr' ? 'Optimisez les PDF pour la lecture Kindle. Convertissez en AZW3/MOBI.' : 'Otimize PDFs para leitura no Kindle. Converta para AZW3/MOBI.'}
-                canonicalPath="/guides/pdf-to-kindle"
+                title={t.seo_title}
+                description={t.seo_desc}
+                canonicalPath={`/${lang}/guides/pdf-to-kindle`}
                 lang={lang}
                 breadcrumbs={[
-                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', path: lang === 'en' ? '/guides' : `/${lang}/guides` },
-                    { name: lang === 'en' ? 'PDF to Kindle' : lang === 'fr' ? 'PDF vers Kindle' : 'PDF para Kindle', path: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
+                    { name: t.breadcrumbs.home, path: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbs.guides, path: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbs.tool, path: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
                 ]}
             />
             <PageLayout
-                title={lang === 'en' ? 'PDF to Kindle' : lang === 'fr' ? 'PDF vers Kindle' : 'PDF para Kindle'}
-                subtitle={lang === 'en' ? 'Read documents comfortably on your E-reader.' : lang === 'fr' ? 'Lisez des documents confortablement sur votre liseuse.' : 'Leia documentos confortavelmente no seu E-reader.'}
+                title={lang === 'en' ? 'PDF onto Kindle Guide' : lang === 'fr' ? 'Guide PDF vers Kindle' : 'Guia PDF para Kindle'}
+                subtitle={lang === 'en' ? 'Read easily on E-ink screens.' : lang === 'fr' ? 'Lisez facilement sur écrans E-ink.' : 'Leia facilmente em telas E-ink.'}
                 icon={<Tablet size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'en' ? 'Home' : lang === 'fr' ? 'Accueil' : 'Início', href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'en' ? 'Guides' : lang === 'fr' ? 'Guides' : 'Guias', href: lang === 'en' ? '/guides' : `/${lang}/guides` },
-                    { name: lang === 'en' ? 'To Kindle' : lang === 'fr' ? 'Vers Kindle' : 'Para Kindle', href: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
+                    { name: t.breadcrumbs.home, href: lang === 'en' ? '/' : `/${lang}` },
+                    { name: t.breadcrumbs.guides, href: lang === 'en' ? '/guides' : `/${lang}/guides` },
+                    { name: t.breadcrumbs.tool, href: lang === 'en' ? '/guides/pdf-to-kindle' : `/${lang}/guides/pdf-to-kindle` }
                 ]}
             >
                 <div className="w-full py-4 sm:py-6 md:py-8">
-                    <ToolPromo tool="pdf-to-kindle" lang={lang} />
+                    <ToolPromo tool="pdf-to-word" lang={lang} />
                     <MarkdownContent content={t.intro} />
+
+                    <div className="my-12 flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
+                        <div className="flex-1 p-6 border-2 border-gray-200 dark:border-gray-800 rounded-xl relative bg-white dark:bg-gray-900">
+                            <Smartphone className="mx-auto md:mx-0 w-12 h-12 text-gray-400 mb-4" />
+                            <p className="font-bold text-gray-900 dark:text-white mb-2">
+                                {lang === 'en' ? 'PDF on Kindle' : lang === 'fr' ? 'PDF sur Kindle' : 'PDF no Kindle'}
+                            </p>
+                            <div className="text-xs text-gray-500 border border-gray-300 p-2 rounded">
+                                <p className="mb-1">This is tiny text</p>
+                                <p className="mb-1">Hard to read</p>
+                                <p>Zooming is slow</p>
+                            </div>
+                        </div>
+                        <div className="text-canada-red font-bold text-xl flex flex-col items-center gap-1">
+                            <Settings size={24} />
+                            <span>Convert</span>
+                        </div>
+                        <div className="flex-1 p-6 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-900/10">
+                            <BookOpen className="mx-auto md:mx-0 w-12 h-12 text-blue-600 mb-4" />
+                            <p className="font-bold text-gray-900 dark:text-white mb-2">
+                                {lang === 'en' ? 'AZW3/EPUB' : lang === 'fr' ? 'AZW3/EPUB' : 'AZW3/EPUB'}
+                            </p>
+                            <div className="text-lg text-gray-800 p-2 font-serif leading-relaxed">
+                                <p>Perfectly sizable text that fits the screen.</p>
+                            </div>
+                        </div>
+                    </div>
 
                     {t.sections.map((section: any) => (
                         <section key={section.id} className="mb-12">
@@ -139,6 +319,10 @@ export const PdfToKindleGuide: React.FC<GuideProps> = ({ lang }) => {
                             </div>
                         </section>
                     ))}
+
+                    <div className="mt-12">
+                        <RelatedTools lang={lang} currentPath={`/${lang}/guides/pdf-to-kindle`} category="convert" />
+                    </div>
 
                     <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
                         <AuthorBio lang={lang} />
