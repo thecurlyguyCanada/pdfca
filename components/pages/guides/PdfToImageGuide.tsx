@@ -20,340 +20,281 @@ export const PdfToImageGuide: React.FC<Props> = ({ lang, slug = 'pdf-to-image' }
     const getLocalContent = (l: Language): GuideContent => {
         const t = {
             en: {
-                subtitle: `Convert PDF pages to high-quality ${formatName} images instantly and for free`,
-                intro: `Need to extract images from a PDF or convert entire pages to ${formatName} format? Our free **${toolTitle}** tool transforms your PDF documents into high-quality image files that are perfect for sharing, editing, or archiving.
+                subtitle: `Convert PDF pages to high-quality ${formatName} images instantly (Local Processing)`,
+                intro: `Need to turn a PDF document into a set of images? Whether you want to share a single slide on Instagram, extract a photo from a report, or just view a document without a PDF reader, our **${toolTitle}** tool is the perfect solution.
 
-Whether you're extracting slides for a presentation, saving document pages for social media, or creating images from PDF content for your website, our converter delivers crisp, clear results—all processed locally in your browser for maximum privacy.
+We offer two powerful modes:
+1.  **Convert Pages:** Renders every single page of your PDF into a standalone image (like taking a high-res screenshot of every page).
+2.  **Extract Images:** Digs inside the PDF file to find and save the original embedded photos, ignoring the text and layout.
 
-### Who Needs This Tool?
-
-*   **Social Media Managers**: Convert PDF content into shareable images for Instagram, Twitter, or LinkedIn.
-*   **Presenters & Educators**: Extract slides or diagrams for use in presentations.
-*   **Web Designers**: Create images from PDF designs for websites and portfolios.
-*   **Content Creators**: Turn PDF infographics into separate image files.
-*   **Archivists**: Save documents as universal image formats for long-term storage.
-*   **Researchers**: Extract figures and charts from academic papers.`,
+Best of all, this happens **locally in your browser**. Your confidential documents never travel to a server, ensuring maximum security for legal contracts, medical records, and financial statements.`,
 
                 step1Title: `How to Convert PDF to ${formatName} Online`,
-                step1Content: `Follow these simple steps to transform your PDF pages into ${formatName} images:
+                step1Content: `Follow these steps to get crisp, clear images from your document:
 
-1.  **Upload Your PDF**: Click "Select PDF file" or drag and drop your PDF document into the upload area.
+1.  **Upload PDF**: Click "Select PDF file" or drag your document into the box.
+2.  **Choose Mode**:
+    *   *Convert Pages*: Best if you want the whole page layout (text + images).
+    *   *Extract Images*: Best if you just want the photos inside the document.
+3.  **Adjust Settings**:
+    *   *Format*: **JPG** for photos (smaller size), **PNG** for text/diagrams (sharper quality).
+    *   *Quality/DPI*: Use **72 DPI** for web/email, **150 DPI** for screens, or **300 DPI** for printing.
+4.  **Click Convert**: The tool processes your file instantly.
+5.  **Download**: Get a single image (if 1 page) or a ZIP file containing all your images.
 
-2.  **Choose Conversion Mode**: Select either:
-    - **"Convert Pages"**: Transforms each PDF page into a separate image
-    - **"Extract Images"**: Finds and extracts embedded images from the PDF
+**Pro Tip**: For social media (Instagram/LinkedIn), choose "Convert Pages" and set the quality to at least **150 DPI** to avoid blurriness.`,
 
-3.  **Select Pages (Optional)**: Choose specific pages to convert, or convert the entire document.
+                step2Title: "Which Format Should You Choose?",
+                step2Content: `Not sure between JPG and PNG? Here is the breakdown:
 
-4.  **Adjust Quality Settings**: Select your preferred resolution (72-300 DPI) and image format (JPG or PNG).
+**Choose JPG (JPEG) if:**
+*   Your PDF contains mostly photographs or realistic scenes.
+*   You need small file sizes for email or websites.
+*   You are okay with tiny amounts of quality loss ("compression artifacts") in exchange for speed.
 
-5.  **Click Convert**: Press the "Convert" button. Processing happens instantly in your browser.
+**Choose PNG if:**
+*   Your PDF contains text, line drawings, blueprints, or excel tables.
+*   You need **transparent backgrounds** (if extracting images).
+*   You need "lossless" quality where every pixel is perfect.
+*   You plan to edit the image later in Photoshop or Canva.`,
 
-6.  **Download**: Get your images as individual files or as a ZIP archive for bulk downloads.
+                step3Title: "Privacy & Security: Local Processing",
+                step3Content: `When you use online converters, you often unknowingly upload your private files to a stranger's cloud server. We do it differently.
 
-**Pro Tip**: Use PNG format for documents with text or line art (sharper edges), and JPG for photos or pages with many colors (smaller file size).`,
-
-                step2Title: "Features & Quality Options",
-                step2Content: `Our PDF to ${formatName} converter offers powerful features:
-
-*   **High Resolution Output**: Choose from 72 DPI (web) to 300 DPI (print quality) resolution.
-*   **Multiple Format Options**: Export as JPG (smaller files) or PNG (higher quality, transparency support).
-*   **Page Selection**: Convert all pages or choose specific page ranges.
-*   **Batch Processing**: Convert multi-page PDFs into separate images in seconds.
-*   **Extract Embedded Images**: Find and save images already inside your PDF.
-*   **100% Private**: Files never leave your browser—ideal for sensitive documents.
-*   **No Watermarks**: Output is completely clean and professional.
-*   **Free & Unlimited**: No signup, no daily limits.
-
-**JPG vs PNG:**
-| Feature | JPG | PNG |
-|---------|-----|-----|
-| File Size | Smaller | Larger |
-| Quality | Good (lossy) | Excellent (lossless) |
-| Best For | Photos, colorful pages | Text, diagrams, screenshots |
-| Transparency | ❌ No | ✅ Yes |`,
-
-                step3Title: "Privacy & Security",
-                step3Content: `Your documents deserve maximum protection:
-
-**Local-First Processing**
-Unlike cloud converters that upload files to remote servers, our tool processes everything in your web browser. Your PDF files never leave your device.
-
-**Zero Data Retention**
-We don't store or log any of your documents. When you close the browser tab, all data is cleared.
-
-**PIPEDA Compliant**
-Our privacy-first approach exceeds Canadian privacy requirements.
-
-**Ideal for Converting:**
-*   Confidential business documents
-*   Financial statements
-*   Medical records
-*   Legal contracts`,
+*   **Local-First Engine**: We use WebAssembly to run the conversion code *inside* your web browser.
+*   **Zero Uploads**: Your PDF never leaves your device. It is physically impossible for us to see, read, or steal your data.
+*   **Instant Wipe**: As soon as you refresh the page, the data is gone from your memory.`,
 
                 step4Title: "Common Use Cases",
-                step4Content: `**Social Media Content**
-Convert PDF infographics, reports, or presentations into images optimized for social platforms.
+                step4Content: `**Social Media Marketing**
+Turn that 10-page "Industry Report" PDF into a 10-image carousel for LinkedIn or Instagram.
 
-**Website Images**
-Extract high-quality images from PDF portfolios or brochures for your website.
+**Presentation Design**
+Extract charts and graphs from a competitor's PDF report to use in your own internal PowerPoint (referencing them, of course!).
 
-**Presentation Slides**
-Turn PDF pages into images to insert into PowerPoint, Google Slides, or Keynote.
+**Website Content**
+Convert PDF brochures into JPGs so they can be displayed directly on your website without requiring users to download a viewer.
 
-**Thumbnail Generation**
-Create preview images for PDF documents in document management systems.
+**Archiving**
+Convert legacy documents to standard image formats (TIFF/PNG) for long-term archival where PDF compatibility might be a concern.`,
 
-**E-commerce Product Images**
-Extract product images from PDF catalogs.
+                step5Title: "Troubleshooting Guide",
+                step5Content: `**Problem: The text looks fuzzy/blurry.**
+*   *Cause:* Low DPI setting.
+*   *Fix:* Re-convert and choose **150 DPI** or **300 DPI**.
 
-**Academic Figures**
-Save charts, graphs, and figures from research papers for presentations or reports.`,
+**Problem: The file size is huge.**
+*   *Cause:* High DPI + PNG format.
+*   *Fix:* Switch to **JPG** format and lower the DPI to 72 or 96 if it's just for the web.
 
-                step5Title: "Troubleshooting Common Issues",
-                step5Content: `**Problem: Images look blurry**
-*Solution*: Increase the DPI setting. Use 150-300 DPI for print quality, 72-96 DPI for web use only.
+**Problem: "Extract Images" gave me weird fragmented pictures.**
+*   *Cause:* PDFs often slice large images into small grid tiles to save load time.
+*   *Fix:* Use **Convert Pages** mode instead, then crop the image you need from the full page.
 
-**Problem: Text edges look jagged**
-*Solution*: Use PNG format instead of JPG for documents with text. PNG preserves sharp edges.
-
-**Problem: File sizes are too large**
-*Solution*: Use JPG format with lower quality settings for smaller files. Reduce DPI for web use.
-
-**Problem: Some pages aren't converting**
-*Solution*: Check for password protection on the PDF. Remove protection before converting.
-
-**Problem: Conversion is slow**
-*Solution*: Large PDFs with many high-resolution images take longer. Close other tabs to free memory.`,
+**Problem: Colors look slightly washed out.**
+*   *Cause:* The PDF was likely in CMYK (print colors).
+*   *Fix:* Our tool converts to sRGB for screen compatibility, which can cause slight shifts. This is normal for web browsers.`,
 
                 faqTitle: "Frequently Asked Questions",
-                faqContent: `**What is the difference between JPG and PNG?**
-JPG uses lossy compression (smaller files, slight quality loss), best for photos. PNG is lossless (larger files, perfect quality), best for text and graphics.
+                faqContent: `**Can I convert all pages at once?**
+Yes. Our tool automatically processes every page in the document and zips them up for you.
 
-**What DPI should I use?**
-72-96 DPI for web viewing, 150 DPI for general use, 300 DPI for printing.
+**Is there a limit on file size?**
+No hard limit, but extremely large files (200MB+) might crash your browser tab since we process locally.
 
-**Can I convert password-protected PDFs?**
-Yes, but you'll need to enter the password first.
+**Can I extract images from a password-protected PDF?**
+Yes, but you must enter the password first to unlock the file for processing.
 
-**Is there a page limit?**
-No hard limit. We've tested with 500+ page documents.
+**Do you support vector (SVG) export?**
+Currently, we export to raster formats (JPG/PNG). For vector export, you would need a specialized editor like Illustrator.
 
-**Can I extract just the images inside a PDF?**
-Yes! Use "Extract Images" mode to find and save embedded pictures.
+**Will the converted images have watermarks?**
+Never. Your images are yours. We do not add any branding or watermarks.
 
-**Will the quality match the original PDF?**
-Yes, at 300 DPI. Higher resolution than the original PDF won't add quality.
-
-**Can I convert multiple PDFs at once?**
-Currently one file at a time, but multi-page PDFs are processed in batch.
-
-**What's the maximum file size?**
-No strict limit, but very large files (100+ MB) may be slow in the browser.
-
-**Do you preserve transparency?**
-PNG format supports transparency. JPG fills transparent areas with white.
-
-**Is this tool really free?**
-Yes, 100% free with no watermarks or limits.
-
-**Can I edit the images after conversion?**
-Yes! Import them into any image editor like Photoshop, GIMP, or Canva.
-
-**Do you support PDF/A (archival format)?**
-Yes, PDF/A files convert just like regular PDFs.`,
-                breadGuides: "Guides",
-                breadHome: "Home"
+**How do I save just one page?**
+After uploading, you can deselect the pages you don't want, or just download the specific image file from the result list.`
             },
             fr: {
-                subtitle: `Convertissez des pages PDF en images ${formatName} de haute qualité instantanément et gratuitement`,
-                intro: `Besoin d'extraire des images d'un PDF ou de convertir des pages entières au format ${formatName} ? Notre outil gratuit **${toolTitle}** transforme vos documents PDF en fichiers image de haute qualité.
+                subtitle: `Convertissez des pages PDF en images ${formatName} haute qualité instantanément (Traitement Local)`,
+                intro: `Besoin de transformer un PDF en une série d'images ? Que vous souhaitiez partager une diapositive sur Instagram ou extraire une photo d'un rapport, notre outil **${toolTitle}** est la solution idéale.
 
-Que vous extrayiez des diapositives pour une présentation, sauvegardiez des pages de documents pour les réseaux sociaux, ou créiez des images à partir de contenu PDF, notre convertisseur livre des résultats nets—tout est traité localement dans votre navigateur.
+Nous offrons deux modes puissants :
+1.  **Convertir les Pages :** Transforme chaque page du PDF en une image autonome (comme une capture d'écran haute définition).
+2.  **Extraire les Images :** Fouille dans le fichier pour trouver et sauvegarder les photos originales intégrées.
 
-### Qui a besoin de cet outil ?
-
-*   **Community Managers** : Convertissez du contenu PDF en images partageables.
-*   **Présentateurs et éducateurs** : Extrayez des diapositives pour vos présentations.
-*   **Designers Web** : Créez des images à partir de designs PDF.
-*   **Créateurs de contenu** : Transformez des infographies PDF en fichiers image séparés.
-*   **Archivistes** : Sauvegardez des documents dans des formats d'image universels.`,
+Le tout se fait **localement dans votre navigateur**. Vos documents confidentiels ne voyagent jamais vers un serveur.`,
 
                 step1Title: `Comment convertir PDF en ${formatName} en ligne`,
-                step1Content: `Suivez ces étapes simples :
+                step1Content: `Suivez ces étapes pour obtenir des images nettes :
 
-1.  **Téléchargez votre PDF** : Cliquez sur « Sélectionner fichier PDF » ou glissez-déposez votre document.
+1.  **Télécharger** : Cliquez sur "Sélectionner fichier PDF" ou glissez votre document.
+2.  **Choisir le Mode** :
+    *   *Convertir les Pages* : Pour garder la mise en page (texte + images).
+    *   *Extraire les Images* : Pour récupérer juste les photos.
+3.  **Réglages** :
+    *   *Format* : **JPG** pour photos, **PNG** pour texte/graphiques.
+    *   *Qualité* : **72 DPI** (Web), **150 DPI** (Écran), **300 DPI** (Impression).
+4.  **Convertir** : L'outil traite votre fichier instantanément.
+5.  **Télécharger** : Obtenez une image unique ou un fichier ZIP.
 
-2.  **Choisissez le mode** : 
-    - **« Convertir les pages »** : Transforme chaque page en image séparée
-    - **« Extraire les images »** : Trouve et extrait les images intégrées
+**Astuce Pro** : Pour les réseaux sociaux, utilisez "Convertir les Pages" à **150 DPI** minimum.`,
 
-3.  **Sélectionnez les pages** : Choisissez des pages spécifiques ou convertissez tout.
+                step2Title: "Quel format choisir ?",
+                step2Content: `JPG ou PNG ? Voici le guide :
 
-4.  **Ajustez la qualité** : Sélectionnez la résolution (72-300 DPI) et le format.
+**Choisissez JPG (JPEG) si :**
+*   Votre PDF contient surtout des photos.
+*   Vous voulez des fichiers légers pour le web.
+*   Une perte de qualité minime est acceptable.
 
-5.  **Cliquez sur Convertir** : Le traitement se fait instantanément.
+**Choisissez PNG si :**
+*   Votre PDF contient du texte, des plans ou des tableaux.
+*   Vous avez besoin de **fonds transparents**.
+*   Vous voulez une qualité "sans perte" parfaite.`,
 
-6.  **Téléchargez** : Obtenez vos images individuellement ou en archive ZIP.
+                step3Title: "Confidentialité : Traitement Local",
+                step3Content: `La plupart des convertisseurs envoient vos fichiers sur le cloud. Pas nous.
 
-**Conseil** : Utilisez PNG pour le texte (bords nets), JPG pour les photos (taille réduite).`,
-
-                step2Title: "Fonctionnalités et options de qualité",
-                step2Content: `Notre convertisseur PDF vers ${formatName} offre :
-
-*   **Haute résolution** : De 72 DPI (web) à 300 DPI (qualité impression).
-*   **Plusieurs formats** : Exportez en JPG ou PNG.
-*   **Sélection de pages** : Toutes les pages ou plages spécifiques.
-*   **Traitement par lot** : Convertissez des PDF multi-pages en secondes.
-*   **Extraction d'images** : Trouvez et sauvegardez les images intégrées.
-*   **100% privé** : Les fichiers ne quittent jamais votre navigateur.
-*   **Sans filigrane** : Sortie propre et professionnelle.
-*   **Gratuit et illimité** : Pas d'inscription, pas de limites.`,
-
-                step3Title: "Confidentialité et sécurité",
-                step3Content: `Vos documents méritent une protection maximale :
-
-**Traitement Local-First**
-Notre outil traite tout dans votre navigateur. Vos fichiers PDF ne quittent jamais votre appareil.
-
-**Zéro rétention**
-Nous ne stockons aucun document. Quand vous fermez l'onglet, tout est effacé.
-
-**Conforme LPRPDE**
-Notre approche dépasse les exigences canadiennes.`,
+*   **Moteur Local** : Nous utilisons WebAssembly pour exécuter le code *dans* votre navigateur.
+*   **Zéro Upload** : Votre PDF ne quitte jamais votre appareil.
+*   **Effacement Instantané** : Rafraîchissez la page, et les données disparaissent.`,
 
                 step4Title: "Cas d'utilisation courants",
-                step4Content: `**Contenu réseaux sociaux**
-Convertissez des infographies PDF en images pour les plateformes sociales.
+                step4Content: `**Marketing social**
+Transformez un rapport de 10 pages en un carrousel de 10 images pour LinkedIn.
 
-**Images pour sites web**
-Extrayez des images de portfolios PDF pour votre site.
+**Design de présentation**
+Extrayez des graphiques d'un rapport concurrent pour vos propres présentations PowerPoint.
 
-**Diapositives de présentation**
-Transformez des pages PDF en images pour PowerPoint.
+**Contenu Web**
+Convertissez des brochures PDF en JPG pour les afficher directement sur votre site sans téléchargement.
 
-**Génération de vignettes**
-Créez des aperçus pour vos systèmes de gestion documentaire.`,
+**Archivage**
+Convertissez des vieux documents en formats d'image standard (PNG) pour la pérennité.`,
 
-                step5Title: "Dépannage des problèmes courants",
-                step5Content: `**Problème : Images floues**
-*Solution* : Augmentez le réglage DPI. 150-300 DPI pour l'impression.
+                step5Title: "Guide de dépannage",
+                step5Content: `**Problème : Le texte est flou.**
+*   *Cause :* Réglage DPI trop bas.
+*   *Solution :* Reconvertissez en **150 DPI** ou plus.
 
-**Problème : Texte dentelé**
-*Solution* : Utilisez le format PNG au lieu de JPG.
+**Problème : Le fichier est énorme.**
+*   *Cause :* DPI élevé + format PNG.
+*   *Solution :* Passez en **JPG** et réduisez le DPI.
 
-**Problème : Fichiers trop volumineux**
-*Solution* : Utilisez JPG avec des réglages de qualité plus bas.`,
+**Problème : "Extraire Images" donne des images coupées.**
+*   *Cause :* Les PDF découpent souvent les grandes images en tuiles.
+*   *Solution :* Utilisez le mode **Convertir les Pages** et recadrez ensuite.
 
-                faqTitle: "Questions fréquentes",
-                faqContent: `**Quelle différence entre JPG et PNG ?**
-JPG = compression avec perte, fichiers plus petits. PNG = sans perte, qualité parfaite.
+**Problème : Couleurs ternes.**
+*   *Cause :* Conversion CMJN vers RVB.
+*   *Solution :* C'est normal pour l'affichage web.`,
 
-**Quel DPI utiliser ?**
-72-96 pour le web, 150 pour usage général, 300 pour l'impression.
+                faqTitle: "Questions fréquemment posées",
+                faqContent: `**Puis-je convertir tout le document ?**
+Oui. L'outil traite toutes les pages et crée un ZIP.
 
-**Y a-t-il une limite de pages ?**
-Pas de limite stricte. Testé avec plus de 500 pages.
+**Y a-t-il une limite de taille ?**
+Pas de limite stricte, mais les fichiers de 200Mo+ peuvent ralentir votre navigateur.
 
-**Cet outil est-il vraiment gratuit ?**
-Oui, 100% gratuit sans filigranes ou limites.`,
-                breadGuides: "Guides",
-                breadHome: "Accueil"
+**Puis-je convertir un PDF protégé ?**
+Oui, si vous avez le mot de passe pour le déverrouiller.
+
+**Supportez-vous le vectoriel (SVG) ?**
+Non, nous exportons en raster (JPG/PNG).
+
+**Y a-t-il des filigranes ?**
+Jamais. Vos images restent propres.`
             },
             pt: {
-                subtitle: `Converta páginas PDF para imagens ${formatName} de alta qualidade instantaneamente e de graça`,
-                intro: `Precisa extrair imagens de um PDF ou converter páginas inteiras para formato ${formatName}? Nossa ferramenta gratuita **${toolTitle}** transforma seus documentos PDF em arquivos de imagem de alta qualidade.
+                subtitle: `Converta páginas PDF para imagens ${formatName} de alta qualidade instantaneamente (Processamento Local)`,
+                intro: `Precisa transformar um PDF em um conjunto de imagens? Seja para compartilhar um slide no Instagram, extrair uma foto de um relatório ou apenas visualizar um documento, nossa ferramenta **${toolTitle}** é a solução perfeita.
 
-Seja extraindo slides para uma apresentação, salvando páginas para redes sociais, ou criando imagens de conteúdo PDF, nosso conversor entrega resultados nítidos—tudo processado localmente no seu navegador.
+Oferecemos dois modos poderosos:
+1.  **Converter Páginas:** Renderiza cada página do PDF em uma imagem (como um print de alta qualidade).
+2.  **Extraire Imagens:** Garimpa o arquivo para encontrar e salvar as fotos originais incorporadas.
 
-### Quem precisa desta ferramenta?
-
-*   **Gerentes de redes sociais**: Converta conteúdo PDF em imagens compartilháveis.
-*   **Apresentadores e educadores**: Extraia slides para apresentações.
-*   **Web designers**: Crie imagens de designs PDF para sites.
-*   **Criadores de conteúdo**: Transforme infográficos PDF em arquivos de imagem.
-*   **Arquivistas**: Salve documentos em formatos de imagem universais.`,
+Tudo acontece **localmente no seu navegador**. Seus documentos confidenciais nunca viajam para um servidor, garantindo segurança máxima.`,
 
                 step1Title: `Como converter PDF para ${formatName} online`,
-                step1Content: `Siga estes passos simples:
+                step1Content: `Siga estes passos para obter imagens nítidas:
 
-1.  **Envie seu PDF**: Clique em "Selecionar arquivo PDF" ou arraste e solte seu documento.
+1.  **Enviar PDF**: Clique em "Selecionar arquivo PDF" ou arraste seu documento.
+2.  **Escolher Modo**:
+    *   *Converter Páginas*: Para manter o layout (texto + imagens).
+    *   *Extrair Imagens*: Para pegar apenas as fotos.
+3.  **Configurações**:
+    *   *Formato*: **JPG** para fotos, **PNG** para texto/gráficos.
+    *   *Qualidade*: **72 DPI** (Web), **150 DPI** (Tela), **300 DPI** (Impressão).
+4.  **Converter**: A ferramenta processa seu arquivo instantaneamente.
+5.  **Baixar**: Obtenha uma imagem única ou um arquivo ZIP.
 
-2.  **Escolha o modo**:
-    - **"Converter páginas"**: Transforma cada página em imagem separada
-    - **"Extrair imagens"**: Encontra e extrai imagens incorporadas
+**Dica Pro**: Para redes sociais, escolha "Converter Páginas" com qualidade de pelo menos **150 DPI**.`,
 
-3.  **Selecione páginas**: Escolha páginas específicas ou converta todo o documento.
+                step2Title: "Qual formato escolher?",
+                step2Content: `JPG ou PNG? Eis o guia:
 
-4.  **Ajuste a qualidade**: Selecione a resolução (72-300 DPI) e formato.
+**Escolha JPG (JPEG) se:**
+*   Seu PDF contém principalmente fotos.
+*   Você precisa de arquivos pequenos para web.
+*   Aceita uma perda mínima de qualidade.
 
-5.  **Clique em Converter**: O processamento é instantâneo.
+**Escolha PNG se:**
+*   Seu PDF contém texto, plantas ou tabelas.
+*   Precisa de **fundo transparente**.
+*   Precisa de qualidade "lossless" perfeita.`,
 
-6.  **Baixe**: Obtenha suas imagens individualmente ou em arquivo ZIP.
+                step3Title: "Privacidade: Processamento Local",
+                step3Content: `A maioria dos conversores envia seus arquivos para a nuvem. Nós não.
 
-**Dica**: Use PNG para texto (bordas nítidas), JPG para fotos (menor tamanho).`,
+*   **Motor Local**: Usamos WebAssembly para rodar a conversão *dentro* do seu navegador.
+*   **Zero Upload**: Seu PDF nunca sai do seu dispositivo.
+*   **Limpeza Instantânea**: Atualize a página e os dados somem.`,
 
-                step2Title: "Recursos e opções de qualidade",
-                step2Content: `Nosso conversor PDF para ${formatName} oferece:
+                step4Title: "Casos de Uso Comuns",
+                step4Content: `**Marketing Social**
+Transforme um relatório de 10 páginas em um carrossel de 10 imagens para LinkedIn.
 
-*   **Alta resolução**: De 72 DPI (web) a 300 DPI (qualidade de impressão).
-*   **Múltiplos formatos**: Exporte como JPG ou PNG.
-*   **Seleção de páginas**: Todas as páginas ou intervalos específicos.
-*   **Processamento em lote**: Converta PDFs com várias páginas em segundos.
-*   **Extração de imagens**: Encontre e salve imagens incorporadas.
-*   **100% privado**: Arquivos nunca saem do navegador.
-*   **Sem marcas d'água**: Saída limpa e profissional.
-*   **Gratuito e ilimitado**: Sem cadastro, sem limites.`,
+**Design de Apresentação**
+Extraia gráficos de um relatório concorrente para seu PowerPoint.
 
-                step3Title: "Privacidade e segurança",
-                step3Content: `Seus documentos merecem máxima proteção:
+**Conteúdo Web**
+Converta brochuras PDF em JPG para exibir no seu site sem downloads.
 
-**Processamento Local-First**
-Nossa ferramenta processa tudo no navegador. Seus arquivos PDF nunca saem do dispositivo.
+**Arquivamento**
+Converta documentos antigos para formatos de imagem padrão (PNG) para preservação.`,
 
-**Zero retenção**
-Não armazenamos documentos. Quando você fecha a aba, tudo é limpo.
+                step5Title: "Guia de Solução de Problemas",
+                step5Content: `**Problema: Texto borrado.**
+*   *Causa:* Configuração de DPI baixa.
+*   *Solução:* Reconverta em **150 DPI** ou mais.
 
-**Conformidade com LGPD**
-Nossa abordagem atende às exigências brasileiras.`,
+**Problema: Arquivo enorme.**
+*   *Causa:* DPI alto + formato PNG.
+*   *Solução:* Mude para **JPG** e reduza o DPI.
 
-                step4Title: "Casos de uso comuns",
-                step4Content: `**Conteúdo para redes sociais**
-Converta infográficos PDF em imagens para plataformas sociais.
+**Problema: "Extrair Imagens" gerou pedaços cortados.**
+*   *Causa:* PDFs cortam imagens grandes em pedaços para carregar rápido.
+*   *Solução:* Use o modo **Converter Páginas** e corte a imagem depois.
 
-**Imagens para sites**
-Extraia imagens de portfólios PDF para seu site.
+**Problema: Cores lavadas.**
+*   *Causa:* Conversão CMYK para RGB.
+*   *Solução:* Normal para navegadores web.`,
 
-**Slides de apresentação**
-Transforme páginas PDF em imagens para PowerPoint.
+                faqTitle: "Perguntas Frequentes",
+                faqContent: `**Posso converter todas as páginas?**
+Sim. A ferramenta processa todas e cria um ZIP.
 
-**Geração de miniaturas**
-Crie prévias para sistemas de gestão documental.`,
+**Há limite de tamanho?**
+Sem limite rígido, mas arquivos de 200MB+ podem pesar no navegador.
 
-                step5Title: "Solução de problemas comuns",
-                step5Content: `**Problema: Imagens borradas**
-*Solução*: Aumente a configuração de DPI. 150-300 DPI para impressão.
+**Posso converter PDF protegido?**
+Sim, se tiver a senha para desbloquear.
 
-**Problema: Texto serrilhado**
-*Solução*: Use formato PNG em vez de JPG.
+**Suportam vetorial (SVG)?**
+Não, exportamos em raster (JPG/PNG).
 
-**Problema: Arquivos muito grandes**
-*Solução*: Use JPG com configurações de qualidade mais baixas.`,
-
-                faqTitle: "Perguntas frequentes",
-                faqContent: `**Qual a diferença entre JPG e PNG?**
-JPG = compressão com perda, arquivos menores. PNG = sem perda, qualidade perfeita.
-
-**Qual DPI usar?**
-72-96 para web, 150 para uso geral, 300 para impressão.
-
-**Há limite de páginas?**
-Sem limite rígido. Testado com mais de 500 páginas.
-
-**Esta ferramenta é realmente gratuita?**
-Sim, 100% gratuita sem marcas d'água ou limites.`,
-                breadGuides: "Guias",
-                breadHome: "Início"
+**Haverá marcas d'água?**
+Nunca. Suas imagens ficam limpas.`
             }
         };
 
@@ -364,13 +305,13 @@ Sim, 100% gratuita sem marcas d'água ou limites.`,
             seoDesc: content.subtitle,
             title: toolTitle,
             subtitle: content.subtitle,
-            breadcrumbHome: content.breadHome,
-            breadcrumbGuides: content.breadGuides,
+            breadcrumbHome: l === 'pt' ? 'Início' : (l === 'fr' ? 'Accueil' : 'Home'),
+            breadcrumbGuides: l === 'pt' ? 'Guias' : 'Guides',
             breadcrumbTool: toolTitle,
             intro: content.intro,
             sections: [
                 { id: 'how-to', title: content.step1Title, content: content.step1Content },
-                { id: 'features', title: content.step2Title, content: content.step2Content },
+                { id: 'mode-select', title: content.step2Title, content: content.step2Content },
                 { id: 'privacy', title: content.step3Title, content: content.step3Content },
                 { id: 'use-cases', title: content.step4Title, content: content.step4Content },
                 { id: 'troubleshooting', title: content.step5Title, content: content.step5Content },

@@ -20,338 +20,279 @@ export const ImageToPdfGuide: React.FC<Props> = ({ lang, slug = 'image-to-pdf' }
     const getLocalContent = (l: Language): GuideContent => {
         const t = {
             en: {
-                subtitle: `Convert ${formatName} images to professional PDF documents instantly and for free`,
-                intro: `Need to combine multiple images into a single PDF document? Our free **${toolTitle}** tool transforms your ${formatName} files into polished, professional PDFs perfect for sharing, printing, or archiving.
+                subtitle: `Convert ${formatName} images to professional PDF documents instantly (Local Processing)`,
+                intro: `Need to combine multiple ${formatName} images into a single, shareable PDF file? Our **${toolTitle}** tool transforms your scattered photos, screenshots, and scans into a polished digital document.
 
-Whether you're creating a photo album, compiling scanned documents, or preparing a visual presentation, converting images to PDF ensures they're displayed consistently on any device and can be easily shared as a single file.
+Why convert images to PDF?
+1.  **Consolidation:** Send one file instead of 20 separate email attachments.
+2.  **Standardization:** Ensure your resume or portfolio looks exactly the same on every screen.
+3.  **Printing:** Lock in the print layout (A4/Letter) so your printer doesn't crop your photos awkwardly.
 
-### Who Needs This Tool?
-
-*   **Photographers**: Create PDF portfolios or client galleries from photo collections.
-*   **Students**: Combine assignment pages, notes, or research images into submittal PDFs.
-*   **Business Professionals**: Convert receipts, scanned documents, or whiteboard captures to PDF.
-*   **Real Estate Agents**: Compile property photos into professional listing documents.
-*   **Designers**: Create PDF lookbooks or mood boards from image collections.
-*   **Job Seekers**: Combine certificate images or work samples into a single PDF portfolio.`,
+Unlike most free tools, we process your images **locally in your browser**. This means your private photos (family memories, ID cards, receipts) never leave your computer.`,
 
                 step1Title: `How to Convert ${formatName} to PDF Online`,
-                step1Content: `Follow these simple steps to transform your images into a PDF document:
+                step1Content: `Follow these simple steps to build your custom PDF:
 
-1.  **Select Your Images**: Click the "Select Files" button or drag and drop your ${formatName} images. You can select multiple files at once.
+1.  **Select Images**: Click "Select Files" or drag your images (JPG, PNG, WEBP, GIF) into the drop zone. You can select hundreds of images at once.
+2.  **Reorder Pages**: Drag and drop the thumbnails to arrange the sequence. The order you see is exactly how the pages will appear in the PDF.
+3.  **Customize Layout**:
+    *   *Orientation*: Choose **Portrait** (vertical) for documents or **Landscape** (horizontal) for wide photos.
+    *   *Margin*: Add "Small" or "Big" margins if you plan to print and bind the document.
+    *   *Fit*: Use "Fit to Page" to stretch images to the edge, or "Center" to keep original size.
+4.  **Click Convert**: The tool stitches your images together instantly.
+5.  **Download**: Save your combined PDF file to your device.
 
-2.  **Arrange Order (Optional)**: Drag images to reorder them. The order you set here determines the page order in your PDF.
+**Pro Tip**: For the highest quality "Photo Book" feel, use **Landscape** orientation and select "Fit to Page" with "No Margins".`,
 
-3.  **Adjust Settings (Optional)**: Choose page size (Letter, A4, etc.) and orientation (Portrait or Landscape). Select whether images should fill the page or maintain original proportions.
+                step2Title: "Advanced Features for Professionals",
+                step2Content: `This isn't just a basic converter. It includes features for power users:
 
-4.  **Click Convert**: Press the "Convert to PDF" button. Processing happens instantly in your browser.
+**1. Intelligent Auto-Rotation**
+The tool detects if an image is wider than it is tall and can suggest the best orientation to minimize whitespace.
 
-5.  **Download Your PDF**: Once complete, click "Download" to save your new PDF document.
+**2. Transparency Handling (PNG)**
+If you convert transparent PNG icons, our tool automatically flattens them against a clean white background, ensuring they look perfect in PDF viewers that struggle with transparency.
 
-**Pro Tip**: For best results with mixed image sizes, choose "Fit to Page" to ensure all images display cleanly without cropping.`,
+**3. Mixed Format Support**
+You don't need to convert everything to JPG first. Throw in a mix of PNG screenshots, JPG photos, and WebP downloads—we handle them all in one batch.
 
-                step2Title: "Features & Options",
-                step2Content: `Our ${formatName} to PDF converter offers powerful features:
+**4. High-DPI Preservation**
+We respect the resolution of your source images. If you upload a 4K photo, it remains crisp in the PDF, making it suitable for professional printing.`,
 
-*   **Batch Conversion**: Combine multiple images into a single PDF in one click.
-*   **Drag-and-Drop Ordering**: Easily rearrange image order before conversion.
-*   **Page Size Options**: Choose from standard sizes (Letter, A4, Legal) or custom dimensions.
-*   **Orientation Control**: Select Portrait or Landscape orientation.
-*   **Quality Preservation**: Images maintain their original resolution and quality.
-*   **100% Private Processing**: Files never leave your browser—perfect for personal photos.
-*   **No File Limits**: Convert as many images as you need.
-*   **No Watermarks**: Output is completely clean and professional.
-*   **Free & Unlimited**: No signup, no daily limits.
+                step3Title: "Privacy & Security: Your Photos Stay Yours",
+                step3Content: `We understand that images can be personal.
 
-**Supported Formats:**
-| Format | Extensions | Best For |
-|--------|------------|----------|
-| JPEG | .jpg, .jpeg | Photos, colorful images |
-| PNG | .png | Graphics, screenshots, transparency |
-| WebP | .webp | Modern web images |
-| GIF | .gif | Simple graphics (first frame) |`,
-
-                step3Title: "Privacy & Security",
-                step3Content: `Your personal photos deserve maximum protection:
-
-**Local-First Processing**
-Unlike cloud converters that upload files to remote servers, our tool processes everything in your web browser. Your images never leave your device.
-
-**Zero Data Retention**
-We don't store or log any of your photos. When you close the browser tab, all data is cleared.
-
-**PIPEDA Compliant**
-Our privacy-first approach exceeds Canadian privacy requirements.
-
-**Ideal for Converting:**
-*   Personal photos and albums
-*   Scanned identity documents
-*   Medical images
-*   Confidential business documents`,
+*   **No Server Uploads:** Unlike other sites that store your photos for 1-24 hours, our tool uses pure JavaScript to generate the PDF *inside* your browser tab.
+*   **Zero Visibility:** We cannot see, view, or mine your images.
+*   **Ideal for Sensitive Docs:** Perfect for scanning passports, driver's licenses, or medical records where privacy is critical.`,
 
                 step4Title: "Common Use Cases",
-                step4Content: `**Photo Albums**
-Compile vacation photos, family pictures, or event images into a shareable PDF album.
+                step4Content: `**Digital Portfolios**
+Photographers and designers can combine their best shots into a single, sleek PDF portfolio to email to clients.
 
-**Document Scanning**
-Combine scanned pages of contracts, receipts, or forms into a single organized PDF.
+**Expense Reporting**
+Freelancers can snap photos of 50 receipts and merge them into one "Expenses.pdf" file for tax season in seconds.
 
-**Portfolios**
-Create professional portfolios of artwork, photography, or design work for clients.
+**Legal & Real Estate**
+Agents can compile property photos into a listing packet, or combine scanned contract pages into a signed agreement.
 
-**Assignment Submissions**
-Combine handwritten assignment pages or research images into a submission-ready PDF.
+**Classroom Submissions**
+Students can take photos of handwritten homework pages and convert them into a single file for submission on Blackboard or Canvas.`,
 
-**Real Estate Listings**
-Create professional property documents with multiple photos.
+                step5Title: "Troubleshooting & Tips",
+                step5Content: `**Problem: My images are cut off at the edges.**
+*   *Cause:* The aspect ratio of your photo doesn't match the PDF page (A4/Letter).
+*   *Fix:* Choose "Fit to Page" (adds white bars) instead of "Fill Page" (crops image).
 
-**Insurance Claims**
-Document and compile damage photos into a single PDF for claims.
+**Problem: The PDF file size is massive.**
+*   *Cause:* You uploaded raw 20MP photos.
+*   *Fix:* Use our **Compress PDF** tool immediately after conversion to optimize the file for email without noticeable quality loss.
 
-**Travel Documents**
-Combine passport copies, itineraries, and confirmation screenshots into one travel PDF.`,
+**Problem: Colors look slightly different.**
+*   *Cause:* Screen images are RGB, but some PDF viewers simulate CMYK print colors.
+*   *Fix:* This is usually a viewer setting. The image data itself usually remains RGB.
 
-                step5Title: "Troubleshooting Common Issues",
-                step5Content: `**Problem: Images appear stretched or cropped**
-*Solution*: Use "Maintain Proportions" option instead of "Fill Page" to preserve original aspect ratios.
-
-**Problem: PDF file is very large**
-*Solution*: Large high-resolution images create larger PDFs. Consider using smaller images for web sharing.
-
-**Problem: Image quality looks degraded**
-*Solution*: Start with high-resolution source images. Our tool preserves quality but can't enhance low-resolution originals.
-
-**Problem: Images are in wrong order**
-*Solution*: Drag and drop images in the preview to rearrange before converting.
-
-**Problem: Some images won't upload**
-*Solution*: Ensure images are in supported formats (JPG, PNG, WebP, GIF). Corrupted files may fail.`,
+**Problem: I can't upload HEIC files (iPhone).**
+*   *Cause:* Browsers don't natively support Apple's HEIC format yet.
+*   *Fix:* Convert your HEIC photos to JPG on your phone before uploading, or take screenshots of them.`,
 
                 faqTitle: "Frequently Asked Questions",
-                faqContent: `**What image formats are supported?**
-We support JPEG (.jpg/.jpeg), PNG, WebP, and GIF formats.
+                faqContent: `**What is the maximum number of images?**
+There is no hard limit. We've optimized the tool to handle 100+ images in a single batch, relying on your computer's RAM.
 
-**Can I combine different image sizes?**
-Yes! Our tool handles mixed sizes automatically. Choose "Fit to Page" for consistent display.
+**Can I add text captions to the photos?**
+This tool is strictly for conversion. To add text, page numbers, or captions, convert to PDF first, then use our **Edit PDF** tool.
 
-**Is there a limit on number of images?**
-No hard limit, but very large collections (100+ high-resolution images) may be slow.
+**Does this support CMYK images for print?**
+We recommend converting images to RGB before uploading for the most consistent color results, as browser support for CMYK rendering varies.
 
-**Will my images be compressed?**
-We preserve original quality. Minimal compression may be applied for optimal PDF size.
+**Can I convert back to images later?**
+Yes! Use our **PDF to JPG** tool to extract the original images from the PDF if you lose the source files.
 
-**Can I change the page size?**
-Yes, choose from Letter, A4, Legal, or other standard sizes.
-
-**Are my photos safe?**
-Absolutely. All processing happens locally in your browser. Nothing is uploaded to servers.
-
-**Can I add text or captions?**
-This tool focuses on image-to-PDF conversion. For adding text, use our PDF editor.
-
-**What's the maximum file size per image?**
-No strict limit, but images over 20MB may slow processing.
-
-**Can I convert images from my phone?**
-Yes! Our tool works on mobile browsers. Just tap to select photos.
-
-**Is this tool really free?**
-Yes, 100% free with no watermarks or limits.
-
-**Can I password protect the PDF?**
-Not directly. After conversion, use our PDF security tool to add password protection.
-
-**Do you support HEIC/HEIF format?**
-Currently not directly. Convert HEIC to JPG first using your phone's settings or another tool.`,
-                breadGuides: "Guides",
-                breadHome: "Home"
+**Will GIF animations play in the PDF?**
+No. PDF is a static format. Only the first frame of the GIF will be captured as a still image.`
             },
             fr: {
-                subtitle: `Convertissez des images ${formatName} en documents PDF professionnels instantanément et gratuitement`,
-                intro: `Besoin de combiner plusieurs images en un seul document PDF ? Notre outil gratuit **${toolTitle}** transforme vos fichiers ${formatName} en PDF professionnels parfaits pour le partage, l'impression ou l'archivage.
+                subtitle: `Convertissez des images ${formatName} en documents PDF professionnels instantanément (Traitement Local)`,
+                intro: `Besoin de combiner plusieurs images ${formatName} en un seul fichier PDF partageable ? Notre outil **${toolTitle}** transforme vos photos, captures d'écran et numérisations en un document numérique soigné.
 
-Que vous créiez un album photo, compiliez des documents numérisés ou prépariez une présentation visuelle, convertir des images en PDF garantit qu'elles s'affichent de manière cohérente.
+Pourquoi convertir des images en PDF ?
+1.  **Consolidation :** Envoyez un seul fichier au lieu de 20 pièces jointes.
+2.  **Standardisation :** Assurez que votre CV ou portfolio apparaît identique sur chaque écran.
+3.  **Impression :** Verrouillez la mise en page (A4/Lettre) pour éviter les coupures imprévues.
 
-### Qui a besoin de cet outil ?
-
-*   **Photographes** : Créez des portfolios PDF ou des galeries clients.
-*   **Étudiants** : Combinez des pages de travaux ou des images de recherche.
-*   **Professionnels** : Convertissez des reçus ou des documents numérisés en PDF.
-*   **Agents immobiliers** : Compilez des photos de propriétés.
-*   **Designers** : Créez des lookbooks ou des moodboards PDF.`,
+Contrairement à la plupart des outils gratuits, nous traitons vos images **localement dans votre navigateur**. Vos photos privées ne quittent jamais votre ordinateur.`,
 
                 step1Title: `Comment convertir ${formatName} en PDF en ligne`,
-                step1Content: `Suivez ces étapes simples :
+                step1Content: `Suivez ces étapes simples pour créer votre PDF personnalisé :
 
-1.  **Sélectionnez vos images** : Cliquez sur « Sélectionner fichiers » ou glissez-déposez vos images.
+1.  **Sélectionnez les images** : Cliquez sur "Sélectionner des fichiers" ou glissez vos images (JPG, PNG, WEBP, GIF).
+2.  **Réorganisez les pages** : Glissez-déposez les vignettes pour définir l'ordre d'apparition.
+3.  **Personnalisez la mise en page** :
+    *   *Orientation* : **Portrait** (vertical) ou **Paysage** (horizontal).
+    *   *Marges* : Ajoutez des marges si vous prévoyez d'imprimer et relier.
+    *   *Ajustement* : Utilisez "Ajuster à la page" pour tout voir, ou "Remplir" pour éliminer le blanc.
+4.  **Cliquez sur Convertir** : L'outil assemble vos images instantanément.
+5.  **Télécharger** : Enregistrez votre fichier PDF combiné.
 
-2.  **Organisez l'ordre** : Glissez les images pour les réorganiser.
+**Astuce Pro** : Pour un effet "Album Photo", utilisez l'orientation **Paysage** et l'option "Sans marges".`,
 
-3.  **Ajustez les paramètres** : Choisissez la taille de page et l'orientation.
+                step2Title: "Fonctionnalités avancées pour les professionnels",
+                step2Content: `Cet outil va au-delà de la conversion basique :
 
-4.  **Cliquez sur Convertir** : Le traitement se fait instantanément.
+**1. Rotation automatique intelligente**
+L'outil détecte si une image est large et suggère la meilleure orientation.
 
-5.  **Téléchargez votre PDF** : Enregistrez votre nouveau document PDF.
+**2. Gestion de la transparence (PNG)**
+Si vous convertissez des PNG transparents, nous les aplatissons sur un fond blanc propre pour une compatibilité maximale.
 
-**Conseil** : Utilisez « Ajuster à la page » pour un affichage cohérent.`,
+**3. Support de formats mixtes**
+Mélangez PNG, JPG et WebP dans le même lot - nous gérons tout.
 
-                step2Title: "Fonctionnalités et options",
-                step2Content: `Notre convertisseur ${formatName} vers PDF offre :
+**4. Préservation Haute-DPI**
+Nous respectons la résolution de vos images sources pour une clareté d'impression optimale.`,
 
-*   **Conversion par lot** : Combinez plusieurs images en un clic.
-*   **Tri par glisser-déposer** : Réorganisez facilement l'ordre.
-*   **Options de taille** : Choisissez Lettre, A4, Legal, etc.
-*   **Contrôle d'orientation** : Portrait ou Paysage.
-*   **Préservation de la qualité** : Les images gardent leur résolution.
-*   **Traitement 100% privé** : Les fichiers ne quittent jamais votre navigateur.
-*   **Sans filigrane** : Sortie propre et professionnelle.
-*   **Gratuit et illimité** : Pas d'inscription, pas de limites.`,
+                step3Title: "Confidentialité et Sécurité",
+                step3Content: `Nous comprenons que les images peuvent être personnelles.
 
-                step3Title: "Confidentialité et sécurité",
-                step3Content: `Vos photos personnelles méritent une protection maximale :
-
-**Traitement Local-First**
-Notre outil traite tout dans votre navigateur. Vos images ne quittent jamais votre appareil.
-
-**Zéro rétention**
-Nous ne stockons aucune photo. Quand vous fermez l'onglet, tout est effacé.
-
-**Conforme LPRPDE**
-Notre approche dépasse les exigences canadiennes.`,
+*   **Pas de téléversement serveur :** Contrairement à d'autres sites, notre outil utilise Javascript pour générer le PDF *dans* votre onglet.
+*   **Zéro Visibilité :** Nous ne pouvons pas voir vos images.
+*   **Idéal pour documents sensibles :** Parfait pour les passeports, permis ou dossiers médicaux.`,
 
                 step4Title: "Cas d'utilisation courants",
-                step4Content: `**Albums photo**
-Compilez des photos de vacances ou d'événements en album PDF.
+                step4Content: `**Portfolios numériques**
+Photographes et designers peuvent combiner leurs meilleures photos en un portfolio PDF élégant.
 
-**Numérisation de documents**
-Combinez des pages numérisées en un seul PDF organisé.
+**Notes de frais**
+Les pigistes peuvent photographier 50 reçus et les fusionner en un fichier "Depenses.pdf".
 
-**Portfolios**
-Créez des portfolios professionnels de travaux artistiques.
+**Immobilier**
+Les agents peuvent compiler des photos de propriété en un dossier de présentation.
 
-**Soumissions de travaux**
-Combinez des pages de travaux manuscrits en PDF.`,
+**Devoirs scolaires**
+Les étudiants peuvent prendre en photo leurs pages de devoirs et les convertir en un seul fichier pour soumission.`,
 
-                step5Title: "Dépannage des problèmes courants",
-                step5Content: `**Problème : Images étirées ou recadrées**
-*Solution* : Utilisez l'option « Maintenir les proportions ».
+                step5Title: "Dépannage et conseils",
+                step5Content: `**Problème : Mes images sont coupées.**
+*   *Cause :* Le ratio de la photo ne correspond pas à la page PDF.
+*   *Solution :* Choisissez "Ajuster à la page" au lieu de "Remplir la page".
 
-**Problème : PDF très volumineux**
-*Solution* : Les images haute résolution créent des PDF plus gros.
+**Problème : Le PDF est énorme.**
+*   *Cause :* Photos brutes 20MP.
+*   *Solution :* Utilisez notre outil **Compresser PDF** après la conversion.
 
-**Problème : Qualité d'image dégradée**
-*Solution* : Commencez avec des images source haute résolution.`,
+**Problème : Je ne peux pas envoyer de fichiers HEIC.**
+*   *Cause :* Les navigateurs ne supportent pas encore nativement le format iPhone.
+*   *Solution :* Convertissez vos HEIC en JPG sur votre téléphone avant.`,
 
-                faqTitle: "Questions fréquentes",
-                faqContent: `**Quels formats d'image sont supportés ?**
-Nous supportons JPEG, PNG, WebP et GIF.
+                faqTitle: "Questions fréquemment posées",
+                faqContent: `**Quel est le nombre maximum d'images ?**
+Pas de limite stricte. Nous avons optimisé l'outil pour gérer 100+ images selon votre RAM.
 
-**Puis-je combiner des images de tailles différentes ?**
-Oui ! Notre outil gère automatiquement les tailles mixtes.
+**Puis-je ajouter du texte ?**
+Cet outil est strictment pour la conversion. Pour le texte, utilisez **Modifier PDF** après conversion.
 
-**Y a-t-il une limite au nombre d'images ?**
-Pas de limite stricte.
+**Supportez-vous le CMJN (CMYK) ?**
+Nous recommandons le RVB (RGB) pour les résultats les plus cohérents sur écran.
 
-**Mes photos sont-elles en sécurité ?**
-Absolument. Tout le traitement se fait localement dans votre navigateur.
+**Puis-je reconvertir en images plus tard ?**
+Oui ! Utilisez notre outil **PDF vers JPG** pour extraire les images originales.
 
-**Cet outil est-il vraiment gratuit ?**
-Oui, 100% gratuit sans filigranes ou limites.`,
-                breadGuides: "Guides",
-                breadHome: "Accueil"
+**Les GIF animés joueront-ils ?**
+Non. Le PDF est statique. Seule la première image sera capturée.`
             },
             pt: {
-                subtitle: `Converta imagens ${formatName} para documentos PDF profissionais instantaneamente e de graça`,
-                intro: `Precisa combinar várias imagens em um único documento PDF? Nossa ferramenta gratuita **${toolTitle}** transforma seus arquivos ${formatName} em PDFs profissionais perfeitos para compartilhamento, impressão ou arquivamento.
+                subtitle: `Converta imagens ${formatName} para documentos PDF profissionais instantaneamente (Processamento Local)`,
+                intro: `Precisa combinar várias imagens ${formatName} em um único arquivo PDF compartilhável? Nossa ferramenta **${toolTitle}** transforma suas fotos, capturas de tela e digitalizações em um documento digital polido.
 
-Seja criando um álbum de fotos, compilando documentos digitalizados ou preparando uma apresentação visual, converter imagens para PDF garante exibição consistente.
+Por que converter imagens para PDF?
+1.  **Consolidação:** Envie um arquivo em vez de 20 anexos de e-mail.
+2.  **Padronização:** Garanta que seu currículo ou portfólio pareça idêntico em todas as telas.
+3.  **Impressão:** Tranque o layout (A4/Carta) para evitar cortes imprevistos na impressora.
 
-### Quem precisa desta ferramenta?
-
-*   **Fotógrafos**: Crie portfólios PDF ou galerias para clientes.
-*   **Estudantes**: Combine páginas de trabalhos ou imagens de pesquisa.
-*   **Profissionais de negócios**: Converta recibos ou documentos digitalizados.
-*   **Corretores de imóveis**: Compile fotos de propriedades.
-*   **Designers**: Crie lookbooks ou moodboards em PDF.`,
+Diferente da maioria das ferramentas gratuitas, processamos suas imagens **localmente no seu navegador**. Suas fotos privadas (memórias de família, documentos, recibos) nunca saem do seu computador.`,
 
                 step1Title: `Como converter ${formatName} para PDF online`,
-                step1Content: `Siga estes passos simples:
+                step1Content: `Siga estes passos simples para criar seu PDF personalizado:
 
-1.  **Selecione suas imagens**: Clique em "Selecionar arquivos" ou arraste e solte suas imagens.
+1.  **Selecione Imagens**: Clique em "Selecionar Arquivos" ou arraste suas imagens (JPG, PNG, WEBP, GIF).
+2.  **Reorganize Páginas**: Arraste e solte as miniaturas para definir a ordem.
+3.  **Personalize o Layout**:
+    *   *Orientação*: **Retrato** (vertical) ou **Paisagem** (horizontal).
+    *   *Margens*: Adicione margens se planeja imprimir e encadernar.
+    *   *Ajuste*: Use "Ajustar à Página" para ver tudo, ou "Preencher" para eliminar bordas brancas.
+4.  **Clique em Converter**: A ferramenta costura suas imagens instantaneamente.
+5.  **Baixar**: Salve seu arquivo PDF combinado.
 
-2.  **Organize a ordem**: Arraste as imagens para reorganizar.
+**Dica Pro**: Para um efeito de "Álbum de Fotos", use orientação **Paisagem** e a opção "Sem Margens".`,
 
-3.  **Ajuste as configurações**: Escolha o tamanho da página e orientação.
+                step2Title: "Recursos Avançados para Profissionais",
+                step2Content: `Esta ferramenta vai além da conversão básica:
 
-4.  **Clique em Converter**: O processamento é instantâneo.
+**1. Rotação Automática Inteligente**
+A ferramenta detecta se uma imagem é larga e sugere a melhor orientação.
 
-5.  **Baixe seu PDF**: Salve seu novo documento PDF.
+**2. Tratamento de Transparência (PNG)**
+Se converter ícones PNG transparentes, nós os achatamos em um fundo branco limpo para máxima compatibilidade.
 
-**Dica**: Use "Ajustar à página" para exibição consistente.`,
+**3. Suporte a Formatos Mistos**
+Misture PNG, JPG e WebP no mesmo lote - nós lidamos com tudo.
 
-                step2Title: "Recursos e opções",
-                step2Content: `Nosso conversor ${formatName} para PDF oferece:
+**4. Preservação de Alta DPI**
+Respeitamos a resolução de suas imagens originais para clareza de impressão ideal.`,
 
-*   **Conversão em lote**: Combine várias imagens em um clique.
-*   **Ordenação por arrastar e soltar**: Reorganize facilmente a ordem.
-*   **Opções de tamanho**: Escolha Carta, A4, Ofício, etc.
-*   **Controle de orientação**: Retrato ou Paisagem.
-*   **Preservação de qualidade**: Imagens mantêm sua resolução.
-*   **Processamento 100% privado**: Arquivos nunca saem do navegador.
-*   **Sem marcas d'água**: Saída limpa e profissional.
-*   **Gratuito e ilimitado**: Sem cadastro, sem limites.`,
+                step3Title: "Privacidade e Segurança",
+                step3Content: `Entendemos que imagens podem ser pessoais.
 
-                step3Title: "Privacidade e segurança",
-                step3Content: `Suas fotos pessoais merecem máxima proteção:
+*   **Sem Upload em Servidor:** Diferente de outros sites, nossa ferramenta usa Javascript para gerar o PDF *dentro* da sua aba.
+*   **Zero Visibilidade:** Nós não podemos ver suas imagens.
+*   **Ideal para Documentos Sensíveis:** Perfeito para passaportes, CNH ou registros médicos.`,
 
-**Processamento Local-First**
-Nossa ferramenta processa tudo no navegador. Suas imagens nunca saem do dispositivo.
+                step4Title: "Casos de Uso Comuns",
+                step4Content: `**Portfólios Digitais**
+Fotógrafos e designers podem combinar suas melhores fotos em um portfólio PDF elegante.
 
-**Zero retenção**
-Não armazenamos fotos. Quando você fecha a aba, tudo é limpo.
+**Relatórios de Despesas**
+Freelancers podem fotografar 50 recibos e fundi-los em um arquivo "Despesas.pdf".
 
-**Conformidade com LGPD**
-Nossa abordagem atende às exigências brasileiras.`,
+**Imobiliário**
+Corretores podem compilar fotos de propriedades em um pacote de listagem.
 
-                step4Title: "Casos de uso comuns",
-                step4Content: `**Álbuns de fotos**
-Compile fotos de férias ou eventos em álbum PDF.
+**Submissões Escolares**
+Estudantes podem fotografar páginas de dever de casa e converter em um único arquivo.`,
 
-**Digitalização de documentos**
-Combine páginas digitalizadas em um único PDF organizado.
+                step5Title: "Solução de Problemas e Dicas",
+                step5Content: `**Problema: Minhas imagens estão cortadas.**
+*   *Causa:* A proporção da foto não corresponde à página PDF.
+*   *Solução:* Escolha "Ajustar à Página" em vez de "Preencher Página".
 
-**Portfólios**
-Crie portfólios profissionais de trabalhos artísticos.
+**Problema: O PDF ficou enorme.**
+*   *Causa:* Fotos brutas de 20MP.
+*   *Solution:* Use nossa ferramenta **Comprimir PDF** após a conversão.
 
-**Submissões de trabalhos**
-Combine páginas de trabalhos manuscritos em PDF.`,
+**Problema: Cores parecem diferentes.**
+*   *Causa:* Imagens de tela são RGB, mas alguns leitores simulam CMYK.
+*   *Solução:* Geralmente é uma configuração do visualizador.
 
-                step5Title: "Solução de problemas comuns",
-                step5Content: `**Problema: Imagens esticadas ou cortadas**
-*Solução*: Use a opção "Manter proporções".
+**Problema: Não consigo enviar arquivos HEIC (iPhone).**
+*   *Causa:* Navegadores ainda não suportam nativamente o formato.
+*   *Solução:* Converta seus HEIC para JPG no celular antes.`,
 
-**Problema: PDF muito grande**
-*Solução*: Imagens de alta resolução criam PDFs maiores.
+                faqTitle: "Perguntas Frequentes",
+                faqContent: `**Qual o número máximo de imagens?**
+Sem limite rígido. Otimizamos para lidar com 100+ imagens dependendo da sua RAM.
 
-**Problema: Qualidade de imagem degradada**
-*Solução*: Comece com imagens fonte de alta resolução.`,
+**Posso adicionar legendas de texto?**
+Esta ferramenta é estritamente para conversão. Para texto, use **Editar PDF** após converter.
 
-                faqTitle: "Perguntas frequentes",
-                faqContent: `**Quais formatos de imagem são suportados?**
-Suportamos JPEG, PNG, WebP e GIF.
+**Suportam CMYK para impressão?**
+Recomendamos converter imagens para RGB antes do upload para resultados consistentes em tela.
 
-**Posso combinar imagens de tamanhos diferentes?**
-Sim! Nossa ferramenta lida automaticamente com tamanhos mistos.
+**Posso converter de volta para imagens depois?**
+Sim! Use nossa ferramenta **PDF para JPG** para extrair as imagens originais.
 
-**Há limite no número de imagens?**
-Sem limite rígido.
-
-**Minhas fotos estão seguras?**
-Absolutamente. Todo processamento acontece localmente no navegador.
-
-**Esta ferramenta é realmente gratuita?**
-Sim, 100% gratuita sem marcas d'água ou limites.`,
-                breadGuides: "Guias",
-                breadHome: "Início"
+**GIFs animados vão tocar?**
+Não. PDF é estático. Apenas o primeiro quadro será capturado.`
             }
         };
 
@@ -362,8 +303,8 @@ Sim, 100% gratuita sem marcas d'água ou limites.`,
             seoDesc: content.subtitle,
             title: toolTitle,
             subtitle: content.subtitle,
-            breadcrumbHome: content.breadHome,
-            breadcrumbGuides: content.breadGuides,
+            breadcrumbHome: l === 'pt' ? 'Início' : (l === 'fr' ? 'Accueil' : 'Home'),
+            breadcrumbGuides: l === 'pt' ? 'Guias' : 'Guides',
             breadcrumbTool: toolTitle,
             intro: content.intro,
             sections: [

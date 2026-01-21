@@ -16,340 +16,253 @@ export const PptToPdfGuide: React.FC<Props> = ({ lang }) => {
     const content = {
         en: {
             subtitle: "Convert PowerPoint presentations to PDF handouts instantly with perfect formatting",
-            intro: `Need to share a PowerPoint presentation but worried about font issues or unauthorized edits? Converting **PowerPoint to PDF** is the professional solution. Our free **${title}** tool transforms your .pptx and .ppt presentations into polished PDF documents that look identical on every device.
+            intro: `Need to share a PowerPoint presentation but worried about font issues, version incompatibility, or unauthorized edits? Converting **PowerPoint to PDF** is the professional standard for distribution.
 
-Whether you're a business professional sharing quarterly presentations, a student submitting assignments, or a speaker distributing handouts, PDF ensures your slides maintain their exact layout, fonts, and visual impact. Best of all, our tool processes everything locally in your browser—your confidential business presentations never leave your device.
+Our free **${title}** tool transforms your .pptx and .ppt presentations into polished, print-ready PDF documents. Unlike sending the raw presentation file, a PDF ensures your slides look exactly the same on an iPhone, an Android tablet, or a desktop computer running Linux.
 
-### Who Needs This Tool?
+**Why professionals convert to PDF before sharing:**
+*   **Font Security:** No more "missing font" errors that turn your beautiful typography into default Arial.
+*   **Version Independence:** Works perfectly whether the receiver has PowerPoint 2007, 2021, or no PowerPoint at all.
+*   **Print Readiness:** Creates perfect handouts with consistent margins and colors.
 
-*   **Business Professionals**: Share board presentations and sales decks securely.
-*   **Sales Teams**: Distribute pitch decks to prospects without font compatibility issues.
-*   **Students & Educators**: Submit assignments and share lecture materials.
-*   **Conference Speakers**: Create professional handouts for attendees.
-*   **Marketing Teams**: Share branded presentations with consistent formatting.`,
+Our tool processes your files **locally in your browser**, ensuring your confidential business strategies and internal data never leave your device.`,
 
-            step1Title: "How to Convert PowerPoint to PDF Online",
-            step1Content: `Follow these simple steps to transform your PowerPoint presentation into a PDF document:
+            step1Title: "Pre-Conversion Checklist (Best Practices)",
+            step1Content: `To get the absolute best results, check these 3 things in your PowerPoint file before converting:
 
-1.  **Upload Your File**: Click the "Select File" button or drag and drop your PowerPoint file (.pptx or .ppt) into the upload area.
+1.  **Check for "Off-Stage" Content**: Items hanging off the edge of the slide might partially print or cause layout issues. Move them fully onto the slide or delete them.
+2.  **Embed Fonts**: In PowerPoint settings (*File > Options > Save*), check "Embed fonts in the file". This helps our converter render unusual fonts correctly.
+3.  **Unhide Slides**: If you have "Hidden Slides" (often used for Q&A backup), they will normally be skipped. Unhide them if you want them in the PDF.
+4.  **Compress Images**: If your file is over 50MB, use PowerPoint's "Compress Pictures" feature first to speed up processing without noticeable quality loss.`,
 
-2.  **Preview Your Slides**: Our tool displays a preview of your presentation. Verify that slides appear correctly.
+            step2Title: "How to Convert PowerPoint to PDF Online",
+            step2Content: `Follow these simple steps to transform your slides into a universal document:
 
-3.  **Choose Settings (Optional)**: Select specific slides to include, or convert the entire presentation.
+1.  **Upload Your File**: Click the "Select File" button or drag and drop your PowerPoint presentation (.pptx, .ppt, .potx).
+2.  **Preview Slides**: Our tool will quickly render a preview. You can verify that all charts and diagrams are visible.
+3.  **Select Pages (Optional)**: If you only need to share a specific section (e.g., the "Q1 Results" section), you can select just those slides.
+4.  **Click Convert**: Press "Convert to PDF". The tool captures each slide as a high-quality page.
+5.  **Download**: Save your PDF file. It's now ready to be emailed or uploaded to a company portal.
 
-4.  **Click Convert**: Press the "Convert to PDF" button. The conversion happens instantly in your browser.
+**Pro Tip**: PDF files do not play videos or run animations. This conversion captures the "final state" of your slide layout, which is perfect for reading.`,
 
-5.  **Download Your PDF**: Once complete, click "Download" to save your new PDF file. Each slide becomes a separate page.
+            step3Title: "Feature Comparison: PowerPoint 'Save As' vs. Our Tool",
+            step3Content: `Why use a browser-based tool?
 
-**Pro Tip**: For presentations with embedded videos, note that only the poster frame (thumbnail) will appear in the PDF, as PDF doesn't support video playback.`,
+| Feature | PowerPoint "Save As PDF" | pdfcanada.ca Converter |
+|---------|--------------------------|------------------------|
+| **Accessibility** | Requires expensive software | Works on any device (Phone, Tablet) |
+| **Speed** | Slow to open app | Instant drag-and-drop |
+| **Privacy** | Local processing | **Local processing** (Same security!) |
+| **Metadata** | Keeps author name/edit time | **Strips** hidden metadata for privacy |
+| **Legacy Files** | Struggles with old .ppt | Handles old formats smoothly |
+| **Portability** | N/A | No software installation needed |`,
 
-            step2Title: "Features & Benefits",
-            step2Content: `Our PowerPoint to PDF converter offers powerful features for professional results:
+            step4Title: "Troubleshooting Presentation Issues",
+            step4Content: `**Problem: My animations disappeared.**
+*   *Reason:* PDF is a static format like a piece of paper. It cannot move.
+*   *Fix:* This is expected behavior. If you have "build" slides (text appearing one line at a time), ensure all text is visible in the final state before converting.
 
-*   **Font Embedding**: All fonts are embedded, so your text looks perfect even on devices without your fonts installed.
-*   **Layout Preservation**: Slides maintain their exact appearance—no squished images or shifted text boxes.
-*   **Image Quality**: High-resolution images and graphics are preserved with excellent quality.
-*   **Animation Flattening**: Animated elements are converted to their final state, ensuring clean output.
-*   **100% Private Processing**: Your presentations never leave your browser—ideal for confidential business content.
-*   **Multi-Slide Support**: Convert presentations with hundreds of slides in seconds.
-*   **No File Size Limits**: Process large presentations without restrictions.
-*   **No Watermarks**: Your output is completely clean and professional.
-*   **Free & Unlimited**: Convert as many presentations as you need, no signup required.`,
+**Problem: The file size is too big to email.**
+*   *Reason:* PowerPoint files contain high-res images that get written into the PDF.
+*   *Fix:* After converting, use our **Compress PDF** tool to shrink the file size by 50-80% for email attachments.
 
-            step3Title: "Privacy & Security",
-            step3Content: `Your business presentations deserve maximum protection. Here's how we keep your content secure:
+**Problem: Hyperlinks aren't working.**
+*   *Reason:* Complex links on shapes sometimes get lost.
+*   *Fix:* Ensure your hyperlinks are attached to text or simple images, not grouped "SmartArt" objects.
 
-**Local-First Processing**
-Unlike cloud-based converters that upload your files to remote servers, our tool processes everything directly in your web browser. Your PowerPoint files never leave your device.
+**Problem: Excel charts look weird.**
+*   *Reason:* Linked Excel charts might not update if the source file isn't found.
+*   *Fix:* In PowerPoint, "Break Links" to Excel files ensures the chart is saved as a static picture inside the presentation before conversion.`,
 
-**Zero Data Retention**
-We don't store, cache, or log any of your presentation data. When you close the browser tab, all data is immediately cleared from memory.
+            step5Title: "Privacy & Security",
+            step5Content: `For internal docs, investor decks, and legal presentations, security is non-negotiable.
 
-**PIPEDA Compliant**
-Our privacy-first approach exceeds Canadian privacy requirements.
-
-**Comparison with Cloud Converters:**
-
-| Feature | pdfcanada.ca (Local) | Cloud Converters |
-|---------|---------------------|------------------|
-| Data Upload | ❌ Never uploaded | ✅ Uploaded to servers |
-| Privacy Risk | ✅ Minimal | ⚠️ Data exposure risk |
-| Speed | ✅ Instant | ⚠️ Depends on connection |
-| Works Offline | ✅ After page load | ❌ Requires internet |`,
-
-            step4Title: "Common Use Cases",
-            step4Content: `**Board Presentations**
-Convert confidential board decks to PDF for secure distribution to stakeholders.
-
-**Sales Decks**
-Transform sales presentations into professional PDFs that prospects can view without PowerPoint.
-
-**Academic Submissions**
-Submit presentation-based assignments in PDF format, ensuring professors see exactly what you created.
-
-**Conference Handouts**
-Create printable handouts from your presentation slides for conference attendees.
-
-**Email Attachments**
-PDF files are universally compatible and often smaller than PowerPoint files.
-
-**Archival & Compliance**
-Create permanent PDF records of important presentations for legal and compliance purposes.`,
-
-            step5Title: "Troubleshooting Common Issues",
-            step5Content: `**Problem: Fonts look different in the PDF**
-*Solution*: Our tool embeds fonts, but if a font isn't available, a similar substitute is used. For critical presentations, use widely available fonts like Arial or Calibri.
-
-**Problem: Animations aren't showing**
-*Solution*: PDF is a static format. Animated elements are captured in their final state. Build slides with the understanding that animation sequences won't transfer.
-
-**Problem: Videos aren't playing in the PDF**
-*Solution*: PDF doesn't support video playback. Only the video poster frame (thumbnail) appears. Consider linking to videos separately.
-
-**Problem: Some slides are missing from the PDF**
-*Solution*: Ensure all desired slides are unhidden in PowerPoint. Hidden slides are not included in the conversion.
-
-**Problem: The conversion seems slow**
-*Solution*: Large presentations with many high-resolution images may take longer. Close other browser tabs to free up memory.`,
+*   **Client-Side Conversion:** The magic happens in your browser's memory. We do not (and cannot) see your slides.
+*   **Instant Wipe:** As soon as you refresh the page or close the tab, the data footprint is gone.
+*   **No "Cloud" Storage:** We are not a cloud storage provider. We don't keep backups of your files.`,
 
             faqTitle: "Frequently Asked Questions",
-            faqContent: `**Will my animations work in the PDF?**
-No, PDF is a static document format. Animations are flattened to their final state, but all visual elements are preserved.
+            faqContent: `**Can I convert speaker notes to PDF?**
+Our standard tool converts the **slides only** (the visual presentation). To include speaker notes, you would typically need to use the specialized "Print to PDF" function in PowerPoint itself with the "Notes Pages" layout selected.
 
-**Are speaker notes included?**
-By default, only the slides themselves are converted. Speaker notes are not included in standard PDF output.
+**Will my custom fonts be preserved?**
+We try our best to use the embedded fonts. If a highly custom encoded font cannot be read, we substitute it with a visually similar standard font (e.g., Helvetica or Times) to ensure the text remains readable.
 
-**Can I convert password-protected PowerPoint files?**
-You'll need to remove password protection first, then convert the file.
+**What happens to embedded audio/video?**
+They are removed. The first frame of the video (the thumbnail) is usually kept as a static image so the slide doesn't look empty, but the media itself will not play.
 
-**What PowerPoint formats are supported?**
-We support .pptx (PowerPoint 2007+), .ppt (PowerPoint 97-2003), and .ppsx (slideshow format).
+**Can I convert Keynote (Mac) files?**
+Not directly. You should export your Keynote file to PowerPoint (.pptx) first, then use our tool for the final PDF conversion if you need our specific compression or privacy features.
 
-**Will my transitions be preserved?**
-No, transitions between slides don't transfer to PDF. Each slide becomes a static page.
-
-**Can I convert multiple presentations at once?**
-Currently, you convert files one at a time.
-
-**How do I convert only specific slides?**
-Hide the slides you don't want in PowerPoint, then convert. Only visible slides are included.
-
-**Is there a slide limit?**
-No hard limit. We've tested with presentations containing 500+ slides.
-
-**Will embedded videos work?**
-No, PDF doesn't support video. Only the video thumbnail appears. Consider uploading videos separately.
-
-**Can I edit the PDF after conversion?**
-PDF is a final format. To make changes, edit the original PowerPoint file and reconvert.
-
-**Is this tool really free?**
-Yes, 100% free with no hidden costs, watermarks, or usage limits.
-
-**Will my PowerPoint template/theme be preserved?**
-Yes! All design elements, colors, and branding from your template are preserved in the PDF.`
+**Is there a limit on slide count?**
+We regularly test with 500+ slide decks. Performance depends on your computer's RAM, but most standard business presentations convert in under 5 seconds.`
         },
         fr: {
             subtitle: "Convertissez des présentations PowerPoint en PDF instantanément avec un formatage parfait",
-            intro: `Besoin de partager une présentation PowerPoint mais inquiet des problèmes de polices ou des modifications non autorisées ? Convertir **PowerPoint en PDF** est la solution professionnelle. Notre outil gratuit **${title}** transforme vos présentations .pptx et .ppt en documents PDF soignés qui apparaissent identiques sur tous les appareils.
+            intro: `Besoin de partager une présentation PowerPoint mais inquiet des problèmes de polices, d'incompatibilité de version ou de modifications non autorisées ? Convertir **PowerPoint en PDF** est la norme professionnelle.
 
-Que vous soyez un professionnel partageant des présentations trimestrielles, un étudiant soumettant des travaux, ou un conférencier distribuant des documents, le PDF garantit que vos diapositives maintiennent leur mise en page exacte. Mieux encore, notre outil traite tout localement dans votre navigateur—vos présentations confidentielles ne quittent jamais votre appareil.
+Notre outil gratuit **${title}** transforme vos présentations .pptx et .ppt en documents PDF soignés. Contrairement à l'envoi du fichier brut, un PDF garantit que vos diapositives sont identiques sur un iPhone, une tablette ou un PC.
 
-### Qui a besoin de cet outil ?
+**Pourquoi les professionnels convertissent en PDF :**
+*   **Sécurité des polices :** Fini les erreurs de polices manquantes qui détruisent votre mise en page.
+*   **Indépendance de version :** Fonctionne parfaitement, que le destinataire ait PowerPoint 2021 ou aucun logiciel.
+*   **Prêt à imprimer :** Crée des documents parfaits avec des marges cohérentes.
 
-*   **Professionnels d'affaires** : Partagez des présentations au conseil en toute sécurité.
-*   **Équipes commerciales** : Distribuez des pitch decks sans problèmes de compatibilité.
-*   **Étudiants et éducateurs** : Soumettez des travaux et partagez du matériel de cours.
-*   **Conférenciers** : Créez des documents professionnels pour les participants.
-*   **Équipes marketing** : Partagez des présentations avec un formatage cohérent.`,
+Notre outil traite vos fichiers **localement dans votre navigateur**, garantissant que vos stratégies confidentielles ne quittent jamais votre appareil.`,
 
-            step1Title: "Comment convertir PowerPoint en PDF en ligne",
-            step1Content: `Suivez ces étapes simples pour transformer votre présentation en document PDF :
+            step1Title: "Liste de contrôle avant conversion",
+            step1Content: `Pour obtenir les meilleurs résultats, vérifiez ces 3 points :
 
-1.  **Téléchargez votre fichier** : Cliquez sur « Sélectionner un fichier » ou glissez-déposez votre fichier PowerPoint.
+1.  **Contenu hors-diapositive** : Les éléments qui dépassent du bord peuvent causer des problèmes. Déplacez-les ou supprimez-les.
+2.  **Incorporer les polices** : Dans les options PowerPoint, cochez "Incorporer les polices". Cela aide notre convertisseur.
+3.  **Diapositives masquées** : Si vous avez des diapositives "cachées", elles seront ignorées. Affichez-les si nécessaire.
+4.  **Compresser les images** : Si le fichier dépasse 50 Mo, utilisez la fonction "Compresser les images" de PowerPoint.`,
 
-2.  **Prévisualisez vos diapositives** : Notre outil affiche un aperçu de votre présentation.
+            step2Title: "Comment convertir PowerPoint en PDF en ligne",
+            step2Content: `Suivez ces étapes simples pour transformer vos diapositives :
 
-3.  **Choisissez les paramètres** : Sélectionnez des diapositives spécifiques ou convertissez toute la présentation.
+1.  **Téléchargez votre fichier** : Cliquez sur "Sélectionner un fichier" ou glissez-déposez votre présentation (.pptx, .ppt).
+2.  **Prévisualisez** : Notre outil affiche un aperçu. Vérifiez que les graphiques sont visibles.
+3.  **Sélectionnez les pages (Optionnel)** : Si vous n'avez besoin que d'une section spécifique, sélectionnez ces diapositives.
+4.  **Cliquez sur Convertir** : L'outil capture chaque diapositive comme une page haute qualité.
+5.  **Télécharger** : Sauvegardez votre fichier PDF, prêt à être envoyé.
 
-4.  **Cliquez sur Convertir** : La conversion se fait instantanément.
+**Astuce Pro** : Les fichiers PDF ne jouent pas les vidéos. Cette conversion capture "l'état final" de votre mise en page.`,
 
-5.  **Téléchargez votre PDF** : Chaque diapositive devient une page séparée.
+            step3Title: "Comparaison : PowerPoint 'Enregistrer sous' vs Notre Outil",
+            step3Content: `Pourquoi utiliser un outil en ligne ?
 
-**Conseil** : Pour les présentations avec des vidéos intégrées, seule la vignette apparaîtra dans le PDF.`,
+| Fonctionnalité | PowerPoint "Enregistrer sous" | Convertisseur pdfcanada.ca |
+|----------------|-------------------------------|----------------------------|
+| **Accessibilité** | Nécessite un logiciel coûteux | Fonctionne partout (Mobile, Tablette) |
+| **Vitesse** | Lent à ouvrir l'app | Glisser-déposer instantané |
+| **Confidentialité** | Traitement local | **Traitement local** (Même sécurité !) |
+| **Métadonnées** | Garde le nom de l'auteur | **Supprime** les métadonnées cachées |
+| **Vieux Fichiers** | Difficile avec les vieux .ppt | Gère bien les formats anciens |`,
 
-            step2Title: "Fonctionnalités et avantages",
-            step2Content: `Notre convertisseur PowerPoint vers PDF offre des fonctionnalités puissantes :
+            step4Title: "Dépannage des problèmes de présentation",
+            step4Content: `**Problème : Mes animations ont disparu.**
+*   *Raison :* Le PDF est un format statique. Il ne bouge pas.
+*   *Solution :* C'est normal. Assurez-vous que tout le texte est visible dans l'état final avant de convertir.
 
-*   **Intégration des polices** : Toutes les polices sont intégrées pour un texte parfait partout.
-*   **Préservation de la mise en page** : Les diapositives maintiennent leur apparence exacte.
-*   **Qualité d'image** : Images haute résolution préservées avec excellente qualité.
-*   **Aplatissement des animations** : Les éléments animés sont convertis à leur état final.
-*   **Traitement 100% privé** : Vos présentations ne quittent jamais votre navigateur.
-*   **Support multi-diapositives** : Convertissez des centaines de diapositives en secondes.
-*   **Sans filigrane** : Sortie complètement propre et professionnelle.
-*   **Gratuit et illimité** : Convertissez autant de présentations que nécessaire.`,
+**Problème : Le fichier est trop gros pour l'email.**
+*   *Raison :* Le PowerPoint contient des images haute résolution.
+*   *Solution :* Après conversion, utilisez notre outil **Compresser PDF** pour réduire la taille de 50-80%.
 
-            step3Title: "Confidentialité et sécurité",
-            step3Content: `Vos présentations d'affaires méritent une protection maximale :
+**Problème : Les hyperliens ne fonctionnent pas.**
+*   *Raison :* Les liens complexes sur des formes se perdent parfois.
+*   *Solution :* Attachez vos liens au texte ou à des images simples, pas à des objets "SmartArt" groupés.
 
-**Traitement Local-First**
-Notre outil traite tout directement dans votre navigateur. Vos fichiers PowerPoint ne quittent jamais votre appareil.
+**Problème : Les graphiques Excel sont bizarres.**
+*   *Raison :* Les graphiques liés peuvent ne pas se mettre à jour.
+*   *Solution :* Dans PowerPoint, "Rompre les liaisons" assure que le graphique est sauvegardé comme une image statique.`,
 
-**Zéro rétention de données**
-Nous ne stockons aucune donnée. Quand vous fermez l'onglet, tout est effacé.
+            step5Title: "Confidentialité et sécurité",
+            step5Content: `Pour les documents internes et légaux, la sécurité est non négociable.
 
-**Conforme LPRPDE**
-Notre approche dépasse les exigences canadiennes en matière de confidentialité.`,
-
-            step4Title: "Cas d'utilisation courants",
-            step4Content: `**Présentations au conseil**
-Convertissez des présentations confidentielles en PDF pour une distribution sécurisée.
-
-**Pitch decks commerciaux**
-Transformez vos présentations de vente en PDF professionnels.
-
-**Soumissions académiques**
-Soumettez vos présentations au format PDF.
-
-**Documents de conférence**
-Créez des documents imprimables pour les participants.
-
-**Archivage**
-Créez des enregistrements PDF permanents pour la conformité.`,
-
-            step5Title: "Dépannage des problèmes courants",
-            step5Content: `**Problème : Les polices semblent différentes**
-*Solution* : Utilisez des polices largement disponibles comme Arial ou Calibri.
-
-**Problème : Les animations ne s'affichent pas**
-*Solution* : Le PDF est statique. Les animations sont capturées à leur état final.
-
-**Problème : Les vidéos ne jouent pas**
-*Solution* : Le PDF ne supporte pas la lecture vidéo. Seule la vignette apparaît.
-
-**Problème : Certaines diapositives manquent**
-*Solution* : Assurez-vous que toutes les diapositives souhaitées sont visibles dans PowerPoint.`,
+*   **Conversion côté client :** La magie opère dans la mémoire de votre navigateur. Nous ne voyons pas vos diapositives.
+*   **Nettoyage instantané :** Dès que vous fermez l'onglet, les données disparaissent.
+*   **Pas de Cloud :** Nous ne sommes pas un fournisseur de stockage cloud. Nous ne gardons aucune copie.`,
 
             faqTitle: "Questions fréquemment posées",
-            faqContent: `**Mes animations fonctionneront-elles dans le PDF ?**
-Non, le PDF est statique. Les animations sont aplaties à leur état final.
+            faqContent: `**Puis-je convertir les notes du présentateur ?**
+Notre outil convertit **uniquement les diapositives**. Pour inclure les notes, utilisez la fonction "Imprimer en PDF" de PowerPoint avec la mise en page "Pages de notes".
 
-**Les notes du présentateur sont-elles incluses ?**
-Par défaut, seules les diapositives sont converties.
+**Mes polices personnalisées seront-elles préservées ?**
+Nous essayons d'utiliser les polices intégrées. Si une police très spécifique ne peut être lue, nous la remplaçons par une police standard similaire (ex: Arial) pour garder le texte lisible.
 
-**Puis-je convertir des fichiers protégés par mot de passe ?**
-Vous devrez d'abord supprimer la protection.
+**Qu'arrive-t-il aux vidéos intégrées ?**
+Elles sont supprimées. La première image de la vidéo est généralement conservée comme image statique, mais la vidéo ne jouera pas.
 
-**Quels formats PowerPoint sont supportés ?**
-Nous supportons .pptx, .ppt et .ppsx.
+**Puis-je convertir des fichiers Keynote (Mac) ?**
+Pas directement. Exportez d'abord votre fichier Keynote en PowerPoint (.pptx), puis utilisez notre outil.
 
 **Y a-t-il une limite de diapositives ?**
-Pas de limite stricte. Testé avec plus de 500 diapositives.
-
-**Cet outil est-il vraiment gratuit ?**
-Oui, 100% gratuit sans filigranes ou limites.`
+Nous testons avec des présentations de 500+ diapositives. La performance dépend de votre RAM.`
         },
         pt: {
             subtitle: "Converta apresentações PowerPoint para PDF instantaneamente com formatação perfeita",
-            intro: `Precisa compartilhar uma apresentação PowerPoint mas está preocupado com problemas de fontes ou edições não autorizadas? Converter **PowerPoint para PDF** é a solução profissional. Nossa ferramenta gratuita **${title}** transforma suas apresentações .pptx e .ppt em documentos PDF polidos que aparecem idênticos em qualquer dispositivo.
+            intro: `Precisa compartilhar uma apresentação PowerPoint mas está preocupado com problemas de fontes, incompatibilidade de versão ou edições não autorizadas? Converter **PowerPoint para PDF** é o padrão profissional.
 
-Seja você um profissional de negócios compartilhando apresentações trimestrais, um estudante submetendo trabalhos, ou um palestrante distribuindo materiais, o PDF garante que seus slides mantenham seu layout exato. O melhor é que nossa ferramenta processa tudo localmente no seu navegador—suas apresentações confidenciais nunca saem do seu dispositivo.
+Nossa ferramenta gratuita **${title}** transforma suas apresentações .pptx e .ppt em documentos PDF polidos. Diferente de enviar o arquivo bruto, um PDF garante que seus slides pareçam idênticos em um iPhone, tablet ou PC.
 
-### Quem precisa desta ferramenta?
+**Por que profissionais convertem para PDF:**
+*   **Segurança de Fontes:** Sem erros de "fonte faltando" que destroem seu layout.
+*   **Independência de Versão:** Funciona perfeitamente, tenha o receptor PowerPoint 2021 ou nenhum software.
+*   **Pronto para Impressão:** Cria documentos perfeitos com margens consistentes.
 
-*   **Profissionais de negócios**: Compartilhe apresentações de diretoria com segurança.
-*   **Equipes de vendas**: Distribua pitch decks sem problemas de compatibilidade.
-*   **Estudantes e educadores**: Submeta trabalhos e compartilhe materiais de aula.
-*   **Palestrantes**: Crie materiais profissionais para participantes.
-*   **Equipes de marketing**: Compartilhe apresentações com formatação consistente.`,
+Nossa ferramenta processa seus arquivos **localmente no seu navegador**, garantindo que suas estratégias confidenciais nunca saiam do seu dispositivo.`,
 
-            step1Title: "Como converter PowerPoint para PDF online",
-            step1Content: `Siga estes passos simples:
+            step1Title: "Lista de Verificação (Melhores Práticas)",
+            step1Content: `Para obter os melhores resultados, verifique estes 3 pontos:
 
-1.  **Envie seu arquivo**: Clique em "Selecionar arquivo" ou arraste e solte seu arquivo PowerPoint.
+1.  **Conteúdo fora do slide**: Itens que saem da borda podem causar problemas. Mova-os ou apague-os.
+2.  **Incorporar fontes**: Nas opções do PowerPoint, marque "Incorporar fontes". Isso ajuda nosso conversor.
+3.  **Slides Ocultos**: Se você tem slides "ocultos", eles serão ignorados. Reexiba-os se necessário.
+4.  **Comprimir Imagens**: Se o arquivo passar de 50MB, use a função "Comprimir Imagens" do PowerPoint.`,
 
-2.  **Visualize seus slides**: Nossa ferramenta exibe uma prévia da sua apresentação.
+            step2Title: "Como converter PowerPoint para PDF online",
+            step2Content: `Siga estes passos simples para transformar seus slides:
 
-3.  **Escolha as configurações**: Selecione slides específicos ou converta toda a apresentação.
+1.  **Envie seu Arquivo**: Clique em "Selecionar Arquivo" ou arraste sua apresentação (.pptx, .ppt).
+2.  **Visualize**: Nossa ferramenta exibe uma prévia. Verifique se os gráficos estão visíveis.
+3.  **Selecione Páginas (Opcional)**: Se precisar apenas de uma seção específica, selecione esses slides.
+4.  **Clique em Converter**: A ferramenta captura cada slide como uma página de alta qualidade.
+5.  **Baixar**: Salve seu arquivo PDF, pronto para ser enviado.
 
-4.  **Clique em Converter**: A conversão acontece instantaneamente.
+**Dica Pro**: Arquivos PDF não tocam vídeos. Esta conversão captura o "estado final" do seu layout.`,
 
-5.  **Baixe seu PDF**: Cada slide se torna uma página separada.
+            step3Title: "Comparação: PowerPoint 'Salvar como' vs Nossa Ferramenta",
+            step3Content: `Por que usar uma ferramenta online?
 
-**Dica**: Para apresentações com vídeos, apenas a miniatura aparecerá no PDF.`,
+| Recurso | PowerPoint "Salvar como" | Conversor pdfcanada.ca |
+|---------|--------------------------|------------------------|
+| **Acessibilidade** | Requer software caro | Funciona em qualquer lugar |
+| **Velocidade** | Lento para abrir app | Arrastar e soltar instantâneo |
+| **Privacidade** | Processamento local | **Processamento local** (Mesma segurança!) |
+| **Metadados** | Mantém nome do autor | **Remove** metadados ocultos |
+| **Arquivos Antigos** | Difícil com .ppt antigo | Lida bem com formatos antigos |`,
 
-            step2Title: "Recursos e benefícios",
-            step2Content: `Nosso conversor de PowerPoint para PDF oferece recursos poderosos:
+            step4Title: "Solução de Problemas de Apresentação",
+            step4Content: `**Problema: Minhas animações sumiram.**
+*   *Razão:* O PDF é um formato estático. Ele não se move.
+*   *Solução:* Isso é normal. Garanta que todo o texto esteja visível no estado final antes de converter.
 
-*   **Incorporação de fontes**: Todas as fontes são incorporadas para texto perfeito em qualquer lugar.
-*   **Preservação do layout**: Slides mantêm sua aparência exata.
-*   **Qualidade de imagem**: Imagens de alta resolução preservadas com excelente qualidade.
-*   **Achatamento de animações**: Elementos animados são convertidos para seu estado final.
-*   **Processamento 100% privado**: Suas apresentações nunca saem do navegador.
-*   **Suporte multi-slides**: Converta centenas de slides em segundos.
-*   **Sem marcas d'água**: Saída completamente limpa e profissional.
-*   **Gratuito e ilimitado**: Converta quantas apresentações precisar.`,
+**Problema: O arquivo é muito grande para email.**
+*   *Razão:* O PowerPoint contém imagens de alta resolução.
+*   *Solução:* Após converter, use nossa ferramenta **Comprimir PDF** para reduzir o tamanho em 50-80%.
 
-            step3Title: "Privacidade e segurança",
-            step3Content: `Suas apresentações de negócios merecem máxima proteção:
+**Problema: Hyperlinks não funcionam.**
+*   *Razão:* Links complexos em formas às vezes se perdem.
+*   *Solução:* Anexe seus links a texto ou imagens simples, não a objetos "SmartArt" agrupados.
 
-**Processamento Local-First**
-Nossa ferramenta processa tudo diretamente no seu navegador. Seus arquivos PowerPoint nunca saem do seu dispositivo.
+**Problema: Gráficos Excel parecem estranhos.**
+*   *Razão:* Gráficos vinculados podem não atualizar.
+*   *Solução:* No PowerPoint, "Quebrar Vínculos" garante que o gráfico seja salvo como uma imagem estática.`,
 
-**Zero retenção de dados**
-Não armazenamos nenhum dado. Quando você fecha a aba, tudo é limpo.
+            step5Title: "Privacidade e Segurança",
+            step5Content: `Para documentos internos e legais, segurança é inegociável.
 
-**Conformidade com LGPD**
-Nossa abordagem atende às exigências brasileiras de proteção de dados.`,
+*   **Conversão Client-Side:** A mágica acontece na memória do seu navegador. Não vemos seus slides.
+*   **Limpeza Instantânea:** Assim que você fecha a aba, os dados somem.
+*   **Sem Cloud:** Não somos um provedor de armazenamento nuvem. Não mantemos cópias.`,
 
-            step4Title: "Casos de uso comuns",
-            step4Content: `**Apresentações de diretoria**
-Converta apresentações confidenciais para distribuição segura.
+            faqTitle: "Perguntas Frequentes",
+            faqContent: `**Posso converter anotações do apresentador?**
+Nossa ferramenta converte **apenas os slides**. Para incluir notas, use a função "Imprimir para PDF" do PowerPoint com o layout "Páginas de Anotações".
 
-**Pitch decks de vendas**
-Transforme suas apresentações de vendas em PDFs profissionais.
+**Minhas fontes personalizadas serão preservadas?**
+Tentamos usar fontes incorporadas. Se uma fonte muito específica não puder ser lida, a substituímos por uma fonte padrão similar (ex: Arial) para manter o texto legível.
 
-**Submissões acadêmicas**
-Submeta suas apresentações no formato PDF.
+**O que acontece com vídeos incorporados?**
+Eles são removidos. O primeiro quadro do vídeo geralmente é mantido como imagem estática, mas o vídeo não tocará.
 
-**Materiais de conferência**
-Crie materiais imprimíveis para participantes.
-
-**Arquivamento**
-Crie registros PDF permanentes para conformidade.`,
-
-            step5Title: "Solução de problemas comuns",
-            step5Content: `**Problema: Fontes parecem diferentes**
-*Solução*: Use fontes amplamente disponíveis como Arial ou Calibri.
-
-**Problema: Animações não aparecem**
-*Solução*: PDF é estático. Animações são capturadas em seu estado final.
-
-**Problema: Vídeos não tocam**
-*Solução*: PDF não suporta reprodução de vídeo. Apenas a miniatura aparece.
-
-**Problema: Alguns slides estão faltando**
-*Solução*: Certifique-se de que todos os slides desejados estão visíveis no PowerPoint.`,
-
-            faqTitle: "Perguntas frequentes",
-            faqContent: `**Minhas animações funcionarão no PDF?**
-Não, PDF é estático. Animações são achatadas para seu estado final.
-
-**As notas do apresentador são incluídas?**
-Por padrão, apenas os slides são convertidos.
-
-**Posso converter arquivos protegidos por senha?**
-Você precisará remover a proteção primeiro.
-
-**Quais formatos PowerPoint são suportados?**
-Suportamos .pptx, .ppt e .ppsx.
+**Posso converter arquivos Keynote (Mac)?**
+Não diretamente. Exporte seu arquivo Keynote para PowerPoint (.pptx) primeiro, depois use nossa ferramenta.
 
 **Há limite de slides?**
-Sem limite rígido. Testado com mais de 500 slides.
-
-**Esta ferramenta é realmente gratuita?**
-Sim, 100% gratuita sem marcas d'água ou limites.`
+Testamos com apresentações de 500+ slides. O desempenho depende da sua memória RAM.`
         }
     };
 
@@ -370,11 +283,11 @@ Sim, 100% gratuita sem marcas d'água ou limites.`
                 breadcrumbTool: title,
                 intro: t.intro,
                 sections: [
-                    { id: 'how-to', title: t.step1Title, content: t.step1Content },
-                    { id: 'features', title: t.step2Title, content: t.step2Content },
-                    { id: 'privacy', title: t.step3Title, content: t.step3Content },
-                    { id: 'use-cases', title: t.step4Title, content: t.step4Content },
-                    { id: 'troubleshooting', title: t.step5Title, content: t.step5Content },
+                    { id: 'checklist', title: t.step1Title, content: t.step1Content },
+                    { id: 'how-to', title: t.step2Title, content: t.step2Content },
+                    { id: 'comparison', title: t.step3Title, content: t.step3Content },
+                    { id: 'troubleshooting', title: t.step4Title, content: t.step4Content },
+                    { id: 'privacy', title: t.step5Title, content: t.step5Content },
                     { id: 'faq', title: t.faqTitle, content: t.faqContent }
                 ]
             }}
