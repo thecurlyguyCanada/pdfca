@@ -152,7 +152,7 @@ const getLocalContent = (lang: Language) => ({
                             <li><strong>Create a backup</strong>: Always keep an original copy before <strong>deleting pages from PDF</strong> files</li>
                             <li><strong>Review page numbers</strong>: PDFs may have custom numbering (i, ii, iii vs 1, 2, 3)—verify you're removing the correct pages</li>
                             <li><strong>Check bookmarks</strong>: Review the table of contents to ensure removed pages won't break document navigation</li>
-                            <li><strong>Consider file size</strong>: Removing pages reduces file size, but orphaned resources may remain—use compression tools afterward if needed</li>
+                            <li><strong>Consider file size</strong>: Removing pages reduces file size, but orphaned resources may remain—use <Link href={`/${lang}/guides/reduce-pdf-size`} className="text-canada-red hover:underline">compression tools</Link> afterward if needed</li>
                             <li><strong>Verify permissions</strong>: Some PDFs have editing restrictions—remove password protection first if necessary</li>
                         </ul>
 
@@ -266,7 +266,7 @@ const getLocalContent = (lang: Language) => ({
                         <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Output Issues</h3>
                         <ul className="list-disc pl-5 space-y-2 mb-4">
                             <li><strong>Links broken</strong>: Internal hyperlinks may need manual adjustment if they pointed to removed pages</li>
-                            <li><strong>File size unchanged</strong>: Orphaned resources remain—use <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">PDF compression</Link> to optimize</li>
+                            <li><strong>File size unchanged</strong>: Orphaned resources remain—use <Link href={`/${lang}/guides/reduce-pdf-size`} className="text-canada-red hover:underline">PDF compression</Link> to optimize</li>
                             <li><strong>Bookmarks incorrect</strong>: Manually update table of contents after major page removals</li>
                         </ul>
                     </>
@@ -362,7 +362,7 @@ const getLocalContent = (lang: Language) => ({
             },
             {
                 q: "Will removing pages reduce my PDF file size?",
-                a: "Yes, removing pages reduces file size proportionally. However, if embedded fonts or images are shared across pages, some resources may remain. For maximum size reduction, use our PDF compression tool after page removal."
+                a: "Yes, removing pages reduces file size proportionally. However, if embedded fonts or images are shared across pages, some resources may remain. For maximum size reduction, use our <Link href={`/${lang}/guides/reduce-pdf-size`} className=\"text-canada-red hover:underline\">PDF compression tool</Link> after page removal."
             },
             {
                 q: "Is it safe to remove pages from confidential PDFs?",
@@ -746,7 +746,7 @@ const getLocalContent = (lang: Language) => ({
                         <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">Problemas de Saída</h3>
                         <ul className="list-disc pl-5 space-y-2 mb-4">
                             <li><strong>Links quebrados</strong>: Hiperlinks internos podem precisar de ajuste manual se apontavam para páginas removidas</li>
-                            <li><strong>Tamanho do arquivo inalterado</strong>: Recursos órfãos permanecem—use <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">compressão de PDF</Link> para otimizar</li>
+                            <li><strong>Tamanho do arquivo inalterado</strong>: Recursos órfãos permanecem—use <Link href={`/${lang}/guides/reduce-pdf-size`} className="text-canada-red hover:underline">compressão de PDF</Link> para otimizar</li>
                             <li><strong>Marcadores incorretos</strong>: Atualize manualmente o índice após grandes remoções de páginas</li>
                         </ul>
                     </>

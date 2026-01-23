@@ -83,7 +83,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p>
-                            When you use our <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Reduce PDF Size Tool</Link>, we don't just "zip" the file. We perform a sophisticated restructuring operation known as <strong>Resampling and optimization</strong>. This happens entirely in your browser using WebAssembly technology.
+                            When you use our <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Reduce PDF Size Tool</Link>, we don't just "zip" the file. We perform a sophisticated restructuring operation known as <strong>Resampling and optimization</strong>. This happens entirely in your browser using WebAssembly technology. For very large documents, you might also consider <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline decoration-dash underline-offset-4">splitting the PDF</Link> first.
                         </p>
                         <h4 className="font-bold mt-4">The Optimization Process:</h4>
                         <ul className="list-disc pl-5 space-y-2">
@@ -315,9 +315,10 @@ const getGuideContent = (lang: Language) => ({
                         <p className="mt-4 font-bold">Pro Tip: Pre-Processing for Maximum Gains</p>
                         <p>If you absolutely must shrink a file and the standard tool isn't enough, try this workflow:</p>
                         <ol className="list-decimal pl-5 space-y-2">
-                            <li>Use our <Link href={`/${lang}/guides/delete-pdf-pages`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Delete Pages Tool</Link> to remove ANY unnecessary content (covers, blank pages).</li>
-                            <li>Use our <Link href={`/${lang}/guides/convert-to-gray`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Grayscale Converter</Link> (if available) or convert images to B&W before creating the PDF. Color data takes up 3x the space of grayscale.</li>
+                            <li>Use our <Link href={`/${lang}/pdf-page-remover`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Delete Pages Tool</Link> to remove ANY unnecessary content (covers, blank pages).</li>
+                            <li>Convert images to B&W before creating the PDF (color data takes up 3x the space of grayscale).</li>
                             <li>Finally, run the <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Reduce Tool</Link> on "Extreme" mode.</li>
+                            <li>If the file is still too large, use the <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Split PDF Tool</Link> to divide it into smaller parts.</li>
                         </ol>
                     </div>
                 )
@@ -432,7 +433,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p>
-                            Lorsque vous utilisez notre <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Outil de Réduction PDF</Link>, nous ne nous contentons pas de "zipper" le fichier. Nous effectuons une opération de restructuration sophistiquée appelée <strong>Rééchantillonnage et optimisation</strong>. Cela se passe entièrement dans votre navigateur grâce à la technologie WebAssembly.
+                            Lorsque vous utilisez notre <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Outil de Réduction PDF</Link>, nous ne nous contentons pas de "zipper" le fichier. Nous effectuons une opération de restructuration sophistiquée appelée <strong>Rééchantillonnage et optimisation</strong>. Cela se passe entièrement dans votre navigateur grâce à la technologie WebAssembly. Pour les très gros documents, vous pouvez aussi envisager de <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline decoration-dash underline-offset-4">diviser le PDF</Link> d'abord.
                         </p>
                         <h4 className="font-bold mt-4">Le Processus d'Optimisation :</h4>
                         <ul className="list-disc pl-5 space-y-2">
@@ -669,7 +670,7 @@ const getGuideContent = (lang: Language) => ({
 
         quickAnswer: {
             question: "Comment réduire PDF pour les portails gouvernementaux ?",
-            answer: "Les portails exigent souvent moins de 4 Mo. 1) Uploadez sur pdfcanada.ca. 2) Sélectionnez 'Extrême' si > 10 Mo, ou 'Équilibré'. 3) Téléchargez et vérifiez la taille.",
+            answer: "Les portails exigent souvent moins de 4 Mo. 1) Uploadez sur pdfcanada.ca. 2) Sélectionnez 'Extrême' si > 10 Mo, ou 'Équilibré'. 3) Téléchargez et vérifiez la taille. Si c'est encore trop gros, divisez le fichier.",
             tool: "Réduire PDF",
             steps: ["Uploader", "Sélectionner Mode", "Télécharger"]
         },
@@ -744,7 +745,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p>
-                            Ao usar nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta de Redução PDF</Link>, realizamos uma reestruturação sofisticada chamada <strong>Reamostragem e Otimização</strong>, inteiramente no seu navegador via WebAssembly.
+                            Ao usar nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta de Redução PDF</Link>, realizamos uma reestruturação sofisticada chamada <strong>Reamostragem e Otimização</strong>, inteiramente no seu navegador via WebAssembly. Para documentos muito grandes, você também pode considerar <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline decoration-dash underline-offset-4">dividir o PDF</Link> primeiro.
                         </p>
                         <h4 className="font-bold mt-4">O Processo de Otimização:</h4>
                         <ul className="list-disc pl-5 space-y-2">

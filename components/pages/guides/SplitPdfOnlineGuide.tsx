@@ -22,7 +22,7 @@ const getLocalContent = (lang: string) => ({
         seo_desc: 'How to split a large PDF into multiple files. Extract specific pages, divide by range, or separate every page into a standalone document.',
         intro: `One massive PDF file is often more of a burden than a convenience.
 
-Maybe you scanned a 50-page contract but only need to email the last 2 pages. Or perhaps you have a merged report and need to extract Chapter 3 for a client.
+Maybe you scanned a 50-page contract but only need to email the last 2 pages. Or perhaps you have a [merged report](/${lang}/guides/merge-pdf) and need to extract Chapter 3 for a client.
 
 **Splitting** is the process of breaking a single document into smaller, more manageable parts.
 
@@ -32,7 +32,7 @@ This guide explores how to extract pages, separate documents, and delete unwante
                 id: 'use-cases',
                 title: 'Why Split a PDF?',
                 content: `**1. Email Attachment Limits**
-Email services like Gmail cap attachments at 25MB. Splitting a large report into Part 1 and Part 2 solves this instantly.
+Email services like Gmail cap attachments at 25MB. Splitting a large report into Part 1 and Part 2 solves this instantly. You can also re-combine them later with our [Merge Tool](/${lang}/guides/merge-pdf).
 
 **2. Legal Extraction**
 Lawyers often need to share specific exhibits from a larger case file without revealing unrelated confidential information.
@@ -70,7 +70,7 @@ You'll see a thumbnail view of every page.
 You can also drag pages to reorder them before extracting.
 
 **Step 4: Download**
-Click "Split" to get your new document(s). If multiple files are created, we'll zip them up for you.`
+Click "Split" to get your new document(s). If multiple files are created, we'll zip them up for you. You can also [merge them back](/${lang}/guides/merge-pdf) in a different order if needed.`
             },
             {
                 id: 'privacy',

@@ -118,7 +118,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Very large PDFs are slow to reorder</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Large PDFs (100+ pages or 50+ MB) can be memory-intensive. Close other browser tabs to free up RAM. Consider splitting very large files into smaller sections, organizing each separately, then merging them back together.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Large PDFs (100+ pages or 50+ MB) can be memory-intensive. Close other browser tabs to free up RAM. Consider <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline">splitting</Link> or <Link href={`/${lang}/guides/compress-pdf`} className="text-canada-red hover:underline">compressing</Link> very large files into smaller sections, organizing each separately, then merging them back together.</p>
                         </div>
                     </div>
                 )
@@ -128,7 +128,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Can I move pages between different PDF files?",
-                a: "Currently, this tool supports reordering pages within a single PDF. If you need to combine multiple files and then rearrange them, use our Merge PDF tool to combine them first, then use the Organize tool to reorder the pages in the merged document."
+                a: <span>Currently, this tool supports reordering pages within a single PDF. If you need to combine multiple files and then rearrange them, use our <Link href={`/${lang}/guides/merge-pdf`} className="text-canada-red hover:underline">Merge PDF tool</Link> to combine them first, then use the Organize tool to reorder the pages in the merged document.</span>
             },
             {
                 q: "What happens to my original file when I reorder pages?",
@@ -286,7 +286,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les très gros PDF sont lents à réorganiser</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou 50+ Mo) peuvent être gourmands en mémoire. Fermez d'autres onglets du navigateur pour libérer de la RAM. Envisagez de diviser les très gros fichiers en sections plus petites, d'organiser chacune séparément, puis de les fusionner à nouveau.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Les gros PDF (100+ pages ou 50+ Mo) peuvent être gourmands en mémoire. Fermez d'autres onglets du navigateur pour libérer de la RAM. Envisagez de <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline">diviser</Link> ou <Link href={`/${lang}/guides/compress-pdf`} className="text-canada-red hover:underline">compresser</Link> les très gros fichiers en sections plus petites, d'organiser chacune séparément, puis de les fusionner à nouveau.</p>
                         </div>
                     </div>
                 )
@@ -296,7 +296,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Puis-je déplacer des pages entre différents fichiers PDF ?",
-                a: "Actuellement, cet outil prend en charge la réorganisation de pages au sein d'un seul PDF. Si vous devez combiner plusieurs fichiers puis les réarranger, utilisez notre outil de fusion PDF pour les combiner d'abord, puis utilisez l'outil d'organisation pour réorganiser les pages du document fusionné."
+                a: <span>Actuellement, cet outil prend en charge la réorganisation de pages au sein d'un seul PDF. Si vous devez combiner plusieurs fichiers puis les réarranger, utilisez notre <Link href={`/${lang}/guides/merge-pdf`} className="text-canada-red hover:underline">outil de fusion PDF</Link> pour les combiner d'abord, puis utilisez l'outil d'organisation pour réorganiser les pages du document fusionné.</span>
             },
             {
                 q: "Qu'arrive-t-il à mon fichier original lorsque je réorganise les pages ?",
@@ -454,7 +454,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problema: PDFs muito grandes são lentos para reordenar</h4>
-                            <p className="text-yellow-800"><strong>Solução</strong>: PDFs grandes (100+ páginas ou 50+ MB) podem consumir muita memória. Feche outras abas do navegador para liberar RAM. Considere dividir arquivos muito grandes em seções menores, organizar cada uma separadamente e depois mesclá-las novamente.</p>
+                            <p className="text-yellow-800"><strong>Solução</strong>: PDFs grandes (100+ páginas ou 50+ MB) podem consumir muita memória. Feche outras abas do navegador para liberar RAM. Considere <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline">dividir</Link> ou <Link href={`/${lang}/guides/compress-pdf`} className="text-canada-red hover:underline">comprimir</Link> arquivos muito grandes em seções menores, organizar cada uma separadamente e depois mesclá-las novamente.</p>
                         </div>
                     </div>
                 )
@@ -464,7 +464,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Posso mover páginas entre arquivos PDF diferentes?",
-                a: "Atualmente, esta ferramenta suporta reordenação de páginas dentro de um único PDF. Se você precisa combinar vários arquivos e depois reorganizá-los, use nossa ferramenta Mesclar PDF para combiná-los primeiro, depois use a ferramenta Organizar para reordenar as páginas no documento mesclado."
+                a: <span>Atualmente, esta ferramenta suporta reordenação de páginas dentro de um único PDF. Se você precisa combinar vários arquivos e depois reorganizá-los, use nossa <Link href={`/${lang}/guides/merge-pdf`} className="text-canada-red hover:underline">ferramenta Mesclar PDF</Link> para combiná-los primeiro, depois use a ferramenta Organizar para reordenar as páginas no documento mesclado.</span>
             },
             {
                 q: "O que acontece com meu arquivo original quando reordeno as páginas?",

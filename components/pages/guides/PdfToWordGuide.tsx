@@ -495,7 +495,7 @@ const getGuideContent = (lang: string) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problema: A conversão demora muito ou falha</h4>
-                            <p className="text-yellow-800"><strong>Solução</strong>: PDFs muito grandes (100+ páginas ou 50+ MB) podem sobrecarregar a memória do navegador. Tente dividir o PDF em seções menores usando nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta Organizar PDF</Link> e, em seguida, converta cada seção separadamente.</p>
+                            <p className="text-yellow-800"><strong>Solução</strong>: PDFs muito grandes (100+ páginas ou 50+ MB) podem sobrecarregar a memória do navegador. Tente <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline font-semibold">dividir o PDF</Link> em seções menores usando nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta Organizar PDF</Link> e, em seguida, converta cada seção separadamente.</p>
                         </div>
                     </div>
                 )

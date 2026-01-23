@@ -130,7 +130,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Does trimming a PDF reduce file size?",
-                a: "Not necessarily. Trimming usually just hides the content outside the trim box (CropBox) rather than physically deleting the data. The file size often remains similar. To significantly reduce file size, use our Compress PDF tool after trimming."
+                a: "Not necessarily. Trimming usually just hides the content outside the trim box (CropBox) rather than physically deleting the data. The file size often remains similar. To significantly reduce file size, use our <Link href={`/${lang}/guides/reduce-pdf-size`} className=\"text-canada-red hover:underline\">Compress PDF tool</Link> after trimming."
             },
             {
                 q: "Can I trim pages individually?",
@@ -263,7 +263,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Le rognage réduit-il la taille du fichier ?",
-                a: "Pas nécessairement. Le rognage masque souvent simplement le contenu hors zone sans supprimer physiquement les données. Utilisez notre outil Compresser PDF après le rognage pour réduire la taille."
+                a: "Pas nécessairement. Le rognage masque souvent simplement le contenu hors zone sans supprimer physiquement les données. Utilisez notre <Link href={`/${lang}/guides/reduce-pdf-size`} className=\"text-canada-red hover:underline\">outil Compresser PDF</Link> après le rognage pour réduire la taille."
             },
             {
                 q: "Puis-je rogner des pages différemment ?",
@@ -396,7 +396,7 @@ const getGuideContent = (lang: Language) => ({
         faq: [
             {
                 q: "Cortar um PDF reduz o tamanho do arquivo?",
-                a: "Nem sempre. Cortar geralmente apenas esconde o conteúdo fora da caixa de corte (CropBox) em vez de deletar fisicamente os dados. O tamanho do arquivo muitas vezes permanece similar. Para reduzir significativamente o tamanho, use nossa ferramenta Comprimir PDF após cortar."
+                a: "Nem sempre. Cortar geralmente apenas esconde o conteúdo fora da caixa de corte (CropBox) em vez de deletar fisicamente os dados. O tamanho do arquivo muitas vezes permanece similar. Para reduzir significativamente o tamanho, use nossa <Link href={`/${lang}/guides/reduce-pdf-size`} className=\"text-canada-red hover:underline\">ferramenta Comprimir PDF</Link> após cortar."
             },
             {
                 q: "Posso cortar páginas individualmente?",

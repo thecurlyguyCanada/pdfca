@@ -1,0 +1,137 @@
+components/pages/guides/PdfToEpubGuide.tsx(103,31): error TS1005: ',' expected.
+components/pages/guides/PdfToEpubGuide.tsx(113,13): error TS1005: ',' expected.
+components/pages/guides/PdfToEpubGuide.tsx(114,13): error TS1136: Property assignment expected.
+components/pages/guides/PdfToEpubGuide.tsx(116,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(117,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(159,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(162,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(163,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(230,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(233,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(234,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(291,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(294,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(295,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(350,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(353,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(354,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(374,75): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(490,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(493,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(494,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(608,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(611,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(612,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(809,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(812,14): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(813,20): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1152,9): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(1152,10): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(1255,13): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1256,18): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1257,22): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1258,21): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1264,33): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1265,37): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1270,5): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(1270,6): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(1274,17): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1275,6): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(1277,17): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1278,18): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1283,25): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1284,31): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1291,33): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1292,34): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1318,46): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1319,49): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1324,52): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1325,55): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1330,59): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(1331,61): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2405,60): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2507,69): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2508,74): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2509,78): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2510,77): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2516,89): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2517,93): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2522,2): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(2526,17): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2527,6): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(2529,17): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2530,18): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2535,25): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2536,31): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2543,33): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2544,34): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2570,46): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2571,49): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2576,52): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2577,55): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2582,59): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(2583,61): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3321,60): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3415,69): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3416,74): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3417,78): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3418,77): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3424,89): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3425,93): error TS1005: ';' expected.
+components/pages/guides/PdfToEpubGuide.tsx(3431,1): error TS1128: Declaration or statement expected.
+components/pages/guides/PdfToEpubGuide.tsx(3431,2): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(54,66): error TS1005: ',' expected.
+components/pages/guides/WordToPdfGuide.tsx(56,13): error TS1005: ',' expected.
+components/pages/guides/WordToPdfGuide.tsx(57,13): error TS1136: Property assignment expected.
+components/pages/guides/WordToPdfGuide.tsx(59,14): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(60,20): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(64,2): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(67,14): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(68,20): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(72,2): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(75,14): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(76,20): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(85,9): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(85,10): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(130,13): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(131,18): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(132,23): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(133,27): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(134,32): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(136,15): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(137,17): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(138,22): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(140,5): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(140,6): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(144,17): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(145,6): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(147,17): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(148,18): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(150,25): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(203,24): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(226,33): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(227,38): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(228,43): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(229,47): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(230,52): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(232,19): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(233,21): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(234,26): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(236,2): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(240,17): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(241,6): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(243,17): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(244,18): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(246,25): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(304,24): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(343,33): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(344,38): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(345,43): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(346,47): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(347,52): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(349,19): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(350,21): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(351,26): error TS1005: ';' expected.
+components/pages/guides/WordToPdfGuide.tsx(353,2): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(355,1): error TS1128: Declaration or statement expected.
+components/pages/guides/WordToPdfGuide.tsx(355,2): error TS1128: Declaration or statement expected.

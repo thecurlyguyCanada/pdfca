@@ -45,7 +45,7 @@ In this mega-guide, we'll cover everything you need to know about splitting PDFs
             title: "PDF Splitting: At a Glance",
             items: [
                 { label: "What", value: "Extract specific pages or split PDFs into individual files" },
-                { label: "Why", value: "Share specific sections, reduce file size, organize documents" },
+                { label: "Why", value: <span>Share specific sections, reduce file size, <Link href={`/${lang}/guides/organize-pdf`} className="text-canada-red hover:underline">organize documents</Link></span> },
                 { label: "Time", value: "5-15 seconds for most PDFs" },
                 { label: "Cost", value: "Free with no limits, no account required" },
                 { label: "Privacy", value: "Local processing—files never uploaded" },

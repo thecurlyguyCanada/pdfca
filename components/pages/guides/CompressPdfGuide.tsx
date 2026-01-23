@@ -723,24 +723,32 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
                         <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                            {lang === 'fr' ? 'Guides Connexes' : (lang === 'pt' ? 'Guias Relacionados' : 'Related Guides')}
                         </h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/guides/reduce-pdf-size`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
-                                <ArrowRight size={16} className="text-canada-red" />
-                                {lang === 'fr' ? 'Guide Réduire Taille PDF' : (lang === 'pt' ? 'Guia Reduzir Tamanho PDF' : 'Reduce PDF Size Guide')}
-                            </Link>
-                            <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <div className="flex flex-wrap gap-3">
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Juntar PDF' : 'Merge PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/split-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/split-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Diviser PDF' : (lang === 'pt' ? 'Guia Dividir PDF' : 'Split PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/image-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/png-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
-                                {lang === 'fr' ? 'Guide Image vers PDF' : (lang === 'pt' ? 'Guia Imagem para PDF' : 'Image to PDF Guide')}
+                                PNG to PDF
+                            </Link>
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/jpg-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                JPG to PDF
+                            </Link>
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/heic-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                HEIC to PDF
+                            </Link>
+                            <Link href={`/${lang === 'en' ? '' : lang + '/'}guides/flatten-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Aplatir PDF' : (lang === 'pt' ? 'Achatar PDF' : 'Flatten PDF')}
                             </Link>
                         </div>
                     </div>

@@ -148,13 +148,13 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p><strong>Can I combine PDF and Word files together?</strong><br />
-                            No, you must first convert your Word files to PDF using our <Link href={`/${lang}/word-to-pdf`} className="text-canada-red underline">Word to PDF tool</Link>, and then combine the resulting PDFs.</p>
+                            No, you must first convert your Word files to PDF using our <Link href={`/${lang}/guides/word-to-pdf`} className="text-canada-red underline">Word to PDF tool</Link>, and then combine the resulting PDFs.</p>
 
                         <p><strong>Is there a size limit?</strong><br />
                             Since we process files locally, the limit is your computer's RAM. We've successfully combined files totaling over 1GB.</p>
 
                         <p><strong>How do I separate them later?</strong><br />
-                            If you need to separate them again, use our <Link href={`/${lang}/split-pdf`} className="text-canada-red underline">Split PDF tool</Link> to extract pages.</p>
+                            If you need to separate them again, use our <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red underline">Split PDF tool</Link> to extract pages.</p>
                     </div>
                 )
             }
