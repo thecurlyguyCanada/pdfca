@@ -306,7 +306,7 @@ export const IlovepdfVsPdfcanadaGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="my-16"><h3 className="text-2xl font-black mb-8 text-gray-900 dark:text-white">FAQ</h3><div className="grid gap-4">{t.faq.map((item: any, i: number) => (<div key={i} className="p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800"><h4 className="font-bold mb-2 text-gray-900 dark:text-white">{item.q}</h4><p className="text-gray-600 dark:text-gray-400">{item.a}</p></div>))}</div></div>
                     <div className="bg-gradient-to-r from-red-600 to-red-700 p-8 rounded-[2rem] text-center text-white shadow-2xl"><h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2><p className="text-lg mb-8 opacity-90">{t.ctaSubtext}</p><Link href="/" className="inline-block bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-all shadow-lg">{t.ctaButton}</Link></div>
                     <AISnapshot question={t.quickAnswer.question} answer={t.quickAnswer.answer} toolName={t.quickAnswer.tool} steps={t.quickAnswer.steps} lang={lang} />
-                    <RelatedTools lang={lang} currentPath="/guides/ilovepdf-vs-pdfcanada" category="other" />
+                    <RelatedTools lang={lang} currentPath="/guides/ilovepdf-vs-pdfcanada" category="all" />
                     <AuthorBio lang={lang} />
                 </div>
             </PageLayout>
