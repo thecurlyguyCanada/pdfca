@@ -71,6 +71,28 @@ export const ALL_GUIDES: GuideMetadata[] = [
         icon: '🔗'
     },
     {
+        slug: 'combine-pdf',
+        titleEn: 'Combine PDF Files Guide',
+        titleFr: 'Guide Combiner Fichiers PDF',
+        titlePt: 'Guia Combinar Arquivos PDF',
+        descEn: 'Learn how to combine PDF files into one unified document.',
+        descFr: 'Apprenez à combiner des fichiers PDF en un seul document unifié.',
+        descPt: 'Aprenda como combinar arquivos PDF em um único documento unificado.',
+        category: 'Editing',
+        icon: '🔗'
+    },
+    {
+        slug: 'reduce-pdf-size',
+        titleEn: 'Reduce PDF File Size Guide',
+        titleFr: 'Guide Réduire Taille PDF',
+        titlePt: 'Guia Reduzir Tamanho PDF',
+        descEn: 'Learn how to significantly reduce PDF file size for email and uploads.',
+        descFr: 'Apprenez à réduire considérablement la taille des fichiers PDF pour les courriels.',
+        descPt: 'Aprenda como reduzir significativamente o tamanho do arquivo PDF para e-mails.',
+        category: 'Editing',
+        icon: '📉'
+    },
+    {
         slug: 'split-pdf',
         titleEn: 'Split PDF Guide',
         titleFr: 'Guide Diviser PDF',

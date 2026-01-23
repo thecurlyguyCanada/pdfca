@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart } from 'lucide-react';
+import { Scissors, Shield, Zap, HelpCircle, FileText, CheckCircle, BarChart, ArrowRight } from 'lucide-react';
 import { translations, Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -720,6 +720,18 @@ export const CompressPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </Link>
                         <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-500 font-medium">{t.ctaSubtext}</p>
                     </section>
+
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/reduce-pdf-size`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Réduire Taille PDF' : (lang === 'pt' ? 'Guia Reduzir Tamanho PDF' : 'Reduce PDF Size Guide')}
+                            </Link>
+                        </div>
+                    </div>
 
                     <RelatedTools lang={lang} currentPath="/guides/compress-pdf" category="edit" />
 

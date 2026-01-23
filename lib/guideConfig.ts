@@ -16,6 +16,8 @@ import { PdfPageRemoverGuide } from '@/components/pages/guides/PdfPageRemoverGui
 import { CropPdfGuide } from '@/components/pages/guides/CropPdfGuide';
 import { CompressPdfGuide } from '@/components/pages/guides/CompressPdfGuide';
 import { MergePdfGuide } from '@/components/pages/guides/MergePdfGuide';
+import { CombinePdfGuide } from '@/components/pages/guides/CombinePdfGuide';
+import { ReducePdfSizeGuide } from '@/components/pages/guides/ReducePdfSizeGuide';
 import { EditXfaPdfGuide } from '@/components/pages/guides/EditXfaPdfGuide';
 import { InsertPictureGuide } from '@/components/pages/guides/InsertPictureGuide';
 import { FlattenPdfGuide } from '@/components/pages/guides/FlattenPdfGuide';
@@ -93,6 +95,8 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'crop-pdf': CropPdfGuide,
     'compress-pdf': CompressPdfGuide,
     'merge-pdf': MergePdfGuide,
+    'combine-pdf': CombinePdfGuide,
+    'reduce-pdf-size': ReducePdfSizeGuide,
     'edit-xfa-pdf': EditXfaPdfGuide,
     'insert-picture-in-pdf': InsertPictureGuide,
     'flatten-pdf': FlattenPdfGuide,
