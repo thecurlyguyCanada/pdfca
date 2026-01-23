@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PenTool, ShieldCheck, Feather, Check, AlertTriangle } from 'lucide-react';
+import { PenTool, ShieldCheck, Feather, Check, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -467,6 +467,30 @@ export const SignPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <div className="mt-12">
                         <RelatedTools lang={lang} currentPath={`/${lang}/guides/sign-pdf`} category="edit" />
+                    </div>
+
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/make-pdf-fillable`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Créer PDF Remplissable' : (lang === 'pt' ? 'Guia Criar PDF Preenchível' : 'Make PDF Fillable Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Outils PDF Privés' : (lang === 'pt' ? 'Guia Ferramentas PDF Privadas' : 'Private PDF Tools Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/flatten-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Aplatir PDF' : (lang === 'pt' ? 'Guia Achatar PDF' : 'Flatten PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Juntar PDF' : 'Merge PDF Guide')}
+                            </Link>
+                        </div>
                     </div>
 
                     <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">

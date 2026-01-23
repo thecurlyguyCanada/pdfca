@@ -314,6 +314,12 @@ Não. PDF é estático. Apenas o primeiro quadro será capturado.`
                 { id: 'use-cases', title: content.step4Title, content: content.step4Content },
                 { id: 'troubleshooting', title: content.step5Title, content: content.step5Content },
                 { id: 'faq', title: content.faqTitle, content: content.faqContent }
+            ],
+            relatedGuides: [
+                { slug: 'pdf-to-image', labelEn: 'PDF to Image Guide', labelFr: 'Guide PDF vers Image', labelPt: 'Guia PDF para Imagem' },
+                { slug: 'compress-pdf', labelEn: 'Compress PDF Guide', labelFr: 'Guide Compresser PDF', labelPt: 'Guia Comprimir PDF' },
+                { slug: 'merge-pdf', labelEn: 'Merge PDF Guide', labelFr: 'Guide Fusionner PDF', labelPt: 'Guia Juntar PDF' },
+                { slug: 'heic-to-pdf', labelEn: 'HEIC to PDF Guide', labelFr: 'Guide HEIC vers PDF', labelPt: 'Guia HEIC para PDF' }
             ]
         };
     };

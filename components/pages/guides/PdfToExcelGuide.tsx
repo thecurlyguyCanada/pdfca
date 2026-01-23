@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Table, Database, FileSpreadsheet, Calculator, TrendingUp } from 'lucide-react';
+import { Table, Database, FileSpreadsheet, Calculator, TrendingUp, ArrowRight } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -547,6 +547,30 @@ export const PdfToExcelGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <div className="mt-12">
                         <RelatedTools lang={lang} currentPath={`/${lang}/guides/pdf-to-excel`} category="convert" />
+                    </div>
+
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/excel-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Excel vers PDF' : (lang === 'pt' ? 'Guia Excel para PDF' : 'Excel to PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-to-csv`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide PDF vers CSV' : (lang === 'pt' ? 'Guia PDF para CSV' : 'PDF to CSV Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/invoice-ocr`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide OCR Facture' : (lang === 'pt' ? 'Guia OCR Fatura' : 'Invoice OCR Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-to-word`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide PDF vers Word' : (lang === 'pt' ? 'Guia PDF para Word' : 'PDF to Word Guide')}
+                            </Link>
+                        </div>
                     </div>
 
                     <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">

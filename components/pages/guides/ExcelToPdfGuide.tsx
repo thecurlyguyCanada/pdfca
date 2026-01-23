@@ -295,6 +295,12 @@ Sim! Use nossa ferramenta **PDF para Excel** para extrair as tabelas de volta pa
                     { id: 'troubleshooting', title: t.step4Title, content: t.step4Content },
                     { id: 'privacy', title: t.step5Title, content: t.step5Content },
                     { id: 'faq', title: t.faqTitle, content: t.faqContent }
+                ],
+                relatedGuides: [
+                    { slug: 'pdf-to-excel', labelEn: 'PDF to Excel Guide', labelFr: 'Guide PDF vers Excel', labelPt: 'Guia PDF para Excel' },
+                    { slug: 'compress-pdf', labelEn: 'Compress PDF Guide', labelFr: 'Guide Compresser PDF', labelPt: 'Guia Comprimir PDF' },
+                    { slug: 'word-to-pdf', labelEn: 'Word to PDF Guide', labelFr: 'Guide Word vers PDF', labelPt: 'Guia Word para PDF' },
+                    { slug: 'merge-pdf', labelEn: 'Merge PDF Guide', labelFr: 'Guide Fusionner PDF', labelPt: 'Guia Juntar PDF' }
                 ]
             }}
         />
