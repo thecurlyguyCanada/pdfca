@@ -778,7 +778,7 @@ export const SmallpdfVsPdfcanadaGuide: React.FC<GuideProps> = ({ lang }) => {
                         lang={lang}
                     />
 
-                    <RelatedTools lang={lang} currentPath="/guides/smallpdf-vs-pdfcanada" category="other" />
+                    <RelatedTools lang={lang} currentPath="/guides/smallpdf-vs-pdfcanada" category="all" />
 
                     <AuthorBio lang={lang} />
                 </div>
