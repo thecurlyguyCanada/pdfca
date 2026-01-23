@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Tablet, BookOpen, Smartphone, Mail, Settings, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Tablet, BookOpen, Smartphone, Mail, Settings, FileText, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Language } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -322,6 +322,30 @@ export const PdfToKindleGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <div className="mt-12">
                         <RelatedTools lang={lang} currentPath={`/${lang}/guides/pdf-to-kindle`} category="convert" />
+                    </div>
+
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/reduce-pdf-size`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Réduire Taille PDF' : (lang === 'pt' ? 'Guia Reduzir Tamanho PDF' : 'Reduce PDF Size Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-to-epub`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide PDF vers EPUB' : (lang === 'pt' ? 'Guia PDF para EPUB' : 'PDF to EPUB Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/split-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Diviser PDF' : (lang === 'pt' ? 'Guia Dividir PDF' : 'Split PDF Guide')}
+                            </Link>
+                        </div>
                     </div>
 
                     <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">

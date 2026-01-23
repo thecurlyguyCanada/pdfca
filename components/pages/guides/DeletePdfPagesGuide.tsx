@@ -636,6 +636,30 @@ export const DeletePdfPagesGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <RelatedTools lang={lang} currentPath="/guides/delete-pdf-pages" category="edit" />
 
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/organize-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Organiser PDF' : (lang === 'pt' ? 'Guia Organizar PDF' : 'Organize PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/split-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Diviser PDF' : (lang === 'pt' ? 'Guia Dividir PDF' : 'Split PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/extract-pdf-pages`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Extraire Pages' : (lang === 'pt' ? 'Guia Extrair Páginas' : 'Extract PDF Pages Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <AuthorBio lang={lang} />
                 </div>
             </PageLayout>

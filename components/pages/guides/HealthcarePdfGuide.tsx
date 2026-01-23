@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { Stethoscope, HeartPulse, ShieldCheck, Activity, FileCheck, Lock, UserCheck } from 'lucide-react';
+import { Stethoscope, HeartPulse, ShieldCheck, Activity, FileCheck, Lock, UserCheck, ArrowRight } from 'lucide-react';
 import { Language, CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
@@ -876,6 +876,30 @@ export const HealthcarePdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 <div className="mt-20">
                     <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-8 text-center">{t.related}</h4>
                     <RelatedTools lang={lang} currentPath="/guides/healthcare-pdf-security" category="all" />
+                </div>
+
+                <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                        {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                    </h3>
+                    <div className="flex flex-wrap gap-4">
+                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <ArrowRight size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/delete-pdf-pages`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <ArrowRight size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Supprimer Pages' : (lang === 'pt' ? 'Guia Excluir Páginas' : 'Delete PDF Pages Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/pdf-to-csv`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <ArrowRight size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide PDF vers CSV' : (lang === 'pt' ? 'Guia PDF para CSV' : 'PDF to CSV Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <ArrowRight size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Outils PDF Privés' : (lang === 'pt' ? 'Guia Ferramentas PDF Privadas' : 'Private PDF Tools Guide')}
+                        </Link>
+                    </div>
                 </div>
 
                 <AuthorBio lang={lang} />

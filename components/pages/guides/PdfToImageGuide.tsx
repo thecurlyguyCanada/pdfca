@@ -316,6 +316,12 @@ Nunca. Suas imagens ficam limpas.`
                 { id: 'use-cases', title: content.step4Title, content: content.step4Content },
                 { id: 'troubleshooting', title: content.step5Title, content: content.step5Content },
                 { id: 'faq', title: content.faqTitle, content: content.faqContent }
+            ],
+            relatedGuides: [
+                { slug: 'image-to-pdf', labelEn: 'Image to PDF Guide', labelFr: 'Guide Image vers PDF', labelPt: 'Guia Imagem para PDF' },
+                { slug: 'compress-pdf', labelEn: 'Compress PDF Guide', labelFr: 'Guide Compresser PDF', labelPt: 'Guia Comprimir PDF' },
+                { slug: 'split-pdf', labelEn: 'Split PDF Guide', labelFr: 'Guide Diviser PDF', labelPt: 'Guia Dividir PDF' },
+                { slug: 'pdf-to-svg', labelEn: 'PDF to SVG Guide', labelFr: 'Guide PDF vers SVG', labelPt: 'Guia PDF para SVG' }
             ]
         };
     };

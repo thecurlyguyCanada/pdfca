@@ -529,6 +529,30 @@ export const PdfToCsvGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <RelatedTools lang={lang} currentPath="/guides/pdf-to-csv" />
 
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/pdf-to-excel`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide PDF vers Excel' : (lang === 'pt' ? 'Guia PDF para Excel' : 'PDF to Excel Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/invoice-ocr`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide OCR Facture' : (lang === 'pt' ? 'Guia OCR Fatura' : 'Invoice OCR Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/analyze-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Analyser PDF' : (lang === 'pt' ? 'Guia Analisar PDF' : 'Analyze PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <ArrowRight size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Outils PDF Privés' : (lang === 'pt' ? 'Guia Ferramentas PDF Privadas' : 'Private PDF Tools Guide')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <AuthorBio lang={lang} />
                 </div>
             </PageLayout>
