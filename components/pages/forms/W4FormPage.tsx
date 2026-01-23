@@ -289,18 +289,21 @@ export const W4FormPage: React.FC<FormPageProps> = ({ lang }) => {
 
                             <p className="text-sm text-gray-600 mb-4">{t.formInstructions}</p>
 
+                            <Link
+                                href={`/${lang}/sign-pdf?form=${encodeURIComponent('https://raw.githubusercontent.com/thecurlyguyCanada/pdfca/main/public/forms/irs-w4-2025.pdf')}`}
+                                className="block w-full bg-canada-red hover:bg-red-700 text-white text-center py-4 rounded-lg font-bold text-lg transition-all hover:scale-[1.02] shadow-lg"
+                            >
+                                {t.ctaButton}
+                            </Link>
+                            <p className="text-center text-sm text-gray-500 mt-2">{t.ctaSubtext}</p>
                             <a
                                 href="https://raw.githubusercontent.com/thecurlyguyCanada/pdfca/main/public/forms/irs-w4-2025.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block w-full bg-canada-red hover:bg-red-700 text-white text-center py-4 rounded-lg font-bold text-lg transition-all hover:scale-[1.02] shadow-lg"
+                                className="block text-center text-sm text-canada-red hover:underline mt-2"
                             >
-                                {t.ctaButton}
+                                {lang === 'fr' ? 'Télécharger le formulaire vierge →' : lang === 'pt' ? 'Baixar formulário em branco →' : 'Download blank form →'}
                             </a>
-                            <p className="text-center text-sm text-gray-500 mt-2">{t.ctaSubtext}</p>
-                            <Link href={`/${lang}/pdf-editor`} className="block text-center text-sm text-canada-red hover:underline mt-2">
-                                {lang === 'fr' ? 'Ouvrir dans l\'éditeur PDF →' : lang === 'pt' ? 'Abrir no editor de PDF →' : 'Open in PDF Editor →'}
-                            </Link>
                         </div>
 
                         {/* Title Section */}

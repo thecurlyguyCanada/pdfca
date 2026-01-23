@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -148,7 +149,13 @@ export default async function ToolPage({
                     />
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                        <ToolPageClient toolConfig={config} lang={currentLang} />
+                        <Suspense fallback={
+                            <div className="flex justify-center items-center py-20">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-canada-red"></div>
+                            </div>
+                        }>
+                            <ToolPageClient toolConfig={config} lang={currentLang} />
+                        </Suspense>
 
                         {/* Social Share - Bing SEO: Social signals are a ranking factor */}
                         <div className="mt-8 flex justify-center">

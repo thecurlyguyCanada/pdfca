@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ToolInterface } from '@/components/ToolInterface';
 import { SuccessOverlay } from '@/components/SuccessOverlay';
 import { translations, Language } from '@/utils/i18n';
@@ -202,6 +203,40 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
       setIsProcessing(false);
     }
   }, [toolConfig.tool]);
+
+  // Handle URL parameters for pre-loading files
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const formUrl = searchParams.get('form');
+    if (formUrl && !file && !files.length) {
+      const loadFromUrl = async () => {
+        setIsProcessing(true);
+        try {
+          // Fetch the file
+          const response = await fetch(formUrl);
+          if (!response.ok) throw new Error('Failed to load document from URL');
+
+          const blob = await response.blob();
+
+          // Extract filename from URL or default
+          const filename = formUrl.split('/').pop() || 'document.pdf';
+          const loadedFile = new File([blob], filename, { type: 'application/pdf' });
+
+          // Process the file
+          processFile(loadedFile);
+        } catch (error) {
+          console.error('Error loading file from URL:', error);
+          if (error instanceof Error) setErrorMessage(error.message);
+          setErrorKey('errorGeneric');
+        } finally {
+          setIsProcessing(false);
+        }
+      };
+
+      loadFromUrl();
+    }
+  }, [searchParams, processFile, file, files.length]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
