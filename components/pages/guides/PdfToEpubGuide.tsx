@@ -100,7 +100,7 @@ const getGuideContent = (lang: Language) => ({
 - Vous avez des PDF de livres ou rapports sans mise en page complexe
 - Vous voulez ajuster la taille du texte (presbytie, fatigue oculaire)
 - Vous cherchez une meilleure autonomie de batterie (e-ink consomme moins que LCD pour afficher du texte)
-- Vous voulez <Link href={`/ ${ lang } / guides / reduce - pdf - size`} className="text-canada-red hover:underline">réduire la taille de fichier</Link> pour économiser l'espace de stockage
+- Vous voulez [réduire la taille de fichier](/guides/reduce-pdf-size) pour économiser l'espace de stockage
 
 **Quand garder le PDF?**
 - Documents avec tableaux complexes, graphiques, diagrammes
@@ -112,9 +112,9 @@ const getGuideContent = (lang: Language) => ({
 **Cas d'usage canadien** : Beaucoup de Canadiens convertissent des PDF de bibliothèques publiques (prêt numérique Pretnumerique.ca, OverDrive) protégés par Adobe DRM en EPUB pour lecture sur Kobo (compagnie canadienne Rakuten Kobo basée à Toronto). Notez que contourner les DRM viole souvent les conditions d'utilisation.`
             },
             {
-    id: "conversion-process",
-        title: "Comment fonctionne la conversion PDF vers EPUB (Analyse technique)",
-            content: `Notre convertisseur effectue une transformation sophistiquée en plusieurs étapes, entièrement dans votre navigateur via WebAssembly.
+                id: "conversion-process",
+                title: "Comment fonctionne la conversion PDF vers EPUB (Analyse technique)",
+                content: `Notre convertisseur effectue une transformation sophistiquée en plusieurs étapes, entièrement dans votre navigateur via WebAssembly.
 
 **Étape 1 : Extraction du contenu PDF**
 - **Parsing du PDF** : Lecture de la structure du fichier PDF (objets, flux compressés, dictionnaires).
@@ -156,11 +156,11 @@ const getGuideContent = (lang: Language) => ({
 
 **Traitement local via WebAssembly** :
 Contrairement aux convertisseurs en ligne traditionnels (comme Zamzar, Online-Convert, Convertio) qui téléchargent vos fichiers sur leurs serveurs, pdfcanada.ca utilise WebAssembly (Wasm) compilé depuis des bibliothèques open-source (pdf.js de Mozilla, epub-gen). Tout le traitement se déroule dans votre navigateur Chrome/Firefox/Safari/Edge. Aucune transmission de données. Conforme à PIPEDA (loi canadienne sur la protection des renseignements personnels).`
-},
-{
-    id: "ereader-compatibility",
-        title: "Guide de compatibilité des liseuses et applications de lecture",
-            content: `Votre fichier EPUB fonctionnera-t-il sur votre appareil? Voici un guide complet des liseuses et applications populaires au Canada.
+            },
+            {
+                id: "ereader-compatibility",
+                title: "Guide de compatibilité des liseuses et applications de lecture",
+                content: `Votre fichier EPUB fonctionnera-t-il sur votre appareil? Voici un guide complet des liseuses et applications populaires au Canada.
 
 **Amazon Kindle (É-U/Canada)** :
 - **Format natif** : MOBI, AZW3, KFX (formats propriétaires Amazon).
@@ -227,11 +227,11 @@ Contrairement aux convertisseurs en ligne traditionnels (comme Zamzar, Online-Co
 
 **DRM et livres protégés** :
 Beaucoup de livres empruntés depuis bibliothèques publiques (Pretnumerique.ca, OverDrive) sont protégés par **Adobe DRM** ou **LCP (Lightweight Content Protection)**. Ces fichiers EPUB ne peuvent être ouverts que dans des applications autorisées (Adobe Digital Editions, Kobo, etc.) et ne peuvent pas être convertis. Respectez les droits d'auteur et les conditions d'utilisation — la Loi sur le droit d'auteur du Canada (C-11) protège les œuvres numériques.`
-},
-{
-    id: "scanned-pdfs-ocr",
-        title: "Convertir des PDF scannés : Guide OCR et bonnes pratiques",
-            content: `Les PDF scannés (images de pages) nécessitent une étape supplémentaire : la reconnaissance optique de caractères (OCR).
+            },
+            {
+                id: "scanned-pdfs-ocr",
+                title: "Convertir des PDF scannés : Guide OCR et bonnes pratiques",
+                content: `Les PDF scannés (images de pages) nécessitent une étape supplémentaire : la reconnaissance optique de caractères (OCR).
 
 **Qu'est-ce qu'un PDF scanné?**
 - Document papier numérisé avec un scanner ou appareil photo
@@ -288,11 +288,11 @@ Sans OCR, votre EPUB contiendra seulement des images de pages — exactement le 
 
 **Conseil pour étudiants canadiens** :
 Beaucoup d'étudiants scannent leurs manuels scolaires pour lecture sur tablette/liseuse. Vérifiez d'abord si votre bibliothèque universitaire offre des versions numériques (beaucoup ont des licences ebook). Respectez les politiques de propriété intellectuelle de votre institution.`
-},
-{
-    id: "use-cases",
-        title: "Cas d'usage réels : Quand et pourquoi convertir PDF en EPUB",
-            content: `Découvrez comment différents utilisateurs canadiens bénéficient de la conversion PDF vers EPUB.
+            },
+            {
+                id: "use-cases",
+                title: "Cas d'usage réels : Quand et pourquoi convertir PDF en EPUB",
+                content: `Découvrez comment différents utilisateurs canadiens bénéficient de la conversion PDF vers EPUB.
 
 **Lecture de loisir et ebooks** :
 - **Romans et essais téléchargés en PDF** : Vous avez téléchargé un livre du domaine public (Project Gutenberg, Internet Archive) en PDF. Convertissez en EPUB pour lecture confortable sur Kobo ou Kindle.
@@ -347,11 +347,11 @@ Beaucoup d'étudiants scannent leurs manuels scolaires pour lecture sur tablette
 - ❌ Livres de photographie → Layout fixe crucial, gardez en PDF
 - ❌ Partitions musicales → PDF indispensable pour mise en page précise
 - ❌ Documents techniques avec diagrammes complexes → Souvent mieux en PDF`
-},
-{
-    id: "best-practices",
-        title: "Meilleures pratiques pour une conversion PDF vers EPUB de haute qualité",
-            content: `Optimisez vos conversions avec ces conseils d'experts pour obtenir des EPUB parfaits.
+            },
+            {
+                id: "best-practices",
+                title: "Meilleures pratiques pour une conversion PDF vers EPUB de haute qualité",
+                content: `Optimisez vos conversions avec ces conseils d'experts pour obtenir des EPUB parfaits.
 
 **Avant la conversion : Préparez votre PDF**
 
@@ -371,7 +371,7 @@ Beaucoup d'étudiants scannent leurs manuels scolaires pour lecture sur tablette
 
 4. **Vérifiez les images** :
    - Images haute résolution (>2000px) augmentent la taille de fichier
-   - Considérez compresser le PDF avant conversion (notre <Link href={`/ ${ lang } /guides/reduce - pdf - size`} className="text-canada-red hover:underline">outil Réduire PDF</Link>)
+   - Considérez compresser le PDF avant conversion (notre [outil Réduire PDF](/guides/reduce-pdf-size))
 
 **Pendant la conversion : Configuration optimale**
 
@@ -487,11 +487,11 @@ Pour des livres importants (publication, archivage à long terme), la conversion
 4. Éditer finement dans Sigil ou Calibre
 
 Mais pour 95% des cas d'usage (lecture personnelle), notre convertisseur automatique suffit largement!`
-},
-{
-    id: "privacy-security",
-        title: "Confidentialité et sécurité : Pourquoi le traitement local est crucial",
-            content: `La conversion PDF vers EPUB implique souvent des documents personnels, professionnels ou sensibles. Comprenez pourquoi notre approche locale protège votre vie privée.
+            },
+            {
+                id: "privacy-security",
+                title: "Confidentialité et sécurité : Pourquoi le traitement local est crucial",
+                content: `La conversion PDF vers EPUB implique souvent des documents personnels, professionnels ou sensibles. Comprenez pourquoi notre approche locale protège votre vie privée.
 
 **Le problème avec les convertisseurs en ligne traditionnels**
 
@@ -605,11 +605,11 @@ Question légitime : Si le service est gratuit et nous n'avons pas accès aux fi
 - Publicités non-intrusives (désactivez avec bloqueur si vous préférez)
 - Modèle freemium possible à l'avenir (fonctionnalités avancées payantes, conversion de base toujours gratuite)
 - Notre mission : Offrir des outils PDF accessibles aux Canadiens tout en respectant leur vie privée`
-},
-{
-    id: "troubleshooting",
-        title: "Dépannage : Résoudre les problèmes courants de conversion",
-            content: `Rencontrez-vous des problèmes lors de la conversion de vos PDF en EPUB? Voici les solutions aux erreurs les plus fréquentes.
+            },
+            {
+                id: "troubleshooting",
+                title: "Dépannage : Résoudre les problèmes courants de conversion",
+                content: `Rencontrez-vous des problèmes lors de la conversion de vos PDF en EPUB? Voici les solutions aux erreurs les plus fréquentes.
 
 **Problème 1 : "La conversion a échoué" ou erreur générique**
 
@@ -806,11 +806,11 @@ Si vous rencontrez un problème non listé ici :
 2. Consultez les forums MobileRead ou r/ebooks
 3. Essayez Calibre (solution à 80% des problèmes de conversion)
 4. Pour les professionnels : envisagez des outils payants (Adobe InDesign + plugin EPUB, Vellum pour auteurs macOS)`
-},
-{
-    id: "advanced-features",
-        title: "Fonctionnalités avancées et optimisations EPUB",
-            content: `Pour les utilisateurs qui veulent aller plus loin et créer des EPUB de qualité professionnelle.
+            },
+            {
+                id: "advanced-features",
+                title: "Fonctionnalités avancées et optimisations EPUB",
+                content: `Pour les utilisateurs qui veulent aller plus loin et créer des EPUB de qualité professionnelle.
 
 **Table des matières (TOC) avancée**
 
@@ -1148,191 +1148,191 @@ Testez votre EPUB sur :
 - **r/selfpublish** sur Reddit : Communauté auteurs indépendants, conseils EPUB/Kindle
 
 L'optimisation EPUB est un art ET une science. Ces techniques vous permettront de créer des ebooks de qualité professionnelle!`
-}
+            }
         ],
-faq: [
-    {
-        q: "Comment convertir un PDF en EPUB pour Kindle?",
-        a: "Utilisez notre outil pour convertir votre PDF en EPUB, puis utilisez le logiciel gratuit Calibre pour le convertir en format MOBI/AZW3 compatible Kindle. Vous pouvez aussi envoyer l'EPUB par courriel à votre Kindle (@kindle.com) et Amazon le convertira automatiquement."
-    },
-    {
-        q: "La conversion PDF vers EPUB est-elle gratuite?",
-        a: "Oui, notre service est entièrement gratuit, sans inscription, sans limite de fichiers, et sans frais cachés. La conversion se fait dans votre navigateur (traitement local), donc aucun serveur n'est impliqué. C'est notre engagement envers les Canadiens — des outils PDF accessibles et respectueux de la vie privée."
-    },
-    {
-        q: "Puis-je convertir des PDF numérisés (scannés)?",
-        a: "Notre outil fonctionne mieux avec les PDF contenant du texte sélectionnable. Pour les PDF scannés (images de pages), utilisez d'abord notre outil OCR PDF (pdfcanada.ca/ocr-pdf) pour ajouter une couche de texte, puis convertissez en EPUB. Les scans de 300 DPI ou plus donnent les meilleurs résultats OCR."
-    },
-    {
-        q: "Comment garder la mise en page lors de la conversion?",
-        a: "Le format EPUB est 'fluide' (reflowable) par nature, ce qui signifie que le texte s'adapte à la taille de l'écran — c'est son avantage! Nous préservons la structure (titres, paragraphes, listes, images) mais la mise en page exacte peut varier. Pour des documents nécessitant une mise en page fixe (magazines, BD), gardez le PDF ou utilisez EPUB Fixed Layout (FXL)."
-    },
-    {
-        q: "Combien de temps prend la conversion?",
-        a: "La plupart des conversions prennent 5-15 secondes pour un PDF typique de 10-20 MB. Les documents très longs (500+ pages) ou volumineux (100+ MB) peuvent prendre 1-3 minutes. Le temps dépend de la puissance de votre ordinateur puisque le traitement est entièrement local dans votre navigateur."
-    },
-    {
-        q: "Mes images sont-elles conservées?",
-        a: "Oui, nous incluons toutes les images de votre PDF dans le fichier EPUB. Les images sont automatiquement redimensionnées et optimisées pour les liseuses (max 1200x1600px, compression JPEG 85%). Si vous rencontrez des images manquantes ou pixelisées, vérifiez que le PDF source n'utilise pas de formats exotiques (JBIG2, JPEG2000)."
-    },
-    {
-        q: "L'EPUB fonctionnera-t-il sur mon Kobo?",
-        a: "Absolument! Kobo (compagnie canadienne basée à Toronto) supporte parfaitement EPUB — c'est son format natif. Transférez simplement votre EPUB converti via USB (glisser-déposer dans le dossier de votre Kobo) ou utilisez Kobo Desktop. Les Kobo supportent EPUB 2 et EPUB 3, avec excellent support du français."
-    },
-    {
-        q: "Quelle est la différence entre EPUB 2 et EPUB 3?",
-        a: "EPUB 2 (2007) est le standard classique, largement supporté par toutes les liseuses. EPUB 3 (2011) ajoute support multimédia (audio, vidéo), MathML (formules mathématiques), accessibilité améliorée (ARIA), et HTML5. Notre convertisseur génère EPUB 3 par défaut, mais compatible EPUB 2. Kobo et Apple Books supportent bien EPUB 3; Kindle nécessite conversion en MOBI/AZW3."
-    },
-    {
-        q: "Puis-je convertir des livres protégés par DRM?",
-        a: "Non. Les PDF protégés par Adobe DRM, mot de passe, ou autres protections ne peuvent pas être convertis sans d'abord retirer la protection. Pour les PDF protégés par mot de passe que vous possédez légalement, utilisez notre outil Déverrouiller PDF. Attention : Contourner les DRM sur des livres achetés viole souvent les conditions d'utilisation et peut enfreindre la Loi sur le droit d'auteur du Canada."
-    },
-    {
-        q: "La table des matières est-elle générée automatiquement?",
-        a: "Oui, si votre PDF contient des signets (bookmarks) ou une structure de titres claire. Notre convertisseur détecte les styles de police et les signets pour générer la TOC EPUB (fichier nav.xhtml). Si la TOC est manquante ou incorrecte, vous pouvez la créer manuellement dans Calibre (Edit Book → Tools → Table of Contents)."
-    },
-    {
-        q: "Comment transférer mon EPUB sur ma liseuse?",
-        a: "Plusieurs méthodes : **USB** : Connectez votre liseuse à l'ordinateur, glissez-déposez l'EPUB dans le dossier approprié. **Courriel** : Envoyez l'EPUB par courriel à votre adresse Kindle/Kobo. **Applications** : Utilisez Kobo Desktop, Adobe Digital Editions, Calibre pour synchroniser. **Cloud** : Téléchargez dans Google Play Books ou Apple Books pour synchronisation multi-appareils."
-    },
-    {
-        q: "Mes métadonnées (auteur, titre) sont-elles préservées?",
-        a: "Oui, nous extrayons les métadonnées du PDF (titre, auteur, sujet, mots-clés) et les incluons dans l'EPUB (standard Dublin Core). Si votre PDF n'a pas de métadonnées ou si elles sont incorrectes, vous pouvez les éditer dans Calibre (clic droit → Edit Metadata). Ajoutez titre, auteur, éditeur, ISBN, couverture, tags, etc."
-    },
-    {
-        q: "Puis-je convertir plusieurs PDF en EPUB simultanément?",
-        a: "Actuellement, notre convertisseur web traite un fichier à la fois pour garantir la meilleure performance. Pour conversion en lot (10, 100+ fichiers), utilisez Calibre en ligne de commande : `ebook-convert fichier.pdf fichier.epub --enable-heuristics`. Créez un script bash/Python pour automatiser le traitement de dossiers entiers."
-    },
-    {
-        q: "L'EPUB sera-t-il plus petit que le PDF?",
-        a: "Généralement oui. Les EPUB sont souvent 30-60% plus petits que les PDF équivalents grâce à : texte non pixelisé (rendu vectoriel vs images), images optimisées, polices système (pas d'embarquement de polices lourdes), compression ZIP efficace. Un PDF de 50 MB peut devenir un EPUB de 15-25 MB. Exception : PDF très compressés ou texte pur peuvent être comparables."
-    },
-    {
-        q: "Puis-je lire l'EPUB sur mon iPhone/iPad?",
-        a: "Absolument! Apple Books (préinstallé sur iOS/iPadOS) lit parfaitement les EPUB. Méthodes de transfert : **AirDrop** depuis votre Mac, **iCloud Drive** (sauvegardez l'EPUB dans iCloud, ouvrez depuis Fichiers), **Courriel** (envoyez-vous l'EPUB, ouvrez la pièce jointe, choisissez 'Copier vers Books'), **iTunes** (connexion USB, glissez-déposez dans Apple Books)."
-    },
-    {
-        q: "Les notes de bas de page sont-elles conservées?",
-        a: "Oui, mais leur format peut changer. Les notes de bas de page PDF sont converties en liens hypertexte EPUB pointant vers les notes (généralement en fin de chapitre ou de livre). Sur liseuses modernes (Kobo, Apple Books), cliquer sur le numéro de note affiche un popup. La navigation est souvent plus pratique qu'en PDF."
-    },
-    {
-        q: "Puis-je convertir des manuels scolaires ou livres techniques?",
-        a: "Oui, mais avec nuances. Les manuels avec texte linéaire, images simples, équations rendues en images convertissent bien. Les manuels avec tableaux complexes, diagrammes multi-colonnes, formules mathématiques interactives peuvent perdre de la mise en page. Pour équations complexes, vérifiez que les images sont préservées. Considérez garder le PDF pour référence si la mise en page est critique."
-    },
-    {
-        q: "Comment éditer l'EPUB après conversion?",
-        a: "Utilisez **Calibre Edit Book** (clic droit sur livre dans Calibre → Edit book) pour éditer HTML, CSS, images, métadonnées, TOC. Ou **Sigil** (éditeur EPUB open-source) pour interface plus visuelle. Pour changements rapides (métadonnées, couverture), Calibre Edit Metadata suffit. Les EPUB sont des fichiers ZIP : vous pouvez aussi renommer .epub en .zip, décompresser, éditer avec éditeur de texte, re-zipper."
-    },
-    {
-        q: "Mon EPUB affiche des caractères bizarres (Ã©, Ã , etc). Comment corriger?",
-        a: "C'est un problème d'encodage (UTF-8 vs Latin-1). Dans Calibre Edit Book, ouvrez les fichiers HTML, File → Save, assurez-vous que UTF-8 est sélectionné. Vérifiez aussi la déclaration XML : `<?xml version='1.0' encoding='UTF-8'?>`. Pour caractères français (é, è, à, ç, œ), UTF-8 est essentiel. Si le problème persiste, le PDF source utilisait une police avec encodage non-standard."
-    },
-    {
-        q: "Puis-je convertir des bandes dessinées PDF en EPUB?",
-        a: "Techniquement oui, mais ce n'est pas recommandé. Les BD nécessitent une mise en page fixe (chaque page = une image). Utilisez plutôt le format **CBZ/CBR** (Comic Book Archive) ou **EPUB Fixed Layout** (EPUB FXL). Pour BD, convertissez PDF → CBZ (renommez .pdf en .cbz et ajustez la structure) ou utilisez des apps de lecture BD (Comixology, YACReader, Chunky Comic Reader)."
-    },
-    {
-        q: "La conversion fonctionne-t-elle hors ligne?",
-        a: "Oui! Une fois que vous avez chargé la page pdfcanada.ca/pdf-to-epub dans votre navigateur, la conversion fonctionne entièrement hors ligne. Vous pouvez déconnecter le WiFi/Ethernet et continuer à convertir des fichiers. Tout le traitement se fait localement via WebAssembly (Wasm) dans votre navigateur. Aucune connexion Internet nécessaire après le chargement initial."
-    },
-    {
-        q: "Puis-je utiliser Calibre pour convertir PDF en EPUB?",
-        a: "Absolument! Calibre est l'outil de référence pour gestion d'ebooks. Pour convertir : Ajoutez votre PDF à Calibre → Clic droit → Convert Books → Output format EPUB → Activez 'Enable heuristic processing' → Convert. Calibre offre plus d'options avancées (détection de chapitres, manipulation de TOC, styles CSS personnalisés) mais a une courbe d'apprentissage. Notre convertisseur web est plus simple et rapide pour conversions basiques."
-    },
-    {
-        q: "L'EPUB fonctionnera-t-il sur Google Play Books?",
-        a: "Oui! Google Play Books supporte parfaitement EPUB. Téléchargez votre EPUB dans votre bibliothèque Google Play Books via play.google.com/books/uploads. Limites : 100 MB par fichier, 1000 livres maximum dans votre bibliothèque. Une fois téléchargé, vous pouvez lire sur Android, iOS, ou navigateur web avec synchronisation automatique de position de lecture et annotations."
-    },
-    {
-        q: "Puis-je convertir des thèses ou mémoires universitaires?",
-        a: "Oui, c'est un usage idéal! Les thèses de 200-300 pages sont pénibles à lire en PDF sur écran. Convertir en EPUB permet lecture confortable sur liseuse avec ajustement de taille de texte. Vérifiez que votre thèse a une TOC claire (chapitres bien marqués) pour meilleure navigation. Les thèses avec nombreux tableaux/graphiques peuvent nécessiter vérification post-conversion. Beaucoup de thèses canadiennes sont disponibles via Thèses Canada (collectionscanada.gc.ca)."
-    },
-    {
-        q: "Mes PDF sont confidentiels. Est-ce sécuritaire?",
-        a: "Absolument. Contrairement aux convertisseurs en ligne (Zamzar, Online-Convert, etc.) qui téléchargent vos fichiers sur leurs serveurs, pdfcanada.ca effectue 100% du traitement localement dans votre navigateur via WebAssembly. Vos fichiers ne quittent JAMAIS votre appareil. Aucune transmission réseau. Conforme à PIPEDA (loi canadienne sur la vie privée). Idéal pour documents sensibles : contrats, déclarations fiscales, dossiers médicaux, manuscrits, documents juridiques."
-    }
-],
-    ctaTitle: "Convertissez votre PDF en EPUB maintenant",
+        faq: [
+            {
+                q: "Comment convertir un PDF en EPUB pour Kindle?",
+                a: "Utilisez notre outil pour convertir votre PDF en EPUB, puis utilisez le logiciel gratuit Calibre pour le convertir en format MOBI/AZW3 compatible Kindle. Vous pouvez aussi envoyer l'EPUB par courriel à votre Kindle (@kindle.com) et Amazon le convertira automatiquement."
+            },
+            {
+                q: "La conversion PDF vers EPUB est-elle gratuite?",
+                a: "Oui, notre service est entièrement gratuit, sans inscription, sans limite de fichiers, et sans frais cachés. La conversion se fait dans votre navigateur (traitement local), donc aucun serveur n'est impliqué. C'est notre engagement envers les Canadiens — des outils PDF accessibles et respectueux de la vie privée."
+            },
+            {
+                q: "Puis-je convertir des PDF numérisés (scannés)?",
+                a: "Notre outil fonctionne mieux avec les PDF contenant du texte sélectionnable. Pour les PDF scannés (images de pages), utilisez d'abord notre outil OCR PDF (pdfcanada.ca/ocr-pdf) pour ajouter une couche de texte, puis convertissez en EPUB. Les scans de 300 DPI ou plus donnent les meilleurs résultats OCR."
+            },
+            {
+                q: "Comment garder la mise en page lors de la conversion?",
+                a: "Le format EPUB est 'fluide' (reflowable) par nature, ce qui signifie que le texte s'adapte à la taille de l'écran — c'est son avantage! Nous préservons la structure (titres, paragraphes, listes, images) mais la mise en page exacte peut varier. Pour des documents nécessitant une mise en page fixe (magazines, BD), gardez le PDF ou utilisez EPUB Fixed Layout (FXL)."
+            },
+            {
+                q: "Combien de temps prend la conversion?",
+                a: "La plupart des conversions prennent 5-15 secondes pour un PDF typique de 10-20 MB. Les documents très longs (500+ pages) ou volumineux (100+ MB) peuvent prendre 1-3 minutes. Le temps dépend de la puissance de votre ordinateur puisque le traitement est entièrement local dans votre navigateur."
+            },
+            {
+                q: "Mes images sont-elles conservées?",
+                a: "Oui, nous incluons toutes les images de votre PDF dans le fichier EPUB. Les images sont automatiquement redimensionnées et optimisées pour les liseuses (max 1200x1600px, compression JPEG 85%). Si vous rencontrez des images manquantes ou pixelisées, vérifiez que le PDF source n'utilise pas de formats exotiques (JBIG2, JPEG2000)."
+            },
+            {
+                q: "L'EPUB fonctionnera-t-il sur mon Kobo?",
+                a: "Absolument! Kobo (compagnie canadienne basée à Toronto) supporte parfaitement EPUB — c'est son format natif. Transférez simplement votre EPUB converti via USB (glisser-déposer dans le dossier de votre Kobo) ou utilisez Kobo Desktop. Les Kobo supportent EPUB 2 et EPUB 3, avec excellent support du français."
+            },
+            {
+                q: "Quelle est la différence entre EPUB 2 et EPUB 3?",
+                a: "EPUB 2 (2007) est le standard classique, largement supporté par toutes les liseuses. EPUB 3 (2011) ajoute support multimédia (audio, vidéo), MathML (formules mathématiques), accessibilité améliorée (ARIA), et HTML5. Notre convertisseur génère EPUB 3 par défaut, mais compatible EPUB 2. Kobo et Apple Books supportent bien EPUB 3; Kindle nécessite conversion en MOBI/AZW3."
+            },
+            {
+                q: "Puis-je convertir des livres protégés par DRM?",
+                a: "Non. Les PDF protégés par Adobe DRM, mot de passe, ou autres protections ne peuvent pas être convertis sans d'abord retirer la protection. Pour les PDF protégés par mot de passe que vous possédez légalement, utilisez notre outil Déverrouiller PDF. Attention : Contourner les DRM sur des livres achetés viole souvent les conditions d'utilisation et peut enfreindre la Loi sur le droit d'auteur du Canada."
+            },
+            {
+                q: "La table des matières est-elle générée automatiquement?",
+                a: "Oui, si votre PDF contient des signets (bookmarks) ou une structure de titres claire. Notre convertisseur détecte les styles de police et les signets pour générer la TOC EPUB (fichier nav.xhtml). Si la TOC est manquante ou incorrecte, vous pouvez la créer manuellement dans Calibre (Edit Book → Tools → Table of Contents)."
+            },
+            {
+                q: "Comment transférer mon EPUB sur ma liseuse?",
+                a: "Plusieurs méthodes : **USB** : Connectez votre liseuse à l'ordinateur, glissez-déposez l'EPUB dans le dossier approprié. **Courriel** : Envoyez l'EPUB par courriel à votre adresse Kindle/Kobo. **Applications** : Utilisez Kobo Desktop, Adobe Digital Editions, Calibre pour synchroniser. **Cloud** : Téléchargez dans Google Play Books ou Apple Books pour synchronisation multi-appareils."
+            },
+            {
+                q: "Mes métadonnées (auteur, titre) sont-elles préservées?",
+                a: "Oui, nous extrayons les métadonnées du PDF (titre, auteur, sujet, mots-clés) et les incluons dans l'EPUB (standard Dublin Core). Si votre PDF n'a pas de métadonnées ou si elles sont incorrectes, vous pouvez les éditer dans Calibre (clic droit → Edit Metadata). Ajoutez titre, auteur, éditeur, ISBN, couverture, tags, etc."
+            },
+            {
+                q: "Puis-je convertir plusieurs PDF en EPUB simultanément?",
+                a: "Actuellement, notre convertisseur web traite un fichier à la fois pour garantir la meilleure performance. Pour conversion en lot (10, 100+ fichiers), utilisez Calibre en ligne de commande : `ebook-convert fichier.pdf fichier.epub --enable-heuristics`. Créez un script bash/Python pour automatiser le traitement de dossiers entiers."
+            },
+            {
+                q: "L'EPUB sera-t-il plus petit que le PDF?",
+                a: "Généralement oui. Les EPUB sont souvent 30-60% plus petits que les PDF équivalents grâce à : texte non pixelisé (rendu vectoriel vs images), images optimisées, polices système (pas d'embarquement de polices lourdes), compression ZIP efficace. Un PDF de 50 MB peut devenir un EPUB de 15-25 MB. Exception : PDF très compressés ou texte pur peuvent être comparables."
+            },
+            {
+                q: "Puis-je lire l'EPUB sur mon iPhone/iPad?",
+                a: "Absolument! Apple Books (préinstallé sur iOS/iPadOS) lit parfaitement les EPUB. Méthodes de transfert : **AirDrop** depuis votre Mac, **iCloud Drive** (sauvegardez l'EPUB dans iCloud, ouvrez depuis Fichiers), **Courriel** (envoyez-vous l'EPUB, ouvrez la pièce jointe, choisissez 'Copier vers Books'), **iTunes** (connexion USB, glissez-déposez dans Apple Books)."
+            },
+            {
+                q: "Les notes de bas de page sont-elles conservées?",
+                a: "Oui, mais leur format peut changer. Les notes de bas de page PDF sont converties en liens hypertexte EPUB pointant vers les notes (généralement en fin de chapitre ou de livre). Sur liseuses modernes (Kobo, Apple Books), cliquer sur le numéro de note affiche un popup. La navigation est souvent plus pratique qu'en PDF."
+            },
+            {
+                q: "Puis-je convertir des manuels scolaires ou livres techniques?",
+                a: "Oui, mais avec nuances. Les manuels avec texte linéaire, images simples, équations rendues en images convertissent bien. Les manuels avec tableaux complexes, diagrammes multi-colonnes, formules mathématiques interactives peuvent perdre de la mise en page. Pour équations complexes, vérifiez que les images sont préservées. Considérez garder le PDF pour référence si la mise en page est critique."
+            },
+            {
+                q: "Comment éditer l'EPUB après conversion?",
+                a: "Utilisez **Calibre Edit Book** (clic droit sur livre dans Calibre → Edit book) pour éditer HTML, CSS, images, métadonnées, TOC. Ou **Sigil** (éditeur EPUB open-source) pour interface plus visuelle. Pour changements rapides (métadonnées, couverture), Calibre Edit Metadata suffit. Les EPUB sont des fichiers ZIP : vous pouvez aussi renommer .epub en .zip, décompresser, éditer avec éditeur de texte, re-zipper."
+            },
+            {
+                q: "Mon EPUB affiche des caractères bizarres (Ã©, Ã , etc). Comment corriger?",
+                a: "C'est un problème d'encodage (UTF-8 vs Latin-1). Dans Calibre Edit Book, ouvrez les fichiers HTML, File → Save, assurez-vous que UTF-8 est sélectionné. Vérifiez aussi la déclaration XML : `<?xml version='1.0' encoding='UTF-8'?>`. Pour caractères français (é, è, à, ç, œ), UTF-8 est essentiel. Si le problème persiste, le PDF source utilisait une police avec encodage non-standard."
+            },
+            {
+                q: "Puis-je convertir des bandes dessinées PDF en EPUB?",
+                a: "Techniquement oui, mais ce n'est pas recommandé. Les BD nécessitent une mise en page fixe (chaque page = une image). Utilisez plutôt le format **CBZ/CBR** (Comic Book Archive) ou **EPUB Fixed Layout** (EPUB FXL). Pour BD, convertissez PDF → CBZ (renommez .pdf en .cbz et ajustez la structure) ou utilisez des apps de lecture BD (Comixology, YACReader, Chunky Comic Reader)."
+            },
+            {
+                q: "La conversion fonctionne-t-elle hors ligne?",
+                a: "Oui! Une fois que vous avez chargé la page pdfcanada.ca/pdf-to-epub dans votre navigateur, la conversion fonctionne entièrement hors ligne. Vous pouvez déconnecter le WiFi/Ethernet et continuer à convertir des fichiers. Tout le traitement se fait localement via WebAssembly (Wasm) dans votre navigateur. Aucune connexion Internet nécessaire après le chargement initial."
+            },
+            {
+                q: "Puis-je utiliser Calibre pour convertir PDF en EPUB?",
+                a: "Absolument! Calibre est l'outil de référence pour gestion d'ebooks. Pour convertir : Ajoutez votre PDF à Calibre → Clic droit → Convert Books → Output format EPUB → Activez 'Enable heuristic processing' → Convert. Calibre offre plus d'options avancées (détection de chapitres, manipulation de TOC, styles CSS personnalisés) mais a une courbe d'apprentissage. Notre convertisseur web est plus simple et rapide pour conversions basiques."
+            },
+            {
+                q: "L'EPUB fonctionnera-t-il sur Google Play Books?",
+                a: "Oui! Google Play Books supporte parfaitement EPUB. Téléchargez votre EPUB dans votre bibliothèque Google Play Books via play.google.com/books/uploads. Limites : 100 MB par fichier, 1000 livres maximum dans votre bibliothèque. Une fois téléchargé, vous pouvez lire sur Android, iOS, ou navigateur web avec synchronisation automatique de position de lecture et annotations."
+            },
+            {
+                q: "Puis-je convertir des thèses ou mémoires universitaires?",
+                a: "Oui, c'est un usage idéal! Les thèses de 200-300 pages sont pénibles à lire en PDF sur écran. Convertir en EPUB permet lecture confortable sur liseuse avec ajustement de taille de texte. Vérifiez que votre thèse a une TOC claire (chapitres bien marqués) pour meilleure navigation. Les thèses avec nombreux tableaux/graphiques peuvent nécessiter vérification post-conversion. Beaucoup de thèses canadiennes sont disponibles via Thèses Canada (collectionscanada.gc.ca)."
+            },
+            {
+                q: "Mes PDF sont confidentiels. Est-ce sécuritaire?",
+                a: "Absolument. Contrairement aux convertisseurs en ligne (Zamzar, Online-Convert, etc.) qui téléchargent vos fichiers sur leurs serveurs, pdfcanada.ca effectue 100% du traitement localement dans votre navigateur via WebAssembly. Vos fichiers ne quittent JAMAIS votre appareil. Aucune transmission réseau. Conforme à PIPEDA (loi canadienne sur la vie privée). Idéal pour documents sensibles : contrats, déclarations fiscales, dossiers médicaux, manuscrits, documents juridiques."
+            }
+        ],
+        ctaTitle: "Convertissez votre PDF en EPUB maintenant",
         ctaButton: "Commencer la conversion",
-            tipsTitle: "Conseils pour une meilleure conversion",
-                tips: [
-                    "Utilisez des PDF avec du texte sélectionnable (pas des scans)",
-                    "Les PDF bien structurés avec des titres donnent de meilleurs résultats",
-                    "Évitez les PDF avec des mises en page complexes (colonnes multiples)",
-                    "Vérifiez le résultat sur votre liseuse avant de supprimer l'original"
-                ],
-                    relatedTitle: "Outils connexes",
-                        relatedTools: [
-                            { name: "EPUB vers PDF", desc: "Convertissez vos ebooks en PDF", path: "/epub-to-pdf" },
-                            { name: "OCR PDF", desc: "Rendez vos scans cherchables", path: "/ocr-pdf" },
-                            { name: "Organiser PDF", desc: "Réorganisez les pages", path: "/organize-pdf" }
-                        ]
+        tipsTitle: "Conseils pour une meilleure conversion",
+        tips: [
+            "Utilisez des PDF avec du texte sélectionnable (pas des scans)",
+            "Les PDF bien structurés avec des titres donnent de meilleurs résultats",
+            "Évitez les PDF avec des mises en page complexes (colonnes multiples)",
+            "Vérifiez le résultat sur votre liseuse avant de supprimer l'original"
+        ],
+        relatedTitle: "Outils connexes",
+        relatedTools: [
+            { name: "EPUB vers PDF", desc: "Convertissez vos ebooks en PDF", path: "/epub-to-pdf" },
+            { name: "OCR PDF", desc: "Rendez vos scans cherchables", path: "/ocr-pdf" },
+            { name: "Organiser PDF", desc: "Réorganisez les pages", path: "/organize-pdf" }
+        ]
     },
-en: {
-    seo: {
-        title: "How to Convert PDF to EPUB | Free E-Reader Optimization Guide | pdfcanada.ca",
+    en: {
+        seo: {
+            title: "How to Convert PDF to EPUB | Free E-Reader Optimization Guide | pdfcanada.ca",
             desc: `Make your PDFs fluid and easy to read on Kindle or Kobo. Our ${CURRENT_YEAR} guide shows you how to convert PDF to EPUB without ever uploading your files. Free and secure conversion.`
-    },
-    h1: "Convert PDF to EPUB",
+        },
+        h1: "Convert PDF to EPUB",
         subtitle: "Transform your PDFs into ebooks for e-readers",
-            intro: (
-                <>
-                    Want to read your PDF documents on your Kindle or Kobo e-reader? Our free converter transforms your PDF files into EPUB format, the standard for digital books. Enjoy a better reading experience with text that automatically adapts to your screen size.
-                </>
-            ),
-                whyTitle: "Why convert PDF to EPUB?",
-                    whyReasons: [
-                        "Comfortable reading on e-readers (Kindle, Kobo, etc.)",
-                        "Resizable text according to your preferences",
-                        "Easy navigation between chapters",
-                        "Less tiring for your eyes",
-                        "Bookmark synchronization across devices"
-                    ],
-                        howTitle: "How to convert PDF to EPUB?",
-                            steps: [
-                                {
-                                    title: "Choose your PDF file",
-                                    desc: (
-                                        <>
-                                            Select the PDF document you want to transform into an ebook. Our tool accepts all types of text-based PDFs.
-                                        </>
-                                    )
-                                },
-                                {
-                                    title: "Intelligent content analysis",
-                                    desc: (
-                                        <>
-                                            Our system analyzes your document's structure: paragraphs, headings, images. Conversion happens entirely in your browser.
-                                        </>
-                                    )
-                                },
-                                {
-                                    title: "Get your EPUB",
-                                    desc: (
-                                        <>
-                                            Download your EPUB file and transfer it to your e-reader via USB or email. Happy reading!
-                                        </>
-                                    )
-                                }
-                            ],
-                                securityTitle: "Your documents stay private",
-                                    securityText: (
-                                        <>
-                                            The privacy of your documents is our priority. All processing happens locally on your device. No files are sent to our servers. Your personal, professional, or confidential PDFs stay in your hands.
-                                        </>
-                                    ),
-                                        compatTitle: "Compatible with all e-readers",
-                                            compatText: (
-                                                <>
-                                                    EPUB format is the universal ebook standard. Your converted file will work on:
-                                                </>
-                                            ),
-                                                compatList: ["Amazon Kindle (with Calibre conversion)", "Kobo", "Apple Books", "Google Play Books", "Android tablets", "All EPUB readers"],
-                                                    sections: [
-                                                        {
-                                                            id: "pdf-vs-epub",
-                                                            title: "PDF vs EPUB: Understanding the fundamental differences",
-                                                            content: `Before converting your documents, it's essential to understand the differences between these two ubiquitous formats.
+        intro: (
+            <>
+                Want to read your PDF documents on your Kindle or Kobo e-reader? Our free converter transforms your PDF files into EPUB format, the standard for digital books. Enjoy a better reading experience with text that automatically adapts to your screen size.
+            </>
+        ),
+        whyTitle: "Why convert PDF to EPUB?",
+        whyReasons: [
+            "Comfortable reading on e-readers (Kindle, Kobo, etc.)",
+            "Resizable text according to your preferences",
+            "Easy navigation between chapters",
+            "Less tiring for your eyes",
+            "Bookmark synchronization across devices"
+        ],
+        howTitle: "How to convert PDF to EPUB?",
+        steps: [
+            {
+                title: "Choose your PDF file",
+                desc: (
+                    <>
+                        Select the PDF document you want to transform into an ebook. Our tool accepts all types of text-based PDFs.
+                    </>
+                )
+            },
+            {
+                title: "Intelligent content analysis",
+                desc: (
+                    <>
+                        Our system analyzes your document's structure: paragraphs, headings, images. Conversion happens entirely in your browser.
+                    </>
+                )
+            },
+            {
+                title: "Get your EPUB",
+                desc: (
+                    <>
+                        Download your EPUB file and transfer it to your e-reader via USB or email. Happy reading!
+                    </>
+                )
+            }
+        ],
+        securityTitle: "Your documents stay private",
+        securityText: (
+            <>
+                The privacy of your documents is our priority. All processing happens locally on your device. No files are sent to our servers. Your personal, professional, or confidential PDFs stay in your hands.
+            </>
+        ),
+        compatTitle: "Compatible with all e-readers",
+        compatText: (
+            <>
+                EPUB format is the universal ebook standard. Your converted file will work on:
+            </>
+        ),
+        compatList: ["Amazon Kindle (with Calibre conversion)", "Kobo", "Apple Books", "Google Play Books", "Android tablets", "All EPUB readers"],
+        sections: [
+            {
+                id: "pdf-vs-epub",
+                title: "PDF vs EPUB: Understanding the fundamental differences",
+                content: `Before converting your documents, it's essential to understand the differences between these two ubiquitous formats.
 
 **PDF (Portable Document Format)**:
 - **Fixed layout**: Every page is frozen like a photograph. Text, images, and margins remain identical regardless of the device.
@@ -1362,11 +1362,11 @@ en: {
 - Any document where exact visual presentation is crucial
 
 **Canadian use case**: Many Canadians convert PDFs from public libraries (digital lending Pretnumerique.ca, OverDrive) protected by Adobe DRM to EPUB for reading on Kobo (Canadian company Rakuten Kobo based in Toronto). Note that circumventing DRM often violates terms of use.`
-                                                        },
-                                                        {
-                                                            id: "conversion-process",
-                                                            title: "How PDF to EPUB conversion works (Technical deep dive)",
-                                                            content: `Our converter performs a sophisticated multi-stage transformation, entirely in your browser via WebAssembly.
+            },
+            {
+                id: "conversion-process",
+                title: "How PDF to EPUB conversion works (Technical deep dive)",
+                content: `Our converter performs a sophisticated multi-stage transformation, entirely in your browser via WebAssembly.
 
 **Stage 1: PDF content extraction**
 - **PDF parsing**: Reading PDF file structure (objects, compressed streams, dictionaries).
@@ -1408,11 +1408,11 @@ en: {
 
 **Local processing via WebAssembly**:
 Unlike traditional online converters (like Zamzar, Online-Convert, Convertio) that upload your files to their servers, pdfcanada.ca uses WebAssembly (Wasm) compiled from open-source libraries (Mozilla's pdf.js, epub-gen). All processing happens in your Chrome/Firefox/Safari/Edge browser. No data transmission. PIPEDA compliant (Canadian privacy law).`
-                                                        },
-                                                        {
-                                                            id: "ereader-compatibility",
-                                                            title: "E-reader and reading app compatibility guide",
-                                                            content: `Will your EPUB file work on your device? Here's a complete guide to popular e-readers and apps in Canada.
+            },
+            {
+                id: "ereader-compatibility",
+                title: "E-reader and reading app compatibility guide",
+                content: `Will your EPUB file work on your device? Here's a complete guide to popular e-readers and apps in Canada.
 
 **Amazon Kindle (US/Canada)**:
 - **Native format**: MOBI, AZW3, KFX (Amazon proprietary formats).
@@ -1479,11 +1479,11 @@ Unlike traditional online converters (like Zamzar, Online-Convert, Convertio) th
 
 **DRM and protected books**:
 Many books borrowed from public libraries (Pretnumerique.ca, OverDrive) are protected by **Adobe DRM** or **LCP (Lightweight Content Protection)**. These EPUB files can only be opened in authorized applications (Adobe Digital Editions, Kobo, etc.) and cannot be converted. Respect copyright and terms of use — Canada's Copyright Act (C-11) protects digital works.`
-                                                        },
-                                                        {
-                                                            id: "scanned-pdfs-ocr",
-                                                            title: "Converting scanned PDFs: OCR guide and best practices",
-                                                            content: `Scanned PDFs (page images) require an additional step: optical character recognition (OCR).
+            },
+            {
+                id: "scanned-pdfs-ocr",
+                title: "Converting scanned PDFs: OCR guide and best practices",
+                content: `Scanned PDFs (page images) require an additional step: optical character recognition (OCR).
 
 **What is a scanned PDF?**
 - Paper document digitized with a scanner or camera
@@ -1540,11 +1540,11 @@ Without OCR, your EPUB will only contain page images — exactly the problem you
 
 **Advice for Canadian students**:
 Many students scan their textbooks for reading on tablet/e-reader. Check first if your university library offers digital versions (many have ebook licenses). Respect your institution's intellectual property policies.`
-                                                        },
-                                                        {
-                                                            id: "use-cases",
-                                                            title: "Real-world use cases: When and why convert PDF to EPUB",
-                                                            content: `Discover how different Canadian users benefit from PDF to EPUB conversion.
+            },
+            {
+                id: "use-cases",
+                title: "Real-world use cases: When and why convert PDF to EPUB",
+                content: `Discover how different Canadian users benefit from PDF to EPUB conversion.
 
 **Leisure reading and ebooks**:
 - **Novels and essays downloaded as PDF**: You downloaded a public domain book (Project Gutenberg, Internet Archive) as PDF. Convert to EPUB for comfortable reading on Kobo or Kindle.
@@ -1599,11 +1599,11 @@ Many students scan their textbooks for reading on tablet/e-reader. Check first i
 - ❌ Photography books → Fixed layout crucial, keep as PDF
 - ❌ Musical scores → PDF essential for precise layout
 - ❌ Technical documents with complex diagrams → Often better as PDF`
-                                                        },
-                                                        {
-                                                            id: "best-practices",
-                                                            title: "Best practices for high-quality PDF to EPUB conversion",
-                                                            content: `Optimize your conversions with expert tips to obtain perfect EPUBs.
+            },
+            {
+                id: "best-practices",
+                title: "Best practices for high-quality PDF to EPUB conversion",
+                content: `Optimize your conversions with expert tips to obtain perfect EPUBs.
 
 **Before conversion: Prepare your PDF**
 
@@ -1739,11 +1739,11 @@ For important books (publication, long-term archiving), manual conversion gives 
 4. Finely edit in Sigil or Calibre
 
 But for 95% of use cases (personal reading), our automatic converter is largely sufficient!`
-                                                        },
-                                                        {
-                                                            id: "privacy-security",
-                                                            title: "Privacy and security: Why local processing is crucial",
-                                                            content: `PDF to EPUB conversion often involves personal, professional, or sensitive documents. Understand why our local approach protects your privacy.
+            },
+            {
+                id: "privacy-security",
+                title: "Privacy and security: Why local processing is crucial",
+                content: `PDF to EPUB conversion often involves personal, professional, or sensitive documents. Understand why our local approach protects your privacy.
 
 **The problem with traditional online converters**
 
@@ -1857,11 +1857,11 @@ Legitimate question: If the service is free and we don't have access to files (s
 - Non-intrusive ads (disable with blocker if you prefer)
 - Possible future freemium model (paid advanced features, basic conversion always free)
 - Our mission: Offer accessible PDF tools to Canadians while respecting their privacy`
-                                                        },
-                                                        {
-                                                            id: "troubleshooting",
-                                                            title: "Troubleshooting: Solving common conversion problems",
-                                                            content: `Encountering problems when converting your PDFs to EPUB? Here are solutions to the most common errors.
+            },
+            {
+                id: "troubleshooting",
+                title: "Troubleshooting: Solving common conversion problems",
+                content: `Encountering problems when converting your PDFs to EPUB? Here are solutions to the most common errors.
 
 **Problem 1: "Conversion failed" or generic error**
 
@@ -2058,11 +2058,11 @@ If you encounter a problem not listed here:
 2. Consult MobileRead forums or r/ebooks
 3. Try Calibre (solves 80% of conversion problems)
 4. For professionals: consider paid tools (Adobe InDesign + EPUB plugin, Vellum for macOS authors)`
-                                                        },
-                                                        {
-                                                            id: "advanced-features",
-                                                            title: "Advanced features and EPUB optimizations",
-                                                            content: `For users who want to go further and create professional-quality EPUBs.
+            },
+            {
+                id: "advanced-features",
+                title: "Advanced features and EPUB optimizations",
+                content: `For users who want to go further and create professional-quality EPUBs.
 
 **Advanced table of contents (TOC)**
 
@@ -2400,191 +2400,191 @@ Test your EPUB on:
 - **r/selfpublish** on Reddit: Independent author community, EPUB/Kindle advice
 
 EPUB optimization is an art AND a science. These techniques will allow you to create professional-quality ebooks!`
-                                                        }
-                                                    ],
-                                                        faq: [
-                                                            {
-                                                                q: "How to convert PDF to EPUB for Kindle?",
-                                                                a: "Use our tool to convert your PDF to EPUB, then use the free Calibre software to convert it to MOBI/AZW3 Kindle-compatible format. You can also email the EPUB to your Kindle (@kindle.com) and Amazon will automatically convert it."
-                                                            },
-                                                            {
-                                                                q: "Is PDF to EPUB conversion free?",
-                                                                a: "Yes, our service is completely free, with no signup, no file limits, and no hidden fees. Conversion happens in your browser (local processing), so no server is involved. That's our commitment to Canadians — accessible and privacy-respecting PDF tools."
-                                                            },
-                                                            {
-                                                                q: "Can I convert scanned PDFs?",
-                                                                a: "Our tool works best with PDFs containing selectable text. For scanned PDFs (page images), first use our OCR PDF tool (pdfcanada.ca/ocr-pdf) to add a text layer, then convert to EPUB. Scans of 300 DPI or higher give the best OCR results."
-                                                            },
-                                                            {
-                                                                q: "How to keep the layout during conversion?",
-                                                                a: "EPUB format is 'reflowable' by nature, meaning text adapts to screen size — that's its advantage! We preserve structure (headings, paragraphs, lists, images) but exact layout may vary. For documents requiring fixed layout (magazines, comics), keep PDF or use EPUB Fixed Layout (FXL)."
-                                                            },
-                                                            {
-                                                                q: "How long does conversion take?",
-                                                                a: "Most conversions take 5-15 seconds for a typical 10-20 MB PDF. Very long documents (500+ pages) or large files (100+ MB) can take 1-3 minutes. Time depends on your computer's power since processing is entirely local in your browser."
-                                                            },
-                                                            {
-                                                                q: "Are my images preserved?",
-                                                                a: "Yes, we include all images from your PDF in the EPUB file. Images are automatically resized and optimized for e-readers (max 1200x1600px, JPEG compression 85%). If you encounter missing or pixelated images, check that the source PDF doesn't use exotic formats (JBIG2, JPEG2000)."
-                                                            },
-                                                            {
-                                                                q: "Will the EPUB work on my Kobo?",
-                                                                a: "Absolutely! Kobo (Canadian company based in Toronto) perfectly supports EPUB — it's its native format. Simply transfer your converted EPUB via USB (drag-and-drop to your Kobo folder) or use Kobo Desktop. Kobos support EPUB 2 and EPUB 3, with excellent French support."
-                                                            },
-                                                            {
-                                                                q: "What's the difference between EPUB 2 and EPUB 3?",
-                                                                a: "EPUB 2 (2007) is the classic standard, widely supported by all e-readers. EPUB 3 (2011) adds multimedia support (audio, video), MathML (mathematical formulas), improved accessibility (ARIA), and HTML5. Our converter generates EPUB 3 by default, but compatible with EPUB 2. Kobo and Apple Books support EPUB 3 well; Kindle requires conversion to MOBI/AZW3."
-                                                            },
-                                                            {
-                                                                q: "Can I convert DRM-protected books?",
-                                                                a: "No. PDFs protected by Adobe DRM, password, or other protections cannot be converted without first removing the protection. For password-protected PDFs you legally own, use our Unlock PDF tool. Warning: Circumventing DRM on purchased books often violates terms of use and may infringe Canada's Copyright Act."
-                                                            },
-                                                            {
-                                                                q: "Is the table of contents automatically generated?",
-                                                                a: "Yes, if your PDF contains bookmarks or clear heading structure. Our converter detects font styles and bookmarks to generate EPUB TOC (nav.xhtml file). If TOC is missing or incorrect, you can create it manually in Calibre (Edit Book → Tools → Table of Contents)."
-                                                            },
-                                                            {
-                                                                q: "How do I transfer my EPUB to my e-reader?",
-                                                                a: "Several methods: **USB**: Connect your e-reader to computer, drag-and-drop EPUB to appropriate folder. **Email**: Email EPUB to your Kindle/Kobo address. **Applications**: Use Kobo Desktop, Adobe Digital Editions, Calibre to sync. **Cloud**: Upload to Google Play Books or Apple Books for multi-device sync."
-                                                            },
-                                                            {
-                                                                q: "Is my metadata (author, title) preserved?",
-                                                                a: "Yes, we extract metadata from the PDF (title, author, subject, keywords) and include them in the EPUB (Dublin Core standard). If your PDF has no metadata or it's incorrect, you can edit it in Calibre (right-click → Edit Metadata). Add title, author, publisher, ISBN, cover, tags, etc."
-                                                            },
-                                                            {
-                                                                q: "Can I convert multiple PDFs to EPUB simultaneously?",
-                                                                a: "Currently, our web converter processes one file at a time to ensure best performance. For batch conversion (10, 100+ files), use Calibre command line: `ebook-convert file.pdf file.epub --enable-heuristics`. Create a bash/Python script to automate processing of entire folders."
-                                                            },
-                                                            {
-                                                                q: "Will the EPUB be smaller than the PDF?",
-                                                                a: "Generally yes. EPUBs are often 30-60% smaller than equivalent PDFs thanks to: non-pixelated text (vector rendering vs images), optimized images, system fonts (no heavy font embedding), efficient ZIP compression. A 50 MB PDF can become a 15-25 MB EPUB. Exception: Very compressed PDFs or pure text can be comparable."
-                                                            },
-                                                            {
-                                                                q: "Can I read the EPUB on my iPhone/iPad?",
-                                                                a: "Absolutely! Apple Books (pre-installed on iOS/iPadOS) reads EPUB perfectly. Transfer methods: **AirDrop** from your Mac, **iCloud Drive** (save EPUB to iCloud, open from Files), **Email** (email yourself the EPUB, open attachment, choose 'Copy to Books'), **iTunes** (USB connection, drag-and-drop to Apple Books)."
-                                                            },
-                                                            {
-                                                                q: "Are footnotes preserved?",
-                                                                a: "Yes, but their format may change. PDF footnotes are converted to EPUB hyperlinks pointing to notes (usually at end of chapter or book). On modern e-readers (Kobo, Apple Books), clicking note number displays a popup. Navigation is often more convenient than in PDF."
-                                                            },
-                                                            {
-                                                                q: "Can I convert textbooks or technical books?",
-                                                                a: "Yes, but with nuances. Textbooks with linear text, simple images, equations rendered as images convert well. Textbooks with complex tables, multi-column diagrams, interactive mathematical formulas can lose layout. For complex equations, verify images are preserved. Consider keeping PDF for reference if layout is critical."
-                                                            },
-                                                            {
-                                                                q: "How do I edit the EPUB after conversion?",
-                                                                a: "Use **Calibre Edit Book** (right-click on book in Calibre → Edit book) to edit HTML, CSS, images, metadata, TOC. Or **Sigil** (open-source EPUB editor) for more visual interface. For quick changes (metadata, cover), Calibre Edit Metadata suffices. EPUBs are ZIP files: you can also rename .epub to .zip, decompress, edit with text editor, re-zip."
-                                                            },
-                                                            {
-                                                                q: "My EPUB displays strange characters (Ã©, Ã , etc). How to fix?",
-                                                                a: "It's an encoding problem (UTF-8 vs Latin-1). In Calibre Edit Book, open HTML files, File → Save, ensure UTF-8 is selected. Also check XML declaration: `<?xml version='1.0' encoding='UTF-8'?>`. For French characters (é, è, à, ç, œ), UTF-8 is essential. If problem persists, source PDF used a font with non-standard encoding."
-                                                            },
-                                                            {
-                                                                q: "Can I convert PDF comics to EPUB?",
-                                                                a: "Technically yes, but not recommended. Comics require fixed layout (each page = one image). Use **CBZ/CBR** (Comic Book Archive) format instead or **EPUB Fixed Layout** (EPUB FXL). For comics, convert PDF → CBZ (rename .pdf to .cbz and adjust structure) or use comic reading apps (Comixology, YACReader, Chunky Comic Reader)."
-                                                            },
-                                                            {
-                                                                q: "Does conversion work offline?",
-                                                                a: "Yes! Once you've loaded the pdfcanada.ca/pdf-to-epub page in your browser, conversion works entirely offline. You can disconnect WiFi/Ethernet and continue converting files. All processing happens locally via WebAssembly (Wasm) in your browser. No internet connection needed after initial loading."
-                                                            },
-                                                            {
-                                                                q: "Can I use Calibre to convert PDF to EPUB?",
-                                                                a: "Absolutely! Calibre is the reference tool for ebook management. To convert: Add your PDF to Calibre → Right-click → Convert Books → Output format EPUB → Enable 'Enable heuristic processing' → Convert. Calibre offers more advanced options (chapter detection, TOC manipulation, custom CSS styles) but has a learning curve. Our web converter is simpler and faster for basic conversions."
-                                                            },
-                                                            {
-                                                                q: "Will the EPUB work on Google Play Books?",
-                                                                a: "Yes! Google Play Books perfectly supports EPUB. Upload your EPUB to your Google Play Books library via play.google.com/books/uploads. Limits: 100 MB per file, 1000 books maximum in your library. Once uploaded, you can read on Android, iOS, or web browser with automatic synchronization of reading position and annotations."
-                                                            },
-                                                            {
-                                                                q: "Can I convert university theses or dissertations?",
-                                                                a: "Yes, it's an ideal use! 200-300 page theses are painful to read as PDF on screen. Converting to EPUB allows comfortable reading on e-reader with text size adjustment. Verify your thesis has a clear TOC (well-marked chapters) for better navigation. Theses with many tables/graphs may require post-conversion verification. Many Canadian theses are available via Theses Canada (collectionscanada.gc.ca)."
-                                                            },
-                                                            {
-                                                                q: "My PDFs are confidential. Is it safe?",
-                                                                a: "Absolutely. Unlike online converters (Zamzar, Online-Convert, etc.) that upload your files to their servers, pdfcanada.ca performs 100% of processing locally in your browser via WebAssembly. Your files NEVER leave your device. No network transmission. PIPEDA compliant (Canadian privacy law). Ideal for sensitive documents: contracts, tax returns, medical records, manuscripts, legal documents."
-                                                            }
-                                                        ],
-                                                            ctaTitle: "Convert your PDF to EPUB now",
-                                                                ctaButton: "Start conversion",
-                                                                    tipsTitle: "Tips for better conversion",
-                                                                        tips: [
-                                                                            "Use PDFs with selectable text (not scans)",
-                                                                            "Well-structured PDFs with headings give better results",
-                                                                            "Avoid PDFs with complex layouts (multiple columns)",
-                                                                            "Check the result on your e-reader before deleting the original"
-                                                                        ],
-                                                                            relatedTitle: "Related Tools",
-                                                                                relatedTools: [
-                                                                                    { name: "EPUB to PDF", desc: "Convert your ebooks to PDF", path: "/epub-to-pdf" },
-                                                                                    { name: "OCR PDF", desc: "Make your scans searchable", path: "/ocr-pdf" },
-                                                                                    { name: "Organize PDF", desc: "Rearrange pages", path: "/organize-pdf" }
-                                                                                ]
-},
-pt: {
-    seo: {
-        title: `Converter PDF em EPUB | Guia E-Reader ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Torne seus PDFs fluidos e fáceis de ler no Kindle ou Kobo. Nosso guia de ${CURRENT_YEAR} mostra como converter PDF em EPUB sem nunca enviar seus arquivos. Conversão gratuita e segura.`
+            }
+        ],
+        faq: [
+            {
+                q: "How to convert PDF to EPUB for Kindle?",
+                a: "Use our tool to convert your PDF to EPUB, then use the free Calibre software to convert it to MOBI/AZW3 Kindle-compatible format. You can also email the EPUB to your Kindle (@kindle.com) and Amazon will automatically convert it."
+            },
+            {
+                q: "Is PDF to EPUB conversion free?",
+                a: "Yes, our service is completely free, with no signup, no file limits, and no hidden fees. Conversion happens in your browser (local processing), so no server is involved. That's our commitment to Canadians — accessible and privacy-respecting PDF tools."
+            },
+            {
+                q: "Can I convert scanned PDFs?",
+                a: "Our tool works best with PDFs containing selectable text. For scanned PDFs (page images), first use our OCR PDF tool (pdfcanada.ca/ocr-pdf) to add a text layer, then convert to EPUB. Scans of 300 DPI or higher give the best OCR results."
+            },
+            {
+                q: "How to keep the layout during conversion?",
+                a: "EPUB format is 'reflowable' by nature, meaning text adapts to screen size — that's its advantage! We preserve structure (headings, paragraphs, lists, images) but exact layout may vary. For documents requiring fixed layout (magazines, comics), keep PDF or use EPUB Fixed Layout (FXL)."
+            },
+            {
+                q: "How long does conversion take?",
+                a: "Most conversions take 5-15 seconds for a typical 10-20 MB PDF. Very long documents (500+ pages) or large files (100+ MB) can take 1-3 minutes. Time depends on your computer's power since processing is entirely local in your browser."
+            },
+            {
+                q: "Are my images preserved?",
+                a: "Yes, we include all images from your PDF in the EPUB file. Images are automatically resized and optimized for e-readers (max 1200x1600px, JPEG compression 85%). If you encounter missing or pixelated images, check that the source PDF doesn't use exotic formats (JBIG2, JPEG2000)."
+            },
+            {
+                q: "Will the EPUB work on my Kobo?",
+                a: "Absolutely! Kobo (Canadian company based in Toronto) perfectly supports EPUB — it's its native format. Simply transfer your converted EPUB via USB (drag-and-drop to your Kobo folder) or use Kobo Desktop. Kobos support EPUB 2 and EPUB 3, with excellent French support."
+            },
+            {
+                q: "What's the difference between EPUB 2 and EPUB 3?",
+                a: "EPUB 2 (2007) is the classic standard, widely supported by all e-readers. EPUB 3 (2011) adds multimedia support (audio, video), MathML (mathematical formulas), improved accessibility (ARIA), and HTML5. Our converter generates EPUB 3 by default, but compatible with EPUB 2. Kobo and Apple Books support EPUB 3 well; Kindle requires conversion to MOBI/AZW3."
+            },
+            {
+                q: "Can I convert DRM-protected books?",
+                a: "No. PDFs protected by Adobe DRM, password, or other protections cannot be converted without first removing the protection. For password-protected PDFs you legally own, use our Unlock PDF tool. Warning: Circumventing DRM on purchased books often violates terms of use and may infringe Canada's Copyright Act."
+            },
+            {
+                q: "Is the table of contents automatically generated?",
+                a: "Yes, if your PDF contains bookmarks or clear heading structure. Our converter detects font styles and bookmarks to generate EPUB TOC (nav.xhtml file). If TOC is missing or incorrect, you can create it manually in Calibre (Edit Book → Tools → Table of Contents)."
+            },
+            {
+                q: "How do I transfer my EPUB to my e-reader?",
+                a: "Several methods: **USB**: Connect your e-reader to computer, drag-and-drop EPUB to appropriate folder. **Email**: Email EPUB to your Kindle/Kobo address. **Applications**: Use Kobo Desktop, Adobe Digital Editions, Calibre to sync. **Cloud**: Upload to Google Play Books or Apple Books for multi-device sync."
+            },
+            {
+                q: "Is my metadata (author, title) preserved?",
+                a: "Yes, we extract metadata from the PDF (title, author, subject, keywords) and include them in the EPUB (Dublin Core standard). If your PDF has no metadata or it's incorrect, you can edit it in Calibre (right-click → Edit Metadata). Add title, author, publisher, ISBN, cover, tags, etc."
+            },
+            {
+                q: "Can I convert multiple PDFs to EPUB simultaneously?",
+                a: "Currently, our web converter processes one file at a time to ensure best performance. For batch conversion (10, 100+ files), use Calibre command line: `ebook-convert file.pdf file.epub --enable-heuristics`. Create a bash/Python script to automate processing of entire folders."
+            },
+            {
+                q: "Will the EPUB be smaller than the PDF?",
+                a: "Generally yes. EPUBs are often 30-60% smaller than equivalent PDFs thanks to: non-pixelated text (vector rendering vs images), optimized images, system fonts (no heavy font embedding), efficient ZIP compression. A 50 MB PDF can become a 15-25 MB EPUB. Exception: Very compressed PDFs or pure text can be comparable."
+            },
+            {
+                q: "Can I read the EPUB on my iPhone/iPad?",
+                a: "Absolutely! Apple Books (pre-installed on iOS/iPadOS) reads EPUB perfectly. Transfer methods: **AirDrop** from your Mac, **iCloud Drive** (save EPUB to iCloud, open from Files), **Email** (email yourself the EPUB, open attachment, choose 'Copy to Books'), **iTunes** (USB connection, drag-and-drop to Apple Books)."
+            },
+            {
+                q: "Are footnotes preserved?",
+                a: "Yes, but their format may change. PDF footnotes are converted to EPUB hyperlinks pointing to notes (usually at end of chapter or book). On modern e-readers (Kobo, Apple Books), clicking note number displays a popup. Navigation is often more convenient than in PDF."
+            },
+            {
+                q: "Can I convert textbooks or technical books?",
+                a: "Yes, but with nuances. Textbooks with linear text, simple images, equations rendered as images convert well. Textbooks with complex tables, multi-column diagrams, interactive mathematical formulas can lose layout. For complex equations, verify images are preserved. Consider keeping PDF for reference if layout is critical."
+            },
+            {
+                q: "How do I edit the EPUB after conversion?",
+                a: "Use **Calibre Edit Book** (right-click on book in Calibre → Edit book) to edit HTML, CSS, images, metadata, TOC. Or **Sigil** (open-source EPUB editor) for more visual interface. For quick changes (metadata, cover), Calibre Edit Metadata suffices. EPUBs are ZIP files: you can also rename .epub to .zip, decompress, edit with text editor, re-zip."
+            },
+            {
+                q: "My EPUB displays strange characters (Ã©, Ã , etc). How to fix?",
+                a: "It's an encoding problem (UTF-8 vs Latin-1). In Calibre Edit Book, open HTML files, File → Save, ensure UTF-8 is selected. Also check XML declaration: `<?xml version='1.0' encoding='UTF-8'?>`. For French characters (é, è, à, ç, œ), UTF-8 is essential. If problem persists, source PDF used a font with non-standard encoding."
+            },
+            {
+                q: "Can I convert PDF comics to EPUB?",
+                a: "Technically yes, but not recommended. Comics require fixed layout (each page = one image). Use **CBZ/CBR** (Comic Book Archive) format instead or **EPUB Fixed Layout** (EPUB FXL). For comics, convert PDF → CBZ (rename .pdf to .cbz and adjust structure) or use comic reading apps (Comixology, YACReader, Chunky Comic Reader)."
+            },
+            {
+                q: "Does conversion work offline?",
+                a: "Yes! Once you've loaded the pdfcanada.ca/pdf-to-epub page in your browser, conversion works entirely offline. You can disconnect WiFi/Ethernet and continue converting files. All processing happens locally via WebAssembly (Wasm) in your browser. No internet connection needed after initial loading."
+            },
+            {
+                q: "Can I use Calibre to convert PDF to EPUB?",
+                a: "Absolutely! Calibre is the reference tool for ebook management. To convert: Add your PDF to Calibre → Right-click → Convert Books → Output format EPUB → Enable 'Enable heuristic processing' → Convert. Calibre offers more advanced options (chapter detection, TOC manipulation, custom CSS styles) but has a learning curve. Our web converter is simpler and faster for basic conversions."
+            },
+            {
+                q: "Will the EPUB work on Google Play Books?",
+                a: "Yes! Google Play Books perfectly supports EPUB. Upload your EPUB to your Google Play Books library via play.google.com/books/uploads. Limits: 100 MB per file, 1000 books maximum in your library. Once uploaded, you can read on Android, iOS, or web browser with automatic synchronization of reading position and annotations."
+            },
+            {
+                q: "Can I convert university theses or dissertations?",
+                a: "Yes, it's an ideal use! 200-300 page theses are painful to read as PDF on screen. Converting to EPUB allows comfortable reading on e-reader with text size adjustment. Verify your thesis has a clear TOC (well-marked chapters) for better navigation. Theses with many tables/graphs may require post-conversion verification. Many Canadian theses are available via Theses Canada (collectionscanada.gc.ca)."
+            },
+            {
+                q: "My PDFs are confidential. Is it safe?",
+                a: "Absolutely. Unlike online converters (Zamzar, Online-Convert, etc.) that upload your files to their servers, pdfcanada.ca performs 100% of processing locally in your browser via WebAssembly. Your files NEVER leave your device. No network transmission. PIPEDA compliant (Canadian privacy law). Ideal for sensitive documents: contracts, tax returns, medical records, manuscripts, legal documents."
+            }
+        ],
+        ctaTitle: "Convert your PDF to EPUB now",
+        ctaButton: "Start conversion",
+        tipsTitle: "Tips for better conversion",
+        tips: [
+            "Use PDFs with selectable text (not scans)",
+            "Well-structured PDFs with headings give better results",
+            "Avoid PDFs with complex layouts (multiple columns)",
+            "Check the result on your e-reader before deleting the original"
+        ],
+        relatedTitle: "Related Tools",
+        relatedTools: [
+            { name: "EPUB to PDF", desc: "Convert your ebooks to PDF", path: "/epub-to-pdf" },
+            { name: "OCR PDF", desc: "Make your scans searchable", path: "/ocr-pdf" },
+            { name: "Organize PDF", desc: "Rearrange pages", path: "/organize-pdf" }
+        ]
     },
-    h1: "Converter PDF em EPUB",
+    pt: {
+        seo: {
+            title: `Converter PDF em EPUB | Guia E-Reader ${CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Torne seus PDFs fluidos e fáceis de ler no Kindle ou Kobo. Nosso guia de ${CURRENT_YEAR} mostra como converter PDF em EPUB sem nunca enviar seus arquivos. Conversão gratuita e segura.`
+        },
+        h1: "Converter PDF em EPUB",
         subtitle: "Transforme seus PDFs em ebooks para e-readers",
-            intro: (
-                <>
-                    Você quer ler seus documentos PDF no seu e-reader Kindle ou Kobo? Nosso conversor gratuito transforma seus arquivos PDF no formato EPUB, o padrão para livros digitais. Desfrute de uma melhor experiência de leitura com texto que se adapta automaticamente ao tamanho da sua tela.
-                </>
-            ),
-                whyTitle: "Por que converter PDF em EPUB?",
-                    whyReasons: [
-                        "Leitura confortável em e-readers (Kindle, Kobo, etc.)",
-                        "Texto redimensionável de acordo com suas preferências",
-                        "Navegação fácil entre capítulos",
-                        "Menos cansativo para os olhos",
-                        "Sincronização de marcadores entre dispositivos"
-                    ],
-                        howTitle: "Como converter PDF em EPUB?",
-                            steps: [
-                                {
-                                    title: "Escolha seu arquivo PDF",
-                                    desc: (
-                                        <>
-                                            Selecione o documento PDF que você deseja transformar em ebook. Nossa ferramenta aceita todos os tipos de PDFs baseados em texto.
-                                        </>
-                                    )
-                                },
-                                {
-                                    title: "Análise inteligente de conteúdo",
-                                    desc: (
-                                        <>
-                                            Nosso sistema analisa a estrutura do seu documento: parágrafos, títulos, imagens. A conversão acontece inteiramente no seu navegador.
-                                        </>
-                                    )
-                                },
-                                {
-                                    title: "Obtenha seu EPUB",
-                                    desc: (
-                                        <>
-                                            Baixe seu arquivo EPUB e transfira-o para seu e-reader via USB ou e-mail. Boa leitura!
-                                        </>
-                                    )
-                                }
-                            ],
-                                securityTitle: "Seus documentos permanecem privados",
-                                    securityText: (
-                                        <>
-                                            A privacidade dos seus documentos é nossa prioridade. Todo o processamento acontece localmente no seu dispositivo. Nenhum arquivo é enviado para nossos servidores. Seus PDFs pessoais, profissionais ou confidenciais permanecem em suas mãos.
-                                        </>
-                                    ),
-                                        compatTitle: "Compatível com todos os e-readers",
-                                            compatText: (
-                                                <>
-                                                    O formato EPUB é o padrão universal de ebooks. Seu arquivo convertido funcionará em:
-                                                </>
-                                            ),
-                                                compatList: ["Amazon Kindle (com conversão Calibre)", "Kobo", "Apple Books", "Google Play Books", "Tablets Android", "Todos os leitores EPUB"],
-                                                    sections: [
-                                                        {
-                                                            id: "pdf-vs-epub",
-                                                            title: "PDF vs EPUB: Entendendo as diferenças fundamentais",
-                                                            content: `Antes de converter seus documentos, é essencial entender as diferenças entre esses dois formatos onipresentes.
+        intro: (
+            <>
+                Você quer ler seus documentos PDF no seu e-reader Kindle ou Kobo? Nosso conversor gratuito transforma seus arquivos PDF no formato EPUB, o padrão para livros digitais. Desfrute de uma melhor experiência de leitura com texto que se adapta automaticamente ao tamanho da sua tela.
+            </>
+        ),
+        whyTitle: "Por que converter PDF em EPUB?",
+        whyReasons: [
+            "Leitura confortável em e-readers (Kindle, Kobo, etc.)",
+            "Texto redimensionável de acordo com suas preferências",
+            "Navegação fácil entre capítulos",
+            "Menos cansativo para os olhos",
+            "Sincronização de marcadores entre dispositivos"
+        ],
+        howTitle: "Como converter PDF em EPUB?",
+        steps: [
+            {
+                title: "Escolha seu arquivo PDF",
+                desc: (
+                    <>
+                        Selecione o documento PDF que você deseja transformar em ebook. Nossa ferramenta aceita todos os tipos de PDFs baseados em texto.
+                    </>
+                )
+            },
+            {
+                title: "Análise inteligente de conteúdo",
+                desc: (
+                    <>
+                        Nosso sistema analisa a estrutura do seu documento: parágrafos, títulos, imagens. A conversão acontece inteiramente no seu navegador.
+                    </>
+                )
+            },
+            {
+                title: "Obtenha seu EPUB",
+                desc: (
+                    <>
+                        Baixe seu arquivo EPUB e transfira-o para seu e-reader via USB ou e-mail. Boa leitura!
+                    </>
+                )
+            }
+        ],
+        securityTitle: "Seus documentos permanecem privados",
+        securityText: (
+            <>
+                A privacidade dos seus documentos é nossa prioridade. Todo o processamento acontece localmente no seu dispositivo. Nenhum arquivo é enviado para nossos servidores. Seus PDFs pessoais, profissionais ou confidenciais permanecem em suas mãos.
+            </>
+        ),
+        compatTitle: "Compatível com todos os e-readers",
+        compatText: (
+            <>
+                O formato EPUB é o padrão universal de ebooks. Seu arquivo convertido funcionará em:
+            </>
+        ),
+        compatList: ["Amazon Kindle (com conversão Calibre)", "Kobo", "Apple Books", "Google Play Books", "Tablets Android", "Todos os leitores EPUB"],
+        sections: [
+            {
+                id: "pdf-vs-epub",
+                title: "PDF vs EPUB: Entendendo as diferenças fundamentais",
+                content: `Antes de converter seus documentos, é essencial entender as diferenças entre esses dois formatos onipresentes.
 
 **PDF (Portable Document Format)**:
 - **Layout fixo**: Cada página é congelada como uma fotografia. Texto, imagens e margens permanecem idênticos independentemente do dispositivo.
@@ -2614,11 +2614,11 @@ pt: {
 - Qualquer documento onde a apresentação visual exata é crucial
 
 **Caso de uso canadense**: Muitos canadenses convertem PDFs de bibliotecas públicas (empréstimo digital Pretnumerique.ca, OverDrive) protegidos por Adobe DRM para EPUB para leitura no Kobo (empresa canadense Rakuten Kobo sediada em Toronto). Note que contornar o DRM muitas vezes viola os termos de uso.`
-                                                        },
-                                                        {
-                                                            id: "conversion-process",
-                                                            title: "Como funciona a conversão de PDF para EPUB (Análise técnica)",
-                                                            content: `Nosso conversor executa uma transformação sofisticada em vários estágios, inteiramente no seu navegador via WebAssembly.
+            },
+            {
+                id: "conversion-process",
+                title: "Como funciona a conversão de PDF para EPUB (Análise técnica)",
+                content: `Nosso conversor executa uma transformação sofisticada em vários estágios, inteiramente no seu navegador via WebAssembly.
 
 **Estágio 1: Extração de conteúdo PDF**
 - **Parsing do PDF**: Leitura da estrutura do arquivo PDF (objetos, fluxos comprimidos, dicionários).
@@ -2660,11 +2660,11 @@ pt: {
 
 **Processamento local via WebAssembly**:
 Ao contrário dos conversores online tradicionais (como Zamzar, Online-Convert, Convertio) que enviam seus arquivos para seus servidores, o pdfcanada.ca usa WebAssembly (Wasm) compilado de bibliotecas de código aberto (pdf.js da Mozilla, epub-gen). Todo o processamento acontece no seu navegador Chrome/Firefox/Safari/Edge. Nenhuma transmissão de dados. Compatível com PIPEDA (lei de privacidade canadense).`
-                                                        },
-                                                        {
-                                                            id: "ereader-compatibility",
-                                                            title: "Guia de compatibilidade de e-readers e aplicativos de leitura",
-                                                            content: `Seu arquivo EPUB funcionará no seu dispositivo? Aqui está um guia completo para e-readers e aplicativos populares no Canadá.
+            },
+            {
+                id: "ereader-compatibility",
+                title: "Guia de compatibilidade de e-readers e aplicativos de leitura",
+                content: `Seu arquivo EPUB funcionará no seu dispositivo? Aqui está um guia completo para e-readers e aplicativos populares no Canadá.
 
 **Amazon Kindle (EUA/Canadá)**:
 - **Formato nativo**: MOBI, AZW3, KFX (formatos proprietários da Amazon).
@@ -2731,11 +2731,11 @@ Ao contrário dos conversores online tradicionais (como Zamzar, Online-Convert, 
 
 **DRM e livros protegidos**:
 Muitos livros emprestados de bibliotecas públicas (Pretnumerique.ca, OverDrive) são protegidos por **Adobe DRM** ou **LCP (Lightweight Content Protection)**. Esses arquivos EPUB só podem ser abertos em aplicativos autorizados (Adobe Digital Editions, Kobo, etc.) e não podem ser convertidos. Respeite os direitos autorais e os termos de uso — a Lei de Direitos Autorais do Canadá (C-11) protege obras digitais.`
-                                                        },
-                                                        {
-                                                            id: "scanned-pdfs-ocr",
-                                                            title: "Convertendo PDFs digitalizados: Guia OCR e melhores práticas",
-                                                            content: `PDFs digitalizados (imagens de página) requerem uma etapa adicional: reconhecimento óptico de caracteres (OCR).
+            },
+            {
+                id: "scanned-pdfs-ocr",
+                title: "Convertendo PDFs digitalizados: Guia OCR e melhores práticas",
+                content: `PDFs digitalizados (imagens de página) requerem uma etapa adicional: reconhecimento óptico de caracteres (OCR).
 
 **O que é um PDF digitalizado?**
 - Documento em papel digitalizado com um scanner ou câmera
@@ -2792,11 +2792,11 @@ Sem OCR, seu EPUB conterá apenas imagens de páginas — exatamente o problema 
 
 **Conselho para estudantes canadenses**:
 Muitos estudantes digitalizam seus livros didáticos para leitura em tablet/e-reader. Verifique primeiro se a biblioteca da sua universidade oferece versões digitais (muitas têm licenças de ebook). Respeite as políticas de propriedade intelectual da sua instituição.`
-                                                        },
-                                                        {
-                                                            id: "use-cases",
-                                                            title: "Casos de uso reais: Quando e por que converter PDF em EPUB",
-                                                            content: `Descubra como diferentes usuários canadenses se beneficiam da conversão de PDF para EPUB.
+            },
+            {
+                id: "use-cases",
+                title: "Casos de uso reais: Quando e por que converter PDF em EPUB",
+                content: `Descubra como diferentes usuários canadenses se beneficiam da conversão de PDF para EPUB.
 
 **Leitura de lazer e ebooks**:
 - **Romances e ensaios baixados como PDF**: Você baixou um livro de domínio público (Project Gutenberg, Internet Archive) como PDF. Converta para EPUB para leitura confortável no Kobo ou Kindle.
@@ -2851,11 +2851,11 @@ Muitos estudantes digitalizam seus livros didáticos para leitura em tablet/e-re
 - ❌ Livros de fotografia → Layout fixo crucial, mantenha como PDF
 - ❌ Partituras musicais → PDF essencial para layout preciso
 - ❌ Documentos técnicos com diagramas complexos → Frequentemente melhor em PDF`
-                                                        },
-                                                        {
-                                                            id: "best-practices",
-                                                            title: "Melhores práticas para conversão de PDF para EPUB de alta qualidade",
-                                                            content: `Otimize suas conversões com estas dicas de especialistas para obter EPUBs perfeitos.
+            },
+            {
+                id: "best-practices",
+                title: "Melhores práticas para conversão de PDF para EPUB de alta qualidade",
+                content: `Otimize suas conversões com estas dicas de especialistas para obter EPUBs perfeitos.
 
 **Antes da conversão: Prepare seu PDF**
 
@@ -2990,11 +2990,11 @@ Para livros importantes (publicação, arquivamento de longo prazo), a conversã
 4. Editar finamente no Sigil ou Calibre
 
 Mas para 95% dos casos de uso (leitura pessoal), nosso conversor automático é mais do que suficiente!`
-                                                        },
-                                                        {
-                                                            id: "privacy-security",
-                                                            title: "Privacidade e segurança: Por que o processamento local é crucial",
-                                                            content: `A conversão de PDF para EPUB envolve frequentemente documentos pessoais, profissionais ou sensíveis. Entenda por que nossa abordagem local protege sua privacidade.
+            },
+            {
+                id: "privacy-security",
+                title: "Privacidade e segurança: Por que o processamento local é crucial",
+                content: `A conversão de PDF para EPUB envolve frequentemente documentos pessoais, profissionais ou sensíveis. Entenda por que nossa abordagem local protege sua privacidade.
 
 **O problema com conversores online tradicionais**
 
@@ -3100,11 +3100,11 @@ Você pode verificar que nada é enviado para nossos servidores:
 
 **Transparência e confiança**:
 Ao contrário dos serviços de nuvem fechados, nossa abordagem lhe dá controle total. Você não precisa "confiar" em nós para excluir seus arquivos — eles nunca nos alcançam em primeiro lugar.`
-                                                        },
-                                                        {
-                                                            id: "troubleshooting",
-                                                            title: "Solução de problemas: Resolvendo problemas comuns de conversão",
-                                                            content: `Encontrando problemas ao converter seus PDFs em EPUB? Aqui estão as soluções para os erros mais frequentes.
+            },
+            {
+                id: "troubleshooting",
+                title: "Solução de problemas: Resolvendo problemas comuns de conversão",
+                content: `Encontrando problemas ao converter seus PDFs em EPUB? Aqui estão as soluções para os erros mais frequentes.
 
 **Problema 1: "A conversão falhou" ou erro genérico**
 
@@ -3265,11 +3265,11 @@ Para esses casos, considere:
 - **Manter o PDF** e usar um tablet com bom app de leitura PDF
 - **Conversão manual profissional**
 - **Recriar o livro** em ferramenta EPUB dedicada`
-                                                        },
-                                                        {
-                                                            id: "advanced-features",
-                                                            title: "Recursos avançados e otimizações EPUB",
-                                                            content: `Para usuários que desejam ir além e criar EPUBs de qualidade profissional.
+            },
+            {
+                id: "advanced-features",
+                title: "Recursos avançados e otimizações EPUB",
+                content: `Para usuários que desejam ir além e criar EPUBs de qualidade profissional.
 
 **Tabela de conteúdos (TOC) avançada**
 
@@ -3316,118 +3316,118 @@ Para livros ilustrados ou infantis onde o layout exato importa.
 
 **Acessibilidade (WCAG)**
 Use texto alternativo para imagens (\`alt="Descrição"\`) e estrutura semântica (\`<nav>\`, \`<section>\`) para leitores de tela.`
-                                                        }
-                                                    ],
-                                                        faq: [
-                                                            {
-                                                                q: "Como converter PDF para EPUB para Kindle?",
-                                                                a: "Use nossa ferramenta para converter seu PDF para EPUB, depois use o software gratuito Calibre para convertê-lo em formato MOBI/AZW3 compatível com Kindle. Você também pode enviar o EPUB por e-mail para seu Kindle (@kindle.com) e a Amazon o converterá automaticamente."
-                                                            },
-                                                            {
-                                                                q: "A conversão de PDF para EPUB é gratuita?",
-                                                                a: "Sim, nosso serviço é totalmente gratuito, sem inscrição, sem limites de arquivos e sem taxas ocultas. A conversão é feita no seu navegador (processamento local), portanto nenhum servidor está envolvido."
-                                                            },
-                                                            {
-                                                                q: "Posso converter PDFs digitalizados (scans)?",
-                                                                a: "Nossa ferramenta funciona melhor com PDFs contendo texto selecionável. Para PDFs digitalizados (imagens de página), use primeiro nossa ferramenta OCR PDF (pdfcanada.ca/ocr-pdf) para adicionar uma camada de texto, depois converta para EPUB. Digitalizações de 300 DPI ou mais dão os melhores resultados."
-                                                            },
-                                                            {
-                                                                q: "Como manter o layout durante a conversão?",
-                                                                a: "O formato EPUB é 'fluido' por natureza, o que significa que o texto se adapta ao tamanho da tela — essa é sua vantagem! Preservamos a estrutura (títulos, parágrafos, imagens), mas o layout exato pode variar. Para documentos que exigem layout fixo, mantenha o PDF ou use EPUB Fixed Layout."
-                                                            },
-                                                            {
-                                                                q: "Quanto tempo leva a conversão?",
-                                                                a: "A maioria das conversões leva 5-15 segundos para um PDF típico de 10-20 MB. Documentos muito longos (500+ páginas) ou grandes (100+ MB) podem levar 1-3 minutos."
-                                                            },
-                                                            {
-                                                                q: "Minhas imagens são preservadas?",
-                                                                a: "Sim, incluímos todas as imagens do seu PDF no arquivo EPUB. As imagens são redimensionadas e otimizadas automaticamente para e-readers."
-                                                            },
-                                                            {
-                                                                q: "O EPUB funcionará no meu Kobo?",
-                                                                a: "Absolutamente! Kobo suporta perfeitamente EPUB — é seu formato nativo. Basta transferir seu EPUB convertido via USB ou usar o Kobo Desktop."
-                                                            },
-                                                            {
-                                                                q: "Qual a diferença entre EPUB 2 e EPUB 3?",
-                                                                a: "EPUB 2 é o padrão clássico. EPUB 3 adiciona suporte multimídia, acessibilidade melhorada e HTML5. Nosso conversor gera EPUB 3 por padrão, compatível com EPUB 2."
-                                                            },
-                                                            {
-                                                                q: "Posso converter livros protegidos por DRM?",
-                                                                a: "Não. PDFs protegidos por Adobe DRM ou senha não podem ser convertidos sem remover a proteção primeiro."
-                                                            },
-                                                            {
-                                                                q: "A tabela de conteúdos é gerada automaticamente?",
-                                                                a: "Sim, se o seu PDF contiver marcadores ou estrutura de títulos clara."
-                                                            },
-                                                            {
-                                                                q: "Como transfiro meu EPUB para meu e-reader?",
-                                                                a: "USB (arrastar e soltar), E-mail (Kindle/Kobo), Aplicativos de desktop (Calibre, Adobe Digital Editions), Nuvem (Google Play Books, Apple Books)."
-                                                            },
-                                                            {
-                                                                q: "Meus metadados são preservados?",
-                                                                a: "Sim, extraímos metadados do PDF (título, autor) e os incluímos no EPUB. Você pode editá-los no Calibre se necessário."
-                                                            },
-                                                            {
-                                                                q: "Posso converter vários PDFs simultaneamente?",
-                                                                a: "Atualmente processamos um arquivo por vez para melhor desempenho. Para lotes, use Calibre."
-                                                            },
-                                                            {
-                                                                q: "O EPUB será menor que o PDF?",
-                                                                a: "Geralmente sim, 30-60% menor devido à otimização e natureza textual."
-                                                            },
-                                                            {
-                                                                q: "Posso ler o EPUB no meu iPhone/iPad?",
-                                                                a: "Absolutamente! O Apple Books lê EPUB perfeitamente."
-                                                            },
-                                                            {
-                                                                q: "As notas de rodapé são preservadas?",
-                                                                a: "Sim, mas convertidas em links de hipertexto para o final do capítulo/livro."
-                                                            },
-                                                            {
-                                                                q: "Posso converter livros técnicos?",
-                                                                a: "Sim, mas layouts complexos podem sofrer alterações. Mantenha o PDF para referência se o layout for crítico."
-                                                            },
-                                                            {
-                                                                q: "Como editar o EPUB após a conversão?",
-                                                                a: "Use Calibre Edit Book ou Sigil."
-                                                            },
-                                                            {
-                                                                q: "Caracteres estranhos no EPUB?",
-                                                                a: "Problema de codificação. Converta para UTF-8 no Calibre."
-                                                            },
-                                                            {
-                                                                q: "Posso converter quadrinhos?",
-                                                                a: "Não recomendado. Use CBZ/CBR ou EPUB Fixed Layout."
-                                                            },
-                                                            {
-                                                                q: "A conversão funciona offline?",
-                                                                a: "Sim! Uma vez carregada a página, todo o processamento é local."
-                                                            },
-                                                            {
-                                                                q: "O EPUB funcionará no Google Play Books?",
-                                                                a: "Sim, suporte perfeito."
-                                                            },
-                                                            {
-                                                                q: "Meus PDFs são confidenciais. É seguro?",
-                                                                a: "Absolutamente. Processamento 100% local. Seus arquivos nunca saem do seu dispositivo."
-                                                            }
-                                                        ],
-                                                            ctaTitle: "Converta seu PDF em EPUB agora",
-                                                                ctaButton: "Começar conversão",
-                                                                    tipsTitle: "Dicas para uma melhor conversão",
-                                                                        tips: [
-                                                                            "Use PDFs com texto selecionável (não digitalizações)",
-                                                                            "PDFs bem estruturados com títulos dão melhores resultados",
-                                                                            "Evite PDFs com layouts complexos (múltiplas colunas)",
-                                                                            "Verifique o resultado no seu e-reader antes de excluir o original"
-                                                                        ],
-                                                                            relatedTitle: "Ferramentas Relacionadas",
-                                                                                relatedTools: [
-                                                                                    { name: "EPUB para PDF", desc: "Converta seus ebooks em PDF", path: "/epub-to-pdf" },
-                                                                                    { name: "OCR PDF", desc: "Torne suas digitalizações pesquisáveis", path: "/ocr-pdf" },
-                                                                                    { name: "Organizar PDF", desc: "Reorganize as páginas", path: "/organize-pdf" }
-                                                                                ]
-}
+            }
+        ],
+        faq: [
+            {
+                q: "Como converter PDF para EPUB para Kindle?",
+                a: "Use nossa ferramenta para converter seu PDF para EPUB, depois use o software gratuito Calibre para convertê-lo em formato MOBI/AZW3 compatível com Kindle. Você também pode enviar o EPUB por e-mail para seu Kindle (@kindle.com) e a Amazon o converterá automaticamente."
+            },
+            {
+                q: "A conversão de PDF para EPUB é gratuita?",
+                a: "Sim, nosso serviço é totalmente gratuito, sem inscrição, sem limites de arquivos e sem taxas ocultas. A conversão é feita no seu navegador (processamento local), portanto nenhum servidor está envolvido."
+            },
+            {
+                q: "Posso converter PDFs digitalizados (scans)?",
+                a: "Nossa ferramenta funciona melhor com PDFs contendo texto selecionável. Para PDFs digitalizados (imagens de página), use primeiro nossa ferramenta OCR PDF (pdfcanada.ca/ocr-pdf) para adicionar uma camada de texto, depois converta para EPUB. Digitalizações de 300 DPI ou mais dão os melhores resultados."
+            },
+            {
+                q: "Como manter o layout durante a conversão?",
+                a: "O formato EPUB é 'fluido' por natureza, o que significa que o texto se adapta ao tamanho da tela — essa é sua vantagem! Preservamos a estrutura (títulos, parágrafos, imagens), mas o layout exato pode variar. Para documentos que exigem layout fixo, mantenha o PDF ou use EPUB Fixed Layout."
+            },
+            {
+                q: "Quanto tempo leva a conversão?",
+                a: "A maioria das conversões leva 5-15 segundos para um PDF típico de 10-20 MB. Documentos muito longos (500+ páginas) ou grandes (100+ MB) podem levar 1-3 minutos."
+            },
+            {
+                q: "Minhas imagens são preservadas?",
+                a: "Sim, incluímos todas as imagens do seu PDF no arquivo EPUB. As imagens são redimensionadas e otimizadas automaticamente para e-readers."
+            },
+            {
+                q: "O EPUB funcionará no meu Kobo?",
+                a: "Absolutamente! Kobo suporta perfeitamente EPUB — é seu formato nativo. Basta transferir seu EPUB convertido via USB ou usar o Kobo Desktop."
+            },
+            {
+                q: "Qual a diferença entre EPUB 2 e EPUB 3?",
+                a: "EPUB 2 é o padrão clássico. EPUB 3 adiciona suporte multimídia, acessibilidade melhorada e HTML5. Nosso conversor gera EPUB 3 por padrão, compatível com EPUB 2."
+            },
+            {
+                q: "Posso converter livros protegidos por DRM?",
+                a: "Não. PDFs protegidos por Adobe DRM ou senha não podem ser convertidos sem remover a proteção primeiro."
+            },
+            {
+                q: "A tabela de conteúdos é gerada automaticamente?",
+                a: "Sim, se o seu PDF contiver marcadores ou estrutura de títulos clara."
+            },
+            {
+                q: "Como transfiro meu EPUB para meu e-reader?",
+                a: "USB (arrastar e soltar), E-mail (Kindle/Kobo), Aplicativos de desktop (Calibre, Adobe Digital Editions), Nuvem (Google Play Books, Apple Books)."
+            },
+            {
+                q: "Meus metadados são preservados?",
+                a: "Sim, extraímos metadados do PDF (título, autor) e os incluímos no EPUB. Você pode editá-los no Calibre se necessário."
+            },
+            {
+                q: "Posso converter vários PDFs simultaneamente?",
+                a: "Atualmente processamos um arquivo por vez para melhor desempenho. Para lotes, use Calibre."
+            },
+            {
+                q: "O EPUB será menor que o PDF?",
+                a: "Geralmente sim, 30-60% menor devido à otimização e natureza textual."
+            },
+            {
+                q: "Posso ler o EPUB no meu iPhone/iPad?",
+                a: "Absolutamente! O Apple Books lê EPUB perfeitamente."
+            },
+            {
+                q: "As notas de rodapé são preservadas?",
+                a: "Sim, mas convertidas em links de hipertexto para o final do capítulo/livro."
+            },
+            {
+                q: "Posso converter livros técnicos?",
+                a: "Sim, mas layouts complexos podem sofrer alterações. Mantenha o PDF para referência se o layout for crítico."
+            },
+            {
+                q: "Como editar o EPUB após a conversão?",
+                a: "Use Calibre Edit Book ou Sigil."
+            },
+            {
+                q: "Caracteres estranhos no EPUB?",
+                a: "Problema de codificação. Converta para UTF-8 no Calibre."
+            },
+            {
+                q: "Posso converter quadrinhos?",
+                a: "Não recomendado. Use CBZ/CBR ou EPUB Fixed Layout."
+            },
+            {
+                q: "A conversão funciona offline?",
+                a: "Sim! Uma vez carregada a página, todo o processamento é local."
+            },
+            {
+                q: "O EPUB funcionará no Google Play Books?",
+                a: "Sim, suporte perfeito."
+            },
+            {
+                q: "Meus PDFs são confidenciais. É seguro?",
+                a: "Absolutamente. Processamento 100% local. Seus arquivos nunca saem do seu dispositivo."
+            }
+        ],
+        ctaTitle: "Converta seu PDF em EPUB agora",
+        ctaButton: "Começar conversão",
+        tipsTitle: "Dicas para uma melhor conversão",
+        tips: [
+            "Use PDFs com texto selecionável (não digitalizações)",
+            "PDFs bem estruturados com títulos dão melhores resultados",
+            "Evite PDFs com layouts complexos (múltiplas colunas)",
+            "Verifique o resultado no seu e-reader antes de excluir o original"
+        ],
+        relatedTitle: "Ferramentas Relacionadas",
+        relatedTools: [
+            { name: "EPUB para PDF", desc: "Converta seus ebooks em PDF", path: "/epub-to-pdf" },
+            { name: "OCR PDF", desc: "Torne suas digitalizações pesquisáveis", path: "/ocr-pdf" },
+            { name: "Organizar PDF", desc: "Reorganize as páginas", path: "/organize-pdf" }
+        ]
+    }
 });
 
 export const PdfToEpubGuide: React.FC<GuideProps> = ({ lang }) => {
