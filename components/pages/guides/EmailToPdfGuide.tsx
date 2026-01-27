@@ -830,7 +830,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/guides/email-to-pdf"
+                canonicalPath={`/${lang}/email-to-pdf-guide`}
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
@@ -916,7 +916,7 @@ export const EmailToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         steps={t.quickAnswer.steps}
                     />
 
-                    <RelatedTools lang={lang} currentPath="/guides/email-to-pdf" category="convert" />
+                    <RelatedTools lang={lang} currentPath={`/${lang}/email-to-pdf-guide`} category="convert" />
 
                     <AuthorBio lang={lang} />
                 </div>

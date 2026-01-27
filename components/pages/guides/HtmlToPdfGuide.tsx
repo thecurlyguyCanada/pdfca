@@ -635,19 +635,19 @@ export const HtmlToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                             {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
                         </h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/guides/word-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang}/word-to-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <Zap size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Word vers PDF' : (lang === 'pt' ? 'Guia Word para PDF' : 'Word to PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/pdf-to-word`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang}/pdf-to-word-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <Zap size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide PDF vers Word' : (lang === 'pt' ? 'Guia PDF para Word' : 'PDF to Word Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang}/compress-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <Zap size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/pages-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={`/${lang}/pages-to-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <Zap size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Pages vers PDF' : (lang === 'pt' ? 'Guia Pages para PDF' : 'Pages to PDF Guide')}
                             </Link>

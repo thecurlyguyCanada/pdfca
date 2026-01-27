@@ -619,7 +619,7 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/guides/insert-picture-in-pdf"
+                canonicalPath={`/${lang}/insert-picture-in-pdf-guide`}
                 faqs={t.faq}
                 lang={lang}
                 quickAnswer={{
@@ -716,7 +716,7 @@ export const InsertPictureGuide: React.FC<GuideProps> = ({ lang }) => {
                         toolName={t.quickAnswer.tool}
                     />
 
-                    <RelatedTools lang={lang} currentPath="/guides/insert-picture-in-pdf" category="edit" />
+                    <RelatedTools lang={lang} currentPath={`/${lang}/insert-picture-in-pdf-guide`} category="edit" />
 
                     <AuthorBio lang={lang} />
                 </div>

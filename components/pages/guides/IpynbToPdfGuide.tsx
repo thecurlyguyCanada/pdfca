@@ -266,7 +266,7 @@ export const IpynbToPdfGuide: React.FC<IpynbToPdfGuideProps> = ({ lang }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/guides/ipynb-to-pdf"
+                canonicalPath={`/${lang}/ipynb-to-pdf-guide`}
                 faqs={t.faq}
                 lang={lang}
                 schema={schema}
@@ -388,7 +388,7 @@ export const IpynbToPdfGuide: React.FC<IpynbToPdfGuideProps> = ({ lang }) => {
                     </div>
 
                     <div className="mt-16">
-                        <RelatedTools lang={lang} currentPath="/guides/ipynb-to-pdf" category="advanced" />
+                        <RelatedTools lang={lang} currentPath={`/${lang}/ipynb-to-pdf-guide`} category="advanced" />
                     </div>
 
                     <AuthorBio lang={lang} />

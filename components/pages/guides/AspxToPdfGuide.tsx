@@ -263,7 +263,7 @@ export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                 <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-xl">
                     <h3 className="text-3xl font-bold mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}/ultimate-pdf-guide`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
+                    <Link href={`/${lang}/aspx-to-pdf`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
                         {t.ctaBtn}
                     </Link>
                 </div>
@@ -277,19 +277,19 @@ export const AspxToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
                     </h3>
                     <div className="flex flex-wrap gap-4">
-                        <Link href={`/${lang}/guides/html-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/html-to-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Zap size={16} className="text-canada-red" />
                             {lang === 'fr' ? 'Guide HTML vers PDF' : (lang === 'pt' ? 'Guia HTML para PDF' : 'HTML to PDF Guide')}
                         </Link>
-                        <Link href={`/${lang}/guides/xml-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/xml-to-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <FileCode size={16} className="text-canada-red" />
                             {lang === 'fr' ? 'Guide XML vers PDF' : (lang === 'pt' ? 'Guia XML para PDF' : 'XML to PDF Guide')}
                         </Link>
-                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/compress-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Zap size={16} className="text-canada-red" />
                             {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
                         </Link>
-                        <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/merge-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Zap size={16} className="text-canada-red" />
                             {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Mesclar PDF' : 'Merge PDF Guide')}
                         </Link>

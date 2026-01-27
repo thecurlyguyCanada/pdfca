@@ -221,7 +221,7 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 { name: lang === 'fr' ? 'Guides' : lang === 'pt' ? 'Guias' : 'Guides', href: lang === 'en' ? '/guides/ultimate-pdf-guide' : `/${lang}/guides/ultimate-pdf-guide` },
                 { name: lang === 'fr' ? 'Guide PHP vers PDF' : lang === 'pt' ? 'Guia PHP para PDF' : 'PHP to PDF Guide', href: '#' }]}
         >
-            <SEO title={t.seo.title} description={t.seo.desc} canonicalPath="/guides/php-to-pdf" lang={lang} schema={schema} />
+            <SEO title={t.seo.title} description={t.seo.desc} canonicalPath={`/${lang}/php-to-pdf-guide`} lang={lang} schema={schema} />
 
             <div className="w-full py-12">
                 <ToolPromo tool="php-to-pdf" lang={lang} />
@@ -274,7 +274,7 @@ export const PhpToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 </div>
 
                 <div className="mt-20">
-                    <RelatedTools lang={lang} currentPath="/guides/php-to-pdf" category="advanced" />
+                    <RelatedTools lang={lang} currentPath={`/${lang}/php-to-pdf-guide`} category="advanced" />
                 </div>
 
                 <AuthorBio lang={lang} />
