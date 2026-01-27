@@ -70,6 +70,7 @@ import { AvifToPdfGuide } from '@/components/pages/guides/AvifToPdfGuide';
 import { IpynbToPdfGuide } from '@/components/pages/guides/IpynbToPdfGuide';
 import { ChangePdfViewerMacGuide } from '@/components/pages/guides/ChangePdfViewerMacGuide';
 import { GoogleClassroomStudentGuide } from '@/components/pages/guides/GoogleClassroomStudentGuide';
+import { PdfWhiteoutGuide } from '@/components/pages/guides/PdfWhiteoutGuide';
 
 
 export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
@@ -156,6 +157,8 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ipynb-to-pdf': IpynbToPdfGuide,
     'change-pdf-viewer-mac': ChangePdfViewerMacGuide,
     'google-classroom-student-guide': GoogleClassroomStudentGuide,
+    'remove-pdf-text': PdfWhiteoutGuide,
+    'pdf-whiteout': PdfWhiteoutGuide,
 
     'make-pdf-non-editable': FlattenPdfGuide,
 
