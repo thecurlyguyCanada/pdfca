@@ -1593,6 +1593,58 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       fr: ['Convertir TIF/TIFF en PDF', 'Préserver la qualité', '100% navigateur', 'Support TIFF multi-pages'],
       pt: ['Converter TIF/TIFF para PDF', 'Preservar qualidade', '100% no navegador', 'Suporte TIFF multi-páginas']
     }
+  },
+  {
+    slug: 'unlock-pdf',
+    i18nKey: 'unlockPdf',
+    tool: ToolType.UNLOCK_PDF,
+    title: {
+      en: 'Unlock PDF',
+      fr: 'Déverrouiller PDF',
+      pt: 'Desbloquear PDF'
+    },
+    description: {
+      en: 'Remove password protection from PDF files. Unlock PDFs for editing, printing, and copying. Free, secure, browser-based - your files never leave your device.',
+      fr: 'Supprimez la protection par mot de passe des fichiers PDF. Déverrouillez les PDF pour l\'édition, l\'impression et la copie. Gratuit et sécurisé dans votre navigateur.',
+      pt: 'Remova a proteção por senha de arquivos PDF. Desbloqueie PDFs para edição, impressão e cópia. Grátis e seguro no navegador.'
+    },
+    keywords: {
+      en: ['unlock PDF', 'remove PDF password', 'PDF password remover', 'unprotect PDF', 'decrypt PDF', 'PDF unlocker'],
+      fr: ['déverrouiller PDF', 'supprimer mot de passe PDF', 'déprotéger PDF', 'décrypter PDF', 'déverrouilleur PDF'],
+      pt: ['desbloquear pdf', 'remover senha pdf', 'desproteger pdf', 'descriptografar pdf', 'desbloqueador pdf']
+    },
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['Remove password protection', 'Enable editing and printing', '100% browser-based', 'Your files stay private'],
+      fr: ['Supprimer protection par mot de passe', 'Activer édition et impression', '100% navigateur', 'Vos fichiers restent privés'],
+      pt: ['Remover proteção por senha', 'Habilitar edição e impressão', '100% no navegador', 'Seus arquivos ficam privados']
+    }
+  },
+  {
+    slug: 'pdf-reader',
+    i18nKey: 'pdfReader',
+    tool: ToolType.PDF_READER,
+    title: {
+      en: 'PDF Reader',
+      fr: 'Lecteur PDF',
+      pt: 'Leitor de PDF'
+    },
+    description: {
+      en: 'View and read PDF documents online. Free PDF viewer with zoom, page navigation, and search. No installation required - works directly in your browser.',
+      fr: 'Visualisez et lisez des documents PDF en ligne. Lecteur PDF gratuit avec zoom, navigation et recherche. Aucune installation requise.',
+      pt: 'Visualize e leia documentos PDF online. Leitor de PDF grátis com zoom, navegação e busca. Sem instalação necessária.'
+    },
+    keywords: {
+      en: ['PDF reader', 'PDF viewer', 'read PDF online', 'view PDF', 'open PDF', 'PDF reader online', 'free PDF viewer'],
+      fr: ['lecteur PDF', 'visionneuse PDF', 'lire PDF en ligne', 'voir PDF', 'ouvrir PDF', 'lecteur PDF gratuit'],
+      pt: ['leitor pdf', 'visualizador pdf', 'ler pdf online', 'ver pdf', 'abrir pdf', 'leitor pdf grátis']
+    },
+    accept: '.pdf,application/pdf',
+    featureList: {
+      en: ['View PDFs in browser', 'Zoom and page navigation', 'Print and download', '100% private - no uploads'],
+      fr: ['Voir PDF dans le navigateur', 'Zoom et navigation', 'Imprimer et télécharger', '100% privé - sans téléchargement'],
+      pt: ['Ver PDF no navegador', 'Zoom e navegação', 'Imprimir e baixar', '100% privado - sem uploads']
+    }
   }
 ];
 

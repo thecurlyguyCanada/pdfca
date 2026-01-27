@@ -48,7 +48,11 @@ export enum ToolType {
     OFX_TO_EXCEL = 'OFX_TO_EXCEL',
     ODG_TO_PDF = 'ODG_TO_PDF',
     PDF_TO_SVG = 'PDF_TO_SVG',
-    TIF_TO_PDF = 'TIF_TO_PDF'
+    TIF_TO_PDF = 'TIF_TO_PDF',
+    // Security tools
+    UNLOCK_PDF = 'UNLOCK_PDF',
+    // Viewer tools
+    PDF_READER = 'PDF_READER'
 }
 
 export enum AppState {

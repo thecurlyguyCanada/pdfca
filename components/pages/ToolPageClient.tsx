@@ -158,7 +158,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         ToolType.ODT_TO_PDF,
         ToolType.PPT_TO_PDF,
         ToolType.PAGES_TO_PDF,
-        ToolType.TIF_TO_PDF
+        ToolType.TIF_TO_PDF,
+        ToolType.UNLOCK_PDF
       ].includes(toolType);
 
       if (isConversionTool) {

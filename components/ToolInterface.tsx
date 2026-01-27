@@ -49,7 +49,14 @@ const OfxToExcelTool = dynamic(() => import('./tools/OfxToExcelTool').then(mod =
     ssr: false,
     loading: () => <ToolLoaderSkeleton />
 });
-
+const UnlockPdfTool = dynamic(() => import('./tools/UnlockPdfTool').then(mod => mod.UnlockPdfTool), {
+    ssr: false,
+    loading: () => <ToolLoaderSkeleton />
+});
+const PdfReaderTool = dynamic(() => import('./tools/PdfReaderTool').then(mod => mod.PdfReaderTool), {
+    ssr: false,
+    loading: () => <ToolLoaderSkeleton />
+});
 
 import { closestCenter, KeyboardSensor, useSensor, useSensors, DragEndEvent, MouseSensor, TouchSensor, DndContext } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates, useSortable, rectSortingStrategy, verticalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
@@ -292,6 +299,8 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     const isXRechnungTool = currentTool === ToolType.XRECHNUNG_VIEWER;
     const isPdfToUblTool = currentTool === ToolType.PDF_TO_UBL;
     const isOfxTool = currentTool === ToolType.OFX_TO_EXCEL;
+    const isUnlockTool = currentTool === ToolType.UNLOCK_PDF;
+    const isPdfReaderTool = currentTool === ToolType.PDF_READER;
 
     if (!file && (!files || files.length === 0) && !isBarcodeTool && !isOfxTool) {
         const tool = tools.find(t => t.tool === currentTool);
@@ -428,9 +437,9 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
     else if (currentTool === ToolType.EXTRACT) headerText = t.selectPagesHeader;
 
     return (
-        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool || isOfxTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
+        <div className={`flex flex-col overflow-hidden ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool || isOfxTool || isUnlockTool || isPdfReaderTool ? 'h-full w-full' : 'h-[calc(100dvh-64px)] md:h-auto md:min-h-[600px]'}`}>
             {/* Header - Hide for Sign Tool (it has its own custom floating header) */}
-            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && !isXRechnungTool && !isPdfToUblTool && !isOfxTool && (
+            {!isSignTool && !isInvoiceTool && !isBarcodeTool && !isCsvTool && !isPhishingTool && !isXRechnungTool && !isPdfToUblTool && !isOfxTool && !isUnlockTool && !isPdfReaderTool && (
                 <div
                     className="p-3 md:p-4 border-b border-gray-100 flex items-center justify-between bg-white z-10 shadow-sm touch-none"
                     {...swipeHandlers} // Attach swipe to header specifically
@@ -453,7 +462,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
             )}
 
             {/* Content Area */}
-            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
+            <div className={`flex-grow ${isSignTool || isInvoiceTool || isBarcodeTool || isCsvTool || isPhishingTool || isXRechnungTool || isPdfToUblTool || isUnlockTool || isPdfReaderTool ? 'overflow-hidden' : 'overflow-auto'} bg-gray-50 custom-scrollbar flex flex-col items-stretch w-full relative`}>
                 {isBarcodeTool ? (
                     <BarcodeGeneratorTool
                         file={file || undefined}
@@ -488,6 +497,19 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                     />
                 ) : isOfxTool ? (
                     <OfxToExcelTool lang={lang} />
+                ) : isUnlockTool && file ? (
+                    <UnlockPdfTool
+                        file={file}
+                        onClose={onSoftReset}
+                        t={t}
+                    />
+                ) : isPdfReaderTool && file ? (
+                    <PdfReaderTool
+                        file={file}
+                        pdfJsDoc={pdfJsDoc}
+                        onClose={onSoftReset}
+                        t={t}
+                    />
                 ) : isPageSelectionTool ? (
                     <div className="p-4 md:p-6 w-full">
                         <div className="w-full mb-4 z-10 py-2">
