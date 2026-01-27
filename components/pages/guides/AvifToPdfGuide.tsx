@@ -432,6 +432,30 @@ export const AvifToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         </Link>
                     </div>
 
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/image-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Image vers PDF' : (lang === 'pt' ? 'Guia Imagem para PDF' : 'Image to PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/heic-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide HEIC vers PDF' : (lang === 'pt' ? 'Guia HEIC para PDF' : 'HEIC to PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/pdf-to-image`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide PDF vers Image' : (lang === 'pt' ? 'Guia PDF para Imagem' : 'PDF to Image Guide')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <AuthorBio lang={lang} />
                 </div>
             </PageLayout>

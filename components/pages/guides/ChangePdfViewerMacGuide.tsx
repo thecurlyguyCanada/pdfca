@@ -603,6 +603,30 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
                     <RelatedTools lang={lang} currentPath="/guides/change-default-pdf-viewer-mac" category="convert" />
                 </div>
 
+                <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                        {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                    </h3>
+                    <div className="flex flex-wrap gap-4">
+                        <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Shield size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Outils PDF Privés' : (lang === 'pt' ? 'Ferramentas PDF Privadas' : 'Private PDF Tools')}
+                        </Link>
+                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Monitor size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/pdf-to-word`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <FileText size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide PDF vers Word' : (lang === 'pt' ? 'Guia PDF para Word' : 'PDF to Word Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Settings size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo de PDF' : 'Ultimate PDF Guide')}
+                        </Link>
+                    </div>
+                </div>
+
                 <AuthorBio lang={lang} />
             </div>
         </PageLayout>

@@ -716,6 +716,27 @@ export const PrivatePdfToolsGuide: React.FC<GuideProps> = ({ lang }) => {
 
                     <RelatedTools lang={lang} currentPath="/guides/private-pdf-tools" category="all" />
 
+                    {/* SEO Interlinks Section */}
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/remove-pdf-text`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <FileText size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Supprimer du Texte d\'un PDF' : (lang === 'pt' ? 'Remover Texto de PDF' : 'Remove Text from PDF')}
+                            </Link>
+                            <Link href={`/${lang}/guides/phishing-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Shield size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Anti-Hameçonnage PDF' : (lang === 'pt' ? 'Guia Anti-Phishing PDF' : 'PDF Phishing Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/flatten-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Lock size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Aplatir PDF' : (lang === 'pt' ? 'Achatar PDF' : 'Flatten PDF')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <AuthorBio lang={lang} />
 
                 </div>

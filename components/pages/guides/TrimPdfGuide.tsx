@@ -505,6 +505,30 @@ export const TrimPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <RelatedTools lang={lang} currentPath="/guides/trim-pdf" category="organize" />
                 </div>
 
+                <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                        {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                    </h3>
+                    <div className="flex flex-wrap gap-4">
+                        <Link href={`/${lang}/guides/crop-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Zap size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Recadrer PDF' : (lang === 'pt' ? 'Guia Cortar PDF' : 'Crop PDF Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/split-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Zap size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Diviser PDF' : (lang === 'pt' ? 'Guia Dividir PDF' : 'Split PDF Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/delete-pdf-pages`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Zap size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Supprimer Pages' : (lang === 'pt' ? 'Guia Excluir Páginas' : 'Delete PDF Pages Guide')}
+                        </Link>
+                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Zap size={16} className="text-canada-red" />
+                            {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                        </Link>
+                    </div>
+                </div>
+
                 <AuthorBio lang={lang} />
             </div>
         </PageLayout>

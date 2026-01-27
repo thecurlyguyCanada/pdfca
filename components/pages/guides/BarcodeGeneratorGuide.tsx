@@ -455,6 +455,30 @@ export const BarcodeGeneratorGuide: React.FC<GuideProps> = ({ lang }) => {
                         <RelatedTools lang={lang} currentPath={`/${lang}/guides/barcode-generator`} category="edit" />
                     </div>
 
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/edit-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <QrCode size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Modifier PDF' : (lang === 'pt' ? 'Guia Editar PDF' : 'Edit PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/sign-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Tag size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Signer PDF' : (lang === 'pt' ? 'Guia Assinar PDF' : 'Sign PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Package size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Mesclar PDF' : 'Merge PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Ticket size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
                         <AuthorBio lang={lang} />
                     </div>

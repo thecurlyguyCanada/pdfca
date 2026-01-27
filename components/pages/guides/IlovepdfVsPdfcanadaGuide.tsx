@@ -307,6 +307,31 @@ export const IlovepdfVsPdfcanadaGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="bg-gradient-to-r from-red-600 to-red-700 p-8 rounded-[2rem] text-center text-white shadow-2xl"><h2 className="text-3xl font-black mb-4">{t.ctaTitle}</h2><p className="text-lg mb-8 opacity-90">{t.ctaSubtext}</p><Link href="/" className="inline-block bg-white text-canada-red px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-all shadow-lg">{t.ctaButton}</Link></div>
                     <AISnapshot question={t.quickAnswer.question} answer={t.quickAnswer.answer} toolName={t.quickAnswer.tool} steps={t.quickAnswer.steps} lang={lang} />
                     <RelatedTools lang={lang} currentPath="/guides/ilovepdf-vs-pdfcanada" category="all" />
+
+                    <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
+                        </h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Shield size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Outils PDF Privés' : (lang === 'pt' ? 'Ferramentas PDF Privadas' : 'Private PDF Tools')}
+                            </Link>
+                            <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Scale size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo de PDF' : 'Ultimate PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            </Link>
+                            <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <Zap size={16} className="text-canada-red" />
+                                {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Mesclar PDF' : 'Merge PDF Guide')}
+                            </Link>
+                        </div>
+                    </div>
+
                     <AuthorBio lang={lang} />
                 </div>
             </PageLayout>
