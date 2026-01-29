@@ -72,10 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
             {t.navHowTo}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
           </Link>
-          <Link href={`/${lang}/support`} className="px-6 py-2 rounded-full text-[11px] font-black text-gray-800 hover:text-gray-900 transition-colors duration-150 uppercase tracking-[0.15em] relative group">
-            {t.navSupport}
-            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/100 rounded-full -z-10 transition-colors duration-150 shadow-sm" />
-          </Link>
+
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
@@ -158,16 +155,7 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
               >
                 {t.navHowTo}
               </Link>
-              <Link
-                href={`/${lang}/support`}
-                className="text-left text-2xl font-black text-gray-900 py-5 px-6 rounded-3xl hover:bg-gray-50 flex items-center border border-transparent active:scale-95 transition-all"
-                onClick={() => {
-                  triggerHaptic('light');
-                  setMobileMenuOpen(false);
-                }}
-              >
-                {t.navSupport}
-              </Link>
+
               <Link
                 href={`/${lang}/guides`}
                 className="text-left text-2xl font-black text-canada-red py-5 px-6 rounded-3xl bg-red-50/50 hover:bg-red-50 flex items-center border border-transparent active:scale-95 transition-all"

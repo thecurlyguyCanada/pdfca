@@ -129,7 +129,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{t.footerAboutUs}</Link></li>
                         <li><Link href={`/${lang}/howto`} className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
-                        <li><Link href={`/${lang}/support`} className="hover:text-white transition-colors">{t.navSupport}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
                         <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{t.footerPricing}</Link></li>

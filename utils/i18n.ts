@@ -213,16 +213,13 @@ const en = {
       },
       {
         question: "Why is it free? What's the catch?",
-        answer: "No catch. We run lean using local processing technology (your browser does the work), so our server costs are low. We accept optional donations (Timbits!) to cover the basics."
+        answer: "No catch. We run lean using local processing technology (your browser does the work), so our server costs are low. We may display ads to help cover hosting and development costs."
       },
       {
         question: "Can I use this for my business?",
         answer: "Absolutely. Our free PDF tools are perfect for small businesses, freelancers, and anyone who wants to save money on expensive software."
       },
-      {
-        question: "How does the 'Timbits' support work?",
-        answer: "It's an optional $1 tip. If you love our service and want to say thanks, you can 'buy us a Timbit'. It helps us keep the lights on and the code flowing."
-      }
+
     ]
   },
   supportPage: {
@@ -1127,16 +1124,64 @@ const en = {
   timbitsFeature4: "Get our heartfelt thanks",
   timbitsButton: "Drop a Loonie",
 
+
   privacyTitle: "Privacy Policy",
+  privacyEffectiveDate: "Effective Date: January 2026",
   privacyText1: "At pdfcanada.ca, we believe that your business is your business. Because we process files locally on your device using WebAssembly technology, your documents never actually upload to our servers.",
   privacyText2: "We don't use cookies to track you across the web. We don't sell your data. We don't even ask for your email. It's just you and your PDF.",
   privacyGuaranteeTitle: "Local Processing Guarantee",
   privacyGuaranteeText: "We do not operate backend servers for file processing. Everything happens right here in your browser using WebAssembly.",
 
+  // AdSense-required Privacy Policy sections
+  privacyCookiesTitle: "Cookies and Tracking Technologies",
+  privacyCookiesText: "While we do not use cookies for file processing, third-party services on our website may use cookies and similar tracking technologies. These include advertising partners who help support our free service.",
+
+  privacyThirdPartyTitle: "Third-Party Advertising",
+  privacyThirdPartyText1: "We use Google AdSense to display advertisements on our website. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to our website and other sites on the internet.",
+  privacyThirdPartyText2: "Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.",
+  privacyThirdPartyText3: "You may opt out of personalized advertising by visiting Google's Ads Settings at https://www.google.com/settings/ads. Alternatively, you can opt out of third-party vendor cookies by visiting the Network Advertising Initiative opt-out page at https://optout.networkadvertising.org.",
+
+  privacyDataCollectionTitle: "Information We Collect",
+  privacyDataCollectionText: "We collect minimal information necessary to provide our service: basic usage analytics (page views, general location by country), and any information you voluntarily provide when contacting us. We do NOT collect or store your uploaded files—all file processing happens locally in your browser.",
+
+  privacyYourRightsTitle: "Your Privacy Rights (GDPR/CCPA)",
+  privacyYourRightsText: "Depending on your location, you may have the right to: access the personal data we hold about you, request correction of inaccurate data, request deletion of your data, opt out of personalized advertising, and lodge a complaint with a supervisory authority. Since we process files locally and collect minimal data, most user data requests can be addressed by simply clearing your browser cache.",
+
+  privacyChildrenTitle: "Children's Privacy",
+  privacyChildrenText: "Our service is not directed at children under 13. We do not knowingly collect personal information from children under 13 years of age.",
+
+  privacyContactTitle: "Contact Us",
+  privacyContactText: "If you have questions about this Privacy Policy or wish to exercise your privacy rights, please contact us at: privacy@pdfcanada.ca",
+
+  privacyChangesTitle: "Changes to This Policy",
+  privacyChangesText: "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Effective Date' above.",
+
   termsTitle: "Terms of Service",
+  termsEffectiveDate: "Effective Date: January 2026",
   termsText1: "By using this service, you agree to be nice.",
   termsText2: "Please don't use our tools for illegal stuff. That's not cool.",
   termsText3: "We provide this service 'as is'. If it breaks, we're really sorry, but we can't be held liable for lost data. Always keep a backup, eh?",
+  termsText4: "This website may display advertisements served by Google AdSense to help support the service. These ads are managed by Google and may use cookies to personalize content based on your browsing activity. By using this site, you acknowledge and accept the use of advertising.",
+
+  // Additional Terms sections for AdSense compliance
+  termsAcceptableUseTitle: "Acceptable Use",
+  termsAcceptableUseText: "You agree to use our tools only for lawful purposes. You may not use our service to process documents containing illegal content, malware, or material that infringes on others' intellectual property rights.",
+
+  termsIntellectualPropertyTitle: "Intellectual Property",
+  termsIntellectualPropertyText: "The pdfcanada.ca service, including its design, features, and content (excluding user-uploaded documents), is owned by us. Your documents remain your property—we never access, store, or claim ownership of your files.",
+
+  termsDisclaimerTitle: "Disclaimer of Warranties",
+  termsDisclaimerText: "Our service is provided 'as is' without warranties of any kind. We do not guarantee uninterrupted service, error-free operation, or specific results. Use our tools at your own discretion.",
+
+  termsLiabilityTitle: "Limitation of Liability",
+  termsLiabilityText: "To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our service.",
+
+  termsModificationsTitle: "Modifications to Terms",
+  termsModificationsText: "We reserve the right to modify these Terms at any time. Continued use of the service after changes constitutes acceptance of the modified Terms.",
+
+  termsGoverningLawTitle: "Governing Law",
+  termsGoverningLawText: "These Terms are governed by the laws of Ontario, Canada. Any disputes shall be resolved in the courts of Ontario.",
+
 
   sorryTitle: "Our Official Sorry Policy",
   sorryText1: "In the unlikely event that something goes wrong:",
@@ -2319,15 +2364,59 @@ export const translations: Record<Language, TranslationStructure> = {
     fbPage: "Page",
 
     privacyTitle: "Politique de Confidentialité",
+    privacyEffectiveDate: "Date d'entrée en vigueur: Janvier 2026",
     privacyText1: "Chez pdfcanada.ca, vos affaires sont vos affaires. Parce qu'on traite les fichiers localement, vos documents ne sont jamais envoyés sur nos serveurs.",
     privacyText2: "On n'utilise pas de cookies pour vous suivre. On ne vend pas vos données. On ne demande même pas votre email. C'est juste vous et votre PDF.",
     privacyGuaranteeTitle: "Garantie de traitement local",
     privacyGuaranteeText: "Nous n'exploitons pas de serveurs backend pour le traitement des fichiers. Tout se passe ici même dans votre navigateur avec WebAssembly.",
 
+    privacyCookiesTitle: "Cookies et technologies de suivi",
+    privacyCookiesText: "Bien que nous n'utilisions pas de cookies pour le traitement des fichiers, des services tiers sur notre site peuvent utiliser des cookies et des technologies de suivi similaires. Cela inclut nos partenaires publicitaires qui aident à maintenir notre service gratuit.",
+
+    privacyThirdPartyTitle: "Publicité de tiers",
+    privacyThirdPartyText1: "Nous utilisons Google AdSense pour afficher des publicités sur notre site. Google, en tant que fournisseur tiers, utilise des cookies pour diffuser des annonces basées sur vos visites précédentes sur notre site et d'autres sites.",
+    privacyThirdPartyText2: "L'utilisation de cookies publicitaires par Google permet à Google et à ses partenaires de vous proposer des annonces basées sur votre visite sur notre site et/ou d'autres sites Internet.",
+    privacyThirdPartyText3: "Vous pouvez désactiver la publicité personnalisée en visitant les paramètres de publicité Google à https://www.google.com/settings/ads. Vous pouvez également désactiver les cookies tiers en visitant la page de désactivation de la Network Advertising Initiative à https://optout.networkadvertising.org.",
+
+    privacyDataCollectionTitle: "Informations que nous collectons",
+    privacyDataCollectionText: "Nous collectons un minimum d'informations nécessaires pour fournir notre service: analyses d'utilisation de base (pages vues, localisation générale par pays), et toute information que vous fournissez volontairement en nous contactant. Nous ne collectons ni ne stockons PAS vos fichiers téléchargés—tout le traitement se fait localement dans votre navigateur.",
+
+    privacyYourRightsTitle: "Vos droits à la vie privée (RGPD/CCPA)",
+    privacyYourRightsText: "Selon votre localisation, vous pouvez avoir le droit de: accéder aux données personnelles que nous détenons, demander la correction de données inexactes, demander la suppression de vos données, refuser la publicité personnalisée, et déposer une plainte auprès d'une autorité de contrôle. Puisque nous traitons les fichiers localement et collectons peu de données, la plupart des demandes peuvent être satisfaites en vidant simplement le cache de votre navigateur.",
+
+    privacyChildrenTitle: "Confidentialité des enfants",
+    privacyChildrenText: "Notre service n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 13 ans.",
+
+    privacyContactTitle: "Nous contacter",
+    privacyContactText: "Si vous avez des questions sur cette politique de confidentialité ou si vous souhaitez exercer vos droits, veuillez nous contacter à: privacy@pdfcanada.ca",
+
+    privacyChangesTitle: "Modifications de cette politique",
+    privacyChangesText: "Nous pouvons mettre à jour cette politique de confidentialité de temps en temps. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page et en mettant à jour la 'Date d'entrée en vigueur' ci-dessus.",
+
     termsTitle: "Conditions d'utilisation",
+    termsEffectiveDate: "Date d'entrée en vigueur: Janvier 2026",
     termsText1: "En utilisant ce service, vous acceptez d'être gentil.",
     termsText2: "S'il vous plaît, n'utilisez pas nos outils pour des trucs illégaux.",
     termsText3: "Service fourni 'tel quel'. Si ça brise, on est vraiment désolé.",
+    termsText4: "Ce site peut afficher des publicités diffusées par Google AdSense pour aider à soutenir le service. Ces annonces sont gérées par Google et peuvent utiliser des cookies pour personnaliser le contenu en fonction de votre activité de navigation. En utilisant ce site, vous reconnaissez et acceptez l'utilisation de la publicité.",
+
+    termsAcceptableUseTitle: "Utilisation acceptable",
+    termsAcceptableUseText: "Vous acceptez d'utiliser nos outils uniquement à des fins légales. Vous ne pouvez pas utiliser notre service pour traiter des documents contenant du contenu illégal, des logiciels malveillants ou du matériel portant atteinte aux droits de propriété intellectuelle d'autrui.",
+
+    termsIntellectualPropertyTitle: "Propriété intellectuelle",
+    termsIntellectualPropertyText: "Le service pdfcanada.ca, y compris sa conception, ses fonctionnalités et son contenu (à l'exclusion des documents téléchargés par les utilisateurs), nous appartient. Vos documents restent votre propriété—nous n'accédons jamais, ne stockons ni ne revendiquons la propriété de vos fichiers.",
+
+    termsDisclaimerTitle: "Exclusion de garanties",
+    termsDisclaimerText: "Notre service est fourni 'tel quel' sans garantie d'aucune sorte. Nous ne garantissons pas un service ininterrompu, un fonctionnement sans erreur ou des résultats spécifiques. Utilisez nos outils à votre discrétion.",
+
+    termsLiabilityTitle: "Limitation de responsabilité",
+    termsLiabilityText: "Dans toute la mesure permise par la loi, nous ne serons pas responsables des dommages indirects, accessoires, spéciaux, consécutifs ou punitifs découlant de votre utilisation de notre service.",
+
+    termsModificationsTitle: "Modifications des conditions",
+    termsModificationsText: "Nous nous réservons le droit de modifier ces conditions à tout moment. L'utilisation continue du service après les modifications constitue une acceptation des conditions modifiées.",
+
+    termsGoverningLawTitle: "Droit applicable",
+    termsGoverningLawText: "Ces conditions sont régies par les lois de l'Ontario, Canada. Tout litige sera résolu devant les tribunaux de l'Ontario.",
 
     sorryTitle: "Notre Politique d'Excuses",
     sorryText1: "Dans le cas peu probable où quelque chose cloche :",
@@ -3453,15 +3542,59 @@ export const translations: Record<Language, TranslationStructure> = {
     timbitsButton: "Doar uma Moeda",
 
     privacyTitle: "Política de Privacidade",
+    privacyEffectiveDate: "Data de vigência: Janeiro de 2026",
     privacyText1: "No pdfcanada.ca, acreditamos que seus assuntos são seus assuntos. Como processamos arquivos localmente no seu dispositivo usando tecnologia WebAssembly, seus documentos nunca são enviados para nossos servidores.",
     privacyText2: "Não usamos cookies para rastreá-lo. Não vendemos seus dados. Nem pedimos seu email. É só você e seu PDF.",
     privacyGuaranteeTitle: "Garantia de Processamento Local",
     privacyGuaranteeText: "Não operamos servidores backend para processamento de arquivos. Tudo acontece aqui mesmo no seu navegador usando WebAssembly.",
 
+    privacyCookiesTitle: "Cookies e Tecnologias de Rastreamento",
+    privacyCookiesText: "Embora não usemos cookies para processamento de arquivos, serviços de terceiros em nosso site podem usar cookies e tecnologias de rastreamento semelhantes. Isso inclui parceiros de publicidade que ajudam a manter nosso serviço gratuito.",
+
+    privacyThirdPartyTitle: "Publicidade de Terceiros",
+    privacyThirdPartyText1: "Usamos o Google AdSense para exibir anúncios em nosso site. O Google, como fornecedor terceiro, usa cookies para veicular anúncios com base em suas visitas anteriores ao nosso site e a outros sites.",
+    privacyThirdPartyText2: "O uso de cookies de publicidade pelo Google permite que o Google e seus parceiros veiculem anúncios para você com base em sua visita ao nosso site e/ou a outros sites na Internet.",
+    privacyThirdPartyText3: "Você pode desativar a publicidade personalizada visitando as Configurações de Anúncios do Google em https://www.google.com/settings/ads. Alternativamente, você pode desativar cookies de terceiros visitando a página de opt-out da Network Advertising Initiative em https://optout.networkadvertising.org.",
+
+    privacyDataCollectionTitle: "Informações que Coletamos",
+    privacyDataCollectionText: "Coletamos informações mínimas necessárias para fornecer nosso serviço: análises básicas de uso (visualizações de página, localização geral por país) e qualquer informação que você forneça voluntariamente ao nos contatar. NÃO coletamos nem armazenamos seus arquivos enviados—todo o processamento acontece localmente no seu navegador.",
+
+    privacyYourRightsTitle: "Seus Direitos de Privacidade (LGPD/GDPR/CCPA)",
+    privacyYourRightsText: "Dependendo da sua localização, você pode ter o direito de: acessar os dados pessoais que mantemos sobre você, solicitar correção de dados imprecisos, solicitar exclusão de seus dados, recusar publicidade personalizada e apresentar reclamação a uma autoridade supervisora. Como processamos arquivos localmente e coletamos dados mínimos, a maioria das solicitações pode ser atendida simplesmente limpando o cache do navegador.",
+
+    privacyChildrenTitle: "Privacidade de Crianças",
+    privacyChildrenText: "Nosso serviço não é direcionado a crianças menores de 13 anos. Não coletamos intencionalmente informações pessoais de crianças menores de 13 anos.",
+
+    privacyContactTitle: "Entre em Contato",
+    privacyContactText: "Se você tiver dúvidas sobre esta Política de Privacidade ou desejar exercer seus direitos, entre em contato conosco em: privacy@pdfcanada.ca",
+
+    privacyChangesTitle: "Alterações nesta Política",
+    privacyChangesText: "Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre quaisquer alterações publicando a nova Política nesta página e atualizando a 'Data de vigência' acima.",
+
     termsTitle: "Termos de Serviço",
+    termsEffectiveDate: "Data de vigência: Janeiro de 2026",
     termsText1: "Ao usar este serviço, você concorda em ser gentil.",
     termsText2: "Por favor, não use nossas ferramentas para coisas ilegais. Isso não é legal.",
     termsText3: "Fornecemos este serviço 'como está'. Se quebrar, sentimos muito, mas não podemos ser responsabilizados por dados perdidos. Sempre faça backup!",
+    termsText4: "Este site pode exibir anúncios veiculados pelo Google AdSense para ajudar a manter o serviço. Esses anúncios são gerenciados pelo Google e podem usar cookies para personalizar o conteúdo com base na sua atividade de navegação. Ao usar este site, você reconhece e aceita o uso de publicidade.",
+
+    termsAcceptableUseTitle: "Uso Aceitável",
+    termsAcceptableUseText: "Você concorda em usar nossas ferramentas apenas para fins legais. Você não pode usar nosso serviço para processar documentos contendo conteúdo ilegal, malware ou material que infrinja os direitos de propriedade intelectual de terceiros.",
+
+    termsIntellectualPropertyTitle: "Propriedade Intelectual",
+    termsIntellectualPropertyText: "O serviço pdfcanada.ca, incluindo seu design, recursos e conteúdo (excluindo documentos enviados pelos usuários), é de nossa propriedade. Seus documentos permanecem sua propriedade—nunca acessamos, armazenamos ou reivindicamos propriedade de seus arquivos.",
+
+    termsDisclaimerTitle: "Isenção de Garantias",
+    termsDisclaimerText: "Nosso serviço é fornecido 'como está' sem garantias de qualquer tipo. Não garantimos serviço ininterrupto, operação sem erros ou resultados específicos. Use nossas ferramentas a seu critério.",
+
+    termsLiabilityTitle: "Limitação de Responsabilidade",
+    termsLiabilityText: "Na máxima extensão permitida por lei, não seremos responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes do uso de nosso serviço.",
+
+    termsModificationsTitle: "Modificações dos Termos",
+    termsModificationsText: "Reservamo-nos o direito de modificar estes Termos a qualquer momento. O uso contínuo do serviço após as alterações constitui aceitação dos Termos modificados.",
+
+    termsGoverningLawTitle: "Lei Aplicável",
+    termsGoverningLawText: "Estes Termos são regidos pelas leis de Ontário, Canadá. Quaisquer disputas serão resolvidas nos tribunais de Ontário.",
 
     sorryTitle: "Nossa Política Oficial de Desculpas",
     sorryText1: "No caso improvável de algo dar errado:",
