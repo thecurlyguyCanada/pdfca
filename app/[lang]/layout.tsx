@@ -187,6 +187,13 @@ export default async function RootLayout({
                 {/* RSS and JSON Feed autodiscovery */}
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />
+
+                {/* Google AdSense */}
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6957094173303840"
+                    crossOrigin="anonymous"
+                />
             </head>
             <body className={`${inter.className} antialiased`} suppressHydrationWarning>
                 <ErrorBoundary>
