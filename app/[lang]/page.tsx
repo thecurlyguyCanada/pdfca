@@ -84,7 +84,10 @@ export async function generateMetadata({
             'PDF tools Ontario',
             'PDF tools Toronto',
             'Canadian PDF editor',
-            'privacy PDF tools'
+            'privacy PDF tools',
+            'local PDF processing',
+            'offline PDF tools',
+            'browser-based PDF editor'
         ];
     };
 

@@ -5,6 +5,7 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { constructMetadata } from '@/lib/metadata';
+import { SEO } from '@/components/SEO';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -18,17 +19,17 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'À propos de nous' : (lang === 'pt' ? 'Sobre Nós' : 'About Us'),
+        title: lang === 'fr' ? 'À propos de pdfcanada.ca - Outils PDF Locaux Gratuits et Sécurisés' : (lang === 'pt' ? 'Sobre pdfcanada.ca - Ferramentas PDF Locais Gratuitas e Seguras' : 'About pdfcanada.ca - Free & Secure Local PDF Tools'),
         description: lang === 'fr'
-            ? 'En savoir plus sur pdfcanada.ca, notre mission et notre engagement à fournir des outils PDF gratuits, sécurisés et locaux.'
+            ? 'Découvrez pdfcanada.ca : Outils PDF 100% gratuits et privés. Vos fichiers sont traités localement sur votre appareil. Aucune inscription, aucun téléchargement requis.'
             : (lang === 'pt'
-                ? 'Saiba mais sobre pdfcanada.ca, nossa missão e nosso compromisso em fornecer ferramentas PDF gratuitas, seguras e locais.'
-                : 'Learn more about pdfcanada.ca, our mission, and our commitment to providing free, secure, and local-first PDF tools.'),
+                ? 'Conheça o pdfcanada.ca: Ferramentas PDF 100% gratuitas e privadas. Seus arquivos são processados localmente no seu dispositivo. Sem cadastro, sem upload.'
+                : 'Learn about pdfcanada.ca: 100% free and private PDF tools. Your files are processed locally on your device. No sign-up, no server uploads required.'),
         path: '/about',
         lang,
         keywords: lang === 'fr'
-            ? ['à propos', 'mission', 'sécurité PDF']
-            : (lang === 'pt' ? ['sobre nós', 'missão', 'ferramentas PDF seguras'] : ['about us', 'mission', 'secure PDF tools'])
+            ? ['à propos', 'mission', 'sécurité PDF', 'outils locaux', 'confidentialité']
+            : (lang === 'pt' ? ['sobre nós', 'missão', 'ferramentas PDF seguras', 'privacidade'] : ['about us', 'mission', 'secure PDF tools', 'local PDF processing', 'privacy first'])
     });
 }
 
@@ -42,6 +43,16 @@ export default async function AboutRoute({
 
     return (
         <>
+            <SEO
+                title={lang === 'fr' ? 'À propos de nous' : (lang === 'pt' ? 'Sobre Nós' : 'About Us')}
+                description={lang === 'fr' ? 'En savoir plus sur pdfcanada.ca' : (lang === 'pt' ? 'Saiba mais sobre pdfcanada.ca' : 'Learn more about pdfcanada.ca')}
+                lang={currentLang}
+                canonicalPath="/about"
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'À propos' : (lang === 'pt' ? 'Sobre' : 'About'), path: `/${lang}/about` }
+                ]}
+            />
             <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />

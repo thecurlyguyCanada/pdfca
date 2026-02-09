@@ -184,6 +184,10 @@ export default async function RootLayout({
                 {/* Bing SEO: Content language declaration */}
                 <meta httpEquiv="content-language" content={lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA')} />
 
+                {/* Search Engine Verification */}
+                <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+                <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+
                 {/* RSS and JSON Feed autodiscovery */}
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />

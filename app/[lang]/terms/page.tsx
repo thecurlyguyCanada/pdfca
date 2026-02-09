@@ -5,6 +5,7 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { constructMetadata } from '@/lib/metadata';
+import { SEO } from '@/components/SEO';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -18,14 +19,15 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? "Conditions d'utilisation" : (lang === 'pt' ? 'Termos de Serviço' : 'Terms of Service'),
+        title: lang === 'fr' ? "Conditions d'utilisation - pdfcanada.ca | Mentions Légales" : (lang === 'pt' ? 'Termos de Serviço - pdfcanada.ca | Aviso Legal' : 'Terms of Service - pdfcanada.ca | Usage Rights & Legal'),
         description: lang === 'fr'
-            ? "Consultez nos conditions d'utilisation et les modalités de service pour les outils pdfcanada.ca."
+            ? "Consultez nos conditions d'utilisation. En utilisant pdfcanada.ca, vous acceptez notre politique de traitement local et de sécurité."
             : (lang === 'pt'
-                ? 'Leia nossos termos de serviço e condições de uso das ferramentas pdfcanada.ca.'
-                : 'Read our terms of service and usage conditions for pdfcanada.ca tools.'),
+                ? 'Leia nossos termos de serviço. Ao usar o pdfcanada.ca, você concorda com nossa política de processamento local e segurança.'
+                : 'Read our terms of service. By using pdfcanada.ca, you agree to our local-first processing policy and security standards.'),
         path: '/terms',
-        lang
+        lang,
+        keywords: lang === 'fr' ? ['conditions', 'légal', 'utilisation'] : (lang === 'pt' ? ['termos', 'legal', 'uso'] : ['terms', 'legal', 'usage rights', 'policies'])
     });
 }
 
@@ -39,6 +41,16 @@ export default async function TermsRoute({
 
     return (
         <>
+            <SEO
+                title={lang === 'fr' ? "Conditions d'utilisation" : (lang === 'pt' ? 'Termos de Serviço' : 'Terms of Service')}
+                description={lang === 'fr' ? "Conditions d'utilisation de pdfcanada.ca" : (lang === 'pt' ? 'Termos de Serviço do pdfcanada.ca' : 'pdfcanada.ca Terms of Service')}
+                lang={currentLang}
+                canonicalPath="/terms"
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Conditions' : (lang === 'pt' ? 'Termos' : 'Terms'), path: `/${lang}/terms` }
+                ]}
+            />
             <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />

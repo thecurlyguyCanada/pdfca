@@ -19,18 +19,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.DELETE,
     title: {
       en: 'Delete PDF Pages',
-      fr: 'Supprimer Pages PDF',
-      pt: 'Apagar Páginas PDF'
+      fr: 'Supprimer Pages PDF - Gratuit et Sécurisé',
+      pt: 'Apagar Páginas PDF - Grátis e Seguro'
     },
     description: {
-      en: 'Easily delete unwanted pages from your PDF files. Select multiple pages and remove them instantly. 100% free and secure - all processing happens in your browser.',
-      fr: 'Supprimez facilement les pages indésirables de vos fichiers PDF. Sélectionnez plusieurs pages et supprimez-les instantanément. 100% gratuit et sécurisé.',
-      pt: 'Apague facilmente páginas indesejadas dos seus arquivos PDF. Selecione páginas e remova-as instantaneamente. 100% grátis e seguro.'
+      en: 'Remove unwanted pages from PDF files securely. Processing happens locally in your browser - your files never leave your device. 100% free with no limits.',
+      fr: 'Supprimez des pages de vos fichiers PDF en toute sécurité. Le traitement se fait localement dans votre navigateur. 100% gratuit, sans inscription.',
+      pt: 'Remova páginas indesejadas de arquivos PDF com segurança. O processamento acontece localmente no seu navegador. 100% grátis, sem limites.'
     },
     keywords: {
-      en: ['delete PDF pages', 'remove PDF pages', 'PDF page remover'],
-      fr: ['supprimer pages PDF', 'retirer pages PDF', 'suppresseur pages PDF'],
-      pt: ['apagar páginas pdf', 'remover páginas pdf', 'excluir páginas pdf']
+      en: [
+        'delete PDF pages', 'remove PDF pages', 'PDF page remover',
+        'how to remove pages from pdf', 'delete pages from pdf online free',
+        'remove page from pdf free', 'pdf page deleter', 'delete pdf page'
+      ],
+      fr: [
+        'supprimer pages PDF', 'retirer pages PDF', 'suppresseur pages PDF',
+        'comment supprimer des pages d\'un pdf', 'enlever page pdf',
+        'effacer pages pdf', 'supprimer page pdf en ligne gratuit'
+      ],
+      pt: [
+        'apagar páginas pdf', 'remover páginas pdf', 'excluir páginas pdf',
+        'como apagar paginas do pdf', 'remover folha do pdf',
+        'excluir folhas pdf', 'tirar paginas do pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -40,18 +52,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.ROTATE,
     title: {
       en: 'Rotate PDF',
-      fr: 'Pivoter PDF',
-      pt: 'Girar PDF'
+      fr: 'Pivoter PDF - Rotation Permanente Gratuite',
+      pt: 'Girar PDF - Rotação Permanente Grátis'
     },
     description: {
-      en: 'Rotate PDF pages clockwise or counterclockwise. Fix page orientation instantly. Free, fast, and secure - your files never leave your device.',
-      fr: 'Faites pivoter les pages PDF dans le sens horaire ou antihoraire. Corrigez l\'orientation instantanément. Gratuit, rapide et sécurisé.',
-      pt: 'Gire páginas PDF no sentido horário ou anti-horário. Corrija a orientação instantaneamente. Grátis, rápido e seguro.'
+      en: 'Rotate PDF pages permanently. Fix upside-down PDFs instantly. Free, secure tool that works offline in your browser. No file size limits.',
+      fr: 'Faites pivoter vos PDF de façon permanente. Corrigez l\'orientation des pages instantanément. Outil gratuit et sécurisé fonctionnant hors ligne.',
+      pt: 'Gire páginas de PDF permanentemente. Corrija a orientação instantaneamente. Ferramenta grátis e segura que funciona offline.'
     },
     keywords: {
-      en: ['rotate PDF', 'PDF rotation', 'flip PDF pages'],
-      fr: ['pivoter PDF', 'rotation PDF', 'tourner pages PDF'],
-      pt: ['girar pdf', 'rotação pdf', 'virar páginas pdf']
+      en: [
+        'rotate PDF', 'PDF rotation', 'flip PDF pages',
+        'rotate pdf and save', 'rotate pdf 90 degrees',
+        'turn pdf pages', 'fix upside down pdf'
+      ],
+      fr: [
+        'pivoter PDF', 'rotation PDF', 'tourner pages PDF',
+        'faire pivoter un pdf', 'tourner pdf',
+        'enregistrer pdf rotation', 'rotation pdf en ligne'
+      ],
+      pt: [
+        'girar pdf', 'rotação pdf', 'virar páginas pdf',
+        'como girar pdf', 'rodar pdf', 'rotacionar pdf',
+        'girar pdf e salvar'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -61,31 +85,31 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.COMPRESS,
     title: {
       en: 'Compress PDF',
-      fr: 'Compresser PDF',
-      pt: 'Comprimir PDF'
+      fr: 'Compresser PDF - Réduire la taille PDF',
+      pt: 'Comprimir PDF - Reduzir Tamanho PDF'
     },
     description: {
-      en: 'Reduce PDF file size while maintaining quality. Choose from good, balanced, or extreme compression. Free, secure, and fast compression in your browser.',
-      fr: 'Réduisez la taille des fichiers PDF tout en maintenant la qualité. Choisissez entre compression légère, équilibrée ou extrême. Gratuit et sécurisé.',
-      pt: 'Reduza o tamanho do arquivo PDF mantendo a qualidade. Escolha compressão leve, equilibrada ou extrema. Grátis e seguro.'
+      en: 'Compress PDF files to reduce file size without losing quality. Local processing ensures your documents stay private. Best free PDF compressor.',
+      fr: 'Compressez vos fichiers PDF pour réduire leur taille sans perdre en qualité. Le traitement local garantit la confidentialité. Meilleur compresseur PDF gratuit.',
+      pt: 'Comprima arquivos PDF para reduzir o tamanho sem perder qualidade. Processamento local garante privacidade. Melhor compressor de PDF grátis.'
     },
     keywords: {
-      en: ['compress PDF', 'reduce PDF size', 'PDF compressor', 'convert pdf smaller'],
+      en: [
+        'compress PDF', 'reduce PDF size', 'PDF compressor', 'convert pdf smaller',
+        'shrink pdf file', 'compress pdf online free', 'reduce pdf file size',
+        'pdf optimizer', 'make pdf smaller'
+      ],
       fr: [
-        'compresser PDF',
-        'réduire taille PDF',
-        'compresseur PDF',
-        'convert pdf smaller',
-        'compresser pdf gratuit',
-        'réduire pdf en ligne',
-        'diminuer taille pdf'
+        'compresser PDF', 'réduire taille PDF', 'compresseur PDF',
+        'convert pdf smaller', 'compresser pdf gratuit',
+        'réduire pdf en ligne', 'diminuer taille pdf',
+        'réduire poids pdf', 'alléger pdf', 'compresser fichier pdf'
       ],
       pt: [
-        'comprimir pdf',
-        'reduzir tamanho pdf',
-        'compressor pdf',
-        'diminuir pdf',
-        'comprimir pdf online'
+        'comprimir pdf', 'reduzir tamanho pdf', 'compressor pdf',
+        'diminuir pdf', 'comprimir pdf online',
+        'diminuir tamanho arquivo pdf', 'compactar pdf',
+        'reduzir peso pdf'
       ]
     },
     accept: '.pdf,application/pdf',
@@ -101,18 +125,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.MERGE,
     title: {
       en: 'Merge PDF',
-      fr: 'Fusionner PDF',
-      pt: 'Juntar PDF'
+      fr: 'Fusionner PDF - Combiner des fichiers PDF',
+      pt: 'Juntar PDF - Combinar Arquivos PDF'
     },
     description: {
-      en: 'Combine multiple PDF files into one document. Drag and drop to reorder. Free, secure PDF merging - all processing happens locally.',
-      fr: 'Combinez plusieurs fichiers PDF en un seul document. Glissez-déposez pour réorganiser. Fusion PDF gratuite et sécurisée.',
-      pt: 'Combine vários arquivos PDF em um único documento. Arraste e solte para reordenar. Fusão de PDF grátis e segura.'
+      en: 'Combine multiple PDFs into one document securely. Reorder pages with drag & drop. No uploads required - 100% local PDF merger.',
+      fr: 'Combinez plusieurs PDF en un seul document en toute sécurité. Réorganisez les pages par glisser-déposer. Aucun téléchargement requis - fusion 100% locale.',
+      pt: 'Combine vários PDFs em um único documento segurança. Reordene páginas arrastando e soltando. Sem upload obrigatório - juntar PDF 100% local.'
     },
     keywords: {
-      en: ['merge PDF', 'combine PDF', 'join PDF files', 'murg pdf'],
-      fr: ['fusionner PDF', 'combiner PDF', 'joindre fichiers PDF'],
-      pt: ['juntar pdf', 'combinar pdf', 'unir pdf', 'mesclar pdf']
+      en: [
+        'merge PDF', 'combine PDF', 'join PDF files', 'murg pdf',
+        'merge pdf files free', 'combine pdf files',
+        'pdf merger online', 'join pdfs together'
+      ],
+      fr: [
+        'fusionner PDF', 'combiner PDF', 'joindre fichiers PDF',
+        'assembler pdf', 'regrouper pdf', 'fusionner plusieurs pdf',
+        'coller pdf', 'mettre ensemble pdf'
+      ],
+      pt: [
+        'juntar pdf', 'combinar pdf', 'unir pdf', 'mesclar pdf',
+        'agrupar pdf', 'juntar arquivos pdf', 'unificar pdf'
+      ]
     },
     accept: '.pdf,application/pdf',
     featureList: {
@@ -127,18 +162,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.SPLIT,
     title: {
       en: 'Split PDF',
-      fr: 'Diviser PDF',
-      pt: 'Dividir PDF'
+      fr: 'Diviser PDF - Extraire des Pages',
+      pt: 'Dividir PDF - Extrair Páginas'
     },
     description: {
-      en: 'Split PDF into separate files by page range. Extract specific pages or split into individual pages. Free and secure.',
-      fr: 'Divisez un PDF en fichiers séparés par plage de pages. Extrayez des pages spécifiques. Gratuit et sécurisé.',
-      pt: 'Divida PDF em arquivos separados por intervalo de páginas. Extraia páginas específicas. Grátis e seguro.'
+      en: 'Split a PDF file into multiple documents or extract specific pages. Fast, free, and secure - files are processed on your device.',
+      fr: 'Divisez un fichier PDF en plusieurs documents ou extrayez des pages spécifiques. Rapide, gratuit et sécurisé - fichiers traités sur votre appareil.',
+      pt: 'Divida um arquivo PDF em vários documentos ou extraia páginas específicas. Rápido, grátis e seguro - arquivos processados no seu dispositivo.'
     },
     keywords: {
-      en: ['split PDF', 'divide PDF', 'separate PDF pages', 'pdf to pdf split'],
-      fr: ['diviser PDF', 'séparer PDF', 'extraire pages PDF'],
-      pt: ['dividir pdf', 'separar pdf', 'extrair páginas pdf']
+      en: [
+        'split PDF', 'divide PDF', 'separate PDF pages', 'pdf to pdf split',
+        'split pdf pages', 'extract pages from pdf',
+        'cut pdf in half', 'separate pdf files'
+      ],
+      fr: [
+        'diviser PDF', 'séparer PDF', 'extraire pages PDF',
+        'découper pdf', 'fractionner pdf', 'couper pdf',
+        'scinder pdf', 'séparer les pages d\'un pdf'
+      ],
+      pt: [
+        'dividir pdf', 'separar pdf', 'extrair páginas pdf',
+        'cortar pdf', 'facionar pdf', 'separar folhas pdf',
+        'quebrar pdf em partes'
+      ]
     },
     accept: '.pdf,application/pdf',
     featureList: {
@@ -153,18 +200,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.EXTRACT,
     title: {
       en: 'Extract PDF Pages',
-      fr: 'Extraire Pages PDF',
-      pt: 'Extrair Páginas PDF'
+      fr: 'Extraire Pages PDF - Outil Gratuit',
+      pt: 'Extrair Páginas PDF - Ferramenta Grátis'
     },
     description: {
-      en: 'Extract specific pages from PDF documents. Create a new PDF with selected pages. Free, fast, and secure extraction.',
-      fr: 'Extrayez des pages spécifiques de documents PDF. Créez un nouveau PDF avec les pages sélectionnées. Gratuit et sécurisé.',
-      pt: 'Extraia páginas específicas de documentos PDF. Crie um novo PDF com as páginas selecionadas. Extração grátis e segura.'
+      en: 'Extract specific pages from PDF documents. functionality Create a new PDF with just the pages you need. Free, fast, and secure extraction.',
+      fr: 'Extrayez des pages spécifiques de documents PDF. Créez un nouveau PDF avec seulement les pages dont vous avez besoin. Gratuit et sécurisé.',
+      pt: 'Extraia páginas específicas de documentos PDF. Crie um novo PDF apenas com as páginas que você precisa. Extração grátis e segura.'
     },
     keywords: {
-      en: ['extract PDF pages', 'PDF page extractor', 'pull PDF pages'],
-      fr: ['extraire pages PDF', 'extracteur pages PDF', 'tirer pages PDF'],
-      pt: ['extrair páginas pdf', 'extrator páginas pdf', 'retirar páginas pdf']
+      en: [
+        'extract PDF pages', 'PDF page extractor', 'pull PDF pages',
+        'save one page of pdf', 'extract pages from pdf online',
+        'download specific pages from pdf'
+      ],
+      fr: [
+        'extraire pages PDF', 'extracteur pages PDF', 'tirer pages PDF',
+        'enregistrer une page pdf', 'extraire une page d\'un pdf',
+        'récupérer page pdf'
+      ],
+      pt: [
+        'extrair páginas pdf', 'extrator páginas pdf', 'retirar páginas pdf',
+        'salvar uma pagina do pdf', 'tirar pagina do pdf',
+        'separar paginas pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -174,18 +233,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.CROP,
     title: {
       en: 'Crop PDF',
-      fr: 'Recadrer PDF',
-      pt: 'Cortar PDF'
+      fr: 'Recadrer PDF - Rogner les Marges',
+      pt: 'Cortar PDF - Remover Margens'
     },
     description: {
-      en: 'Crop PDF pages to remove unwanted margins and content. Precise cropping tools. Free, secure, and browser-based.',
-      fr: 'Recadrez les pages PDF pour supprimer les marges indésirables. Outils de recadrage précis. Gratuit et sécurisé.',
-      pt: 'Corte páginas PDF para remover margens indesejadas. Ferramentas de corte precisas. Grátis e seguro.'
+      en: 'Crop PDF pages to remove unwanted margins and white space. Precise cropping tool for PDF documents. Free, secure, and browser-based.',
+      fr: 'Recadrez les pages PDF pour supprimer les marges indésirables et les espaces blancs. Outil de recadrage précis. Gratuit et sécurisé.',
+      pt: 'Corte páginas PDF para remover margens indesejadas e espaços em branco. Ferramenta de corte precisa. Grátis e seguro.'
     },
     keywords: {
-      en: ['crop PDF', 'trim PDF', 'cut PDF margins'],
-      fr: ['recadrer PDF', 'rogner PDF', 'couper marges PDF'],
-      pt: ['cortar pdf', 'recortar pdf', 'aparar pdf']
+      en: [
+        'crop PDF', 'trim PDF', 'cut PDF margins',
+        'remove white space from pdf', 'crop pdf pages online',
+        'change pdf page size'
+      ],
+      fr: [
+        'recadrer PDF', 'rogner PDF', 'couper marges PDF',
+        'enlever marges pdf', 'recadrer fichier pdf',
+        'rogner page pdf'
+      ],
+      pt: [
+        'cortar pdf', 'recortar pdf', 'aparar pdf',
+        'remover margens pdf', 'cortar arquivo pdf',
+        'diminuir margem pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -195,30 +266,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.HEIC_TO_PDF,
     title: {
       en: 'HEIC to PDF',
-      fr: 'HEIC vers PDF',
-      pt: 'HEIC para PDF'
+      fr: 'HEIC vers PDF - Photos iPhone en PDF',
+      pt: 'HEIC para PDF - Fotos iPhone em PDF'
     },
     description: {
-      en: 'Convert HEIC (iPhone photos) to PDF format. Fast, free, and secure conversion in your browser. No uploads required.',
-      fr: 'Convertissez HEIC (photos iPhone) en format PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur.',
-      pt: 'Converta fotos HEIC (iPhone) para formato PDF. Conversão rápida, grátis e segura no seu navegador. Nenhum upload necessário.'
+      en: 'Convert HEIC (iPhone photos) to PDF format instantly. Fast, free, and secure conversion in your browser. No uploads required - privacy first.',
+      fr: 'Convertissez HEIC (photos iPhone) en format PDF instantanément. Conversion rapide, gratuite et sécurisée. Confidentialité totale.',
+      pt: 'Converta fotos HEIC (iPhone) para formato PDF instantaneamente. Conversão rápida, grátis e segura no seu navegador. Privacidade total.'
     },
     keywords: {
-      en: ['HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF', 'convert heic to pdf'],
+      en: [
+        'HEIC to PDF', 'convert HEIC', 'iPhone photos to PDF', 'convert heic to pdf',
+        'heic file to pdf', 'convert iphone photo to pdf', 'apple image to pdf'
+      ],
       fr: [
-        'convertir heic en pdf',
-        'HEIC vers PDF',
-        'convertir HEIC',
-        'photos iPhone en PDF',
-        'heic en pdf gratuit',
-        'convertir photo heic en pdf',
-        'heic vers pdf en ligne'
+        'convertir heic en pdf', 'HEIC vers PDF', 'convertir HEIC',
+        'photos iPhone en PDF', 'heic en pdf gratuit',
+        'convertir photo heic en pdf', 'heic vers pdf en ligne',
+        'image iphone en pdf'
       ],
       pt: [
-        'converter heic para pdf',
-        'heic para pdf',
-        'fotos iphone para pdf',
-        'heic em pdf online'
+        'converter heic para pdf', 'heic para pdf', 'fotos iphone para pdf',
+        'heic em pdf online', 'converter foto iphone pdf',
+        'imagem apple para pdf'
       ]
     },
     accept: '.heic,.heif,image/heic,image/heif'
@@ -229,31 +299,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.EPUB_TO_PDF,
     title: {
       en: 'EPUB to PDF',
-      fr: 'EPUB vers PDF',
-      pt: 'EPUB para PDF'
+      fr: 'EPUB vers PDF - Convertir eBook en PDF',
+      pt: 'EPUB para PDF - Converter eBook em PDF'
     },
     description: {
-      en: 'Convert EPUB ebooks to PDF format. Preserve formatting and layout. Free, secure conversion - no file uploads.',
-      fr: 'Convertissez les ebooks EPUB en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
-      pt: 'Converta ebooks EPUB para formato PDF. Preserve a formatação e o layout. Conversão grátis e segura sem upload de arquivos.'
+      en: 'Convert EPUB ebooks to PDF format instantly. Preserve formatting and layout for printing or reading. Free, secure conversion - no file uploads.',
+      fr: 'Convertissez les ebooks EPUB en format PDF instantanément. Préservez la mise en page pour l\'impression ou la lecture. Gratuit et sécurisé - sans téléchargement.',
+      pt: 'Converta ebooks EPUB para formato PDF instantaneamente. Preserve a formatação e layout para impressão ou leitura. Conversão grátis e segura - sem uploads.'
     },
     keywords: {
-      en: ['EPUB to PDF', 'convert ebook', 'EPUB converter', 'convert epub to pdf'],
+      en: [
+        'EPUB to PDF', 'convert ebook', 'EPUB converter', 'convert epub to pdf',
+        'ebook to pdf converter', 'turn epub into pdf', 'print epub'
+      ],
       fr: [
-        'convertir epub en pdf',
-        'convert epub to pdf',
-        'EPUB vers PDF',
-        'convertir ebook',
-        'convertisseur EPUB',
-        'epub en pdf gratuit',
-        'convertir fichier epub en pdf',
-        'epub vers pdf en ligne'
+        'convertir epub en pdf', 'convert epub to pdf', 'EPUB vers PDF',
+        'convertir ebook', 'convertisseur EPUB', 'epub en pdf gratuit',
+        'convertir fichier epub en pdf', 'epub vers pdf en ligne',
+        'imprimer epub'
       ],
       pt: [
-        'converter epub para pdf',
-        'epub para pdf',
-        'converter ebook para pdf',
-        'epub em pdf online'
+        'converter epub para pdf', 'epub para pdf', 'converter ebook para pdf',
+        'epub em pdf online', 'transformar epub em pdf',
+        'imprimir arquivo epub'
       ]
     },
     accept: '.epub,application/epub+zip'
@@ -285,18 +353,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_TO_KINDLE,
     title: {
       en: 'PDF to Kindle',
-      fr: 'PDF vers Kindle',
-      pt: 'PDF para Kindle'
+      fr: 'PDF vers Kindle - Optimiser pour Liseuse',
+      pt: 'PDF para Kindle - Otimizar para Leitor'
     },
     description: {
-      en: 'Optimize PDFs for Kindle devices with enhanced EPUB conversion. Supports pop-up footnotes, reflowable text, and optimized margins. Private, local-first processing.',
-      fr: 'Optimisez les PDF pour les appareils Kindle avec une conversion EPUB améliorée. Supporte les notes de bas de page surgissantes et le texte fluide. Traitement privé et local.',
-      pt: 'Otimize PDFs para dispositivos Kindle com conversão EPUB aprimorada. Suporta notas de rodapé pop-up e texto fluido. Processamento privado e local.'
+      en: 'Optimize PDFs for Kindle devices. Converts PDF to enhanced EPUB/MOBI friendly formats. Smart reflow text and adjustable fonts. Private, local-first processing.',
+      fr: 'Optimisez les PDF pour les appareils Kindle. Convertit les PDF en formats compatibles liseuse. Refonte intelligente du texte et polices ajustables. Traitement privé et local.',
+      pt: 'Otimize PDFs para dispositivos Kindle. Converta PDF para formatos compatíveis com e-readers. Refluxo inteligente de texto e fontes ajustáveis. Processamento privado e local.'
     },
     keywords: {
-      en: ['PDF to Kindle', 'Kindle converter', 'PDF to ebook Kindle', 'convert PDF for Kindle'],
-      fr: ['PDF vers Kindle', 'convertisseur Kindle', 'PDF en ebook Kindle', 'convertir PDF pour Kindle'],
-      pt: ['pdf para kindle', 'converter kindle', 'pdf ebook kindle', 'converter pdf para kindle']
+      en: [
+        'PDF to Kindle', 'Kindle converter', 'PDF to ebook Kindle', 'convert PDF for Kindle',
+        'send pdf to kindle', 'read pdf on kindle', 'optimize pdf for kindle'
+      ],
+      fr: [
+        'PDF vers Kindle', 'convertisseur Kindle', 'PDF en ebook Kindle', 'convertir PDF pour Kindle',
+        'lire pdf sur kindle', 'envoyer pdf vers kindle', 'format kindle'
+      ],
+      pt: [
+        'pdf para kindle', 'converter kindle', 'pdf ebook kindle', 'converter pdf para kindle',
+        'ler pdf no kindle', 'enviar pdf para kindle', 'formato kindle'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -306,18 +383,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.MAKE_FILLABLE,
     title: {
       en: 'Make PDF Fillable',
-      fr: 'Rendre PDF Modifiable',
-      pt: 'Criar PDF Preenchível'
+      fr: 'Créer Formulaire PDF - Rendre PDF Modifiable',
+      pt: 'Criar Formulário PDF - Tornar PDF Preenchível'
     },
     description: {
-      en: 'Add fillable form fields to PDFs. Create text fields, checkboxes, and signature fields. Free, secure form creation.',
-      fr: 'Ajoutez des champs de formulaire modifiables aux PDF. Créez des champs texte, cases à cocher et signatures. Gratuit et sécurisé.',
-      pt: 'Adicione campos de formulário preenchíveis a PDFs. Crie campos de texto, caixas de seleção e assinaturas. Grátis e seguro.'
+      en: 'Convert any PDF into a fillable form. Add text fields, checkboxes, and radio buttons. Free, secure, and easy-to-use form creator.',
+      fr: 'Convertissez n\'importe quel PDF en formulaire remplissable. Ajoutez des champs texte, des cases à cocher. Créateur de formulaire gratuit, sécurisé et facile à utiliser.',
+      pt: 'Converta qualquer PDF em um formulário preenchível. Adicione campos de texto e caixas de seleção. Criador de formulários grátis, seguro e fácil de usar.'
     },
     keywords: {
-      en: ['make PDF fillable', 'PDF form creator', 'add form fields'],
-      fr: ['rendre PDF modifiable', 'créateur formulaire PDF', 'ajouter champs formulaire'],
-      pt: ['criar pdf preenchível', 'criador formulário pdf', 'adicionar campos formulário']
+      en: [
+        'make PDF fillable', 'PDF form creator', 'add form fields',
+        'create fillable pdf free', 'pdf form builder', 'edit pdf form'
+      ],
+      fr: [
+        'rendre PDF modifiable', 'créateur formulaire PDF', 'ajouter champs formulaire',
+        'créer pdf remplissable', 'faire un formulaire pdf', 'formulaire pdf interactif'
+      ],
+      pt: [
+        'criar pdf preenchível', 'criador formulário pdf', 'adicionar campos formulário',
+        'fazer pdf preenchivel', 'criar formulario pdf gratis', 'editar formulario pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -327,18 +413,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.SIGN,
     title: {
       en: 'Sign PDF',
-      fr: 'Signer PDF',
-      pt: 'Assinar PDF'
+      fr: 'Signer PDF - Signature Électronique Gratuite',
+      pt: 'Assinar PDF - Assinatura Digital Grátis'
     },
     description: {
-      en: 'Add your signature to PDF documents. Draw, type, or upload signature. Free, secure, browser-based signing.',
-      fr: 'Ajoutez votre signature aux documents PDF. Dessinez, tapez ou téléchargez votre signature. Gratuit et sécurisé.',
-      pt: 'Adicione sua assinatura a documentos PDF. Desenhe, digite ou faça upload da assinatura. Grátis e seguro no navegador.'
+      en: 'Sign PDF documents online for free. Draw, type, or upload your signature. Secure, legally binding e-signatures without registration.',
+      fr: 'Signez des documents PDF en ligne gratuitement. Dessinez, tapez ou téléchargez votre signature. Signature électronique sécurisée sans inscription.',
+      pt: 'Assine documentos PDF online gratuitamente. Desenhe, digite ou envie sua assinatura. Assinatura eletrônica segura e sem registro. (e-CNPJ/e-CPF compatible via visual signature).'
     },
     keywords: {
-      en: ['sign PDF', 'PDF signature', 'digital signature'],
-      fr: ['signer PDF', 'signature PDF', 'signature numérique'],
-      pt: ['assinar pdf', 'assinatura pdf', 'assinatura digital']
+      en: [
+        'sign PDF', 'PDF signature', 'digital signature',
+        'sign pdf online free', 'electronic signature', 'esign pdf',
+        'fill and sign pdf'
+      ],
+      fr: [
+        'signer PDF', 'signature PDF', 'signature numérique',
+        'signer pdf en ligne', 'signature électronique gratuite',
+        'parapher pdf'
+      ],
+      pt: [
+        'assinar pdf', 'assinatura pdf', 'assinatura digital',
+        'assinar pdf online', 'assinatura eletronica gratis',
+        'rubricar pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -348,18 +446,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.ORGANIZE,
     title: {
       en: 'Organize PDF Pages',
-      fr: 'Organiser Pages PDF',
-      pt: 'Organizar Páginas PDF'
+      fr: 'Organiser Pages PDF - Classer et Trier',
+      pt: 'Organizar Páginas PDF - Ordenar Arquivo'
     },
     description: {
-      en: 'Reorder PDF pages by dragging and dropping. Arrange pages in any order. Free, secure page organization.',
-      fr: 'Réorganisez les pages PDF par glisser-déposer. Arrangez les pages dans n\'importe quel ordre. Gratuit et sécurisé.',
-      pt: 'Reordene páginas PDF arrastando e soltando. Organize as páginas em qualquer ordem. Grátis e seguro.'
+      en: 'Reorder PDF pages, delete pages, or add blank pages. Drag and drop interface. Free, secure, and fully local organization.',
+      fr: 'Réorganisez les pages PDF, supprimez des pages ou ajoutez des pages blanches. Interface glisser-déposer. Organisation gratuite, sécurisée et locale.',
+      pt: 'Reordene páginas PDF, apague páginas ou adicione páginas em branco. Interface arrastar e soltar. Organização grátis, segura e totalmente local.'
     },
     keywords: {
-      en: ['organize PDF', 'reorder PDF pages', 'rearrange PDF'],
-      fr: ['organiser PDF', 'réorganiser pages PDF', 'réarranger PDF'],
-      pt: ['organizar pdf', 'reordenar páginas pdf', 'rearranjar pdf']
+      en: [
+        'organize PDF', 'reorder PDF pages', 'rearrange PDF',
+        'sort pdf pages', 'move pdf pages', 'pdf organizer free'
+      ],
+      fr: [
+        'organiser PDF', 'réorganiser pages PDF', 'réarranger PDF',
+        'trier pages pdf', 'classer pdf', 'gestionnaire de pages pdf'
+      ],
+      pt: [
+        'organizar pdf', 'reordenar páginas pdf', 'rearranjar pdf',
+        'ordenar pdf', 'mover paginas pdf', 'organizador de pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -507,18 +614,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.FLATTEN,
     title: {
       en: 'Flatten PDF',
-      fr: 'Aplatir PDF',
-      pt: 'Aplanar PDF'
+      fr: 'Aplatir PDF - Verrouiller le Contenu',
+      pt: 'Aplanar PDF - Bloquear Conteúdo'
     },
     description: {
-      en: 'Flatten PDF to make it non-editable. Remove form fields and layers. Free, secure PDF flattening.',
-      fr: 'Aplatissez le PDF pour le rendre non modifiable. Supprimez les champs de formulaire et les calques. Gratuit et sécurisé.',
-      pt: 'Aplane o PDF para torná-lo não editável. Remova campos de formulário e camadas. Aplanamento de PDF grátis e seguro.'
+      en: 'Flatten PDF layers and form fields to make document non-editable. Prevent further changes. Free, secure, and permanent locking.',
+      fr: 'Aplatissez les calques et champs de formulaire PDF pour rendre le document non modifiable. Empêchez les modifications futures. Verrouillage gratuit et sécurisé.',
+      pt: 'Aplane camadas e campos de formulário PDF para tornar o documento não editável. Impeça alterações futuras. Bloqueio grátis e seguro.'
     },
     keywords: {
-      en: ['flatten PDF', 'make PDF non-editable', 'lock PDF content'],
-      fr: ['aplatir PDF', 'rendre PDF non modifiable', 'verrouiller contenu PDF'],
-      pt: ['aplanar pdf', 'tornar pdf não editável', 'bloquear pdf']
+      en: [
+        'flatten PDF', 'make PDF non-editable', 'lock PDF content',
+        'merge pdf layers', 'prevent pdf editing', 'flat pdf'
+      ],
+      fr: [
+        'aplatir PDF', 'rendre PDF non modifiable', 'verrouiller contenu PDF',
+        'fusionner calques pdf', 'bloquer modification pdf', 'pdf plat'
+      ],
+      pt: [
+        'aplanar pdf', 'tornar pdf não editável', 'bloquear pdf',
+        'juntar camadas pdf', 'impedir edição pdf', 'pdf plano'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -528,18 +644,28 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_PAGE_REMOVER,
     title: {
       en: 'PDF Page Remover',
-      fr: 'Suppresseur Pages PDF',
-      pt: 'Removedor de Páginas PDF'
+      fr: 'Suppresseur Pages PDF - Outil Rapide',
+      pt: 'Removedor de Páginas PDF - Ferramenta Rápida'
     },
     description: {
-      en: 'Remove specific pages from PDF files. Select pages to delete. 100% Canadian privacy compliant - files never leave your device.',
-      fr: 'Supprimez des pages spécifiques des fichiers PDF. Sélectionnez les pages à supprimer. Gratuit et sécurisé.',
-      pt: 'Remova páginas específicas de arquivos PDF. Selecione páginas para apagar. 100% compatível com privacidade canadense - arquivos nunca saem do dispositivo.'
+      en: 'Quickly remove specific pages from a PDF. Select and delete pages instantly. 100% Canadian privacy compliant - local processing.',
+      fr: 'Supprimez rapidement des pages spécifiques d\'un PDF. Sélectionnez et supprimez instantanément. Conformité confidentialité canadienne 100%.',
+      pt: 'Remova rapidamente páginas específicas de um PDF. Selecione e apague instantaneamente. 100% compatível com privacidade canadense.'
     },
     keywords: {
-      en: ['remove PDF pages', 'delete PDF pages', 'PDF page remover', 'remove pages from pdf canada', 'delete pdf pages canada', 'pdf page remover canada', 'erase pdf pages'],
-      fr: ['supprimer pages PDF', 'effacer pages PDF', 'suppresseur pages PDF'],
-      pt: ['remover páginas pdf', 'apagar páginas pdf', 'removedor páginas pdf']
+      en: [
+        'remove PDF pages', 'delete PDF pages', 'PDF page remover',
+        'remove pages from pdf canada', 'delete pdf pages canada',
+        'pdf page remover canada', 'erase pdf pages'
+      ],
+      fr: [
+        'supprimer pages PDF', 'effacer pages PDF', 'suppresseur pages PDF',
+        'enlever page pdf', 'retirer pages pdf'
+      ],
+      pt: [
+        'remover páginas pdf', 'apagar páginas pdf', 'removedor páginas pdf',
+        'tirar paginas pdf', 'excluir folhas pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -612,32 +738,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.EXCEL_TO_PDF,
     title: {
       en: 'Excel to PDF',
-      fr: 'Excel vers PDF',
-      pt: 'Excel para PDF'
+      fr: 'Convertir Excel en PDF - Gratuit',
+      pt: 'Excel para PDF - Converter Planilha'
     },
     description: {
-      en: 'Convert Excel spreadsheets (XLSX) to PDF format. Preserve formatting and layout. Free, secure conversion.',
-      fr: 'Convertissez les feuilles de calcul Excel (XLSX) en format PDF. Préservez le formatage et la mise en page. Gratuit et sécurisé.',
-      pt: 'Converta planilhas Excel (XLSX) para formato PDF. Preserve a formatação e o layout. Conversão grátis e segura.'
+      en: 'Convert Excel spreadsheets (XLSX/XLS) to PDF format. Preserve formatting, tables, and sheets. Free, secure, and private conversion.',
+      fr: 'Convertissez des fichiers Excel (XLSX) en PDF tout en préservant la mise en page. Outil gratuit et sécurisé pour vos bilans et tableaux.',
+      pt: 'Converta planilhas Excel (XLSX) para PDF preservando a formatação. Ferramenta grátis e segura para seus relatórios e tabelas.'
     },
     keywords: {
-      en: ['Excel to PDF', 'XLSX to PDF', 'convert spreadsheet to PDF'],
+      en: [
+        'Excel to PDF', 'XLSX to PDF', 'convert spreadsheet to PDF',
+        'convert excel to pdf free', 'save excel as pdf',
+        'turn excel into pdf', 'xls to pdf converter'
+      ],
       fr: [
-        // High volume primary keywords
-        'convertir excel en pdf',
-        'Excel vers PDF',
-        'XLSX vers PDF',
-        'convertir feuille de calcul en PDF',
-        'excel en pdf gratuit',
-        'convertir fichier excel en pdf',
-        'excel vers pdf en ligne'
+        'convertir excel en pdf', 'excel en pdf', 'xlsx en pdf',
+        'convertir tableau excel pdf', 'transformer excel en pdf',
+        'enregistrer excel sous pdf', 'feuille excel en pdf'
       ],
       pt: [
-        'excel para pdf',
-        'converter excel em pdf',
-        'xlsx para pdf',
-        'planilha para pdf',
-        'converter excel pdf online'
+        'excel para pdf', 'converter excel em pdf', 'xlsx para pdf',
+        'planilha para pdf', 'salvar excel como pdf',
+        'transformar excel em pdf', 'converter xls para pdf'
       ]
     },
     accept: '.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
@@ -648,18 +771,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.RTF_TO_PDF,
     title: {
       en: 'RTF to PDF',
-      fr: 'RTF vers PDF',
-      pt: 'RTF para PDF'
+      fr: 'RTF vers PDF - Convertisseur Document',
+      pt: 'RTF para PDF - Converter Documento'
     },
     description: {
-      en: 'Convert RTF (Rich Text Format) documents to PDF format. Preserve text formatting, styles, and layout. Free, secure, browser-based conversion.',
-      fr: 'Convertissez les documents RTF (Rich Text Format) en format PDF. Préservez le formatage du texte, les styles et la mise en page. Gratuit et sécurisé.',
-      pt: 'Converta documentos RTF para formato PDF. Mantenha formatação de texto e estilos. Conversão grátis e segura no navegador.'
+      en: 'Convert RTF files to PDF format instantly. Maintain original text formatting and layout. Free, secure, and private conversion.',
+      fr: 'Convertissez des fichiers RTF en PDF instantanément. Conservez la mise en forme du texte. Gratuit et privé.',
+      pt: 'Converta arquivos RTF para PDF instantaneamente. Mantenha a formatação do texto original. Grátis e privado.'
     },
     keywords: {
-      en: ['RTF to PDF', 'convert RTF to PDF', 'Rich Text to PDF', 'RTF converter'],
-      fr: ['RTF vers PDF', 'convertir RTF en PDF', 'texte enrichi vers PDF', 'convertisseur RTF'],
-      pt: ['rtf para pdf', 'converter rtf', 'texto rico para pdf', 'rtf em pdf']
+      en: ['RTF to PDF', 'convert RTF to PDF', 'Rich Text to PDF', 'RTF converter', 'file rtf to pdf'],
+      fr: ['RTF vers PDF', 'convertir RTF en PDF', 'texte enrichi vers PDF', 'fichier rtf en pdf'],
+      pt: ['rtf para pdf', 'converter rtf', 'texto rico para pdf', 'arquivo rtf para pdf']
     },
     accept: '.rtf,text/rtf,application/rtf'
   },
@@ -669,18 +792,27 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.INVOICE_OCR,
     title: {
       en: 'Invoice OCR',
-      fr: 'OCR Factures',
-      pt: 'OCR de Faturas'
+      fr: 'OCR Factures - Extraction Données IA',
+      pt: 'OCR de Faturas - Extração de Dados IA'
     },
     description: {
-      en: 'Extract text, dates, and amounts from PDF invoices automatically. Export data to Excel/CSV. Private, local processing using AI.',
-      fr: 'Extrayez automatiquement le texte, les dates et les montants des factures PDF. Exportez les données vers Excel/CSV. Traitement privé et local utilisant l\'IA.',
-      pt: 'Extraia texto, datas e valores de faturas PDF automaticamente. Exporte dados para Excel/CSV. Processamento privado e local usando IA.'
+      en: 'Extract text, dates, and amounts from PDF invoices automatically. Export data to Excel/CSV. Private, local processing using AI - no cloud uploads.',
+      fr: 'Extrayez automatiquement texte, dates et montants des factures PDF. Exportez vers Excel/CSV. Traitement privé et local par IA - sans cloud.',
+      pt: 'Extraia texto, datas e valores de faturas PDF automaticamente. Exporte para Excel/CSV. Processamento privado e local usando IA - sem nuvem.'
     },
     keywords: {
-      en: ['invoice OCR', 'PDF invoice to Excel', 'extract invoice data', 'free invoice scanner'],
-      fr: ['OCR facture', 'facture PDF vers Excel', 'extraire données facture', 'scanner facture gratuit'],
-      pt: ['ocr faturas', 'fatura pdf para excel', 'extrair dados fatura', 'scanner fatura']
+      en: [
+        'invoice OCR', 'PDF invoice to Excel', 'extract invoice data',
+        'free invoice scanner', 'ai invoice processing', 'pdf data extraction'
+      ],
+      fr: [
+        'OCR facture', 'facture PDF vers Excel', 'extraire données facture',
+        'scanner facture gratuit', 'traitement facture ia', 'extraction données pdf'
+      ],
+      pt: [
+        'ocr faturas', 'fatura pdf para excel', 'extrair dados fatura',
+        'scanner fatura', 'processamento fatura ia', 'extração dados pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -732,33 +864,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_TO_EXCEL,
     title: {
       en: 'PDF to Excel',
-      fr: 'PDF vers Excel',
-      pt: 'PDF para Excel'
+      fr: 'Convertir PDF en Excel - Tableaux Editables',
+      pt: 'PDF para Excel - Tabelas Editáveis'
     },
     description: {
-      en: 'Convert PDF tables to Excel (XLSX) spreadsheets instantly. Preserve columns and formatting with local processing.',
-      fr: 'Convertissez instantanément les tableaux PDF en feuilles de calcul Excel (XLSX). Préservez les colonnes et le formatage avec un traitement local.',
-      pt: 'Converta tabelas PDF para planilhas Excel (XLSX) instantaneamente. Preserve colunas e formatação com processamento local.'
+      en: 'Convert PDF to Excel (XLSX) spreadsheets. Extract tables and data accurately. Free tool - files stay on your device.',
+      fr: 'Convertissez PDF en Excel (XLSX). Extrayez les tableaux et données avec précision. Outil gratuit - vos fichiers restent sur votre appareil.',
+      pt: 'Converta PDF para planilhas Excel (XLSX). Extraia tabelas e dados com precisão. Ferramenta grátis - arquivos ficam no seu dispositivo.'
     },
     keywords: {
-      en: ['PDF to Excel', 'PDF to XLSX', 'export PDF table to Excel'],
+      en: [
+        'PDF to Excel', 'PDF to XLSX', 'export PDF table to Excel',
+        'convert pdf to excel free', 'pdf to xls converter',
+        'extract data from pdf to excel'
+      ],
       fr: [
-        // High volume primary keywords
-        'convertir pdf en excel',
-        'convert pdf to excel',
-        'convert excel pdf to excel',
-        'PDF vers Excel',
-        'PDF vers XLSX',
-        'exporter tableau PDF vers Excel',
-        'convertir fichier pdf en excel',
-        'pdf en excel gratuit',
-        'pdf vers excel en ligne'
+        'convertir pdf en excel', 'pdf en excel', 'pdf vers xlsx',
+        'extraire tableau pdf excel', 'convertisseur pdf excel gratuit',
+        'transformer pdf en excel', 'fichier pdf en excel'
       ],
       pt: [
-        'pdf para excel',
-        'converter pdf em excel',
-        'pdf para xlsx',
-        'exportar tabela pdf excel'
+        'pdf para excel', 'converter pdf em excel', 'pdf para xlsx',
+        'transformar pdf em excel', 'extrair tabela pdf para excel',
+        'conversor pdf excel gratis'
       ]
     },
     accept: '.pdf,application/pdf'
@@ -769,18 +897,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PHISHING_DETECTOR,
     title: {
       en: 'Analyze PDF Security',
-      fr: 'Analyser Sécurité PDF',
-      pt: 'Analisar Segurança de PDF'
+      fr: 'Analyser Sécurité PDF - Détecteur Phishing',
+      pt: 'Analisar Segurança de PDF - Detector Phishing'
     },
     description: {
-      en: 'Scan PDF for phishing links, malware, and scripts. View content safely without executing malicious code. 100% local analysis.',
-      fr: 'Analysez les PDF pour détecter les liens d\'hameçonnage, les malwares et les scripts. Visualisez le contenu en toute sécurité sans exécuter de code malveillant. Analyse 100% locale.',
-      pt: 'Digitalize PDF em busca de links de phishing, malware e scripts. Visualize o conteúdo com segurança sem executar código malicioso. Análise 100% local.'
+      en: 'Scan PDF for phishing links, malware, and scripts. View content safely without executing malicious code. 100% local analysis sandbox.',
+      fr: 'Analysez les PDF pour détecter liens d\'hameçonnage, malwares et scripts. Visualisez le contenu en sécurité sans exécuter de code. Sandbox 100% locale.',
+      pt: 'Digitalize PDF em busca de links de phishing, malware e scripts. Visualize conteúdo com segurança sem executar código. Sandbox 100% local.'
     },
     keywords: {
-      en: ['analyze PDF', 'PDF security scan', 'detect phishing PDF', 'safe view PDF', 'malware scanner'],
-      fr: ['analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF', 'vue sécurisée PDF', 'scanner malware'],
-      pt: ['analisar PDF', 'varredura de segurança PDF', 'detectar phishing PDF', 'visualização segura PDF', 'scanner de malware']
+      en: [
+        'analyze PDF', 'PDF security scan', 'detect phishing PDF',
+        'safe view PDF', 'malware scanner', 'check pdf for virus',
+        'pdf link checker'
+      ],
+      fr: [
+        'analyser PDF', 'scan sécurité PDF', 'détecter hameçonnage PDF',
+        'vue sécurisée PDF', 'scanner malware', 'vérifier virus pdf',
+        'vérificateur liens pdf'
+      ],
+      pt: [
+        'analisar PDF', 'varredura de segurança PDF', 'detectar phishing PDF',
+        'visualização segura PDF', 'scanner de malware', 'verificar virus pdf',
+        'verificador links pdf'
+      ]
     },
     accept: '.pdf,application/pdf'
   },
@@ -874,18 +1014,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.ODT_TO_PDF,
     title: {
       en: 'ODT to PDF',
-      fr: 'ODT vers PDF',
-      pt: 'ODT para PDF'
+      fr: 'ODT vers PDF - LibreOffice en PDF',
+      pt: 'ODT para PDF - LibreOffice em PDF'
     },
     description: {
-      en: 'Convert OpenOffice/LibreOffice (ODT) documents to PDF format. Preserve formatting. Free, secure conversion.',
-      fr: 'Convertissez les documents OpenOffice/LibreOffice (ODT) en format PDF. Préservez le formatage. Gratuit et sécurisé.',
-      pt: 'Converta documentos OpenOffice/LibreOffice (ODT) para formato PDF. Preserve a formatação. Conversão grátis e segura.'
+      en: 'Convert ODT (OpenOffice/LibreOffice) files to PDF. Ensure your documents are readable everywhere. Free and secure.',
+      fr: 'Convertissez des fichiers ODT (OpenOffice) en PDF. Assurez la lisibilité de vos documents partout. Gratuit et sécurisé.',
+      pt: 'Converta arquivos ODT (OpenOffice) para PDF. Garanta que seus documentos sejam legíveis em qualquer lugar. Grátis e seguro.'
     },
     keywords: {
-      en: ['ODT to PDF', 'OpenOffice to PDF', 'LibreOffice to PDF', 'convert ODT'],
-      fr: ['ODT vers PDF', 'OpenOffice vers PDF', 'LibreOffice vers PDF', 'convertir ODT'],
-      pt: ['odt para pdf', 'openoffice para pdf', 'libreoffice para pdf', 'converter odt']
+      en: ['ODT to PDF', 'OpenOffice to PDF', 'LibreOffice to PDF', 'convert ODT', 'odt file to pdf'],
+      fr: ['ODT vers PDF', 'OpenOffice vers PDF', 'LibreOffice vers PDF', 'convertir ODT', 'fichier odt en pdf'],
+      pt: ['odt para pdf', 'openoffice para pdf', 'libreoffice para pdf', 'converter odt', 'arquivo odt para pdf']
     },
     accept: '.odt,application/vnd.oasis.opendocument.text'
   },
@@ -896,37 +1036,30 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.JPG_TO_PDF,
     title: {
       en: 'JPG to PDF',
-      fr: 'Convertir JPG en PDF Gratuitement',
-      pt: 'JPG para PDF'
+      fr: 'Convertir JPG en PDF - Gratuit et Rapide',
+      pt: 'JPG para PDF - Converter Imagem em PDF'
     },
     description: {
-      en: 'Convert JPG/JPEG images to PDF documents. Fast, free, and secure conversion in your browser. No uploads required.',
-      fr: 'Convertissez vos images JPG/JPEG en documents PDF. Conversion rapide, gratuite et sécurisée dans votre navigateur. Aucun téléchargement requis.',
-      pt: 'Converta imagens JPG/JPEG para documentos PDF. Conversão rápida, grátis e segura no seu navegador. Nenhum upload necessário.'
+      en: 'Convert JPG images to PDF format instantly. Combine multiple JPGs into one PDF. Free, secure, and no file limits - local processing.',
+      fr: 'Convertissez des images JPG en format PDF instantanément. Combinez plusieurs JPG en un seul PDF. Gratuit, sécurisé et sans limite.',
+      pt: 'Converta imagens JPG para formato PDF instantaneamente. Combine vários JPGs em um único PDF. Grátis, seguro e sem limites.'
     },
     keywords: {
-      en: ['JPG to PDF', 'JPEG to PDF', 'convert JPG to PDF', 'image to PDF converter'],
+      en: [
+        'JPG to PDF', 'JPEG to PDF', 'convert JPG to PDF', 'image to PDF converter',
+        'jpg to pdf converter free', 'combine jpg to pdf', 'photos to pdf',
+        'turn picture into pdf'
+      ],
       fr: [
-        // High volume primary keywords (49,500+ searches)
-        'convertir jpg en pdf',
-        'convert jpg to pdf',
-        'convertir jpg en pdf gratuit',
-        'convertir jpg en pdf gratuitement',
-        'pdf converter jpg to pdf',
-        'convert jpg to pdf format',
-        'convert from jpg to pdf format',
-        // Additional variants
-        'jpg en pdf gratuit',
-        'jpg vers pdf en ligne',
-        'convertir fichier jpg en pdf',
-        'transformer jpg en pdf'
+        'convertir jpg en pdf', 'jpg en pdf', 'photo en pdf',
+        'image en pdf', 'convertir image en pdf',
+        'transformer jpg en pdf', 'assembler jpg en pdf',
+        'jpg vers pdf gratuit', 'logiciel convertisseur jpg pdf'
       ],
       pt: [
-        'jpg para pdf',
-        'converter jpg',
-        'imagem para pdf',
-        'jpeg para pdf',
-        'converter jpg pdf gratis'
+        'jpg para pdf', 'converter jpg em pdf', 'foto para pdf',
+        'imagem para pdf', 'transformar foto em pdf',
+        'juntar jpg em pdf', 'converter imagem para pdf'
       ]
     },
     accept: '.jpg,.jpeg,image/jpeg'
@@ -937,18 +1070,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.JPEG_TO_PDF,
     title: {
       en: 'JPEG to PDF',
-      fr: 'JPEG vers PDF',
-      pt: 'JPEG para PDF'
+      fr: 'JPEG vers PDF - Conversion Photo',
+      pt: 'JPEG para PDF - Conversão de Fotos'
     },
     description: {
-      en: 'Convert JPEG images to PDF format. Maintain image quality. Free, secure conversion.',
-      fr: 'Convertissez les images JPEG en format PDF. Maintenez la qualité de l\'image. Gratuit et sécurisé.',
-      pt: 'Converta imagens JPEG para formato PDF. Mantenha a qualidade da imagem. Conversão grátis e segura.'
+      en: 'Convert JPEG images to high-quality PDF. Preserve original resolution. Free tool for photographers and designers.',
+      fr: 'Convertissez des images JPEG en PDF haute qualité. Préservez la résolution originale. Outil gratuit pour photographes.',
+      pt: 'Converta imagens JPEG para PDF de alta qualidade. Preserve a resolução original. Ferramenta grátis para fotos.'
     },
     keywords: {
-      en: ['JPEG to PDF', 'convert JPEG', 'photos to PDF'],
-      fr: ['JPEG vers PDF', 'convertir JPEG', 'photos vers PDF'],
-      pt: ['jpeg para pdf', 'converter jpeg', 'fotos para pdf']
+      en: ['JPEG to PDF', 'convert JPEG', 'photos to PDF', 'jpeg converter', 'save jpeg as pdf'],
+      fr: ['JPEG vers PDF', 'convertir JPEG', 'photos vers PDF', 'image jpeg en pdf'],
+      pt: ['jpeg para pdf', 'converter jpeg', 'fotos para pdf', 'salvar jpeg como pdf']
     },
     accept: '.jpg,.jpeg,image/jpeg'
   },
@@ -958,18 +1091,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PNG_TO_PDF,
     title: {
       en: 'PNG to PDF',
-      fr: 'PNG vers PDF',
-      pt: 'PNG para PDF'
+      fr: 'PNG vers PDF - Images sans Perte',
+      pt: 'PNG para PDF - Imagens sem Perda'
     },
     description: {
-      en: 'Convert PNG images to PDF format. Preserve transparency and quality. Free, secure conversion.',
-      fr: 'Convertissez les images PNG en format PDF. Préservez la transparence et la qualité. Gratuit et sécurisé.',
-      pt: 'Converta imagens PNG para formato PDF. Preserve a transparência e qualidade. Grátis e seguro.'
+      en: 'Convert PNG images to PDF while preserving transparency and quality. Best field tool for screenshots and graphics. 100% free.',
+      fr: 'Convertissez des PNG en PDF tout en préservant la transparence. Meilleur outil pour les captures d\'écran. 100% gratuit.',
+      pt: 'Converta imagens PNG para PDF preservando transparência. Melhor ferramenta para capturas de tela. 100% grátis.'
     },
     keywords: {
-      en: ['PNG to PDF', 'convert PNG', 'image to PDF'],
-      fr: ['PNG vers PDF', 'convertir PNG', 'image vers PDF'],
-      pt: ['png para pdf', 'converter png', 'imagem png para pdf']
+      en: ['PNG to PDF', 'convert PNG', 'image to PDF', 'screenshot to pdf'],
+      fr: ['PNG vers PDF', 'convertir PNG', 'image vers PDF', 'capture d\'écran en pdf'],
+      pt: ['png para pdf', 'converter png', 'imagem png para pdf', 'print para pdf']
     },
     accept: '.png,image/png'
   },
@@ -1000,18 +1133,18 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_TO_PNG,
     title: {
       en: 'PDF to PNG',
-      fr: 'PDF vers PNG',
-      pt: 'PDF para PNG'
+      fr: 'PDF vers PNG - Haute Qualité',
+      pt: 'PDF para PNG - Alta Qualidade'
     },
     description: {
-      en: 'Convert PDF pages to PNG images. Ideal for high-quality drafts. Free and secure.',
-      fr: 'Convertissez les pages PDF en images PNG. Idéal pour des brouillons de haute qualité. Gratuit et sécurisé.',
-      pt: 'Converta páginas PDF para imagens PNG. Ideal para rascunhos de alta qualidade. Grátis e seguro.'
+      en: 'Convert PDF pages into high-quality PNG images. Extract graphics with transparency support. Private and secure.',
+      fr: 'Convertissez des pages PDF en images PNG haute qualité. Extrayez des graphiques avec support transparence. Privé et sécurisé.',
+      pt: 'Converta páginas PDF em imagens PNG de alta qualidade. Extraia gráficos com suporte a transparência. Privado e seguro.'
     },
     keywords: {
-      en: ['PDF to PNG', 'convert PDF to PNG', 'extract PNG from PDF'],
-      fr: ['PDF vers PNG', 'convertir PDF en PNG', 'extraire PNG du PDF'],
-      pt: ['pdf para png', 'converter pdf em png', 'extrair png de pdf']
+      en: ['PDF to PNG', 'convert PDF to PNG', 'extract PNG from PDF', 'save pdf as png', 'turn pdf into image'],
+      fr: ['PDF vers PNG', 'convertir PDF en PNG', 'extraire PNG du PDF', 'enregistrer pdf en png'],
+      pt: ['pdf para png', 'converter pdf em png', 'extrair png de pdf', 'salvar pdf como png']
     },
     accept: '.pdf,application/pdf'
   },
@@ -1021,33 +1154,28 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.IMAGE_TO_PDF,
     title: {
       en: 'Image to PDF',
-      fr: 'Convertir Image en PDF Gratuitement',
-      pt: 'Imagem para PDF'
+      fr: 'Image en PDF - Convertisseur Universel',
+      pt: 'Imagem para PDF - Conversor Universal'
     },
     description: {
-      en: 'Convert any image (JPG, PNG, GIF, BMP, WebP) to PDF. Combine multiple images into one PDF. Free and secure.',
-      fr: 'Convertissez n\'importe quelle image (JPG, PNG, GIF, BMP, WebP) en PDF. Combinez plusieurs images en un seul PDF. Gratuit et sécurisé.',
-      pt: 'Converta qualquer arquivo de imagem (JPG, PNG, GIF, BMP, WebP) para PDF. Combine várias imagens em um PDF. Grátis e seguro.'
+      en: 'Convert any image file (JPG, PNG, GIF, BMP, WebP, HEIC) to PDF. Drag & drop multiple images. Free, secure, and fast.',
+      fr: 'Convertissez n\'importe quelle image (JPG, PNG, WebP) en PDF. Glissez-déposez plusieurs images. Gratuit, sécurisé et rapide.',
+      pt: 'Converta qualquer arquivo de imagem (JPG, PNG, WebP) para PDF. Arraste e solte várias imagens. Grátis, seguro e rápido.'
     },
     keywords: {
-      en: ['image to PDF', 'convert image to PDF', 'photo to PDF', 'picture to PDF'],
+      en: [
+        'image to PDF', 'convert image to PDF', 'photo to PDF', 'picture to PDF',
+        'convert picture to pdf', 'turn photos into pdf', 'make pdf from images'
+      ],
       fr: [
-        // High volume primary keywords (9,900+ searches)
-        'convertir image en pdf',
-        'convertir photo en pdf',
-        'convertir une image en pdf',
-        'convertir des images en pdf',
-        'convertir une photo en pdf',
-        'image en pdf gratuit',
-        'photo en pdf gratuit',
-        'convertir fichier image en pdf',
-        'image vers pdf en ligne'
+        'convertir image en pdf', 'photo en pdf', 'image vers pdf',
+        'transformer photo en pdf', 'créer pdf avec images',
+        'convertisseur image pdf gratuit'
       ],
       pt: [
-        'imagem para pdf',
-        'converter imagem',
-        'fotos para pdf',
-        'converter foto em pdf'
+        'imagem para pdf', 'converter imagem', 'fotos para pdf',
+        'foto em pdf', 'transformar imagem em pdf',
+        'criar pdf de fotos'
       ]
     },
     accept: '.jpg,.jpeg,.png,.gif,.bmp,.webp,.avif,image/jpeg,image/png,image/gif,image/bmp,image/webp,image/avif'
@@ -1145,30 +1273,29 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PDF_TO_PPT,
     title: {
       en: 'PDF to PowerPoint',
-      fr: 'Convertir PDF en PowerPoint Gratuitement',
-      pt: 'PDF para PowerPoint'
+      fr: 'Convertir PDF en PowerPoint - Slides Editables',
+      pt: 'PDF para PowerPoint - Slides Editáveis'
     },
     description: {
-      en: 'Convert PDF documents to PowerPoint presentations (PPTX). Preserve slides and formatting.',
-      fr: 'Convertissez les documents PDF en présentations PowerPoint (PPTX). Préservez les diapositives et le formatage.',
-      pt: 'Converta documentos PDF para apresentações PowerPoint (PPTX). Preserve slides e formatação.'
+      en: 'Convert PDF to PowerPoint (PPTX) presentations. Turn PDF pages into editable slides. Free and secure conversion.',
+      fr: 'Convertissez des PDF en présentations PowerPoint (PPTX). Transformez les pages PDF en diapositives modifiables. Conversion gratuite et sécurisée.',
+      pt: 'Converta PDF para apresentações PowerPoint (PPTX). Transforme páginas PDF em slides editáveis. Conversão grátis e segura.'
     },
     keywords: {
-      en: ['PDF to PowerPoint', 'PDF to PPT', 'convert PDF to PPTX', 'PDF to slides'],
+      en: [
+        'PDF to PowerPoint', 'PDF to PPT', 'convert PDF to PPTX',
+        'PDF to slides', 'turn pdf into powerpoint',
+        'pdf to ppt converter free'
+      ],
       fr: [
-        // High volume primary keywords (3,600+ searches)
-        'convertir pdf en ppt',
-        'convertir pdf en powerpoint',
-        'pdf en ppt gratuit',
-        'pdf en powerpoint gratuit',
-        'convertir fichier pdf en powerpoint',
-        'pdf vers powerpoint en ligne'
+        'convertir pdf en powerpoint', 'pdf en ppt', 'pdf en diapositives',
+        'convertisseur pdf powerpoint gratuit', 'transformer pdf en ppt',
+        'pdf vers pptx'
       ],
       pt: [
-        'pdf para powerpoint',
-        'converter pdf em ppt',
-        'pdf para slide',
-        'pdf para pptx'
+        'pdf para powerpoint', 'converter pdf em ppt', 'pdf para slides',
+        'pdf para pptx', 'transformar pdf em powerpoint',
+        'conversor pdf ppt gratis'
       ]
     },
     accept: '.pdf,application/pdf'
@@ -1179,29 +1306,28 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     tool: ToolType.PPT_TO_PDF,
     title: {
       en: 'PowerPoint to PDF',
-      fr: 'Convertir PowerPoint en PDF Gratuitement',
-      pt: 'PowerPoint para PDF'
+      fr: 'Convertir PowerPoint en PDF - Gratuit',
+      pt: 'PowerPoint para PDF - Converter PPT'
     },
     description: {
-      en: 'Convert PowerPoint presentations (PPTX/PPT) to PDF format. Preserve slides and animations.',
-      fr: 'Convertissez les présentations PowerPoint (PPTX/PPT) en format PDF. Préservez les diapositives et les animations.',
-      pt: 'Converta apresentações PowerPoint (PPTX/PPT) para formato PDF. Preserve slides e animações.'
+      en: 'Convert PowerPoint (PPT/PPTX) to PDF format. Save your slides as a secure PDF document. Free and private.',
+      fr: 'Convertissez PowerPoint (PPT/PPTX) en format PDF. Enregistrez vos diapositives en document PDF sécurisé. Gratuit et privé.',
+      pt: 'Converta PowerPoint (PPT/PPTX) para formato PDF. Salve seus slides como um documento PDF seguro. Grátis e privado.'
     },
     keywords: {
-      en: ['PowerPoint to PDF', 'PPT to PDF', 'convert PPTX to PDF', 'slides to PDF'],
+      en: [
+        'PowerPoint to PDF', 'PPT to PDF', 'convert PPTX to PDF',
+        'slides to PDF', 'save powerpoint as pdf', 'ppt converter'
+      ],
       fr: [
-        // High volume primary keywords (2,400+ searches)
-        'convertir ppt en pdf',
-        'convertir powerpoint en pdf',
-        'ppt en pdf gratuit',
-        'powerpoint en pdf gratuit',
-        'convertir fichier powerpoint en pdf',
-        'powerpoint vers pdf en ligne'
+        'convertir powerpoint en pdf', 'ppt en pdf', 'diaporama en pdf',
+        'enregistrer ppt en pdf', 'convertisseur powerpoint pdf gratuit',
+        'fichier ppt en pdf'
       ],
       pt: [
-        'powerpoint para pdf',
-        'ppt para pdf',
-        'converter slide em pdf'
+        'powerpoint para pdf', 'ppt para pdf', 'converter slides em pdf',
+        'salvar ppt como pdf', 'conversor powerpoint para pdf',
+        'arquivo ppt para pdf'
       ]
     },
     accept: '.pptx,.ppt,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-powerpoint'
@@ -1599,25 +1725,37 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'unlockPdf',
     tool: ToolType.UNLOCK_PDF,
     title: {
-      en: 'Unlock PDF',
-      fr: 'Déverrouiller PDF',
-      pt: 'Desbloquear PDF'
+      en: 'Unlock PDF - Remove Password Online',
+      fr: 'Déverrouiller PDF - Supprimer le Mot de Passe',
+      pt: 'Desbloquear PDF - Remover Senha Online'
     },
     description: {
-      en: 'Remove password protection from PDF files. Unlock PDFs for editing, printing, and copying. Free, secure, browser-based - your files never leave your device.',
-      fr: 'Supprimez la protection par mot de passe des fichiers PDF. Déverrouillez les PDF pour l\'édition, l\'impression et la copie. Gratuit et sécurisé dans votre navigateur.',
-      pt: 'Remova a proteção por senha de arquivos PDF. Desbloqueie PDFs para edição, impressão e cópia. Grátis e seguro no navegador.'
+      en: 'Remove password protection from PDF files instantly. Unlock PDFs for editing, printing, and copying. Secure, local tool - no uploads required.',
+      fr: 'Supprimez la protection par mot de passe des fichiers PDF instantanément. Déverrouillez les PDF pour l\'édition et l\'impression. Outil sécurisé et local.',
+      pt: 'Remova a proteção por senha de arquivos PDF instantaneamente. Desbloqueie PDFs para edição e impressão. Ferramenta segura e local - sem uploads.'
     },
     keywords: {
-      en: ['unlock PDF', 'remove PDF password', 'PDF password remover', 'unprotect PDF', 'decrypt PDF', 'PDF unlocker'],
-      fr: ['déverrouiller PDF', 'supprimer mot de passe PDF', 'déprotéger PDF', 'décrypter PDF', 'déverrouilleur PDF'],
-      pt: ['desbloquear pdf', 'remover senha pdf', 'desproteger pdf', 'descriptografar pdf', 'desbloqueador pdf']
+      en: [
+        'unlock PDF', 'remove PDF password', 'PDF password remover',
+        'unprotect PDF', 'decrypt PDF', 'PDF unlocker',
+        'remove security from pdf', 'unlock secured pdf'
+      ],
+      fr: [
+        'déverrouiller PDF', 'supprimer mot de passe PDF', 'déprotéger PDF',
+        'décrypter PDF', 'déverrouilleur PDF',
+        'enlever protection pdf', 'ouvrir pdf protégé'
+      ],
+      pt: [
+        'desbloquear pdf', 'remover senha pdf', 'desproteger pdf',
+        'descriptografar pdf', 'desbloqueador pdf',
+        'tirar senha pdf', 'quebrar senha pdf'
+      ]
     },
     accept: '.pdf,application/pdf',
     featureList: {
-      en: ['Remove password protection', 'Enable editing and printing', '100% browser-based', 'Your files stay private'],
-      fr: ['Supprimer protection par mot de passe', 'Activer édition et impression', '100% navigateur', 'Vos fichiers restent privés'],
-      pt: ['Remover proteção por senha', 'Habilitar edição e impressão', '100% no navegador', 'Seus arquivos ficam privados']
+      en: ['Remove owner passwords', 'Enable editing and printing', '100% browser-based', 'Your files stay private'],
+      fr: ['Supprimer mots de passe propriétaire', 'Activer édition et impression', '100% navigateur', 'Vos fichiers restent privés'],
+      pt: ['Remover senhas de proprietário', 'Habilitar edição e impressão', '100% no navegador', 'Seus arquivos ficam privados']
     }
   },
   {
