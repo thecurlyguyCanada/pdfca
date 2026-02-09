@@ -7,7 +7,8 @@ import { GuidesIndexPage } from '@/components/pages/GuidesIndexPage';
 import { SEO } from '@/components/SEO';
 
 // ISR: Revalidate every hour
-export const revalidate = 3600;
+// Static generation
+export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));

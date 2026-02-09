@@ -14,7 +14,9 @@ import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
 // Static generation with ISR - revalidate every hour
-export const revalidate = 3600;
+// Static generation - force static, no dynamic params permitted
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     const slugs = getAllToolSlugs();

@@ -9,7 +9,7 @@ import { SEO } from '@/components/SEO';
 import { constructMetadata } from '@/lib/metadata';
 
 // Static generation with ISR
-export const revalidate = 3600;
+export const dynamic = 'force-static';
 
 // Pre-generate for both locales
 export function generateStaticParams() {

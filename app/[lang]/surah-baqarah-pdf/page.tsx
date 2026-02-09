@@ -11,7 +11,8 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { SurahBaqarahContent } from './SurahBaqarahContent';
 
 // Static generation
-export const revalidate = 86400; // Revalidate daily
+// Static generation
+export const dynamic = 'force-static';
 
 export function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));

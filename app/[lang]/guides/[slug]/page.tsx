@@ -12,7 +12,9 @@ import { generateArticleSchema } from '@/lib/structuredData';
 
 // ISR: Revalidate every hour
 // Note: Cannot use Edge Runtime with generateStaticParams in Next.js 15
-export const revalidate = 3600;
+// Note: Cannot use Edge Runtime with generateStaticParams in Next.js 15
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     const slugs = getAllGuideSlugs();
