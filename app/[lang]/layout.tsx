@@ -79,7 +79,7 @@ export async function generateMetadata({
         metadataBase: new URL(baseUrl),
         title: {
             default: title[lang] || title['en'],
-            template: `%s | pdfcanada.ca`,
+            template: `%s`,
         },
         description: description[lang] || description['en'],
         applicationName: 'pdfcanada.ca',
