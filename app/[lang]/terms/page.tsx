@@ -19,12 +19,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? "Conditions d'utilisation - pdfcanada.ca | Mentions Légales" : (lang === 'pt' ? 'Termos de Serviço - pdfcanada.ca | Aviso Legal' : 'Terms of Service - pdfcanada.ca | Usage Rights & Legal'),
+        title: lang === 'fr' ? "Conditions d'utilisation - Usage Sécurisé & Protection | pdfcanada.ca" : (lang === 'pt' ? 'Termos de Serviço - Uso Seguro & Privacidade | pdfcanada.ca' : 'Terms of Service - Secure Usage & Privacy Rights | pdfcanada.ca'),
         description: lang === 'fr'
-            ? "Consultez nos conditions d'utilisation. En utilisant pdfcanada.ca, vous acceptez notre politique de traitement local et de sécurité."
+            ? "Conditions d'utilisation - Consultez nos politiques sur le traitement local 100% privé. En utilisant pdfcanada.ca, vous acceptez nos normes de sécurité."
             : (lang === 'pt'
-                ? 'Leia nossos termos de serviço. Ao usar o pdfcanada.ca, você concorda com nossa política de processamento local e segurança.'
-                : 'Read our terms of service. By using pdfcanada.ca, you agree to our local-first processing policy and security standards.'),
+                ? 'Termos de Serviço - Leia nossas políticas sobre processamento local 100% privado. Ao usar o pdfcanada.ca, você concorda com nossos padrões de segurança.'
+                : 'Terms of Service - Read our policies on 100% private, local-first document processing. By using PDF Canada, you agree to our security standards. Learn more.'),
         path: '/terms',
         lang,
         keywords: lang === 'fr' ? ['conditions', 'légal', 'utilisation'] : (lang === 'pt' ? ['termos', 'legal', 'uso'] : ['terms', 'legal', 'usage rights', 'policies'])

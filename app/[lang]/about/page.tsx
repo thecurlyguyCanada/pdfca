@@ -19,12 +19,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'À propos de pdfcanada.ca - Outils PDF Locaux Gratuits et Sécurisés' : (lang === 'pt' ? 'Sobre pdfcanada.ca - Ferramentas PDF Locais Gratuitas e Seguras' : 'About pdfcanada.ca - Free & Secure Local PDF Tools'),
+        title: lang === 'fr' ? 'À propos de pdfcanada.ca - Outils PDF Sécurisés et Privés | pdfcanada.ca' : (lang === 'pt' ? 'Sobre pdfcanada.ca - Ferramentas PDF Seguras e Privadas | pdfcanada.ca' : 'About pdfcanada.ca: Secure PDF Tools & Privacy-First Processing | pdfcanada.ca'),
         description: lang === 'fr'
-            ? 'Découvrez pdfcanada.ca : Outils PDF 100% gratuits et privés. Vos fichiers sont traités localement sur votre appareil. Aucune inscription, aucun téléchargement requis.'
+            ? 'À propos de pdfcanada.ca - Découvrez des outils PDF 100% privés avec traitement local. Pas d\'upload serveur, pas d\'inscription, conformité totale. Essayez maintenant.'
             : (lang === 'pt'
-                ? 'Conheça o pdfcanada.ca: Ferramentas PDF 100% gratuitas e privadas. Seus arquivos são processados localmente no seu dispositivo. Sem cadastro, sem upload.'
-                : 'Learn about pdfcanada.ca: 100% free and private PDF tools. Your files are processed locally on your device. No sign-up, no server uploads required.'),
+                ? 'Sobre pdfcanada.ca - Descubra ferramentas PDF 100% privadas com processamento local. Sem upload para servidor, sem cadastro, segurança total. Experimente agora.'
+                : 'About pdfcanada.ca - Discover 100% private, local-first PDF tools optimized for security. No server uploads, no sign-ups, and PIPEDA compliant. Try it now.'),
         path: '/about',
         lang,
         keywords: lang === 'fr'

@@ -29,16 +29,16 @@ export async function generateMetadata({
 
     const content = {
         en: {
-            title: 'Surah Yasin PDF - Full Surah Ya-Sin Download Free',
-            description: 'Download Surah Yasin PDF free. Read Surah Ya-Sin full text online or download. The Heart of the Quran (Chapter 36). Clear Arabic text.',
+            title: 'Surah Yasin PDF - Heart of Quran with Full Translation | pdfcanada.ca',
+            description: 'Surah Yasin PDF - Read and download Surah Yasin with clear translation safely in your browser. 100% private, local-first processing ensures secure reading today.',
         },
         fr: {
-            title: 'Sourate Yasin PDF - Télécharger Sourate Ya-Sin Gratuit',
-            description: 'Téléchargez Sourate Yasin PDF gratuitement. Lisez Sourate Ya-Sin (Le Cœur du Coran) en ligne. Texte arabe clair et complet.',
+            title: 'Sourate Yasin PDF - Cœur du Coran avec Traduction | pdfcanada.ca',
+            description: 'Sourate Yasin PDF - Lisez et téléchargez la sourate avec une traduction claire en sécurité. Traitement 100% local pour garantir une lecture sécurisée aujourd\'hui.',
         },
         pt: {
-            title: 'Surah Yasin PDF - Baixar Surah Ya-Sin Grátis',
-            description: 'Baixe Surah Yasin em PDF gratuitamente. Leia o texto completo da Surah Ya-Sin online. O Coração do Alcorão (Capítulo 36). Texto árabe claro.',
+            title: 'Surah Yasin PDF - Coração do Alcorão com Tradução | pdfcanada.ca',
+            description: 'Surah Yasin PDF - Leia e baixe a Surah Yasin com tradução clara com segurança no navegador. Processamento 100% local para garantir leitura segura hoje.',
         }
     };
 

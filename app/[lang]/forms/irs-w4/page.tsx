@@ -26,16 +26,16 @@ export async function generateMetadata({
 
     const content = {
         en: {
-            title: `IRS W-4 Form ${CURRENT_YEAR} | Free Fillable Template | pdfcanada.ca`,
-            description: `Fill out IRS W-4 Employee's Withholding Certificate online. Free ${CURRENT_YEAR} printable template. Edit, sign, and download instantly. 50% cheaper than competitors.`,
+            title: `IRS W-4 Form PDF - Secure Employee Withholding Online | pdfcanada.ca`,
+            description: `IRS W-4 Form PDF - Fill and download your Employee's Withholding Certificate safely in your browser. 100% private, local-first processing keeps tax data safe.`,
         },
         fr: {
-            title: `Formulaire IRS W-4 ${CURRENT_YEAR} | Modèle Remplissable Gratuit | pdfcanada.ca`,
-            description: `Remplissez le formulaire IRS W-4 en ligne. Modèle imprimable ${CURRENT_YEAR}. Éditez, signez et téléchargez instantanément.`,
+            title: `Formulaire IRS W-4 PDF - Retenue d'Impôt Sécurisée | pdfcanada.ca`,
+            description: `Formulaire IRS W-4 PDF - Remplissez et téléchargez votre certificat de retenue d'impôt en sécurité. Traitement 100% local pour garantir la sécurité des données.`,
         },
         pt: {
-            title: `Formulário IRS W-4 ${CURRENT_YEAR} | Modelo Preenchível Grátis | pdfcanada.ca`,
-            description: `Preencha o formulário IRS W-4 online. Modelo ${CURRENT_YEAR} para impressão. Edite, assine e baixe instantaneamente.`,
+            title: `Formulário IRS W-4 PDF - Retenção de Imposto Segura | pdfcanada.ca`,
+            description: `Formulário IRS W-4 PDF - Preencha e baixe seu certificado de retenção de imposto com segurança. Processamento 100% local para garantir a segurança dos dados.`,
         }
     };
 

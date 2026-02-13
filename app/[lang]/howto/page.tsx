@@ -18,12 +18,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'Comment utiliser les outils PDF' : (lang === 'pt' ? 'Como Usar Ferramentas PDF' : 'How to Use PDF Tools'),
+        title: lang === 'fr' ? 'Comment Utiliser les Outils PDF - Guide de Sécurité | pdfcanada.ca' : (lang === 'pt' ? 'Como Usar Ferramentas PDF - Guia de Segurança | pdfcanada.ca' : 'How to Use PDF Tools - Step-by-Step Security Guide | pdfcanada.ca'),
         description: lang === 'fr'
-            ? 'Apprenez à utiliser nos outils PDF gratuits basés sur le navigateur avec nos instructions étape par étape.'
+            ? 'Comment Utiliser les Outils PDF - Apprenez à fusionner et convertir vos documents en sécurité. Traitement 100% local pour garantir la confidentialité. Essai.'
             : (lang === 'pt'
-                ? 'Aprenda a usar nossas ferramentas PDF gratuitas baseadas em navegador com instruções passo a passo.'
-                : 'Learn how to use our free, browser-based PDF tools with our step-by-step instructions.'),
+                ? 'Como Usar Ferramentas PDF - Aprenda a mesclar e converter documentos com segurança no navegador. Processamento 100% local para segurança total. Teste agora.'
+                : 'How to Use PDF Tools - Learn to merge, split, and convert documents safely in your browser. 100% private, local-first processing ensures safety. Try it now.'),
         path: '/howto',
         lang
     });

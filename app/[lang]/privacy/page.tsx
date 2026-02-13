@@ -19,12 +19,12 @@ export async function generateMetadata({
     const { lang } = await params;
 
     return constructMetadata({
-        title: lang === 'fr' ? 'Politique de Confidentialité - pdfcanada.ca | Protection des Données & PIPEDA' : (lang === 'pt' ? 'Política de Privacidade - pdfcanada.ca | Proteção de Dados' : 'Privacy Policy - pdfcanada.ca | Data Protection & PIPEDA'),
+        title: lang === 'fr' ? 'Politique de Confidentialité - Outils PDF Sécurisés | pdfcanada.ca' : (lang === 'pt' ? 'Política de Privacidade - Ferramentas PDF Seguras | pdfcanada.ca' : 'Privacy Policy - Secure PDF Processing Standards | pdfcanada.ca'),
         description: lang === 'fr'
-            ? 'Vos fichiers ne quittent jamais votre appareil. pdfcanada.ca utilise le traitement local par navigateur pour garantir une confidentialité totale. Conforme à la LPRPDE.'
+            ? 'Politique de Confidentialité - Découvrez comment pdfcanada.ca assure la protection des données avec un traitement 100% local. Conforme LPRPDE. En savoir plus.'
             : (lang === 'pt'
-                ? 'Seus arquivos nunca saem do seu dispositivo. pdfcanada.ca usa processamento local no navegador para garantir total privacidade. Seguro e gratuito.'
-                : 'Your files never leave your device. pdfcanada.ca uses local browser-based processing to ensure complete privacy. PIPEDA compliant and 100% secure.'),
+                ? 'Política de Privacidade - Saiba como o pdfcanada.ca garante a proteção de dados com processamento 100% local. Seguro e privado. Leia mais agora.'
+                : 'Privacy Policy - Learn how PDF Canada ensures complete data protection with 100% private, local-first processing. PIPEDA compliant and secure. Read more.'),
         path: '/privacy',
         lang,
         keywords: lang === 'fr' ? ['confidentialité', 'sécurité', 'protection', 'LPRPDE', 'traitement local'] : (lang === 'pt' ? ['privacidade', 'segurança', 'proteção', 'processamento local'] : ['privacy', 'security', 'PIPEDA', 'data protection', 'local processing', 'secure pdf'])

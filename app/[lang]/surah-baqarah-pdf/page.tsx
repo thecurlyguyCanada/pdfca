@@ -29,16 +29,16 @@ export async function generateMetadata({
 
     const content = {
         en: {
-            title: 'Surah Baqarah PDF - Full Surah Al-Baqarah Download Free',
-            description: 'Download Surah Baqarah PDF free. Full Surah Al-Baqarah with Arabic text. Read online or download the complete Chapter 2 of the Holy Quran. Last 2 ayat included.',
+            title: 'Surah Baqarah PDF - High-Quality Reading & Translation | pdfcanada.ca',
+            description: 'Surah Baqarah PDF - Read the Full Surah with high-quality translation safely in your browser. 100% private, local-first processing ensures secure reading today.',
         },
         fr: {
-            title: 'Sourate Baqarah PDF - Télécharger Sourate Al-Baqarah Gratuit',
-            description: 'Téléchargez Sourate Baqarah PDF gratuitement. Sourate Al-Baqarah complète avec texte arabe. Lisez en ligne ou téléchargez le chapitre 2 du Saint Coran.',
+            title: 'Sourate Baqarah PDF - Lecture Haute Qualité & Traduction | pdfcanada.ca',
+            description: 'Sourate Baqarah PDF - Lisez la sourate complète avec une traduction de haute qualité. Traitement 100% local pour garantir une lecture sécurisée aujourd\'hui.',
         },
         pt: {
-            title: 'Surah Baqarah PDF - Baixar Surah Al-Baqarah Completa Grátis',
-            description: 'Baixe Surah Baqarah PDF gratuitamente. Surah Al-Baqarah completa com texto em árabe. Leia online ou baixe o capítulo 2 do Alcorão Sagrado.',
+            title: 'Surah Baqarah PDF - Leitura de Alta Qualidade & Tradução | pdfcanada.ca',
+            description: 'Surah Baqarah PDF - Leia a Surah completa com tradução de alta qualidade com segurança. Processamento 100% local para garantir leitura segura hoje mesmo.',
         }
     };
 
