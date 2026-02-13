@@ -18,14 +18,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'delete',
     tool: ToolType.DELETE,
     title: {
-      en: 'Delete PDF Pages',
-      fr: 'Supprimer Pages PDF - Gratuit et Sécurisé',
-      pt: 'Apagar Páginas PDF - Grátis e Seguro'
+      en: 'Delete PDF Pages - Free & Secure Page Remover | pdfcanada.ca',
+      fr: 'Supprimer des Pages PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'Apagar Páginas PDF - Ferramenta Grátis e Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Remove unwanted pages from PDF files securely. Processing happens locally in your browser - your files never leave your device. 100% free with no limits.',
-      fr: 'Supprimez des pages de vos fichiers PDF en toute sécurité. Le traitement se fait localement dans votre navigateur. 100% gratuit, sans inscription.',
-      pt: 'Remova páginas indesejadas de arquivos PDF com segurança. O processamento acontece localmente no seu navegador. 100% grátis, sem limites.'
+      en: 'Remove unwanted pages from your PDF files instantly. 100% private, local-first processing ensures your documents stay secure on your device. Free and easy.',
+      fr: 'Supprimez des pages de vos fichiers PDF en toute sécurité. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans limites.',
+      pt: 'Remova páginas indesejadas de arquivos PDF com segurança. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -51,14 +51,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'rotate',
     tool: ToolType.ROTATE,
     title: {
-      en: 'Rotate PDF',
-      fr: 'Pivoter PDF - Rotation Permanente Gratuite',
-      pt: 'Girar PDF - Rotação Permanente Grátis'
+      en: 'Rotate PDF - Free & Permanent Page Rotation | pdfcanada.ca',
+      fr: 'Pivoter un PDF - Rotation Permanente Gratuite | pdfcanada.ca',
+      pt: 'Girar PDF - Rotação Permanente Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Rotate PDF pages permanently. Fix upside-down PDFs instantly. Free, secure tool that works offline in your browser. No file size limits.',
-      fr: 'Faites pivoter vos PDF de façon permanente. Corrigez l\'orientation des pages instantanément. Outil gratuit et sécurisé fonctionnant hors ligne.',
-      pt: 'Gire páginas de PDF permanentemente. Corrija a orientação instantaneamente. Ferramenta grátis e segura que funciona offline.'
+      en: 'Rotate PDF pages permanently and fix orientation issues. 100% private, local-first processing ensures your files never leave your device. Fast and secure.',
+      fr: 'Faites pivoter vos PDF de façon permanente. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Gire páginas de PDF permanentemente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -84,14 +84,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'compress',
     tool: ToolType.COMPRESS,
     title: {
-      en: 'Compress PDF',
-      fr: 'Compresser PDF - Réduire la taille PDF',
-      pt: 'Comprimir PDF - Reduzir Tamanho PDF'
+      en: 'Compress PDF - Free & Secure File Size Reducer | pdfcanada.ca',
+      fr: 'Compresser un PDF - Réducteur de Taille Gratuit | pdfcanada.ca',
+      pt: 'Comprimir PDF - Redutor de Tamanho Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Compress PDF files to reduce file size without losing quality. Local processing ensures your documents stay private. Best free PDF compressor.',
-      fr: 'Compressez vos fichiers PDF pour réduire leur taille sans perdre en qualité. Le traitement local garantit la confidentialité. Meilleur compresseur PDF gratuit.',
-      pt: 'Comprima arquivos PDF para reduzir o tamanho sem perder qualidade. Processamento local garante privacidade. Melhor compressor de PDF grátis.'
+      en: 'Shrink your PDF files quickly without losing quality. 100% private, local-first processing ensures your documents stay secure on your device. Free and easy.',
+      fr: 'Réduisez le poids de vos PDF sans perte de qualité. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans limites.',
+      pt: 'Reduza o tamanho do seu PDF sem perder qualidade. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -124,14 +124,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'merge',
     tool: ToolType.MERGE,
     title: {
-      en: 'Merge PDF',
-      fr: 'Fusionner PDF - Combiner des fichiers PDF',
-      pt: 'Juntar PDF - Combinar Arquivos PDF'
+      en: 'Merge PDF - Free & Secure Document Combiner | pdfcanada.ca',
+      fr: 'Fusionner des PDF - Combiner des Fichiers Gratuitement | pdfcanada.ca',
+      pt: 'Juntar PDF - Combinar Arquivos PDF Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Combine multiple PDFs into one document securely. Reorder pages with drag & drop. No uploads required - 100% local PDF merger.',
-      fr: 'Combinez plusieurs PDF en un seul document en toute sécurité. Réorganisez les pages par glisser-déposer. Aucun téléchargement requis - fusion 100% locale.',
-      pt: 'Combine vários PDFs em um único documento segurança. Reordene páginas arrastando e soltando. Sem upload obrigatório - juntar PDF 100% local.'
+      en: 'Combine multiple PDFs into one document securely. 100% private, local-first processing ensures your files never leave your device. Drag, drop, and merge.',
+      fr: 'Combinez plusieurs PDF en un seul document. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans inscription.',
+      pt: 'Combine vários PDFs em um único documento segurança. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -161,14 +161,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'split',
     tool: ToolType.SPLIT,
     title: {
-      en: 'Split PDF',
-      fr: 'Diviser PDF - Extraire des Pages',
-      pt: 'Dividir PDF - Extrair Páginas'
+      en: 'Split PDF - Free & Secure Document Splitter | pdfcanada.ca',
+      fr: 'Diviser un PDF - Séparer des Pages Gratuitement | pdfcanada.ca',
+      pt: 'Dividir PDF - Separar Páginas Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Split a PDF file into multiple documents or extract specific pages. Fast, free, and secure - files are processed on your device.',
-      fr: 'Divisez un fichier PDF en plusieurs documents ou extrayez des pages spécifiques. Rapide, gratuit et sécurisé - fichiers traités sur votre appareil.',
-      pt: 'Divida um arquivo PDF em vários documentos ou extraia páginas específicas. Rápido, grátis e seguro - arquivos processados no seu dispositivo.'
+      en: 'Divide PDF files into separate documents or extract ranges. 100% private, local-first processing ensures your files stay secure on your device. Fast and free.',
+      fr: 'Divisez un PDF en plusieurs documents. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Rapide, gratuit et sécurisé.',
+      pt: 'Divida um arquivo PDF em vários documentos ou extraia páginas. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -199,14 +199,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'extract',
     tool: ToolType.EXTRACT,
     title: {
-      en: 'Extract PDF Pages',
-      fr: 'Extraire Pages PDF - Outil Gratuit',
-      pt: 'Extrair Páginas PDF - Ferramenta Grátis'
+      en: 'Extract PDF Pages - Free & Secure Page Extractor | pdfcanada.ca',
+      fr: 'Extraire des Pages PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'Extrair Páginas PDF - Ferramenta Grátis e Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Extract specific pages from PDF documents. functionality Create a new PDF with just the pages you need. Free, fast, and secure extraction.',
-      fr: 'Extrayez des pages spécifiques de documents PDF. Créez un nouveau PDF avec seulement les pages dont vous avez besoin. Gratuit et sécurisé.',
-      pt: 'Extraia páginas específicas de documentos PDF. Crie um novo PDF apenas com as páginas que você precisa. Extração grátis e segura.'
+      en: 'Pull specific pages from any PDF document into a new file. 100% private, local-first processing ensures your files never leave your device. Secure and free.',
+      fr: 'Extrayez des pages spécifiques de documents PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans limites.',
+      pt: 'Extraia páginas específicas de documentos PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Extração grátis e segura.'
     },
     keywords: {
       en: [
@@ -232,14 +232,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'crop',
     tool: ToolType.CROP,
     title: {
-      en: 'Crop PDF',
-      fr: 'Recadrer PDF - Rogner les Marges',
-      pt: 'Cortar PDF - Remover Margens'
+      en: 'Crop PDF - Free & Secure Margin Trimmer | pdfcanada.ca',
+      fr: 'Recadrer un PDF - Rogner les Marges Gratuitement | pdfcanada.ca',
+      pt: 'Cortar PDF - Remover Margens Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Crop PDF pages to remove unwanted margins and white space. Precise cropping tool for PDF documents. Free, secure, and browser-based.',
-      fr: 'Recadrez les pages PDF pour supprimer les marges indésirables et les espaces blancs. Outil de recadrage précis. Gratuit et sécurisé.',
-      pt: 'Corte páginas PDF para remover margens indesejadas e espaços em branco. Ferramenta de corte precisa. Grátis e seguro.'
+      en: 'Trim PDF margins and remove unwanted white space easily. 100% private, local-first processing ensures your files never leave your device. Precise and free.',
+      fr: 'Supprimez les marges blanches de vos PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Précis, gratuit et sécurisé.',
+      pt: 'Corte páginas PDF para remover margens indesejadas. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -265,14 +265,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'heic',
     tool: ToolType.HEIC_TO_PDF,
     title: {
-      en: 'HEIC to PDF',
-      fr: 'HEIC vers PDF - Photos iPhone en PDF',
-      pt: 'HEIC para PDF - Fotos iPhone em PDF'
+      en: 'HEIC to PDF - Free & Secure iPhone Photo Converter | pdfcanada.ca',
+      fr: 'HEIC vers PDF - Convertir Photos iPhone Gratuitement | pdfcanada.ca',
+      pt: 'HEIC para PDF - Converter Fotos iPhone Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert HEIC (iPhone photos) to PDF format instantly. Fast, free, and secure conversion in your browser. No uploads required - privacy first.',
-      fr: 'Convertissez HEIC (photos iPhone) en format PDF instantanément. Conversion rapide, gratuite et sécurisée. Confidentialité totale.',
-      pt: 'Converta fotos HEIC (iPhone) para formato PDF instantaneamente. Conversão rápida, grátis e segura no seu navegador. Privacidade total.'
+      en: 'Convert HEIC (iPhone) photos to high-quality PDF format instantly. 100% private, local-first processing ensures your photos stay on your device. Fast and free.',
+      fr: 'Convertissez vos photos HEIC (iPhone) en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans téléchargement.',
+      pt: 'Converta fotos HEIC (iPhone) para formato PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -298,14 +298,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'epubToPdf',
     tool: ToolType.EPUB_TO_PDF,
     title: {
-      en: 'EPUB to PDF',
-      fr: 'EPUB vers PDF - Convertir eBook en PDF',
-      pt: 'EPUB para PDF - Converter eBook em PDF'
+      en: 'EPUB to PDF - Free & Secure eBook Converter | pdfcanada.ca',
+      fr: 'EPUB vers PDF - Convertir eBook en PDF Gratuitement | pdfcanada.ca',
+      pt: 'EPUB para PDF - Converter eBook em PDF Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert EPUB ebooks to PDF format instantly. Preserve formatting and layout for printing or reading. Free, secure conversion - no file uploads.',
-      fr: 'Convertissez les ebooks EPUB en format PDF instantanément. Préservez la mise en page pour l\'impression ou la lecture. Gratuit et sécurisé - sans téléchargement.',
-      pt: 'Converta ebooks EPUB para formato PDF instantaneamente. Preserve a formatação e layout para impressão ou leitura. Conversão grátis e segura - sem uploads.'
+      en: 'Convert EPUB ebooks to high-quality PDF format instantly. 100% private, local-first processing ensures your books stay secure on your device. Fast and free.',
+      fr: 'Convertissez vos ebooks EPUB en format PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans téléchargement.',
+      pt: 'Converta ebooks EPUB para formato PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -331,14 +331,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToEpub',
     tool: ToolType.PDF_TO_EPUB,
     title: {
-      en: 'PDF to EPUB',
-      fr: 'PDF vers EPUB',
-      pt: 'PDF para EPUB'
+      en: 'PDF to EPUB - Free & Secure eBook Generator | pdfcanada.ca',
+      fr: 'PDF vers EPUB - Créer un eBook Gratuitement | pdfcanada.ca',
+      pt: 'PDF para EPUB - Criar eBook Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF documents to EPUB ebook format. Perfect for e-readers. Free, secure, browser-based conversion.',
-      fr: 'Convertissez des documents PDF en format ebook EPUB. Parfait pour les liseuses. Gratuit et sécurisé.',
-      pt: 'Converta documentos PDF para o formato ebook EPUB. Perfeito para e-readers. Conversão grátis, segura e baseada no navegador.'
+      en: 'Convert PDF documents to EPUB format for comfortable e-reading. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez des documents PDF en format ebook EPUB. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Parfait pour les liseuses.',
+      pt: 'Converta documentos PDF para o formato ebook EPUB. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Perfeito para e-readers.'
     },
     keywords: {
       en: ['PDF to EPUB', 'convert PDF to ebook', 'PDF to ebook'],
@@ -352,14 +352,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToKindle',
     tool: ToolType.PDF_TO_KINDLE,
     title: {
-      en: 'PDF to Kindle',
-      fr: 'PDF vers Kindle - Optimiser pour Liseuse',
-      pt: 'PDF para Kindle - Otimizar para Leitor'
+      en: 'PDF to Kindle - Free & Secure eReader Optimization | pdfcanada.ca',
+      fr: 'PDF vers Kindle - Optimiser pour Liseuse Gratuitement | pdfcanada.ca',
+      pt: 'PDF para Kindle - Otimizar para Leitor Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Optimize PDFs for Kindle devices. Converts PDF to enhanced EPUB/MOBI friendly formats. Smart reflow text and adjustable fonts. Private, local-first processing.',
-      fr: 'Optimisez les PDF pour les appareils Kindle. Convertit les PDF en formats compatibles liseuse. Refonte intelligente du texte et polices ajustables. Traitement privé et local.',
-      pt: 'Otimize PDFs para dispositivos Kindle. Converta PDF para formatos compatíveis com e-readers. Refluxo inteligente de texto e fontes ajustáveis. Processamento privado e local.'
+      en: 'Optimize PDF files for Kindle with smart reflow and adjustable fonts. 100% private, local-first processing ensures your data stays secure. Secure and free.',
+      fr: 'Optimisez les PDF pour Kindle avec refonte intelligente du texte. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Otimize PDFs para dispositivos Kindle com refluxo inteligente de texto. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -382,14 +382,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'fillable',
     tool: ToolType.MAKE_FILLABLE,
     title: {
-      en: 'Make PDF Fillable',
-      fr: 'Créer Formulaire PDF - Rendre PDF Modifiable',
-      pt: 'Criar Formulário PDF - Tornar PDF Preenchível'
+      en: 'Make PDF Fillable - Free & Secure Form Creator | pdfcanada.ca',
+      fr: 'Créer Formulaire PDF - Rendre PDF Modifiable Gratuitement | pdfcanada.ca',
+      pt: 'Criar Formulário PDF - Tornar PDF Preenchível Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert any PDF into a fillable form. Add text fields, checkboxes, and radio buttons. Free, secure, and easy-to-use form creator.',
-      fr: 'Convertissez n\'importe quel PDF en formulaire remplissable. Ajoutez des champs texte, des cases à cocher. Créateur de formulaire gratuit, sécurisé et facile à utiliser.',
-      pt: 'Converta qualquer PDF em um formulário preenchível. Adicione campos de texto e caixas de seleção. Criador de formulários grátis, seguro e fácil de usar.'
+      en: 'Convert any PDF into a fillable form with text fields and checkboxes. 100% private, local-first processing ensures your data stays secure. Free and easy.',
+      fr: 'Transformez vos PDF en formulaires remplissables. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Rapide et sans frais.',
+      pt: 'Converta qualquer PDF em um formulário preenchível profissional. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -412,14 +412,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'sign',
     tool: ToolType.SIGN,
     title: {
-      en: 'Sign PDF',
-      fr: 'Signer PDF - Signature Électronique Gratuite',
-      pt: 'Assinar PDF - Assinatura Digital Grátis'
+      en: 'Sign PDF - Free & Secure e-Signature Tool | pdfcanada.ca',
+      fr: 'Signer un PDF - Signature Électronique Gratuite | pdfcanada.ca',
+      pt: 'Assinar PDF - Assinatura Digital Online Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Sign PDF documents online for free. Draw, type, or upload your signature. Secure, legally binding e-signatures without registration.',
-      fr: 'Signez des documents PDF en ligne gratuitement. Dessinez, tapez ou téléchargez votre signature. Signature électronique sécurisée sans inscription.',
-      pt: 'Assine documentos PDF online gratuitamente. Desenhe, digite ou envie sua assinatura. Assinatura eletrônica segura e sem registro. (e-CNPJ/e-CPF compatible via visual signature).'
+      en: 'Draw, type, or upload your signature to sign PDF documents securely. 100% private, local-first processing ensures your files never leave your device. Secure and free.',
+      fr: 'Signez vos PDF en ligne en toute sécurité. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Signature gratuite et sans limite.',
+      pt: 'Assine documentos PDF online com segurança. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e digital.'
     },
     keywords: {
       en: [
@@ -445,14 +445,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'organizePdf',
     tool: ToolType.ORGANIZE,
     title: {
-      en: 'Organize PDF Pages',
-      fr: 'Organiser Pages PDF - Classer et Trier',
-      pt: 'Organizar Páginas PDF - Ordenar Arquivo'
+      en: 'Organize PDF Pages - Free & Secure Page Sorter | pdfcanada.ca',
+      fr: 'Organiser des Pages PDF - Classer et Trier Gratuitement | pdfcanada.ca',
+      pt: 'Organizar Páginas PDF - Ordenar Arquivo Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Reorder PDF pages, delete pages, or add blank pages. Drag and drop interface. Free, secure, and fully local organization.',
-      fr: 'Réorganisez les pages PDF, supprimez des pages ou ajoutez des pages blanches. Interface glisser-déposer. Organisation gratuite, sécurisée et locale.',
-      pt: 'Reordene páginas PDF, apague páginas ou adicione páginas em branco. Interface arrastar e soltar. Organização grátis, segura e totalmente local.'
+      en: 'Reorder, rotate, and delete PDF pages in one view. 100% private, local-first processing ensures your files never leave your device. Easy drag and drop.',
+      fr: 'Réorganisez les pages de vos PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Interface simple et gratuite.',
+      pt: 'Reordene páginas PDF ou adicione páginas em branco. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -475,14 +475,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToWord',
     tool: ToolType.PDF_TO_WORD,
     title: {
-      en: 'PDF to Word',
-      fr: 'Convertir PDF en Word Gratuitement',
-      pt: 'PDF para Word'
+      en: 'PDF to Word - Free & Secure DOCX Converter | pdfcanada.ca',
+      fr: 'Convertir un PDF en Word - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'PDF para Word - Conversor Grátis e Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF to editable Word documents (DOCX). Preserve formatting and layout. Free, secure conversion.',
-      fr: 'Comment convertir PDF en Word gratuitement. Convertissez vos fichiers PDF en documents Word modifiables (DOCX). Préservez le formatage. Gratuit, en ligne et sécurisé.',
-      pt: 'Converta PDF para documentos Word (DOCX) editáveis. Preserve a formatação e o layout. Conversão grátis e segura.'
+      en: 'Convert PDF to editable Word documents (DOCX) accurately. 100% private, local-first processing ensures your documents stay secure. Free and fast.',
+      fr: 'Convertissez vos PDF en documents Word (DOCX) modifiables. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Converta PDF para documentos Word (DOCX) editáveis. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to Word', 'PDF to DOCX', 'convert PDF to Word', 'free PDF converter'],
@@ -554,14 +554,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'wordToPdf',
     tool: ToolType.WORD_TO_PDF,
     title: {
-      en: 'Word to PDF',
-      fr: 'Convertir Word en PDF Gratuitement',
-      pt: 'Word para PDF'
+      en: 'Word to PDF - Free & Secure DOCX Converter | pdfcanada.ca',
+      fr: 'Convertir Word en PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'Word para PDF - Conversor Grátis e Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert Word documents (DOCX) to PDF format. Maintain formatting. Free, secure, browser-based conversion.',
-      fr: 'Comment convertir Word en PDF gratuitement. Convertissez vos documents Word (DOCX) en format PDF. Maintenez le formatage. Gratuit, en ligne et sécurisé.',
-      pt: 'Converta documentos Word (DOCX) para formato PDF. Mantenha a formatação. Conversão grátis, segura e no navegador.'
+      en: 'Convert Word documents to high-quality PDF format. 100% private, local-first processing ensures your files never leave your device. Secure and free.',
+      fr: 'Convertissez vos documents Word (DOCX) en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta documentos Word (DOCX) para formato PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['Word to PDF', 'DOCX to PDF', 'convert Word to PDF', 'free Word converter'],
@@ -613,14 +613,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'flatten',
     tool: ToolType.FLATTEN,
     title: {
-      en: 'Flatten PDF',
-      fr: 'Aplatir PDF - Verrouiller le Contenu',
-      pt: 'Aplanar PDF - Bloquear Conteúdo'
+      en: 'Flatten PDF - Free & Secure Content Locking | pdfcanada.ca',
+      fr: 'Aplatir un PDF - Verrouiller le Contenu Gratuitement | pdfcanada.ca',
+      pt: 'Aplanar PDF - Bloquear Conteúdo Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Flatten PDF layers and form fields to make document non-editable. Prevent further changes. Free, secure, and permanent locking.',
-      fr: 'Aplatissez les calques et champs de formulaire PDF pour rendre le document non modifiable. Empêchez les modifications futures. Verrouillage gratuit et sécurisé.',
-      pt: 'Aplane camadas e campos de formulário PDF para tornar o documento não editável. Impeça alterações futuras. Bloqueio grátis e seguro.'
+      en: 'Lock PDF form fields and layers to make content non-editable. 100% private, local-first processing ensures your files stay secure on your device. Permanent and free.',
+      fr: 'Rendez vos formulaires PDF non modifiables. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Verrouillage gratuit et définitif.',
+      pt: 'Aplane camadas e campos de formulário PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Bloqueio grátis e seguro.'
     },
     keywords: {
       en: [
@@ -643,14 +643,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfPageRemover',
     tool: ToolType.PDF_PAGE_REMOVER,
     title: {
-      en: 'PDF Page Remover',
-      fr: 'Suppresseur Pages PDF - Outil Rapide',
-      pt: 'Removedor de Páginas PDF - Ferramenta Rápida'
+      en: 'PDF Page Remover - Free & Secure Page Deleter | pdfcanada.ca',
+      fr: 'Suppresseur de Pages PDF - Outil Gratuit et Rapide | pdfcanada.ca',
+      pt: 'Removedor de Páginas PDF - Ferramenta Grátis e Rápida | pdfcanada.ca'
     },
     description: {
-      en: 'Quickly remove specific pages from a PDF. Select and delete pages instantly. 100% Canadian privacy compliant - local processing.',
-      fr: 'Supprimez rapidement des pages spécifiques d\'un PDF. Sélectionnez et supprimez instantanément. Conformité confidentialité canadienne 100%.',
-      pt: 'Remova rapidamente páginas específicas de um PDF. Selecione e apague instantaneamente. 100% compatível com privacidade canadense.'
+      en: 'Select and delete specific pages from your PDF instantly. 100% private, local-first processing ensures your files stay secure on your device. Simple and free.',
+      fr: 'Supprimez rapidement des pages de vos PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Conforme aux normes canadiennes.',
+      pt: 'Remova rapidamente páginas específicas de um PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Simples e grátis.'
     },
     keywords: {
       en: [
@@ -674,14 +674,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'cbrToPdf',
     tool: ToolType.CBR_TO_PDF,
     title: {
-      en: 'CBR to PDF',
-      fr: 'CBR vers PDF',
-      pt: 'CBR para PDF'
+      en: 'CBR to PDF - Free & Secure Comic Book Converter | pdfcanada.ca',
+      fr: 'CBR vers PDF - Convertir BD en PDF Gratuitement | pdfcanada.ca',
+      pt: 'CBR para PDF - Converter Quadrinhos em PDF Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert CBR/CBZ comic book archives to PDF. Preserve image quality. Free, secure conversion.',
-      fr: 'Convertissez les archives de bandes dessinées CBR/CBZ en PDF. Préservez la qualité d\'image. Gratuit et sécurisé.',
-      pt: 'Converta arquivos de quadrinhos CBR/CBZ para PDF. Preserve a qualidade da imagem. Conversão grátis e segura.'
+      en: 'Convert CBR and CBZ comic archives to PDF while preserving quality. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez vos archives de bandes dessinées CBR/CBZ en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et haute qualité.',
+      pt: 'Converta arquivos de quadrinhos CBR/CBZ para PDF de alta qualidade. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['CBR to PDF', 'comic book to PDF', 'CBZ to PDF'],
@@ -695,14 +695,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToXml',
     tool: ToolType.PDF_TO_XML,
     title: {
-      en: 'PDF to XML',
-      fr: 'PDF vers XML',
-      pt: 'PDF para XML'
+      en: 'PDF to XML - Free & Secure Data Extractor | pdfcanada.ca',
+      fr: 'PDF vers XML - Extraction de Données Sécurisée | pdfcanada.ca',
+      pt: 'PDF para XML - Extração de Dados Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Extract text from PDF as XML format. Convert PDF data to structured XML. Free, secure conversion.',
-      fr: 'Extrayez le texte du PDF au format XML. Convertissez les données PDF en XML structuré. Gratuit et sécurisé.',
-      pt: 'Extraia texto de PDF como formato XML. Converta dados PDF para XML estruturado. Conversão grátis e segura.'
+      en: 'Extract structured XML data from PDF documents accurately. 100% private, local-first processing ensures your data stays secure. Free and secure.',
+      fr: 'Extrayez le texte du PDF au format XML. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Extraia texto de PDF como formato XML. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to XML', 'convert PDF to XML', 'extract PDF data'],
@@ -716,14 +716,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'xmlToPdf',
     tool: ToolType.XML_TO_PDF,
     title: {
-      en: 'XML to PDF',
-      fr: 'XML vers PDF',
-      pt: 'XML para PDF'
+      en: 'XML to PDF - Free & Secure Document Generator | pdfcanada.ca',
+      fr: 'XML vers PDF - Générateur de Documents Sécurisé | pdfcanada.ca',
+      pt: 'XML para PDF - Gerador de Documentos Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert XML data to PDF documents. Create formatted PDFs from XML. Free, secure conversion.',
-      fr: 'Convertissez les données XML en documents PDF. Créez des PDF formatés à partir de XML. Gratuit et sécurisé.',
-      pt: 'Converta dados XML para documentos PDF. Crie PDFs formatados a partir de XML. Conversão grátis e segura.'
+      en: 'Convert XML data into readable PDF documents instantly. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez les données XML en documents PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta dados XML para documentos PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['XML to PDF', 'convert XML', 'XML to document'],
@@ -737,14 +737,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'excelToPdf',
     tool: ToolType.EXCEL_TO_PDF,
     title: {
-      en: 'Excel to PDF',
-      fr: 'Convertir Excel en PDF - Gratuit',
-      pt: 'Excel para PDF - Converter Planilha'
+      en: 'Excel to PDF - Free & Secure Spreadsheet Converter | pdfcanada.ca',
+      fr: 'Excel en PDF - Convertisseur de Tableaux Gratuit | pdfcanada.ca',
+      pt: 'Excel para PDF - Conversor de Planilhas Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert Excel spreadsheets (XLSX/XLS) to PDF format. Preserve formatting, tables, and sheets. Free, secure, and private conversion.',
-      fr: 'Convertissez des fichiers Excel (XLSX) en PDF tout en préservant la mise en page. Outil gratuit et sécurisé pour vos bilans et tableaux.',
-      pt: 'Converta planilhas Excel (XLSX) para PDF preservando a formatação. Ferramenta grátis e segura para seus relatórios e tabelas.'
+      en: 'Turn Excel spreadsheets into professional PDF documents. 100% private, local-first processing ensures your data stays secure. Fast and free.',
+      fr: 'Convertissez vos fichiers Excel (XLSX) en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta planilhas Excel (XLSX) para PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -770,14 +770,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'rtfToPdf',
     tool: ToolType.RTF_TO_PDF,
     title: {
-      en: 'RTF to PDF',
-      fr: 'RTF vers PDF - Convertisseur Document',
-      pt: 'RTF para PDF - Converter Documento'
+      en: 'RTF to PDF - Free & Secure Rich Text Converter | pdfcanada.ca',
+      fr: 'RTF vers PDF - Convertisseur de Document Sécurisé | pdfcanada.ca',
+      pt: 'RTF para PDF - Conversor de Documento Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert RTF files to PDF format instantly. Maintain original text formatting and layout. Free, secure, and private conversion.',
-      fr: 'Convertissez des fichiers RTF en PDF instantanément. Conservez la mise en forme du texte. Gratuit et privé.',
-      pt: 'Converta arquivos RTF para PDF instantaneamente. Mantenha a formatação do texto original. Grátis e privado.'
+      en: 'Convert RTF files to PDF while preserving formatting. 100% private, local-first processing ensures your files never leave your device. Fast and free.',
+      fr: 'Convertissez des fichiers RTF en PDF instantanément. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta arquivos RTF para PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['RTF to PDF', 'convert RTF to PDF', 'Rich Text to PDF', 'RTF converter', 'file rtf to pdf'],
@@ -791,14 +791,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'invoiceOcr',
     tool: ToolType.INVOICE_OCR,
     title: {
-      en: 'Invoice OCR',
-      fr: 'OCR Factures - Extraction Données IA',
-      pt: 'OCR de Faturas - Extração de Dados IA'
+      en: 'Invoice OCR - Free & Secure AI Data Extraction | pdfcanada.ca',
+      fr: 'OCR de Facture - Extraction IA Gratuite et Sécurisée | pdfcanada.ca',
+      pt: 'OCR de Fatura - Extração IA Grátis e Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Extract text, dates, and amounts from PDF invoices automatically. Export data to Excel/CSV. Private, local processing using AI - no cloud uploads.',
-      fr: 'Extrayez automatiquement texte, dates et montants des factures PDF. Exportez vers Excel/CSV. Traitement privé et local par IA - sans cloud.',
-      pt: 'Extraia texto, datas e valores de faturas PDF automaticamente. Exporte para Excel/CSV. Processamento privado e local usando IA - sem nuvem.'
+      en: 'Extract text, dates, and amounts from PDF invoices automatically using AI. 100% private, local-first processing ensures your financial data stays secure. Secure and free.',
+      fr: 'Extrayez automatiquement les données des factures PDF via l\'IA. Traitement 100% local et privé : vos données ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Extraia automaticamente dados de faturas PDF usando tecnologia IA OCR. Processamento 100% local e privado: seus dados nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -821,14 +821,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'barcode',
     tool: ToolType.BARCODE_GENERATOR,
     title: {
-      en: 'Code 128 Barcode Generator',
-      fr: 'Générateur Code-Barres Code 128',
-      pt: 'Gerador de Código de Barras Code 128'
+      en: 'Barcode Generator - Free & Secure QR/Barcode Creator | pdfcanada.ca',
+      fr: 'Générateur de Code-Barres - Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'Gerador de Código de Barras - Grátis e Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Generate professional Code 128 barcodes instantly. Bulk barcode creation from Excel/CSV, add to PDFs, export as PNG/SVG. Support for Code 128A/B/C. Free, fast, and secure.',
-      fr: 'Générez des codes-barres Code 128 professionnels instantanément. Création en masse depuis Excel/CSV, ajout aux PDF, export PNG/SVG. Support Code 128A/B/C. Gratuit et sécurisé.',
-      pt: 'Gere códigos de barras Code 128 profissionais instantanément. Criação em massa a partir de Excel/CSV, adicione a PDFs, exporte como PNG/SVG. Grátis e seguro.'
+      en: 'Generate professional Code 128 barcodes and QR codes instantly. 100% private, local-first processing ensures your data stays secure on your device. Free and easy.',
+      fr: 'Générez des codes-barres et codes QR professionnels. Traitement 100% local et privé : vos données ne quittent jamais votre appareil. Gratuit et sans publicité.',
+      pt: 'Gere códigos de barras e QR codes profissionais instantaneamente. Processamento 100% local e privado: seus dados nunca saem do seu dispositivo. Grátis e fácil.'
     },
     keywords: {
       en: ['code 128 barcode generator', 'bulk barcode generator', 'free barcode maker', 'barcode to pdf', 'excel to barcode', 'generate barcode online', 'code 128a', 'code 128b', 'code 128c'],
@@ -842,14 +842,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdftocsv',
     tool: ToolType.PDF_TO_CSV,
     title: {
-      en: 'PDF to CSV',
-      fr: 'PDF vers CSV',
-      pt: 'PDF para CSV'
+      en: 'PDF to CSV - Free & Secure Bank Statement Converter | pdfcanada.ca',
+      fr: 'PDF vers CSV - Extraction de Tableaux Sécurisée | pdfcanada.ca',
+      pt: 'PDF para CSV - Extração de Tabelas Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Extract tables from bank statements and documents into CSV format. Smart multiline merging and local processing for maximum privacy.',
-      fr: 'Extrayez les tableaux des relevés bancaires et documents au format CSV. Fusion multiligne intelligente et traitement local pour une confidentialité maximale.',
-      pt: 'Extraia tabelas de extratos bancários e documentos para formato CSV. Fusão multilinha inteligente e processamento local.'
+      en: 'Extract tables from bank statements and PDFs into CSV format. 100% private, local-first processing ensures your financial data stays secure. Accurate and free.',
+      fr: 'Extrayez les tableaux des relevés bancaires au format CSV. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Précis et gratuit.',
+      pt: 'Extraia tabelas de extratos bancários e PDFs para formato CSV. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to CSV', 'bank statement to CSV', 'extract table from PDF', 'PDF to Excel converter'],
@@ -863,14 +863,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdftoexcel',
     tool: ToolType.PDF_TO_EXCEL,
     title: {
-      en: 'PDF to Excel',
-      fr: 'Convertir PDF en Excel - Tableaux Editables',
-      pt: 'PDF para Excel - Tabelas Editáveis'
+      en: 'PDF to Excel - Free & Secure Table Extractor | pdfcanada.ca',
+      fr: 'Convertir un PDF en Excel - Tableaux Editables | pdfcanada.ca',
+      pt: 'PDF para Excel - Tabelas Editáveis Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF to Excel (XLSX) spreadsheets. Extract tables and data accurately. Free tool - files stay on your device.',
-      fr: 'Convertissez PDF en Excel (XLSX). Extrayez les tableaux et données avec précision. Outil gratuit - vos fichiers restent sur votre appareil.',
-      pt: 'Converta PDF para planilhas Excel (XLSX). Extraia tabelas e dados com precisão. Ferramenta grátis - arquivos ficam no seu dispositivo.'
+      en: 'Extract tables and data from PDF into Excel (XLSX). 100% private, local-first processing ensures your information stays secure. Accurate and free.',
+      fr: 'Convertissez vos PDF en Excel (XLSX). Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Converta PDF para planilhas Excel (XLSX). Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -896,14 +896,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'analyzepdf',
     tool: ToolType.PHISHING_DETECTOR,
     title: {
-      en: 'Analyze PDF Security',
-      fr: 'Analyser Sécurité PDF - Détecteur Phishing',
-      pt: 'Analisar Segurança de PDF - Detector Phishing'
+      en: 'Analyze PDF - Free & Secure AI Phishing Detector | pdfcanada.ca',
+      fr: 'Analyser la Sécurité PDF - Détecteur de Phishing IA | pdfcanada.ca',
+      pt: 'Analisar Segurança PDF - Detector de Phishing IA | pdfcanada.ca'
     },
     description: {
-      en: 'Scan PDF for phishing links, malware, and scripts. View content safely without executing malicious code. 100% local analysis sandbox.',
-      fr: 'Analysez les PDF pour détecter liens d\'hameçonnage, malwares et scripts. Visualisez le contenu en sécurité sans exécuter de code. Sandbox 100% locale.',
-      pt: 'Digitalize PDF em busca de links de phishing, malware e scripts. Visualize conteúdo com segurança sem executar código. Sandbox 100% local.'
+      en: 'Scan PDF files for phishing links and malware safely using AI. 100% private, local-first processing ensures your privacy is protected. Fast, secure, and free.',
+      fr: 'Analysez les PDF pour détecter liens d\'hameçonnage et malwares via l\'IA. Traitement 100% local et privé : votre sécurité est assurée. Gratuit et fiable.',
+      pt: 'Analise arquivos PDF em busca de links de phishing e malware usando IA. Processamento 100% local e privado: sua privacidade é protegida. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -929,14 +929,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'xrechnungViewer',
     tool: ToolType.XRECHNUNG_VIEWER,
     title: {
-      en: 'XRechnung Viewer',
-      fr: 'Visualiseur XRechnung',
-      pt: 'Visualizador XRechnung'
+      en: 'XRechnung Viewer - Free & Secure E-Invoice Visualizer | pdfcanada.ca',
+      fr: 'Visualiseur XRechnung - Facture Électronique Sécurisée | pdfcanada.ca',
+      pt: 'Visualizador XRechnung - Fatura Eletrônica Segura | pdfcanada.ca'
     },
     description: {
-      en: 'View XRechnung (XML) invoices in a human-readable format. Free, secure, and client-side only viewer.',
-      fr: 'Visualisez les factures XRechnung (XML) dans un format lisible. Visualiseur gratuit, sécurisé et 100% côté client.',
-      pt: 'Visualize faturas XRechnung (XML) em formato legível. Visualizador 100% local, grátis e seguro.'
+      en: 'View and visualize XRechnung XML invoices in a human-readable format. 100% private, local-first processing ensures your financial data stays secure. Secure and free.',
+      fr: 'Visualisez vos factures XRechnung (XML) en format lisible. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et conforme.',
+      pt: 'Visualize arquivos XRechnung XML em um formato legível. Processamento 100% local e privado: seus dados financeiros nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['XRechnung viewer', 'XML invoice viewer', 'read XRechnung', 'visualize XML invoice'],
@@ -950,14 +950,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'gifToPdf',
     tool: ToolType.GIF_TO_PDF,
     title: {
-      en: 'GIF to PDF',
-      fr: 'GIF en PDF',
-      pt: 'GIF para PDF'
+      en: 'GIF to PDF - Free & Secure Animated Image Converter | pdfcanada.ca',
+      fr: 'GIF vers PDF - Convertisseur d\'Images Gratuit | pdfcanada.ca',
+      pt: 'GIF para PDF - Conversor de Imagens Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert GIF images to PDF documents. Static and animated GIFs supported (converts frames).',
-      fr: 'Convertir des images GIF en documents PDF. Supports des GIFs animés (convertit les cadres).',
-      pt: 'Converta imagens GIF para documentos PDF. Suporta GIFs estáticos e animados (converte quadros). Conversão grátis.'
+      en: 'Convert static and animated GIFs into PDF documents securely. 100% private, local-first processing ensures your files never leave your device. Free and easy.',
+      fr: 'Convertissez des images GIF en documents PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta imagens GIF para documentos PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['gif to pdf', 'convert gif', 'image to pdf'],
@@ -971,14 +971,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'aspxToPdf',
     tool: ToolType.ASPX_TO_PDF,
     title: {
-      en: 'ASPX to PDF',
-      fr: 'ASPX en PDF',
-      pt: 'ASPX para PDF'
+      en: 'ASPX to PDF - Free & Secure Source Code Converter | pdfcanada.ca',
+      fr: 'ASPX en PDF - Documentation de Code Sécurisée | pdfcanada.ca',
+      pt: 'ASPX para PDF - Documentação de Código Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Convert ASPX source code files to PDF format for documentation or printing.',
-      fr: 'Convertir les fichiers de code source ASPX en format PDF pour la documentation ou l\'impression.',
-      pt: 'Converta arquivos de código fonte ASPX para formato PDF para documentação ou impressão.'
+      en: 'Convert ASPX source code files to PDF for documentation. 100% private, local-first processing ensures your code stays secure. Fast and free.',
+      fr: 'Convertissez les fichiers ASPX en PDF pour documentation. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta arquivos de código fonte ASPX para PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['aspx to pdf', 'convert aspx', 'code to pdf'],
@@ -992,14 +992,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'phpToPdf',
     tool: ToolType.PHP_TO_PDF,
     title: {
-      en: 'PHP to PDF',
-      fr: 'PHP en PDF',
-      pt: 'PHP para PDF'
+      en: 'PHP to PDF - Free & Secure Code to PDF Converter | pdfcanada.ca',
+      fr: 'PHP en PDF - Documentation de Code Sécurisée | pdfcanada.ca',
+      pt: 'PHP para PDF - Documentação de Código Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PHP source code files to PDF format for documentation or printing.',
-      fr: 'Convertir les fichiers de code source PHP en format PDF pour la documentation ou l\'impression.',
-      pt: 'Converta arquivos de código fonte PHP para formato PDF para documentação ou impressão.'
+      en: 'Convert PHP files into PDF documentation instantly. 100% private, local-first processing ensures your source code stays secure on your device. Free and easy.',
+      fr: 'Convertissez les fichiers de code source PHP en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et automatique.',
+      pt: 'Converta arquivos de código fonte PHP para formato PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['php to pdf', 'convert php', 'code to pdf', 'php source to pdf'],
@@ -1013,14 +1013,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'odtToPdf',
     tool: ToolType.ODT_TO_PDF,
     title: {
-      en: 'ODT to PDF',
-      fr: 'ODT vers PDF - LibreOffice en PDF',
-      pt: 'ODT para PDF - LibreOffice em PDF'
+      en: 'ODT to PDF - Free & Secure LibreOffice Converter | pdfcanada.ca',
+      fr: 'ODT vers PDF - LibreOffice en PDF Gratuitement | pdfcanada.ca',
+      pt: 'ODT para PDF - LibreOffice em PDF Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert ODT (OpenOffice/LibreOffice) files to PDF. Ensure your documents are readable everywhere. Free and secure.',
-      fr: 'Convertissez des fichiers ODT (OpenOffice) en PDF. Assurez la lisibilité de vos documents partout. Gratuit et sécurisé.',
-      pt: 'Converta arquivos ODT (OpenOffice) para PDF. Garanta que seus documentos sejam legíveis em qualquer lugar. Grátis e seguro.'
+      en: 'Convert OpenOffice/LibreOffice ODT files to PDF instantly. 100% private, local-first processing ensures your documents stay secure. Free and easy.',
+      fr: 'Convertissez des fichiers ODT (OpenOffice) en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta arquivos ODT (OpenOffice) para PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['ODT to PDF', 'OpenOffice to PDF', 'LibreOffice to PDF', 'convert ODT', 'odt file to pdf'],
@@ -1035,14 +1035,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'jpgToPdf',
     tool: ToolType.JPG_TO_PDF,
     title: {
-      en: 'JPG to PDF',
-      fr: 'Convertir JPG en PDF - Gratuit et Rapide',
-      pt: 'JPG para PDF - Converter Imagem em PDF'
+      en: 'JPG to PDF - Free & Secure Image to PDF Converter | pdfcanada.ca',
+      fr: 'Convertir un JPG en PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'JPG para PDF - Conversor de Imagem Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert JPG images to PDF format instantly. Combine multiple JPGs into one PDF. Free, secure, and no file limits - local processing.',
-      fr: 'Convertissez des images JPG en format PDF instantanément. Combinez plusieurs JPG en un seul PDF. Gratuit, sécurisé et sans limite.',
-      pt: 'Converta imagens JPG para formato PDF instantaneamente. Combine vários JPGs em um único PDF. Grátis, seguro e sem limites.'
+      en: 'Convert JPG images into PDF documents securely. 100% private, local-first processing ensures your files never leave your device. Fast, free, and easy.',
+      fr: 'Convertissez vos images JPG en format PDF instantanément. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans limites.',
+      pt: 'Converta imagens JPG para formato PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1069,14 +1069,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'jpegToPdf',
     tool: ToolType.JPEG_TO_PDF,
     title: {
-      en: 'JPEG to PDF',
-      fr: 'JPEG vers PDF - Conversion Photo',
-      pt: 'JPEG para PDF - Conversão de Fotos'
+      en: 'JPEG to PDF - Free & Secure High-Quality Converter | pdfcanada.ca',
+      fr: 'JPEG vers PDF - Conversion Photo Gratuite | pdfcanada.ca',
+      pt: 'JPEG para PDF - Conversão de Fotos Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert JPEG images to high-quality PDF. Preserve original resolution. Free tool for photographers and designers.',
-      fr: 'Convertissez des images JPEG en PDF haute qualité. Préservez la résolution originale. Outil gratuit pour photographes.',
-      pt: 'Converta imagens JPEG para PDF de alta qualidade. Preserve a resolução original. Ferramenta grátis para fotos.'
+      en: 'Transform JPEG photos into professional PDF files. 100% private, local-first processing ensures your images stay secure. High-quality and free.',
+      fr: 'Convertissez des images JPEG en PDF haute qualité. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit pour tous.',
+      pt: 'Converta imagens JPEG para PDF de alta qualidade. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['JPEG to PDF', 'convert JPEG', 'photos to PDF', 'jpeg converter', 'save jpeg as pdf'],
@@ -1090,14 +1090,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pngToPdf',
     tool: ToolType.PNG_TO_PDF,
     title: {
-      en: 'PNG to PDF',
-      fr: 'PNG vers PDF - Images sans Perte',
-      pt: 'PNG para PDF - Imagens sem Perda'
+      en: 'PNG to PDF - Free & Secure Screenshot Converter | pdfcanada.ca',
+      fr: 'PNG vers PDF - Images sans Perte Gratuitement | pdfcanada.ca',
+      pt: 'PNG para PDF - Imagens sem Perda Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PNG images to PDF while preserving transparency and quality. Best field tool for screenshots and graphics. 100% free.',
-      fr: 'Convertissez des PNG en PDF tout en préservant la transparence. Meilleur outil pour les captures d\'écran. 100% gratuit.',
-      pt: 'Converta imagens PNG para PDF preservando transparência. Melhor ferramenta para capturas de tela. 100% grátis.'
+      en: 'Convert PNG images and screenshots to PDF while preserving quality. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez des PNG en PDF sans perte de qualité. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta imagens PNG para PDF preservando qualidade. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PNG to PDF', 'convert PNG', 'image to PDF', 'screenshot to pdf'],
@@ -1111,14 +1111,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToJpg',
     tool: ToolType.PDF_TO_JPG,
     title: {
-      en: 'PDF to JPG',
-      fr: 'PDF vers JPG',
-      pt: 'PDF para JPG'
+      en: 'PDF to JPG - Free & Secure Page to Image Converter | pdfcanada.ca',
+      fr: 'PDF vers JPG - Conversion Gratuite et Sécurisée | pdfcanada.ca',
+      pt: 'PDF para JPG - Conversão Grátis e Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF pages to JPG images. Extract images from PDF. High quality, free, and secure.',
-      fr: 'Convertissez les pages PDF en images JPG. Extrayez les images du PDF. Haute qualité, gratuit et sécurisé.',
-      pt: 'Converta páginas PDF para imagens JPG. Extraia imagens de PDF. Alta qualidade, grátis e seguro.'
+      en: 'Extract pages from PDF and save them as high-quality JPG images. 100% private, local-first processing ensures your documents stay secure. Free and fast.',
+      fr: 'Convertissez les pages PDF en images JPG. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Haute qualité et gratuit.',
+      pt: 'Converta páginas PDF para imagens JPG. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to JPG', 'convert PDF to image', 'PDF to picture'],
@@ -1132,14 +1132,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToPng',
     tool: ToolType.PDF_TO_PNG,
     title: {
-      en: 'PDF to PNG',
-      fr: 'PDF vers PNG - Haute Qualité',
-      pt: 'PDF para PNG - Alta Qualidade'
+      en: 'PDF to PNG - Free & Secure Transparent Image Converter | pdfcanada.ca',
+      fr: 'PDF vers PNG - Haute Qualité et Gratuit | pdfcanada.ca',
+      pt: 'PDF para PNG - Alta Qualidade e Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF pages into high-quality PNG images. Extract graphics with transparency support. Private and secure.',
-      fr: 'Convertissez des pages PDF en images PNG haute qualité. Extrayez des graphiques avec support transparence. Privé et sécurisé.',
-      pt: 'Converta páginas PDF em imagens PNG de alta qualidade. Extraia gráficos com suporte a transparência. Privado e seguro.'
+      en: 'Convert PDF pages into high-quality PNG images with transparency support. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez des pages PDF en images PNG. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta páginas PDF em imagens PNG de alta qualidade. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to PNG', 'convert PDF to PNG', 'extract PNG from PDF', 'save pdf as png', 'turn pdf into image'],
@@ -1153,14 +1153,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'imageToPdf',
     tool: ToolType.IMAGE_TO_PDF,
     title: {
-      en: 'Image to PDF',
-      fr: 'Image en PDF - Convertisseur Universel',
-      pt: 'Imagem para PDF - Conversor Universal'
+      en: 'Image to PDF - Free & Secure Universal Image Converter | pdfcanada.ca',
+      fr: 'Image en PDF - Convertisseur Universel Gratuit | pdfcanada.ca',
+      pt: 'Imagem para PDF - Conversor Universal Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert any image file (JPG, PNG, GIF, BMP, WebP, HEIC) to PDF. Drag & drop multiple images. Free, secure, and fast.',
-      fr: 'Convertissez n\'importe quelle image (JPG, PNG, WebP) en PDF. Glissez-déposez plusieurs images. Gratuit, sécurisé et rapide.',
-      pt: 'Converta qualquer arquivo de imagem (JPG, PNG, WebP) para PDF. Arraste e solte várias imagens. Grátis, seguro e rápido.'
+      en: 'Convert any image (JPG, PNG, WebP, HEIC) to PDF instantly. 100% private, local-first processing ensures your files stay secure on your device. Free and fast.',
+      fr: 'Convertissez n\'importe quelle image en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit, sécurisé et rapide.',
+      pt: 'Converta qualquer arquivo de imagem para PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e rápido.'
     },
     keywords: {
       en: [
@@ -1186,14 +1186,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToImage',
     tool: ToolType.PDF_TO_JPG,
     title: {
-      en: 'PDF to Image',
-      fr: 'Convertir PDF en Image Gratuitement',
-      pt: 'PDF para Imagem'
+      en: 'PDF to Image - Free & Secure Document to Image Converter | pdfcanada.ca',
+      fr: 'Convertir un PDF en Image - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'PDF para Imagem - Conversor de Documento Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF pages to images (JPG/PNG). Extract images from PDF documents. Free and secure.',
-      fr: 'Convertissez les pages PDF en images (JPG/PNG). Extrayez les images des documents PDF. Gratuit et sécurisé.',
-      pt: 'Converta páginas PDF para imagens (JPG/PNG). Extraia imagens de documentos PDF. Grátis e seguro.'
+      en: 'Save PDF pages as images (JPG/PNG) securely. 100% private, local-first processing ensures your documents never leave your device. Fast, free, and easy.',
+      fr: 'Convertissez les pages PDF en images (JPG/PNG). Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta páginas PDF para imagens (JPG/PNG). Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to image', 'convert PDF to image', 'extract images from PDF'],
@@ -1217,14 +1217,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToJpeg',
     tool: ToolType.PDF_TO_JPG,
     title: {
-      en: 'PDF to JPEG',
-      fr: 'Convertir PDF en JPEG Gratuitement',
-      pt: 'PDF para JPEG'
+      en: 'PDF to JPEG - Free & Secure Document to JPEG Converter | pdfcanada.ca',
+      fr: 'Convertir un PDF en JPEG - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'PDF para JPEG - Conversor de Documento Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF pages to JPEG images. High quality conversion with adjustable settings.',
-      fr: 'Convertissez les pages PDF en images JPEG. Conversion haute qualité avec paramètres ajustables.',
-      pt: 'Converta páginas PDF para imagens JPEG. Conversão de alta qualidade com configurações ajustáveis.'
+      en: 'Convert PDF pages into high-quality JPEG images securely. 100% private, local-first processing ensures your files stay secure on your device. Free and fast.',
+      fr: 'Convertissez les pages PDF en images JPEG. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Converta páginas PDF para imagens JPEG. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to JPEG', 'convert PDF to JPEG', 'PDF JPEG converter'],
@@ -1251,14 +1251,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToUbl',
     tool: ToolType.PDF_TO_UBL,
     title: {
-      en: 'PDF to UBL',
-      fr: 'PDF vers UBL',
-      pt: 'PDF para UBL'
+      en: 'PDF to UBL - Free & Secure E-Invoice Generator | pdfcanada.ca',
+      fr: 'PDF vers UBL - Générateur de Factures Sécurisé | pdfcanada.ca',
+      pt: 'PDF para UBL - Gerador de Faturas Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF invoices to UBL 2.1 XML format. Extract vendor, date, and amounts automatically. Free, private, local processing.',
-      fr: 'Convertissez les factures PDF en format XML UBL 2.1. Extrayez automatiquement le fournisseur, la date et les montants. Gratuit, privé, traitement local.',
-      pt: 'Converta faturas PDF para o formato padrão UBL 2.1 (XML). Extraia dados automaticamente. Processamento local, grátis e privado.'
+      en: 'Convert PDF invoices to UBL 2.1 XML format for e-invoicing. 100% private, local-first processing ensures your financial data stays secure. Free and accurate.',
+      fr: 'Convertissez les factures PDF en format XML UBL 2.1. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et conforme.',
+      pt: 'Converta faturas PDF para o formato padrão UBL 2.1 (XML). Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to UBL', 'convert PDF to UBL', 'invoice to UBL', 'UBL converter'],
@@ -1272,14 +1272,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToPpt',
     tool: ToolType.PDF_TO_PPT,
     title: {
-      en: 'PDF to PowerPoint',
-      fr: 'Convertir PDF en PowerPoint - Slides Editables',
-      pt: 'PDF para PowerPoint - Slides Editáveis'
+      en: 'PDF to PowerPoint - Free & Secure PPTX Converter | pdfcanada.ca',
+      fr: 'PDF vers PowerPoint - Slides Editables | pdfcanada.ca',
+      pt: 'PDF para PowerPoint - Slides Editáveis Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF to PowerPoint (PPTX) presentations. Turn PDF pages into editable slides. Free and secure conversion.',
-      fr: 'Convertissez des PDF en présentations PowerPoint (PPTX). Transformez les pages PDF en diapositives modifiables. Conversion gratuite et sécurisée.',
-      pt: 'Converta PDF para apresentações PowerPoint (PPTX). Transforme páginas PDF em slides editáveis. Conversão grátis e segura.'
+      en: 'Turn PDF pages into editable PowerPoint slides (PPTX). 100% private, local-first processing ensures your files never leave your device. Secure and free.',
+      fr: 'Convertissez des PDF en présentations PowerPoint (PPTX). Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta PDF para apresentações PowerPoint (PPTX). Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1305,14 +1305,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pptToPdf',
     tool: ToolType.PPT_TO_PDF,
     title: {
-      en: 'PowerPoint to PDF',
-      fr: 'Convertir PowerPoint en PDF - Gratuit',
-      pt: 'PowerPoint para PDF - Converter PPT'
+      en: 'PowerPoint to PDF - Free & Secure Slides Converter | pdfcanada.ca',
+      fr: 'PowerPoint en PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'PowerPoint para PDF - Conversor de Slides Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PowerPoint (PPT/PPTX) to PDF format. Save your slides as a secure PDF document. Free and private.',
-      fr: 'Convertissez PowerPoint (PPT/PPTX) en format PDF. Enregistrez vos diapositives en document PDF sécurisé. Gratuit et privé.',
-      pt: 'Converta PowerPoint (PPT/PPTX) para formato PDF. Salve seus slides como um documento PDF seguro. Grátis e privado.'
+      en: 'Convert PPT/PPTX presentations to high-quality PDF. 100% private, local-first processing ensures your slides stay secure. Fast and free.',
+      fr: 'Convertissez PowerPoint (PPT/PPTX) en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta PowerPoint (PPT/PPTX) para formato PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1337,14 +1337,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pagesToPdf',
     tool: ToolType.PAGES_TO_PDF,
     title: {
-      en: 'Pages to PDF',
-      fr: 'Convertir Pages en PDF Gratuitement',
-      pt: 'Pages para PDF'
+      en: 'Pages to PDF - Free & Secure Apple Pages Converter | pdfcanada.ca',
+      fr: 'Pages en PDF - Convertisseur Apple Pages Gratuit | pdfcanada.ca',
+      pt: 'Pages para PDF - Conversor Apple Pages Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert Apple Pages documents to PDF format. Extract content from .pages files. Free, secure, browser-based conversion.',
-      fr: 'Convertissez les documents Apple Pages en format PDF. Extrayez le contenu des fichiers .pages. Gratuit, sécurisé et dans votre navigateur.',
-      pt: 'Converta documentos Apple Pages para formato PDF. Visualize arquivos Pages no Windows/Android. Grátis e seguro.'
+      en: 'Convert Apple Pages documents to PDF format for universal reading. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez les documents Apple Pages en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta documentos Apple Pages para formato PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['Pages to PDF', 'convert Pages to PDF', 'Apple Pages converter', 'iWork to PDF'],
@@ -1371,14 +1371,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'htmlToPdf',
     tool: ToolType.HTML_TO_PDF,
     title: {
-      en: 'HTML to PDF',
-      fr: 'HTML en PDF',
-      pt: 'HTML para PDF'
+      en: 'HTML to PDF - Free & Secure Web Page Converter | pdfcanada.ca',
+      fr: 'HTML en PDF - Enregistrer une Page Web Gratuitement | pdfcanada.ca',
+      pt: 'HTML para PDF - Salvar Página Web em PDF Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert HTML files to PDF. Secure, local processing for Canadians. Save web pages as PDF documents.',
-      fr: 'Convertir HTML en PDF. Traitement local sécurisé pour les Canadiens.',
-      pt: 'Converta arquivos HTML para PDF. Processamento local seguro. Salve páginas da web como PDF.'
+      en: 'Convert HTML files and web pages to high-quality PDF documents. 100% private, local-first processing ensures your data never leaves your device. Fast and free.',
+      fr: 'Convertissez vos fichiers HTML en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit, sécurisé et rapide.',
+      pt: 'Converta arquivos HTML e páginas web para PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e rápido.'
     },
     keywords: {
       en: [
@@ -1399,14 +1399,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'ofxToExcel',
     tool: ToolType.OFX_TO_EXCEL,
     title: {
-      en: 'OFX to Excel Converter',
-      fr: 'Convertisseur OFX en Excel',
-      pt: 'Converter OFX para Excel'
+      en: 'OFX to Excel - Free & Secure Bank Statement Converter | pdfcanada.ca',
+      fr: 'Convertir un OFX en Excel - Outil Gratuit et Sécurisé | pdfcanada.ca',
+      pt: 'Converter OFX para Excel - Extrato Bancário Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert OFX bank statements to Excel instantly. Preview transactions, export to XLSX, CSV, QBO formats. 100% free and secure - all processing happens in your browser.',
-      fr: 'Convertissez vos relevés bancaires OFX en Excel instantanément. Prévisualisez les transactions, exportez en XLSX, CSV, QBO. 100% gratuit et sécurisé.',
-      pt: 'Converta extratos bancários OFX para Excel instantaneamente. Visualize transações, exporte para XLSX, CSV, QBO. 100% grátis e seguro - processamento local.'
+      en: 'Convert OFX bank statements to Excel (XLSX) securely. 100% private, local-first processing ensures your banking data stays on your device. Free and fast.',
+      fr: 'Convertissez vos relevés bancaires OFX en Excel. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta extratos bancários OFX para Excel instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['ofx to excel', 'ofx converter', 'convert ofx file', 'ofx to csv', 'open ofx file', 'bank statement converter'],
@@ -1446,14 +1446,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'xmlToPdf',
     tool: ToolType.XML_TO_PDF,
     title: {
-      en: 'XML to PDF Converter',
-      fr: 'Convertisseur XML en PDF',
-      pt: 'Converter XML para PDF'
+      en: 'XML to PDF - Free & Secure Document Generator | pdfcanada.ca',
+      fr: 'XML vers PDF - Générateur de Documents Sécurisé | pdfcanada.ca',
+      pt: 'XML para PDF - Gerador de Documentos Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'Convert XML files to PDF instantly. Transform XML documents into readable PDF format. 100% free and secure - all processing happens in your browser.',
-      fr: 'Convertissez vos fichiers XML en PDF instantanément. Transformez vos documents XML en format PDF lisible. 100% gratuit et sécurisé.',
-      pt: 'Converta arquivos XML para PDF instantaneamente. Transforme documentos XML em formato PDF legível. 100% grátis e seguro - processamento local.'
+      en: 'Convert XML data into readable PDF documents instantly. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez vos fichiers XML en PDF instantanément. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta arquivos XML para PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['xml to pdf', 'convert xml to pdf', 'xml file to pdf', 'transform xml to pdf', 'xml converter', 'xml to pdf converter', 'ooxml to pdf'],
@@ -1512,14 +1512,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToXml',
     tool: ToolType.PDF_TO_XML,
     title: {
-      en: 'PDF to XML Converter',
-      fr: 'Convertisseur PDF en XML',
-      pt: 'Converter PDF para XML'
+      en: 'PDF to XML - Free & Secure Data Extractor | pdfcanada.ca',
+      fr: 'PDF vers XML - Extraction de Données Sécurisée | pdfcanada.ca',
+      pt: 'PDF para XML - Extração de Dados Segura | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF files to XML format. Extract structured data from PDF documents. 100% free and secure - all processing happens in your browser.',
-      fr: 'Convertissez vos fichiers PDF en format XML. Extrayez les données structurées des documents PDF. 100% gratuit et sécurisé.',
-      pt: 'Converta arquivos PDF para formato XML. Extraia dados estruturados de documentos PDF. 100% grátis e seguro - processamento local.'
+      en: 'Extract structured XML data from PDF documents accurately. 100% private, local-first processing ensures your data stays secure. Free and secure.',
+      fr: 'Convertissez vos fichiers PDF en format XML. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      pt: 'Converta arquivos PDF para formato XML. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1599,14 +1599,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'odgToPdf',
     tool: ToolType.ODG_TO_PDF,
     title: {
-      en: 'ODG to PDF Converter',
-      fr: 'Convertisseur ODG en PDF',
-      pt: 'Converter ODG para PDF'
+      en: 'ODG to PDF - Free & Secure LibreOffice Draw Converter | pdfcanada.ca',
+      fr: 'ODG vers PDF - Convertir Dessin LibreOffice Gratuitement | pdfcanada.ca',
+      pt: 'ODG para PDF - Converter Desenho LibreOffice Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert ODG files to PDF instantly. Transform LibreOffice Draw graphics to PDF format. 100% free and secure - all processing happens in your browser.',
-      fr: 'Convertissez vos fichiers ODG en PDF instantanément. Transformez vos graphiques LibreOffice Draw en format PDF. 100% gratuit et sécurisé.',
-      pt: 'Converta arquivos ODG para PDF instantaneamente. Transforme gráficos do LibreOffice Draw para formato PDF. 100% grátis e seguro - processamento local.'
+      en: 'Convert ODG files to PDF instantly while preserving vector quality. 100% private, local-first processing ensures your files stay secure. Fast and free.',
+      fr: 'Convertissez vos fichiers ODG en PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et sans installation.',
+      pt: 'Converta arquivos ODG para PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1673,14 +1673,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfToSvg',
     tool: ToolType.PDF_TO_SVG,
     title: {
-      en: 'PDF to SVG',
-      fr: 'PDF vers SVG',
-      pt: 'PDF para SVG'
+      en: 'PDF to SVG - Free & Secure Vector Graphics Converter | pdfcanada.ca',
+      fr: 'PDF vers SVG - Images Vectorielles Gratuitement | pdfcanada.ca',
+      pt: 'PDF para SVG - Gráficos Vetoriais Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert PDF pages to SVG vector graphics. Preserve scalability and quality at any size. Free, secure, browser-based conversion.',
-      fr: 'Convertissez les pages PDF en graphiques vectoriels SVG. Préservez l\'évolutivité et la qualité à toute taille. Gratuit et sécurisé.',
-      pt: 'Converta páginas PDF para gráficos vetoriais SVG. Preserve a escalabilidade e qualidade em qualquer tamanho. Grátis e seguro.'
+      en: 'Transform PDF pages into scalable SVG vector graphics. 100% private, local-first processing ensures your documents stay secure. High-quality and free.',
+      fr: 'Convertissez les pages PDF en graphiques vectoriels SVG. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et précis.',
+      pt: 'Converta páginas PDF para gráficos vetoriais SVG. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['PDF to SVG', 'convert PDF to SVG', 'PDF to vector', 'extract SVG from PDF', 'PDF SVG converter'],
@@ -1699,14 +1699,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'tifToPdf',
     tool: ToolType.TIF_TO_PDF,
     title: {
-      en: 'TIF to PDF',
-      fr: 'TIF vers PDF',
-      pt: 'TIF para PDF'
+      en: 'TIF to PDF - Free & Secure High-Resolution Converter | pdfcanada.ca',
+      fr: 'TIF vers PDF - Conversion d\'Images Gratuitement | pdfcanada.ca',
+      pt: 'TIF para PDF - Conversão de Imagens Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Convert TIF/TIFF images to PDF documents. Preserve image quality. Free, secure, browser-based conversion.',
-      fr: 'Convertissez les images TIF/TIFF en documents PDF. Préservez la qualité d\'image. Gratuit et sécurisé.',
-      pt: 'Converta imagens TIF/TIFF para documentos PDF. Preserve a qualidade da imagem. Grátis e seguro.'
+      en: 'Convert TIF/TIFF images into PDF documents instantly. 100% private, local-first processing ensures your files never leave your device. Secure and free.',
+      fr: 'Convertissez les images TIF/TIFF en documents PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      pt: 'Converta imagens TIF/TIFF para documentos PDF. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: ['TIF to PDF', 'TIFF to PDF', 'convert TIF to PDF', 'TIF converter', 'TIFF converter'],
@@ -1725,14 +1725,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'unlockPdf',
     tool: ToolType.UNLOCK_PDF,
     title: {
-      en: 'Unlock PDF - Remove Password Online',
-      fr: 'Déverrouiller PDF - Supprimer le Mot de Passe',
-      pt: 'Desbloquear PDF - Remover Senha Online'
+      en: 'Unlock PDF - Free & Secure Password Remover | pdfcanada.ca',
+      fr: 'Déverrouiller un PDF - Supprimer le Mot de Passe | pdfcanada.ca',
+      pt: 'Desbloquear PDF - Remover Senha Online Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Remove password protection from PDF files instantly. Unlock PDFs for editing, printing, and copying. Secure, local tool - no uploads required.',
-      fr: 'Supprimez la protection par mot de passe des fichiers PDF instantanément. Déverrouillez les PDF pour l\'édition et l\'impression. Outil sécurisé et local.',
-      pt: 'Remova a proteção por senha de arquivos PDF instantaneamente. Desbloqueie PDFs para edição e impressão. Ferramenta segura e local - sem uploads.'
+      en: 'Remove password protection and restrictions from PDF files. 100% private, local-first processing ensures your files stay secure on your device. Fast and secure.',
+      fr: 'Supprimez la protection par mot de passe des PDF. Traitement 100% local et privé : vos fichiers ne quittent jamais votre appareil. Rapide et sans téléchargement.',
+      pt: 'Remova a proteção por senha de arquivos PDF instantaneamente. Processamento 100% local e privado: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
       en: [
@@ -1763,14 +1763,14 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'pdfReader',
     tool: ToolType.PDF_READER,
     title: {
-      en: 'PDF Reader',
-      fr: 'Lecteur PDF',
-      pt: 'Leitor de PDF'
+      en: 'Free PDF Reader - Secure & Fast Online Document Viewer | pdfcanada.ca',
+      fr: 'Lecteur PDF Gratuit - Visionneuse Sécurisée | pdfcanada.ca',
+      pt: 'Leitor PDF Grátis - Visualizador Seguro | pdfcanada.ca'
     },
     description: {
-      en: 'View and read PDF documents online. Free PDF viewer with zoom, page navigation, and search. No installation required - works directly in your browser.',
-      fr: 'Visualisez et lisez des documents PDF en ligne. Lecteur PDF gratuit avec zoom, navigation et recherche. Aucune installation requise.',
-      pt: 'Visualize e leia documentos PDF online. Leitor de PDF grátis com zoom, navegação e busca. Sem instalação necessária.'
+      en: 'View and read PDF documents securely in your browser. 100% private, local-first processing ensures your files are never uploaded. Fast, free, and lightweight.',
+      fr: 'Lisez vos documents PDF en toute sécurité dans votre navigateur. Traitement 100% local : vos fichiers ne sont jamais téléchargés. Gratuit et rapide.',
+      pt: 'Visualize e leia documentos PDF com segurança no seu navegador. Processamento 100% local: seus arquivos nunca são carregados. Grátis e leve.'
     },
     keywords: {
       en: ['PDF reader', 'PDF viewer', 'read PDF online', 'view PDF', 'open PDF', 'PDF reader online', 'free PDF viewer'],
