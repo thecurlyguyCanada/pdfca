@@ -29,7 +29,7 @@ const getGuideContent = (lang: Language) => ({
         intro: (
             <>
                 <Image src="/images/guides/compress-pdf-guide.png" alt="Compressing PDF files illustration" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
-                Trying to email a large PDF only to have it bounce back? We've all been there. Whether it's a government application, a job submission, or a heavy report, large files are a hassle. Learning <strong>how to compress PDF online</strong> is the solution to file size limits and slow uploads.
+                Trying to email a large PDF only to have it bounce back? We've all been there. Whether it's a government application, a job submission, or a heavy report, large files are a hassle. Learning <strong>how to compress PDF online</strong> is the solution to file size limits and slow uploads. If you're looking to <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">compress PDF online</Link>, you've come to the right place.
                 <br /><br />
                 Our tool offers three smart levels of compression: <strong>Good</strong> (lossless optimization), <strong>Balanced</strong> (standard compression), and <strong>Extreme</strong> (maximum reduction). Best of all, it happens 100% on your device.
             </>
@@ -43,7 +43,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your PDF</strong>: Drag and drop your file into our <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium">Compress PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link>, your file never leaves your device.
+                                <strong>Upload Your PDF</strong>: Drag and drop your file into our <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">Compress PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">Local-First technology</Link>, your file never leaves your device.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview File Size</strong>: You'll see the current file size displayed. This helps you understand how much compression you might need.
@@ -175,7 +175,9 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Still too large after compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: If 'Extreme' mode still doesn't meet your size requirement, consider splitting the document using our <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">Split PDF tool</Link> or removing high-resolution images before compression.</p>
+                            <p className="text-yellow-800">
+                                <strong>Solution</strong>: If 'Extreme' mode still doesn't meet your size requirement, consider splitting the document using our <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">Split PDF tool</Link> or removing high-resolution images before compression.
+                            </p>
                         </div>
                     </div>
                 )
@@ -189,7 +191,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Is it safe to compress sensitive documents here?",
-                a: "No! This is the core benefit of our tool. Compression happens entirely within your web browser. Your document is never uploaded to any server, keeping your sensitive data private and secure on your own device."
+                a: (<>No! This is the core benefit of our tool. Compression happens entirely within your web browser. Your document is never uploaded to any server, keeping your sensitive data private and secure on your own device.</>)
             },
             {
                 q: "How much smaller will my PDF become?",
@@ -197,7 +199,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Can I compress password-protected PDFs?",
-                a: "You'll need to unlock the PDF first. If you have the password, use a PDF viewer to open and save an unprotected copy, or use our Unlock PDF tool. Once unlocked, you can freely compress it. You can re-apply password protection after compression if needed."
+                a: (<>You'll need to unlock the PDF first. If you have the password, use a PDF viewer to open and save an unprotected copy, or use our <Link href={`/${lang}/unlock-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">Unlock PDF tool</Link>. Once unlocked, you can freely compress it. You can re-apply password protection after compression if needed.</>)
             },
             {
                 q: "Will compression reduce print quality?",
@@ -238,7 +240,8 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Vous essayez d'envoyer un gros PDF par courriel et il vous revient ? Nous sommes tous passés par là. Qu'il s'agisse d'une demande gouvernementale, d'une candidature ou d'un rapport lourd, les gros fichiers sont un problème. Apprendre <strong>comment compresser un PDF en ligne</strong> est la solution aux limites de taille de fichier et aux téléchargements lents.
+                <Image src="/images/guides/compress-pdf-guide.png" alt="Illustration de compression de fichiers PDF" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
+                Vous essayez d'envoyer un gros PDF par courriel et il vous revient ? Nous sommes tous passés par là. Qu'il s'agisse d'une demande gouvernementale, d'une candidature ou d'un rapport lourd, les gros fichiers sont un problème. Apprendre <strong>comment compresser un PDF en ligne</strong> est la solution aux limites de taille de fichier et aux téléchargements lents. Si vous cherchez à <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">compresser un PDF en ligne</Link>, vous êtes au bon endroit.
                 <br /><br />
                 Notre outil propose trois niveaux intelligents de compression : <strong>Bon</strong> (optimisation sans perte), <strong>Équilibré</strong> (compression standard) et <strong>Extrême</strong> (réduction maximale). Le meilleur de tout, c'est que cela se passe à 100 % sur votre appareil.
             </>
@@ -251,7 +254,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
                         <li className="pl-2">
-                            <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier dans notre <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium">outil de compression PDF</Link>. Puisque nous utilisons la <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie Local-First</Link>, votre fichier ne quitte jamais votre appareil.
+                            <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier dans notre <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">outil de compression PDF</Link>. Puisque nous utilisons la <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">technologie Local-First</Link>, votre fichier ne quitte jamais votre appareil.
                         </li>
                         <li className="pl-2"><strong>Aperçu de la taille du fichier</strong> : Vous verrez la taille actuelle du fichier affichée. Cela vous aide à comprendre combien de compression vous pourriez avoir besoin.</li>
                         <li className="pl-2"><strong>Sélectionnez le niveau de compression</strong> : Choisissez entre <strong>Bon</strong> (sans perte), <strong>Équilibré</strong> (standard), ou <strong>Extrême</strong> (maximum) en fonction de vos exigences qualité vs. taille.</li>
@@ -372,7 +375,9 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Toujours trop volumineux après compression</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Si le mode 'Extrême' ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil de division PDF</Link> ou de supprimer les images haute résolution avant la compression.</p>
+                            <p className="text-yellow-800">
+                                <strong>Solution</strong> : Si le mode 'Extrême' ne répond toujours pas à votre exigence de taille, envisagez de diviser le document en utilisant notre <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">outil de division PDF</Link> ou de supprimer les images haute résolution avant la compression.
+                            </p>
                         </div>
                     </div>
                 )
@@ -386,7 +391,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Est-il sûr de compresser des documents sensibles ici ?",
-                a: "Non ! C'est l'avantage principal de notre outil. La compression se fait entièrement dans votre navigateur. Votre document n'est jamais téléchargé sur un serveur, gardant vos données sensibles privées sur votre propre appareil."
+                a: (<>Non ! C'est l'avantage principal de notre outil. La compression se fait entièrement dans votre navigateur. Votre document n'est jamais téléchargé sur un serveur, gardant vos données sensibles privées sur votre propre appareil.</>)
             },
             {
                 q: "De combien mon PDF sera-t-il réduit ?",
@@ -394,7 +399,7 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je compresser des PDF protégés par mot de passe ?",
-                a: "Vous devrez d'abord déverrouiller le PDF. Si vous avez le mot de passe, utilisez un lecteur PDF pour enregistrer une copie sans mot de passe avant de compresser, ou utilisez notre outil de déverrouillage PDF. Une fois déverrouillé, vous pouvez le compresser librement. Vous pouvez réappliquer la protection par mot de passe après la compression si nécessaire."
+                a: (<>Vous devrez d'abord déverrouiller le PDF. Si vous avez le mot de passe, utilisez un lecteur PDF pour enregistrer une copie sans mot de passe avant de compresser, ou utilisez notre <Link href={`/${lang}/unlock-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">outil de déverrouillage PDF</Link>. Une fois déverrouillé, vous pouvez le compresser librement. Vous pouvez réappliquer la protection par mot de passe après la compression si nécessaire.</>)
             },
             {
                 q: "La compression réduira-t-elle la qualité d'impression ?",
@@ -436,7 +441,7 @@ const getGuideContent = (lang: Language) => ({
         intro: (
             <>
                 <Image src="/images/guides/compress-pdf-guide.png" alt="Ilustração de compressão de arquivos PDF" width={800} height={450} className="w-full h-auto rounded-xl shadow-md mb-8" />
-                Tentando enviar um PDF grande por e-mail e ele volta? Todos nós já passamos por isso. Seja uma aplicação governamental, um envio de trabalho ou um relatório pesado, arquivos grandes são um problema. Aprender <strong>como comprimir PDF online</strong> é a solução para limites de tamanho de arquivo e uploads lentos.
+                Tentando enviar um PDF grande por e-mail e ele volta? Todos nós já passamos por isso. Seja uma aplicação governamental, um envio de trabalho ou um relatório pesado, arquivos grandes são um problema. Aprender <strong>como comprimir PDF online</strong> é a solução para limites de tamanho de arquivo e uploads lentos. Se você está procurando <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">comprimir PDF online</Link>, você veio ao lugar certo.
                 <br /><br />
                 Nossa ferramenta oferece três níveis inteligentes de compressão: <strong>Bom</strong> (otimização sem perdas), <strong>Equilibrado</strong> (compressão padrão) e <strong>Extremo</strong> (redução máxima). O melhor de tudo, acontece 100% no seu dispositivo.
             </>
@@ -449,7 +454,7 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <ol className="list-decimal pl-5 space-y-4 mb-6">
                         <li className="pl-2">
-                            <strong>Faça Upload do seu PDF</strong>: Arraste e solte seu arquivo na nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium">ferramenta de Comprimir PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">tecnologia Local-First</Link>, seu arquivo nunca sai do seu dispositivo.
+                            <strong>Faça Upload do seu PDF</strong>: Arraste e solte seu arquivo na nossa <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">ferramenta de Comprimir PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">tecnologia Local-First</Link>, seu arquivo nunca sai do seu dispositivo.
                         </li>
                         <li className="pl-2"><strong>Pré-visualize o Tamanho do Arquivo</strong>: Você verá o tamanho atual do arquivo exibido. Isso ajuda a entender quanta compressão você pode precisar.</li>
                         <li className="pl-2"><strong>Selecione o Nível de Compressão</strong>: Escolha entre <strong>Bom</strong> (sem perdas), <strong>Equilibrado</strong> (padrão) ou <strong>Extremo</strong> (máximo) com base em seus requisitos de qualidade vs. tamanho.</li>
@@ -570,7 +575,9 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problema: Ainda muito grande após a compressão</h4>
-                            <p className="text-yellow-800"><strong>Solução</strong>: Se o modo 'Extremo' ainda não atender ao seu requisito de tamanho, considere dividir o documento usando nossa <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">ferramenta de dividir PDF</Link> ou remover imagens de alta resolução antes da compressão.</p>
+                            <p className="text-yellow-800">
+                                <strong>Solução</strong>: Se o modo 'Extremo' ainda não atender ao seu requisito de tamanho, considere dividir o documento usando nossa <Link href={`/${lang}/guides/split-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">ferramenta de dividir PDF</Link> ou remover imagens de alta resolução antes da compressão.
+                            </p>
                         </div>
                     </div>
                 )

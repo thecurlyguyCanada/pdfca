@@ -26,7 +26,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold">rotate PDF online free</Link>, you've come to the right place.
+                We've all been there: you open an important scan and it's sideways. Or worse, the entire document is upside down. If you're looking to <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">rotate PDF online free</Link>, you've come to the right place.
                 <br /><br />
                 Unlike a standard PDF viewer where rotation is only temporary (it resets when you close the file), our tool updates the file structure so the orientation is fixed <strong>permanently</strong> for everyone who opens it.
             </>
@@ -43,7 +43,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">Rotate PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">Local-First technology</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Privacy Guide</Link>), processing begins instantly—no upload wait times.
+                                <strong>Upload Your PDF</strong>: Drag and drop your misoriented file into our <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">Rotate PDF tool</Link>. Because we use <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">Local-First technology</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600 decoration-dashed">Privacy Guide</Link>), processing begins instantly—no upload wait times.
                             </li>
                             <li className="pl-2">
                                 <strong>Preview Page Thumbnails</strong>: You'll see thumbnail previews of all pages. This makes it easy to identify which pages need rotation at a glance.
@@ -143,7 +143,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problem: Landscape pages still look wrong after rotation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong>: Some content is intentionally designed in landscape orientation (wide charts, tables). Before rotating, consider whether the page was meant to be landscape. You can use our <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">Organize PDF tool</Link> to group landscape pages separately if needed.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong>: Some content is intentionally designed in landscape orientation (wide charts, tables). Before rotating, consider whether the page was meant to be landscape. You can use our <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">Organize PDF tool</Link> to group landscape pages separately if needed.</p>
                         </div>
                     </div>
                 )
@@ -212,7 +212,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Ou pire, tout le document est à l'envers. Si vous cherchez à <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold">pivoter un PDF en ligne</Link>, vous êtes au bon endroit.
+                Nous y avons tous été confrontés : vous ouvrez un scan important et il est de côté. Ou pire, tout le document est à l'envers. Si vous cherchez à <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">pivoter un PDF en ligne</Link>, vous êtes au bon endroit.
                 <br /><br />
                 Contrairement à une visionneuse PDF standard où la rotation n'est que temporaire (elle se réinitialise à la fermeture du fichier), notre outil met à jour la structure du fichier afin que l'orientation soit fixée <strong>définitivement</strong> pour tous ceux qui l'ouvrent.
             </>
@@ -229,7 +229,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">outil de rotation PDF</Link>. Grâce à notre <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">technologie locale</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Confidentialité</Link>), le traitement commence instantanément—aucun temps d'attente de téléchargement.
+                                <strong>Téléchargez votre PDF</strong> : Glissez-déposez votre fichier mal orienté dans notre <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">outil de rotation PDF</Link>. Grâce à notre <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">technologie locale</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600 decoration-dashed">Confidentialité</Link>), le traitement commence instantanément—aucun temps d'attente de téléchargement.
                             </li>
                             <li className="pl-2">
                                 <strong>Aperçu des miniatures de pages</strong> : Vous verrez des aperçus miniatures de toutes les pages. Cela facilite l'identification des pages nécessitant une rotation d'un coup d'œil.
@@ -238,7 +238,7 @@ const getGuideContent = (lang: Language) => ({
                                 <strong>Faites pivoter les pages individuelles</strong> : Cliquez sur les boutons de rotation dans le sens horaire ou antihoraire sous chaque miniature de page pour pivoter par incréments de 90°. Vous pouvez faire pivoter les pages de 90°, 180° ou 270° selon vos besoins.
                             </li>
                             <li className="pl-2">
-                                <strong>Utilisez les opérations groupées (optionnel)</strong> : Si toutes les pages nécessitent la même rotation, utilisez &quot;Faire pivoter toutes les pages&quot; pour appliquer la rotation à chaque page en une seule fois. C'est parfait pour les documents scannés à l'envers.
+                                <strong>Utilisez les opérations groupées (optionnel)</strong> : Si toutes les pages nécessitent la même rotation, use &quot;Faire pivoter toutes les pages&quot; pour appliquer la rotation à chaque page en une seule fois. C'est parfait pour les documents scannés à l'envers.
                             </li>
                             <li className="pl-2">
                                 <strong>Vérifiez vos modifications</strong> : Vérifiez bien que chaque page est correctement orientée avant de finaliser. Vous pouvez faire pivoter les pages plusieurs fois jusqu'à ce qu'elles soient parfaites.
@@ -329,7 +329,7 @@ const getGuideContent = (lang: Language) => ({
                         </div>
                         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                             <h4 className="font-bold text-yellow-900 mb-2">Problème : Les pages paysage semblent toujours incorrectes après rotation</h4>
-                            <p className="text-yellow-800"><strong>Solution</strong> : Certains contenus sont intentionnellement conçus en orientation paysage (graphiques larges, tableaux). Avant de pivoter, considérez si la page était censée être en paysage. Vous pouvez utiliser notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold">outil d'organisation PDF</Link> pour grouper les pages paysage séparément si nécessaire.</p>
+                            <p className="text-yellow-800"><strong>Solution</strong> : Certains contenus sont intentionnellement conçus en orientation paysage (graphiques larges, tableaux). Avant de pivoter, considérez si la page était censée être en paysage. Vous pouvez utiliser notre <Link href={`/${lang}/organize-pdf`} className="text-canada-red hover:underline font-semibold decoration-dashed">outil d'organisation PDF</Link> pour grouper les pages paysage séparément si nécessaire.</p>
                         </div>
                     </div>
                 )
@@ -398,7 +398,7 @@ const getGuideContent = (lang: Language) => ({
 
         intro: (
             <>
-                Todos nós já passamos por isso: você abre uma digitalização importante e ela está de lado. Ou pior, o documento inteiro está de cabeça para baixo. Se você está procurando <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold">girar PDF online grátis</Link>, você veio ao lugar certo.
+                Todos nós já passamos por isso: você abre uma digitalização importante e ela está de lado. Ou pior, o documento inteiro está de cabeça para baixo. Se você está procurando <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">girar PDF online grátis</Link>, você veio ao certo lugar.
                 <br /><br />
                 Ao contrário de um visualizador de PDF padrão onde a rotação é apenas temporária (ela reinicia quando você fecha o arquivo), nossa ferramenta atualiza a estrutura do arquivo para que a orientação seja corrigida <strong>permanentemente</strong> para todos que o abrirem.
             </>
@@ -415,7 +415,7 @@ const getGuideContent = (lang: Language) => ({
                         </p>
                         <ol className="list-decimal pl-5 space-y-4 mb-6">
                             <li className="pl-2">
-                                <strong>Envie Seu PDF</strong>: Arraste e solte seu arquivo mal orientado em nossa <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium">ferramenta Girar PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dash underline-offset-4">tecnologia Local-First</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600">Guia de Privacidade</Link>), o processamento começa instantaneamente.
+                                <strong>Envie Seu PDF</strong>: Arraste e solte seu arquivo mal orientado em nossa <Link href={`/${lang}/rotate-pdf`} className="text-canada-red hover:underline font-medium decoration-dashed">ferramenta Girar PDF</Link>. Porque usamos <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-canada-red hover:underline decoration-dashed underline-offset-4">tecnologia Local-First</Link> (<Link href={`/${lang}/guides/private-pdf-tools`} className="text-xs text-gray-400 hover:text-gray-600 decoration-dashed">Guia de Privacidade</Link>), o processamento começa instantaneamente.
                             </li>
                             <li className="pl-2">
                                 <strong>Pré-visualizar Miniaturas</strong>: Você verá miniaturas de todas as páginas. Isso facilita identificar quais páginas precisam de rotação num relance.

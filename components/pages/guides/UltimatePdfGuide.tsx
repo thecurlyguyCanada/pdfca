@@ -151,7 +151,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Whether it's a 200-page report where you only need the summary, or a scanned contract with ghost pages, knowing how to <strong>delete PDF pages</strong> is a massive time-saver.
                         <br /><br />
-                        Our <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Delete PDF Pages Tool</Link> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
+                        Our <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold decoration-dashed">Delete PDF Pages Tool</Link> allows you to see the entire document structure at a glance. You can click to select and remove pages instantly.
                     </>
                 )
             },
@@ -162,7 +162,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         We've all been there: you open a PDF, and it's sideways. Standard viewers might let you rotate the <em>view</em>, but they rarely let you save the change.
                         <br /><br />
-                        Using a dedicated <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Rotate PDF Tool</Link> fixes this permanently. This updates the file's metadata, ensuring the recipient sees exactly what you see.
+                        Using a dedicated <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Rotate PDF Tool</Link> fixes this permanently. This updates the file's metadata, ensuring the recipient sees exactly what you see.
                     </>
                 )
             },
@@ -173,9 +173,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         The world of digital formats is messy. iPhones use HEIC, Kindles want EPUBs, and businesses demand PDFs.
                         <br /><br />
-                        <strong>HEIC to PDF</strong>: If you&apos;re struggling to open iPhone photos on Windows, our <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">HEIC Converter</Link> bridges that gap securely.
+                        <strong>HEIC to PDF</strong>: If you&apos;re struggling to open iPhone photos on Windows, our <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">HEIC Converter</Link> bridges that gap securely.
                         <br /><br />
-                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
+                        <strong>eBook Conversion</strong>: Need to read a PDF on a small screen? Converting <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">PDF to EPUB</Link> allows the text to reflow comfortably on your e-reader.
                     </>
                 )
             },
@@ -197,7 +197,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         A scanned PDF is often just a &quot;container for images.&quot; The computer sees pixels, not words.
                         <br /><br />
-                        <strong>Optical Character Recognition (OCR)</strong> creates a transparent text layer over your scan. By using our <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
+                        <strong>Optical Character Recognition (OCR)</strong>: Creates a transparent text layer over your scan. By using our <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">OCR PDF Tool</Link>, you can make any scanned document searchable (Ctrl+F) and copy-pasteable.
                     </>
                 )
             },
@@ -211,7 +211,7 @@ const getGuideContent = (lang: Language) => ({
                             Static documents are a relic. If you need a client to provide info, don't make them print and scan.
                         </div>
                         <br /><br />
-                        Learning to <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">make PDFs fillable</Link> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
+                        Learning to <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold decoration-dashed">make PDFs fillable</Link> transforms a flat document into a powerful data-gathering tool with text fields and checkboxes.
                     </>
                 )
             },
@@ -269,7 +269,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "How do I edit a scanned PDF that I can't select text from?",
                 a: (
                     <>
-                        Use our <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">OCR (Optical Character Recognition) tool</Link>. It analyzes the scanned images and creates a searchable, selectable text layer over your document. After OCR, you can copy text, search with Ctrl+F, and use other editing tools.
+                        Use our <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">OCR (Optical Character Recognition) tool</Link>. It analyzes the scanned images and creates a searchable, selectable text layer over your document. After OCR, you can copy text, search with Ctrl+F, and use other editing tools.
                     </>
                 )
             },
@@ -277,7 +277,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Can I merge multiple PDFs into one document?",
                 a: (
                     <>
-                        Yes, our <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">Merge PDF tool</Link> lets you combine unlimited PDFs into a single file. Just drag and drop your files, arrange them in the order you want, and click merge. The result is a single, combined PDF document.
+                        Yes, our <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Merge PDF tool</Link> lets you combine unlimited PDFs into a single file. Just drag and drop your files, arrange them in the order you want, and click merge. The result is a single, combined PDF document.
                     </>
                 )
             },
@@ -285,7 +285,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "What's the best format to convert my PDF to for e-readers?",
                 a: (
                     <>
-                        For e-readers like Kindle or Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">convert to EPUB format</Link>. EPUB allows the text to reflow based on screen size and font preferences, providing a much better reading experience than viewing a fixed-layout PDF.
+                        For e-readers like Kindle or Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">convert to EPUB format</Link>. EPUB allows the text to reflow based on screen size and font preferences, providing a much better reading experience than viewing a fixed-layout PDF.
                     </>
                 )
             },
@@ -375,7 +375,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Que ce soit un rapport de 200 pages dont vous n'avez besoin que du résumé, ou un contrat scanné avec des pages fantômes, savoir comment <strong>supprimer des pages PDF</strong> est un gain de temps énorme.
                         <br /><br />
-                        Notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Outil de Suppression de Pages</Link> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
+                        Notre <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold decoration-dashed">Outil de Suppression de Pages</Link> vous permet de voir toute la structure du document d'un coup d'œil. Vous pouvez cliquer pour sélectionner et supprimer des pages instantanément.
                     </>
                 )
             },
@@ -386,7 +386,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Nous y avons tous été confrontés : vous ouvrez un PDF et il est de côté. Les visionneuses standard peuvent vous laisser faire pivoter la <em>vue</em>, mais elles vous laissent rarement enregistrer le changement.
                         <br /><br />
-                        Utiliser un <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Outil de Rotation PDF</Link> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
+                        Utiliser un <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Outil de Rotation PDF</Link> dédié corrige cela définitivement. Cela met à jour les métadonnées du fichier, garantissant que le destinataire voit exactement ce que vous voyez.
                     </>
                 )
             },
@@ -397,9 +397,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Le monde des formats numériques est désordonné. Les iPhones utilisent HEIC, les Kindles veulent des EPUB, et les entreprises exigent des PDF.
                         <br /><br />
-                        <strong>HEIC en PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">Convertisseur HEIC</Link> comble cet écart en toute sécurité.
+                        <strong>HEIC en PDF</strong> : Si vous avez du mal à ouvrir des photos iPhone sur Windows, notre <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Convertisseur HEIC</Link> comble cet écart en toute sécurité.
                         <br /><br />
-                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF en EPUB</Link> permet au texte de s&apos;adapter confortablement sur votre liseuse.
+                        <strong>Conversion eBook</strong> : Besoin de lire un PDF sur un petit écran ? Convertir <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">PDF en EPUB</Link> permet au texte de s&apos;adapter confortablement sur votre liseuse.
                     </>
                 )
             },
@@ -421,7 +421,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Un PDF scanné est souvent juste un &quot;conteneur d'images&quot;. L'ordinateur voit des pixels, pas des mots.
                         <br /><br />
-                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
+                        <strong>La Reconnaissance Optique de Caractères (OCR)</strong> crée une couche de texte transparente sur votre scan. En utilisant notre <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">Outil OCR PDF</Link>, vous pouvez rendre n'importe quel document scanné consultable (Ctrl+F) et copiable.
                     </>
                 )
             },
@@ -435,7 +435,7 @@ const getGuideContent = (lang: Language) => ({
                             Les documents statiques sont une relique. Si vous avez besoin qu'un client fournisse des infos, ne les faites pas imprimer et scanner.
                         </div>
                         <br /><br />
-                        Apprendre à <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">créer des PDF remplissables</Link> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
+                        Apprendre à <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold decoration-dashed">créer des PDF remplissables</Link> transforme un document plat en un puissant outil de collecte de données avec champs de texte et cases à cocher.
                     </>
                 )
             },
@@ -493,7 +493,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Comment éditer un PDF scanné dont je ne peux pas sélectionner le texte ?",
                 a: (
                     <>
-                        Utilisez notre <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">outil OCR (Reconnaissance Optique de Caractères)</Link>. Il analyse les images scannées et crée une couche de texte consultable et sélectionnable sur votre document.
+                        Utilisez notre <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">outil OCR (Reconnaissance Optique de Caractères)</Link>. Il analyse les images scannées et crée une couche de texte consultable et sélectionnable sur votre document.
                     </>
                 )
             },
@@ -501,7 +501,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Puis-je fusionner plusieurs PDF en un seul document ?",
                 a: (
                     <>
-                        Oui, notre <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">outil Fusionner PDF</Link> vous permet de combiner des PDF illimités en un seul fichier. Glissez-déposez vos fichiers, arrangez-les dans l'ordre souhaité, et cliquez fusionner.
+                        Oui, notre <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">outil Fusionner PDF</Link> vous permet de combiner des PDF illimités en un seul fichier. Glissez-déposez vos fichiers, arrangez-les dans l'ordre souhaité, et cliquez fusionner.
                     </>
                 )
             },
@@ -509,7 +509,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Quel est le meilleur format pour convertir mon PDF pour les liseuses ?",
                 a: (
                     <>
-                        Pour les liseuses comme Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">convertissez en format EPUB</Link>. L'EPUB permet au texte de s'adapter en fonction de la taille de l'écran et des préférences de police.
+                        Pour les liseuses comme Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">convertissez en format EPUB</Link>. L'EPUB permet au texte de s'adapter en fonction de la taille de l'écran et des préférences de police.
                     </>
                 )
             },
@@ -599,7 +599,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Seja um relatório de 200 páginas onde você só precisa do resumo, ou um contrato digitalizado com páginas fantasmas, saber como <strong>apagar páginas PDF</strong> é uma enorme economia de tempo.
                         <br /><br />
-                        Nossa <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold">Ferramenta de Apagar Páginas PDF</Link> permite que você veja toda a estrutura do documento de relance. Você pode clicar para selecionar e remover páginas instantaneamente.
+                        Nossa <Link href={`/${lang}/delete-pdf-pages`} className="text-canada-red hover:underline font-bold decoration-dashed">Ferramenta de Apagar Páginas PDF</Link> permite que você veja toda a estrutura do documento de relance. Você pode clicar para selecionar e remover páginas instantaneamente.
                     </>
                 )
             },
@@ -610,7 +610,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Todos nós já passamos por isso: você abre um PDF e ele está de lado. Visualizadores padrão podem deixar você girar a <em>visualização</em>, mas raramente deixam você salvar a alteração.
                         <br /><br />
-                        Usar uma <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta Girar PDF</Link> dedicada corrige isso permanentemente. Isso atualiza os metadados do arquivo, garantindo que o destinatário veja exatamente o que você vê.
+                        Usar uma <Link href={`/${lang}/guides/rotate-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Ferramenta Girar PDF</Link> dedicada corrige isso permanentemente. Isso atualiza os metadados do arquivo, garantindo que o destinatário veja exatamente o que você vê.
                     </>
                 )
             },
@@ -621,9 +621,9 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         O mundo dos formatos digitais é bagunçado. iPhones usam HEIC, Kindles querem EPUBs, e empresas exigem PDFs.
                         <br /><br />
-                        <strong>HEIC para PDF</strong>: Se você está lutando para abrir fotos de iPhone no Windows, nosso <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold">Conversor HEIC</Link> preenche essa lacuna com segurança.
+                        <strong>HEIC para PDF</strong>: Se você está lutando para abrir fotos de iPhone no Windows, nosso <Link href={`/${lang}/guides/heic-to-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">Conversor HEIC</Link> preenche essa lacuna com segurança.
                         <br /><br />
-                        <strong>Conversão de eBook</strong>: Precisa ler um PDF em uma tela pequena? Converter <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">PDF para EPUB</Link> permite que o texto se reajuste confortavelmente no seu e-reader.
+                        <strong>Conversão de eBook</strong>: Precisa ler um PDF em uma tela pequena? Converter <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">PDF para EPUB</Link> permite que o texto se reajuste confortavelmente no seu e-reader.
                     </>
                 )
             },
@@ -645,7 +645,7 @@ const getGuideContent = (lang: Language) => ({
                     <>
                         Um PDF digitalizado é muitas vezes apenas um "contêiner para imagens". O computador vê pixels, não palavras.
                         <br /><br />
-                        <strong>Reconhecimento Óptico de Caracteres (OCR)</strong> cria uma camada de texto transparente sobre sua digitalização. Usando nossa <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold">Ferramenta OCR PDF</Link>, você pode tornar qualquer documento digitalizado pesquisável (Ctrl+F) e copiável.
+                        <strong>Reconhecimento Óptico de Caracteres (OCR)</strong> cria uma camada de texto transparente sobre sua digitalização. Usando nossa <Link href={`/${lang}/guides/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">Ferramenta OCR PDF</Link>, você pode tornar qualquer documento digitalizado pesquisável (Ctrl+F) e copiável.
                     </>
                 )
             },
@@ -659,7 +659,7 @@ const getGuideContent = (lang: Language) => ({
                             Documentos estáticos são uma relíquia. Se você precisa que um cliente forneça informações, não o faça imprimir e digitalizar.
                         </div>
                         <br /><br />
-                        Aprender a <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold">criar PDFs preenchíveis</Link> transforma um documento plano em uma poderosa ferramenta de coleta de dados com campos de texto e caixas de seleção.
+                        Aprender a <Link href={`/${lang}/guides/make-pdf-fillable`} className="text-canada-red hover:underline font-bold decoration-dashed">criar PDFs preenchíveis</Link> transforma um document plano em uma poderosa ferramenta de coleta de dados com campos de texto e caixas de seleção.
                     </>
                 )
             },
@@ -717,7 +717,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Como editar um PDF digitalizado do qual não consigo selecionar texto?",
                 a: (
                     <>
-                        Use nossa <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold">ferramenta OCR (Reconhecimento Óptico de Caracteres)</Link>. Ela analisa as imagens digitalizadas e cria uma camada de texto pesquisável e selecionável sobre o seu documento.
+                        Use nossa <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline font-bold decoration-dashed">ferramenta OCR (Reconhecimento Óptico de Caracteres)</Link>. Ela analisa as imagens digitalizadas e cria uma camada de texto pesquisável e selecionável sobre o seu documento.
                     </>
                 )
             },
@@ -725,7 +725,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Posso fundir vários PDFs em um único documento?",
                 a: (
                     <>
-                        Sim, nossa <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold">ferramenta Fundir PDF</Link> permite combinar PDFs ilimitados em um único arquivo. Arraste e solte seus arquivos, organize-os na ordem desejada e clique em fundir.
+                        Sim, nossa <Link href={`/${lang}/merge-pdf`} className="text-canada-red hover:underline font-bold decoration-dashed">ferramenta Fundir PDF</Link> permite combinar PDFs ilimitados em um único arquivo. Arraste e solte seus arquivos, organize-os na ordem desejada e clique em fundir.
                     </>
                 )
             },
@@ -733,7 +733,7 @@ const getGuideContent = (lang: Language) => ({
                 q: "Qual é o melhor formato para converter meu PDF para e-readers?",
                 a: (
                     <>
-                        Para e-readers como Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline">converta para o formato EPUB</Link>. O EPUB permite que o texto se reajuste com base no tamanho da tela e preferências de fonte.
+                        Para e-readers como Kindle ou Kobo, <Link href={`/${lang}/pdf-to-epub`} className="text-canada-red hover:underline decoration-dashed">converta para o formato EPUB</Link>. O EPUB permite que o texto se reajuste com base no tamanho da tela e preferências de fonte.
                     </>
                 )
             },

@@ -108,8 +108,8 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p><strong>Tax Season Preparation</strong>: Combine all your T4 slips, receipts, charitable donation receipts, and expense reports into one organized PDF for easy submission to the CRA (Canada Revenue Agency) or your accountant.</p>
-                        <p><strong>Job Applications</strong>: Merge your resume, cover letter, reference letters, and portfolio samples into a single professional package that hiring managers can easily review.</p>
-                        <p><strong>Legal Documentation</strong>: Assemble all contracts, amendments, supporting documents, and correspondence into one complete legal file for court submissions or record-keeping.</p>
+                        <p><strong>Job Applications</strong>: Merge your resume, cover letter, reference letters, and portfolio samples into a single professional package that hiring managers can easily review. If you need to edit your resume first, you can use our <Link href={`/${lang}/pdf-to-word`} className="text-canada-red hover:underline">PDF to Word</Link> tool.</p>
+                        <p><strong>Legal Documentation</strong>: Assemble all contracts, amendments, supporting documents, and correspondence into one complete legal file for court submissions or record-keeping. Ensure your documents are safe with our <Link href={`/${lang}/protect-pdf`} className="text-canada-red hover:underline">Protect PDF</Link> tool.</p>
                         <p><strong>Academic Work</strong>: Combine research papers, bibliography, appendices, and supporting charts into a single thesis or dissertation document.</p>
                         <p><strong>Business Proposals</strong>: Merge executive summary, project timeline, budget breakdown, and team bios into one cohesive proposal document.</p>
                         <p><strong>Real Estate Transactions</strong>: Consolidate inspection reports, property disclosures, appraisals, and closing documents into one comprehensive file.</p>
@@ -177,7 +177,7 @@ const getGuideContent = (lang: Language) => ({
                         <li><strong>Similar Page Sizes</strong>: While you can merge PDFs of different sizes, having consistent page dimensions (like all Letter or all A4) creates a more professional-looking result.</li>
                         <li><strong>Quality Check</strong>: Review each source PDF individually before merging to ensure there are no blank pages, corrupted content, or unwanted materials.</li>
                         <li><strong>Logical Organization</strong>: Arrange documents in a logical flow - typically chronological order, or from general information to specific details.</li>
-                        <li><strong>File Size Awareness</strong>: Be mindful of email attachment limits (typically 10-25MB). If your merged file exceeds this, consider compression or splitting into multiple files.</li>
+                        <li><strong>File Size Awareness</strong>: Be mindful of email attachment limits (typically 10-25MB). If your merged file exceeds this, consider <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">compression</Link> or <Link href={`/${lang}/split-pdf`} className="text-canada-red hover:underline">splitting</Link> into multiple files.</li>
                         <li><strong>Backup Originals</strong>: Always keep copies of your original separate PDFs before merging, in case you need to make changes later.</li>
                     </ul>
                 )
@@ -223,7 +223,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Can I merge password-protected files?",
-                a: "You'll need to unlock them first. If you have the password, you can use a PDF viewer to save a copy without the password before merging, or use our Unlock PDF tool to remove the password protection."
+                a: (
+                    <>
+                        You&apos;ll need to unlock them first. If you have the password, you can use a PDF viewer to save a copy without the password before merging, or use our <Link href={`/${lang}/unlock-pdf`} className="text-canada-red hover:underline">Unlock PDF tool</Link> to remove the password protection.
+                    </>
+                )
             },
             {
                 q: "Will merging reduce the quality of my PDFs?",
@@ -251,7 +255,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Can I search for text across all merged files?",
-                a: "Yes! Once combined into a single PDF, you can use the standard search function (Ctrl+F or Cmd+F) to find words across all the merged pages instantly. Perfect for research and legal discovery."
+                a: (
+                    <>
+                        Yes! Once combined into a single PDF, you can use the standard search function (Ctrl+F or Cmd+F) to find words across all the merged pages instantly. If your PDF is a scan, use our <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline">OCR PDF tool</Link> first to make it searchable.
+                    </>
+                )
             }
         ],
 
@@ -347,8 +355,8 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p><strong>Préparation de la Saison des Impôts</strong> : Combinez tous vos feuillets T4, reçus, reçus de dons de charité et rapports de dépenses en un seul PDF organisé pour une soumission facile à l'ARC (Agence du revenu du Canada) ou à votre comptable.</p>
-                        <p><strong>Candidatures d'Emploi</strong> : Fusionnez votre CV, lettre de motivation, lettres de référence et échantillons de portfolio en un seul dossier professionnel que les recruteurs peuvent facilement consulter.</p>
-                        <p><strong>Documentation Juridique</strong> : Assemblez tous les contrats, amendements, documents justificatifs et correspondance en un seul dossier juridique complet pour les soumissions au tribunal ou la tenue de dossiers.</p>
+                        <p><strong>Candidatures d'Emploi</strong> : Fusionnez votre CV, lettre de motivation, lettres de référence et échantillons de portfolio en un seul dossier professionnel que les recruteurs peuvent facilement consulter. Si vous devez d'abord modifier votre CV, utilisez notre outil <Link href={`/${lang}/pdf-to-word`} className="text-canada-red hover:underline">PDF vers Word</Link>.</p>
+                        <p><strong>Documentation Juridique</strong> : Assemblez tous les contrats, amendements, documents justificatifs et correspondance en un seul dossier juridique complet. Sécurisez vos documents avec notre outil <Link href={`/${lang}/protect-pdf`} className="text-canada-red hover:underline">Protéger PDF</Link>.</p>
                         <p><strong>Travaux Académiques</strong> : Combinez articles de recherche, bibliographie, annexes et graphiques de support en un seul document de thèse ou de mémoire.</p>
                         <p><strong>Propositions Commerciales</strong> : Fusionnez le résumé exécutif, le calendrier du projet, la répartition budgétaire et les biographies de l'équipe en un seul document de proposition cohérent.</p>
                         <p><strong>Transactions Immobilières</strong> : Consolidez rapports d'inspection, divulgations de propriété, évaluations et documents de clôture en un seul fichier complet.</p>
@@ -389,7 +397,7 @@ const getGuideContent = (lang: Language) => ({
                         <li><strong>Tailles de page similaires</strong> : Bien que vous puissiez fusionner des PDF de tailles différentes, avoir des dimensions de page cohérentes (comme tout Lettre ou tout A4) crée un résultat plus professionnel.</li>
                         <li><strong>Vérification de qualité</strong> : Examinez chaque PDF source individuellement avant de fusionner pour vous assurer qu'il n'y a pas de pages blanches, de contenu corrompu ou de matériaux indésirables.</li>
                         <li><strong>Organisation logique</strong> : Organisez les documents dans un flux logique - généralement par ordre chronologique, ou de l'information générale aux détails spécifiques.</li>
-                        <li><strong>Conscience de la taille du fichier</strong> : Soyez conscient des limites de pièces jointes par courriel (généralement 10-25 Mo). Si votre fichier fusionné dépasse cette limite, envisagez la compression ou la division en plusieurs fichiers.</li>
+                        <li><strong>Conscience de la taille du fichier</strong> : Soyez conscient des limites de pièces jointes par courriel (généralement 10-25 Mo). Si votre fichier fusionné dépasse cette limite, envisagez la <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">compression</Link> ou la <Link href={`/${lang}/split-pdf`} className="text-canada-red hover:underline">division</Link> en plusieurs fichiers.</li>
                         <li><strong>Sauvegarde des originaux</strong> : Conservez toujours des copies de vos PDF séparés originaux avant de fusionner, au cas où vous devriez apporter des modifications ultérieurement.</li>
                     </ul>
                 )
@@ -427,7 +435,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je fusionner des fichiers protégés par mot de passe ?",
-                a: "Vous devrez d'abord les déverrouiller. Si vous avez le mot de passe, vous pouvez utiliser un lecteur PDF pour enregistrer une copie sans mot de passe avant de fusionner, ou utilisez notre outil de déverrouillage PDF pour retirer la protection."
+                a: (
+                    <>
+                        Vous devrez d&apos;abord les déverrouiller. Si vous avez le mot de passe, vous pouvez utiliser un lecteur PDF pour enregistrer une copie sans mot de passe avant de fusionner, ou utilisez notre outil de <Link href={`/${lang}/unlock-pdf`} className="text-canada-red hover:underline">déverrouillage PDF</Link> pour retirer la protection.
+                    </>
+                )
             },
             {
                 q: "La fusion réduira-t-elle la qualité de mes PDF ?",
@@ -455,7 +467,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Puis-je rechercher du texte dans l'ensemble des fichiers fusionnés ?",
-                a: "Oui ! Une fois combinés en un seul PDF, vous pouvez utiliser la fonction de recherche standard (Ctrl+F ou Cmd+F) pour trouver des mots dans toutes les pages instantanément. Idéal pour la recherche et les dossiers juridiques."
+                a: (
+                    <>
+                        Oui ! Une fois combinés en un seul PDF, vous pouvez utiliser la fonction de recherche standard (Ctrl+F ou Cmd+F) pour trouver des mots dans toutes les pages instantanément. Si votre PDF est un scan, utilisez d&apos;abord notre <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline">outil OCR PDF</Link> pour le rendre consultable.
+                    </>
+                )
             }
         ],
 
@@ -564,8 +580,8 @@ const getGuideContent = (lang: Language) => ({
                 content: (
                     <div className="space-y-4">
                         <p><strong>Preparação para Impostos</strong>: Combine todos os seus comprovantes T4, recibos, comprovantes de doação e relatórios de despesas em um PDF organizado para fácil envio à CRA ou ao seu contador.</p>
-                        <p><strong>Candidaturas de Emprego</strong>: Junte seu currículo, carta de apresentação, cartas de referência e amostras de portfólio em um único pacote profissional que os gerentes de contratação podem revisar facilmente.</p>
-                        <p><strong>Documentação Legal</strong>: Reúna todos os contratos, emendas, documentos de suporte e correspondência em um arquivo legal completo para submissões judiciais ou manutenção de registros.</p>
+                        <p><strong>Candidaturas de Emprego</strong>: Junte seu currículo, carta de apresentação, cartas de referência e amostras de portfólio em um único pacote profissional. Se precisar editar seu currículo primeiro, use nossa ferramenta <Link href={`/${lang}/pdf-to-word`} className="text-canada-red hover:underline">PDF para Word</Link>.</p>
+                        <p><strong>Documentação Legal</strong>: Reúna todos os contratos, emendas, documentos de suporte e correspondência em um arquivo legal completo. Garanta a segurança com nossa ferramenta <Link href={`/${lang}/protect-pdf`} className="text-canada-red hover:underline">Proteger PDF</Link>.</p>
                         <p><strong>Trabalho Acadêmico</strong>: Combine artigos de pesquisa, bibliografia, apêndices e gráficos de suporte em um único documento de tese ou dissertação.</p>
                         <p><strong>Propostas de Negócios</strong>: Junte o resumo executivo, cronograma do projeto, detalhamento do orçamento e biografias da equipe em um documento de proposta coeso.</p>
                         <p><strong>Transações Imobiliárias</strong>: Consolide relatórios de inspeção, divulgações de propriedade, avaliações e documentos de fechamento em um arquivo abrangente.</p>
@@ -633,7 +649,7 @@ const getGuideContent = (lang: Language) => ({
                         <li><strong>Tamanhos de Página Semelhantes</strong>: Embora você possa juntar PDFs de tamanhos diferentes, ter dimensões de página consistentes (como tudo Carta ou tudo A4) cria um resultado mais profissional.</li>
                         <li><strong>Verificação de Qualidade</strong>: Revise cada PDF de origem individualmente antes de juntar para garantir que não haja páginas em branco, conteúdo corrompido ou materiais indesejados.</li>
                         <li><strong>Organização Lógica</strong>: Organize os documentos em um fluxo lógico - tipicamente ordem cronológica, ou de informações gerais para detalhes específicos.</li>
-                        <li><strong>Consciência do Tamanho do Arquivo</strong>: Esteja ciente dos limites de anexo de e-mail (geralmente 10-25MB). Se seu arquivo mesclado exceder isso, considere compressão ou divisão em vários arquivos.</li>
+                        <li><strong>Consciência do Tamanho do Arquivo</strong>: Esteja ciente dos limites de anexo de e-mail (geralmente 10-25MB). Se seu arquivo mesclado exceder isso, considere <Link href={`/${lang}/compress-pdf`} className="text-canada-red hover:underline">compressão</Link> ou <Link href={`/${lang}/split-pdf`} className="text-canada-red hover:underline">divisão</Link> em vários arquivos.</li>
                         <li><strong>Backup dos Originais</strong>: Sempre mantenha cópias de seus PDFs originais separados antes de juntar, caso precise fazer alterações mais tarde.</li>
                     </ul>
                 )
@@ -679,7 +695,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Posso juntar arquivos protegidos por senha?",
-                a: "Você precisará desbloqueá-los primeiro. Se você tiver a senha, pode usar um visualizador de PDF para salvar uma cópia sem a senha antes de juntar, ou use nossa ferramenta de Desbloquear PDF para remover a proteção."
+                a: (
+                    <>
+                        Você precisará desbloqueá-los primeiro. Se você tiver a senha, pode usar um visualizador de PDF para salvar uma cópia sem a senha antes de juntar, ou use nossa ferramenta de <Link href={`/${lang}/unlock-pdf`} className="text-canada-red hover:underline">Desbloquear PDF</Link> para remover a proteção.
+                    </>
+                )
             },
             {
                 q: "A fusão reduzirá a qualidade dos meus PDFs?",
@@ -707,7 +727,11 @@ const getGuideContent = (lang: Language) => ({
             },
             {
                 q: "Posso pesquisar texto em todos os arquivos juntados?",
-                a: "Sim! Uma vez combinados em um único PDF, você pode usar a função de pesquisa padrão (Ctrl+F ou Cmd+F) para encontrar palavras em todas as páginas instantaneamente. Perfeito para pesquisa e descoberta legal."
+                a: (
+                    <>
+                        Sim! Uma vez combinados em um único PDF, você pode usar a função de pesquisa padrão (Ctrl+F ou Cmd+F) para encontrar palavras em todas as páginas instantaneamente. Se o seu PDF for um scan, use nossa ferramenta <Link href={`/${lang}/invoice-ocr`} className="text-canada-red hover:underline">OCR PDF</Link> primeiro para torná-lo pesquisável.
+                    </>
+                )
             }
         ],
 
@@ -716,7 +740,7 @@ const getGuideContent = (lang: Language) => ({
             question: "Como juntar arquivos PDF?",
             answer: "Use a ferramenta Juntar PDF do pdfcanada.ca. Selecione vários arquivos, organize-os e clique em 'Juntar PDF'. É grátis e seguro.",
             tool: "Ferramenta Juntar PDF",
-            steps: ["Selecione arquivos PDF", "Baixe o PDF junto"]
+            steps: ["Selecione arquivos PDF", "Reordene as páginas", "Baixe o PDF junto"]
         },
 
         ctaTitle: "Pronto para se Organizar?",

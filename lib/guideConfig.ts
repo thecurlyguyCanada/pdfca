@@ -25,6 +25,7 @@ import { SplitPdfGuide } from '@/components/pages/guides/SplitPdfGuide';
 import { InvoiceOcrGuide } from '@/components/pages/guides/InvoiceOcrGuide';
 import { PrivatePdfToolsGuide } from '@/components/pages/guides/PrivatePdfToolsGuide';
 import { LegalPdfGuide } from '@/components/pages/guides/LegalPdfGuide';
+import PdfAccessibility2026Guide from '@/components/pages/guides/PdfAccessibility2026Guide';
 import { HealthcarePdfGuide } from '@/components/pages/guides/HealthcarePdfGuide';
 import { FinancePdfGuide } from '@/components/pages/guides/FinancePdfGuide';
 import { PdfToCsvGuide } from '@/components/pages/guides/PdfToCsvGuide';
@@ -77,6 +78,7 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
     'ultimate-pdf-guide': UltimatePdfGuide,
     'private-pdf-tools': PrivatePdfToolsGuide,
     'legal-pdf-tools': LegalPdfGuide,
+    'pdf-accessibility-2026': PdfAccessibility2026Guide,
     'healthcare-pdf-security': HealthcarePdfGuide,
     'finance-pdf-security': FinancePdfGuide,
     'split-pdf': SplitPdfGuide,

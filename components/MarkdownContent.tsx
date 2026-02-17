@@ -182,7 +182,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
                     <Link
                         key={`link-${keyCounter++}`}
                         href={safeUrl}
-                        className="text-canada-red hover:underline"
+                        className="text-canada-red hover:underline decoration-dashed"
                     >
                         {match}
                     </Link>
@@ -194,7 +194,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content, class
                     href={safeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-canada-red hover:underline"
+                    className="text-canada-red hover:underline decoration-dashed"
                 >
                     {match}
                 </a>

@@ -45,7 +45,7 @@ In this mega-guide, we'll cover everything you need to know about splitting PDFs
             title: "PDF Splitting: At a Glance",
             items: [
                 { label: "What", value: "Extract specific pages or split PDFs into individual files" },
-                { label: "Why", value: <span>Share specific sections, reduce file size, <Link href={`/${lang}/guides/organize-pdf`} className="text-canada-red hover:underline">organize documents</Link></span> },
+                { label: "Why", value: <span>Share specific sections, reduce file size, <Link href={`/${lang}/guides/organize-pdf`} className="text-canada-red hover:underline decoration-dashed">organize documents</Link></span> },
                 { label: "Time", value: "5-15 seconds for most PDFs" },
                 { label: "Cost", value: "Free with no limits, no account required" },
                 { label: "Privacy", value: "Local processing—files never uploaded" },
@@ -155,9 +155,12 @@ Go to our [Split PDF Tool](/${lang}/split-pdf). Click 'Select PDF' or drag and d
 ### Step 2: Choose Your Split Method
 You have two powerful options:
 *   **Extract Specific Pages:** Great for grabbing just the cover page or a specific clause (e.g., "1, 3, 5-10").
-*   **Split into Single Pages:** Ideal for turning a scanned stack of invoices into individual files.
+*   **Split into Single Pages:** Ideal for turning a scanned stack of invoices into individual files. 
 
-### Step 3: Download
+### Step 3: Manage Your New Files
+Once split, you might want to combine specific pages back together using our [Merge PDF](/${lang}/merge-pdf) tool or reduce the total file size with our [Compress PDF](/${lang}/compress-pdf) tool.
+
+### Step 4: Download
 Click 'Split PDF'. Your new files are generated instantly on your device. No waiting for server downloads.`
             },
             {
@@ -181,10 +184,10 @@ Researchers and doctors use our **free pdf splitter** to separate patient record
                 id: "troubleshooting",
                 title: "Troubleshooting & Power Tips",
                 content: `**Q: My PDF is password protected.**
-A: Most **pdf splitter online** tools fail here. You must remove the password first using our [Unlock PDF](/${lang}/unlock-pdf) tool (if you have the permission) before splitting.
+A: Most **pdf splitter online** tools fail here. You must remove the password first using our [Unlock PDF tool](/${lang}/unlock-pdf) (if you have the permission) before splitting.
 
 **Q: The file is too big (500MB+).**
-A: This is where our local-first **pdf splitter software** shines. Because we don't upload, we can handle massive engineering blueprints or ebooks that would crash a standard server-based converter.`
+A: This is where our local-first **pdf splitter software** shines. Because we don't upload, we can handle massive engineering blueprints or ebooks that would crash a standard server-based converter. If you still need a smaller file, try our [Compress PDF](/${lang}/compress-pdf) tool.`
             },
             {
                 id: "os-guides",
@@ -340,7 +343,10 @@ Allez sur notre [Outil de Division PDF](/${lang}/split-pdf). Cliquez ou glissez-
 *   **Extraire des pages spécifiques :** Parfait pour garder juste la couverture ou une clause spécifique.
 *   **Diviser en pages uniques :** Idéal pour séparer des factures scannées en vrac.
 
-### Étape 3 : Téléchargez
+### Étape 3 : Gérez vos nouveaux fichiers
+Après la division, vous voudrez peut-être combiner certaines pages avec notre outil [Fusionner PDF](/${lang}/merge-pdf) ou réduire la taille avec [Compresser PDF](/${lang}/compress-pdf).
+
+### Étape 4 : Téléchargez
 Cliquez sur 'Diviser'. Vos nouveaux fichiers sont générés instantanément.`
             },
             {
@@ -367,7 +373,7 @@ Les chercheurs et médecins l'utilisent pour séparer les dossiers patients sans
 R : Vous devez d'abord retirer le mot de passe avec notre outil [Déverrouiller PDF](/${lang}/unlock-pdf).
 
 **Q : Le fichier est trop gros.**
-R : Grâce à notre technologie locale, nous pouvons traiter des plans d'ingénierie massifs sans faire planter le navigateur.`
+R : Grâce à notre technologie locale, nous pouvons traiter des plans d'ingénierie massifs sans faire planter le navigateur. Si vous avez besoin d'un fichier plus petit, essayez notre outil [Compresser PDF](/${lang}/compress-pdf).`
             },
             {
                 id: "os-guides",
@@ -537,7 +543,10 @@ Vá para nossa [Ferramenta de Dividir PDF](/${lang}/split-pdf). Clique ou arrast
 *   **Extrair Páginas Específicas:** Ótimo para pegar apenas a capa ou uma cláusula específica (ex: "1, 3, 5-10").
 *   **Dividir em Páginas Únicas:** Ideal para separar uma pilha de faturas digitalizadas.
 
-### Passo 3: Baixar
+### Passo 3: Gerencie Seus Novos Arquivos
+Após dividir, você pode querer combinar páginas específicas novamente usando nossa ferramenta [Juntar PDF](/${lang}/merge-pdf) ou reduzir o tamanho com [Comprimir PDF](/${lang}/compress-pdf).
+
+### Passo 4: Baixar
 Clique em 'Dividir PDF'. Seus novos arquivos são gerados instantaneamente.`
             },
             {
@@ -561,10 +570,10 @@ Pesquisadores e médicos usam nosso **divisor de pdf grátis** para separar regi
                 id: "troubleshooting",
                 title: "Solução de Problemas e Dicas",
                 content: `**P: Meu PDF é protegido por senha.**
-R: A maioria dos **divisores de pdf online** falha aqui. Você deve remover a senha primeiro usando nossa ferramenta [Desbloquear PDF](/${lang}/unlock-pdf).
+R : A maioria dos **divisores de pdf online** falha aqui. Você deve remover a senha primeiro usando nossa ferramenta [Desbloquear PDF](/${lang}/unlock-pdf).
 
 **P: O arquivo é muito grande (500MB+).**
-R: É aqui que nosso **software divisor de pdf** local brilha. Porque não fazemos upload, podemos lidar com plantas de engenharia massivas.`
+R: É aqui que nosso **software divisor de pdf** local brilha. Porque não fazemos upload, podemos lidar com plantas de engenharia massivas. Se precisar de um arquivo menor, tente nossa ferramenta [Comprimir PDF](/${lang}/compress-pdf).`
             },
             {
                 id: "os-guides",

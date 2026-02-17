@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Unlock, CheckCircle, Shield, Zap, ArrowRight, Lock, Clock, Smartphone, Monitor, MousePointer2, FileText, AlertTriangle, Key } from 'lucide-react';
-import { Language, CURRENT_YEAR } from '../../../utils/i18n';
+import { Language, CURRENT_YEAR as APP_CURRENT_YEAR } from '../../../utils/i18n';
 import { SEO } from '../../SEO';
 import { PageLayout } from '../../PageLayout';
 import { AuthorBio } from '../../AuthorBio';
@@ -19,13 +19,13 @@ interface GuideProps {
 const getLocalContent = (lang: string) => ({
     en: {
         seo: {
-            title: `How to Unlock a PDF | Remove Restrictions Free ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Remove PDF passwords and restrictions instantly. Our ${CURRENT_YEAR} guide shows you how to unlock protected PDFs securely in your browser without uploading files to any server.`
+            title: `How to Unlock a PDF | Remove Restrictions Free ${APP_CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Remove PDF passwords and restrictions instantly. Our ${APP_CURRENT_YEAR} guide shows you how to unlock protected PDFs securely in your browser without uploading files to any server.`
         },
-        h1: `How to Unlock a PDF: The Complete ${CURRENT_YEAR} Guide`,
+        h1: `How to Unlock a PDF: The Complete ${APP_CURRENT_YEAR} Guide`,
         subtitle: "Remove PDF restrictions and passwords quickly, securely, and completely free—all within your browser.",
 
-        intro: "We've all been there: you receive an important PDF document, but when you try to print it, copy text, or edit it, you discover it's **password-protected** or has restrictions enabled. Maybe it's a contract you need to annotate, a form you need to fill out offline, or a report you need to quote in your own work. Whatever the reason, locked PDFs are frustrating. Our **free PDF unlocker** tool removes these restrictions instantly, and the best part? Everything happens locally in your browser, so your sensitive documents are never uploaded to any server.",
+        intro: `We've all been there: you receive an important PDF document, but when you try to print it, copy text, or edit it, you discover it's **password-protected** or has restrictions enabled. Maybe it's a contract you need to annotate, a form you need to fill out offline, or a report you need to quote in your own work. Whatever the reason, locked PDFs are frustrating. Our **free PDF unlocker** tool removes these restrictions instantly, and the best part? Everything happens locally in your browser, so your sensitive documents are never uploaded to any server. If you're looking to <Link href={"/" + lang + "/unlock-pdf"} className="text-canada-red hover:underline font-bold decoration-dashed">unlock PDF online</Link>, you've come to the right place.`,
 
         sections: [
             {
@@ -40,7 +40,7 @@ This is the most common type of PDF restriction. When a PDF has an **owner passw
 - **Editing restricted**: You cannot modify, annotate, or fill forms
 - **Content extraction blocked**: Screen readers and accessibility tools may be limited
 
-Owner passwords are typically applied by document creators who want to control how their content is used. This is what our **PDF unlock tool** can remove instantly.
+Owner passwords are typically applied by document creators who want to control how their content is used. This is what our <Link href={"/" + lang + "/unlock-pdf"} className="text-canada-red hover:underline font-medium decoration-dashed">PDF unlock tool</Link> can remove instantly.
 
 ### User Password (Open Password)
 A **user password** prevents the PDF from being opened at all. Without entering the correct password, you cannot view any content. This is a stronger form of protection and requires specialized decryption tools—our browser-based tool cannot remove user passwords without you knowing the original password.
@@ -66,216 +66,215 @@ Many documents from the **CRA (Canada Revenue Agency)**, **IRCC (Immigration, Re
                 content: `Using pdfcanada.ca's PDF unlocker is incredibly simple:
 
 **Step 1: Access the Tool**
-- Open any modern web browser (Chrome, Firefox, Safari, Edge)
-- Navigate to pdfcanada.ca's Unlock PDF tool
-- No registration, no account creation, no software installation required
+- Navigate to pdfcanada.ca's <Link href={"/" + lang + "/unlock-pdf"} className="text-canada-red hover:underline font-medium decoration-dashed">Unlock PDF tool</Link>
+        - No registration, no account creation, no software installation required
 
-**Step 2: Upload Your Protected PDF**
-- Click "Choose File" or drag-and-drop your locked PDF into the upload area
-- The file stays entirely on your device—nothing is uploaded to any server
-- Supported on Windows, Mac, iPhone, Android, and all major platforms
+            ** Step 2: Upload Your Protected PDF **
+                - Click "Choose File" or drag - and - drop your locked PDF into the upload area
+                    - The file stays entirely on your device—nothing is uploaded to any server
+                        - Supported on Windows, Mac, iPhone, Android, and all major platforms
 
-**Step 3: Enter Password (If Required)**
-- If your PDF requires a password to open (user password), enter it in the password field
-- For PDFs with only owner/permissions restrictions, no password entry is needed
-- Our tool will automatically detect and remove applicable restrictions
+                            ** Step 3: Enter Password(If Required) **
+                                - If your PDF requires a password to open(user password), enter it in the password field
+                                    - For PDFs with only owner / permissions restrictions, no password entry is needed
+                                        - Our tool will automatically detect and remove applicable restrictions
 
-**Step 4: Download Your Unlocked PDF**
-- Click "Unlock PDF" to process the document
-- Conversion happens in milliseconds using WebAssembly technology
-- Download your new, unrestricted PDF with full printing, copying, and editing capabilities
+                                            ** Step 4: Download Your Unlocked PDF **
+                                                - Click "Unlock PDF" to process the document
+                                                    - Conversion happens in milliseconds using WebAssembly technology
+    - Download your new, unrestricted PDF with full printing, copying, and editing capabilities
 
-**What Gets Unlocked?**
-After processing, your PDF will have these restrictions removed:
-- ✅ Printing enabled (including high-quality print)
-- ✅ Copy and paste text enabled
-- ✅ Content extraction for accessibility enabled
-- ✅ Commenting and annotation enabled
-- ✅ Form filling enabled
-- ✅ Document assembly enabled`
+        ** What Gets Unlocked ?**
+            After processing, your PDF will have these restrictions removed:
+    - ✅ Printing enabled(including high - quality print)
+        - ✅ Copy and paste text enabled
+            - ✅ Content extraction for accessibility enabled
+                - ✅ Commenting and annotation enabled
+                    - ✅ Form filling enabled
+                        - ✅ Document assembly enabled`
             },
             {
                 id: "privacy-security",
                 title: "Maximum Privacy and Security",
-                content: `When dealing with protected documents, privacy is paramount. Many locked PDFs contain sensitive information: financial statements, medical records, legal contracts, employment documents, or personal identification.
+                content: `When dealing with protected documents, privacy is paramount.Many locked PDFs contain sensitive information: financial statements, medical records, legal contracts, employment documents, or personal identification.
 
 ### The Problem with Online PDF Unlockers
 Most "free" online PDF unlock tools work by:
-1. **Uploading your file** to their servers
-2. Processing it on remote infrastructure
-3. Sending the unlocked file back to you
-4. Potentially storing copies of your document
+    1. ** Uploading your file ** to their servers
+    2. Processing it on remote infrastructure
+    3. Sending the unlocked file back to you
+    4. Potentially storing copies of your document
 
 This creates serious privacy risks:
-- **Data breaches**: Your sensitive documents could be exposed if their servers are hacked
-- **Data mining**: Some services analyze uploaded documents for advertising or worse
-- **Retention policies**: Many services keep copies of uploaded files for days or indefinitely
-- **Third-party access**: Your documents may pass through multiple servers and jurisdictions
+- ** Data breaches **: Your sensitive documents could be exposed if their servers are hacked
+        - ** Data mining **: Some services analyze uploaded documents for advertising or worse
+            - ** Retention policies **: Many services keep copies of uploaded files for days or indefinitely
+                - ** Third - party access **: Your documents may pass through multiple servers and jurisdictions
 
 ### How pdfcanada.ca Protects Your Privacy
 Our PDF unlock tool uses a fundamentally different approach:
 
-**100% Local Processing**
-- Your PDF never leaves your device—not even for a millisecond
-- All decryption happens in your browser using WebAssembly and JavaScript
-- There's no network request containing your document data
-- Even we cannot see what files you're unlocking
+** 100 % Local Processing **
+        - Your PDF never leaves your device—not even for a millisecond
+            - All decryption happens in your browser using WebAssembly and JavaScript
+    - There's no network request containing your document data
+        - Even we cannot see what files you're unlocking
 
-**Zero Data Storage**
-- Nothing is stored on any server
-- Close the browser tab and all data is immediately purged from RAM
-- No cookies track what files you've processed
-- No analytics on file content—only anonymous page view counts
+            ** Zero Data Storage **
+                - Nothing is stored on any server
+                    - Close the browser tab and all data is immediately purged from RAM
+                        - No cookies track what files you've processed
+                            - No analytics on file content—only anonymous page view counts
 
-**Verifiable Security**
-- Our processing code runs entirely in your browser—you can verify this
-- Works offline after the initial page load
-- Perfect for air-gapped or high-security environments
+                                ** Verifiable Security **
+                                    - Our processing code runs entirely in your browser—you can verify this
+                                        - Works offline after the initial page load
+                                            - Perfect for air - gapped or high - security environments
 
-**Compliance by Design**
-- **PIPEDA compliant** (Canadian privacy law): No personal data collection means automatic compliance
-- **GDPR compliant** (EU regulation): No data export, no consent requirements
-- Suitable for documents subject to attorney-client privilege, doctor-patient confidentiality, or corporate NDAs`
+                                                ** Compliance by Design **
+- ** PIPEDA compliant ** (Canadian privacy law): No personal data collection means automatic compliance
+        - ** GDPR compliant ** (EU regulation): No data export, no consent requirements
+            - Suitable for documents subject to attorney - client privilege, doctor - patient confidentiality, or corporate NDAs`
             },
             {
                 id: "use-cases",
                 title: "Common Use Cases for Unlocking PDFs",
                 content: `### Business and Professional
-**Contract Management**
-- Unlock contracts to add signatures or annotations
-- Enable printing for physical filing requirements
-- Extract text for contract analysis software
+        ** Contract Management **
+            - Unlock contracts to add signatures or annotations
+                - Enable printing for physical filing requirements
+                    - Extract text for contract analysis software
 
-**Financial Documents**
-- Unlock bank statements for personal record-keeping
-- Enable text selection in financial reports for data entry
-- Print investment statements for tax preparation
+                        ** Financial Documents **
+                            - Unlock bank statements for personal record - keeping
+                                - Enable text selection in financial reports for data entry
+                                    - Print investment statements for tax preparation
 
-**HR and Employment**
-- Unlock offer letters to fill in acceptance details
-- Enable printing of company policy documents
-- Extract text from employee handbooks for reference
+                                        ** HR and Employment **
+                                            - Unlock offer letters to fill in acceptance details
+                                                - Enable printing of company policy documents
+                                                    - Extract text from employee handbooks for reference
 
 ### Government and Official Documents
-**Canadian Government PDFs**
-- CRA tax forms and assessment notices often have restrictions
-- IRCC immigration documents may need printing for appointments
-- Provincial documents (health cards, driver's license applications) frequently have copy protection
+        ** Canadian Government PDFs **
+            - CRA tax forms and assessment notices often have restrictions
+                - IRCC immigration documents may need printing for appointments
+                    - Provincial documents(health cards, driver's license applications) frequently have copy protection
 
-**Legal Documents**
-- Court filings may restrict copying to protect case integrity
-- Unlock for personal annotation and case preparation
-- Enable accessibility features for legal review software
+                        ** Legal Documents **
+                    - Court filings may restrict copying to protect case integrity
+                    - Unlock for personal annotation and case preparation
+                        - Enable accessibility features for legal review software
 
 ### Education and Research
-**Academic Papers**
-- Unlock PDFs from journal databases for highlighting and annotation
-- Enable copy/paste for proper citation in research papers
-- Print chapters for offline study
+        ** Academic Papers **
+            - Unlock PDFs from journal databases for highlighting and annotation
+                - Enable copy / paste for proper citation in research papers
+                    - Print chapters for offline study
 
-**Textbooks and Course Materials**
-- Some eTextbooks restrict printing—unlock for study notes
-- Enable text-to-speech for accessibility
-- Extract diagrams and figures for presentations (with proper attribution)
+                        ** Textbooks and Course Materials **
+                            - Some eTextbooks restrict printing—unlock for study notes
+                                - Enable text - to - speech for accessibility
+                                    - Extract diagrams and figures for presentations(with proper attribution)
 
 ### Personal and Administrative
-**Insurance and Medical**
-- Unlock insurance policy documents for annotation
-- Enable printing of medical records for specialist appointments
-- Extract text from health forms for personal health records
+        ** Insurance and Medical **
+            - Unlock insurance policy documents for annotation
+                - Enable printing of medical records for specialist appointments
+                    - Extract text from health forms for personal health records
 
-**Real Estate**
-- Unlock property documents for signing and countersigning
-- Print mortgage documents for review with advisors
-- Enable annotation on inspection reports`
+                        ** Real Estate **
+                            - Unlock property documents for signing and countersigning
+                                - Print mortgage documents for review with advisors
+                                    - Enable annotation on inspection reports`
             },
             {
                 id: "legal-considerations",
                 title: "Legal and Ethical Considerations",
-                content: `### Is Unlocking PDFs Legal?
-The legality of removing PDF restrictions depends on your jurisdiction and intended use:
+                content: `### Is Unlocking PDFs Legal ?
+        The legality of removing PDF restrictions depends on your jurisdiction and intended use:
 
-**Generally Legal Uses**
-- Unlocking PDFs you own or have legitimate access to
-- Removing restrictions on documents you created but lost the password for
+** Generally Legal Uses **
+        - Unlocking PDFs you own or have legitimate access to
+            - Removing restrictions on documents you created but lost the password for
 - Enabling accessibility features for personal use
-- Printing documents you've legally purchased or received
-- Annotating contracts and forms for your own records
+            - Printing documents you've legally purchased or received
+                - Annotating contracts and forms for your own records
 
-**Potentially Problematic Uses**
-- Removing DRM protection from copyrighted eBooks for redistribution
-- Unlocking documents to bypass licensing restrictions
-- Circumventing protection to violate agreement terms
+                    ** Potentially Problematic Uses **
+                        - Removing DRM protection from copyrighted eBooks for redistribution
+                            - Unlocking documents to bypass licensing restrictions
+                                - Circumventing protection to violate agreement terms
 
 ### Best Practices
-1. **Only unlock documents you own or have permission to modify**
-2. **Respect copyright**: Don't redistribute unlocked copyrighted content
-3. **Honor agreements**: If you agreed to restrictions when obtaining a document, consider whether unlocking violates those terms
-4. **Use responsibly**: Unlock for legitimate personal, business, or accessibility needs
+    1. ** Only unlock documents you own or have permission to modify **
+        2. ** Respect copyright **: Don't redistribute unlocked copyrighted content
+    3. ** Honor agreements **: If you agreed to restrictions when obtaining a document, consider whether unlocking violates those terms
+    4. ** Use responsibly **: Unlock for legitimate personal, business, or accessibility needs
 
 ### Canadian Context
-In Canada, the Copyright Act includes provisions about **technological protection measures (TPMs)**. Removing TPMs to infringe copyright is prohibited, but:
-- Personal use exceptions generally apply
-- Accessibility needs are recognized
-- Fair dealing provisions may cover research and criticism use
+In Canada, the Copyright Act includes provisions about ** technological protection measures(TPMs) **.Removing TPMs to infringe copyright is prohibited, but:
+    - Personal use exceptions generally apply
+        - Accessibility needs are recognized
+            - Fair dealing provisions may cover research and criticism use
 
-When in doubt, consult a legal professional for specific situations.`
+    When in doubt, consult a legal professional for specific situations.`
             },
             {
                 id: "troubleshooting",
                 title: "Troubleshooting PDF Unlock Issues",
                 content: `### Common Problems and Solutions
 
-**Problem: "This PDF requires a user password"**
-- **Cause**: The PDF has opening protection, not just restriction protection
-- **Solution**: You need to enter the correct password. If you've forgotten it, contact the document creator or try password recovery software (not available in browser-based tools)
+        ** Problem: "This PDF requires a user password" **
+- ** Cause **: The PDF has opening protection, not just restriction protection
+        - ** Solution **: You need to enter the correct password.If you've forgotten it, contact the document creator or try password recovery software (not available in browser-based tools)
 
-**Problem: PDF Won't Load**
-- **Cause**: Corrupted file or unsupported encryption
-- **Solution**: Try opening the PDF in Adobe Acrobat or another viewer first to verify it's not corrupted. If corrupted, contact the sender for a fresh copy.
+            ** Problem: PDF Won't Load**
+                - ** Cause **: Corrupted file or unsupported encryption
+                    - ** Solution **: Try opening the PDF in Adobe Acrobat or another viewer first to verify it's not corrupted. If corrupted, contact the sender for a fresh copy.
 
-**Problem: Some Restrictions Remain After Unlocking**
-- **Cause**: Rare encryption methods not supported by browser-based processing
-- **Solution**: Try Adobe Acrobat Pro or desktop-based unlock software for complex encryption
+                        ** Problem: Some Restrictions Remain After Unlocking **
+- ** Cause **: Rare encryption methods not supported by browser - based processing
+        - ** Solution **: Try Adobe Acrobat Pro or desktop - based unlock software for complex encryption
 
-**Problem: Unlocked PDF Looks Different**
-- **Cause**: Some dynamic PDF features (JavaScript, 3D content) may not preserve perfectly
-- **Solution**: For complex PDFs, consider professional PDF software
+            ** Problem: Unlocked PDF Looks Different **
+- ** Cause **: Some dynamic PDF features(JavaScript, 3D content) may not preserve perfectly
+        - ** Solution **: For complex PDFs, consider professional PDF software
 
-**Problem: Large PDF Takes a Long Time**
-- **Cause**: Processing happens locally, so speed depends on your device
-- **Solution**: Close other browser tabs to free up memory; try on a more powerful device for very large files (50+ MB)
+            ** Problem: Large PDF Takes a Long Time **
+- ** Cause **: Processing happens locally, so speed depends on your device
+        - ** Solution **: Close other browser tabs to free up memory; try on a more powerful device for very large files(50 + MB)
 
-**Problem: Mobile Device Running Slow**
-- **Cause**: Older phones have limited RAM
-- **Solution**: Try processing on a desktop/laptop, or unlock smaller files on mobile`
+            ** Problem: Mobile Device Running Slow **
+- ** Cause **: Older phones have limited RAM
+        - ** Solution **: Try processing on a desktop / laptop, or unlock smaller files on mobile`
             }
         ],
 
         faq: [
             {
                 q: "Is it safe to unlock PDFs online?",
-                a: "Most online PDF unlockers upload your files to remote servers, which creates privacy risks. pdfcanada.ca is different—we process PDFs entirely in your browser. Your files never leave your device, making it completely safe for sensitive documents."
+                a: (<>Most online PDF unlockers upload your files to remote servers, which creates privacy risks. pdfcanada.ca is different—we process PDFs entirely in your browser. Your files never leave your device, making it completely safe for sensitive documents.</>)
             },
             {
                 q: "Can I unlock a PDF without knowing the password?",
-                a: "It depends on the protection type. If the PDF has only 'owner password' restrictions (printing/copying disabled but you can view it), we can remove those without any password. If the PDF requires a password to open, you'll need to enter the correct password."
+                a: (<>It depends on the protection type. If the PDF has only 'owner password' restrictions (printing/copying disabled but you can view it), we can remove those without any password. If the PDF requires a password to open, you'll need to enter the correct password.</>)
             },
             {
                 q: "Will unlocking damage my PDF?",
-                a: "No. Unlocking only removes the permission restrictions—it doesn't alter the content, formatting, images, or any other aspect of your document. Your unlocked PDF will be identical to the original, just without restrictions."
+                a: (<>No. Unlocking only removes the permission restrictions—it doesn't alter the content, formatting, images, or any other aspect of your document. Your unlocked PDF will be identical to the original, just without restrictions.</>)
             },
             {
                 q: "Is unlocking PDFs legal?",
-                a: "For most personal and business uses, yes. Unlocking PDFs you own or have legitimate access to is generally legal. However, unlocking to circumvent copyright protection for redistribution may violate copyright law. Use responsibly."
+                a: (<>For most personal and business uses, yes. Unlocking PDFs you own or have legitimate access to is generally legal. However, unlocking to circumvent copyright protection for redistribution may violate copyright law. Use responsibly.</>)
             },
             {
                 q: "Why can't I unlock some PDFs?",
-                a: "Some PDFs use 'user passwords' that prevent opening entirely. These require the correct password to unlock. Our tool can only remove 'owner password' restrictions on PDFs you can already view."
+                a: (<>Some PDFs use 'user passwords' that prevent opening entirely. These require the correct password to unlock. Our tool can only remove 'owner password' restrictions on PDFs you can already view.</>)
             },
             {
                 q: "Does this work on iPhone and Android?",
-                a: "Yes! Our PDF unlock tool works on any device with a modern web browser. Open Safari on iPhone or Chrome on Android, navigate to our tool, and unlock PDFs directly on your mobile device."
+                a: (<>Yes! Our <Link href={"/" + lang + "/unlock-pdf"} className="text-canada-red hover:underline font-medium decoration-dashed">PDF unlock tool</Link> works on any device with a modern web browser. Open Safari on iPhone or Chrome on Android, navigate to our tool, and unlock PDFs directly on your mobile device. This guide will show you exactly how to remove pages from any PDF document using <Link href="/" className="text-canada-red hover:underline font-medium decoration-dashed">modern, local-first tools</Link> that keep your data safe on your own device.</>)
             },
             {
                 q: "How long does unlocking take?",
@@ -307,8 +306,8 @@ When in doubt, consult a legal professional for specific situations.`
     },
     fr: {
         seo: {
-            title: `Comment Déverrouiller un PDF | Supprimer les Restrictions ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Supprimez les mots de passe et restrictions PDF instantanément. Notre guide ${CURRENT_YEAR} vous montre comment déverrouiller les PDF protégés en toute sécurité dans votre navigateur.`
+            title: `Comment Déverrouiller un PDF | Supprimer les Restrictions ${APP_CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Supprimez les mots de passe et restrictions PDF instantanément. Notre guide ${APP_CURRENT_YEAR} vous montre comment déverrouiller les PDF protégés en toute sécurité dans votre navigateur.`
         },
         h1: "Comment Déverrouiller un PDF : Le Guide Complet",
         subtitle: "Supprimez les restrictions et mots de passe PDF rapidement, en toute sécurité et gratuitement—directement dans votre navigateur.",
@@ -321,15 +320,15 @@ When in doubt, consult a legal professional for specific situations.`
                 title: "Comprendre la Protection PDF",
                 content: `Il existe deux types de protection PDF:
 
-### Mot de Passe Propriétaire (Restrictions)
-Le type le plus courant. Vous pouvez ouvrir et voir le document, mais certaines actions sont restreintes:
-- **Impression désactivée**
-- **Copier/coller bloqué**
-- **Modification restreinte**
+### Mot de Passe Propriétaire(Restrictions)
+Le type le plus courant.Vous pouvez ouvrir et voir le document, mais certaines actions sont restreintes:
+- ** Impression désactivée **
+- ** Copier / coller bloqué **
+- ** Modification restreinte **
 
-C'est ce que notre outil peut supprimer instantanément.
+        C'est ce que notre outil peut supprimer instantanément.
 
-### Mot de Passe Utilisateur (Ouverture)
+### Mot de Passe Utilisateur(Ouverture)
 Empêche l'ouverture du PDF. Sans le mot de passe correct, vous ne pouvez rien voir.`
             },
             {
@@ -376,8 +375,8 @@ C'est tout ! Conversion en quelques secondes.`
     },
     pt: {
         seo: {
-            title: `Como Desbloquear PDF | Remover Restrições Grátis ${CURRENT_YEAR} | pdfcanada.ca`,
-            desc: `Remova senhas e restrições de PDF instantaneamente. Nosso guia de ${CURRENT_YEAR} mostra como desbloquear PDFs protegidos com segurança no navegador.`
+            title: `Como Desbloquear PDF | Remover Restrições Grátis ${APP_CURRENT_YEAR} | pdfcanada.ca`,
+            desc: `Remova senhas e restrições de PDF instantaneamente. Nosso guia de ${APP_CURRENT_YEAR} mostra como desbloquear PDFs protegidos com segurança no navegador.`
         },
         h1: "Como Desbloquear um PDF: O Guia Completo",
         subtitle: "Remova restrições e senhas de PDF rapidamente, com segurança e totalmente grátis—diretamente no seu navegador.",
@@ -390,31 +389,31 @@ C'est tout ! Conversion en quelques secondes.`
                 title: "Entendendo a Proteção de PDF",
                 content: `Existem dois tipos de proteção de PDF:
 
-### Senha de Proprietário (Restrições)
-O tipo mais comum. Você pode abrir e visualizar o documento, mas certas ações são restritas:
-- **Impressão desativada**
-- **Copiar/colar bloqueado**
-- **Edição restrita**
+### Senha de Proprietário(Restrições)
+O tipo mais comum.Você pode abrir e visualizar o documento, mas certas ações são restritas:
+- ** Impressão desativada **
+- ** Copiar / colar bloqueado **
+- ** Edição restrita **
 
-Isso é o que nossa ferramenta pode remover instantaneamente.
+        Isso é o que nossa ferramenta pode remover instantaneamente.
 
-### Senha de Usuário (Abertura)
-Impede que o PDF seja aberto. Sem a senha correta, você não consegue ver nada.`
+### Senha de Usuário(Abertura)
+Impede que o PDF seja aberto.Sem a senha correta, você não consegue ver nada.`
             },
             {
                 id: "how-to-unlock",
                 title: "Como Desbloquear: Passo a Passo",
-                content: `**Passo 1**: Acesse a ferramenta de desbloqueio de PDF do pdfcanada.ca
-**Passo 2**: Envie seu PDF protegido (o arquivo permanece no seu dispositivo)
-**Passo 3**: Digite a senha se necessário
-**Passo 4**: Baixe seu PDF desbloqueado
+                content: `** Passo 1 **: Acesse a ferramenta de desbloqueio de PDF do pdfcanada.ca
+        ** Passo 2 **: Envie seu PDF protegido(o arquivo permanece no seu dispositivo)
+            ** Passo 3 **: Digite a senha se necessário
+                ** Passo 4 **: Baixe seu PDF desbloqueado
 
 É só isso! Conversão em segundos.`
             },
             {
                 id: "privacy",
                 title: "Privacidade Máxima",
-                content: `Nossa ferramenta processa seus PDFs inteiramente no seu navegador. Seus arquivos **nunca** saem do seu dispositivo. Diferente de outros serviços que enviam seus documentos para servidores, usamos WebAssembly para processamento 100% local.`
+                content: `Nossa ferramenta processa seus PDFs inteiramente no seu navegador.Seus arquivos ** nunca ** saem do seu dispositivo.Diferente de outros serviços que enviam seus documentos para servidores, usamos WebAssembly para processamento 100 % local.`
             }
         ],
 
@@ -486,7 +485,7 @@ export const UnlockPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 breadcrumbs={[
                     { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
                     { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
-                    { name: lang === 'fr' ? 'Déverrouiller PDF' : (lang === 'pt' ? 'Desbloquear PDF' : 'Unlock PDF'), href: '#' }
+                    { name: lang === 'fr' ? 'Déverrouiller PDF' : (lang === 'pt' ? 'Desbloquear PDF' : 'Unlock PDF'), href: lang === 'fr' ? '/fr/guides/unlock-pdf' : (lang === 'pt' ? '/pt/guides/unlock-pdf' : '/guides/unlock-pdf') }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16">
@@ -551,12 +550,13 @@ export const UnlockPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     <div className="mt-16 sm:mt-18 md:mt-20 bg-canada-red p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[3rem] text-center text-white shadow-2xl shadow-red-500/20">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">{t.ctaTitle}</h2>
                         <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-90">{t.ctaSubtext}</p>
-                        <Link href={`/${lang}/unlock-pdf`}
+                        <Link
+                            href={"/" + lang + "/unlock-pdf"}
                             className="inline-block bg-white text-canada-red px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 lg:py-5 rounded-full font-black text-base sm:text-lg md:text-xl hover:scale-105 transition-all shadow-lg active:scale-95"
                         >
                             {t.ctaButton}
                         </Link>
-                    </div>
+                    </div >
 
                     <AISnapshot
                         question={t.quickAnswer.question}
@@ -573,28 +573,28 @@ export const UnlockPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                             {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
                         </h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/protect-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={"/" + lang + "/protect-pdf-guide"} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Protéger PDF' : (lang === 'pt' ? 'Guia Proteger PDF' : 'Protect PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/sign-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={"/" + lang + "/sign-pdf-guide"} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Signer PDF' : (lang === 'pt' ? 'Guia Assinar PDF' : 'Sign PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={"/" + lang + "/guides/compress-pdf"} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
                             </Link>
-                            <Link href={`/${lang}/guides/merge-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <Link href={"/" + lang + "/guides/merge-pdf"} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                                 <ArrowRight size={16} className="text-canada-red" />
                                 {lang === 'fr' ? 'Guide Fusionner PDF' : (lang === 'pt' ? 'Guia Juntar PDF' : 'Merge PDF Guide')}
                             </Link>
-                        </div>
-                    </div>
+                        </div >
+                    </div >
 
                     <AuthorBio lang={lang} />
-                </div>
-            </PageLayout>
-        </div>
+                </div >
+            </PageLayout >
+        </div >
     );
 };

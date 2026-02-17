@@ -58,6 +58,15 @@ export const ALL_GUIDES: GuideMetadata[] = [
         icon: '💼'
     },
 
+    {
+        slug: 'pdf-accessibility-2026',
+        titleEn: 'PDF Accessibility 2026 - WCAG 2.1 & ADA Compliance | pdfcanada.ca',
+        titleFr: 'Accessibilité PDF 2026 - Conformité WCAG & ADA | pdfcanada.ca',
+        descEn: 'PDF Accessibility 2026 - Master WCAG 2.1 Level AA and ADA Title II requirements. 100% private, local-first processing ensures compliance. Read our 2026 guide.',
+        descFr: 'Accessibilité PDF 2026 - Maîtrisez les exigences WCAG 2.1 et ADA Title II. Traitement 100% local pour garantir la conformité. Lisez notre guide 2026.',
+        category: 'Privacy & Security',
+        icon: '♿'
+    },
     // Editing
     {
         slug: 'merge-pdf',
