@@ -166,4 +166,34 @@ export const GUIDE_MAP: Record<string, React.ComponentType<any>> = {
 
 };
 
+export const GUIDE_TOOL_MAPPING: Record<string, string> = {
+    'merge-pdf': 'merge-pdf',
+    'split-pdf': 'split-pdf',
+    'compress-pdf': 'compress-pdf',
+    'delete-pdf-pages': 'delete-pdf-pages',
+    'pdf-page-remover': 'pdf-page-remover',
+    'organize-pdf': 'organize-pdf',
+    'sign-pdf': 'sign-pdf',
+    'make-pdf-fillable': 'make-pdf-fillable',
+    'pdf-to-word': 'pdf-to-word',
+    'word-to-pdf': 'word-to-pdf',
+    'pdf-to-excel': 'pdf-to-excel',
+    'excel-to-pdf': 'excel-to-pdf',
+    'pdf-to-csv': 'pdf-to-csv',
+    'pdf-to-xml': 'pdf-to-xml',
+    'xml-to-pdf': 'xml-to-pdf',
+    'heic-to-pdf': 'heic-to-pdf',
+    'epub-to-pdf': 'epub-to-pdf',
+    'pdf-to-epub': 'pdf-to-epub',
+    'pdf-to-kindle': 'pdf-to-kindle',
+    'invoice-ocr': 'invoice-ocr',
+    'flatten-pdf': 'make-pdf-non-editable',
+    'make-pdf-non-editable': 'make-pdf-non-editable',
+    'barcode-generator': 'barcode-generator',
+    'xrechnung-viewer': 'xrechnung-viewer',
+    'crop-pdf': 'crop-pdf',
+    'rotate-pdf': 'rotate-pdf',
+    'extract-pdf-pages': 'extract-pdf-pages',
+};
+
 export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);

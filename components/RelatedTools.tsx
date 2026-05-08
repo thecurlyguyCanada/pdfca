@@ -14,6 +14,7 @@ interface RelatedToolsProps {
     lang: Language;
     currentPath?: string;
     category?: 'edit' | 'convert' | 'organize' | 'security' | 'advanced' | 'all';
+    relatedSlugs?: string[];
 }
 
 const getTools = (lang: Language) => ({
@@ -68,8 +69,42 @@ const content = {
     }
 };
 
-export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToolsProps) {
-    const allTools = getTools(lang);
+export function RelatedTools({ lang, currentPath, category = 'all', relatedSlugs }: RelatedToolsProps) {
+    const allToolsMap = getTools(lang);
+
+    // Get tools
+    let tools: RelatedTool[] = [];
+    
+    if (relatedSlugs && relatedSlugs.length > 0) {
+        // Prioritize explicit related slugs
+        const allAvailableTools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert];
+        tools = relatedSlugs
+            .map(slug => allAvailableTools.find(t => t.path === `/${slug}`))
+            .filter((t): t is RelatedTool => !!t);
+        
+        // Fill with category tools if less than 6
+        if (tools.length < 6) {
+            const catTools = category === 'all' 
+                ? allAvailableTools 
+                : (allToolsMap[category as keyof ReturnType<typeof getTools>] || []);
+            const additional = catTools.filter(t => !relatedSlugs.includes(t.path.substring(1)));
+            tools = [...tools, ...additional];
+        }
+    } else {
+        if (category === 'all') {
+            tools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert];
+        } else if (category === 'security') {
+            tools = [...allToolsMap.edit, ...allToolsMap.organize];
+        } else if (category === 'advanced') {
+            tools = [...allToolsMap.convert];
+        } else {
+            tools = allToolsMap[category as keyof ReturnType<typeof getTools>] || [];
+        }
+    }
+
+    const filteredTools = tools
+        .filter(t => t.path !== currentPath)
+        .slice(0, 6);
 
     // Determine relevant guide category based on tool category
     let guideCategory: GuideMetadata['category'] | 'All' = 'All';
@@ -77,19 +112,6 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
     if (category === 'convert') guideCategory = 'Conversion';
     if (category === 'security') guideCategory = 'Privacy & Security';
     if (category === 'advanced') guideCategory = 'Advanced';
-
-    // Get tools
-    let tools: RelatedTool[] = [];
-    if (category === 'all') {
-        tools = [...allTools.edit, ...allTools.organize, ...allTools.convert];
-    } else if (category === 'security') {
-        // Map to relevant security tools
-        tools = [...allTools.edit, ...allTools.organize];
-    } else if (category === 'advanced') {
-        tools = [...allTools.convert];
-    } else {
-        tools = allTools[category as keyof ReturnType<typeof getTools>] || [];
-    }
 
     // Get Guides from Metadata
     let relevantGuides = ALL_GUIDES;
@@ -104,8 +126,6 @@ export function RelatedTools({ lang, currentPath, category = 'all' }: RelatedToo
         const others = ALL_GUIDES.filter(g => !g.slug.includes('-hub') && g.slug !== 'ultimate-pdf-guide');
         relevantGuides = [...hubs, ...others];
     }
-
-    const filteredTools = tools.filter(t => t.path !== currentPath).slice(0, 6);
 
     const filteredGuides = relevantGuides
         .filter(g => !currentPath?.includes(g.slug))

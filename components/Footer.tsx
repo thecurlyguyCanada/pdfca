@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { Heart, ShieldCheck, MapPin, ChevronDown, BookOpen, Zap, Scissors, Eye } from 'lucide-react';
+import { Heart, ShieldCheck, MapPin, ChevronDown, BookOpen, Zap, Scissors, Eye, Mail, History, Accessibility, Scale, Globe } from 'lucide-react';
 import { translations, Language } from '../utils/i18n';
 import { triggerHaptic } from '../utils/haptics';
 import { MapleLeaf } from './MapleLeaf';
@@ -95,13 +95,18 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerHubsGuides}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuideLabel}</Link></li>
-                        <li className="pt-2 mt-2 border-t border-white/10"></li>
-                        <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.footerConversions}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.footerEditing}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.footerSecurityTitle}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {t.footerOcrAnalysis}</Link></li>
-                        <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{t.footerViewAllGuides}</Link></li>
+                         <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuideLabel}</Link></li>
+                         <li className="pt-2 mt-2 border-t border-white/10"></li>
+                         <li><Link href={`/${lang}/tools/pdf-converter-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.hubConverter}</Link></li>
+                         <li><Link href={`/${lang}/tools/pdf-editing-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.hubEditing}</Link></li>
+                         <li><Link href={`/${lang}/tools/secure-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.hubSecurity}</Link></li>
+                         <li><Link href={`/${lang}/tools/business-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><MapPin size={14} /> {t.hubBusiness}</Link></li>
+                         <li className="pt-2 mt-2 border-t border-white/10"></li>
+                         <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.footerConversions}</Link></li>
+                         <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.footerEditing}</Link></li>
+                         <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.footerSecurityTitle}</Link></li>
+                         <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {t.footerOcrAnalysis}</Link></li>
+                         <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{t.footerViewAllGuides}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -132,6 +137,12 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
                         <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{t.footerPricing}</Link></li>
+                        <li><Link href={`/${lang}/security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Sécurité' : (lang === 'pt' ? 'Segurança' : 'Security')}</Link></li>
+                        <li><Link href={`/${lang}/local-vs-cloud`} className="hover:text-white transition-colors flex items-center gap-2"><Scale size={14} /> {lang === 'fr' ? 'Local vs Cloud' : (lang === 'pt' ? 'Local vs Cloud' : 'Local vs. Cloud')}</Link></li>
+                        <li><Link href={`/${lang}/compatibility`} className="hover:text-white transition-colors flex items-center gap-2"><Globe size={14} /> {lang === 'fr' ? 'Compatibilité' : (lang === 'pt' ? 'Compatibilidade' : 'Compatibility')}</Link></li>
+                        <li><Link href={`/${lang}/contact`} className="hover:text-white transition-colors flex items-center gap-2"><Mail size={14} /> {lang === 'fr' ? 'Contact' : (lang === 'pt' ? 'Contato' : 'Contact')}</Link></li>
+                        <li><Link href={`/${lang}/changelog`} className="hover:text-white transition-colors flex items-center gap-2"><History size={14} /> {lang === 'fr' ? 'Changelog' : (lang === 'pt' ? 'Changelog' : 'Changelog')}</Link></li>
+                        <li><Link href={`/${lang}/accessibility`} className="hover:text-white transition-colors flex items-center gap-2"><Accessibility size={14} /> {lang === 'fr' ? 'Accessibilité' : (lang === 'pt' ? 'Acessibilidade' : 'Accessibility')}</Link></li>
                         {/* Security & Privacy Guides */}
                         <li className="pt-3 mt-3 border-t border-white/10">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{t.footerSecurityTitle}</span>

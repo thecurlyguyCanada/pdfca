@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { BookOpen, ArrowRight } from 'lucide-react';
 
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
 import { Header } from '@/components/Header';
@@ -159,6 +160,36 @@ export default async function ToolPage({
                             <ToolPageClient toolConfig={config} lang={currentLang} />
                         </Suspense>
 
+                        {/* Expert Guide Link - Strategic Internal Linking */}
+                        {config.guideSlug && (
+                            <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shrink-0">
+                                        <BookOpen size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                                            {currentLang === 'fr' ? 'Besoin d\'aide ?' : (currentLang === 'pt' ? 'Precisa de ajuda?' : 'Need Expert Help?')}
+                                        </h3>
+                                        <p className="text-slate-600 dark:text-slate-400">
+                                            {currentLang === 'fr' 
+                                                ? `Consultez notre guide complet sur comment utiliser ${localizedConfig.title}.` 
+                                                : (currentLang === 'pt' 
+                                                    ? `Veja nosso guia completo sobre como usar ${localizedConfig.title}.`
+                                                    : `Read our comprehensive guide on how to master ${localizedConfig.title}.`)}
+                                        </p>
+                                    </div>
+                                </div>
+                                <Link 
+                                    href={`/${lang}/guides/${config.guideSlug}`}
+                                    className="bg-white dark:bg-slate-900 text-blue-600 border border-blue-200 dark:border-blue-800 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-2xl font-bold transition-all flex items-center gap-2 group whitespace-nowrap"
+                                >
+                                    {currentLang === 'fr' ? 'Voir le Guide Expert' : (currentLang === 'pt' ? 'Ver Guia Especialista' : 'View Expert Guide')}
+                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+                        )}
+
                         {/* Social Share - Bing SEO: Social signals are a ranking factor */}
                         <div className="mt-8 flex justify-center">
                             <SocialShare
@@ -186,7 +217,11 @@ export default async function ToolPage({
                         )}
 
                         <div className="mt-20">
-                            <RelatedTools lang={currentLang} currentPath={`/${config.slug}`} />
+                            <RelatedTools 
+                                lang={currentLang} 
+                                currentPath={`/${config.slug}`} 
+                                relatedSlugs={config.relatedSlugs}
+                            />
                         </div>
                     </div>
                 </main>

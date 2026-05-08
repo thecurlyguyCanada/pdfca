@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { GUIDE_MAP, getAllGuideSlugs } from '@/lib/guideConfig';
+import Link from 'next/link';
+import { Zap, ArrowRight } from 'lucide-react';
+import { GUIDE_MAP, getAllGuideSlugs, GUIDE_TOOL_MAPPING } from '@/lib/guideConfig';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
@@ -145,6 +147,39 @@ export default async function GuidePage({
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />
                 <main className="flex-grow">
+                    {/* Strategic Tool Link at the Top */}
+                    {(() => {
+                        const toolSlug = GUIDE_TOOL_MAPPING[slug];
+                        if (!toolSlug) return null;
+                        
+                        const isFr = lang === 'fr';
+                        const isPt = lang === 'pt';
+                        
+                        return (
+                            <div className="max-w-4xl mx-auto px-4 mt-8">
+                                <Link 
+                                    href={`/${lang}/${toolSlug}`}
+                                    className="flex items-center justify-between p-4 bg-canada-red/5 border border-canada-red/20 rounded-2xl group hover:bg-canada-red transition-all duration-300"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-canada-red rounded-xl flex items-center justify-center text-white">
+                                            <Zap size={20} />
+                                        </div>
+                                        <div>
+                                            <span className="block text-xs font-bold uppercase tracking-wider text-canada-red group-hover:text-white/80">
+                                                {isFr ? 'Outil Recommandé' : (isPt ? 'Ferramenta Recomendada' : 'Recommended Tool')}
+                                            </span>
+                                            <span className="font-bold text-slate-900 group-hover:text-white">
+                                                {isFr ? `Utiliser l'outil ${title}` : (isPt ? `Usar ferramenta ${title}` : `Use the ${title} Tool Now`)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ArrowRight className="text-canada-red group-hover:text-white group-hover:translate-x-1 transition-all" />
+                                </Link>
+                            </div>
+                        );
+                    })()}
+
                     <GuideComponent lang={currentLang} />
                 </main>
                 <Footer lang={currentLang} />

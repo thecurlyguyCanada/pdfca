@@ -10,6 +10,8 @@ export interface ToolConfig {
   accept?: string;
   i18nKey?: string;
   featureList?: Record<Locale, string[]>;
+  guideSlug?: string;
+  relatedSlugs?: string[];
 }
 
 export const TOOL_CONFIGS: ToolConfig[] = [
@@ -44,7 +46,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'excluir folhas pdf', 'tirar paginas do pdf'
       ]
     },
-    accept: '.pdf,application/pdf'
+    accept: '.pdf,application/pdf',
+    guideSlug: 'delete-pdf-pages',
+    relatedSlugs: ['split-pdf', 'organize-pdf', 'compress-pdf', 'merge-pdf']
   },
   {
     slug: 'rotate-pdf',
@@ -117,7 +121,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       en: ['Reduce PDF size by up to 90%', 'Three compression levels', 'Maintain document quality', 'Batch compression support'],
       fr: ['Réduisez la taille PDF jusqu\'à 90%', 'Trois niveaux de compression', 'Maintenez la qualité qualité', 'Support compression par lot'],
       pt: ['Reduza tamanho PDF até 90%', 'Três níveis de compressão', 'Mantenha qualidade documento', 'Suporte compressão em lote']
-    }
+    },
+    guideSlug: 'compress-pdf',
+    relatedSlugs: ['merge-pdf', 'split-pdf', 'pdf-to-word', 'delete-pdf-pages']
   },
   {
     slug: 'merge-pdf',
@@ -154,7 +160,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       en: ['Combine unlimited PDFs', 'Drag and drop reordering', 'Client-side merging', 'No file size limits'],
       fr: ['Combinez PDFs illimités', 'Réorganisation glisser-déposer', 'Fusion côté client', 'Aucune limite de taille'],
       pt: ['Combine PDFs ilimitados', 'Reordenação arrastar e soltar', 'Fusão lado do cliente', 'Sem limites de tamanho']
-    }
+    },
+    guideSlug: 'merge-pdf',
+    relatedSlugs: ['split-pdf', 'compress-pdf', 'organize-pdf', 'delete-pdf-pages', 'sign-pdf']
   },
   {
     slug: 'split-pdf',
@@ -192,7 +200,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       en: ['Split by page ranges', 'Extract individual pages', 'Instant local processing', 'Secure splitting'],
       fr: ['Diviser par plages de pages', 'Extraire pages individuelles', 'Traitement local instantané', 'Division sécurisée'],
       pt: ['Dividir por intervalos', 'Extrair páginas individuais', 'Processamento local instantâneo', 'Divisão segura']
-    }
+    },
+    guideSlug: 'split-pdf',
+    relatedSlugs: ['merge-pdf', 'extract-pdf-pages', 'delete-pdf-pages', 'compress-pdf', 'organize-pdf']
   },
   {
     slug: 'extract-pdf-pages',

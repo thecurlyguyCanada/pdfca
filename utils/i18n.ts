@@ -12,9 +12,9 @@ export const CURRENT_YEAR = new Date().getFullYear();
 
 const en = {
   builtIn: "Built in Canada",
-  title: "The Polite PDF Tools",
-  subtitle: "Free, Secure, Canadian.",
-  description: "We help you manage your documents without the fuss. Select a tool below, eh?",
+  title: "Free PDF Tools Canada",
+  subtitle: "Merge, split, compress, convert, sign, and edit PDF files securely in your browser. No uploads, no signup, no watermarks.",
+  description: "We help you manage your documents without the fuss. Local processing ensures your files never leave your device. The most polite choice for PDF tools, eh?",
   localProcessing: "100% Local Processing",
   localProcessingDesc: "Your files never leave your browser. All processing happens on your device.",
   noSignup: "No Signup Required",
@@ -136,6 +136,12 @@ const en = {
     ctaTitle: "Ready to Get Started?",
     ctaDesc: "Join thousands of Canadians who trust pdfcanada.ca for their document needs. Select a tool above and start working—no signup required.",
     ctaButton: "Explore All Tools",
+    
+    // Hub Titles
+    hubConverter: "PDF Converter Tools",
+    hubEditing: "PDF Editing Tools",
+    hubSecurity: "Secure PDF Tools",
+    hubBusiness: "Business PDF Tools",
   },
 
   // SEO General
@@ -1495,8 +1501,14 @@ export const translations: Record<Language, TranslationStructure> = {
       // Final CTA
       ctaTitle: "Prêt à Commencer ?",
       ctaDesc: "Rejoignez des milliers de Canadiens qui font confiance à pdfcanada.ca pour leurs besoins documentaires. Sélectionnez un outil ci-dessus et commencez à travailler—aucune inscription requise.",
-      ctaButton: "Explorer Tous les Outils",
+      ctaButton: "Explorer tous les outils",
     },
+
+    // Hub Titles
+    hubConverter: "Outils de Conversion PDF",
+    hubEditing: "Outils d'Édition PDF",
+    hubSecurity: "Outils PDF Sécurisés",
+    hubBusiness: "Outils PDF Business",
 
     seo: {
       homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
@@ -2754,6 +2766,12 @@ export const translations: Record<Language, TranslationStructure> = {
       ctaDesc: "Junte-se a milhares de canadenses que confiam no pdfcanada.ca.",
       ctaButton: "Explorar Todas as Ferramentas",
     },
+
+    // Hub Titles
+    hubConverter: "Ferramentas de Conversão",
+    hubEditing: "Ferramentas de Edição",
+    hubSecurity: "Ferramentas Seguras",
+    hubBusiness: "Ferramentas para Negócios",
 
     // SEO General
     seo: {
