@@ -136,12 +136,6 @@ const en = {
     ctaTitle: "Ready to Get Started?",
     ctaDesc: "Join thousands of Canadians who trust pdfcanada.ca for their document needs. Select a tool above and start working—no signup required.",
     ctaButton: "Explore All Tools",
-    
-    // Hub Titles
-    hubConverter: "PDF Converter Tools",
-    hubEditing: "PDF Editing Tools",
-    hubSecurity: "Secure PDF Tools",
-    hubBusiness: "Business PDF Tools",
   },
 
   // SEO General
@@ -1504,12 +1498,6 @@ export const translations: Record<Language, TranslationStructure> = {
       ctaButton: "Explorer tous les outils",
     },
 
-    // Hub Titles
-    hubConverter: "Outils de Conversion PDF",
-    hubEditing: "Outils d'Édition PDF",
-    hubSecurity: "Outils PDF Sécurisés",
-    hubBusiness: "Outils PDF Business",
-
     seo: {
       homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
       homeDesc: "Outils PDF canadiens polis. 100% gratuit et sécurisé en " + CURRENT_YEAR + ". Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.",
@@ -2766,12 +2754,6 @@ export const translations: Record<Language, TranslationStructure> = {
       ctaDesc: "Junte-se a milhares de canadenses que confiam no pdfcanada.ca.",
       ctaButton: "Explorar Todas as Ferramentas",
     },
-
-    // Hub Titles
-    hubConverter: "Ferramentas de Conversão",
-    hubEditing: "Ferramentas de Edição",
-    hubSecurity: "Ferramentas Seguras",
-    hubBusiness: "Ferramentas para Negócios",
 
     // SEO General
     seo: {
