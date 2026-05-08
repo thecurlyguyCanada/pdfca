@@ -93,14 +93,14 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
 
                {/* Column 3: Editing Guides */}
                <div className="lg:col-span-1">
-                  <FooterSection title={t.footerHubsGuides}>
+                  <FooterSection title={lang === 'fr' ? 'Hubs & Guides' : (lang === 'pt' ? 'Hubs & Guias' : 'Hubs & Guides')}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                         <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {t.ultimateGuideLabel}</Link></li>
+                         <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo PDF' : 'Ultimate PDF Guide')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
-                         <li><Link href={`/${lang}/tools/pdf-converter-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.hubConverter}</Link></li>
-                         <li><Link href={`/${lang}/tools/pdf-editing-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.hubEditing}</Link></li>
-                         <li><Link href={`/${lang}/tools/secure-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.hubSecurity}</Link></li>
-                         <li><Link href={`/${lang}/tools/business-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><MapPin size={14} /> {t.hubBusiness}</Link></li>
+                         <li><Link href={`/${lang}/tools/pdf-converter-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {lang === 'fr' ? 'Outils de Conversion' : (lang === 'pt' ? 'Ferramentas de Conversão' : 'PDF Converter Tools')}</Link></li>
+                         <li><Link href={`/${lang}/tools/pdf-editing-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {lang === 'fr' ? 'Outils d\'Édition' : (lang === 'pt' ? 'Ferramentas de Edição' : 'PDF Editing Tools')}</Link></li>
+                         <li><Link href={`/${lang}/tools/secure-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Outils Sécurisés' : (lang === 'pt' ? 'Ferramentas Seguras' : 'Secure PDF Tools')}</Link></li>
+                         <li><Link href={`/${lang}/tools/business-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><MapPin size={14} /> {lang === 'fr' ? 'Outils Business' : (lang === 'pt' ? 'Ferramentas de Negócios' : 'Business PDF Tools')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
                          <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.footerConversions}</Link></li>
                          <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.footerEditing}</Link></li>
