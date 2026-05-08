@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
 
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
