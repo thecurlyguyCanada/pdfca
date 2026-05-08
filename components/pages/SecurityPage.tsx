@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Lock, Eye, Zap, Cpu, FileCheck, ShieldAlert, Globe, ServerOff, CheckCircle2, Terminal } from 'lucide-react';
+import { ShieldCheck, Lock, Eye, Zap, Cpu, FileCheck, ShieldAlert, Globe, ServerOff, CheckCircle2, Terminal, ArrowRight } from 'lucide-react';
 import { Language } from '../../utils/i18n';
 import { PageLayout } from '../PageLayout';
 import Link from 'next/link';
