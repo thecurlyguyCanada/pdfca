@@ -5,6 +5,7 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { constructMetadata } from '@/lib/metadata';
+import { SEO } from '@/components/SEO';
 
 export async function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
@@ -37,8 +38,23 @@ export default async function HowToRoute({
     const { lang } = await params;
     const currentLang = lang as Language;
 
+    const seoTitle = lang === 'fr' ? 'Comment faire' : (lang === 'pt' ? 'Como usar' : 'How to');
+    const seoDesc = lang === 'fr' 
+        ? 'Comment Utiliser les Outils PDF - Guide de Sécurité' 
+        : (lang === 'pt' ? 'Como Usar Ferramentas PDF - Guia de Segurança' : 'How to Use PDF Tools - Step-by-Step Security Guide');
+
     return (
         <>
+            <SEO
+                title={seoTitle}
+                description={seoDesc}
+                lang={currentLang}
+                canonicalPath={`/${lang}/howto`}
+                breadcrumbs={[
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: seoTitle, path: `/${lang}/howto` }
+                ]}
+            />
             <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />

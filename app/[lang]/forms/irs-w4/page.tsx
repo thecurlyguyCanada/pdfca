@@ -6,8 +6,8 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { W4FormPage } from '@/components/pages/forms/W4FormPage';
+import { SEO } from '@/components/SEO';
 
-// Static generation
 // Static generation
 export const dynamic = 'force-static';
 
@@ -22,7 +22,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { lang } = await params;
     const baseUrl = 'https://www.pdfcanada.ca';
-    const CURRENT_YEAR = new Date().getFullYear();
 
     const content = {
         en: {
@@ -88,8 +87,34 @@ export default async function IRSW4FormPage({
     const { lang } = await params;
     const currentLang = lang as Language;
 
+    const content = {
+        en: {
+            title: `IRS W-4 Form PDF - Secure Employee Withholding Online | pdfcanada.ca`,
+            description: `IRS W-4 Form PDF - Fill and download your Employee's Withholding Certificate safely in your browser. 100% private, local-first processing keeps tax data safe.`,
+        },
+        fr: {
+            title: `Formulaire IRS W-4 PDF - Retenue d'Impôt Sécurisée | pdfcanada.ca`,
+            description: `Formulaire IRS W-4 PDF - Remplissez et téléchargez votre certificat de retenue d'impôt en sécurité. Traitement 100% local pour garantir la sécurité des données.`,
+        },
+        pt: {
+            title: `Formulário IRS W-4 PDF - Retenção de Imposto Segura | pdfcanada.ca`,
+            description: `Formulário IRS W-4 PDF - Preencha e baixe seu certificado de retenção de imposto com segurança. Processamento 100% local para garantir a segurança dos dados.`,
+        }
+    };
+    const meta = content[currentLang] || content.en;
+
     return (
         <>
+            <SEO
+                title={meta.title}
+                description={meta.description}
+                lang={currentLang}
+                canonicalPath={`/${currentLang}/forms/irs-w4`}
+                breadcrumbs={[
+                    { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${currentLang}` },
+                    { name: 'IRS W-4', path: `/${currentLang}/forms/irs-w4` }
+                ]}
+            />
             <div className="mesh-bg" aria-hidden="true" />
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />

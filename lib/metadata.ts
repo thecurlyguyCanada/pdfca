@@ -26,25 +26,27 @@ export function constructMetadata({
     keywords = [],
     noIndex = false,
 }: MetadataOptions): Metadata {
+    const cleanTitle = title.endsWith(' | pdfcanada.ca') ? title.slice(0, -15) : title;
+    const displayTitle = `${cleanTitle} | pdfcanada.ca`;
+
     const fullUrl = `${BASE_URL}/${lang}${path === '/' ? '' : path}`;
 
     // Clean path for alternates (remove leading slash if root)
     const cleanPath = path === '/' ? '' : path;
 
-    // Dynamically generate alternates
-    const languages: Record<string, string> = {};
-    i18n.locales.forEach(locale => {
-        const url = `${BASE_URL}/${locale}${cleanPath}`;
-        languages[`${locale}-CA`] = url; // Specific CA locale
-        languages[locale] = url; // Generic language fallback
-    });
-    languages['x-default'] = `${BASE_URL}/${i18n.defaultLocale}${cleanPath}`;
+    // Dynamically generate alternates matching merge-pdf page structure
+    const languages = {
+        'en-CA': `${BASE_URL}/en${cleanPath}`,
+        'fr-CA': `${BASE_URL}/fr${cleanPath}`,
+        'pt-BR': `${BASE_URL}/pt${cleanPath}`,
+        'x-default': `${BASE_URL}/en${cleanPath}`,
+    };
 
     // Format locale for OpenGraph (e.g., en_CA, fr_CA, pt_BR)
     const underscoreLocale = lang === 'pt' ? 'pt_BR' : `${lang}_CA`;
 
     return {
-        title,
+        title: displayTitle,
         description,
         keywords: [
             ...keywords,
@@ -58,7 +60,7 @@ export function constructMetadata({
             languages,
         },
         openGraph: {
-            title: `${title} | pdfcanada.ca`,
+            title: displayTitle,
             description,
             url: fullUrl,
             siteName: 'pdfcanada.ca',
@@ -69,13 +71,13 @@ export function constructMetadata({
                     url: image,
                     width: 1200,
                     height: 630,
-                    alt: title,
+                    alt: displayTitle,
                 },
             ],
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${title} | pdfcanada.ca`,
+            title: displayTitle,
             description,
             images: [image],
             site: '@pdfcanada',

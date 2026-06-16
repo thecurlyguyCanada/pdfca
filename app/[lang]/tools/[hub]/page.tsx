@@ -42,14 +42,32 @@ export async function generateMetadata({
 
     const title = config.title[lang] || config.title['en'];
     const description = config.description[lang] || config.description['en'];
+    const baseUrl = 'https://www.pdfcanada.ca';
+    const path = `/tools/${hub}`;
 
     return {
         title,
         description,
+        alternates: {
+            canonical: `${baseUrl}/${lang}${path}`,
+            languages: {
+                'en-CA': `${baseUrl}/en${path}`,
+                'fr-CA': `${baseUrl}/fr${path}`,
+                'pt-BR': `${baseUrl}/pt${path}`,
+                'x-default': `${baseUrl}/en${path}`,
+            },
+        },
         openGraph: {
-            title,
+            title: title,
             description,
+            url: `${baseUrl}/${lang}${path}`,
             type: 'website',
+            locale: lang === 'fr' ? 'fr_CA' : (lang === 'pt' ? 'pt_BR' : 'en_CA'),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description,
         }
     };
 }
