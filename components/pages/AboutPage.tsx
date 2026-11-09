@@ -1,4 +1,5 @@
 import React from 'react';
+import { AUTHOR } from '@/config/author';
 import { Heart, Zap, Shield, Users, Globe, CheckCircle, MapPin, Target, ArrowRight, Leaf } from 'lucide-react';
 import { Language } from '../../utils/i18n';
 import { SEO } from '../SEO';
@@ -265,22 +266,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
         "url": `https://www.pdfcanada.ca${lang === 'en' ? '' : `/${lang}`}/about`,
         "mainEntity": {
             "@type": "Organization",
-            "name": "PDF Canada Technologies Inc.",
+            "name": "pdfcanada.ca",
             "url": "https://www.pdfcanada.ca",
             "logo": "https://www.pdfcanada.ca/android-chrome-512x512.png",
             "foundingDate": "2024",
-            "founders": [
-                {
-                    "@type": "Person",
-                    "name": "Jordan Miller"
-                }
-            ],
+            "founder": {
+                "@type": "Person",
+                "name": AUTHOR.name,
+                "url": AUTHOR.url,
+                "sameAs": [AUTHOR.linkedin]
+            },
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "100 King St W, Suite 5700",
                 "addressLocality": "Toronto",
                 "addressRegion": "ON",
-                "postalCode": "M5X 1C7",
                 "addressCountry": "CA"
             },
             "contactPoint": {
@@ -419,35 +418,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                         <p className="text-lg text-gray-600 dark:text-gray-400 italic">{t.futureConclusion}</p>
                     </section>
 
-                    {/* Meet the Team - E-E-A-T Signal */}
+                    {/* Who runs the site */}
                     <section className="mb-20">
                         <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-10 text-center">
-                            {lang === 'fr' ? 'Rencontrez l\'Équipe' : lang === 'pt' ? 'Conheça a Equipe' : 'Meet the Team'}
+                            {lang === 'fr' ? 'Qui est derrière le site' : lang === 'pt' ? 'Quem está por trás do site' : 'Who Runs This Site'}
                         </h2>
                         <div className="grid sm:grid-cols-2 gap-8">
                             <div className="text-center p-8 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
                                 <div className="w-24 h-24 bg-gradient-to-br from-canada-red to-red-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-3xl font-black">
-                                    JM
+                                    {AUTHOR.initials}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Jordan Miller</h3>
-                                <p className="text-canada-red font-bold text-sm uppercase tracking-widest mb-4">Lead Architect & Founder</p>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{AUTHOR.name}</h3>
+                                <p className="text-canada-red font-bold text-sm uppercase tracking-widest mb-4">{AUTHOR.role[lang] || AUTHOR.role.en} · Toronto</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    Former document systems specialist with a passion for privacy-first web architecture. Jordan built PDF Canada to solve his own document frustrations.
+                                    {lang === 'fr'
+                                        ? 'pdfcanada.ca est un projet d\'une seule personne. Je conçois les outils, je rédige chaque guide à partir de l\'outil en ligne et je les revérifie quand quelque chose change. Les fichiers restent sur votre appareil parce que le site n\'a aucun serveur qui les reçoit.'
+                                        : 'pdfcanada.ca is a one-person project. I build the tools, write every guide against the live tool and re-check them when something changes. Files stay on your device because the site has no server that receives them.'}
                                 </p>
-                            </div>
-                            <div className="text-center p-8 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
-                                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-3xl font-black">
-                                    SC
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Sarah Chen</h3>
-                                <p className="text-blue-600 font-bold text-sm uppercase tracking-widest mb-4">Operations & Privacy Lead</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    Ensures our tools comply with PIPEDA and global security standards. Sarah oversees our "Zero-Knowledge" infrastructure and user support.
+                                    <a href={AUTHOR.linkedin} rel="me noopener" target="_blank" className="underline underline-offset-2">LinkedIn</a>
                                 </p>
                             </div>
                         </div>
                     </section>
-
                     {/* Technology Credits */}
                     <section className="mb-20">
                         <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { MapPin, ExternalLink, CheckCircle, Award, Shield, Zap, Heart } from 'lucide-react';
 import { Language } from '../utils/i18n';
+import { AUTHOR } from '../config/author';
 
 interface AuthorBioProps {
     lang: Language;
@@ -8,57 +9,48 @@ interface AuthorBioProps {
 
 const getContent = () => ({
     en: {
-        writtenBy: "Article Authored By",
-        authorName: "The PDFCanada.ca Engineering Team",
+        writtenBy: "Written by",
+        authorName: AUTHOR.name,
         location: "Toronto, Canada",
-        role: "Senior PDF & Security Specialists",
-        bio: "PDFCanada.ca was established in 2024 to disrupt the exploitative 'upload-and-harvest' model of modern PDF tools. Our engineering team, based in Ontario, specializes in high-performance WebAssembly (WASM) implementations that bring server-grade PDF manipulation directly to the user's browser, ensuring absolute data sovereignty.",
-        verified: "Verified Canadian Entity",
-        learnMore: "Full Mission Statement",
-        expertise: "Core Expertise",
-        expertiseAreas: ["WASM PDF Engines", "Client-Side Encryption", "PIPEDA / HIPAA Compliance", "OCR Neural Networks", "Web Standards Mastery"],
-        credentials: ["Certified Software Architects", "Cybersecurity Advocacy", "Legacy System Harmonization"],
-        philosophyTitle: "Our Engineering Oath",
+        role: AUTHOR.role.en,
+        bio: "pdfcanada.ca is a one-person project. I build the tools, write each guide against the live tool and re-check it when the tool changes. Files stay on your device because the site has no server that receives them.",
+        verified: "Independent, Toronto-based",
+        expertiseAreas: ["Browser-side PDF processing", "pdf-lib and pdf.js", "Canadian document workflows", "Plain-language guides"],
+        philosophyTitle: "How the site works",
         philosophy: [
-            { title: "Privacy First", desc: "No data ever reaches a server", icon: Shield },
-            { title: "Zero Lag", desc: "Instant local processing", icon: Zap },
-            { title: "Accessibility", desc: "Free tools for every Canadian", icon: Heart }
+            { title: "Nothing uploaded", desc: "Files are processed in your browser tab", icon: Shield },
+            { title: "No account", desc: "Free, no sign-up, no watermark", icon: Zap },
+            { title: "Checked dates", desc: "Every guide shows when it was last verified", icon: Heart }
         ]
     },
     fr: {
-        writtenBy: "Article Rédigé Par",
-        authorName: "L'Équipe d'Ingénierie PDFCanada.ca",
+        writtenBy: "Rédigé par",
+        authorName: AUTHOR.name,
         location: "Toronto, Canada",
-        role: "Spécialistes Seniors PDF et Sécurité",
-        bio: "PDFCanada.ca a été établi en 2024 pour perturber le modèle exploiteur de 'téléchargement et récolte' des outils PDF modernes. Notre équipe d'ingénierie, basée en Ontario, se spécialise dans les implémentations WebAssembly (WASM) de haute performance qui apportent la manipulation PDF de qualité serveur directement dans le navigateur de l'utilisateur.",
-        verified: "Entité Canadienne Vérifiée",
-        learnMore: "Énoncé de Mission Complet",
-        expertise: "Expertise Fondamentale",
-        expertiseAreas: ["Moteurs PDF WASM", "Chiffrement Côté Client", "Conformité LPRPDE / HIPAA", "Réseaux Neuronaux OCR", "Maîtrise des Normes Web"],
-        credentials: ["Architectes Logiciels Certifiés", "Plaidoyer Cybersécurité", "Harmonisation des Systèmes Hérités"],
-        philosophyTitle: "Notre Serment d'Ingénierie",
+        role: AUTHOR.role.fr,
+        bio: "pdfcanada.ca est un projet d'une seule personne. Je conçois les outils, je rédige chaque guide à partir de l'outil en ligne et je le revérifie quand l'outil change. Vos fichiers restent sur votre appareil parce que le site n'a aucun serveur qui les reçoit.",
+        verified: "Indépendant, basé à Toronto",
+        expertiseAreas: ["Traitement PDF dans le navigateur", "pdf-lib et pdf.js", "Documents canadiens", "Guides en langage clair"],
+        philosophyTitle: "Comment fonctionne le site",
         philosophy: [
-            { title: "Priorité Privée", desc: "Aucune donnée n'atteint un serveur", icon: Shield },
-            { title: "Zéro Latence", desc: "Traitement local instantané", icon: Zap },
-            { title: "Accessibilité", desc: "Outils gratuits pour tous", icon: Heart }
+            { title: "Rien n'est téléversé", desc: "Les fichiers sont traités dans votre onglet", icon: Shield },
+            { title: "Sans compte", desc: "Gratuit, sans inscription, sans filigrane", icon: Zap },
+            { title: "Dates vérifiées", desc: "Chaque guide indique sa dernière vérification", icon: Heart }
         ]
     },
     pt: {
-        writtenBy: "Artigo Escrito Por",
-        authorName: "Equipe de Engenharia PDFCanada.ca",
+        writtenBy: "Escrito por",
+        authorName: AUTHOR.name,
         location: "Toronto, Canadá",
-        role: "Especialistas Sênior em PDF e Segurança",
-        bio: "PDFCanada.ca foi estabelecido em 2024 para interromper o modelo exploratório de 'upload e colheita' das ferramentas PDF modernas. Nossa equipe de engenharia, baseada em Ontário, especializa-se em implementações WebAssembly (WASM) de alta performance que trazem a manipulação de PDF de nível de servidor diretamente para o navegador do usuário, garantindo absoluta soberania de dados.",
-        verified: "Entidade Canadense Verificada",
-        learnMore: "Declaração de Missão Completa",
-        expertise: "Expertise Principal",
-        expertiseAreas: ["Engines PDF WASM", "Criptografia Client-Side", "Conformidade PIPEDA", "Redes Neurais OCR", "Padrões Web"],
-        credentials: ["Arquitetos de Software Certificados", "Defesa da Cibersegurança", "Harmonização de Legado"],
-        philosophyTitle: "Nosso Juramento de Engenharia",
+        role: AUTHOR.role.pt,
+        bio: "pdfcanada.ca é um projeto de uma pessoa. Eu crio as ferramentas e escrevo cada guia com base na ferramenta real.",
+        verified: "Independente, Toronto",
+        expertiseAreas: ["Processamento de PDF no navegador", "pdf-lib e pdf.js"],
+        philosophyTitle: "Como o site funciona",
         philosophy: [
-            { title: "Privacidade Primeiro", desc: "Nenhum dado atinge o servidor", icon: Shield },
-            { title: "Zero Lag", desc: "Processamento local instantâneo", icon: Zap },
-            { title: "Acessibilidade", desc: "Ferramentas gratuitas para todos", icon: Heart }
+            { title: "Nada é enviado", desc: "Os arquivos são processados no seu navegador", icon: Shield },
+            { title: "Sem conta", desc: "Grátis, sem cadastro, sem marca d'água", icon: Zap },
+            { title: "Datas verificadas", desc: "Cada guia mostra quando foi verificado", icon: Heart }
         ]
     }
 });
@@ -91,7 +83,7 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
                                 <div className="absolute -inset-1 bg-gradient-to-br from-canada-red to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
                                 <div className="relative w-24 h-24 bg-white dark:bg-gray-900 rounded-2xl flex items-center justify-center border border-gray-100 dark:border-gray-700 shadow-xl overflow-hidden">
                                     <div className="absolute inset-0 bg-gradient-to-br from-canada-red/10 to-transparent" />
-                                    <span className="text-canada-red font-black text-3xl tracking-tighter select-none">CDN</span>
+                                    <span className="text-canada-red font-black text-3xl tracking-tighter select-none">{AUTHOR.initials}</span>
                                 </div>
                                 <div className="absolute -bottom-2 -right-2 bg-green-500 text-white p-1 rounded-full border-4 border-white dark:border-gray-950 shadow-lg">
                                     <CheckCircle size={16} />
@@ -152,7 +144,7 @@ export const AuthorBio: React.FC<AuthorBioProps> = ({ lang }) => {
                             href={`/${lang}/about`}
                             className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-black text-sm uppercase tracking-wider group transition-colors"
                         >
-                            {t.learnMore}
+                            {lang === 'fr' ? 'À propos' : 'About the author'}
                             <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>

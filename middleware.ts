@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { i18n } from './lib/i18n-config';
-import { GUIDE_REDIRECTS, HUB_GUIDES, RETIRED_GUIDES, RETIRED_LOCALES, RETIRED_TOOLS, TOOL_REDIRECTS } from './lib/retired';
+import { GUIDE_REDIRECTS, GUIDE_TO_TOOL, HUB_GUIDES, RETIRED_GUIDES, RETIRED_LOCALES, RETIRED_PATHS, RETIRED_TOOLS, TOOL_REDIRECTS } from './lib/retired';
 
 const gone = () => new NextResponse('410 Gone: this page has been retired.\n', { status: 410, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex' } });
 
@@ -22,12 +22,17 @@ export function middleware(request: NextRequest) {
     // Retired language trees (Portuguese) are gone for good.
     if (RETIRED_LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))) return gone();
 
+    // Retired whole pages, in every live language.
+    const page = pathname.match(/^\/(\w\w)\/(.+?)\/?$/);
+    if (page && RETIRED_PATHS.has(page[2])) return gone();
+
     // Retired and consolidated guides, in every live language.
     const guide = pathname.match(/^\/(\w\w)\/guides\/([a-z0-9-]+)\/?$/);
     if (guide) {
         const [, lang, slug] = guide;
         if (RETIRED_GUIDES.has(slug)) return gone();
-        const target = GUIDE_REDIRECTS[slug] ? `/${lang}/guides/${GUIDE_REDIRECTS[slug]}` : HUB_GUIDES.has(slug) ? `/${lang}/guides` : null;
+        const folded = GUIDE_TO_TOOL[GUIDE_REDIRECTS[slug] || slug];
+        const target = folded ? `/${lang}${folded}` : GUIDE_REDIRECTS[slug] ? `/${lang}/guides/${GUIDE_REDIRECTS[slug]}` : HUB_GUIDES.has(slug) ? `/${lang}/guides` : null;
         if (target) {
             const url = request.nextUrl.clone();
             url.pathname = target;

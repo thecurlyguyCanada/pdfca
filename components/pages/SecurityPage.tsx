@@ -142,7 +142,7 @@ export const SecurityPage: React.FC<SecurityPageProps> = ({ lang }) => {
                             <ArrowRight size={18} />
                         </Link>
                         <Link 
-                            href={`/${lang}/local-vs-cloud`}
+                            href={`/${lang}/guides`}
                             className="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-full font-bold transition-all"
                         >
                             {isFr ? 'Comparer Local vs Cloud' : 'Local vs Cloud Comparison'}

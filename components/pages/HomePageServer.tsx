@@ -194,7 +194,7 @@ export function HomePageServer({ lang }: Props) {
                                     { title: lang === 'fr' ? 'Fusionner des PDF' : (lang === 'pt' ? 'Guia Juntar PDF' : 'Merge PDF Guide'), desc: lang === 'fr' ? 'Combiner plusieurs fichiers en un seul.' : (lang === 'pt' ? 'Combine vários arquivos em um só.' : 'Combine multiple files into one.'), slug: 'merge-pdf', icon: LayoutGrid },
                                     { title: lang === 'fr' ? 'Rendre un PDF remplissable' : (lang === 'pt' ? 'Tornar PDF preenchível' : 'Make a PDF Fillable'), desc: lang === 'fr' ? 'Ajouter des champs de formulaire.' : (lang === 'pt' ? 'Adicione campos de formulário.' : 'Add form fields to any PDF.'), slug: 'make-pdf-fillable', icon: ShieldCheck }
                                 ].map((guide, i) => (
-                                    <Link key={i} href={`/${lang}/guides/${guide.slug}`} className="bg-zinc-800 p-6 rounded-2xl border border-zinc-700 hover:border-canada-red transition-all group">
+                                    <Link key={i} href={`/${lang}/${guide.slug}`} className="bg-zinc-800 p-6 rounded-2xl border border-zinc-700 hover:border-canada-red transition-all group">
                                         <div className="w-10 h-10 bg-canada-red/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-canada-red transition-colors">
                                             <guide.icon className="w-5 h-5 text-canada-red group-hover:text-white" />
                                         </div>
@@ -283,7 +283,7 @@ export function HomePageServer({ lang }: Props) {
                                 <div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-inner">
                                     <div className="flex items-center justify-between mb-8">
                                         <h4 className="font-bold text-xl">{lang === 'fr' ? 'Comparaison de Sécurité' : 'Security Comparison'}</h4>
-                                        <Link href={`/${lang}/local-vs-cloud`} className="text-canada-red text-sm font-bold hover:underline flex items-center gap-1">
+                                        <Link href={`/${lang}/security`} className="text-canada-red text-sm font-bold hover:underline flex items-center gap-1">
                                             {lang === 'fr' ? 'Voir le rapport' : 'Full Report'} <ArrowRight size={14} />
                                         </Link>
                                     </div>

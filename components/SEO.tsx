@@ -124,10 +124,8 @@ export function SEO({
     "description": t.seo.homeDesc,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": ORGANIZATION.location.postalCode,
       "addressLocality": ORGANIZATION.location.city,
       "addressRegion": "ON",
-      "postalCode": ORGANIZATION.location.postalCode,
       "addressCountry": "CA"
     },
     "geo": {
@@ -183,7 +181,7 @@ export function SEO({
   if (canonicalPath !== '/' && !canonicalPath.startsWith('/about') && !canonicalPath.startsWith('/guides')) {
     const webAppSchema: Record<string, any> = {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
+      "@type": ["WebApplication", "SoftwareApplication"],
       "@id": `${getFullUrl(canonicalPath)}#application`,
       "name": schemaName,
       "url": getFullUrl(canonicalPath),
@@ -199,7 +197,7 @@ export function SEO({
         "PIPEDA compliant",
         "Privacy-first",
         "No account required",
-        "No file size limits",
+        "No fixed file size limit (bounded by device memory)",
         "Works offline after load"
       ],
       "offers": {
@@ -212,9 +210,9 @@ export function SEO({
       // 2026: Add softwareHelp for AI agents to find documentation
       "softwareHelp": {
         "@type": "CreativeWork",
-        "url": `${URLS.DOMAIN}/en/guides`
+        "url": getFullUrl(canonicalPath)
       },
-      "author": { "@id": `${URLS.DOMAIN}/#organization` },
+      "author": author ? { "@type": author.type || "Person", "name": author.name, ...(author.url ? { "url": author.url } : {}) } : { "@id": `${URLS.DOMAIN}/#organization` },
       "provider": { "@id": `${URLS.DOMAIN}/#organization` },
       "datePublished": datePublished || "2024-01-01",
       "dateModified": dateModified || "2026-01-05",
@@ -329,6 +327,27 @@ export function SEO({
   // HowTo rich results on desktop or mobile. The schema is now ignored.
   // Keeping steps data in FAQ answers for AI understanding but removing standalone HowTo.
   // Reference: https://developers.google.com/search/blog/2023/08/howto-faq-changes
+  // Google no longer shows HowTo rich results, but Bing and the AI assistants still read the steps, so
+  // a HowTo is emitted when a page supplies real steps (the tool articles do).
+  if (steps && steps.length > 0) {
+    allSchemas.push({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": schemaName,
+      "description": description,
+      "totalTime": "PT1M",
+      "estimatedCost": { "@type": "MonetaryAmount", "currency": "CAD", "value": "0" },
+      "tool": [{ "@type": "HowToTool", "name": "A web browser" }],
+      "step": steps.map((st, i) => ({
+        "@type": "HowToStep",
+        "position": i + 1,
+        "name": st.name,
+        "text": st.text,
+        "url": `${getFullUrl(canonicalPath)}#step-${i + 1}`,
+        ...(st.image ? { "image": st.image.startsWith('http') ? st.image : getAssetUrl(st.image) } : {})
+      }))
+    });
+  }
 
   // 7. Breadcrumbs Schema
   if (breadcrumbs && breadcrumbs.length > 0) {

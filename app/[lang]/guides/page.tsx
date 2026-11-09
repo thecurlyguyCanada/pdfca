@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { getAllGuideSlugs } from '@/lib/guideConfig';
+import { getAllToolSlugs } from '@/lib/toolConfig';
+import { getToolArticle } from '@/lib/toolArticles';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
@@ -120,8 +122,11 @@ export default async function GuidesPage({
         "@type": "ItemList",
         "name": t.title,
         "description": t.desc,
-        "numberOfItems": getAllGuideSlugs().length,
-        "itemListElement": getAllGuideSlugs().slice(0, 10).map((slug, i) => ({ "@type": "ListItem", "position": i + 1, "url": `https://www.pdfcanada.ca/${lang}/guides/${slug}` }))
+        "numberOfItems": getAllToolSlugs().filter((s) => getToolArticle(s, lang)).length + getAllGuideSlugs().length,
+        "itemListElement": [
+            ...getAllToolSlugs().filter((s) => getToolArticle(s, lang)).map((slug) => `https://www.pdfcanada.ca/${lang}/${slug}`),
+            ...getAllGuideSlugs().map((slug) => `https://www.pdfcanada.ca/${lang}/guides/${slug}`),
+        ].map((url, i) => ({ "@type": "ListItem", "position": i + 1, url }))
     };
 
     return (
@@ -141,7 +146,11 @@ export default async function GuidesPage({
             <div className="min-h-screen flex flex-col">
                 <Header lang={currentLang} />
                 <main className="flex-grow">
-                    <GuidesIndexPage lang={currentLang} />
+                    <GuidesIndexPage lang={currentLang} toolGuides={getAllToolSlugs().map((slug) => {
+                        const a = getToolArticle(slug, lang);
+                        if (!a) return null;
+                        return { slug, href: `/${lang}/${slug}`, titleEn: a.meta.h1, titleFr: a.meta.h1, descEn: a.meta.lead, descFr: a.meta.lead, category: /-to-/.test(slug) ? 'Conversion' as const : /unlock|sign|fillable/.test(slug) ? 'Privacy & Security' as const : 'Editing' as const, icon: /-to-/.test(slug) ? '🔄' : /unlock|sign|fillable/.test(slug) ? '🔏' : '✂️' };
+                    }).filter((g): g is NonNullable<typeof g> => g !== null)} />
                 </main>
                 <Footer lang={currentLang} />
             </div>
