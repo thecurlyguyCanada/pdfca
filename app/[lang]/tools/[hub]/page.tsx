@@ -7,6 +7,7 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { SEO } from '@/components/SEO';
 import { getAllHubSlugs, getHubConfig } from '@/lib/hubConfig';
 import { getToolConfig } from '@/lib/toolConfig';
+import { isToolLive } from '@/lib/retired';
 import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { TOOL_ICONS } from '@/components/ToolIcons';
@@ -53,7 +54,6 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en${path}`,
                 'fr-CA': `${baseUrl}/fr${path}`,
-                'pt-BR': `${baseUrl}/pt${path}`,
                 'x-default': `${baseUrl}/en${path}`,
             },
         },
@@ -93,7 +93,7 @@ export default async function HubPage({
         { name: title, path: `/${lang}/tools/${hub}` },
     ];
 
-    const spokes = hubConfig.spokes.map(slug => {
+    const spokes = hubConfig.spokes.filter(isToolLive).map(slug => {
         const config = getToolConfig(slug);
         return {
             slug,

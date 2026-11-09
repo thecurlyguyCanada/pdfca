@@ -135,7 +135,7 @@ export const SecurityPage: React.FC<SecurityPageProps> = ({ lang }) => {
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link 
-                            href={`/${lang}/guides/private-pdf-tools`}
+                            href={`/${lang}/security`}
                             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold transition-all"
                         >
                             Learn More about Private Tools

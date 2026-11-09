@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Language } from '../utils/i18n';
 import { ALL_GUIDES, GuideMetadata } from '../lib/guideMetadata';
+import { isGuideLive, isToolLive } from '../lib/retired';
 
 interface RelatedTool {
     name: string;
@@ -77,7 +78,7 @@ export function RelatedTools({ lang, currentPath, category = 'all', relatedSlugs
     
     if (relatedSlugs && relatedSlugs.length > 0) {
         // Prioritize explicit related slugs
-        const allAvailableTools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert];
+        const allAvailableTools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert].filter(t => isToolLive(t.path.substring(1)));
         tools = relatedSlugs
             .map(slug => allAvailableTools.find(t => t.path === `/${slug}`))
             .filter((t): t is RelatedTool => !!t);
@@ -92,11 +93,11 @@ export function RelatedTools({ lang, currentPath, category = 'all', relatedSlugs
         }
     } else {
         if (category === 'all') {
-            tools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert];
+            tools = [...allToolsMap.edit, ...allToolsMap.organize, ...allToolsMap.convert].filter(t => isToolLive(t.path.substring(1)));
         } else if (category === 'security') {
-            tools = [...allToolsMap.edit, ...allToolsMap.organize];
+            tools = [...allToolsMap.edit, ...allToolsMap.organize].filter(t => isToolLive(t.path.substring(1)));
         } else if (category === 'advanced') {
-            tools = [...allToolsMap.convert];
+            tools = [...allToolsMap.convert].filter(t => isToolLive(t.path.substring(1)));
         } else {
             tools = allToolsMap[category as keyof ReturnType<typeof getTools>] || [];
         }
@@ -122,12 +123,10 @@ export function RelatedTools({ lang, currentPath, category = 'all', relatedSlugs
         relevantGuides = [...catGuides, ...otherGuides];
     } else {
         // For 'all', prioritize Hubs first
-        const hubs = ALL_GUIDES.filter(g => g.slug.includes('-hub') || g.slug === 'ultimate-pdf-guide');
-        const others = ALL_GUIDES.filter(g => !g.slug.includes('-hub') && g.slug !== 'ultimate-pdf-guide');
-        relevantGuides = [...hubs, ...others];
+        relevantGuides = ALL_GUIDES;
     }
 
-    const filteredGuides = relevantGuides
+    const filteredGuides = relevantGuides.filter(g => isGuideLive(g.slug))
         .filter(g => !currentPath?.includes(g.slug))
         .slice(0, 8); // Updated to 8
 

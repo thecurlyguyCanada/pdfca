@@ -520,7 +520,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                         </div>
                         <div className="text-center mt-8">
                             <Link
-                                href={`/${lang}/guides/ultimate-pdf-guide`}
+                                href={`/${lang}/guides`}
                                 className="inline-flex items-center gap-2 text-canada-red hover:text-canada-darkRed font-bold transition-colors"
                             >
                                 {lang === 'fr' ? 'Voir le Guide Ultime PDF →' : lang === 'pt' ? 'Ver Guia Definitivo PDF →' : 'View Ultimate PDF Guide →'}

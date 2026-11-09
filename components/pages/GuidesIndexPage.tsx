@@ -5,6 +5,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, BookOpen, Shield, Edit3, RefreshCw, Sparkles } from 'lucide-react';
 import { Language } from '../../utils/i18n';
 import { ALL_GUIDES, getAllCategories, GuideMetadata } from '../../lib/guideMetadata';
+import { isGuideLive } from '../../lib/retired';
 
 interface GuidesIndexPageProps {
     lang: Language;
@@ -17,7 +18,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
     const categories = getAllCategories();
 
     const filteredGuides = useMemo(() => {
-        let guides = ALL_GUIDES;
+        let guides = ALL_GUIDES.filter((g) => isGuideLive(g.slug));
 
         // Filter by category
         if (selectedCategory !== 'All') {

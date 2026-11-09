@@ -6,7 +6,7 @@ import { i18n, Locale } from '@/lib/i18n-config';
 const baseUrl = 'https://www.pdfcanada.ca';
 
 // Static pages that should be in sitemap
-const staticPages = ['about', 'howto', 'privacy', 'terms', 'pricing', 'surah-baqarah-pdf', 'surah-yasin-pdf', 'forms/irs-w4', 'tools/remove-pdf-text'];
+const staticPages = ['about', 'howto', 'privacy', 'terms', 'pricing', 'forms/irs-w4', 'tools/remove-pdf-text'];
 
 interface SitemapEntry {
     url: string;
@@ -34,13 +34,13 @@ function getAlternates(path: string) {
         languages[`${locale}-CA`] = url; // Targetting Canada specifically based on domain
         languages[locale] = url; // Fallback for the language globally
     });
-    languages['x-default'] = `${baseUrl}/${i18n.defaultLocale}${path.startsWith('/') ? path : `/${path}`}`;
+    languages['x-default'] = path === '' ? `${baseUrl}/${i18n.defaultLocale}` : `${baseUrl}/${i18n.defaultLocale}${path.startsWith('/') ? path : `/${path}`}`;
 
     return { languages };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const tools = getAllToolSlugs();
+    const tools = Array.from(new Set(getAllToolSlugs()));
     const guides = getAllGuideSlugs();
 
     // Generic last modified date for this build
@@ -99,9 +99,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guide pages
     guides.forEach((slug) => {
         // Higher priority for Pillar Hubs and Master Guide
-        const isHub = ['ultimate-pdf-guide', 'pdf-conversions', 'pdf-editing', 'pdf-security', 'pdf-ocr-analysis'].includes(slug);
-        const priority = isHub ? 0.9 : 0.7;
-        const changeFrequency = isHub ? 'weekly' : 'monthly';
+        const priority = 0.7;
+        const changeFrequency = 'monthly' as const;
 
         i18n.locales.forEach(locale => {
             routes.push({

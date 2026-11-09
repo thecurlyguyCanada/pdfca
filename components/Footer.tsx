@@ -86,7 +86,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/organize-pdf`} className="hover:text-white transition-colors">{t.toolOrganize}</Link></li>
                         <li><Link href={`/${lang}/flatten-pdf`} className="hover:text-white transition-colors">{t.toolFlatten}</Link></li>
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
-                        <li><Link href={`/${lang}/invoice-ocr`} className="hover:text-white transition-colors font-bold text-canada-red">{t.toolInvoiceOcr}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -95,17 +94,13 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={lang === 'fr' ? 'Hubs & Guides' : (lang === 'pt' ? 'Hubs & Guias' : 'Hubs & Guides')}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                         <li><Link href={`/${lang}/guides/ultimate-pdf-guide`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo PDF' : 'Ultimate PDF Guide')}</Link></li>
+                         <li><Link href={`/${lang}/guides`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {lang === 'fr' ? 'Guides PDF' : (lang === 'pt' ? 'Guias PDF' : 'PDF Guides')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
                          <li><Link href={`/${lang}/tools/pdf-converter-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {lang === 'fr' ? 'Outils de Conversion' : (lang === 'pt' ? 'Ferramentas de Conversão' : 'PDF Converter Tools')}</Link></li>
                          <li><Link href={`/${lang}/tools/pdf-editing-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {lang === 'fr' ? 'Outils d\'Édition' : (lang === 'pt' ? 'Ferramentas de Edição' : 'PDF Editing Tools')}</Link></li>
                          <li><Link href={`/${lang}/tools/secure-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Outils Sécurisés' : (lang === 'pt' ? 'Ferramentas Seguras' : 'Secure PDF Tools')}</Link></li>
                          <li><Link href={`/${lang}/tools/business-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><MapPin size={14} /> {lang === 'fr' ? 'Outils Business' : (lang === 'pt' ? 'Ferramentas de Negócios' : 'Business PDF Tools')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
-                         <li><Link href={`/${lang}/guides/pdf-conversions`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {t.footerConversions}</Link></li>
-                         <li><Link href={`/${lang}/guides/pdf-editing`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {t.footerEditing}</Link></li>
-                         <li><Link href={`/${lang}/guides/pdf-security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {t.footerSecurityTitle}</Link></li>
-                         <li><Link href={`/${lang}/guides/pdf-ocr-analysis`} className="hover:text-white transition-colors flex items-center gap-2"><Eye size={14} /> {t.footerOcrAnalysis}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{t.footerViewAllGuides}</Link></li>
                      </ul>
                   </FooterSection>
@@ -120,7 +115,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/guides/heic-to-pdf`} className="hover:text-white transition-colors">{t.heicToPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/pdf-to-epub`} className="hover:text-white transition-colors">{t.pdfToEpubGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/epub-to-pdf`} className="hover:text-white transition-colors">{t.epubToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/cbr-to-pdf`} className="hover:text-white transition-colors">{t.cbrToPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/email-to-pdf`} className="hover:text-white transition-colors">{t.emailToPdfGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/insert-picture-in-pdf`} className="hover:text-white transition-colors">{t.insertPictureGuide}</Link></li>
                         <li><Link href={`/${lang}/guides/pdf-page-remover`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
@@ -147,15 +141,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li className="pt-3 mt-3 border-t border-white/10">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{t.footerSecurityTitle}</span>
                         </li>
-                        <li><Link href={`/${lang}/guides/private-pdf-tools`} className="hover:text-white transition-colors">{t.footerPrivatePdf}</Link></li>
-                        <li><Link href={`/${lang}/guides/finance-pdf-security`} className="hover:text-white transition-colors">{t.footerFinanceSecurity}</Link></li>
-                        <li><Link href={`/${lang}/guides/legal-pdf-tools`} className="hover:text-white transition-colors">{t.footerLegalSecurity}</Link></li>
-                        <li><Link href={`/${lang}/guides/healthcare-pdf-security`} className="hover:text-white transition-colors">{t.footerHealthcareSecurity}</Link></li>
-                        <li className="pt-3 mt-3 border-t border-white/10">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-modern-neutral-500 mb-2 block">{t.footerDownloads}</span>
-                        </li>
-                        <li><Link href={`/${lang}/surah-baqarah-pdf`} className="hover:text-white transition-colors font-semibold text-green-400">{t.footerSurahBaqarah}</Link></li>
-                        <li><Link href={`/${lang}/surah-yasin-pdf`} className="hover:text-white transition-colors font-semibold text-emerald-400">{t.footerSurahYasin}</Link></li>
                      </ul>
                   </FooterSection>
                </div>

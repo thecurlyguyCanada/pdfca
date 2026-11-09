@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getAllGuideSlugs } from '@/lib/guideConfig';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
@@ -119,14 +120,8 @@ export default async function GuidesPage({
         "@type": "ItemList",
         "name": t.title,
         "description": t.desc,
-        "numberOfItems": 46,
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Ultimate PDF Guide", "url": "https://www.pdfcanada.ca/en/guides/ultimate-pdf-guide" },
-            { "@type": "ListItem", "position": 2, "name": "Private PDF Tools", "url": "https://www.pdfcanada.ca/en/guides/private-pdf-tools" },
-            { "@type": "ListItem", "position": 3, "name": "Finance PDF Security", "url": "https://www.pdfcanada.ca/en/guides/finance-pdf-security" },
-            { "@type": "ListItem", "position": 4, "name": "Legal PDF Security", "url": "https://www.pdfcanada.ca/en/guides/legal-pdf-tools" },
-            { "@type": "ListItem", "position": 5, "name": "Healthcare PDF Compliance", "url": "https://www.pdfcanada.ca/en/guides/healthcare-pdf-security" }
-        ]
+        "numberOfItems": getAllGuideSlugs().length,
+        "itemListElement": getAllGuideSlugs().slice(0, 10).map((slug, i) => ({ "@type": "ListItem", "position": i + 1, "url": `https://www.pdfcanada.ca/${lang}/guides/${slug}` }))
     };
 
     return (

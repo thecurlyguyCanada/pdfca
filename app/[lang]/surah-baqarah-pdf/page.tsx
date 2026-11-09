@@ -91,12 +91,13 @@ export async function generateMetadata({
         title: meta.title,
         description: meta.description,
         keywords: getKeywords(lang),
+        // Off-topic for a PDF-tools site; kept for existing visitors but out of the index (see lib/retired.ts).
+        robots: { index: false, follow: true },
         alternates: {
             canonical: `${baseUrl}/${lang}/surah-baqarah-pdf`,
             languages: {
                 'en-CA': `${baseUrl}/en/surah-baqarah-pdf`,
                 'fr-CA': `${baseUrl}/fr/surah-baqarah-pdf`,
-                'pt-BR': `${baseUrl}/pt/surah-baqarah-pdf`,
                 'x-default': `${baseUrl}/en/surah-baqarah-pdf`,
             },
         },

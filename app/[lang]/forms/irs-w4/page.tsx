@@ -60,7 +60,6 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en/forms/irs-w4`,
                 'fr-CA': `${baseUrl}/fr/forms/irs-w4`,
-                'pt-BR': `${baseUrl}/pt/forms/irs-w4`,
                 'x-default': `${baseUrl}/en/forms/irs-w4`,
             },
         },

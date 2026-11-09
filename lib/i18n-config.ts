@@ -1,8 +1,10 @@
-export const i18n = {
-    defaultLocale: 'en',
-    locales: ['en', 'fr', 'pt'],
-} as const;
+/** Languages the site publishes. Portuguese was retired in Nov 2026 (see lib/retired.ts); its strings
+ *  stay in the type so the existing translation records keep compiling, but no /pt/ route is built. */
+export type Locale = 'en' | 'fr' | 'pt';
 
-export type Locale = (typeof i18n)['locales'][number];
+export const i18n = {
+    defaultLocale: 'en' as Locale,
+    locales: ['en', 'fr'] as readonly Locale[],
+} as const;
 // Backward compatibility for existing code that uses Language type
 export type Language = Locale;

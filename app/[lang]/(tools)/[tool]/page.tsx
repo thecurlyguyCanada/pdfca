@@ -12,6 +12,7 @@ import { RelatedTools } from '@/components/RelatedTools';
 import { SEO } from '@/components/SEO';
 import { SocialShare } from '@/components/SocialShare';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
+import { isToolLive } from '@/lib/retired';
 import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
@@ -39,7 +40,7 @@ export async function generateMetadata({
     params: Promise<{ lang: Locale; tool: string }>;
 }): Promise<Metadata> {
     const { lang, tool } = await params;
-    const config = getToolConfig(tool);
+    const config = isToolLive(tool) ? getToolConfig(tool) : undefined;
 
     if (!config) {
         return {
@@ -63,7 +64,6 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en${path}`,
                 'fr-CA': `${baseUrl}/fr${path}`,
-                'pt-BR': `${baseUrl}/pt${path}`,
                 'x-default': `${baseUrl}/en${path}`,
             },
         },
@@ -89,7 +89,7 @@ export default async function ToolPage({
 }) {
     const { lang, tool } = await params;
     const currentLang = lang as Language;
-    const config = getToolConfig(tool);
+    const config = isToolLive(tool) ? getToolConfig(tool) : undefined;
 
     if (!config) {
         notFound();
