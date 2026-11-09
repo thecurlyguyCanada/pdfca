@@ -196,4 +196,5 @@ export const GUIDE_TOOL_MAPPING: Record<string, string> = {
     'extract-pdf-pages': 'extract-pdf-pages',
 };
 
-export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP);
+import { isGuideLive } from './retired';
+export const getAllGuideSlugs = () => Object.keys(GUIDE_MAP).filter(isGuideLive);

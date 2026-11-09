@@ -17,6 +17,8 @@ export const ToolPromo: React.FC<ToolPromoProps> = ({ lang, tool }) => {
     const Icon = TOOL_ICONS[tool] || Sparkles;
 
     if (!config) return null;
+    // The SEO title is "Merge PDF - Free & Secure … | pdfcanada.ca"; the heading wants just "Merge PDF".
+    const shortTitle = config.title.split(/\s[-|–]\s/)[0].trim();
 
     const t = {
         en: {
@@ -55,7 +57,7 @@ export const ToolPromo: React.FC<ToolPromoProps> = ({ lang, tool }) => {
                         </div>
 
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
-                            {strings.ready} <span className="text-transparent bg-clip-text bg-gradient-to-r from-canada-red to-red-400">{config.title}</span>?
+                            {strings.ready} <span className="text-transparent bg-clip-text bg-gradient-to-r from-canada-red to-red-400">{shortTitle}</span>?
                         </h2>
 
                         <p className="text-lg text-gray-300 max-w-xl leading-relaxed">

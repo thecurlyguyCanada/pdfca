@@ -148,7 +148,7 @@ export function SEO({
     "url": URLS.DOMAIN,
     "description": t.seo.homeDesc,
     "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
-    "inLanguage": ["en-CA", "fr-CA", "pt-BR"]
+    "inLanguage": ["en-CA", "fr-CA"]
   };
 
   // 1. Add Core Schemas
@@ -212,7 +212,7 @@ export function SEO({
       // 2026: Add softwareHelp for AI agents to find documentation
       "softwareHelp": {
         "@type": "CreativeWork",
-        "url": `${URLS.DOMAIN}/guides/ultimate-pdf-guide`
+        "url": `${URLS.DOMAIN}/en/guides`
       },
       "author": { "@id": `${URLS.DOMAIN}/#organization` },
       "provider": { "@id": `${URLS.DOMAIN}/#organization` },

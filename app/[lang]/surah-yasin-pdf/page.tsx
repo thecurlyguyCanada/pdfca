@@ -90,12 +90,13 @@ export async function generateMetadata({
         title: meta.title,
         description: meta.description,
         keywords: keywords[lang] || keywords.en,
+        // Off-topic for a PDF-tools site; kept for existing visitors but out of the index (see lib/retired.ts).
+        robots: { index: false, follow: true },
         alternates: {
             canonical: `${baseUrl}/${lang}/surah-yasin-pdf`,
             languages: {
                 'en-CA': `${baseUrl}/en/surah-yasin-pdf`,
-                'fr-CA': `${baseUrl}/fr/surah-yasin-pdf`,
-                'pt-BR': `${baseUrl}/pt/surah-yasin-pdf`, // Assuming pt-BR for general PT usage or just pt
+                'fr-CA': `${baseUrl}/fr/surah-yasin-pdf`, // Assuming pt-BR for general PT usage or just pt
                 'x-default': `${baseUrl}/en/surah-yasin-pdf`,
             },
         },

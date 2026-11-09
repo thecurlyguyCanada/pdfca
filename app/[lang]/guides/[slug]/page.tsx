@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Zap, ArrowRight } from 'lucide-react';
 import { GUIDE_MAP, getAllGuideSlugs, GUIDE_TOOL_MAPPING } from '@/lib/guideConfig';
+import { isGuideLive } from '@/lib/retired';
 import { Language } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { Header } from '@/components/Header';
@@ -44,9 +45,11 @@ export async function generateMetadata({
     const isPt = lang === 'pt';
     const isFr = lang === 'fr';
 
-    const title = guideMeta
+    const rawTitle = guideMeta
         ? (isPt ? (guideMeta.titlePt || guideMeta.titleEn) : (isFr ? guideMeta.titleFr : guideMeta.titleEn))
         : (slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ') + ' | Guide');
+    // The stored titles already end in "| pdfcanada.ca"; the suffix is added once below.
+    const title = rawTitle.replace(/\s*\|\s*pdfcanada\.ca\s*$/i, '');
 
     const description = guideMeta
         ? (isPt ? (guideMeta.descPt || guideMeta.descEn) : (isFr ? guideMeta.descFr : guideMeta.descEn))
@@ -62,7 +65,6 @@ export async function generateMetadata({
             languages: {
                 'en-CA': `${baseUrl}/en${path}`,
                 'fr-CA': `${baseUrl}/fr${path}`,
-                'pt-BR': `${baseUrl}/pt${path}`,
                 'x-default': `${baseUrl}/en${path}`,
             },
         },
@@ -100,7 +102,7 @@ export default async function GuidePage({
     const currentLang = lang as Language;
     const GuideComponent = GUIDE_MAP[slug];
 
-    if (!GuideComponent) {
+    if (!GuideComponent || !isGuideLive(slug)) {
         notFound();
     }
 

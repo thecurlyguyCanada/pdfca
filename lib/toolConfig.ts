@@ -1,4 +1,5 @@
 import { ToolType } from '@/utils/types';
+import { isToolLive } from './retired';
 import { Locale } from './i18n-config';
 
 export interface ToolConfig {
@@ -1813,5 +1814,5 @@ export function getLocalizedToolConfig(slug: string, lang: Locale): { slug: stri
 }
 
 export function getAllToolSlugs(): string[] {
-  return TOOL_CONFIGS.map((config) => config.slug);
+  return Array.from(new Set(TOOL_CONFIGS.map((config) => config.slug))).filter(isToolLive);
 }

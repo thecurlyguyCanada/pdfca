@@ -38,7 +38,6 @@ export function constructMetadata({
     const languages = {
         'en-CA': `${BASE_URL}/en${cleanPath}`,
         'fr-CA': `${BASE_URL}/fr${cleanPath}`,
-        'pt-BR': `${BASE_URL}/pt${cleanPath}`,
         'x-default': `${BASE_URL}/en${cleanPath}`,
     };
 
