@@ -13,6 +13,9 @@ import { SEO } from '@/components/SEO';
 import { SocialShare } from '@/components/SocialShare';
 import { getToolConfig, getAllToolSlugs } from '@/lib/toolConfig';
 import { isToolLive } from '@/lib/retired';
+import { articleSteps, getToolArticle } from '@/lib/toolArticles';
+import { ToolArticle } from '@/components/ToolArticle';
+import { AUTHOR } from '@/config/author';
 import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 
@@ -48,8 +51,10 @@ export async function generateMetadata({
         };
     }
 
-    const title = config.title[lang] || config.title['en'];
-    const description = config.description[lang] || config.description['en'];
+    // The long-form article (content/tools/<lang>/<slug>.md) owns the title and description when it exists.
+    const article = getToolArticle(tool, lang);
+    const title = article?.meta.title || config.title[lang] || config.title['en'];
+    const description = article?.meta.description || config.description[lang] || config.description['en'];
     const keywords = config.keywords[lang] || config.keywords['en'];
 
     const baseUrl = 'https://www.pdfcanada.ca';
@@ -95,17 +100,19 @@ export default async function ToolPage({
         notFound();
     }
 
+    const article = getToolArticle(tool, lang);
     const localizedConfig = {
-        title: config.title[lang] || config.title['en'],
-        description: config.description[lang] || config.description['en'],
+        title: article?.meta.title || config.title[lang] || config.title['en'],
+        description: article?.meta.description || config.description[lang] || config.description['en'],
     };
+    const shortTitle = (config.title[lang] || config.title['en']).split(/\s[-|–]\s/)[0].trim();
 
     const featureList = config.featureList?.[currentLang] || config.featureList?.['en'];
 
     // Breadcrumbs for SEO component
     const breadcrumbs = [
         { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
-        { name: localizedConfig.title, path: `/${lang}/${config.slug}` },
+        { name: shortTitle, path: `/${lang}/${config.slug}` },
     ];
 
     // Get tool-specific FAQs from i18n
@@ -114,7 +121,9 @@ export default async function ToolPage({
     // en uses top-level keys, fr/pt might be nested but should be flattened to match en.
     // For now, access via any to allow dynamic lookup on TranslationStructure
     const toolContent = (t as any)[toolKey];
-    const toolFaqs = toolContent?.faq || [];
+    const legacyFaqs = toolContent?.faq || [];
+    // Article FAQs replace the short i18n ones when the article exists.
+    const toolFaqs = article ? article.meta.faq.map((f) => ({ question: f.q, answer: f.a })) : legacyFaqs;
 
     // Prepare FAQs with enhanced schema including HowTo steps
     const faqs = toolFaqs.map((faq: any) => ({
@@ -140,6 +149,9 @@ export default async function ToolPage({
                 price="0"
                 faqs={faqs}
                 featureList={featureList}
+                author={{ name: AUTHOR.name, url: AUTHOR.url, type: 'Person' }}
+                dateModified={article?.meta.updated}
+                steps={article ? articleSteps(article) : undefined}
             />
 
             <div className="mesh-bg" aria-hidden="true" />
@@ -149,10 +161,14 @@ export default async function ToolPage({
                 <main id="main-content" className="flex-grow">
                     <Breadcrumb
                         lang={currentLang}
-                        items={[{ name: localizedConfig.title }]}
+                        items={[{ name: shortTitle }]}
                     />
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <header className="text-center max-w-3xl mx-auto mb-8">
+                            <h1 className="hero-title text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-gray-100">{article?.meta.h1 || shortTitle}</h1>
+                            <p className="hero-desc mt-4 text-lg text-gray-600 dark:text-gray-400 leading-relaxed">{article?.meta.lead || localizedConfig.description}</p>
+                        </header>
                         <Suspense fallback={
                             <div className="flex justify-center items-center py-20">
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-canada-red"></div>
@@ -161,8 +177,10 @@ export default async function ToolPage({
                             <ToolPageClient toolConfig={config} lang={currentLang} />
                         </Suspense>
 
-                        {/* Expert Guide Link - Strategic Internal Linking */}
-                        {config.guideSlug && (
+                        {article && <ToolArticle article={article} lang={lang} />}
+
+                        {/* Expert Guide Link - only while a tool still has a separate guide */}
+                        {!article && config.guideSlug && (
                             <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shrink-0">
@@ -200,8 +218,8 @@ export default async function ToolPage({
                             />
                         </div>
 
-                        {/* Tool-specific FAQs */}
-                        {toolFaqs.length > 0 && (
+                        {/* Tool-specific FAQs (legacy; the article renders its own) */}
+                        {!article && toolFaqs.length > 0 && (
                             <div className="mt-16 max-w-3xl mx-auto">
                                 <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-10">
                                     {currentLang === 'fr' ? 'Questions Fréquentes' : (currentLang === 'pt' ? 'Perguntas Frequentes' : 'Frequently Asked Questions')}

@@ -1044,7 +1044,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
   {
     slug: 'jpg-to-pdf',
     i18nKey: 'jpgToPdf',
-    tool: ToolType.JPG_TO_PDF,
+    tool: ToolType.IMAGE_TO_PDF,
     title: {
       en: 'JPG to PDF - Free & Secure Image to PDF Converter | pdfcanada.ca',
       fr: 'Convertir un JPG en PDF - Outil Gratuit et Sécurisé | pdfcanada.ca',
@@ -1073,7 +1073,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'juntar jpg em pdf', 'converter imagem para pdf'
       ]
     },
-    accept: '.jpg,.jpeg,image/jpeg'
+    accept: '.jpg,.jpeg,.png,.gif,.bmp,.webp,.avif,image/jpeg,image/png,image/gif,image/bmp,image/webp,image/avif'
   },
   {
     slug: 'jpeg-to-pdf',

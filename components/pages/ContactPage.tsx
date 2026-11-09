@@ -37,13 +37,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                         <div className="w-16 h-16 bg-canada-red/10 rounded-2xl flex items-center justify-center text-canada-red mx-auto mb-6">
                             <MapPin size={32} />
                         </div>
-                        <h3 className="text-xl font-bold mb-2">{isFr ? "Siège Social" : "Headquarters"}</h3>
+                        <h3 className="text-xl font-bold mb-2">{isFr ? "Où nous sommes" : "Where We Are"}</h3>
                         <p className="text-slate-500 dark:text-slate-400 mb-4 text-sm">
-                            PDF Canada Technologies Inc.
+                            pdfcanada.ca
                         </p>
                         <address className="not-italic text-slate-900 dark:text-white font-medium">
-                            100 King St W, Suite 5700<br/>
-                            Toronto, ON M5X 1C7<br/>
+                            Toronto, Ontario<br/>
                             Canada
                         </address>
                     </div>
@@ -63,38 +62,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    {/* Contact Form Mock */}
+                    {/* Email is the only channel; a form that posts nowhere was removed */}
                     <div className="bg-slate-50 dark:bg-slate-900/50 p-10 rounded-[2.5rem] border border-slate-200 dark:border-slate-800">
-                        <h2 className="text-2xl font-black mb-6">{isFr ? "Envoyez un message" : "Send us a Message"}</h2>
-                        <div className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold uppercase tracking-widest text-slate-500">{isFr ? "Nom" : "Name"}</label>
-                                    <input type="text" className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold uppercase tracking-widest text-slate-500">Email</label>
-                                    <input type="email" className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none" />
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold uppercase tracking-widest text-slate-500">{isFr ? "Sujet" : "Subject"}</label>
-                                <select className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-                                    <option>{isFr ? "Support Technique" : "Technical Support"}</option>
-                                    <option>{isFr ? "Partenariats Business" : "Business Partnerships"}</option>
-                                    <option>{isFr ? "Question Confidentialité" : "Privacy Inquiry"}</option>
-                                    <option>{isFr ? "Autre" : "Other"}</option>
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold uppercase tracking-widest text-slate-500">Message</label>
-                                <textarea rows={4} className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none resize-none"></textarea>
-                            </div>
-                            <button className="w-full bg-canada-red hover:bg-canada-darkRed text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2">
-                                {isFr ? "Envoyer le Message" : "Send Message"}
-                                <ArrowRight size={20} />
-                            </button>
-                        </div>
+                        <h2 className="text-2xl font-black mb-6">{isFr ? "Écrivez-nous" : "Send us a Message"}</h2>
+                        <p className="text-slate-600 dark:text-slate-400 mb-6">
+                            {isFr
+                                ? "Le site n'a pas de serveur qui reçoit des formulaires, par choix. Écrivez-nous directement par courriel : une vraie personne répond, en général en un ou deux jours ouvrables."
+                                : "The site has no server that receives forms, by design. Email us directly: a real person answers, usually within one or two business days."}
+                        </p>
+                        <a href="mailto:support@pdfcanada.ca?subject=pdfcanada.ca" className="w-full bg-canada-red hover:bg-canada-darkRed text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                            {isFr ? "Envoyer un courriel" : "Email support@pdfcanada.ca"}
+                            <ArrowRight size={20} />
+                        </a>
                     </div>
 
                     {/* Trust Sidebar */}
@@ -103,8 +82,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                             <h2 className="text-2xl font-black mb-6">{isFr ? "Pourquoi nous contacter?" : "Why Contact Us?"}</h2>
                             <p className="text-slate-600 dark:text-slate-400 mb-6">
                                 {isFr 
-                                    ? "Nous sommes une petite équipe basée à Toronto dédiée à construire les meilleurs outils PDF au Canada. Votre feedback nous aide à nous améliorer."
-                                    : "We're a small, dedicated team based in Toronto building the best PDF tools in Canada. Your feedback helps us build better, more private tools for everyone."}
+                                    ? "pdfcanada.ca est un projet indépendant basé à Toronto. Vos commentaires et vos rapports de bogues orientent directement ce qui est corrigé en premier."
+                                    : "pdfcanada.ca is an independent project based in Toronto. Your feedback and bug reports decide what gets fixed first."}
                             </p>
                         </div>
 

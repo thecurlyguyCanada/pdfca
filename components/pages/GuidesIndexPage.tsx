@@ -7,18 +7,25 @@ import { Language } from '../../utils/i18n';
 import { ALL_GUIDES, getAllCategories, GuideMetadata } from '../../lib/guideMetadata';
 import { isGuideLive } from '../../lib/retired';
 
-interface GuidesIndexPageProps {
-    lang: Language;
+/** A tool page whose long-form article now serves as the guide for that task. */
+export interface ToolGuideEntry extends GuideMetadata {
+    href: string;
 }
 
-export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
+interface GuidesIndexPageProps {
+    lang: Language;
+    /** Articles that live on tool pages, listed alongside the standalone guides. */
+    toolGuides?: ToolGuideEntry[];
+}
+
+export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang, toolGuides = [] }) => {
     const [selectedCategory, setSelectedCategory] = useState<GuideMetadata['category'] | 'All'>('All');
     const [searchQuery, setSearchQuery] = useState('');
 
     const categories = getAllCategories();
 
     const filteredGuides = useMemo(() => {
-        let guides = ALL_GUIDES.filter((g) => isGuideLive(g.slug));
+        let guides: (GuideMetadata & { href?: string })[] = [...toolGuides, ...ALL_GUIDES.filter((g) => isGuideLive(g.slug))];
 
         // Filter by category
         if (selectedCategory !== 'All') {
@@ -125,7 +132,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({ lang }) => {
                         {filteredGuides.map((guide) => (
                             <Link
                                 key={guide.slug}
-                                href={`/${lang}/guides/${guide.slug}`}
+                                href={guide.href || `/${lang}/guides/${guide.slug}`}
                                 className="group relative bg-white dark:bg-gray-900 rounded-3xl border-2 border-gray-100 dark:border-gray-800 p-8 hover:border-canada-red hover:shadow-xl hover:shadow-canada-red/10 transition-all duration-300 hover:-translate-y-1"
                             >
                                 {/* Icon */}

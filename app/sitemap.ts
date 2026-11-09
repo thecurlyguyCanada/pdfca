@@ -2,11 +2,12 @@ import { MetadataRoute } from 'next';
 import { getAllToolSlugs } from '@/lib/toolConfig';
 import { getAllGuideSlugs } from '@/lib/guideConfig';
 import { i18n, Locale } from '@/lib/i18n-config';
+import { getToolArticle } from '@/lib/toolArticles';
 
 const baseUrl = 'https://www.pdfcanada.ca';
 
 // Static pages that should be in sitemap
-const staticPages = ['about', 'howto', 'privacy', 'terms', 'pricing', 'forms/irs-w4', 'tools/remove-pdf-text'];
+const staticPages = ['about', 'contact', 'privacy', 'terms', 'security', 'accessibility', 'tools/remove-pdf-text'];
 
 interface SitemapEntry {
     url: string;
@@ -83,12 +84,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
     });
 
-    // Tool pages
+    // Tool pages: lastmod is the article's checked date when the page has one
     tools.forEach((slug) => {
         i18n.locales.forEach(locale => {
+            const article = getToolArticle(slug, locale);
             routes.push({
                 url: `${baseUrl}/${locale}/${slug}`,
-                lastModified,
+                lastModified: article?.meta.updated ? new Date(`${article.meta.updated}T12:00:00Z`) : lastModified,
                 changeFrequency: 'weekly',
                 priority: 0.9,
                 alternates: getAlternates(`/${slug}`),

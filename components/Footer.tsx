@@ -84,7 +84,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/make-pdf-fillable`} className="hover:text-white transition-colors">{t.toolMakeFillable}</Link></li>
                         <li><Link href={`/${lang}/sign-pdf`} className="hover:text-white transition-colors">{t.toolSign}</Link></li>
                         <li><Link href={`/${lang}/organize-pdf`} className="hover:text-white transition-colors">{t.toolOrganize}</Link></li>
-                        <li><Link href={`/${lang}/flatten-pdf`} className="hover:text-white transition-colors">{t.toolFlatten}</Link></li>
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
                      </ul>
                   </FooterSection>
@@ -96,10 +95,6 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                          <li><Link href={`/${lang}/guides`} className="text-white hover:text-canada-red transition-colors font-bold flex items-center gap-2"><BookOpen size={14} /> {lang === 'fr' ? 'Guides PDF' : (lang === 'pt' ? 'Guias PDF' : 'PDF Guides')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
-                         <li><Link href={`/${lang}/tools/pdf-converter-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Zap size={14} /> {lang === 'fr' ? 'Outils de Conversion' : (lang === 'pt' ? 'Ferramentas de Conversão' : 'PDF Converter Tools')}</Link></li>
-                         <li><Link href={`/${lang}/tools/pdf-editing-tools`} className="hover:text-white transition-colors flex items-center gap-2"><Scissors size={14} /> {lang === 'fr' ? 'Outils d\'Édition' : (lang === 'pt' ? 'Ferramentas de Edição' : 'PDF Editing Tools')}</Link></li>
-                         <li><Link href={`/${lang}/tools/secure-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Outils Sécurisés' : (lang === 'pt' ? 'Ferramentas Seguras' : 'Secure PDF Tools')}</Link></li>
-                         <li><Link href={`/${lang}/tools/business-pdf-tools`} className="hover:text-white transition-colors flex items-center gap-2"><MapPin size={14} /> {lang === 'fr' ? 'Outils Business' : (lang === 'pt' ? 'Ferramentas de Negócios' : 'Business PDF Tools')}</Link></li>
                          <li className="pt-2 mt-2 border-t border-white/10"></li>
                          <li className="pt-2 mt-2 border-t border-white/10"><Link href={`/${lang}/guides`} className="text-canada-red hover:text-white transition-colors font-bold flex items-center gap-2">{t.footerViewAllGuides}</Link></li>
                      </ul>
@@ -110,14 +105,12 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                <div className="lg:col-span-1">
                   <FooterSection title={t.footerFormatGroup}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
-                        <li><Link href={`/${lang}/guides/word-to-pdf`} className="hover:text-white transition-colors">{t.wordToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-to-word`} className="hover:text-white transition-colors">{t.pdfToWordGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/heic-to-pdf`} className="hover:text-white transition-colors">{t.heicToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-to-epub`} className="hover:text-white transition-colors">{t.pdfToEpubGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/epub-to-pdf`} className="hover:text-white transition-colors">{t.epubToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/email-to-pdf`} className="hover:text-white transition-colors">{t.emailToPdfGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/insert-picture-in-pdf`} className="hover:text-white transition-colors">{t.insertPictureGuide}</Link></li>
-                        <li><Link href={`/${lang}/guides/pdf-page-remover`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
+                        <li><Link href={`/${lang}/word-to-pdf`} className="hover:text-white transition-colors">{t.wordToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/pdf-to-word`} className="hover:text-white transition-colors">{t.pdfToWordGuide}</Link></li>
+                        <li><Link href={`/${lang}/heic-to-pdf`} className="hover:text-white transition-colors">{t.heicToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/pdf-to-epub`} className="hover:text-white transition-colors">{t.pdfToEpubGuide}</Link></li>
+                        <li><Link href={`/${lang}/epub-to-pdf`} className="hover:text-white transition-colors">{t.epubToPdfGuide}</Link></li>
+                        <li><Link href={`/${lang}/delete-pdf-pages`} className="hover:text-white transition-colors">{t.pageRemoverGuide}</Link></li>
                      </ul>
                   </FooterSection>
                </div>
@@ -127,15 +120,10 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                   <FooterSection title={t.footerResources}>
                      <ul className="space-y-3.5 text-sm font-medium text-modern-neutral-300">
                         <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{t.footerAboutUs}</Link></li>
-                        <li><Link href={`/${lang}/howto`} className="hover:text-white transition-colors">{t.navHowTo}</Link></li>
                         <li><Link href={`/${lang}/privacy`} className="hover:text-white transition-colors">{t.privacy}</Link></li>
                         <li><Link href={`/${lang}/terms`} className="hover:text-white transition-colors">{t.termsService}</Link></li>
-                        <li><Link href={`/${lang}/pricing`} className="hover:text-white transition-colors">{t.footerPricing}</Link></li>
                         <li><Link href={`/${lang}/security`} className="hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> {lang === 'fr' ? 'Sécurité' : (lang === 'pt' ? 'Segurança' : 'Security')}</Link></li>
-                        <li><Link href={`/${lang}/local-vs-cloud`} className="hover:text-white transition-colors flex items-center gap-2"><Scale size={14} /> {lang === 'fr' ? 'Local vs Cloud' : (lang === 'pt' ? 'Local vs Cloud' : 'Local vs. Cloud')}</Link></li>
-                        <li><Link href={`/${lang}/compatibility`} className="hover:text-white transition-colors flex items-center gap-2"><Globe size={14} /> {lang === 'fr' ? 'Compatibilité' : (lang === 'pt' ? 'Compatibilidade' : 'Compatibility')}</Link></li>
                         <li><Link href={`/${lang}/contact`} className="hover:text-white transition-colors flex items-center gap-2"><Mail size={14} /> {lang === 'fr' ? 'Contact' : (lang === 'pt' ? 'Contato' : 'Contact')}</Link></li>
-                        <li><Link href={`/${lang}/changelog`} className="hover:text-white transition-colors flex items-center gap-2"><History size={14} /> {lang === 'fr' ? 'Changelog' : (lang === 'pt' ? 'Changelog' : 'Changelog')}</Link></li>
                         <li><Link href={`/${lang}/accessibility`} className="hover:text-white transition-colors flex items-center gap-2"><Accessibility size={14} /> {lang === 'fr' ? 'Accessibilité' : (lang === 'pt' ? 'Acessibilidade' : 'Accessibility')}</Link></li>
                         {/* Security & Privacy Guides */}
                         <li className="pt-3 mt-3 border-t border-white/10">
