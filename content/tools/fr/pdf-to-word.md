@@ -1,5 +1,5 @@
 ---
-title: "PDF en Word gratuit : DOCX modifiable dans votre navigateur (2026)"
+title: "Convertir un PDF en Word gratuitement : DOCX modifiable"
 h1: "Comment convertir un PDF en document Word modifiable"
 lead: "Transformez un PDF texte en fichier .docx modifiable dans Word ou Google Docs. La conversion se fait dans votre navigateur; rien n'est téléversé."
 description: "Convertissez un PDF en Word (.docx) modifiable gratuitement, dans votre navigateur. Texte, titres et tableaux simples conservés; un PDF numérisé exige l'OCR d'abord."

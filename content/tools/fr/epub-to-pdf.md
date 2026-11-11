@@ -1,5 +1,5 @@
 ---
-title: "EPUB en PDF gratuit : PDF texte propre dans votre navigateur (2026)"
+title: "Convertir un EPUB en PDF gratuitement, directement dans le navigateur"
 h1: "Comment convertir un EPUB en PDF"
 lead: "Choisissez un fichier .epub sans DRM et obtenez un PDF texte imprimable en quelques secondes. Le livre est décompressé et mis en page dans votre navigateur; rien n'est téléversé."
 description: "Convertissez un EPUB en PDF imprimable, gratuitement et dans votre navigateur. Texte en 11 points sur pages lettre; un roman de 300 pages en moins de 10 secondes."

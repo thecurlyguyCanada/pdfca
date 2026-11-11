@@ -1,5 +1,5 @@
 ---
-title: "Supprimer des pages PDF gratuit : cliquez, retirez, téléchargez (2026)"
+title: "Supprimer des pages d'un PDF gratuitement, sans envoyer le fichier"
 h1: "Comment supprimer des pages d'un PDF"
 lead: "Cliquez sur les pages à retirer, appuyez sur Supprimer et téléchargez le fichier raccourci. Les pages sont retirées dans votre navigateur; rien n'est téléversé."
 description: "Supprimez des pages d'un PDF gratuitement dans votre navigateur : cliquez les vignettes ou tapez 2, 5-7, puis Supprimer. Pages vraiment retirées. Sans téléverser."

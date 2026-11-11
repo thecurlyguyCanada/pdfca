@@ -1,5 +1,5 @@
 ---
-title: "Compresser un PDF à 2 Mo gratuit : 40 à 90 % plus léger (2026)"
+title: "Compresser un PDF gratuitement : jusqu'à 90 % plus léger, sans envoi"
 h1: "Compresser un PDF à moins de 2 Mo"
 lead: "Choisissez un niveau de qualité, cliquez sur Compresser PDF et téléchargez un fichier plus léger. Les numérisations perdent 40 à 90 %; tout se passe dans votre navigateur."
 description: "Compressez un PDF à moins de 2 Mo gratuitement dans votre navigateur. Trois niveaux; les numérisations perdent 40 à 90 %, le texte 5 à 15 %. Sans téléversement."

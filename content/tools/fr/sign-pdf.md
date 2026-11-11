@@ -1,5 +1,5 @@
 ---
-title: "Signer un PDF gratuit : dessinez ou tapez, rien n'est envoyé (2026)"
+title: "Signer un PDF gratuitement : dessinez ou tapez, rien n'est envoyé"
 h1: "Comment signer un PDF électroniquement"
 lead: "Dessinez, tapez ou téléversez votre signature, déposez-la sur la page avec vos initiales et la date du jour, puis téléchargez le PDF signé. Tout reste dans votre navigateur."
 description: "Signez un PDF gratuitement dans votre navigateur : dessinez, tapez ou téléversez une signature, ajoutez initiales et date, téléchargez en quelques secondes."
