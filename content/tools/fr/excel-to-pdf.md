@@ -1,5 +1,5 @@
 ---
-title: "Excel en PDF gratuit : une page par feuille, dans le navigateur (2026)"
+title: "Convertir Excel en PDF gratuitement : une page par feuille"
 h1: "Comment convertir une feuille de calcul Excel en PDF"
 lead: "Transformez un classeur .xlsx en PDF où chaque feuille devient un tableau. La conversion se fait dans l'onglet de votre navigateur; le fichier n'est jamais téléversé."
 description: "Convertissez un .xlsx Excel en PDF gratuitement, dans votre navigateur. Chaque feuille devient un tableau sur sa page, formules en valeurs, rien n'est téléversé."

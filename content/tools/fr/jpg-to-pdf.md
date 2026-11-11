@@ -1,5 +1,5 @@
 ---
-title: "JPG en PDF gratuit : photos, PNG, WEBP et HEIC en un PDF (2026)"
+title: "Convertir des JPG en PDF gratuitement : photos, PNG et HEIC réunis"
 h1: "Comment convertir un JPG ou une image en PDF"
 lead: "Transformez une photo, une numérisation, une capture d'écran ou une photo iPhone en PDF sans perte, puis combinez-les en un seul fichier. Tout se passe dans votre navigateur."
 description: "Convertissez un JPG, PNG, WEBP ou HEIC en PDF gratuitement dans votre navigateur en 2 secondes, puis fusionnez-les en un seul PDF. Sans téléversement ni filigrane."

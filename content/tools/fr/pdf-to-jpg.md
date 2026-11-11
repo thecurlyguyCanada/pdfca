@@ -1,5 +1,5 @@
 ---
-title: "PDF en JPG gratuit : chaque page à 144 ppp dans un ZIP, local (2026)"
+title: "Convertir un PDF en JPG gratuitement : chaque page en image (ZIP)"
 h1: "Comment convertir un PDF en images JPG"
 lead: "Transformez chaque page d'un PDF en image JPG et téléchargez le tout dans un ZIP. Le rendu se fait dans votre navigateur; le PDF ne quitte jamais votre appareil."
 description: "Convertissez un PDF en JPG gratuitement dans votre navigateur : chaque page devient un JPEG à 144 ppp (1224×1584 px en format Lettre), le tout dans un ZIP."

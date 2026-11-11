@@ -1,5 +1,5 @@
 ---
-title: "PDF en Excel gratuit : tableaux en XLSX dans votre navigateur (2026)"
+title: "Convertir un PDF en Excel gratuitement : tableaux en XLSX"
 h1: "Comment convertir un tableau PDF en Excel"
 lead: "Extrayez les lignes et colonnes d'un PDF texte vers un .xlsx que vous pouvez trier et additionner. L'extraction se fait dans votre navigateur; rien n'est téléversé."
 description: "Convertissez des tableaux PDF en Excel .xlsx gratuitement, dans votre navigateur. Relevés, factures et rapports en PDF texte; les numérisations ne sont pas lues."

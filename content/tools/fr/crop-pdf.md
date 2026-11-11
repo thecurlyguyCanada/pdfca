@@ -1,8 +1,8 @@
 ---
-title: "Recadrer un PDF gratuit : couper les marges d'une ou toutes les pages (2026)"
+title: "Recadrer un PDF gratuitement : marges d'une ou de toutes les pages"
 h1: "Comment recadrer un PDF et couper les marges"
 lead: "Tracez une zone de recadrage sur la page, appliquez-la à une page ou à toutes, puis téléchargez. Le recadrage se fait dans votre navigateur, sans téléversement."
-description: "Recadrez un PDF gratuitement dans votre navigateur : tracez une zone sur la page, appliquez-la à une page ou à toutes, aperçu, téléchargement. Sans redessiner. Sans téléversement."
+description: "Recadrez un PDF gratuitement dans votre navigateur : tracez une zone, appliquez-la à une page ou à toutes, puis téléchargez. Aucun téléversement."
 answer: "Ajoutez le PDF, glissez les poignées de la zone de recadrage jusqu'à encadrer la partie à garder, choisissez Toutes les pages ou Page actuelle, cliquez sur Aperçu du recadrage pour vérifier, puis sur Finaliser le recadrage pour télécharger. L'outil fixe la boîte de recadrage de chaque page : le résultat est instantané et sans perte. C'est gratuit et rien n'est téléversé. Une mise en garde honnête : le recadrage cache la zone coupée sans la retirer du fichier, ce n'est donc pas un outil de caviardage."
 updated: 2026-11-09
 limits:

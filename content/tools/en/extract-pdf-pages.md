@@ -2,7 +2,7 @@
 title: "Extract Pages from a PDF Free: Pick Pages, Get One New PDF (2026)"
 h1: "How to Extract Pages from a PDF into a New File"
 lead: "Select the pages you need, click Extract Pages and download a new PDF containing only those pages. Runs in your browser; nothing is uploaded."
-description: "Extract pages from a PDF for free in your browser: click thumbnails or type 3-7, 12, then Extract Pages."
+description: "Extract pages from a PDF for free in your browser: click thumbnails or type 3-7, 12, then Extract Pages. Nothing is uploaded."
 answer: "Add the PDF, select the pages you want by clicking thumbnails or typing a range such as 3-7, 12, and click Extract Pages. A new PDF downloads containing only those pages, in document order, at full quality. It is free, there is no account or watermark, and the file never leaves your device. The original is not changed, so you can extract a different set from it a minute later."
 updated: 2026-11-09
 limits:

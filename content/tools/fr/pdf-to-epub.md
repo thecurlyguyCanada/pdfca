@@ -1,5 +1,5 @@
 ---
-title: "PDF en EPUB gratuit : livre recomposable dans votre navigateur (2026)"
+title: "Convertir un PDF en EPUB gratuitement : livre numérique recomposable"
 h1: "Comment convertir un PDF en EPUB"
 lead: "Transformez un PDF texte en EPUB 3 recomposable avec chapitres, notes contextuelles et couverture, le tout construit dans votre navigateur. Rien n'est téléversé."
 description: "Convertissez un PDF en EPUB recomposable pour Kobo ou Kindle, gratuitement et dans votre navigateur. Titres et notes détectés; 300 pages en 20 à 60 secondes."
