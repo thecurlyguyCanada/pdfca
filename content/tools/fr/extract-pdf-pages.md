@@ -1,5 +1,5 @@
 ---
-title: "Extraire des pages d'un PDF gratuitement dans un nouveau fichier"
+title: "Extraire des pages d'un PDF gratuitement, sans envoi"
 h1: "Extraire des pages d'un PDF"
 lead: "Sélectionnez les pages voulues, cliquez sur Extraire les pages et téléchargez un nouveau PDF qui ne contient que celles-là. Dans votre navigateur, sans téléversement."
 description: "Extrayez des pages d'un PDF gratuitement dans votre navigateur : cliquez les vignettes ou tapez 3-7, 12, puis Extraire. Un seul nouveau PDF, original intact."

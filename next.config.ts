@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), magnetometer=(), gyroscope=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), encrypted-media=(), picture-in-picture=(), screen-wake-lock=(), web-share=(), display-capture=(), browsing-topics=(), interest-cohort=()',
+            value: 'camera=(self), microphone=(), geolocation=(), payment=(), usb=(), serial=(), magnetometer=(), gyroscope=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), encrypted-media=(), picture-in-picture=(), screen-wake-lock=(), web-share=(), display-capture=(), browsing-topics=(), interest-cohort=()',
           },
           {
             key: 'Strict-Transport-Security',
@@ -74,6 +74,15 @@ const nextConfig: NextConfig = {
             value: 'public, max-age=31536000, immutable',
           },
         ],
+      },
+      // Self-hosted pdf.js / tesseract assets live in versioned folders (config/vendor.ts), so they never change.
+      {
+        source: '/vendor/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+      {
+        source: '/(cmaps|standard_fonts)/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000' }],
       },
       // Cache JS/CSS with versioning
       {

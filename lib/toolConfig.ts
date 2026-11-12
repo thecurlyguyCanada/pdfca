@@ -1815,6 +1815,216 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       fr: ['Voir PDF dans le navigateur', 'Zoom et navigation', 'Imprimer et télécharger', '100% privé - sans téléchargement'],
       pt: ['Ver PDF no navegador', 'Zoom e navegação', 'Imprimir e baixar', '100% privado - sem uploads']
     }
+  },
+  {
+    slug: 'compare-pdf',
+    tool: ToolType.COMPARE_PDF,
+    title: {
+      en: 'Compare PDF - Highlight Every Changed Word, Free | pdfcanada.ca',
+      fr: 'Comparer des PDF - Voir chaque modification, gratuit | pdfcanada.ca',
+      pt: 'Compare PDF - Highlight Every Changed Word, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Compare two PDF versions in your browser: every added and removed word is highlighted, with changed numbers, dates and negations flagged. Nothing uploaded.',
+      fr: 'Comparez deux versions d’un PDF dans votre navigateur : chaque mot ajouté ou retiré est surligné, chiffres, dates et négations signalés. Aucun envoi.',
+      pt: 'Compare two PDF versions in your browser: every added and removed word is highlighted, with changed numbers, dates and negations flagged. Nothing uploaded.'
+    },
+    keywords: {
+      en: ['compare PDF', 'compare two PDF files', 'PDF diff', 'compare PDF documents', 'find differences between two PDFs'],
+      fr: ['comparer PDF', 'comparer deux PDF', 'différences entre deux PDF', 'comparer documents PDF'],
+      pt: ['compare PDF', 'compare two PDF files', 'PDF diff', 'compare PDF documents', 'find differences between two PDFs']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['pdf-to-word', 'ocr-pdf', 'merge-pdf']
+  },
+  {
+    slug: 'scan-to-pdf',
+    tool: ToolType.SCAN_TO_PDF,
+    title: {
+      en: 'Scan to PDF - Phone Camera Scanner, No App, Free | pdfcanada.ca',
+      fr: 'Numériser en PDF - Scanner avec votre téléphone, gratuit | pdfcanada.ca',
+      pt: 'Scan to PDF - Phone Camera Scanner, No App, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Scan paper to PDF with your phone camera, no app to install: crop-free page capture, black-and-white cleanup, A4 or Letter pages. Photos stay on your phone.',
+      fr: 'Numérisez du papier en PDF avec la caméra de votre téléphone, sans application : nettoyage noir et blanc, pages Lettre ou A4. Les photos restent sur l’appareil.',
+      pt: 'Scan paper to PDF with your phone camera, no app to install: crop-free page capture, black-and-white cleanup, A4 or Letter pages. Photos stay on your phone.'
+    },
+    keywords: {
+      en: ['scan to PDF', 'scan document to PDF', 'phone scanner PDF', 'scan with phone', 'document scanner online'],
+      fr: ['numériser en PDF', 'scanner un document en PDF', 'scanner avec téléphone', 'numériseur PDF en ligne'],
+      pt: ['scan to PDF', 'scan document to PDF', 'phone scanner PDF', 'scan with phone', 'document scanner online']
+    },
+    accept: 'image/*',
+    relatedSlugs: ['ocr-pdf', 'jpg-to-pdf', 'compress-pdf', 'merge-pdf']
+  },
+  {
+    slug: 'add-image-to-pdf',
+    tool: ToolType.ADD_IMAGE_TO_PDF,
+    title: {
+      en: 'Add Image to PDF - Place a Logo or Stamp, Free | pdfcanada.ca',
+      fr: 'Ajouter une image à un PDF - Logo ou tampon, gratuit | pdfcanada.ca',
+      pt: 'Add Image to PDF - Place a Logo or Stamp, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Add a logo, stamp, photo or scanned signature to any page of a PDF: drag to place, resize, set opacity. Free, in your browser, nothing uploaded.',
+      fr: 'Ajoutez un logo, un tampon, une photo ou une signature numérisée sur une page PDF : glissez, redimensionnez, réglez l’opacité. Gratuit, sans envoi.',
+      pt: 'Add a logo, stamp, photo or scanned signature to any page of a PDF: drag to place, resize, set opacity. Free, in your browser, nothing uploaded.'
+    },
+    keywords: {
+      en: ['add image to PDF', 'insert image into PDF', 'add logo to PDF', 'put picture in PDF', 'add stamp to PDF'],
+      fr: ['ajouter une image à un PDF', 'insérer une image dans un PDF', 'ajouter un logo PDF', 'insérer photo PDF'],
+      pt: ['add image to PDF', 'insert image into PDF', 'add logo to PDF', 'put picture in PDF', 'add stamp to PDF']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['sign-pdf', 'watermark-pdf', 'jpg-to-pdf']
+  },
+  {
+    slug: 'split-pdf-by-size',
+    tool: ToolType.SPLIT_BY_SIZE,
+    title: {
+      en: 'Split PDF by Size - Parts Under 2, 4 or 10 MB, Free | pdfcanada.ca',
+      fr: 'Diviser un PDF par taille - Parties sous 2, 4 ou 10 Mo | pdfcanada.ca',
+      pt: 'Split PDF by Size - Parts Under 2, 4 or 10 MB, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Split a PDF into parts that each fit under an upload limit, like 4 MB for IRCC or 25 MB for Gmail. Pages stay intact; nothing is uploaded.',
+      fr: 'Divisez un PDF en parties qui respectent une limite de téléversement, comme 4 Mo pour IRCC ou 25 Mo pour Gmail. Pages intactes, aucun envoi.',
+      pt: 'Split a PDF into parts that each fit under an upload limit, like 4 MB for IRCC or 25 MB for Gmail. Pages stay intact; nothing is uploaded.'
+    },
+    keywords: {
+      en: ['split PDF by size', 'split PDF into smaller files', 'split large PDF', 'PDF too large to upload', 'split PDF by file size'],
+      fr: ['diviser PDF par taille', 'diviser un gros PDF', 'PDF trop volumineux', 'couper PDF en plusieurs fichiers'],
+      pt: ['split PDF by size', 'split PDF into smaller files', 'split large PDF', 'PDF too large to upload', 'split PDF by file size']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['compress-pdf', 'split-pdf', 'merge-pdf']
+  },
+  {
+    slug: 'split-pdf-in-half',
+    tool: ToolType.SPLIT_IN_HALF,
+    title: {
+      en: 'Split PDF Pages in Half - Separate Book Scans, Free | pdfcanada.ca',
+      fr: 'Couper les pages PDF en deux - Doubles pages, gratuit | pdfcanada.ca',
+      pt: 'Split PDF Pages in Half - Separate Book Scans, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Cut each page of a scanned book or two-up PDF down the middle into two pages, vertical or horizontal. Lossless, free, and nothing is uploaded.',
+      fr: 'Coupez chaque page d’un livre numérisé ou d’un PDF deux-en-un en deux pages, verticalement ou horizontalement. Sans perte, gratuit, aucun envoi.',
+      pt: 'Cut each page of a scanned book or two-up PDF down the middle into two pages, vertical or horizontal. Lossless, free, and nothing is uploaded.'
+    },
+    keywords: {
+      en: ['split PDF pages in half', 'split PDF page in two', 'separate two page scan', 'split scanned book pages', 'cut PDF page in half'],
+      fr: ['couper page PDF en deux', 'séparer double page PDF', 'diviser page PDF en deux', 'scan livre deux pages'],
+      pt: ['split PDF pages in half', 'split PDF page in two', 'separate two page scan', 'split scanned book pages', 'cut PDF page in half']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['split-pdf', 'crop-pdf', 'scan-to-pdf']
+  },
+  {
+    slug: 'add-page-numbers',
+    tool: ToolType.ADD_PAGE_NUMBERS,
+    title: {
+      en: 'Add Page Numbers to PDF - 6 Positions, Free | pdfcanada.ca',
+      fr: 'Numéroter les pages d’un PDF - 6 positions, gratuit | pdfcanada.ca',
+      pt: 'Add Page Numbers to PDF - 6 Positions, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Number the pages of a PDF: six positions, formats like “Page 1 of 10”, a custom start number and skip the cover. Free, in your browser.',
+      fr: 'Numérotez les pages d’un PDF : six positions, formats comme « Page 1 de 10 », numéro de départ et page de couverture ignorée. Gratuit, sans envoi.',
+      pt: 'Number the pages of a PDF: six positions, formats like “Page 1 of 10”, a custom start number and skip the cover. Free, in your browser.'
+    },
+    keywords: {
+      en: ['add page numbers to PDF', 'number PDF pages', 'PDF page numbering', 'insert page numbers PDF', 'paginate PDF'],
+      fr: ['numéroter pages PDF', 'ajouter numéros de page PDF', 'pagination PDF', 'insérer numéro de page PDF'],
+      pt: ['add page numbers to PDF', 'number PDF pages', 'PDF page numbering', 'insert page numbers PDF', 'paginate PDF']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['merge-pdf', 'watermark-pdf', 'organize-pdf']
+  },
+  {
+    slug: 'watermark-pdf',
+    tool: ToolType.WATERMARK_PDF,
+    title: {
+      en: 'Watermark PDF - Add DRAFT or CONFIDENTIAL, Free | pdfcanada.ca',
+      fr: 'Filigrane PDF - Ajouter BROUILLON ou CONFIDENTIEL | pdfcanada.ca',
+      pt: 'Watermark PDF - Add DRAFT or CONFIDENTIAL, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Add a text watermark like DRAFT, CONFIDENTIAL or COPY to PDF pages: size, opacity, angle, color and tiling. Free, in your browser, nothing uploaded.',
+      fr: 'Ajoutez un filigrane texte comme BROUILLON, CONFIDENTIEL ou COPIE : taille, opacité, angle, couleur et mosaïque. Gratuit, dans le navigateur.',
+      pt: 'Add a text watermark like DRAFT, CONFIDENTIAL or COPY to PDF pages: size, opacity, angle, color and tiling. Free, in your browser, nothing uploaded.'
+    },
+    keywords: {
+      en: ['watermark PDF', 'add watermark to PDF', 'PDF watermark', 'confidential watermark PDF', 'draft watermark PDF'],
+      fr: ['filigrane PDF', 'ajouter un filigrane PDF', 'filigrane confidentiel PDF', 'mettre un filigrane sur un PDF'],
+      pt: ['watermark PDF', 'add watermark to PDF', 'PDF watermark', 'confidential watermark PDF', 'draft watermark PDF']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['protect-pdf', 'flatten-pdf', 'add-page-numbers']
+  },
+  {
+    slug: 'protect-pdf',
+    tool: ToolType.PROTECT_PDF,
+    title: {
+      en: 'Protect PDF with a Password - AES Encryption, Free | pdfcanada.ca',
+      fr: 'Protéger un PDF par mot de passe - Chiffrement, gratuit | pdfcanada.ca',
+      pt: 'Protect PDF with a Password - AES Encryption, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Add a password that must be entered to open a PDF, with encryption applied in your browser. Choose whether printing and copying are allowed. Nothing uploaded.',
+      fr: 'Ajoutez un mot de passe obligatoire à l’ouverture d’un PDF, chiffré dans votre navigateur. Choisissez si l’impression et la copie sont permises.',
+      pt: 'Add a password that must be entered to open a PDF, with encryption applied in your browser. Choose whether printing and copying are allowed. Nothing uploaded.'
+    },
+    keywords: {
+      en: ['protect PDF', 'password protect PDF', 'encrypt PDF', 'add password to PDF', 'lock PDF'],
+      fr: ['protéger PDF', 'mot de passe PDF', 'chiffrer PDF', 'verrouiller PDF', 'protéger un PDF par mot de passe'],
+      pt: ['protect PDF', 'password protect PDF', 'encrypt PDF', 'add password to PDF', 'lock PDF']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['flatten-pdf', 'watermark-pdf', 'sign-pdf']
+  },
+  {
+    slug: 'flatten-pdf',
+    tool: ToolType.FLATTEN_PDF,
+    title: {
+      en: 'Flatten PDF - Lock Form Fields and Annotations, Free | pdfcanada.ca',
+      fr: 'Aplatir un PDF - Figer champs et annotations, gratuit | pdfcanada.ca',
+      pt: 'Flatten PDF - Lock Form Fields and Annotations, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Flatten a PDF so filled-in form fields, signatures and comments become part of the page and can no longer be edited. Two modes. Free, nothing uploaded.',
+      fr: 'Aplatissez un PDF : les champs remplis, signatures et commentaires font partie de la page et ne sont plus modifiables. Deux modes, gratuit, sans envoi.',
+      pt: 'Flatten a PDF so filled-in form fields, signatures and comments become part of the page and can no longer be edited. Two modes. Free, nothing uploaded.'
+    },
+    keywords: {
+      en: ['flatten PDF', 'flatten PDF form', 'make PDF non editable', 'flatten PDF annotations', 'lock PDF form fields'],
+      fr: ['aplatir PDF', 'aplatir formulaire PDF', 'rendre un PDF non modifiable', 'figer champs PDF'],
+      pt: ['flatten PDF', 'flatten PDF form', 'make PDF non editable', 'flatten PDF annotations', 'lock PDF form fields']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['protect-pdf', 'sign-pdf', 'make-pdf-fillable', 'compress-pdf']
+  },
+  {
+    slug: 'alternate-mix-pdf',
+    tool: ToolType.ALTERNATE_MIX_PDF,
+    title: {
+      en: 'Alternate and Mix PDF - Merge Front and Back Scans | pdfcanada.ca',
+      fr: 'Alterner et mélanger des PDF - Recto et verso | pdfcanada.ca',
+      pt: 'Alternate and Mix PDF - Merge Front and Back Scans | pdfcanada.ca'
+    },
+    description: {
+      en: 'Interleave two PDFs page by page: combine front-side and back-side scans from a single-sided scanner into one correctly ordered document. Free, nothing uploaded.',
+      fr: 'Intercalez deux PDF page par page : combinez les recto et verso d’un numériseur simple face en un seul document dans le bon ordre. Gratuit, sans envoi.',
+      pt: 'Interleave two PDFs page by page: combine front-side and back-side scans from a single-sided scanner into one correctly ordered document. Free, nothing uploaded.'
+    },
+    keywords: {
+      en: ['alternate and mix PDF', 'interleave PDF pages', 'merge odd and even pages', 'combine front and back scans PDF', 'collate PDF'],
+      fr: ['alterner PDF', 'intercaler pages PDF', 'fusionner recto verso PDF', 'combiner pages paires et impaires'],
+      pt: ['alternate and mix PDF', 'interleave PDF pages', 'merge odd and even pages', 'combine front and back scans PDF', 'collate PDF']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['merge-pdf', 'organize-pdf', 'scan-to-pdf']
   }
 ];
 

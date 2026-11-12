@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
 
 import { ToolPageClient } from '@/components/pages/ToolPageClient';
+import StandaloneTool from '@/components/tools/standalone/StandaloneTool';
+import { STANDALONE_TOOLS } from '@/lib/standaloneTools';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumb } from '@/components/Breadcrumb';
@@ -174,7 +176,9 @@ export default async function ToolPage({
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-canada-red"></div>
                             </div>
                         }>
-                            <ToolPageClient toolConfig={config} lang={currentLang} />
+                            {STANDALONE_TOOLS.has(config.slug)
+                                ? <div className="max-w-4xl mx-auto"><StandaloneTool slug={config.slug} lang={currentLang} /></div>
+                                : <ToolPageClient toolConfig={config} lang={currentLang} />}
                         </Suspense>
 
                         {article && <ToolArticle article={article} lang={lang} />}

@@ -1,5 +1,5 @@
 ---
-title: "Réorganiser les pages d'un PDF gratuitement : glissez pour réordonner"
+title: "Réorganiser les pages d'un PDF gratuitement, par glisser"
 h1: "Réorganiser les pages d'un PDF"
 lead: "Glissez les vignettes des pages dans l'ordre voulu et cliquez sur Enregistrer. La nouvelle séquence est écrite dans votre navigateur; rien n'est téléversé."
 description: "Réordonnez les pages d'un PDF gratuitement dans votre navigateur : glissez les vignettes dans un nouvel ordre et cliquez sur Enregistrer. Sans perte, sans envoi."

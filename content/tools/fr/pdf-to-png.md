@@ -1,5 +1,5 @@
 ---
-title: "Convertir un PDF en PNG gratuitement : pages sans perte à 144 ppp"
+title: "Convertir un PDF en PNG gratuitement : sans perte, 144 ppp"
 h1: "Convertir PDF en PNG"
 lead: "Rendez chaque page d'un PDF en PNG sans perte et téléchargez l'ensemble dans un ZIP. Les pages sont dessinées dans votre navigateur; le fichier reste sur votre appareil."
 description: "Convertissez un PDF en PNG gratuitement dans votre navigateur : chaque page est rendue sans perte à 144 ppp (1224×1584 px en format Lettre) et mise dans un ZIP."

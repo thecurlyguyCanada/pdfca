@@ -107,37 +107,6 @@ export function SEO({
     "description": t.seo.homeDesc
   };
 
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
-    "@id": `${URLS.DOMAIN}/#localbusiness`,
-    "name": `${ORGANIZATION.name} - Free PDF Tools`,
-    "alternateName": ORGANIZATION.name,
-    "url": URLS.DOMAIN,
-    "logo": {
-      "@type": "ImageObject",
-      "url": getAssetUrl(URLS.ANDROID_ICON),
-      "width": 512,
-      "height": 512
-    },
-    "image": getAssetUrl(URLS.OG_IMAGE),
-    "description": t.seo.homeDesc,
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": ORGANIZATION.location.city,
-      "addressRegion": "ON",
-      "addressCountry": "CA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": ORGANIZATION.coordinates.toronto.latitude,
-      "longitude": ORGANIZATION.coordinates.toronto.longitude
-    },
-    "priceRange": ORGANIZATION.priceRange,
-    "currenciesAccepted": "CAD",
-    "paymentAccepted": "Not Applicable - Free Service"
-  };
-
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -154,7 +123,7 @@ export function SEO({
     // Enhanced Organization Schema for Entity Knowledge
     const enhancedOrgSchema = {
       ...organizationSchema,
-      "knowsAbout": ["PDF processing", "Document Security", "Optical Character Recognition", "Data Privacy", "PIPEDA"],
+      "knowsAbout": ["PDF processing", "Document Security", "Optical Character Recognition", "Data Privacy"],
       "areaServed": {
         "@type": "Country",
         "name": "Canada"
@@ -162,23 +131,12 @@ export function SEO({
     };
     allSchemas.push(enhancedOrgSchema);
     allSchemas.push(websiteSchema);
-    allSchemas.push(localBusinessSchema);
   }
-
-  // 2. Navigation Schema
-  const navUrls = [
-    "/delete-pdf-pages", "/rotate-pdf", "/merge-pdf", "/split-pdf", "/compress-pdf"
-  ];
-  const langPrefix = lang === 'en' ? '' : `/${lang}`;
-  allSchemas.push({
-    "@context": "https://schema.org",
-    "@type": "SiteNavigationElement",
-    "url": navUrls.map(url => getFullUrl(`${langPrefix}${url}`))
-  });
 
   // 3. Page Specific Schemas - WebApplication for tool pages
   // 2026 Update: Enhanced schema for AI agent discoverability
-  if (canonicalPath !== '/' && !canonicalPath.startsWith('/about') && !canonicalPath.startsWith('/guides')) {
+  const pagePath = canonicalPath.replace(/^\/(en|fr|pt)(?=\/|$)/, '') || '/';
+  if (pagePath !== '/' && !/^\/(about|guides|privacy|terms|contact|security|accessibility)(\/|$)/.test(pagePath)) {
     const webAppSchema: Record<string, any> = {
       "@context": "https://schema.org",
       "@type": ["WebApplication", "SoftwareApplication"],
@@ -194,7 +152,6 @@ export function SEO({
       "featureList": featureList || [
         "Local PDF processing",
         "No server uploads",
-        "PIPEDA compliant",
         "Privacy-first",
         "No account required",
         "No fixed file size limit (bounded by device memory)",
@@ -394,15 +351,13 @@ export function SEO({
     allSchemas.push(...pageSchemas);
   }
 
+  // One JSON-LD graph per page (playbook): Organization, WebSite, WebApplication, WebPage, FAQPage, HowTo,
+  // BreadcrumbList and any page-specific nodes, cross-referenced by @id.
+  const graph = allSchemas.map((node) => { const copy = { ...node }; delete copy["@context"]; return copy; });
   return (
-    <>
-      {allSchemas.map((schemaItem, index) => (
-        <script
-          key={`schema-${index}`}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaItem) }}
-        />
-      ))}
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }) }}
+    />
   );
 }

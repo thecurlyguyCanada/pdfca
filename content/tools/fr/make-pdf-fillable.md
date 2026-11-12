@@ -1,5 +1,5 @@
 ---
-title: "Rendre un PDF remplissable gratuitement : champs détectés pour vous"
+title: "Rendre un PDF remplissable gratuitement, champs détectés"
 h1: "Rendre un PDF remplissable"
 lead: "Transformez les lignes vides et les cases d'un PDF figé en vrais champs de formulaire où n'importe qui peut écrire. Détection et enregistrement se font dans votre navigateur; rien n'est téléversé."
 description: "Rendez un PDF figé remplissable gratuitement dans votre navigateur : les lignes (____) deviennent des champs texte et les [ ] des cases à cocher en 2 secondes."

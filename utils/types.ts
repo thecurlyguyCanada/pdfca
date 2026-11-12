@@ -53,7 +53,18 @@ export enum ToolType {
     UNLOCK_PDF = 'UNLOCK_PDF',
     OCR_PDF = 'OCR_PDF',
     // Viewer tools
-    PDF_READER = 'PDF_READER'
+    PDF_READER = 'PDF_READER',
+    // Specific-job tools (playbook wave 3): self-contained components in components/tools/standalone
+    COMPARE_PDF = 'COMPARE_PDF',
+    SCAN_TO_PDF = 'SCAN_TO_PDF',
+    ADD_IMAGE_TO_PDF = 'ADD_IMAGE_TO_PDF',
+    SPLIT_BY_SIZE = 'SPLIT_BY_SIZE',
+    SPLIT_IN_HALF = 'SPLIT_IN_HALF',
+    ADD_PAGE_NUMBERS = 'ADD_PAGE_NUMBERS',
+    WATERMARK_PDF = 'WATERMARK_PDF',
+    PROTECT_PDF = 'PROTECT_PDF',
+    FLATTEN_PDF = 'FLATTEN_PDF',
+    ALTERNATE_MIX_PDF = 'ALTERNATE_MIX_PDF'
 }
 
 export enum AppState {
