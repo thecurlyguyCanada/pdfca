@@ -5,7 +5,7 @@
  * default-exported component taking { lang } and owning its whole UI: drop zone, options, progress,
  * result and download. Everything runs in the browser; nothing is uploaded.
  */
-import React, { useCallback, useId, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import type { DragEvent, ReactNode } from 'react';
 import { UploadCloud, AlertTriangle, Download } from 'lucide-react';
 import type * as PdfJsLib from 'pdfjs-dist';
@@ -24,7 +24,6 @@ export function Dropzone({ lang, onFiles, accept = '.pdf,application/pdf', multi
     lang: Lang; onFiles: (files: File[]) => void; accept?: string; multiple?: boolean; label?: string; hint?: string; capture?: 'environment' | 'user';
 }) {
     const [drag, setDrag] = useState(false);
-    const id = useId();
     const t = ui(lang);
     const onDrop = useCallback((e: DragEvent<HTMLLabelElement>) => {
         e.preventDefault();
@@ -33,7 +32,6 @@ export function Dropzone({ lang, onFiles, accept = '.pdf,application/pdf', multi
     }, [onFiles]);
     return (
         <label
-            htmlFor={id}
             onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
             onDragLeave={() => setDrag(false)}
             onDrop={onDrop}
@@ -43,7 +41,6 @@ export function Dropzone({ lang, onFiles, accept = '.pdf,application/pdf', multi
             <span className="font-bold text-gray-900 dark:text-gray-100">{label ?? (multiple ? t.drops : t.drop)}</span>
             <span className="text-sm text-gray-500 dark:text-gray-400">{hint ?? (multiple ? t.browses : t.browse)}</span>
             <input
-                id={id}
                 type="file"
                 accept={accept}
                 multiple={multiple}

@@ -455,11 +455,13 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         <div className="min-w-0 flex-1">
                             <h3 className="font-bold text-gray-800 truncate text-sm md:text-base max-w-[140px] md:max-w-[200px]">{file?.name}</h3>
                             <p className="text-xs text-gray-500 flex items-center gap-2">
-                                <span>{file ? formatFileSize(file.size) : ''}</span>
+                                <span>{file ? (lang === 'fr'
+                                    ? formatFileSize(file.size).replace('.', ',').replace(/ (Bytes|KB|MB|GB)$/, (_m: string, u: string) => '\u00a0' + ({ Bytes: 'octets', KB: 'Ko', MB: 'Mo', GB: 'Go' } as Record<string, string>)[u])
+                                    : formatFileSize(file.size)) : ''}</span>
                             </p>
                         </div>
                     </div>
-                    <button onClick={onSoftReset} className="text-gray-600 hover:text-gray-800 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" aria-label="Remove file">
+                    <button onClick={onSoftReset} className="text-gray-600 hover:text-gray-800 active:text-canada-red p-3 hover:bg-gray-100 active:bg-red-50 rounded-full transition-colors active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" aria-label={lang === 'fr' ? 'Retirer le fichier' : 'Remove file'}>
                         <X size={20} />
                     </button>
                 </div>

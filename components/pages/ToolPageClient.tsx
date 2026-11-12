@@ -648,7 +648,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           // Plain-language, translated messages instead of library errors
           const raw = error instanceof Error ? `${error.name} ${error.message}` : String(error);
           setErrorMessage(/encrypt|password/i.test(raw)
-            ? (t.compressErrorEncrypted || 'This PDF is password-protected. Remove the password with Unlock PDF, then compress it.')
+            ? (t.compressErrorEncrypted || 'This PDF is password-protected. Open it with its password, save a copy without protection, and compress that copy.')
             : (t.compressErrorDamaged || 'This file could not be read as a PDF. It may be damaged or not a real PDF.'));
         } else if (error instanceof Error) {
           setErrorMessage(error.message);
@@ -745,7 +745,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             <h2 id="compress-result-title" className="text-2xl font-black text-gray-900 mb-3">
               {compressOutcome.keptOriginal
                 ? (t.compressKeptTitle || 'Your original is kept')
-                : String(t.compressResultTitle || '{percent}% smaller').replace('{percent}', String(Math.max(1, Math.floor((1 - compressOutcome.after / compressOutcome.before) * 100))))}
+                : String(t.compressResultTitle || '{percent}% smaller').replace('{percent}', String(Math.min(99, Math.max(1, Math.round((1 - compressOutcome.after / compressOutcome.before) * 100)))))}
             </h2>
             <div className="flex items-center gap-3 mb-4 text-sm" data-before={compressOutcome.before} data-after={compressOutcome.after}>
               <div className="flex-1 rounded-xl bg-gray-50 p-3">
@@ -767,7 +767,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             </p>
             {!compressOutcome.keptOriginal && (
               <p className="text-gray-600 text-sm mb-4">
-                {t.compressStillTooBig}{' '}
+                {compressOutcome.level === 'extreme' ? t.compressStillTooBigExtreme : t.compressStillTooBig}{' '}
                 <a href={`/${lang}/split-pdf-by-size`} className="font-bold text-canada-red underline">{t.compressSplitBySize || 'Split PDF by Size'}</a>
               </p>
             )}

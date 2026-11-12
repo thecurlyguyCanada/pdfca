@@ -1,149 +1,153 @@
 ---
-title: "Compress PDF to 2 MB Free: 40–90% Smaller, No Upload"
+title: "Compress PDF Free: Scans Up to 98% Smaller, No Upload"
 h1: "Compress PDF"
-lead: "Pick a quality level, click Compress PDF and download a smaller file. Scans and photo PDFs shrink 40–90%; everything runs in your browser."
-description: "Compress a PDF to under 2 MB for free in your browser. Three quality levels; scans shrink 40–90%, text PDFs 5–15%. No upload, no account, no watermark."
-answer: "Add your PDF, choose Good, Balanced or Extreme, click Compress PDF and download the result. Good keeps text selectable and trims 5–15%; Balanced and Extreme re-render each page as a JPEG and cut scanned or photo-heavy files by 40–90%, which is what gets a 10 MB scan under 2 MB. It is free, nothing is uploaded, and the tool offers quality levels rather than a target size, so check the result and try the next level if it is still too big."
-updated: 2026-11-09
+lead: "Pick a level, click Compress PDF and see the before and after size. Scans shrink the most; text PDFs keep their text. Everything runs in your browser."
+description: "Compress a PDF free in your browser. On our test scans Balanced cut 55–93% and Extreme 71–98%; text PDFs 7–17%. Grayscale option, no upload."
+answer: "Add your PDF, pick Good, Balanced or Extreme and click Compress PDF. Good is lossless and took 7–17% off most of our digital test PDFs. Balanced and Extreme redraw each page as a JPEG: on our 200–300 DPI test scans they cut 55–93% and 87–98%. If the result is not smaller, the tool keeps your original and tells you. Nothing is uploaded."
+updated: 2026-11-12
 limits:
   - ["Price", "Free, no account, no watermark, no daily cap"]
-  - ["Where the compression happens", "In your browser tab. pdf-lib rewrites the file; in Balanced and Extreme, pdf.js renders each page to a canvas first. Nothing is uploaded."]
-  - ["Maximum file size", "No fixed cap. 100–150 MB compresses on a laptop with 8 GB of RAM; on a phone keep it under about 30–40 MB because every page is rendered to an image in memory."]
-  - ["Maximum pages", "No set maximum. Balanced and Extreme take roughly 0.1–0.3 seconds per page on a laptop, so a 200-page scan takes 30–60 seconds."]
-  - ["Quality levels", "Good (lossless rewrite, text stays selectable), Balanced (pages re-rendered at the level labelled 150 DPI, JPEG quality 0.7), Extreme (96 DPI, JPEG quality 0.4). There is no target-size input."]
-  - ["Input", ".pdf only. Password-protected files must be unlocked first with Unlock PDF."]
-  - ["Output", "One PDF named compressed_<your file>.pdf, same page sizes and count. In Balanced and Extreme the text is no longer selectable. Your original is not changed."]
-  - ["What stays on your device", "The source PDF, the compressed PDF and the level you chose. The site records only an anonymous page view."]
+  - ["Where it runs", "In your browser tab. pdf-lib rewrites the file; for Balanced and Extreme, pdf.js first draws each page on a canvas. Nothing is uploaded."]
+  - ["Levels", "Good: lossless re-save, text stays selectable. Balanced: each page becomes a 150 DPI JPEG (quality 0.7). Extreme: 100 DPI JPEG (quality 0.45)."]
+  - ["Grayscale", "Optional checkbox for Balanced and Extreme. Cut another 6–20% on colour photos and charts in our tests; no gain on black-and-white or grey pages."]
+  - ["If the result is larger", "Your original is kept, nothing is downloaded, and the tool says so and suggests another level."]
+  - ["Maximum file size", "No fixed cap; your device's memory is the limit. Our largest test, a 43.1 MB 14-page scan, took 3 seconds at Balanced in desktop Chromium. Phones have less memory, so split very large files first."]
+  - ["Speed", "Good took under 2 seconds on every test file. Balanced took 7 seconds on a 120-page text report and 13 seconds on a 66-page scan on our test machine."]
+  - ["Input", ".pdf only. A password-protected file cannot be read; open it with its password and save an unprotected copy first."]
+  - ["Output", "One PDF named compressed_<your file>.pdf with the same page count and page sizes. Your original is not changed."]
   - ["Works offline?", "Yes, once the page has loaded"]
 faq:
-  - q: "How do I compress a PDF to under 2 MB for free?"
-    a: "Add the file, choose Balanced, click Compress PDF and look at the size of the download. A 5–15 MB scanned document usually lands between 1 and 2 MB. If it is still over, run the original again with Extreme, which roughly halves the Balanced result. Text-only PDFs are a different case: they are already small, and Good is the right level."
+  - q: "How much smaller will my PDF get?"
+    a: "It depends on what is inside. On our test files, scans made at 200–300 DPI got 55–93% smaller at Balanced and 71–98% at Extreme, and photo or screenshot PDFs 92–98%. Digital text PDFs got 7–17% smaller at Good, with one office export at 70%. The result screen shows the exact before and after size."
+  - q: "Why did the tool say my PDF is already compact?"
+    a: "Because the compressed copy came out larger than your file, so the tool kept your original. This happens with Balanced and Extreme on text PDFs: a JPEG of a page of text weighs far more than the text. Our 120-page text report went from 241 KB to 28 MB at Balanced. Use Good for text documents."
   - q: "Will compression make my PDF blurry?"
-    a: "Good does not touch the images or text at all, so there is no visible change. Balanced re-renders pages at the level the tool labels 150 DPI with JPEG quality 0.7, which reads cleanly on screen and prints acceptably at letter size. Extreme drops to 96 DPI and quality 0.4; text is still readable but small print and fine lines soften, so use it for files that only need to be viewed on a screen."
-  - q: "Why did my text PDF barely shrink, or even get bigger?"
-    a: "Text and vector graphics are already compact, so Good can only remove a few percent of overhead. Balanced and Extreme convert each page into a JPEG photograph of itself, and a JPEG of a full page of text is often larger than the text was. For text PDFs, use Good, and if the file is still too big, the weight is probably in a few embedded images or an unneeded appendix."
+    a: "Good changes nothing visible. Balanced redraws pages at 150 DPI, which reads cleanly on screen and prints well at letter size. Extreme uses 100 DPI and low JPEG quality: body text stays readable on screen, but fine print, thin lines and signatures soften. Open the result and check a page with small print before you send it."
   - q: "Can I still select and search text after compressing?"
-    a: "Only with Good. Balanced and Extreme flatten every page into an image, so the text becomes pixels and cannot be selected, searched or read aloud by a screen reader. If you need a small file that stays searchable, compress with Good, then remove pages or split the document rather than rasterizing it."
-  - q: "Does compressing remove metadata from my PDF?"
-    a: "Good clears the title, author, subject, keywords, creator and producer fields as part of the rewrite. Balanced and Extreme build a brand-new document from page images, so none of the original metadata, bookmarks, links or form fields carry over. Hidden layers and comments are also gone, which is sometimes exactly what you want before sending a file out."
-  - q: "Can I compress a PDF several times to make it smaller?"
-    a: "You can, but a second Balanced or Extreme pass re-encodes JPEGs that are already JPEGs, so quality drops further while the size barely moves. Compress the original once at the level you need. If Extreme on the original is still too large, the fix is fewer pages, not another pass."
-  - q: "Is it safe to compress tax or medical documents here?"
-    a: "The file is read into your browser's memory, rewritten or re-rendered there, and offered back as a download from the same tab. No network request carries it, which you can confirm in your browser's developer tools under Network while compressing. Close the tab and the memory is released."
-  - q: "What is the maximum PDF size I can compress?"
-    a: "There is no server limit because there is no server. On a laptop, 100–150 MB files compress without trouble; the ceiling is your device's memory, since Balanced and Extreme hold a rendered image of each page while they work. On a phone, 30–40 MB is a safer limit, or split the file first and compress the halves."
+    a: "Only with Good. Balanced and Extreme turn every page into a picture, so text cannot be selected, searched or read by a screen reader, and links, bookmarks and form fields are dropped. If you need a small file that stays searchable, compress with Good and then split it or remove pages."
+  - q: "Does the Grayscale option make a big difference?"
+    a: "Only on colour pages. In our tests it took another 20% off a photo PDF (1.73 MB to 1.38 MB at Balanced) and 9–14% off reports and screenshots with colour charts. On scans that are already grey or black and white it changed nothing, because there was no colour to remove."
+  - q: "Can I compress a PDF twice to make it smaller?"
+    a: "It rarely helps. A second Balanced pass re-encodes JPEGs that are already JPEGs, so quality drops while the size barely moves. Compress the original once at a lower level instead, and if Extreme on the original is still too big, split the file by size or remove pages."
+  - q: "Is it safe to compress tax, immigration or medical documents here?"
+    a: "Yes, the file never leaves your device. It is read into your browser's memory, rewritten there and offered back as a download from the same tab. You can confirm it in your browser's developer tools under Network while compressing: no request carries the file. Closing the tab releases the memory."
 ---
-## How Do I Compress a PDF to Under 2 MB for Free?
+## Which Compression Level Should I Pick?
 
-Most email systems cap attachments at 20–25 MB, but the limits that actually bite are smaller: 2 MB on many job-application portals, 4 MB per file on IRCC's online applications, 1 MB for some insurance and benefits uploads, 500 KB for a few scholarship forms. This tool gets a scanned or photo-heavy PDF under those limits in about five steps.
+Pick by what is inside the PDF, not by how small you want it. The three levels do different things, and the wrong one can make a file bigger.
 
-### Step 1: Add the PDF
+| Level | What it does | Best for | Measured on our test files | Text selectable? |
+|---|---|---|---|---|
+| **Good** | Lossless re-save: packs objects into compressed streams, clears metadata | Word, Google Docs and bank PDFs, forms, anything with real text | 7–17% smaller on most digital PDFs; 0–0.5% on scans | Yes |
+| **Balanced** | Redraws every page as a 150 DPI JPEG at quality 0.7 | Scans, phone photos, image-heavy reports you may print | 55–93% smaller on 200–300 DPI scans; 92–94% on photo pages | No |
+| **Extreme** | Redraws every page as a 100 DPI JPEG at quality 0.45 | Upload limits where every kilobyte counts and the file is read on screen | 71–98% smaller on scans; 97–98% on photo pages | No |
 
-Click **Select File** or drag the file onto the drop zone. The tool shows the file name and its current size, which is the number you are trying to beat.
+Balanced is selected when the page opens. Two cases surprise people. First, a scan that was already made at 150 DPI barely shrinks at Balanced (our 10-page example went from 4.2 MB to 4.1 MB) because the page is redrawn at the same resolution; Extreme took it to 1.2 MB. Second, Balanced and Extreme make text PDFs much larger. The tool catches this: when the result is not smaller, you see "Your original is kept" with both sizes, and nothing is downloaded.
 
-### Step 2: Choose a level
+## How Much Smaller Did Our Test Files Get?
 
-Three options appear under **Select Compression Level**:
+We ran 25 test PDFs through this page in desktop Chromium on November 12, 2026: scans, photo pages, office exports, a real IRS form and long text reports. These are the results for the main document types. "Larger" means the tool kept the original.
 
-- **Good** rewrites the file losslessly: it packs the internal objects into compressed streams and clears the metadata fields. Text stays selectable. Expect 5–15% off most files, sometimes more on PDFs exported by older software.
-- **Balanced** renders every page to an image at the level the tool labels 150 DPI and stores it as a JPEG at quality 0.7. This is the level that turns a 10 MB scan into 1–2 MB. Text becomes part of the image and is no longer selectable.
-- **Extreme** does the same at 96 DPI and JPEG quality 0.4. Roughly half the size of Balanced again, with visibly softer small print.
+| Test file | Original | Good | Balanced | Extreme |
+|---|---|---|---|---|
+| 12-page text report | 24 KB | 21 KB (−13%) | Larger (2.7 MB) | Larger (1.1 MB) |
+| 120-page text report | 241 KB | 214 KB (−12%) | Larger (28 MB) | Larger (12 MB) |
+| 27-page LibreOffice export | 480 KB | 144 KB (−70%) | Larger (8 MB) | Larger (3.4 MB) |
+| IRS W-4 form, 5 pages | 204 KB | Larger (208 KB) | Larger (1.8 MB) | Larger (744 KB) |
+| 3-page scan, 200 DPI | 746 KB | 745 KB (0%) | 329 KB (−56%) | 97 KB (−87%) |
+| 10-page scan, 200 DPI | 2.5 MB | 2.5 MB (0%) | 1.1 MB (−55%) | 342 KB (−87%) |
+| 10-page grey scan, 200 DPI | 7.0 MB | 7.0 MB (0%) | 2.4 MB (−66%) | 812 KB (−89%) |
+| 6-page colour scan, 300 DPI | 10.1 MB | 10.1 MB (0%) | 1.3 MB (−87%) | 454 KB (−96%) |
+| 14-page colour scan, 300 DPI | 43.1 MB | 43.1 MB (0%) | 3.0 MB (−93%) | 1.0 MB (−98%) |
+| 10-page grey scan, 150 DPI | 4.2 MB | 4.2 MB (0%) | 4.1 MB (−2%) | 1.2 MB (−71%) |
+| 66-page black-and-white scan | 3.4 MB | 3.4 MB (−0.5%) | Larger (17.7 MB) | Larger (7.4 MB) |
+| 8 full-page photos | 31.0 MB | 31.0 MB (0%) | 1.7 MB (−94%) | 640 KB (−98%) |
+| 16-page report with photos and charts | 4.0 MB | 4.0 MB (0%) | 2.2 MB (−45%) | 916 KB (−78%) |
 
-This is the decision people get wrong. If your file is a Word export or a bank statement with real text, Balanced and Extreme can make it larger, not smaller, because a JPEG of a page of text is heavier than the text itself. Start with Good for text documents and with Balanced for anything scanned or photographed.
+Times on our test machine: Good finished every file in under 2 seconds. Balanced took 3 seconds for the 43.1 MB scan, 7 seconds for the 120-page report and 13 seconds for the 66-page scan. Phones are slower; we did not time them.
 
-### Step 3: Click Compress PDF
+## How Do Scanned, Searchable and Digital PDFs Compress Differently?
 
-Good finishes in a second or two regardless of page count. Balanced and Extreme render page by page, about 0.1–0.3 seconds each on a 2022 laptop, so a 40-page scan takes 5–12 seconds and a 200-page one takes 30–60 seconds. The page yields between pages, so the tab does not freeze.
+**Scanned PDFs** are one picture per page. If the scanner saved those pictures in colour or grey at 200–300 DPI, Balanced and Extreme shrink them dramatically, because the tool redraws them at a lower resolution. Good cannot help: it does not touch images. The exception is a black-and-white (1-bit) scan, the kind office copiers make in "text" mode: those are already stored very efficiently, and our 66-page example grew five times at Balanced. Keep those as they are, or split them.
 
-### Step 4: Check the size
+**Searchable PDFs** are scans with an invisible text layer added by OCR. They compress like scans at Balanced and Extreme, but the text layer is lost, so the result is no longer searchable. If search matters, compress first with Balanced, then run [OCR PDF](/en/ocr-pdf) on the smaller file to add the text layer back.
 
-The download is named `compressed_<your file>.pdf`. Compare its size to the limit you are aiming for. If it is still over, go back to the original file (not the compressed one) and try the next level down.
+**Digital PDFs** come straight from Word, Google Docs, LibreOffice, a bank or a government form. Their text is stored as text, which is already compact. Good is the only level that helps, usually by 7–17%, sometimes far more on exports from older software (70% on our LibreOffice file). Balanced made every text-only file in our tests larger, by 2 to 360 times; Extreme shrank only one, a nearly empty 2-page letter, by 7%.
 
-### Step 5: Open it before you send it
+## How Do I Compress a PDF to a Specific Size?
 
-Scroll to a page with small print or a signature. If Extreme has made something unreadable, use Balanced and remove pages instead; see the next section.
+The tool works with levels, not a target-size box, so use these per-page figures from our scans to predict the result. At Balanced a scanned page came out at 110–410 KB; at Extreme, 30–125 KB. Multiply by your page count, and check the real size on the result screen.
 
-> **Tip:** Compress the original every time. Running Balanced on a file that has already been through Balanced re-encodes JPEGs that are already JPEGs: quality drops, size barely changes.
+### Under 2 MB
+
+Balanced is usually enough for up to about 5 scanned pages. In our tests it took a 6-page 300 DPI colour scan from 10.1 MB to 1.3 MB, while 10- to 14-page scans landed between 1.1 and 3.0 MB. For those, Extreme got every one under 1.3 MB.
+
+### Under 1 MB
+
+Use Extreme for scans of up to about 10 pages: 6 of our 8 test scans went under 1 MB. The two that did not were the 14-page 300 DPI scan (1.0 MB, just over) and a 10-page scan already at 150 DPI (1.2 MB).
+
+### Under 500 KB
+
+Extreme on short scans: every test scan of 6 pages or fewer went under 500 KB (97 KB for 3 pages, 454 KB for 6 colour pages at 300 DPI), and so did one light 10-page scan (342 KB). For longer files, split them.
+
+### Under 200 KB
+
+Realistic for 1 to 3 scanned pages at Extreme: our 1-page scan came out at 33 KB and the 3-page one at 97 KB. A short digital text document is often already this small; use Good, which keeps it sharp.
+
+If even Extreme is too big, do not compress again. [Split PDF by Size](/en/split-pdf-by-size) cuts the file into parts that each fit a limit, and [Delete PDF Pages](/en/delete-pdf-pages) removes blank backs and cover sheets.
+
+## Should I Use the Grayscale Option?
+
+Tick **Grayscale** when the colour does not matter and the pages contain colour photos, charts or highlighting. It removes colour from each redrawn page before the JPEG is made. In our tests it cut the output of the photo PDF from 1.73 MB to 1.38 MB at Balanced (another 20%), the report with colour charts by 9%, and screenshots by 14%. On scans that were already grey or black and white, it made no difference at all. It is greyed out for Good, which never changes images. Leave it off for anything where colour carries meaning: a stamp, a signature in blue ink, a colour-coded chart.
+
+## What Are the Upload Limits, and Which Level Fits Each?
+
+### Gmail (25 MB)
+
+Gmail attaches files up to 25 MB; anything bigger becomes a Google Drive link. Most PDFs already fit. A large phone or office scan may not: our 43.1 MB 14-page scan came down to 3.0 MB at Balanced, which is plenty of room for other attachments.
+
+### Outlook.com (20 MB)
+
+Outlook.com caps attachments at 20 MB. Same advice as Gmail: Balanced for scans and photo PDFs, Good for everything else.
+
+### Job portals and LinkedIn Easy Apply (2 MB)
+
+LinkedIn Easy Apply accepts résumés up to 2 MB, and many applicant tracking systems cap uploads at 2 to 5 MB. A résumé exported from Word or Google Docs is almost always far below that; use Good so recruiters' software can still read the text. If you scanned a signed reference letter or a transcript, Balanced brings a few pages under 2 MB.
+
+### IRCC applications (about 4 MB per document)
+
+IRCC's online portals accept about 4 MB per document, so check the limit shown next to each upload slot. Scanned passports, police certificates and proof-of-funds statements are the usual problem. Balanced kept every 200–300 DPI test scan of 10 pages or fewer under 2.5 MB, and Extreme kept every test scan of 10 pages or fewer under 1.3 MB. Open the result and check that small print, stamps and signatures are legible before you upload.
+
+### USCIS online filing (under 6 MB per file)
+
+USCIS online filing requires each file to be under 6 MB. Balanced is the safe first choice for scanned evidence; if a long scan is still over, use [Split PDF by Size](/en/split-pdf-by-size) and upload the parts.
+
+### WhatsApp (documents up to 2 GB)
+
+WhatsApp sends documents up to 2 GB, so size rarely blocks a PDF there. Data does: a 43 MB scan costs the recipient 43 MB of mobile data. Balanced makes it a 3 MB download.
 
 ## What Happens to My File When I Compress It?
 
-Two different things, depending on the level. With Good, pdf-lib loads the PDF into your browser's memory, clears the document information fields and saves it again with object streams enabled, which is a lossless re-packing of the file's internal structure. With Balanced or Extreme, pdf.js, the same engine Firefox uses to display PDFs, draws each page onto an invisible canvas in the tab; the canvas is encoded as a JPEG at the chosen quality, and pdf-lib builds a new document with one JPEG per page at the original page dimensions. The result is handed to you as a download from the same tab.
+With Good, pdf-lib loads the PDF into your browser's memory, clears the title, author, subject, keywords, creator, producer and XMP metadata, and saves it again with object streams. Text, links, bookmarks and form fields are kept. With Balanced or Extreme, pdf.js, the engine Firefox uses to display PDFs, draws each page on an invisible canvas; the canvas becomes a JPEG and pdf-lib builds a new PDF with one JPEG per page, at the original page size.
 
-In neither case does the file leave your device. There is no upload step because there is no server doing the work. You can check this yourself: open your browser's developer tools, choose Network, and compress a file. You will see the page's scripts and the PDF libraries load, one anonymous page-view request, and nothing else while the compression runs.
-
-That is the point for the documents Canadians compress most: scanned T4s and T2202s for a tax return, proof-of-funds statements and passport scans for an IRCC application, a 30 MB photographed lease for a landlord-tenant board filing, or a specialist's referral package with imaging attached. A file that is never uploaded cannot be stored, scanned or leaked by anyone else, so there is nothing for a privacy law to govern.
-
-## How Do I Get a PDF Under 2 MB (or 1 MB, or 500 KB)?
-
-The tool offers quality levels, not a target-size box, so the way to hit a specific limit is to know roughly what each level does to each kind of file and pick accordingly. The table below is what to expect; your file will vary with page count and how dense the scans are.
-
-| Document type | Starting size | Good | Balanced | Extreme |
-|---|---|---|---|---|
-| Word or Google Docs export, 10 pages of text | 300 KB | 250–290 KB | 1–2 MB (larger) | 500 KB–1 MB (larger) |
-| Bank statement PDF, 6 pages, real text | 800 KB | 650–760 KB | 1–1.5 MB (larger) | 400–700 KB |
-| Phone-scanned letter, 4 pages | 8 MB | 7–7.5 MB | 600 KB–1.2 MB | 300–600 KB |
-| Office-scanner PDF at 300 dpi, 20 pages | 25 MB | 22–24 MB | 2.5–4 MB | 1.2–2 MB |
-| Slide deck with photos, 40 slides | 15 MB | 12–14 MB | 2–3.5 MB | 1–1.8 MB |
-| Photo-heavy real-estate listing, 12 pages | 40 MB | 35–38 MB | 2–3 MB | 1–1.5 MB |
-
-Reading the table for the three common targets:
-
-**Under 2 MB.** Balanced gets any scan of up to about 10–15 pages there. A longer scan needs Extreme, or Balanced plus fewer pages.
-
-**Under 1 MB.** Extreme on scans of up to about 10 pages. For text PDFs, Good plus removing pages is the only route that keeps them readable.
-
-**Under 500 KB.** Realistic for a one- to three-page scan on Extreme, or a short text document on Good. Beyond that you are trading legibility for size.
-
-When the smallest level still will not fit, change the input rather than compressing again:
-
-1. **Remove pages you do not need.** Cover sheets, blank backs of double-sided scans and duplicate copies are the usual culprits. [Delete PDF Pages](/en/delete-pdf-pages) takes a few seconds and often saves more than a compression level does.
-2. **Split the document.** A portal that allows 2 MB per file usually allows several files. [Split PDF](/en/split-pdf) or [Extract PDF Pages](/en/extract-pdf-pages) turns one 6 MB file into three uploads that each pass.
-3. **Rescan at a lower setting.** A scanner set to 600 dpi colour produces 4–6 MB per page; 200 dpi greyscale produces 200–400 KB per page and is still perfectly legible for forms. If you still have the paper, this beats any compressor.
-4. **Photograph less.** Phone scans at full resolution are 3–5 MB each. Most scanning apps have a "small" or "medium" output option that gets a page to under 1 MB before it becomes a PDF.
-
-## How Do I Compress a PDF on iPhone, Android, Mac or Windows?
-
-The tool is the same page on every device, but the built-in alternatives differ a great deal.
-
-**iPhone and iPad.** Open the page in Safari, tap the drop zone and choose the file from Files. Balanced on a 20-page scan takes 15–40 seconds on a recent iPhone. Keep files under about 30–40 MB; iOS reloads a tab that uses too much memory, and each rendered page is held while the tool works. The download appears in Files → Downloads. iOS itself has no compress option, though the Notes and Files scanners both let you pick a smaller output size at scan time.
-
-**Android.** Chrome handles the picker and saves to Downloads. Phones with 3–4 GB of RAM should stay under 30 MB per file or split first. Google Drive's scanner offers a quality slider when you scan, which is the better place to save space.
-
-**Mac.** Preview can export with the Reduce File Size Quartz filter (File → Export → Quartz Filter). It is already installed and free; its weakness is that it uses one fixed, fairly aggressive setting, which can turn a clean 300-dpi scan to mush. This page gives you two lossy levels and a lossless one, and lets you compare.
-
-**Windows.** Windows has no built-in PDF compressor. Printing to Microsoft Print to PDF re-renders the document but rarely reduces size meaningfully. A tool like this one or a desktop app is required.
-
-**Chromebook.** Works as on desktop Chrome. Files save to Downloads or Google Drive depending on your setting.
+The file never leaves your device. That matters for what Canadians compress most: T4 slips and receipts for the CRA, passport scans for IRCC, medical referrals. You can check it in your browser's developer tools under Network while you compress.
 
 ## When Should You Not Use This Tool?
 
-- **You need the text to stay selectable or searchable and Good is not enough.** Balanced and Extreme rasterize the pages. Use Good, then remove pages or split; or, if the weight is in a few large images, a desktop editor that can downsample individual images without flattening text is the right tool.
-- **Accessibility matters.** A rasterized PDF has no text layer, so screen readers cannot read it. Keep an uncompressed or Good-level copy for anyone who needs it.
-- **Fillable forms, signatures and links.** Balanced and Extreme build a new document from page images, so form fields, digital signatures, bookmarks and hyperlinks are dropped. Compress with Good, or compress before you sign and fill in.
-- **The PDF asks for a password.** It cannot be read. Remove the password with Unlock PDF first.
-- **Print-quality output.** 150 DPI is fine for a letter-size page read at arm's length; it is not fine for a poster, a plan or anything that will be enlarged. Keep the original for printing.
-- **A 150 MB file on a phone.** Rendering every page to an image needs memory the phone does not have. Use a laptop, or split the file first.
+- **Fillable forms you still need to fill or sign.** Balanced and Extreme drop form fields and digital signatures. Use Good, or fill and sign first.
+- **Accessibility.** A redrawn PDF has no text, so screen readers cannot read it. Keep a Good copy for anyone who needs one.
+- **Print-quality output.** 150 DPI suits a letter-size page; it does not suit a poster or a plan. Keep the original for printing.
+- **Password-protected PDFs.** The tool cannot read them. Open the file with its password and save an unprotected copy first (in Chrome: Print, then Save as PDF).
 
 ## Troubleshooting
 
 | Problem | Fix | Why it works |
 |---|---|---|
-| The file got bigger | Use Good instead of Balanced or Extreme | Text pages are smaller as text than as JPEGs |
-| Still over 2 MB after Extreme | Delete unneeded pages or split into two files | Fewer pages is the only lever left once the quality is at its lowest |
-| I can no longer select or search the text | Compress the original again with Good | Good is the only level that keeps the text layer |
-| Small print is blurry | Use Balanced rather than Extreme | 150 DPI holds 8-point type; 96 DPI does not |
-| Form fields or signature disappeared | Use Good, or sign and fill after compressing | Lossy levels build a new document from images, without the form layer |
-| Safari on iPhone reloads the tab | Split the file or use a laptop | iOS limits a tab's memory and rendering pages exceeds it |
-| The page seems frozen on a long scan | Wait; a 200-page scan takes 30–60 seconds | Each page is rendered in turn and the tool yields between pages |
-
-## What Else Can Shrink a PDF?
-
-- [Delete PDF Pages](/en/delete-pdf-pages) removes the pages that are making the file heavy, with no loss on the ones you keep.
-- [Split PDF](/en/split-pdf) turns one over-limit file into several that each pass a per-file cap.
-- [Extract PDF Pages](/en/extract-pdf-pages) pulls out just the pages a form actually asks for.
-- [Crop PDF](/en/crop-pdf) trims margins, which does not reduce file size but does make a page easier to read at a lower DPI.
-- [Merge PDF](/en/merge-pdf) to combine files after compressing, so that a 2 MB cap on one upload becomes a single compliant bundle.
-
-## The Bottom Line
-
-PDF compression is really two different jobs. Good is a lossless repack that keeps text selectable and takes 5–15% off; Balanced and Extreme turn each page into a JPEG and take 40–90% off scans and photo-heavy files, which is what gets a 10 MB document under a 2 MB portal limit. Pick Good for text, Balanced for scans, Extreme only when Balanced is still too big, and compress the original rather than compressing twice. When even Extreme will not fit, remove pages or split the file instead of trading away legibility.
+| Still too big after Extreme | Split it with Split PDF by Size, or delete pages | Fewer pages per file is the only lever left once quality is at its lowest |
+| Still too big after Balanced | Run the original again with Extreme | Extreme output was about a third of Balanced on our scans |
+| "Your original is kept" | Use Good for text PDFs; leave black-and-white scans as they are | Text and 1-bit scans are smaller than any JPEG of them |
+| Balanced barely shrank a scan | Use Extreme | The scan was already near 150 DPI, so Balanced redrew it at the same resolution |
+| Text can no longer be selected | Compress the original with Good, or run OCR PDF on the result | Balanced and Extreme turn pages into pictures |
+| Small print or a signature is blurry | Use Balanced instead of Extreme | 150 DPI holds fine detail that 100 DPI softens |
+| Form fields disappeared | Use Good, or fill and sign before compressing | Lossy levels rebuild the PDF from page pictures |
+| "This PDF is password-protected" | Open it with the password, save an unprotected copy, compress that | An encrypted file cannot be read without its password |

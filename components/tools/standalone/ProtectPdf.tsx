@@ -195,13 +195,13 @@ export default function ProtectPdf({ lang }: { lang: Lang }) {
 
             {file && !result && (
                 <div className="space-y-5">
-                    <div className="flex items-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 px-4 py-3">
+                    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 px-4 py-3">
                         <FileText className="h-6 w-6 text-canada-red shrink-0" aria-hidden="true" />
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 flex-1 basis-40">
                             <p className="font-semibold text-gray-900 dark:text-gray-100 truncate">{file.name}</p>
                             <p className="text-sm text-gray-500 dark:text-gray-400">{formatBytes(file.size, lang)} · {t.pages(pageCount)}</p>
                         </div>
-                        <SecondaryButton onClick={reset} disabled={!!busy}>{t.change}</SecondaryButton>
+                        <SecondaryButton onClick={reset} disabled={!!busy} className="w-full sm:w-auto">{t.change}</SecondaryButton>
                     </div>
 
                     <div>

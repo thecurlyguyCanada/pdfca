@@ -22,9 +22,9 @@ const STR = {
         compare: 'Compare',
         textOnly: 'Compares the text only. Layout, image and formatting changes (fonts, colours, positions) are not detected.',
         notPdf: 'Please choose a PDF file.',
-        reading: (which: string, p: number, n: number) => `Reading ${which}: page ${p} of ${n}`,
+        reading: (which: string, p: number, n: number) => `Reading “${which}”: page ${p} of ${n}`,
         comparing: 'Comparing the words…',
-        scanned: (name: string) => `« ${name} » has no selectable text (it looks like a scan or a photo), so there is nothing to compare.`,
+        scanned: (name: string) => `“${name}” has no selectable text (it looks like a scan or a photo), so there is nothing to compare.`,
         scannedFix: 'Make it searchable first with OCR PDF, then compare again.',
         ocrLink: 'Open OCR PDF',
         summary: 'Summary',
@@ -76,7 +76,7 @@ const STR = {
         compare: 'Comparer',
         textOnly: 'Compare le texte seulement. Les changements de mise en page, d’images ou de mise en forme (polices, couleurs, positions) ne sont pas détectés.',
         notPdf: 'Veuillez choisir un fichier PDF.',
-        reading: (which: string, p: number, n: number) => `Lecture de ${which} : page ${p} sur ${n}`,
+        reading: (which: string, p: number, n: number) => `Lecture de « ${which} » : page ${p} sur ${n}`,
         comparing: 'Comparaison des mots…',
         scanned: (name: string) => `« ${name} » ne contient pas de texte sélectionnable (on dirait une numérisation ou une photo), il n’y a donc rien à comparer.`,
         scannedFix: 'Rendez-le d’abord interrogeable avec l’outil OCR PDF, puis comparez de nouveau.',
@@ -353,38 +353,30 @@ function slideMatches(m: Int32Array, ia: Int32Array, ib: Int32Array) {
     let i = 0, j = 0;
     while (i < N) {
         if (m[i] === j) { i++; j++; continue; }
-        if (m[i] === -1) {
-            let a1 = i; while (a1 < N && m[a1] === -1) a1++;
-            if (a1 < N && m[a1] === j) {
-                // Pure deletion [i, a1) before an equal run starting at (a1, j).
-                const len = a1 - i;
-                let s = 0;
-                while (a1 + s < N && m[a1 + s] === j + s && ia[i + s] === ia[a1 + s]) s++;
-                const touches = a1 + s >= N ? j + s < NB : m[a1 + s] !== j + s;
-                if (s > 0 && touches) {
-                    for (let k = 0; k < s; k++) { m[i + k] = j + k; m[a1 + k] = -1; }
-                    i += s; j += s;
-                    void len;
-                }
-                i = a1 + (s > 0 && touches ? s : 0);
-                if (!(s > 0 && touches)) continue;
+        let a1 = i; while (a1 < N && m[a1] === -1) a1++;
+        const b1 = a1 < N ? m[a1] : NB;
+        if (a1 > i && b1 === j) {
+            // Pure deletion A[i, a1) followed by equal tokens from (a1, j).
+            let s = 0;
+            while (a1 + s < N && m[a1 + s] === j + s && ia[i + s] === ia[a1 + s]) s++;
+            const touches = a1 + s < N ? m[a1 + s] !== j + s : j + s < NB;
+            if (s > 0 && touches) {
+                for (let k = 0; k < s; k++) { m[i + k] = j + k; m[a1 + k] = -1; }
+                i += s; j += s;
                 continue;
             }
-            i = a1; // replacement region: skip deletions, B side catches up below
-            continue;
+        } else if (a1 === i && b1 > j) {
+            // Pure insertion B[j, b1) before A[i], which matches B[b1].
+            let s = 0;
+            while (i + s < N && m[i + s] === b1 + s && ib[j + s] === ib[b1 + s]) s++;
+            const touches = i + s < N ? m[i + s] !== b1 + s : b1 + s < NB;
+            if (s > 0 && touches) {
+                for (let k = 0; k < s; k++) m[i + k] = j + k;
+                i += s; j += s;
+                continue;
+            }
         }
-        // m[i] > j: insertion of B[j, m[i]) (possibly after deletions handled above).
-        const b1 = m[i];
-        if (i > 0 && m[i - 1] === -1) { j = b1; continue; } // part of a replacement
-        let s = 0;
-        while (i + s < N && m[i + s] === b1 + s && ib[j + s] === ib[b1 + s]) s++;
-        const touches = i + s >= N ? b1 + s < NB : m[i + s] !== b1 + s;
-        if (s > 0 && touches) {
-            for (let k = 0; k < s; k++) m[i + k] = j + k;
-            i += s; j = b1 + s;
-        } else {
-            j = b1;
-        }
+        i = a1; j = b1;
     }
 }
 
@@ -421,42 +413,80 @@ function tokenIds(A: string[], B: string[]): [Int32Array, Int32Array] {
     return [Int32Array.from(A, id), Int32Array.from(B, id)];
 }
 
-const DOC_BUDGET = 150_000_000;
-const PAGE_BUDGET = 8_000_000;
+const GAP_BUDGET = 60_000_000; // ≈1 s of work in the worker on this machine class
+const PAGE_BUDGET = 4_000_000;
 
+/** Small problems run inline (a worker costs more to start than the diff); big ones in a worker. */
+async function diffRange(ia: Int32Array, ib: Int32Array, budget: number): Promise<Int32Array | null> {
+    if (ia.length + ib.length < 6000) {
+        try { return diffCore(ia, ib, budget); } catch { return null; }
+    }
+    return runDiff(ia.slice(), ib.slice(), budget);
+}
+
+function pageStarts(pageOf: Int32Array, numPages: number): Int32Array {
+    // starts[p-1] = first token index of page p; starts[numPages] = total.
+    const starts = new Int32Array(numPages + 1);
+    let k = 0;
+    for (let p = 1; p <= numPages; p++) {
+        while (k < pageOf.length && pageOf[k] < p) k++;
+        starts[p - 1] = k;
+    }
+    starts[numPages] = pageOf.length;
+    return starts;
+}
+
+/**
+ * 1) Diff the sequence of page fingerprints, so identical pages (and inserted/deleted pages) are matched for
+ *    free. 2) Word-level Myers diff inside each run of unmatched pages (whole document when text reflowed).
+ * 3) If a run is too different to diff within budget, compare its pages pairwise by position.
+ */
 async function compareDocs(A: DocText, B: DocText): Promise<Result> {
     const t0 = performance.now();
     const [ia, ib] = tokenIds(A.tokens, B.tokens);
-    let hunks: Hunk[] | null = null;
+    const sa = pageStarts(A.pageOf, A.numPages), sb = pageStarts(B.pageOf, B.numPages);
+    const fp = new Map<string, number>();
+    const fingerprint = (ids: Int32Array, starts: Int32Array, p: number) => {
+        const key = Array.prototype.join.call(ids.subarray(starts[p], starts[p + 1]), ',');
+        let v = fp.get(key); if (v === undefined) { v = fp.size; fp.set(key, v); }
+        return v;
+    };
+    const PA = Int32Array.from({ length: A.numPages }, (_, p) => fingerprint(ia, sa, p));
+    const PB = Int32Array.from({ length: B.numPages }, (_, p) => fingerprint(ib, sb, p));
+    let pageMatch: Int32Array;
+    try { pageMatch = diffCore(PA, PB, 50_000_000); } catch { pageMatch = new Int32Array(A.numPages).fill(-1); }
+
+    const matchA = new Int32Array(ia.length).fill(-1);
     let coarse = false;
-    const whole = await runDiff(ia, ib, DOC_BUDGET);
-    if (whole) {
-        hunks = hunksFromMatch(A, B, whole);
-    } else {
-        // Very different documents: compare page pairs by position, the rest as whole pages added/removed.
+    const solveGap = async (pa0: number, pa1: number, pb0: number, pb1: number) => {
+        const as = sa[pa0], ae = sa[pa1], bs = sb[pb0], be = sb[pb1];
+        if (ae === as || be === bs) return;
+        const m = await diffRange(ia.subarray(as, ae), ib.subarray(bs, be), GAP_BUDGET);
+        if (m) { for (let k = 0; k < m.length; k++) if (m[k] >= 0) matchA[as + k] = m[k] + bs; return; }
         coarse = true;
-        hunks = [];
-        const range = (pageOf: Int32Array, p: number): [number, number] => {
-            let s = 0; while (s < pageOf.length && pageOf[s] < p) s++;
-            let e = s; while (e < pageOf.length && pageOf[e] === p) e++;
-            return [s, e];
-        };
-        const pages = Math.max(A.numPages, B.numPages);
-        for (let p = 1; p <= pages; p++) {
-            const [as, ae] = range(A.pageOf, p);
-            const [bs, be] = range(B.pageOf, p);
-            if (ae === as && be === bs) continue;
-            const m = (ae > as && be > bs) ? await runDiff(ia.subarray(as, ae).slice(), ib.subarray(bs, be).slice(), PAGE_BUDGET) : null;
-            if (m) {
-                // matchA holds indices relative to the page slice of B.
-                for (let k = 0; k < m.length; k++) if (m[k] >= 0) m[k] += bs;
-                hunks.push(...hunksFromMatch(A, B, m, as, bs, ae, be));
-            } else {
-                hunks.push(makeHunk(A, B, as, ae, bs, be));
-            }
-            if (p % 5 === 0) await yieldToBrowser();
+        const n = Math.min(pa1 - pa0, pb1 - pb0);
+        for (let k = 0; k < n; k++) {
+            const xs = sa[pa0 + k], xe = sa[pa0 + k + 1], ys = sb[pb0 + k], ye = sb[pb0 + k + 1];
+            if (xe === xs || ye === ys) continue;
+            const mm = await diffRange(ia.subarray(xs, xe), ib.subarray(ys, ye), PAGE_BUDGET);
+            if (mm) for (let q = 0; q < mm.length; q++) if (mm[q] >= 0) matchA[xs + q] = mm[q] + ys;
+            if (k % 10 === 9) await yieldToBrowser();
         }
+    };
+    let pa = 0, pb = 0;
+    while (pa < A.numPages || pb < B.numPages) {
+        if (pa < A.numPages && pageMatch[pa] === pb) {
+            for (let k = 0; k < sa[pa + 1] - sa[pa]; k++) matchA[sa[pa] + k] = sb[pb] + k;
+            pa++; pb++; continue;
+        }
+        const ga = pa;
+        while (pa < A.numPages && pageMatch[pa] === -1) pa++;
+        const gb = pb;
+        pb = pa < A.numPages ? pageMatch[pa] : B.numPages;
+        await solveGap(ga, pa, gb, pb);
     }
+    slideMatches(matchA, ia, ib);
+    const hunks = hunksFromMatch(A, B, matchA);
     let added = 0, removed = 0;
     for (const h of hunks) { added += h.b1 - h.b0; removed += h.a1 - h.a0; }
     return { A, B, hunks, added, removed, coarse, ms: performance.now() - t0 };
@@ -590,6 +620,7 @@ ins{background:#dcfce7;color:#14532d;text-decoration:none;border-radius:3px;padd
 .blk{border:1px solid #e5e7eb;border-radius:12px;padding:10px 14px;margin:10px 0}.blk p{margin:4px 0 0}.pg{font-size:12px;font-weight:700;color:#6b7280}
 .note{font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;margin-top:32px;padding-top:12px}
 @media print{.blk,tr{break-inside:avoid}}
+.tw{overflow-x:auto}@media (max-width:600px){.files{grid-template-columns:1fr}th,td{padding:4px}}
 </style></head><body>
 <h1>${esc(t.reportTitle)}</h1>
 <div class="meta">${esc(t.reportGenerated)} ${esc(date)}</div>
@@ -598,9 +629,9 @@ ins{background:#dcfce7;color:#14532d;text-decoration:none;border-radius:3px;padd
 <div class="stats"><div class="stat"><strong class="plus">+${r.added}</strong>${esc(t.added)}</div><div class="stat"><strong class="minus">−${r.removed}</strong>${esc(t.removed)}</div><div class="stat"><strong>${r.hunks.length}</strong>${esc(t.changes)} · ${esc(t.flaggedCount(flagged))}</div><div class="stat"><strong>${Math.max(r.A.numPages, r.B.numPages)}</strong>${esc(t.pagesCompared(r.A.numPages, r.B.numPages))}</div></div>
 ${r.coarse ? `<p>${esc(t.coarse)}</p>` : ''}
 ${r.hunks.length ? `<h2>${esc(t.tabList)}</h2>
-<table><thead><tr><th>#</th><th>${esc(t.thPage)}</th><th>${esc(t.thType)}</th><th>${esc(t.before)}</th><th>${esc(t.after)}</th><th>${esc(t.thFlags)}</th></tr></thead><tbody>
+<div class="tw"><table><thead><tr><th>#</th><th>${esc(t.thPage)}</th><th>${esc(t.thType)}</th><th>${esc(t.before)}</th><th>${esc(t.after)}</th><th>${esc(t.thFlags)}</th></tr></thead><tbody>
 ${rows}
-</tbody></table>
+</tbody></table></div>
 <h2>${esc(t.tabInline)}</h2>
 ${blocks}` : `<p>${esc(t.identical)}</p>`}
 <p class="note">${esc(t.reportBy)}</p>
@@ -640,8 +671,10 @@ export default function ComparePdf({ lang }: { lang: Lang }) {
         const id = ++runId.current;
         setBusy(true); setError(''); setScanned([]); setResult(null);
         try {
-            const A = await extractText(fileA, (p, n) => { if (id === runId.current) setProgress(t.reading(`« ${fileA.name} »`, p, n)); });
-            const B = await extractText(fileB, (p, n) => { if (id === runId.current) setProgress(t.reading(`« ${fileB.name} »`, p, n)); });
+            const read = (f: File) => extractText(f, (p, n) => { if (id === runId.current) setProgress(t.reading(f.name, p, n)); })
+                .catch((e) => { throw new Error(`${f.name}${lang === 'fr' ? ' : ' : ': '}${readErrorMessage(e, lang)}`); });
+            const A = await read(fileA);
+            const B = await read(fileB);
             const sc: string[] = [];
             if (A.tokens.length < A.numPages * 3) sc.push(A.name);
             if (B.tokens.length < B.numPages * 3) sc.push(B.name);

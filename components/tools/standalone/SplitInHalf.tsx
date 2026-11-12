@@ -11,8 +11,16 @@ import type { PDFPage } from 'pdf-lib';
 import { FileText, Scissors } from 'lucide-react';
 import {
     Dropzone, Panel, ErrorBox, PrimaryButton, SecondaryButton, ResultCard,
-    pdfBlob, baseName, yieldToBrowser, openPdf, thumbnail, loadPdfLib, readErrorMessage,
+    pdfBlob, baseName, yieldToBrowser, openPdf, thumbnail, loadPdfLib, readErrorMessage, PdfReadError, ui,
 } from './shared';
+
+/** Plain-language message for any failure: unexpected internal errors are reported as an unreadable file. */
+function errorText(e: unknown, lang: 'en' | 'fr'): string {
+    const name = (e as { name?: string })?.name;
+    if (e instanceof PdfReadError || name === 'PasswordException' || name === 'InvalidPDFException') return readErrorMessage(e, lang);
+    console.error(e);
+    return ui(lang).damaged;
+}
 
 const STR = {
     en: {
@@ -59,7 +67,7 @@ const STR = {
         position: 'Position de la coupe',
         positionHint: 'Déplacez la coupe si le pli n’est pas exactement au milieu.',
         resetMiddle: 'Remettre au milieu',
-        preview: (p: number) => `Aperçu de la page ${p}. La ligne rouge montre où la page sera coupée; les chiffres indiquent l’ordre des nouvelles pages.`,
+        preview: (p: number) => `Aperçu de la page ${p}. La ligne rouge montre où la page sera coupée. Les chiffres indiquent l’ordre des nouvelles pages.`,
         noPreview: 'Aucun aperçu pour ce fichier, mais il peut quand même être coupé.',
         nothing: 'Avec ces options, aucune page ne serait coupée. Décochez « Ne pas couper la première page » ou « Ne pas couper la dernière page ».',
         run: 'Couper les pages en deux',
@@ -206,12 +214,15 @@ export default function SplitInHalf({ lang }: { lang: 'en' | 'fr' }) {
         try {
             const bytes = new Uint8Array(await f.arrayBuffer());
             const doc = await loadPdfLib(bytes);
+            let count = 0;
+            try { count = doc.getPageCount(); } catch { /* broken page tree */ }
+            if (!count) throw new PdfReadError('damaged');
             bytesRef.current = bytes;
             try { pdfRef.current = await openPdf(bytes); } catch { setPreviewFailed(true); }
-            setPageCount(doc.getPageCount());
+            setPageCount(count);
             setFile(f);
         } catch (e) {
-            setError(readErrorMessage(e, lang));
+            setError(errorText(e, lang));
         } finally {
             setBusy(null);
         }
@@ -298,7 +309,7 @@ export default function SplitInHalf({ lang }: { lang: 'en' | 'fr' }) {
             const bytes = await out.save();
             setResult({ blob: pdfBlob(bytes), name: baseName(file.name) + t.suffix, pages: plan.length });
         } catch (e) {
-            setError(readErrorMessage(e, lang));
+            setError(errorText(e, lang));
         } finally {
             setBusy(null);
         }
@@ -326,7 +337,7 @@ export default function SplitInHalf({ lang }: { lang: 'en' | 'fr' }) {
                 <FileText className="h-6 w-6 text-canada-red shrink-0" aria-hidden="true" />
                 <div className="min-w-0 flex-1">
                     <p className="font-bold text-gray-900 dark:text-gray-100 truncate">{file.name}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{t.pages(pageCount)}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">{t.pages(pageCount)}</p>
                 </div>
                 <SecondaryButton onClick={reset} disabled={!!busy} className="min-h-[40px]">{t.change}</SecondaryButton>
             </div>
