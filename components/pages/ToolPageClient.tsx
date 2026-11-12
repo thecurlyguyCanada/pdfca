@@ -647,9 +647,13 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         if (toolConfig.tool === ToolType.COMPRESS) {
           // Plain-language, translated messages instead of library errors
           const raw = error instanceof Error ? `${error.name} ${error.message}` : String(error);
+          // Only parse failures mean "damaged"; canvas/encode failures on big files are memory, not a bad PDF.
+          const isParse = /InvalidPDF|Failed to parse|No PDF header|Invalid PDF|MissingPDF|FormatError|UnexpectedResponse/i.test(raw);
           setErrorMessage(/encrypt|password/i.test(raw)
             ? (t.compressErrorEncrypted || 'This PDF is password-protected. Open it with its password, save a copy without protection, and compress that copy.')
-            : (t.compressErrorDamaged || 'This file could not be read as a PDF. It may be damaged or not a real PDF.'));
+            : isParse
+              ? (t.compressErrorDamaged || 'This file could not be read as a PDF. It may be damaged or not a real PDF.')
+              : (t.compressErrorMemory || 'Your device ran out of memory compressing this file. Close other tabs and try again, use Extreme, or split the PDF into smaller parts first.'));
         } else if (error instanceof Error) {
           setErrorMessage(error.message);
         }

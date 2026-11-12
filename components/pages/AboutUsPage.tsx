@@ -49,7 +49,7 @@ export const AboutUsPage: React.FC<PageProps> = ({ lang }) => {
             <SEO
                 title={t.seo.aboutTitle}
                 description={t.seo.aboutDesc}
-                canonicalPath="/about"
+                canonicalPath={`/${lang}/about`}
                 lang={lang}
                 schema={aboutSchema}
             />

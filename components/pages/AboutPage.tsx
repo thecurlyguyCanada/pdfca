@@ -300,12 +300,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/about"
+                canonicalPath={`/${lang}/about`}
                 lang={lang}
                 schema={schema}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'À Propos' : lang === 'pt' ? 'Sobre' : 'About', path: lang === 'en' ? '/about' : `/${lang}/about` }
+                    { name: lang === 'fr' ? 'Accueil' : lang === 'pt' ? 'Início' : 'Home', path: `/${lang}` },
+                    { name: lang === 'fr' ? 'À Propos' : lang === 'pt' ? 'Sobre' : 'About', path: `/${lang}/about` }
                 ]}
             />
             <PageLayout
@@ -313,8 +313,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Leaf size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'À Propos' : (lang === 'pt' ? 'Sobre' : 'About'), href: lang === 'en' ? '/about' : `/${lang}/about` }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'À Propos' : (lang === 'pt' ? 'Sobre' : 'About'), href: `/${lang}/about` }
                 ]}
             >
                 <div className="max-w-4xl mx-auto py-8">

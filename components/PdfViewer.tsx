@@ -1,4 +1,5 @@
 'use client';
+import { PDFJS_WORKER } from '@/config/vendor';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Eye, Volume2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Loader2, X } from 'lucide-react';
@@ -43,7 +44,7 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
 
                 // Set worker
                 if (!pdfjs.GlobalWorkerOptions.workerSrc) {
-                    pdfjs.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs';
+                    pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
                 }
 
                 const loadingTask = pdfjs.getDocument(pdfUrl);

@@ -22,7 +22,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ lang }) => {
             <SEO
                 title={t.seo.privacyTitle}
                 description={t.seo.privacyDesc}
-                canonicalPath="/privacy"
+                canonicalPath={`/${lang}/privacy`}
                 lang={lang}
                 schema={privacySchema}
                 breadcrumbs={[

@@ -187,6 +187,16 @@ export default function AddImageToPdf({ lang }: { lang: Lang }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const drag = useRef<{ id: number; mode: 'move' | 'resize'; sx: number; sy: number; cx: number; cy: number; wPt: number; left: number } | null>(null);
 
+    // Release the pdf.js document and image object URLs when the tool unmounts (e.g. client-side navigation).
+    const pdfRef = useRef<PdfJsLib.PDFDocumentProxy | null>(null);
+    const imagesRef = useRef<Img[]>([]);
+    useEffect(() => { pdfRef.current = pdf; }, [pdf]);
+    useEffect(() => { imagesRef.current = images; }, [images]);
+    useEffect(() => () => {
+        if (pdfRef.current) void pdfRef.current.destroy();
+        for (const im of imagesRef.current) URL.revokeObjectURL(im.url);
+    }, []);
+
     const imgById = useCallback((id: number) => images.find((i) => i.id === id), [images]);
     const size = sizes[pageNo - 1];
     const k = size && cssW ? cssW / size.w : 1; // CSS px per point

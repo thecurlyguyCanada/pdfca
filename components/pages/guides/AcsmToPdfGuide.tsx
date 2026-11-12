@@ -296,8 +296,8 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Key size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
-                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides/ultimate-pdf-guide` },
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: `/${lang}/guides` },
                 { name: lang === 'fr' ? 'ACSM en PDF' : (lang === 'pt' ? 'ACSM para PDF' : 'ACSM to PDF'), href: '#' }
             ]}
         >
@@ -341,7 +341,7 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
 
                 <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-xl">
                     <h3 className="text-3xl font-bold mb-6">{t.cta}</h3>
-                    <Link href={`/${lang}/ultimate-pdf-guide`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
+                    <Link href={`/${lang}/guides`} className="inline-block bg-white text-slate-900 hover:scale-105 transition-all px-8 py-4 rounded-full font-bold text-lg border-2 border-transparent hover:border-white hover:bg-slate-900 hover:text-white">
                         {t.ctaBtn}
                     </Link>
                 </div>
@@ -355,21 +355,21 @@ export const AcsmToPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                         {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
                     </h3>
                     <div className="flex flex-wrap gap-4">
-                        <Link href={`/${lang}/guides/cbr-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/epub-to-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <BookOpen size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide CBR vers PDF' : (lang === 'pt' ? 'Guia CBR para PDF' : 'CBR to PDF Guide')}
+                            {lang === 'fr' ? 'EPUB vers PDF' : 'EPUB to PDF'}
                         </Link>
-                        <Link href={`/${lang}/guides/pdf-to-kindle`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/pdf-to-epub`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <BookOpen size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide PDF vers Kindle' : (lang === 'pt' ? 'Guia PDF para Kindle' : 'PDF to Kindle Guide')}
+                            {lang === 'fr' ? 'PDF vers EPUB' : 'PDF to EPUB'}
                         </Link>
-                        <Link href={`/${lang}/guides/unlock-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/ocr-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Unlock size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide Déverrouiller PDF' : (lang === 'pt' ? 'Guia Desbloquear PDF' : 'Unlock PDF Guide')}
+                            {lang === 'fr' ? 'OCR PDF' : 'OCR PDF'}
                         </Link>
-                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Download size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            {lang === 'fr' ? 'Compresser un PDF' : 'Compress PDF'}
                         </Link>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 'use client';
+import { PDFJS_WORKER } from '@/config/vendor';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Printer, FileText, Maximize2, Minimize2 } from 'lucide-react';
@@ -6,7 +7,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 
 // Configure PDF.js worker
 if (typeof window !== 'undefined') {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
 }
 
 interface PdfReaderToolProps {

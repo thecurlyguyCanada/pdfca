@@ -280,7 +280,7 @@ export default function SplitBySize({ lang }: { lang: Lang }) {
         if (preset === 'custom' && !customOk) { setError(t.badCustom); return; }
         const limit = Math.floor(limitMb * MB);
         setError(''); setInfo(''); setResult(null);
-        if (file.size <= limit) { setInfo(t.alreadySmall(formatBytes(file.size, lang), limitLabel(limitMb, lang))); return; }
+        if (file.size <= limit) { setInfo(t.alreadySmall(formatBytes(file.size, lang, 1000), limitLabel(limitMb, lang))); return; }
         setBusy(true); setProgress(t.progress(0, pageCount, 0));
         await yieldToBrowser();
         try {
@@ -332,7 +332,7 @@ export default function SplitBySize({ lang }: { lang: Lang }) {
                         <FileText className="h-6 w-6 text-canada-red shrink-0" aria-hidden="true" />
                         <div className="min-w-0 flex-1 basis-40">
                             <p className="font-semibold text-gray-900 dark:text-gray-100 truncate">{file.name}</p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{formatBytes(file.size, lang)} · {t.pages(pageCount)}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{formatBytes(file.size, lang, 1000)} · {t.pages(pageCount)}</p>
                         </div>
                         <SecondaryButton onClick={reset} disabled={busy} className="w-full sm:w-auto">{t.change}</SecondaryButton>
                     </div>
@@ -374,7 +374,7 @@ export default function SplitBySize({ lang }: { lang: Lang }) {
 
             {result && (
                 <>
-                    <ResultCard lang={lang} blob={result.blob} name={result.name} note={result.parts.length > 1 ? t.zipNote(result.parts.length) : t.oneNote} onReset={reset} />
+                    <ResultCard lang={lang} blob={result.blob} name={result.name} note={result.parts.length > 1 ? t.zipNote(result.parts.length) : t.oneNote} onReset={reset} base={1000} />
 
                     {overPages.length > 0 && (
                         <p role="alert" className="mt-4 flex items-start gap-2 text-sm text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-500/10 rounded-xl px-4 py-3">
@@ -394,7 +394,7 @@ export default function SplitBySize({ lang }: { lang: Lang }) {
                                     <div className="min-w-0 flex-1">
                                         <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">{p.name}</p>
                                         <p className={`text-xs ${p.over ? 'text-amber-700 dark:text-amber-300 font-semibold' : 'text-gray-500 dark:text-gray-400'}`}>
-                                            {t.pageRange(p.from, p.to)} · {formatBytes(p.bytes.length, lang)}{p.over ? ' ⚠' : ''}
+                                            {t.pageRange(p.from, p.to)} · {formatBytes(p.bytes.length, lang, 1000)}{p.over ? ' ⚠' : ''}
                                         </p>
                                     </div>
                                     {result.parts.length > 1 && (

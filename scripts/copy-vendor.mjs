@@ -29,11 +29,14 @@ cpSync(nm('pdfjs-dist', 'build', 'pdf.worker.min.mjs'), join(pdfjsDir, 'pdf.work
 const tessDir = join(out, `tesseract-${version('tesseract.js')}`);
 mkdirSync(join(tessDir, 'core'), { recursive: true });
 cpSync(nm('tesseract.js', 'dist', 'worker.min.js'), join(tessDir, 'worker.min.js'));
+// tesseract.js picks one of these LSTM cores at runtime (plain, SIMD or relaxed SIMD), so all three must exist.
 for (const v of ['', '-simd', '-relaxedsimd']) {
-    for (const ext of ['.wasm.js']) {
-        const f = `tesseract-core${v}-lstm${ext}`;
-        if (existsSync(nm('tesseract.js-core', f))) cpSync(nm('tesseract.js-core', f), join(tessDir, 'core', f));
+    const f = `tesseract-core${v}-lstm.wasm.js`;
+    if (!existsSync(nm('tesseract.js-core', f))) {
+        console.error(`Missing node_modules/tesseract.js-core/${f}: OCR would fail at runtime. Is tesseract.js-core installed at the top level?`);
+        process.exit(1);
     }
+    cpSync(nm('tesseract.js-core', f), join(tessDir, 'core', f));
 }
 const langDir = join(out, 'tessdata-4.0.0_best_int');
 mkdirSync(langDir, { recursive: true });

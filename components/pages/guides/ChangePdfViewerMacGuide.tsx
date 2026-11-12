@@ -546,8 +546,8 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
             subtitle={t.subtitle}
             icon={<Settings size={32} />}
             breadcrumbs={[
-                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
-                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
+                { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides' : '/en/guides' },
                 { name: 'Mac PDF Settings', href: '#' }
             ]}
         >
@@ -608,21 +608,21 @@ export const ChangePdfViewerMacGuide: React.FC<GuideProps> = ({ lang }) => {
                         {lang === 'fr' ? 'Voir Aussi' : (lang === 'pt' ? 'Veja Também' : 'Also See')}
                     </h3>
                     <div className="flex flex-wrap gap-4">
-                        <Link href={`/${lang}/guides/private-pdf-tools`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/sign-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Shield size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Outils PDF Privés' : (lang === 'pt' ? 'Ferramentas PDF Privadas' : 'Private PDF Tools')}
+                            {lang === 'fr' ? 'Signer un PDF' : 'Sign PDF'}
                         </Link>
-                        <Link href={`/${lang}/guides/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/compress-pdf`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Monitor size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide Compresser PDF' : (lang === 'pt' ? 'Guia Comprimir PDF' : 'Compress PDF Guide')}
+                            {lang === 'fr' ? 'Compresser un PDF' : 'Compress PDF'}
                         </Link>
-                        <Link href={`/${lang}/guides/pdf-to-word`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/pdf-to-word`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <FileText size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide PDF vers Word' : (lang === 'pt' ? 'Guia PDF para Word' : 'PDF to Word Guide')}
+                            {lang === 'fr' ? 'PDF vers Word' : 'PDF to Word'}
                         </Link>
-                        <Link href={`/${lang}/guides/ultimate-pdf-guide`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <Link href={`/${lang}/guides`} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-gray-700 dark:text-gray-300">
                             <Settings size={16} className="text-canada-red" />
-                            {lang === 'fr' ? 'Guide Ultime PDF' : (lang === 'pt' ? 'Guia Definitivo de PDF' : 'Ultimate PDF Guide')}
+                            {lang === 'fr' ? 'Tous les guides' : 'All guides'}
                         </Link>
                     </div>
                 </div>
