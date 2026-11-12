@@ -42,7 +42,7 @@ const getTools = (lang: Language) => ({
         { name: lang === 'fr' ? 'PDF vers EPUB' : (lang === 'pt' ? 'PDF para EPUB' : 'PDF to EPUB'), path: '/pdf-to-epub', entity: lang === 'fr' ? 'Convertisseur PDF en ebook EPUB' : (lang === 'pt' ? 'Conversor de PDF para ebook EPUB' : 'PDF to EPUB ebook converter') },
         { name: lang === 'fr' ? 'PDF vers XML' : (lang === 'pt' ? 'PDF para XML' : 'PDF to XML'), path: '/pdf-to-xml', entity: lang === 'fr' ? 'Extracteur de données PDF en XML' : (lang === 'pt' ? 'Extrator de dados PDF para XML' : 'PDF to XML data extractor') },
         { name: lang === 'fr' ? 'XML vers PDF' : (lang === 'pt' ? 'XML para PDF' : 'XML to PDF'), path: '/xml-to-pdf', entity: lang === 'fr' ? 'Convertisseur XML en PDF' : (lang === 'pt' ? 'Conversor de XML para PDF' : 'XML to PDF converter') },
-        { name: lang === 'fr' ? 'OCR Factures' : (lang === 'pt' ? 'OCR de Faturas' : 'Invoice OCR'), path: '/invoice-ocr', entity: lang === 'fr' ? 'Extracteur de données de facturation PDF' : (lang === 'pt' ? 'Extrator de dados de faturamento PDF' : 'PDF invoice data extractor') },
+        { name: 'OCR PDF', path: '/ocr-pdf', entity: lang === 'fr' ? 'Outil OCR pour rendre un PDF numérisé consultable' : (lang === 'pt' ? 'Ferramenta OCR para PDF digitalizado' : 'OCR tool that makes a scanned PDF searchable') },
     ],
 });
 

@@ -43,6 +43,7 @@ import {
   convertImageToPdf,
   convertPdfToJpg,
   convertPdfToPng,
+  ocrPdf,
   convertOdtToPdf,
   convertPdfToPpt,
   convertPptToPdf,
@@ -76,6 +77,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [processedSize, setProcessedSize] = useState<number | null>(null);
   const [pageRangeInput, setPageRangeInput] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [progressText, setProgressText] = useState('');
   const [kindleMode, setKindleMode] = useState<'reflow' | 'visual'>('reflow');
   const [kindleScreenSize, setKindleScreenSize] = useState<number>(6);
 
@@ -523,6 +525,15 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = primaryFile.name.replace(/\.pdf$/i, '_images.zip');
             break;
 
+          case ToolType.OCR_PDF:
+            resultBlob = await ocrPdf(primaryFile, lang, ({ page, total }) => {
+              if (isMounted.current) {
+                setProgressText(lang === 'fr' ? `Lecture de la page ${page} sur ${total}…` : `Reading page ${page} of ${total}…`);
+              }
+            });
+            outputName = primaryFile.name.replace(/\.pdf$/i, '_searchable.pdf');
+            break;
+
           case ToolType.PDF_TO_PNG:
             resultBlob = await convertPdfToPng(primaryFile);
             outputName = primaryFile.name.replace(/\.pdf$/i, '_images.zip');
@@ -598,6 +609,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         setErrorKey('errorGeneric');
       }
     } finally {
+      setProgressText('');
       if (isMounted.current) {
         setIsProcessing(false);
       }
@@ -681,7 +693,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
       {isProcessing && (
         <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm">
           <div className="w-16 h-16 border-4 border-canada-red border-t-transparent rounded-full animate-spin mb-4" />
-          <p className="text-lg font-bold text-gray-800 animate-pulse">{t.processing || 'Processing...'}</p>
+          <p className="text-lg font-bold text-gray-800 animate-pulse">{progressText || t.processing || 'Processing...'}</p>
         </div>
       )}
     </>

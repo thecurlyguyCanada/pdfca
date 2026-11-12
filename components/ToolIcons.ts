@@ -1,7 +1,7 @@
 import {
     Trash2, RotateCw, FileDown, LayoutGrid, Scissors, FileSearch, Crop,
     Image, BookOpen, Smartphone, Tablet, FormInput, PenTool, Layers,
-    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck
+    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck, ScanText
 } from 'lucide-react';
 
 export const TOOL_ICONS: Record<string, React.ElementType> = {
@@ -10,6 +10,7 @@ export const TOOL_ICONS: Record<string, React.ElementType> = {
     'compress-pdf': FileDown,
     'merge-pdf': LayoutGrid,
     'split-pdf': Scissors,
+    'ocr-pdf': ScanText,
     'extract-pdf-pages': FileSearch,
     'crop-pdf': Crop,
     'heic-to-pdf': Image,
