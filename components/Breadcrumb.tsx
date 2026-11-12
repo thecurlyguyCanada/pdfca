@@ -16,7 +16,7 @@ interface BreadcrumbProps {
 export function Breadcrumb({ items, lang }: BreadcrumbProps) {
     return (
         <nav
-            aria-label="Breadcrumb"
+            aria-label={lang === 'fr' ? 'Fil d’Ariane' : 'Breadcrumb'}
             className="flex items-center gap-2 text-sm mb-6 flex-wrap max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6"
         >
             <Link

@@ -115,8 +115,8 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: 'Comprimir PDF - Redutor de Tamanho Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'Compress PDF - Quickly shrink your PDF files without losing quality. 100% private, local-first processing ensures your documents stay secure. Try it now for free.',
-      fr: 'Compresser un PDF - Réduisez le poids de vos PDF sans perte de qualité. Traitement 100% local : vos fichiers ne quittent jamais votre appareil. Gratuit et rapide.',
+      en: 'Compress PDF - Shrink scanned PDFs 55–98% in your browser with three levels and a grayscale option. Nothing is uploaded. Free, no account, no watermark.',
+      fr: 'Compresser un PDF - Allégez vos numérisations de 55 à 98 % dans le navigateur : trois niveaux, niveaux de gris. Aucun envoi, gratuit, sans compte.',
       pt: 'Comprimir PDF - Reduza o tamanho do seu PDF sem perder qualidade. Processamento 100% local: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
@@ -140,9 +140,9 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     },
     accept: '.pdf,application/pdf',
     featureList: {
-      en: ['Reduce PDF size by up to 90%', 'Three compression levels', 'Maintain document quality', 'Batch compression support'],
-      fr: ['Réduisez la taille PDF jusqu\'à 90%', 'Trois niveaux de compression', 'Maintenez la qualité qualité', 'Support compression par lot'],
-      pt: ['Reduza tamanho PDF até 90%', 'Três níveis de compressão', 'Mantenha qualidade documento', 'Suporte compressão em lote']
+      en: ['Three levels: lossless, 150 DPI, 100 DPI', 'Scans 55–98% smaller (measured)', 'Grayscale option', 'Keeps your original if the result would be larger'],
+      fr: ['Trois niveaux : sans perte, 150 ppp, 100 ppp', 'Numérisations 55 à 98 % plus légères (mesuré)', 'Option niveaux de gris', 'Conserve l’original si le résultat est plus lourd'],
+      pt: ['Three levels: lossless, 150 DPI, 100 DPI', 'Scans 55–98% smaller (measured)', 'Grayscale option', 'Keeps your original if the result would be larger']
     },
     guideSlug: 'compress-pdf',
     relatedSlugs: ['merge-pdf', 'split-pdf', 'pdf-to-word', 'delete-pdf-pages']
