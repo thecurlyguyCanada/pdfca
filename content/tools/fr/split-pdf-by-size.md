@@ -16,7 +16,7 @@ limits:
   - ["Qualité", "Sans perte : pages, polices et images sont copiées octet pour octet. Rien n'est recompressé."]
   - ["Non repris dans les parties", "Signets, champs de formulaire remplissables, pièces jointes, et liens qui mènent à une page d'une autre partie"]
   - ["Ce qui reste sur votre appareil", "L'original, les parties et vos réglages. Le site n'enregistre qu'une visite anonyme de la page."]
-  - ["Fonctionne hors ligne?", "Oui, une fois la page chargée et votre fichier ajouté (le moteur PDF se charge avec le premier fichier)."]
+  - ["Fonctionne hors ligne?", "En grande partie. Le moteur PDF se charge quand vous ajoutez le fichier, et l'outil ZIP la première fois que vous obtenez deux parties ou plus; faites donc une division en ligne."]
   - ["Navigateurs", "Versions actuelles de Chrome, Edge, Firefox et Safari sur ordinateur; Safari sur iOS et Chrome sur Android"]
 faq:
   - q: "Comment diviser gratuitement un PDF en fichiers plus petits selon la taille?"

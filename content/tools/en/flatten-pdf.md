@@ -15,7 +15,7 @@ limits:
   - ["Kept (forms mode)", "Page content, selectable text including the filled-in values, links, bookmarks, document properties, page size and rotation"]
   - ["Removed (forms mode)", "Form fields, XFA form data, flattened annotations and their pop-up notes. Any digital signature is no longer valid."]
   - ["What stays on your device", "The original, the flattened file and your choices. The site records only an anonymous page view."]
-  - ["Works offline?", "Yes, once the page has loaded and you have added your file (the PDF engine loads with the first file)."]
+  - ["Works offline?", "Mostly. The PDF engine loads when you add your file; the page renderer used by Flatten to images loads the first time you run that mode, so do that once while online."]
   - ["Browsers", "Current Chrome, Edge, Firefox and Safari on desktop; Safari on iOS and Chrome on Android"]
 faq:
   - q: "How do I flatten a filled PDF form for free?"

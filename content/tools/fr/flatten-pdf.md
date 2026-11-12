@@ -15,7 +15,7 @@ limits:
   - ["Conservé (formulaires)", "Contenu des pages, texte sélectionnable y compris les valeurs saisies, liens, signets, propriétés du document, taille et rotation des pages"]
   - ["Retiré (formulaires)", "Champs de formulaire, données XFA, annotations aplaties et leurs notes contextuelles. Une signature numérique n'est plus valide."]
   - ["Ce qui reste sur votre appareil", "L'original, le fichier aplati et vos choix. Le site n'enregistre qu'une visite anonyme de la page."]
-  - ["Fonctionne hors ligne?", "Oui, une fois la page chargée et votre fichier ajouté (le moteur PDF se charge avec le premier fichier)."]
+  - ["Fonctionne hors ligne?", "En grande partie. Le moteur PDF se charge quand vous ajoutez le fichier; le moteur de rendu d'Aplatir en images se charge la première fois que vous utilisez cette méthode, alors faites-le une fois en ligne."]
   - ["Navigateurs", "Versions actuelles de Chrome, Edge, Firefox et Safari sur ordinateur; Safari sur iOS et Chrome sur Android"]
 faq:
   - q: "Comment aplatir gratuitement un formulaire PDF rempli?"

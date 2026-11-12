@@ -16,7 +16,7 @@ limits:
   - ["Quality", "Lossless: pages, fonts and images are copied byte for byte. Nothing is recompressed."]
   - ["Not carried into the parts", "Bookmarks, fillable form fields, attachments, and links that point to a page in another part"]
   - ["What stays on your device", "The original, the parts and your settings. The site records only an anonymous page view."]
-  - ["Works offline?", "Yes, once the page has loaded and you have added your file (the PDF engine loads with the first file)."]
+  - ["Works offline?", "Mostly. The PDF engine loads when you add your file and the ZIP builder the first time you get two or more parts, so run one split while online."]
   - ["Browsers", "Current Chrome, Edge, Firefox and Safari on desktop; Safari on iOS and Chrome on Android"]
 faq:
   - q: "How do I split a PDF into smaller files by size for free?"
