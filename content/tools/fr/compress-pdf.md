@@ -1,6 +1,6 @@
 ---
 title: "Compresser un PDF gratuitement : jusqu'à 90 % plus léger, sans envoi"
-h1: "Compresser un PDF à moins de 2 Mo"
+h1: "Compresser un PDF"
 lead: "Choisissez un niveau de qualité, cliquez sur Compresser PDF et téléchargez un fichier plus léger. Les numérisations perdent 40 à 90 %; tout se passe dans votre navigateur."
 description: "Compressez un PDF à moins de 2 Mo gratuitement dans votre navigateur. Trois niveaux; les numérisations perdent 40 à 90 %, le texte 5 à 15 %. Sans téléversement."
 answer: "Ajoutez votre PDF, choisissez Bon, Équilibré ou Extrême, cliquez sur Compresser PDF et téléchargez le résultat. Bon garde le texte sélectionnable et retire 5 à 15 %; Équilibré et Extrême redessinent chaque page en JPEG et allègent les fichiers numérisés ou remplis de photos de 40 à 90 %, ce qui fait passer une numérisation de 10 Mo sous 2 Mo. C'est gratuit, rien n'est téléversé, et l'outil propose des niveaux de qualité plutôt qu'une taille cible : vérifiez le résultat et essayez le niveau suivant s'il est encore trop lourd."

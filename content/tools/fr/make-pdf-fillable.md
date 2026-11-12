@@ -1,6 +1,6 @@
 ---
 title: "Rendre un PDF remplissable gratuitement : champs détectés pour vous"
-h1: "Comment rendre un PDF remplissable"
+h1: "Rendre un PDF remplissable"
 lead: "Transformez les lignes vides et les cases d'un PDF figé en vrais champs de formulaire où n'importe qui peut écrire. Détection et enregistrement se font dans votre navigateur; rien n'est téléversé."
 description: "Rendez un PDF figé remplissable gratuitement dans votre navigateur : les lignes (____) deviennent des champs texte et les [ ] des cases à cocher en 2 secondes."
 answer: "Téléversez le PDF dans la page, cochez les pages qui contiennent des blancs et cliquez sur Détecter et Remplir. Chaque suite de trois traits de soulignement ou plus devient un champ texte et chaque [ ] ou ☐ une case à cocher; la copie remplissable se télécharge aussitôt et s'ouvre dans Acrobat Reader, Aperçu, Chrome ou Edge. Gratuit, sans compte, sans téléversement. Fonctionne sur les PDF avec couche texte, pas sur les numérisations."

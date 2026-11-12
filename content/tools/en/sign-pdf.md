@@ -1,6 +1,6 @@
 ---
-title: "Sign a PDF Free: Draw, Type or Upload, Nothing Uploaded (2026)"
-h1: "How to Sign a PDF Electronically"
+title: "Sign PDF Free: Draw, Type or Upload a Signature, No Upload"
+h1: "Sign PDF"
 lead: "Draw, type or upload your signature, drop it on the page with initials and today's date, and download the signed PDF. Everything stays in your browser."
 description: "Sign a PDF for free in your browser: draw, type or upload a signature, add initials and the date, and download in seconds. The file never leaves your device."
 answer: "Upload the PDF, click Create New Signature and draw it, type it or upload a photo of it, then drag it onto the signature line and resize. Add initials, today's date or a text note the same way and click Finish & Download. The signature is stamped into the page as an image. Free, no account, nothing uploaded. It is an electronic signature, not a certificate-based digital signature."

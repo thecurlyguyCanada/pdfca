@@ -1,6 +1,6 @@
 ---
 title: "Extraire des pages d'un PDF gratuitement dans un nouveau fichier"
-h1: "Comment extraire des pages d'un PDF dans un nouveau fichier"
+h1: "Extraire des pages d'un PDF"
 lead: "Sélectionnez les pages voulues, cliquez sur Extraire les pages et téléchargez un nouveau PDF qui ne contient que celles-là. Dans votre navigateur, sans téléversement."
 description: "Extrayez des pages d'un PDF gratuitement dans votre navigateur : cliquez les vignettes ou tapez 3-7, 12, puis Extraire. Un seul nouveau PDF, original intact."
 answer: "Ajoutez le PDF, sélectionnez les pages voulues en cliquant sur les vignettes ou en tapant une plage comme 3-7, 12, puis cliquez sur Extraire les pages. Un nouveau PDF se télécharge avec seulement ces pages, dans l'ordre du document, en pleine qualité. C'est gratuit, sans compte ni filigrane, et le fichier ne quitte jamais votre appareil. L'original n'est pas modifié : vous pouvez en extraire un autre ensemble une minute plus tard."

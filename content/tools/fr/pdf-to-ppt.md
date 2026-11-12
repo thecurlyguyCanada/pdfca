@@ -1,6 +1,6 @@
 ---
 title: "Convertir un PDF en PowerPoint gratuitement : une diapositive par page"
-h1: "Comment convertir un PDF en PowerPoint"
+h1: "Convertir PDF en PowerPoint"
 lead: "Transformez un PDF en fichier .pptx, une diapositive par page, pour le présenter dans PowerPoint, Keynote ou Google Slides. Tout se passe dans votre navigateur."
 description: "Convertissez un PDF en PowerPoint .pptx gratuitement dans votre navigateur : chaque page devient une diapositive sous forme d'image nette. Rien n'est téléversé."
 answer: "Choisissez le PDF, cliquez sur Convertir le fichier, et un .pptx se télécharge avec une diapositive par page. Chaque diapositive contient une image haute résolution de la page, pas de zones de texte modifiables : l'outil sert à présenter un PDF, pas à le réécrire. C'est gratuit, sans compte ni filigrane, et le rendu se fait dans l'onglet de votre navigateur plutôt que sur un serveur."

@@ -1,6 +1,6 @@
 ---
 title: "Convertir un PDF en JPG gratuitement : chaque page en image (ZIP)"
-h1: "Comment convertir un PDF en images JPG"
+h1: "Convertir PDF en JPG"
 lead: "Transformez chaque page d'un PDF en image JPG et téléchargez le tout dans un ZIP. Le rendu se fait dans votre navigateur; le PDF ne quitte jamais votre appareil."
 description: "Convertissez un PDF en JPG gratuitement dans votre navigateur : chaque page devient un JPEG à 144 ppp (1224×1584 px en format Lettre), le tout dans un ZIP."
 answer: "Cliquez sur Choisir un fichier, sélectionnez le PDF et cliquez sur Convertir le fichier. L'outil dessine chaque page au double de sa taille nominale, soit environ 144 ppp, l'enregistre en JPEG à la qualité 0,92 et range toutes les pages dans un ZIP qui se télécharge automatiquement. C'est gratuit, sans filigrane ni compte, et le PDF est rendu dans l'onglet de votre navigateur plutôt que téléversé quelque part."

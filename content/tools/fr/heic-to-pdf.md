@@ -1,6 +1,6 @@
 ---
 title: "Convertir une photo HEIC (iPhone) en PDF gratuitement, sans envoi"
-h1: "Comment convertir un HEIC en PDF"
+h1: "Convertir HEIC en PDF"
 lead: "Convertissez une photo HEIC d'iPhone en un PDF que Windows, l'ARC et n'importe quel formulaire de téléversement accepteront. Le décodage se fait dans votre navigateur."
 description: "Convertissez un HEIC en PDF gratuitement dans votre navigateur, en 1 à 3 secondes par photo. L'image iPhone est décodée sur place, jamais téléversée."
 answer: "Cliquez sur Choisir un fichier, sélectionnez la photo .heic et cliquez sur Convertir le fichier. Le navigateur décode lui-même le format HEIC d'Apple, ce qui prend une à trois secondes par photo, puis enveloppe l'image dans un PDF d'une page qui se télécharge automatiquement. C'est gratuit, sans filigrane ni compte, et la photo ne quitte jamais votre appareil. Pour plusieurs photos, convertissez-les une à une puis réunissez-les avec Fusionner PDF."

@@ -1,6 +1,6 @@
 ---
-title: "Organize PDF Pages Free: Drag to Reorder, No Upload (2026)"
-h1: "How to Reorder PDF Pages by Drag and Drop"
+title: "Organize PDF Pages Free: Drag to Reorder, No Upload"
+h1: "Organize PDF Pages"
 lead: "Drag page thumbnails into the order you want and click Save. The new sequence is written in your browser; nothing is uploaded."
 description: "Reorder PDF pages for free in your browser: drag thumbnails into a new order and click Save. Pages copied as-is, no quality loss, original untouched. No upload."
 answer: "Add your PDF, drag the page thumbnails in the grid until they sit in the order you want, then click Save. A new PDF downloads with the pages in that sequence, copied without any change in quality. It is free, there is no account or watermark, and the file never leaves your device. The original stays as it was, so you can try a different order a minute later."

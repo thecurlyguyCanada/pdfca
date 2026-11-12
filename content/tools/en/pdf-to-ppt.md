@@ -1,6 +1,6 @@
 ---
-title: "PDF to PowerPoint Free: 1 Slide per Page in Your Browser (2026)"
-h1: "How to Convert a PDF to PowerPoint"
+title: "PDF to PowerPoint Converter: Free, 1 Slide per Page"
+h1: "PDF to PowerPoint Converter"
 lead: "Turn a PDF into a .pptx with one slide per page so you can present it in PowerPoint, Keynote or Google Slides. The conversion runs in your browser; nothing is uploaded."
 description: "Convert a PDF to a PowerPoint .pptx for free in your browser: each page becomes one slide rendered as a sharp picture. Nothing uploaded; text not editable."
 answer: "Select the PDF, click Convert File, and a .pptx downloads with one slide per page. Each slide holds a high-resolution picture of the page, not editable text boxes, so this is for presenting a PDF, not rewriting it. It is free, there is no account or watermark, and the PDF is rendered inside your browser tab rather than on a server."

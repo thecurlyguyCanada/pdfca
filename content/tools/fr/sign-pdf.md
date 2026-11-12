@@ -1,6 +1,6 @@
 ---
 title: "Signer un PDF gratuitement : dessinez ou tapez, rien n'est envoyé"
-h1: "Comment signer un PDF électroniquement"
+h1: "Signer un PDF"
 lead: "Dessinez, tapez ou téléversez votre signature, déposez-la sur la page avec vos initiales et la date du jour, puis téléchargez le PDF signé. Tout reste dans votre navigateur."
 description: "Signez un PDF gratuitement dans votre navigateur : dessinez, tapez ou téléversez une signature, ajoutez initiales et date, téléchargez en quelques secondes."
 answer: "Téléversez le PDF dans la page, cliquez sur Créer une nouvelle signature et dessinez-la, tapez-la ou téléversez-en une photo, puis glissez-la sur la ligne de signature et ajustez sa taille. Ajoutez vos initiales, la date du jour ou une note de la même façon et cliquez sur Terminer & Télécharger. La signature est imprimée dans la page comme une image. Gratuit, sans compte, sans téléversement. C'est une signature électronique, pas une signature numérique à certificat."

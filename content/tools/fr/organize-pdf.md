@@ -1,6 +1,6 @@
 ---
 title: "Réorganiser les pages d'un PDF gratuitement : glissez pour réordonner"
-h1: "Comment réordonner les pages d'un PDF par glisser-déposer"
+h1: "Réorganiser les pages d'un PDF"
 lead: "Glissez les vignettes des pages dans l'ordre voulu et cliquez sur Enregistrer. La nouvelle séquence est écrite dans votre navigateur; rien n'est téléversé."
 description: "Réordonnez les pages d'un PDF gratuitement dans votre navigateur : glissez les vignettes dans un nouvel ordre et cliquez sur Enregistrer. Sans perte, sans envoi."
 answer: "Ajoutez votre PDF, glissez les vignettes de pages dans la grille jusqu'à ce qu'elles soient dans l'ordre voulu, puis cliquez sur Enregistrer. Un nouveau PDF se télécharge avec les pages dans cette séquence, copiées sans aucune perte de qualité. C'est gratuit, sans compte ni filigrane, et le fichier ne quitte jamais votre appareil. L'original reste tel quel : vous pouvez essayer un autre ordre une minute plus tard."

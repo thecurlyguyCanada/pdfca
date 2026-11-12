@@ -1,6 +1,6 @@
 ---
 title: "Convertir Word en PDF gratuitement, directement dans le navigateur"
-h1: "Comment convertir un document Word en PDF"
+h1: "Convertir Word en PDF"
 lead: "Transformez un .docx en PDF qui s'ouvre de la même façon partout. La conversion se fait dans l'onglet de votre navigateur; le document n'est jamais téléversé."
 description: "Convertissez un .docx Word en PDF gratuitement, dans votre navigateur, en quelques secondes, sans téléversement. Enregistrez d'abord les vieux .doc en .docx."
 answer: "Sélectionnez le .docx, cliquez sur Convertir le fichier et le PDF se télécharge quelques secondes plus tard. C'est gratuit, sans compte, sans filigrane et sans téléversement : le document est lu et rendu en PDF dans votre navigateur. La limite à connaître concerne le format d'entrée. Seul le .docx se convertit; un vieux fichier .doc doit d'abord être réenregistré en .docx dans Word, LibreOffice ou Google Docs."

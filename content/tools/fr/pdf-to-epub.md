@@ -1,6 +1,6 @@
 ---
 title: "Convertir un PDF en EPUB gratuitement : livre numérique recomposable"
-h1: "Comment convertir un PDF en EPUB"
+h1: "Convertir PDF en EPUB"
 lead: "Transformez un PDF texte en EPUB 3 recomposable avec chapitres, notes contextuelles et couverture, le tout construit dans votre navigateur. Rien n'est téléversé."
 description: "Convertissez un PDF en EPUB recomposable pour Kobo ou Kindle, gratuitement et dans votre navigateur. Titres et notes détectés; 300 pages en 20 à 60 secondes."
 answer: "Choisissez votre PDF, laissez EPUB Reflowable sélectionné et cliquez sur Convertir le fichier. L'outil lit la couche texte avec pdf.js, repère les titres et les notes de bas de page, retire les en-têtes courants et les numéros de page, puis assemble un EPUB 3 lisible sur Kobo, Kindle ou téléphone. Gratuit, sans compte, sans téléversement. Il faut un PDF avec du vrai texte : les numérisations, les articles sur deux colonnes et les tableaux se convertissent mal."

@@ -1,6 +1,6 @@
 ---
-title: "Rotate a PDF Free: 90° Lossless, Saved for Good, No Upload (2026)"
-h1: "How to Rotate a PDF and Save It"
+title: "Rotate PDF Free: 90° Lossless, Saved for Good, No Upload"
+h1: "Rotate PDF"
 lead: "Turn the pages 90°, 180° or 270°, click Apply Rotation and download a file that opens the right way up everywhere. It runs in your browser."
 description: "Rotate a PDF for free in your browser and save it: 90°, 180° or 270°, lossless, with the rotation stored in the file so it sticks."
 answer: "Add the PDF, click Rotate All Right or Rotate All Left once per quarter turn (twice for 180°), check the degree badge on the thumbnails, then click Apply Rotation and download. The rotation is written into the file as a page attribute, so it is lossless and sticks in every viewer. It is free, nothing is uploaded, and your original is left as it was."

@@ -1,6 +1,6 @@
 ---
-title: "Word to PDF Free: Convert DOCX in Your Browser, No Upload (2026)"
-h1: "How to Convert a Word Document to PDF"
+title: "Word to PDF Converter: Free DOCX to PDF, No Upload"
+h1: "Word to PDF Converter"
 lead: "Turn a .docx into a PDF that opens the same everywhere. The conversion runs in your browser tab, so the document is never uploaded."
 description: "Convert a Word .docx to PDF for free in your browser in a few seconds, nothing uploaded. Text, headings, lists and images carry over; save .doc files as .docx first."
 answer: "Select the .docx, click Convert File, and the PDF downloads a few seconds later. It is free, with no account, no watermark and no upload: the document is read and rendered to PDF inside your browser. The limit to know about is the input format. Only .docx converts; an old .doc file must be re-saved as .docx in Word, LibreOffice or Google Docs first."

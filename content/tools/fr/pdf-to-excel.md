@@ -1,6 +1,6 @@
 ---
 title: "Convertir un PDF en Excel gratuitement : tableaux en XLSX"
-h1: "Comment convertir un tableau PDF en Excel"
+h1: "Convertir PDF en Excel"
 lead: "Extrayez les lignes et colonnes d'un PDF texte vers un .xlsx que vous pouvez trier et additionner. L'extraction se fait dans votre navigateur; rien n'est téléversé."
 description: "Convertissez des tableaux PDF en Excel .xlsx gratuitement, dans votre navigateur. Relevés, factures et rapports en PDF texte; les numérisations ne sont pas lues."
 answer: "Sélectionnez le PDF, choisissez Aperçu et modification ou Conversion rapide, puis téléchargez le .xlsx. C'est gratuit, sans compte, et le PDF reste sur votre appareil : la position des textes est lue et la feuille de calcul est écrite dans l'onglet de votre navigateur. Ça fonctionne sur les PDF produits par un logiciel (relevés bancaires, factures, rapports), pas sur les pages numérisées, qui ne contiennent aucun texte à extraire."

@@ -1,6 +1,6 @@
 ---
 title: "Faire pivoter un PDF gratuitement : 90° sans perte de qualité"
-h1: "Comment faire pivoter un PDF et l'enregistrer"
+h1: "Faire pivoter un PDF"
 lead: "Tournez les pages de 90°, 180° ou 270°, cliquez sur Appliquer et téléchargez un fichier qui s'ouvre à l'endroit partout. Tout se passe dans votre navigateur."
 description: "Faites pivoter un PDF gratuitement dans votre navigateur et enregistrez-le : 90°, 180° ou 270°, sans perte, rotation inscrite dans le fichier."
 answer: "Ajoutez le PDF, cliquez sur Tout Pivoter Droite ou Tout Pivoter Gauche une fois par quart de tour (deux fois pour 180°), vérifiez la pastille de degrés sur les vignettes, puis cliquez sur Appliquer et téléchargez. La rotation est écrite dans le fichier comme attribut de page : elle est sans perte et tient dans tous les lecteurs. C'est gratuit, rien n'est téléversé et votre original reste tel quel."
