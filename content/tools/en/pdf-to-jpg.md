@@ -1,6 +1,6 @@
 ---
-title: "PDF to JPG Free: Every Page at 144 DPI in a ZIP, No Upload (2026)"
-h1: "How to Convert a PDF to JPG Images"
+title: "PDF to JPG Converter: Every Page at 144 DPI, Free, No Upload"
+h1: "PDF to JPG Converter"
 lead: "Render every page of a PDF as a JPG image and download them together in a ZIP. The rendering runs in your browser; the PDF never leaves your device."
 description: "Convert a PDF to JPG for free in your browser: each page becomes a 144 DPI JPEG (1224×1584 px for Letter), zipped together. No upload, no account, no watermark."
 answer: "Click Select File, choose the PDF and click Convert File. The tool draws each page at twice its nominal size, about 144 DPI, saves it as a JPEG at quality 0.92 and packs all the pages into one ZIP that downloads automatically. It is free with no watermark or account, and the PDF is rendered inside your browser tab rather than uploaded anywhere."

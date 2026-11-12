@@ -1,6 +1,6 @@
 ---
 title: "Convertir des JPG en PDF gratuitement : photos, PNG et HEIC réunis"
-h1: "Comment convertir un JPG ou une image en PDF"
+h1: "Convertir JPG en PDF"
 lead: "Transformez une photo, une numérisation, une capture d'écran ou une photo iPhone en PDF sans perte, puis combinez-les en un seul fichier. Tout se passe dans votre navigateur."
 description: "Convertissez un JPG, PNG, WEBP ou HEIC en PDF gratuitement dans votre navigateur en 2 secondes, puis fusionnez-les en un seul PDF. Sans téléversement ni filigrane."
 answer: "Cliquez sur Choisir un fichier, sélectionnez l'image et cliquez sur Convertir le fichier : un PDF d'une page aux dimensions de la photo se télécharge aussitôt. Les JPG et PNG sont intégrés sans recompression, donc la qualité est identique à l'original. Pour réunir plusieurs photos dans un même document, convertissez-les une à une puis combinez-les avec Fusionner PDF. C'est gratuit, sans filigrane, et les images ne quittent jamais votre appareil."

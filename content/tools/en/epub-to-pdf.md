@@ -1,6 +1,6 @@
 ---
-title: "EPUB to PDF Free: Clean Text PDF in Your Browser, No Upload (2026)"
-h1: "How to Convert an EPUB to PDF"
+title: "EPUB to PDF Converter: Free Clean PDF, No Upload"
+h1: "EPUB to PDF Converter"
 lead: "Pick a DRM-free .epub and get a clean, printable text PDF a few seconds later. The book is unpacked and laid out inside your browser; nothing is uploaded."
 description: "Convert an EPUB to a printable PDF for free in your browser. Text is set on letter-size pages at 11 points; a 300-page novel takes under 10 seconds. No upload."
 answer: "Click Select File, choose a DRM-free .epub, then click Convert File. The tool unzips the book in your browser, pulls the text out of each chapter and lays it out on letter-size pages; the PDF downloads when it is done. It is free, with no account and no upload. The one limit that matters: the output is text only, so images, fonts and the publisher's styling are not carried across."

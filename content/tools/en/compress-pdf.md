@@ -1,6 +1,6 @@
 ---
-title: "Compress PDF to 2 MB Free: 40–90% Smaller, No Upload (2026)"
-h1: "Compress a PDF to Under 2 MB"
+title: "Compress PDF to 2 MB Free: 40–90% Smaller, No Upload"
+h1: "Compress PDF"
 lead: "Pick a quality level, click Compress PDF and download a smaller file. Scans and photo PDFs shrink 40–90%; everything runs in your browser."
 description: "Compress a PDF to under 2 MB for free in your browser. Three quality levels; scans shrink 40–90%, text PDFs 5–15%. No upload, no account, no watermark."
 answer: "Add your PDF, choose Good, Balanced or Extreme, click Compress PDF and download the result. Good keeps text selectable and trims 5–15%; Balanced and Extreme re-render each page as a JPEG and cut scanned or photo-heavy files by 40–90%, which is what gets a 10 MB scan under 2 MB. It is free, nothing is uploaded, and the tool offers quality levels rather than a target size, so check the result and try the next level if it is still too big."

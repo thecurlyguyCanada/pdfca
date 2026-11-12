@@ -1,6 +1,6 @@
 ---
-title: "Merge PDF Files Free: Combine 2–50 PDFs in Your Browser (2026)"
-h1: "How to Merge PDF Files into One"
+title: "Merge PDF Files Free: Combine 2–50 PDFs, No Upload"
+h1: "Merge PDF Files"
 lead: "Drop in two or more PDFs, drag them into order and download one file. Everything runs in your browser; nothing is uploaded."
 description: "Merge 2 to 50 PDF files into one for free, in about 10 seconds, without uploading anything. Drag to reorder, keep original quality, no account or watermark."
 answer: "Add your PDFs with the button or by dragging them onto the page, drag the thumbnails into the order you want, and click Merge PDFs. The combined file downloads to your device a few seconds later. It is free, there is no watermark, no account, and the files never leave your computer: the merge runs inside your browser tab. The practical limit is your device's memory, not a file count."

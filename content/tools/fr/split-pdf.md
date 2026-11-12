@@ -1,6 +1,6 @@
 ---
 title: "Diviser un PDF gratuitement : un fichier par page, sans envoi"
-h1: "Comment diviser un PDF en pages séparées"
+h1: "Diviser un PDF"
 lead: "Choisissez les pages, cliquez sur Diviser le PDF et recevez chacune dans son propre fichier, dans un ZIP. Tout se passe dans votre navigateur."
 description: "Divisez un PDF en pages séparées gratuitement dans votre navigateur. Toutes les pages ou une plage comme 1, 3-5, 8 : un PDF par page dans un ZIP. Sans téléversement."
 answer: "Ouvrez l'outil, ajoutez votre PDF, puis laissez toutes les pages sélectionnées ou tapez une plage comme 1, 3-5, 8 pour n'en garder que certaines. Cliquez sur Diviser le PDF : un fichier ZIP se télécharge avec un PDF par page, nommé d'après l'original. C'est gratuit, sans filigrane ni compte, et le fichier ne quitte jamais votre appareil puisque la division se fait dans l'onglet du navigateur. Pour obtenir les pages choisies dans un seul PDF, utilisez plutôt Extraire des pages."

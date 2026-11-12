@@ -1,6 +1,6 @@
 ---
-title: "JPG to PDF Free: Photos, PNG, WEBP & HEIC to One PDF, No Upload (2026)"
-h1: "How to Convert JPG and Other Images to PDF"
+title: "JPG to PDF Converter: Free, No Upload, No Watermark"
+h1: "JPG to PDF Converter"
 lead: "Turn a photo, scan, screenshot or iPhone picture into a PDF at full quality, then combine several into one file. Everything runs in your browser; nothing is uploaded."
 description: "Convert JPG, PNG, WEBP or HEIC images to PDF for free in your browser in about 2 seconds each, then merge them into one ordered PDF. No upload, no watermark."
 answer: "Click Select File, choose the image and click Convert File; a one-page PDF sized to the picture downloads a moment later. JPG and PNG are embedded without re-compression, so quality is identical to the original. To put several photos in one document, convert each and combine them with Merge PDF. It is free, has no watermark, and the images never leave your device."

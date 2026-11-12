@@ -1,6 +1,6 @@
 ---
-title: "PDF to EPUB Free: Reflowable Ebook in Your Browser, No Upload (2026)"
-h1: "How to Convert a PDF to EPUB"
+title: "PDF to EPUB Converter: Free Reflowable Ebook, No Upload"
+h1: "PDF to EPUB Converter"
 lead: "Turn a text PDF into a reflowable EPUB 3 with chapters, pop-up footnotes and a cover, built entirely inside your browser. Nothing is uploaded."
 description: "Convert a PDF to a reflowable EPUB for Kobo, Kindle or Apple Books, free and in your browser. Detects headings and footnotes; 300 pages take 20–60 seconds."
 answer: "Choose your PDF, leave Reflowable EPUB selected, and click Convert File. The tool reads the text layer with pdf.js, finds headings and footnotes, removes running headers and page numbers, and packs the result into an EPUB 3 you can load on a Kobo, Kindle or phone. Free, no account, nothing uploaded. It needs a PDF with real text: scans, two-column papers and tables convert badly."

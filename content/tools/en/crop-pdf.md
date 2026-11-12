@@ -1,6 +1,6 @@
 ---
-title: "Crop a PDF Free: Trim Margins on One or All Pages, No Upload (2026)"
-h1: "How to Crop a PDF and Trim the Margins"
+title: "Crop PDF Free: Trim Margins on One or All Pages, No Upload"
+h1: "Crop PDF"
 lead: "Drag a crop box over the page, apply it to one page or every page, and download. The crop runs in your browser; nothing is uploaded."
 description: "Crop a PDF for free in your browser: drag a box over the page, apply it to one page or all pages, preview, download. Trims margins without re-rendering."
 answer: "Add the PDF, drag the handles of the crop box until it frames the part you want to keep, choose All Pages or Current Page, click Preview Crop to check, then Finalize Crop to download. The tool sets each page's crop box, so the result is instant and lossless. It is free and nothing is uploaded. One honest caveat: cropping hides the trimmed area but does not delete it from the file, so it is not a redaction tool."

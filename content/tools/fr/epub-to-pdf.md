@@ -1,6 +1,6 @@
 ---
 title: "Convertir un EPUB en PDF gratuitement, directement dans le navigateur"
-h1: "Comment convertir un EPUB en PDF"
+h1: "Convertir EPUB en PDF"
 lead: "Choisissez un fichier .epub sans DRM et obtenez un PDF texte imprimable en quelques secondes. Le livre est décompressé et mis en page dans votre navigateur; rien n'est téléversé."
 description: "Convertissez un EPUB en PDF imprimable, gratuitement et dans votre navigateur. Texte en 11 points sur pages lettre; un roman de 300 pages en moins de 10 secondes."
 answer: "Cliquez sur Choisir un fichier, sélectionnez un .epub sans DRM, puis cliquez sur Convertir le fichier. L'outil décompresse le livre dans votre navigateur, extrait le texte de chaque chapitre et le dispose sur des pages format lettre; le PDF se télécharge aussitôt. Gratuit, sans compte, sans téléversement. La limite à connaître : le résultat ne contient que du texte, sans images, polices ni mise en page de l'éditeur."

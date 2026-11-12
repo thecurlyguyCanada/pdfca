@@ -1,6 +1,6 @@
 ---
 title: "Convertir un PDF en PNG gratuitement : pages sans perte à 144 ppp"
-h1: "Comment convertir un PDF en images PNG"
+h1: "Convertir PDF en PNG"
 lead: "Rendez chaque page d'un PDF en PNG sans perte et téléchargez l'ensemble dans un ZIP. Les pages sont dessinées dans votre navigateur; le fichier reste sur votre appareil."
 description: "Convertissez un PDF en PNG gratuitement dans votre navigateur : chaque page est rendue sans perte à 144 ppp (1224×1584 px en format Lettre) et mise dans un ZIP."
 answer: "Cliquez sur Choisir un fichier, sélectionnez le PDF et cliquez sur Convertir le fichier. Chaque page est dessinée au double de sa taille nominale, soit environ 144 ppp, et enregistrée en PNG sans perte, de sorte que les contours du texte, les traits fins et les aplats de couleur restent parfaitement nets. Toutes les pages se téléchargent ensemble dans un ZIP. C'est gratuit, sans filigrane ni compte, et le rendu se fait dans l'onglet de votre navigateur; rien n'est téléversé."

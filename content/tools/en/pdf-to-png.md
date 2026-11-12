@@ -1,6 +1,6 @@
 ---
-title: "PDF to PNG Free: Lossless Pages at 144 DPI, No Upload (2026)"
-h1: "How to Convert a PDF to PNG Images"
+title: "PDF to PNG Converter: Lossless Pages at 144 DPI, Free"
+h1: "PDF to PNG Converter"
 lead: "Render every page of a PDF as a lossless PNG and download the set as a ZIP. The pages are drawn in your browser; the file never leaves your device."
 description: "Convert a PDF to PNG for free in your browser: each page is rendered losslessly at 144 DPI (1224×1584 px for Letter) and zipped. Crisp text, no upload, no account."
 answer: "Click Select File, choose the PDF and click Convert File. Each page is drawn at twice its nominal size, about 144 DPI, and saved as a lossless PNG, so text edges, thin lines and flat colours stay perfectly crisp. All pages download together in one ZIP. It is free, has no watermark or account, and the rendering happens inside your browser tab; nothing is uploaded."

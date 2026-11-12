@@ -1,6 +1,6 @@
 ---
-title: "Split a PDF Free: One File per Page, No Upload, in Your Browser (2026)"
-h1: "How to Split a PDF into Separate Pages"
+title: "Split PDF Free: One File per Page, No Upload"
+h1: "Split PDF"
 lead: "Pick the pages you want, click Split PDF and get each one as its own file in a ZIP. The split runs in your browser; nothing is uploaded."
 description: "Split a PDF into separate pages for free in your browser. Pick all pages or a range like 1, 3-5, 8; each page becomes its own PDF in a ZIP. No upload."
 answer: "Open the split tool, add your PDF, then either leave every page selected or type a range such as 1, 3-5, 8 to pick specific pages. Click Split PDF and a ZIP file downloads with one PDF per page, named after the original. It is free, there is no watermark and no account, and the file never leaves your device because the split happens in your browser tab. If you want the chosen pages in a single PDF instead, use Extract PDF Pages."

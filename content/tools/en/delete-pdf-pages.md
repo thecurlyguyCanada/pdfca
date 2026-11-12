@@ -1,6 +1,6 @@
 ---
-title: "Delete PDF Pages Free: Click, Remove, Download in Your Browser (2026)"
-h1: "How to Delete Pages from a PDF"
+title: "Delete PDF Pages Free: Remove Pages Online, No Upload"
+h1: "Delete PDF Pages"
 lead: "Click the pages you want gone, press Remove Pages and download the shorter file. The pages are removed in your browser; nothing is uploaded."
 description: "Delete pages from a PDF for free in your browser: click thumbnails or type 2, 5-7, click Remove Pages and download. Pages are fully removed. No upload."
 answer: "Add your PDF, click the thumbnails of the pages you want to remove (hold Shift to select a run, or type 2, 5-7 in the range box), then click Remove Pages. The new PDF downloads in a second or two with those pages gone from the file, not just hidden. It is free, nothing is uploaded, and your original stays as it was. The only hard rule is that at least one page must remain."

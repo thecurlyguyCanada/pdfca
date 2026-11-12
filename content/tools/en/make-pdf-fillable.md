@@ -1,6 +1,6 @@
 ---
-title: "Make a PDF Fillable Free: Auto-Detect Fields in Your Browser (2026)"
-h1: "How to Make a PDF Fillable"
+title: "Make PDF Fillable Free: Auto-Detect Form Fields, No Upload"
+h1: "Make a PDF Fillable"
 lead: "Turn the blank lines and checkboxes in a flat PDF into real form fields that anyone can type into. Detection and saving happen in your browser; nothing is uploaded."
 description: "Make a flat PDF fillable for free in your browser: blank lines (____) become text fields and [ ] boxes become checkboxes in seconds. Opens in Acrobat Reader."
 answer: "Upload the PDF, tick the pages that contain blanks, and click Auto-Detect & Fill. Every run of three or more underscores in the text becomes a text field and every [ ] or ☐ becomes a checkbox; the fillable copy downloads immediately and opens in Acrobat Reader, Preview, Chrome or Edge. Free, no account, nothing uploaded. It works on PDFs with a text layer, not on scans."

@@ -1,6 +1,6 @@
 ---
-title: "PDF to Word Free: Editable DOCX in Your Browser, No Upload (2026)"
-h1: "How to Convert a PDF to an Editable Word Document"
+title: "PDF to Word Converter: Free Editable DOCX, No Upload"
+h1: "PDF to Word Converter"
 lead: "Turn a text-based PDF into a .docx you can edit in Word or Google Docs. The conversion runs in your browser; the file is never uploaded."
 description: "Convert a PDF to an editable Word (.docx) file for free in your browser. Text, headings and simple tables carry over; scanned PDFs need OCR first. No upload."
 answer: "Select your PDF, click Convert File, and a .docx downloads a few seconds later. It is free, there is no account and no watermark, and the PDF never leaves your device because the text extraction and the Word file are both built inside your browser tab. The one limit that matters: the PDF must contain real text. A scanned PDF has none, so it comes out with nothing to edit."

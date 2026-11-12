@@ -1,6 +1,6 @@
 ---
-title: "PDF to Excel Free: Tables to XLSX in Your Browser, No Upload (2026)"
-h1: "How to Convert a PDF Table to Excel"
+title: "PDF to Excel Converter: Free Tables to XLSX, No Upload"
+h1: "PDF to Excel Converter"
 lead: "Pull the rows and columns out of a text PDF into an .xlsx you can sort and sum. Extraction runs in your browser; nothing is uploaded."
 description: "Convert PDF tables to an Excel .xlsx for free in your browser. Works on statements, invoices and reports saved as text PDFs; scans are not read. Nothing uploaded."
 answer: "Select the PDF, choose Preview & Edit or Quick Convert, and download the .xlsx. It is free, there is no account, and the PDF stays on your device: the text positions are read and the spreadsheet is written inside your browser tab. It works on PDFs that were generated from software (bank statements, invoices, reports) and not on scanned pages, which contain no text to extract."

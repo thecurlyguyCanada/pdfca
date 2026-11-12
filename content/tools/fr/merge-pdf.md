@@ -1,6 +1,6 @@
 ---
 title: "Fusionner des PDF gratuitement : 2 à 50 fichiers, sans envoi"
-h1: "Comment fusionner des fichiers PDF en un seul"
+h1: "Fusionner des PDF"
 lead: "Déposez deux PDF ou plus, glissez-les dans l'ordre et téléchargez un seul fichier. Tout se passe dans votre navigateur; rien n'est téléversé."
 description: "Fusionnez 2 à 50 fichiers PDF en un seul gratuitement, en dix secondes, sans rien téléverser. Glissez pour ordonner, qualité d'origine, sans compte ni filigrane."
 answer: "Ajoutez vos PDF avec le bouton ou en les glissant sur la page, placez les vignettes dans l'ordre voulu et cliquez sur Fusionner PDF. Le fichier combiné se télécharge sur votre appareil quelques secondes plus tard. C'est gratuit, sans filigrane ni compte, et les fichiers ne quittent jamais votre ordinateur : la fusion se fait dans l'onglet de votre navigateur. La limite pratique est la mémoire de votre appareil, pas un nombre de fichiers."

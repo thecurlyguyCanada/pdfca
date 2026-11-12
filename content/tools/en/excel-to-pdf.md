@@ -1,6 +1,6 @@
 ---
-title: "Excel to PDF Free: One Page per Sheet in Your Browser (2026)"
-h1: "How to Convert an Excel Spreadsheet to PDF"
+title: "Excel to PDF Converter: Free, One Page per Sheet"
+h1: "Excel to PDF Converter"
 lead: "Turn an .xlsx workbook into a PDF with each sheet laid out as a table. The conversion runs in your browser tab; the file is never uploaded."
 description: "Convert an Excel .xlsx to PDF for free in your browser. Each sheet becomes a table on its own page, formulas show their values, nothing is uploaded."
 answer: "Select the .xlsx, click Convert to PDF, and the PDF downloads a few seconds later. It is free, with no account and no upload: the workbook is read and drawn to PDF inside your browser. Every sheet becomes its own page, cells show their computed values, and column widths are set from the content. The limit to know: charts, images and cell colours are not drawn, and very wide sheets wrap rather than shrink to fit."

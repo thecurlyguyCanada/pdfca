@@ -1,6 +1,6 @@
 ---
-title: "HEIC to PDF Free: iPhone Photos in 1–3 Seconds, No Upload (2026)"
-h1: "How to Convert HEIC to PDF"
+title: "HEIC to PDF Converter: iPhone Photos in 1–3 Seconds, Free"
+h1: "HEIC to PDF Converter"
 lead: "Convert an iPhone HEIC photo into a PDF that Windows, the CRA and any upload form will accept. The decoding runs in your browser; the photo stays on your device."
 description: "Convert HEIC to PDF for free in your browser in 1–3 seconds per photo. The iPhone image is decoded locally, never uploaded, and the PDF opens on any Windows PC."
 answer: "Click Select File, choose the .heic photo and click Convert File. The browser decodes Apple's HEIC format itself, which takes one to three seconds per photo, then wraps the picture in a one-page PDF that downloads automatically. It is free, there is no watermark and no account, and the photo never leaves your device. For several photos, convert each and combine them with Merge PDF."
