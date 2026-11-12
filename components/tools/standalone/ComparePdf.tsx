@@ -9,15 +9,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { GitCompare, Download, Hash, CalendarDays, Ban, Info } from 'lucide-react';
-import { Dropzone, Panel, ErrorBox, PrimaryButton, SecondaryButton, formatBytes, downloadBlob, baseName, yieldToBrowser, openPdf, readErrorMessage } from './shared';
+import { Dropzone, Panel, ErrorBox, PrimaryButton, SecondaryButton, formatBytes, downloadBlob, baseName, yieldToBrowser, openPdf, readErrorMessage, ui } from './shared';
 import type { Lang } from './shared';
 
 const STR = {
     en: {
         original: 'Original',
         changed: 'Changed',
-        originalHint: 'Drop the original PDF or tap to choose',
-        changedHint: 'Drop the changed PDF or tap to choose',
         tapToChange: 'Tap to choose a different file',
         compare: 'Compare',
         textOnly: 'Compares the text only. Layout, image and formatting changes (fonts, colours, positions) are not detected.',
@@ -70,8 +68,6 @@ const STR = {
     fr: {
         original: 'Original',
         changed: 'Version modifiée',
-        originalHint: 'Déposez le PDF original ou touchez pour choisir',
-        changedHint: 'Déposez la version modifiée ou touchez pour choisir',
         tapToChange: 'Touchez pour choisir un autre fichier',
         compare: 'Comparer',
         textOnly: 'Compare le texte seulement. Les changements de mise en page, d’images ou de mise en forme (polices, couleurs, positions) ne sont pas détectés.',
@@ -713,8 +709,8 @@ export default function ComparePdf({ lang }: { lang: Lang }) {
                     lang={lang}
                     onFiles={pick(which)}
                     multiple={which === 'a'}
-                    label={f ? f.name : (which === 'a' ? t.original : t.changed)}
-                    hint={f ? `${formatBytes(f.size, lang)} · ${t.tapToChange}` : (which === 'a' ? t.originalHint : t.changedHint)}
+                    label={f ? f.name : ui(lang).drop}
+                    hint={f ? `${formatBytes(f.size, lang)} · ${t.tapToChange}` : ui(lang).browse}
                 />
             </div>
         );

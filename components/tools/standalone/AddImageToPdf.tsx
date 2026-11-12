@@ -43,7 +43,6 @@ const STR = {
         loading: 'Opening the PDF…',
         placed: (n: number) => `${n} image${n === 1 ? '' : 's'} placed`,
         suffix: '-with-image',
-        selectedImage: 'Image',
         transparencyKept: 'Transparency is kept.',
         placementLabel: (p: string) => `Placed image, ${p}. Arrow keys move it.`,
     },
@@ -75,7 +74,6 @@ const STR = {
         loading: 'Ouverture du PDF…',
         placed: (n: number) => `${n} image${n > 1 ? 's' : ''} placée${n > 1 ? 's' : ''}`,
         suffix: '-avec-image',
-        selectedImage: 'Image',
         transparencyKept: 'La transparence est conservée.',
         placementLabel: (p: string) => `Image placée, ${p}. Les flèches du clavier la déplacent.`,
     },
@@ -473,13 +471,13 @@ export default function AddImageToPdf({ lang }: { lang: Lang }) {
                                     {isSel && (
                                         <>
                                             <button type="button" aria-label={t.remove} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); removeP(p.id); }}
-                                                className="absolute -right-3 -top-3 flex h-7 w-7 items-center justify-center rounded-full bg-canada-red text-white shadow">
+                                                className="absolute -right-4 -top-4 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-canada-red text-white shadow">
                                                 <X className="h-4 w-4" aria-hidden="true" />
                                             </button>
                                             <span
                                                 data-testid="resize-handle"
                                                 aria-hidden="true"
-                                                className="absolute -bottom-3 -right-3 h-7 w-7 cursor-nwse-resize rounded-full border-4 border-white bg-canada-red shadow"
+                                                className="absolute -bottom-4 -right-4 h-9 w-9 cursor-nwse-resize rounded-full border-4 border-white bg-canada-red shadow"
                                                 style={{ touchAction: 'none' }}
                                                 onPointerDown={(e) => startDrag(e, p, 'resize')}
                                                 onPointerMove={onDragMove}
@@ -506,7 +504,7 @@ export default function AddImageToPdf({ lang }: { lang: Lang }) {
                         {t.opacity}
                         <input type="range" min={10} max={100} step={5} value={Math.round(sel.opacity * 100)} className="flex-1 accent-canada-red"
                             onChange={(e) => { const v = Number(e.target.value) / 100; setOpacity(v); update(sel.id, { opacity: v }); }} />
-                        <span className="w-10 text-right tabular-nums">{Math.round(sel.opacity * 100)} %</span>
+                        <span className="w-14 shrink-0 whitespace-nowrap text-right tabular-nums">{Math.round(sel.opacity * 100)} %</span>
                     </label>
                     <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
                         <input type="checkbox" className="h-5 w-5 accent-canada-red" checked={sel.page === 'all'} onChange={(e) => update(sel.id, { page: e.target.checked ? 'all' : pageNo })} />

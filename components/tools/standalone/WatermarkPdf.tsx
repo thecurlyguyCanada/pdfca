@@ -440,8 +440,8 @@ export default function WatermarkPdf({ lang }: { lang: Lang }) {
                             </div>
                         </div>
 
-                        <figure className="min-w-0">
-                            <div className="relative mx-auto w-full max-w-[300px] rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white shadow-sm">
+                        <figure className="min-w-0 order-first md:order-none">
+                            <div className="relative mx-auto w-full max-w-[220px] md:max-w-[300px] rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white shadow-sm">
                                 {thumb ? (
                                     <>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}

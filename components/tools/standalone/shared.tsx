@@ -90,7 +90,7 @@ export function ResultCard({ lang, blob, name, note, onReset }: { lang: Lang; bl
                 <p className="font-bold text-gray-900 dark:text-gray-100 truncate">{name}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">{formatBytes(blob.size, lang)}{note ? <> · {note}</> : null}</p>
             </div>
-            <div className="flex gap-2 shrink-0">
+            <div className="flex flex-wrap gap-2 sm:shrink-0">
                 <PrimaryButton onClick={() => downloadBlob(blob, name)}><Download className="h-4 w-4" aria-hidden="true" /> {t.download}</PrimaryButton>
                 {onReset && <SecondaryButton onClick={onReset}>{t.again}</SecondaryButton>}
             </div>
