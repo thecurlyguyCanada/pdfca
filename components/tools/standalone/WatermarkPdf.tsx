@@ -284,8 +284,33 @@ export default function WatermarkPdf({ lang }: { lang: Lang }) {
             const widthAt1 = f.widthOfTextAtSize(text, 1);
             const cap = f.heightAtSize(1, { descender: false });
             const [r, g, b] = COLOURS[colour].rgb;
-            const color = lib.rgb(r, g, b);
             const pages = doc.getPages();
+            // One shared ExtGState for the opacity, and one Form XObject per distinct displayed page size:
+            // the watermark is drawn once in displayed coordinates and placed on each page with a matrix
+            // that undoes /Rotate and the crop-box origin. Keeps big documents small.
+            const ctx = doc.context;
+            const gsRef = ctx.register(ctx.obj({ Type: 'ExtGState', ca: opacity / 100, CA: opacity / 100 }));
+            const encoded = f.encodeText(text);
+            const forms = new Map<string, ReturnType<typeof ctx.register>>();
+            const formFor = (W: number, H: number) => {
+                const key = `${W.toFixed(2)}x${H.toFixed(2)}`;
+                const hit = forms.get(key);
+                if (hit) return hit;
+                const placed = layout(widthAt1, cap, W, H, opts);
+                const cos = Math.cos(placed.theta), sin = Math.sin(placed.theta);
+                const ops = [lib.setGraphicsState('GS'), lib.setFillingRgbColor(r, g, b), lib.beginText(), lib.setFontAndSize('F', placed.size)];
+                for (const it of placed.items) {
+                    ops.push(lib.setTextMatrix(cos, sin, -sin, cos, it.x, it.y), lib.showText(encoded));
+                }
+                ops.push(lib.endText());
+                const stream = ctx.formXObject(ops, {
+                    BBox: ctx.obj([0, 0, W, H]),
+                    Resources: ctx.obj({ Font: ctx.obj({ F: f.ref }), ExtGState: ctx.obj({ GS: gsRef }) }),
+                });
+                const ref = ctx.register(stream);
+                forms.set(key, ref);
+                return ref;
+            };
             for (let k = 0; k < selected.length; k++) {
                 const idx = selected[k];
                 if (k % 10 === 0) { setProgress(t.page(k + 1, selected.length)); await yieldToBrowser(); }
@@ -295,21 +320,14 @@ export default function WatermarkPdf({ lang }: { lang: Lang }) {
                 const quarter = Math.round(rot / 90) % 4;
                 const W = quarter % 2 ? box.height : box.width;
                 const H = quarter % 2 ? box.width : box.height;
-                const placed = layout(widthAt1, cap, W, H, opts);
                 // Displayed (X, Y) → user space for /Rotate 0, 90, 180, 270 (clockwise display rotation).
-                const toUser = (X: number, Y: number) => {
-                    switch (quarter) {
-                        case 1: return { x: box.x + box.width - Y, y: box.y + X };
-                        case 2: return { x: box.x + box.width - X, y: box.y + box.height - Y };
-                        case 3: return { x: box.x + Y, y: box.y + box.height - X };
-                        default: return { x: box.x + X, y: box.y + Y };
-                    }
-                };
-                const userAngle = (placed.theta * 180) / Math.PI + quarter * 90;
-                for (const it of placed.items) {
-                    const p = toUser(it.x, it.y);
-                    page.drawText(text, { x: p.x, y: p.y, size: placed.size, font: f, color, opacity: opacity / 100, rotate: lib.degrees(userAngle) });
-                }
+                const m: [number, number, number, number, number, number] =
+                    quarter === 1 ? [0, 1, -1, 0, box.x + box.width, box.y]
+                        : quarter === 2 ? [-1, 0, 0, -1, box.x + box.width, box.y + box.height]
+                            : quarter === 3 ? [0, -1, 1, 0, box.x, box.y + box.height]
+                                : [1, 0, 0, 1, box.x, box.y];
+                const name = page.node.newXObject('Watermark', formFor(W, H));
+                page.pushOperators(lib.pushGraphicsState(), lib.concatTransformationMatrix(...m), lib.drawObject(name), lib.popGraphicsState());
             }
             setProgress(t.saving); await yieldToBrowser();
             const out = await doc.save();
