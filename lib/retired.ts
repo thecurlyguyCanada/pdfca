@@ -31,7 +31,6 @@ export const RETIRED_GUIDES = new Set<string>([
     'insert-picture-in-pdf',
     'trim-pdf',
     'flatten-pdf',
-    'ocr-pdf',
     'avif-to-pdf',
     'ipynb-to-pdf',
 ]);
@@ -99,6 +98,7 @@ export const GUIDE_TO_TOOL: Record<string, string> = {
     'jpg-to-pdf': '/jpg-to-pdf',
     'make-pdf-fillable': '/make-pdf-fillable',
     'merge-pdf': '/merge-pdf',
+    'ocr-pdf': '/ocr-pdf',
     'organize-pdf': '/organize-pdf',
     'pdf-to-epub': '/pdf-to-epub',
     'pdf-to-excel': '/pdf-to-excel',

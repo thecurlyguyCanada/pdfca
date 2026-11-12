@@ -17,6 +17,27 @@ export interface ToolConfig {
 
 export const TOOL_CONFIGS: ToolConfig[] = [
   {
+    slug: 'ocr-pdf',
+    i18nKey: 'ocrPdf',
+    tool: ToolType.OCR_PDF,
+    title: {
+      en: 'OCR PDF - Make a Scanned PDF Searchable, Free | pdfcanada.ca',
+      fr: 'OCR PDF - Rendre un PDF numérisé consultable, gratuit | pdfcanada.ca',
+      pt: 'OCR PDF - Tornar um PDF digitalizado pesquisável | pdfcanada.ca'
+    },
+    description: {
+      en: 'OCR a scanned PDF in your browser: English and French text becomes searchable and copyable, the scan looks exactly the same, and nothing is uploaded.',
+      fr: 'Faites l’OCR d’un PDF numérisé dans votre navigateur : le texte français et anglais devient consultable et copiable, sans envoi.',
+      pt: 'Faça OCR de um PDF digitalizado no navegador: o texto torna-se pesquisável, sem envio.'
+    },
+    keywords: {
+      en: ['OCR PDF', 'make PDF searchable', 'scanned PDF to text', 'searchable PDF', 'OCR PDF free', 'PDF OCR online'],
+      fr: ['OCR PDF', 'rendre un PDF consultable', 'PDF numérisé en texte', 'PDF interrogeable', 'OCR PDF gratuit'],
+      pt: ['OCR PDF', 'tornar PDF pesquisável', 'PDF digitalizado para texto']
+    },
+    accept: '.pdf,application/pdf'
+  },
+  {
     slug: 'delete-pdf-pages',
     i18nKey: 'delete',
     tool: ToolType.DELETE,

@@ -3398,3 +3398,93 @@ export const convertTifToPdf = async (file: File): Promise<Uint8Array> => {
   addPdfMetadata(doc, 'TIF to PDF Conversion');
   return await doc.save();
 };
+
+// OCR PDF: add an invisible, searchable text layer to scanned pages.
+// Each page that has no text of its own is rendered to a canvas, read by Tesseract (English + French) in the
+// browser, and Tesseract's text-only PDF page is drawn over the original page. The original page content is
+// never re-encoded, so the scan looks exactly as before; only selectable/searchable text is added.
+// Pages that already carry a text layer are copied untouched.
+export type OcrProgress = { page: number; total: number; ocrPages: number };
+
+export const ocrPdf = async (
+  file: File,
+  uiLang: string = 'en',
+  onProgress?: (p: OcrProgress) => void
+): Promise<Uint8Array> => {
+  await initPdfWorker();
+  const pdfjs = await getPdfJs();
+  const { PDFDocument } = await getPdfLib();
+
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const outDoc = await PDFDocument.load(bytes.slice(), { ignoreEncryption: true });
+  const pdf = await pdfjs.getDocument({
+    data: bytes,
+    cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
+    cMapPacked: true,
+    standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
+  }).promise;
+
+  const Tesseract = await import('tesseract.js');
+  const langs = uiLang === 'fr' ? ['fra', 'eng'] : ['eng', 'fra'];
+  const worker = await Tesseract.createWorker(langs);
+  let ocrPages = 0;
+
+  try {
+    const total = pdf.numPages;
+    for (let i = 1; i <= total; i++) {
+      onProgress?.({ page: i, total, ocrPages });
+      const page = await pdf.getPage(i);
+
+      // Skip pages that already have real text (digital PDFs, or pages OCR'd before).
+      const text = await page.getTextContent();
+      const chars = text.items.reduce((n: number, it: any) => n + (it.str ? it.str.trim().length : 0), 0);
+      if (chars > 40) continue;
+
+      // Render without the page's /Rotate so the image matches the unrotated coordinate space pdf-lib draws in.
+      // ~250 DPI, capped at ~16 megapixels so phones don't run out of memory.
+      const base = page.getViewport({ scale: 1, rotation: 0 });
+      let scale = 250 / 72;
+      const maxPixels = 16_000_000;
+      if (base.width * base.height * scale * scale > maxPixels) {
+        scale = Math.sqrt(maxPixels / (base.width * base.height));
+      }
+      const viewport = page.getViewport({ scale, rotation: 0 });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Could not create canvas context');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const result = await worker.recognize(canvas, { pdfTitle: file.name, pdfTextOnly: true }, { pdf: true, text: false });
+      canvas.width = 0;
+      canvas.height = 0;
+
+      const layer = result.data.pdf;
+      if (!layer || !layer.length) continue;
+      const [embedded] = await outDoc.embedPdf(Uint8Array.from(layer));
+      const target = outDoc.getPage(i - 1);
+      const box = target.getCropBox();
+      target.drawPage(embedded, { x: box.x, y: box.y, width: box.width, height: box.height });
+      ocrPages++;
+
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    }
+    onProgress?.({ page: total, total, ocrPages });
+  } finally {
+    await worker.terminate();
+    await pdf.destroy();
+  }
+
+  if (ocrPages === 0) {
+    throw new Error(
+      uiLang === 'fr'
+        ? 'Ce PDF contient déjà du texte sélectionnable sur chaque page : aucune reconnaissance nécessaire.'
+        : 'This PDF already has selectable text on every page, so there was nothing to OCR.'
+    );
+  }
+
+  return await outDoc.save();
+};

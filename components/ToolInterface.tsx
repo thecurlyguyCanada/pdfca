@@ -1005,6 +1005,7 @@ export const ToolInterface: React.FC<ToolInterfaceProps> = ({
                         {currentTool === ToolType.PDF_PAGE_REMOVER && (t.btnRemove || "Remove Pages")}
                         {currentTool === ToolType.ROTATE && t.btnRotate}
                         {currentTool === ToolType.FLATTEN && (t.btnFlatten || "Make Non-Editable")}
+                        {currentTool === ToolType.OCR_PDF && (lang === 'fr' ? 'Rendre consultable (OCR)' : 'Make Searchable (OCR)')}
                         {currentTool === ToolType.MAKE_FILLABLE && t.btnMakeFillable}
                         {currentTool === ToolType.ORGANIZE && (t.btnSave || 'Save Organized PDF')}
                         {currentTool === ToolType.SPLIT && (t.btnSplit || "Split PDF")}

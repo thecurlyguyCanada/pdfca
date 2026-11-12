@@ -85,6 +85,7 @@ const FooterComponent: React.FC<FooterProps> = ({ lang }) => {
                         <li><Link href={`/${lang}/sign-pdf`} className="hover:text-white transition-colors">{t.toolSign}</Link></li>
                         <li><Link href={`/${lang}/organize-pdf`} className="hover:text-white transition-colors">{t.toolOrganize}</Link></li>
                         <li><Link href={`/${lang}/crop-pdf`} className="hover:text-white transition-colors">{t.toolCrop}</Link></li>
+                        <li><Link href={`/${lang}/ocr-pdf`} className="hover:text-white transition-colors">OCR PDF</Link></li>
                      </ul>
                   </FooterSection>
                </div>

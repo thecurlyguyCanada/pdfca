@@ -51,6 +51,7 @@ export enum ToolType {
     TIF_TO_PDF = 'TIF_TO_PDF',
     // Security tools
     UNLOCK_PDF = 'UNLOCK_PDF',
+    OCR_PDF = 'OCR_PDF',
     // Viewer tools
     PDF_READER = 'PDF_READER'
 }
