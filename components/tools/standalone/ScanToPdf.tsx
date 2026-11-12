@@ -190,14 +190,15 @@ function enhance(c: HTMLCanvasElement, mode: Mode) {
             }
         }
         const r = Math.max(6, Math.round(Math.min(w, h) / 16));
-        const LO = 0.72, HI = 0.88;
+        const LO = 0.70, HI = 0.86;
+        const boxMean = (x: number, y: number, rr: number) => {
+            const x0 = Math.max(0, x - rr), x1 = Math.min(w, x + rr + 1), y0 = Math.max(0, y - rr), y1 = Math.min(h, y + rr + 1);
+            return (integ[y1 * W + x1] - integ[y0 * W + x1] - integ[y1 * W + x0] + integ[y0 * W + x0]) / ((x1 - x0) * (y1 - y0));
+        };
         for (let y = 0; y < h; y++) {
-            const y0 = Math.max(0, y - r), y1 = Math.min(h, y + r + 1);
             for (let x = 0; x < w; x++) {
-                const x0 = Math.max(0, x - r), x1 = Math.min(w, x + r + 1);
-                const sum = integ[y1 * W + x1] - integ[y0 * W + x1] - integ[y1 * W + x0] + integ[y0 * W + x0];
-                const mean = sum / ((x1 - x0) * (y1 - y0));
-                const v = g[y * w + x] / Math.max(1, mean);
+                // 3×3 mean as the pixel value (removes sensor noise / JPEG grain), neighbourhood mean as the local paper level.
+                const v = boxMean(x, y, 1) / Math.max(1, boxMean(x, y, r));
                 out[y * w + x] = v >= HI ? 255 : v <= LO ? 0 : ((v - LO) / (HI - LO)) * 255;
             }
         }
