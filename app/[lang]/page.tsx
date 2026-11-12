@@ -5,6 +5,9 @@ import { generateWebsiteSchema, generateOrganizationSchema, generateLocalBusines
 import { Language, translations } from '@/utils/i18n';
 import { Locale, i18n } from '@/lib/i18n-config';
 import { SEO } from '@/components/SEO';
+import { HOME_FAQ } from '@/lib/homeFaq';
+import { TOOL_GROUPS } from '@/lib/toolGroups';
+import { isToolLive } from '@/lib/retired';
 
 import { constructMetadata } from '@/lib/metadata';
 
@@ -18,12 +21,12 @@ export function generateStaticParams() {
 
 const metadata: Record<string, { title: string; description: string }> = {
     en: {
-        title: 'Free PDF Tools Canada | Online & Secure No-Upload Service',
-        description: 'The Polite Canadian PDF Tools. 100% free & secure. Merge, compress, split, and convert PDFs directly in your browser. No uploads—your files never leave your device. PIPEDA compliant.',
+        title: 'Free PDF Tools Canada: Compress, Merge, OCR — No Upload',
+        description: 'Free PDF tools that run in your browser, in English and French: compress for IRCC, merge, split, OCR, sign, convert. No upload, no sign-up, no watermark.',
     },
     fr: {
-        title: 'Outils PDF Gratuits Canada | Service en Ligne Sécurisé Sans Téléchargement',
-        description: 'Les Outils PDF Canadiens Polis. 100% gratuits et sécurisés. Fusionnez, compressez, divisez et convertissez vos PDF directement dans votre navigateur. Aucun téléchargement—vos fichiers ne quittent jamais votre appareil.',
+        title: 'Outils PDF gratuits : compresser, fusionner, OCR — sans envoi',
+        description: 'Outils PDF gratuits dans votre navigateur : compresser pour IRCC, fusionner, diviser, OCR, signer, convertir. Sans envoi, sans inscription, sans filigrane.',
     },
     pt: {
         title: 'Ferramentas PDF Gratuitas Canadá | Serviço Online Seguro Sem Upload',
@@ -53,7 +56,6 @@ export async function generateMetadata({
                 'PDF Canada',
                 'outils PDF sécurisés',
                 'sans téléchargement',
-                'PIPEDA',
                 'outils PDF Québec',
                 'outils PDF Ontario',
                 'PDF gratuit Canada'
@@ -80,7 +82,6 @@ export async function generateMetadata({
             'convert PDF to Word free',
             'PDF editor no upload',
             'secure PDF tools',
-            'PIPEDA compliant PDF',
             'PDF tools Ontario',
             'PDF tools Toronto',
             'Canadian PDF editor',
@@ -109,27 +110,21 @@ export default async function Page({
     const currentLang = lang as Language;
     const t = translations[currentLang];
 
-    // Prepare FAQs with enhanced schema
-    // Prepare FAQs with enhanced schema
-    const faqs = t.seo.homeFaq.map((faq: { q: string, a: string }, index: number) => ({
-        q: faq.q,
-        a: faq.a,
-        // Add HowTo steps for process-related FAQs (Merge is index 4, Convert is index 5)
-        ...((index === 4) && {
-            howTo: [
-                { name: t.seo.homeHowToFiles, text: t.seo.homeHowToFilesDesc },
-                { name: t.seo.homeHowToOrder, text: t.seo.homeHowToOrderDesc },
-                { name: t.seo.homeHowToMergeDl, text: t.seo.homeHowToMergeDlDesc }
-            ]
-        }),
-        ...((index === 5) && {
-            howTo: [
-                { name: t.seo.homeHowToUpload, text: t.seo.homeHowToUploadDesc },
-                { name: t.seo.homeHowToProcess, text: t.seo.homeHowToProcessDesc },
-                { name: t.seo.homeHowToWordDl, text: t.seo.homeHowToWordDlDesc }
-            ]
-        })
-    }));
+    const l = currentLang === 'fr' ? 'fr' : 'en';
+    const faqs = HOME_FAQ[l].map((f) => ({ q: f.q, a: f.a }));
+    // Homepage adds an ItemList of every live tool (playbook "Schema on every tool page").
+    const itemList = {
+        '@type': 'ItemList',
+        '@id': `${URLS.DOMAIN}/${l}#tools`,
+        name: l === 'fr' ? 'Outils PDF' : 'PDF tools',
+        itemListElement: TOOL_GROUPS.flatMap((g) => g.tools).filter((x) => isToolLive(x.slug)).map((x, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: x.name[l],
+            description: x.short[l],
+            url: `${URLS.DOMAIN}/${l}/${x.slug}`,
+        })),
+    };
 
     return (
         <>
@@ -139,6 +134,7 @@ export default async function Page({
                 lang={currentLang}
                 canonicalPath={`/${lang}`}
                 faqs={faqs}
+                schema={itemList}
                 breadcrumbs={[
                     { name: currentLang === 'fr' ? 'Accueil' : (currentLang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` }
                 ]}

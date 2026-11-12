@@ -1,5 +1,5 @@
 ---
-title: "Convertir Word en PDF gratuitement, directement dans le navigateur"
+title: "Convertir Word en PDF gratuitement, dans le navigateur"
 h1: "Convertir Word en PDF"
 lead: "Transformez un .docx en PDF qui s'ouvre de la même façon partout. La conversion se fait dans l'onglet de votre navigateur; le document n'est jamais téléversé."
 description: "Convertissez un .docx Word en PDF gratuitement, dans votre navigateur, en quelques secondes, sans téléversement. Enregistrez d'abord les vieux .doc en .docx."

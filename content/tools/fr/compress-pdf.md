@@ -1,149 +1,153 @@
 ---
-title: "Compresser un PDF gratuitement : jusqu'à 90 % plus léger, sans envoi"
+title: "Compresser un PDF gratuit : jusqu'à 98 % plus léger"
 h1: "Compresser un PDF"
-lead: "Choisissez un niveau de qualité, cliquez sur Compresser PDF et téléchargez un fichier plus léger. Les numérisations perdent 40 à 90 %; tout se passe dans votre navigateur."
-description: "Compressez un PDF à moins de 2 Mo gratuitement dans votre navigateur. Trois niveaux; les numérisations perdent 40 à 90 %, le texte 5 à 15 %. Sans téléversement."
-answer: "Ajoutez votre PDF, choisissez Bon, Équilibré ou Extrême, cliquez sur Compresser PDF et téléchargez le résultat. Bon garde le texte sélectionnable et retire 5 à 15 %; Équilibré et Extrême redessinent chaque page en JPEG et allègent les fichiers numérisés ou remplis de photos de 40 à 90 %, ce qui fait passer une numérisation de 10 Mo sous 2 Mo. C'est gratuit, rien n'est téléversé, et l'outil propose des niveaux de qualité plutôt qu'une taille cible : vérifiez le résultat et essayez le niveau suivant s'il est encore trop lourd."
-updated: 2026-11-09
+lead: "Choisissez un niveau, cliquez sur Compresser PDF et voyez la taille avant et après. Les numérisations maigrissent le plus; les PDF texte gardent leur texte. Tout se passe dans votre navigateur."
+description: "Compressez un PDF gratuitement dans votre navigateur. Sur nos numérisations de test : 55 à 93 % (Équilibré), 71 à 98 % (Extrême). Niveaux de gris, sans envoi."
+answer: "Ajoutez votre PDF, choisissez Bon, Équilibré ou Extrême et cliquez sur Compresser PDF. Bon est sans perte et a retiré 7 à 17 % à la plupart de nos PDF numériques de test. Équilibré et Extrême redessinent chaque page en JPEG : sur nos numérisations de test à 200–300 ppp, ils ont retiré 55 à 93 % et 87 à 98 %. Si le résultat n'est pas plus léger, l'outil garde votre original et vous le dit. Rien n'est téléversé."
+updated: 2026-11-12
 limits:
   - ["Prix", "Gratuit, sans compte, sans filigrane, sans plafond quotidien"]
-  - ["Où se fait la compression", "Dans l'onglet de votre navigateur. pdf-lib réécrit le fichier; en mode Équilibré et Extrême, pdf.js dessine d'abord chaque page sur un canevas. Rien n'est téléversé."]
-  - ["Taille maximale du fichier", "Aucun plafond fixe. Un fichier de 100 à 150 Mo se compresse sur un portable avec 8 Go de mémoire; sur un téléphone, restez sous 30 à 40 Mo, car chaque page est rendue en image dans la mémoire."]
-  - ["Nombre maximal de pages", "Aucun maximum fixé. Équilibré et Extrême prennent environ 0,1 à 0,3 seconde par page sur un portable; une numérisation de 200 pages demande 30 à 60 secondes."]
-  - ["Niveaux de qualité", "Bon (réécriture sans perte, texte sélectionnable), Équilibré (pages redessinées au niveau indiqué 150 ppp, JPEG qualité 0,7), Extrême (96 ppp, JPEG qualité 0,4). Il n'y a pas de champ de taille cible."]
-  - ["Entrée", ".pdf seulement. Un fichier protégé par mot de passe doit d'abord passer par Déverrouiller PDF."]
-  - ["Sortie", "Un PDF nommé compressed_<votre fichier>.pdf, mêmes dimensions et même nombre de pages. En mode Équilibré et Extrême, le texte n'est plus sélectionnable. Votre original n'est pas modifié."]
-  - ["Ce qui reste sur votre appareil", "Le PDF source, le PDF compressé et le niveau choisi. Le site n'enregistre qu'une visite anonyme de la page."]
+  - ["Où ça se passe", "Dans l'onglet de votre navigateur. pdf-lib réécrit le fichier; pour Équilibré et Extrême, pdf.js dessine d'abord chaque page sur un canevas. Rien n'est téléversé."]
+  - ["Niveaux", "Bon : réenregistrement sans perte, le texte reste sélectionnable. Équilibré : chaque page devient un JPEG à 150 ppp (qualité 0,7). Extrême : JPEG à 100 ppp (qualité 0,45)."]
+  - ["Niveaux de gris", "Case à cocher facultative pour Équilibré et Extrême. A retiré encore 6 à 20 % sur des photos et des graphiques en couleur dans nos tests; aucun gain sur les pages en noir et blanc ou en gris."]
+  - ["Si le résultat est plus lourd", "Votre original est conservé, rien n'est téléchargé, et l'outil vous le dit en suggérant un autre niveau."]
+  - ["Taille maximale du fichier", "Aucun plafond fixe; la mémoire de votre appareil est la limite. Notre plus gros test, une numérisation de 14 pages de 43,1 Mo, a pris 3 secondes en Équilibré dans Chromium sur ordinateur. Un téléphone a moins de mémoire : divisez d'abord les très gros fichiers."]
+  - ["Vitesse", "Bon a pris moins de 2 secondes sur chaque fichier de test. Équilibré a pris 7 secondes pour un rapport texte de 120 pages et 13 secondes pour une numérisation de 66 pages sur notre machine de test."]
+  - ["Entrée", ".pdf seulement. Un fichier protégé par mot de passe ne peut pas être lu; ouvrez-le avec son mot de passe et enregistrez d'abord une copie sans protection."]
+  - ["Sortie", "Un PDF nommé compressed_<votre fichier>.pdf, même nombre de pages et mêmes dimensions. Votre original n'est pas modifié."]
   - ["Fonctionne hors ligne?", "Oui, une fois la page chargée"]
 faq:
-  - q: "Comment compresser un PDF à moins de 2 Mo gratuitement?"
-    a: "Ajoutez le fichier, choisissez Équilibré, cliquez sur Compresser PDF et regardez la taille du téléchargement. Un document numérisé de 5 à 15 Mo atterrit généralement entre 1 et 2 Mo. S'il dépasse encore, relancez l'original en mode Extrême, qui divise à peu près par deux le résultat d'Équilibré. Les PDF texte sont un autre cas : ils sont déjà légers, et Bon est le bon niveau."
+  - q: "De combien mon PDF va-t-il maigrir?"
+    a: "Cela dépend de son contenu. Sur nos fichiers de test, les numérisations faites à 200–300 ppp ont perdu 55 à 93 % en Équilibré et 71 à 98 % en Extrême, et les PDF de photos ou de captures d'écran 92 à 98 %. Les PDF texte numériques ont perdu 7 à 17 % avec Bon, et une exportation de bureautique 70 %. L'écran de résultat affiche la taille exacte avant et après."
+  - q: "Pourquoi l'outil dit-il que mon PDF est déjà compact?"
+    a: "Parce que la copie compressée était plus lourde que votre fichier, alors l'outil a gardé votre original. Cela arrive avec Équilibré et Extrême sur les PDF texte : le JPEG d'une page de texte pèse bien plus que le texte. Notre rapport texte de 120 pages est passé de 241 Ko à 28 Mo en Équilibré. Utilisez Bon pour les documents texte."
   - q: "La compression va-t-elle rendre mon PDF flou?"
-    a: "Bon ne touche ni aux images ni au texte, donc aucun changement visible. Équilibré redessine les pages au niveau que l'outil indique comme 150 ppp avec une qualité JPEG de 0,7, ce qui se lit proprement à l'écran et s'imprime correctement en format lettre. Extrême descend à 96 ppp et à une qualité de 0,4; le texte reste lisible, mais les petits caractères et les traits fins s'adoucissent, alors réservez-le aux fichiers qui ne seront consultés qu'à l'écran."
-  - q: "Pourquoi mon PDF texte n'a-t-il presque pas rétréci, ou a-t-il même grossi?"
-    a: "Le texte et les graphiques vectoriels sont déjà compacts, alors Bon ne peut retirer que quelques pour cent de surcharge. Équilibré et Extrême transforment chaque page en photographie JPEG d'elle-même, et un JPEG d'une pleine page de texte pèse souvent plus que le texte. Pour les PDF texte, utilisez Bon; si le fichier est encore trop lourd, le poids se trouve sans doute dans quelques images intégrées ou une annexe inutile."
+    a: "Bon ne change rien de visible. Équilibré redessine les pages à 150 ppp, ce qui se lit proprement à l'écran et s'imprime bien en format lettre. Extrême utilise 100 ppp et une qualité JPEG basse : le texte courant reste lisible à l'écran, mais les petits caractères, les traits fins et les signatures s'adoucissent. Vérifiez une page avec de petits caractères avant d'envoyer le fichier."
   - q: "Puis-je encore sélectionner et chercher du texte après la compression?"
-    a: "Seulement avec Bon. Équilibré et Extrême aplatissent chaque page en image : le texte devient des pixels et ne peut plus être sélectionné, cherché ni lu par un lecteur d'écran. Si vous avez besoin d'un fichier léger qui reste consultable, compressez avec Bon, puis retirez des pages ou divisez le document au lieu de le pixelliser."
-  - q: "La compression retire-t-elle les métadonnées de mon PDF?"
-    a: "Bon efface les champs titre, auteur, sujet, mots-clés, créateur et producteur pendant la réécriture. Équilibré et Extrême construisent un document entièrement nouveau à partir d'images de pages, donc aucune métadonnée, aucun signet, lien ou champ de formulaire d'origine n'est conservé. Les calques cachés et les commentaires disparaissent aussi, ce qui est parfois exactement ce que l'on veut avant d'envoyer un fichier."
-  - q: "Puis-je compresser un PDF plusieurs fois pour le rendre encore plus petit?"
-    a: "Vous le pouvez, mais un second passage en Équilibré ou Extrême réencode des JPEG qui sont déjà des JPEG : la qualité baisse encore alors que la taille bouge à peine. Compressez l'original une seule fois au niveau nécessaire. Si Extrême sur l'original est encore trop lourd, la solution est moins de pages, pas un autre passage."
-  - q: "Est-ce sécuritaire de compresser des documents fiscaux ou médicaux ici?"
-    a: "Le fichier est lu dans la mémoire de votre navigateur, réécrit ou redessiné là, puis proposé en téléchargement depuis le même onglet. Aucune requête réseau ne le transporte, ce que vous pouvez vérifier dans les outils de développement, onglet Réseau, pendant la compression. Fermez l'onglet et la mémoire est libérée."
-  - q: "Quelle est la taille maximale de PDF que je peux compresser?"
-    a: "Il n'y a pas de limite serveur parce qu'il n'y a pas de serveur. Sur un portable, des fichiers de 100 à 150 Mo se compressent sans problème; le plafond est la mémoire de votre appareil, puisque Équilibré et Extrême gardent une image rendue de chaque page pendant le travail. Sur un téléphone, 30 à 40 Mo est une limite plus sûre, ou divisez d'abord le fichier et compressez les moitiés."
+    a: "Seulement avec Bon. Équilibré et Extrême transforment chaque page en image : le texte ne peut plus être sélectionné, cherché ni lu par un lecteur d'écran, et les liens, signets et champs de formulaire disparaissent. Pour un fichier léger qui reste consultable, compressez avec Bon, puis divisez-le ou retirez des pages."
+  - q: "L'option Niveaux de gris fait-elle une grosse différence?"
+    a: "Seulement sur les pages en couleur. Dans nos tests, elle a retiré encore 20 % à un PDF de photos (de 1,73 Mo à 1,38 Mo en Équilibré) et 9 à 14 % à des rapports et des captures d'écran avec des graphiques en couleur. Sur des numérisations déjà en gris ou en noir et blanc, elle n'a rien changé, puisqu'il n'y avait pas de couleur à retirer."
+  - q: "Puis-je compresser un PDF deux fois pour l'alléger encore?"
+    a: "Cela aide rarement. Un second passage en Équilibré réencode des JPEG qui sont déjà des JPEG : la qualité baisse alors que la taille bouge à peine. Compressez plutôt l'original une seule fois à un niveau plus bas, et si Extrême sur l'original est encore trop lourd, divisez le fichier par taille ou retirez des pages."
+  - q: "Est-ce sécuritaire de compresser ici des documents fiscaux, d'immigration ou médicaux?"
+    a: "Oui, le fichier ne quitte jamais votre appareil. Il est lu dans la mémoire de votre navigateur, réécrit là, puis proposé en téléchargement depuis le même onglet. Vous pouvez le vérifier dans les outils de développement du navigateur, onglet Réseau, pendant la compression : aucune requête ne transporte le fichier. Fermer l'onglet libère la mémoire."
 ---
-## Comment compresser un PDF à moins de 2 Mo gratuitement?
+## Quel niveau de compression choisir?
 
-La plupart des messageries plafonnent les pièces jointes à 20 ou 25 Mo, mais les limites qui font vraiment mal sont plus basses : 2 Mo sur bien des portails d'emploi, 4 Mo par fichier dans les demandes en ligne d'IRCC, 1 Mo pour certains téléversements d'assurance ou de prestations, 500 Ko pour quelques formulaires de bourses. Cet outil fait passer un PDF numérisé ou rempli de photos sous ces limites en cinq étapes.
+Choisissez selon le contenu du PDF, pas selon la taille visée. Les trois niveaux font des choses différentes, et le mauvais peut alourdir le fichier.
 
-### Étape 1 : Ajoutez le PDF
+| Niveau | Ce qu'il fait | Idéal pour | Mesuré sur nos fichiers de test | Texte sélectionnable? |
+|---|---|---|---|---|
+| **Bon** | Réenregistrement sans perte : regroupe les objets dans des flux compressés, efface les métadonnées | PDF de Word, de Google Docs ou de banque, formulaires, tout ce qui contient du vrai texte | 7 à 17 % plus léger sur la plupart des PDF numériques; 0 à 0,5 % sur les numérisations | Oui |
+| **Équilibré** | Redessine chaque page en JPEG à 150 ppp, qualité 0,7 | Numérisations, photos de téléphone, rapports illustrés que vous imprimerez peut-être | 55 à 93 % plus léger sur les numérisations à 200–300 ppp; 92 à 94 % sur les pages de photos | Non |
+| **Extrême** | Redessine chaque page en JPEG à 100 ppp, qualité 0,45 | Limites de téléversement où chaque kilooctet compte et où le fichier sera lu à l'écran | 71 à 98 % plus léger sur les numérisations; 97 à 98 % sur les pages de photos | Non |
 
-Cliquez sur **Choisir un fichier** ou glissez le fichier sur la zone de dépôt. L'outil affiche le nom du fichier et sa taille actuelle, c'est-à-dire le chiffre à battre.
+Équilibré est sélectionné à l'ouverture de la page. Deux cas surprennent. D'abord, une numérisation déjà faite à 150 ppp maigrit à peine en Équilibré (notre exemple de 10 pages est passé de 4,2 Mo à 4,1 Mo), parce que la page est redessinée à la même résolution; Extrême l'a amenée à 1,2 Mo. Ensuite, Équilibré et Extrême alourdissent beaucoup les PDF texte. L'outil s'en rend compte : quand le résultat n'est pas plus léger, vous voyez « Votre original est conservé » avec les deux tailles, et rien n'est téléchargé.
 
-### Étape 2 : Choisissez un niveau
+## De combien nos fichiers de test ont-ils maigri?
 
-Trois options apparaissent sous **Choisir le niveau de compression** :
+Nous avons passé 25 PDF de test dans cette page, dans Chromium sur ordinateur, le 12 novembre 2026 : numérisations, pages de photos, exportations de bureautique, un vrai formulaire de l'IRS et de longs rapports texte. Voici les résultats pour les principaux types de documents. « Plus lourd » signifie que l'outil a gardé l'original.
 
-- **Bon** réécrit le fichier sans perte : il regroupe les objets internes dans des flux compressés et vide les champs de métadonnées. Le texte reste sélectionnable. Attendez-vous à 5 à 15 % de moins sur la plupart des fichiers, parfois davantage sur des PDF produits par de vieux logiciels.
-- **Équilibré** dessine chaque page en image au niveau que l'outil indique comme 150 ppp et l'enregistre en JPEG à une qualité de 0,7. C'est le niveau qui transforme une numérisation de 10 Mo en 1 ou 2 Mo. Le texte fait désormais partie de l'image et n'est plus sélectionnable.
-- **Extrême** fait la même chose à 96 ppp et à une qualité JPEG de 0,4. Environ la moitié de la taille d'Équilibré, avec des petits caractères visiblement plus doux.
+| Fichier de test | Original | Bon | Équilibré | Extrême |
+|---|---|---|---|---|
+| Rapport texte de 12 pages | 24 Ko | 21 Ko (−13 %) | Plus lourd (2,7 Mo) | Plus lourd (1,1 Mo) |
+| Rapport texte de 120 pages | 241 Ko | 214 Ko (−12 %) | Plus lourd (28 Mo) | Plus lourd (12 Mo) |
+| Exportation LibreOffice de 27 pages | 480 Ko | 144 Ko (−70 %) | Plus lourd (8 Mo) | Plus lourd (3,4 Mo) |
+| Formulaire W-4 de l'IRS, 5 pages | 204 Ko | Plus lourd (208 Ko) | Plus lourd (1,8 Mo) | Plus lourd (744 Ko) |
+| Numérisation de 3 pages, 200 ppp | 746 Ko | 745 Ko (0 %) | 329 Ko (−56 %) | 97 Ko (−87 %) |
+| Numérisation de 10 pages, 200 ppp | 2,5 Mo | 2,5 Mo (0 %) | 1,1 Mo (−55 %) | 342 Ko (−87 %) |
+| Numérisation en gris de 10 pages, 200 ppp | 7,0 Mo | 7,0 Mo (0 %) | 2,4 Mo (−66 %) | 812 Ko (−89 %) |
+| Numérisation couleur de 6 pages, 300 ppp | 10,1 Mo | 10,1 Mo (0 %) | 1,3 Mo (−87 %) | 454 Ko (−96 %) |
+| Numérisation couleur de 14 pages, 300 ppp | 43,1 Mo | 43,1 Mo (0 %) | 3,0 Mo (−93 %) | 1,0 Mo (−98 %) |
+| Numérisation en gris de 10 pages, 150 ppp | 4,2 Mo | 4,2 Mo (0 %) | 4,1 Mo (−2 %) | 1,2 Mo (−71 %) |
+| Numérisation noir et blanc de 66 pages | 3,4 Mo | 3,4 Mo (−0,5 %) | Plus lourd (17,7 Mo) | Plus lourd (7,4 Mo) |
+| 8 photos pleine page | 31,0 Mo | 31,0 Mo (0 %) | 1,7 Mo (−94 %) | 640 Ko (−98 %) |
+| Rapport de 16 pages avec photos et graphiques | 4,0 Mo | 4,0 Mo (0 %) | 2,2 Mo (−45 %) | 916 Ko (−78 %) |
 
-C'est ici que les gens se trompent. Si votre fichier est une exportation Word ou un relevé bancaire avec du vrai texte, Équilibré et Extrême peuvent le rendre plus gros, pas plus petit, parce qu'un JPEG d'une page de texte pèse plus que le texte lui-même. Commencez par Bon pour les documents texte et par Équilibré pour tout ce qui est numérisé ou photographié.
+Temps sur notre machine de test : Bon a terminé chaque fichier en moins de 2 secondes. Équilibré a pris 3 secondes pour la numérisation de 43,1 Mo, 7 secondes pour le rapport de 120 pages et 13 secondes pour la numérisation de 66 pages. Un téléphone est plus lent; nous ne l'avons pas chronométré.
 
-### Étape 3 : Cliquez sur Compresser PDF
+## Comment les PDF numérisés, consultables et numériques se compressent-ils différemment?
 
-Bon termine en une ou deux secondes, peu importe le nombre de pages. Équilibré et Extrême travaillent page par page, environ 0,1 à 0,3 seconde chacune sur un portable de 2022; une numérisation de 40 pages prend 5 à 12 secondes et une de 200 pages, 30 à 60 secondes. La page reprend son souffle entre chaque page, donc l'onglet ne fige pas.
+**Les PDF numérisés** contiennent une image par page. Si le numériseur a enregistré ces images en couleur ou en gris à 200–300 ppp, Équilibré et Extrême les allègent énormément, car l'outil les redessine à une résolution plus basse. Bon n'y peut rien : il ne touche pas aux images. L'exception est la numérisation en noir et blanc (1 bit), celle que les photocopieurs de bureau produisent en mode « texte » : elle est déjà stockée très efficacement, et notre exemple de 66 pages est devenu cinq fois plus lourd en Équilibré. Gardez-la telle quelle, ou divisez-la.
 
-### Étape 4 : Vérifiez la taille
+**Les PDF consultables** sont des numérisations auxquelles la reconnaissance de caractères a ajouté une couche de texte invisible. Ils se compressent comme des numérisations en Équilibré et Extrême, mais la couche de texte est perdue, donc le résultat n'est plus consultable. Si la recherche compte, compressez d'abord en Équilibré, puis passez le fichier allégé dans [OCR PDF](/fr/ocr-pdf) pour rajouter la couche de texte.
 
-Le téléchargement s'appelle `compressed_<votre fichier>.pdf`. Comparez sa taille à la limite visée. S'il dépasse encore, repartez du fichier original (pas du fichier compressé) et essayez le niveau suivant.
+**Les PDF numériques** sortent directement de Word, de Google Docs, de LibreOffice, d'une banque ou d'un formulaire gouvernemental. Leur texte est stocké comme du texte, déjà compact. Bon est le seul niveau utile, habituellement 7 à 17 %, parfois bien plus sur les exportations de vieux logiciels (70 % sur notre fichier LibreOffice). Équilibré a alourdi chaque fichier texte de nos tests, de 2 à 360 fois; Extrême n'en a allégé qu'un seul, une lettre de 2 pages presque vide, de 7 %.
 
-### Étape 5 : Ouvrez-le avant de l'envoyer
+## Comment compresser un PDF à une taille précise?
 
-Allez à une page avec de petits caractères ou une signature. Si Extrême a rendu quelque chose illisible, revenez à Équilibré et retirez des pages à la place; voir la section suivante.
+L'outil fonctionne par niveaux, pas avec une case de taille cible; servez-vous donc de ces chiffres par page, tirés de nos numérisations, pour prévoir le résultat. En Équilibré, une page numérisée a donné 110 à 410 Ko; en Extrême, 30 à 125 Ko. Multipliez par votre nombre de pages, puis vérifiez la vraie taille sur l'écran de résultat.
 
-> **Astuce :** Compressez toujours l'original. Passer Équilibré sur un fichier déjà passé en Équilibré réencode des JPEG qui sont déjà des JPEG : la qualité baisse, la taille bouge à peine.
+### Moins de 2 Mo
+
+Équilibré suffit généralement jusqu'à environ 5 pages numérisées. Dans nos tests, il a fait passer une numérisation couleur de 6 pages à 300 ppp de 10,1 Mo à 1,3 Mo, alors que les numérisations de 10 à 14 pages ont atterri entre 1,1 et 3,0 Mo. Pour celles-là, Extrême les a toutes ramenées sous 1,3 Mo.
+
+### Moins de 1 Mo
+
+Utilisez Extrême pour les numérisations d'au plus 10 pages environ : 6 de nos 8 numérisations de test sont passées sous 1 Mo. Les deux autres étaient la numérisation de 14 pages à 300 ppp (1,0 Mo, à peine au-dessus) et une numérisation de 10 pages déjà à 150 ppp (1,2 Mo).
+
+### Moins de 500 Ko
+
+Extrême sur de courtes numérisations : chaque numérisation de test de 6 pages ou moins est passée sous 500 Ko (97 Ko pour 3 pages, 454 Ko pour 6 pages couleur à 300 ppp), tout comme une numérisation légère de 10 pages (342 Ko). Pour un fichier plus long, divisez-le.
+
+### Moins de 200 Ko
+
+Réaliste pour 1 à 3 pages numérisées en Extrême : notre numérisation d'une page a donné 33 Ko et celle de 3 pages, 97 Ko. Un court document texte numérique est souvent déjà aussi léger; utilisez Bon, qui le garde net.
+
+Si même Extrême est trop lourd, ne recompressez pas. [Diviser un PDF par taille](/fr/split-pdf-by-size) coupe le fichier en parties qui respectent chacune une limite, et [Supprimer des pages PDF](/fr/delete-pdf-pages) retire les versos blancs et les pages de garde.
+
+## Faut-il cocher l'option Niveaux de gris?
+
+Cochez **Niveaux de gris** quand la couleur n'a pas d'importance et que les pages contiennent des photos, des graphiques ou du surlignage en couleur. L'option retire la couleur de chaque page redessinée avant de créer le JPEG. Dans nos tests, elle a fait passer le PDF de photos de 1,73 Mo à 1,38 Mo en Équilibré (encore 20 %), le rapport avec graphiques en couleur de 9 % de moins, et les captures d'écran de 14 % de moins. Sur des numérisations déjà en gris ou en noir et blanc, elle n'a rien changé. Elle est grisée avec Bon, qui ne modifie jamais les images. Laissez-la décochée quand la couleur a un sens : un tampon, une signature à l'encre bleue, un graphique à code de couleurs.
+
+## Quelles sont les limites de téléversement, et quel niveau convient à chacune?
+
+### Gmail (25 Mo)
+
+Gmail joint des fichiers jusqu'à 25 Mo; au-delà, la pièce jointe devient un lien Google Drive. La plupart des PDF passent déjà. Une grosse numérisation de téléphone ou de bureau, peut-être pas : notre numérisation de 14 pages de 43,1 Mo est descendue à 3,0 Mo en Équilibré, ce qui laisse de la place pour d'autres pièces jointes.
+
+### Outlook.com (20 Mo)
+
+Outlook.com plafonne les pièces jointes à 20 Mo. Même conseil que pour Gmail : Équilibré pour les numérisations et les PDF de photos, Bon pour tout le reste.
+
+### Portails d'emploi et LinkedIn Candidature simplifiée (2 Mo)
+
+La Candidature simplifiée de LinkedIn accepte des CV jusqu'à 2 Mo, et bien des systèmes de suivi des candidatures plafonnent les téléversements entre 2 et 5 Mo. Un CV exporté de Word ou de Google Docs est presque toujours bien en dessous; utilisez Bon pour que le logiciel des recruteurs puisse encore lire le texte. Si vous avez numérisé une lettre de référence signée ou un relevé de notes, Équilibré ramène quelques pages sous 2 Mo.
+
+### Demandes à IRCC (environ 4 Mo par document)
+
+Les portails en ligne d'IRCC acceptent environ 4 Mo par document; vérifiez la limite affichée à côté de chaque emplacement de téléversement. Les passeports, certificats de police et preuves de fonds numérisés sont le problème habituel. Équilibré a gardé chaque numérisation de test à 200–300 ppp de 10 pages ou moins sous 2,5 Mo, et Extrême a gardé chaque numérisation de test de 10 pages ou moins sous 1,3 Mo. Ouvrez le résultat et vérifiez que les petits caractères, les tampons et les signatures sont lisibles avant de téléverser.
+
+### Dépôt en ligne à l'USCIS (moins de 6 Mo par fichier)
+
+Le dépôt en ligne de l'USCIS exige que chaque fichier fasse moins de 6 Mo. Équilibré est le premier choix sûr pour des preuves numérisées; si une longue numérisation dépasse encore, utilisez [Diviser un PDF par taille](/fr/split-pdf-by-size) et téléversez les parties.
+
+### WhatsApp (documents jusqu'à 2 Go)
+
+WhatsApp envoie des documents jusqu'à 2 Go, donc la taille bloque rarement un PDF. Les données, oui : une numérisation de 43 Mo coûte 43 Mo de données mobiles à la personne qui la reçoit. Équilibré en fait un téléchargement de 3 Mo.
 
 ## Qu'arrive-t-il à mon fichier quand je le compresse?
 
-Deux choses différentes, selon le niveau. Avec Bon, pdf-lib charge le PDF dans la mémoire de votre navigateur, vide les champs d'information du document et le réenregistre avec des flux d'objets activés, ce qui est un remballage sans perte de la structure interne du fichier. Avec Équilibré ou Extrême, pdf.js, le moteur que Firefox utilise pour afficher les PDF, dessine chaque page sur un canevas invisible dans l'onglet; le canevas est encodé en JPEG à la qualité choisie, et pdf-lib construit un nouveau document avec un JPEG par page, aux dimensions d'origine. Le résultat vous est remis en téléchargement depuis le même onglet.
+Avec Bon, pdf-lib charge le PDF dans la mémoire de votre navigateur, efface le titre, l'auteur, le sujet, les mots-clés, le créateur, le producteur et les métadonnées XMP, puis le réenregistre avec des flux d'objets. Le texte, les liens, les signets et les champs de formulaire sont conservés. Avec Équilibré ou Extrême, pdf.js, le moteur que Firefox utilise pour afficher les PDF, dessine chaque page sur un canevas invisible; le canevas devient un JPEG, et pdf-lib construit un nouveau PDF avec un JPEG par page, aux dimensions d'origine.
 
-Dans aucun des deux cas le fichier ne quitte votre appareil. Il n'y a pas d'étape de téléversement parce qu'aucun serveur ne fait le travail. Vous pouvez le vérifier vous-même : ouvrez les outils de développement du navigateur, choisissez Réseau et compressez un fichier. Vous verrez se charger les scripts de la page et les bibliothèques PDF, une requête anonyme de visite de page, et rien d'autre pendant la compression.
-
-C'est ce qui compte pour les documents que les Canadiens compressent le plus : des T4 et des relevés 1 numérisés pour la déclaration de revenus, des preuves de fonds et des numérisations de passeport pour une demande d'IRCC, un bail photographié de 30 Mo pour un dossier au Tribunal administratif du logement, ou une demande de consultation avec imagerie jointe. Un fichier qui n'est jamais téléversé ne peut être ni conservé, ni analysé, ni divulgué par quelqu'un d'autre; il n'y a donc rien qu'une loi sur la protection des renseignements personnels aurait à encadrer.
-
-## Comment obtenir un PDF de moins de 2 Mo (ou 1 Mo, ou 500 Ko)?
-
-L'outil propose des niveaux de qualité, pas une case de taille cible; pour atteindre une limite précise, il faut donc savoir à peu près ce que chaque niveau fait à chaque type de fichier et choisir en conséquence. Le tableau ci-dessous indique à quoi s'attendre; votre fichier variera selon le nombre de pages et la densité des numérisations.
-
-| Type de document | Taille de départ | Bon | Équilibré | Extrême |
-|---|---|---|---|---|
-| Exportation Word ou Google Docs, 10 pages de texte | 300 Ko | 250 à 290 Ko | 1 à 2 Mo (plus gros) | 500 Ko à 1 Mo (plus gros) |
-| Relevé bancaire PDF, 6 pages, vrai texte | 800 Ko | 650 à 760 Ko | 1 à 1,5 Mo (plus gros) | 400 à 700 Ko |
-| Lettre numérisée au téléphone, 4 pages | 8 Mo | 7 à 7,5 Mo | 600 Ko à 1,2 Mo | 300 à 600 Ko |
-| PDF de numériseur de bureau à 300 ppp, 20 pages | 25 Mo | 22 à 24 Mo | 2,5 à 4 Mo | 1,2 à 2 Mo |
-| Présentation avec photos, 40 diapositives | 15 Mo | 12 à 14 Mo | 2 à 3,5 Mo | 1 à 1,8 Mo |
-| Fiche immobilière pleine de photos, 12 pages | 40 Mo | 35 à 38 Mo | 2 à 3 Mo | 1 à 1,5 Mo |
-
-Lecture du tableau pour les trois cibles courantes :
-
-**Moins de 2 Mo.** Équilibré y amène toute numérisation d'au plus 10 à 15 pages. Une numérisation plus longue demande Extrême, ou Équilibré avec moins de pages.
-
-**Moins de 1 Mo.** Extrême sur des numérisations d'au plus une dizaine de pages. Pour les PDF texte, Bon plus le retrait de pages est la seule voie qui les garde lisibles.
-
-**Moins de 500 Ko.** Réaliste pour une numérisation de une à trois pages en Extrême, ou un court document texte en Bon. Au-delà, vous échangez de la lisibilité contre des kilooctets.
-
-Quand le niveau le plus bas ne suffit toujours pas, changez l'entrée au lieu de recompresser :
-
-1. **Retirez les pages inutiles.** Pages de garde, versos blancs d'une numérisation recto verso et copies en double sont les coupables habituels. [Supprimer des pages PDF](/fr/delete-pdf-pages) prend quelques secondes et fait souvent gagner plus qu'un niveau de compression.
-2. **Divisez le document.** Un portail qui accepte 2 Mo par fichier accepte généralement plusieurs fichiers. [Diviser PDF](/fr/split-pdf) ou [Extraire des pages PDF](/fr/extract-pdf-pages) transforme un fichier de 6 Mo en trois téléversements qui passent chacun.
-3. **Renumérisez à un réglage plus bas.** Un numériseur réglé à 600 ppp couleur produit 4 à 6 Mo par page; à 200 ppp en niveaux de gris, 200 à 400 Ko par page, encore parfaitement lisibles pour des formulaires. Si vous avez encore le papier, cela bat n'importe quel compresseur.
-4. **Photographiez plus léger.** Les numérisations au téléphone en pleine résolution font 3 à 5 Mo chacune. La plupart des applications de numérisation ont une option « petit » ou « moyen » qui ramène une page sous 1 Mo avant même qu'elle devienne un PDF.
-
-## Comment compresser un PDF sur iPhone, Android, Mac ou Windows?
-
-L'outil est la même page sur tous les appareils, mais les solutions intégrées diffèrent beaucoup.
-
-**iPhone et iPad.** Ouvrez la page dans Safari, touchez la zone de dépôt et choisissez le fichier dans Fichiers. Équilibré sur une numérisation de 20 pages prend 15 à 40 secondes sur un iPhone récent. Restez sous 30 à 40 Mo; iOS recharge un onglet qui consomme trop de mémoire, et chaque page rendue est conservée pendant le travail. Le téléchargement apparaît dans Fichiers → Téléchargements. iOS n'a pas d'option de compression, mais les numériseurs de Notes et de Fichiers permettent de choisir une taille de sortie plus petite au moment de numériser.
-
-**Android.** Chrome gère le sélecteur et enregistre dans Téléchargements. Les téléphones avec 3 ou 4 Go de mémoire devraient rester sous 30 Mo par fichier ou diviser d'abord. Le numériseur de Google Drive offre un curseur de qualité à la numérisation, et c'est là qu'il vaut mieux économiser.
-
-**Mac.** Aperçu peut exporter avec le filtre Quartz « Réduire la taille du fichier » (Fichier → Exporter → Filtre Quartz). Il est déjà installé et gratuit; sa faiblesse est un réglage unique et assez agressif, qui peut transformer une numérisation propre à 300 ppp en bouillie. Cette page vous donne deux niveaux avec perte et un sans perte, et vous laisse comparer.
-
-**Windows.** Windows n'a pas de compresseur PDF intégré. Imprimer vers Microsoft Print to PDF redessine le document, mais réduit rarement la taille de façon notable. Il faut un outil comme celui-ci ou une application de bureau.
-
-**Chromebook.** Fonctionne comme sur Chrome de bureau. Les fichiers vont dans Téléchargements ou Google Drive selon votre réglage.
+Le fichier ne quitte jamais votre appareil. C'est important pour ce que les Canadiens compressent le plus : feuillets T4 et reçus pour l'ARC, passeports numérisés pour IRCC, demandes de consultation médicale. Vous pouvez le vérifier dans les outils de développement du navigateur, onglet Réseau, pendant la compression.
 
 ## Quand ne devriez-vous pas utiliser cet outil?
 
-- **Le texte doit rester sélectionnable ou consultable et Bon ne suffit pas.** Équilibré et Extrême pixellisent les pages. Utilisez Bon, puis retirez des pages ou divisez; ou, si le poids vient de quelques grandes images, un éditeur de bureau capable de sous-échantillonner des images individuelles sans aplatir le texte est le bon outil.
-- **L'accessibilité compte.** Un PDF pixellisé n'a pas de couche de texte, alors les lecteurs d'écran ne peuvent pas le lire. Gardez une copie non compressée ou au niveau Bon pour qui en a besoin.
-- **Formulaires remplissables, signatures et liens.** Équilibré et Extrême construisent un nouveau document à partir d'images de pages; les champs de formulaire, les signatures numériques, les signets et les hyperliens disparaissent. Compressez avec Bon, ou compressez avant de signer et de remplir.
-- **Le PDF demande un mot de passe.** Il ne peut pas être lu. Retirez d'abord le mot de passe avec Déverrouiller PDF.
-- **Qualité d'impression.** 150 ppp convient à une page lettre lue à bout de bras; pas à une affiche, un plan ou tout ce qui sera agrandi. Gardez l'original pour l'impression.
-- **Un fichier de 150 Mo sur un téléphone.** Rendre chaque page en image demande une mémoire que le téléphone n'a pas. Utilisez un portable, ou divisez d'abord le fichier.
+- **Formulaires remplissables à remplir ou à signer.** Équilibré et Extrême suppriment les champs de formulaire et les signatures numériques. Utilisez Bon, ou remplissez et signez d'abord.
+- **Accessibilité.** Un PDF redessiné ne contient plus de texte; les lecteurs d'écran ne peuvent pas le lire. Gardez une copie en Bon pour qui en a besoin.
+- **Qualité d'impression.** 150 ppp convient à une page lettre, pas à une affiche ni à un plan. Gardez l'original pour l'impression.
+- **PDF protégés par mot de passe.** L'outil ne peut pas les lire. Ouvrez le fichier avec son mot de passe et enregistrez d'abord une copie sans protection (dans Chrome : Imprimer, puis Enregistrer au format PDF).
 
 ## Dépannage
 
 | Problème | Solution | Pourquoi ça fonctionne |
 |---|---|---|
-| Le fichier a grossi | Utilisez Bon au lieu d'Équilibré ou Extrême | Les pages de texte pèsent moins en texte qu'en JPEG |
-| Encore plus de 2 Mo après Extrême | Supprimez des pages inutiles ou divisez en deux fichiers | Moins de pages est le seul levier qui reste quand la qualité est au plus bas |
-| Je ne peux plus sélectionner ni chercher le texte | Recompressez l'original avec Bon | Bon est le seul niveau qui garde la couche de texte |
-| Les petits caractères sont flous | Utilisez Équilibré plutôt qu'Extrême | 150 ppp tient les caractères de 8 points; 96 ppp, non |
-| Les champs de formulaire ou la signature ont disparu | Utilisez Bon, ou signez et remplissez après la compression | Les niveaux avec perte bâtissent un nouveau document d'images, sans la couche de formulaire |
-| Safari sur iPhone recharge l'onglet | Divisez le fichier ou utilisez un portable | iOS limite la mémoire d'un onglet et le rendu des pages la dépasse |
-| La page semble figée sur une longue numérisation | Patientez; 200 pages prennent 30 à 60 secondes | Chaque page est rendue à son tour et l'outil fait une pause entre les pages |
-
-## Quoi d'autre peut alléger un PDF?
-
-- [Supprimer des pages PDF](/fr/delete-pdf-pages) retire les pages qui alourdissent le fichier, sans aucune perte sur celles que vous gardez.
-- [Diviser PDF](/fr/split-pdf) transforme un fichier trop lourd en plusieurs qui passent chacun une limite par fichier.
-- [Extraire des pages PDF](/fr/extract-pdf-pages) ne garde que les pages qu'un formulaire demande vraiment.
-- [Recadrer PDF](/fr/crop-pdf) coupe les marges, ce qui ne réduit pas la taille du fichier, mais rend une page plus lisible à une résolution plus basse.
-- [Fusionner PDF](/fr/merge-pdf) pour combiner les fichiers après compression, de sorte qu'une limite de 2 Mo par téléversement devienne un seul lot conforme.
-
-## En résumé
-
-La compression PDF, ce sont en réalité deux travaux différents. Bon est un remballage sans perte qui garde le texte sélectionnable et retire 5 à 15 %; Équilibré et Extrême transforment chaque page en JPEG et retirent 40 à 90 % aux numérisations et aux fichiers remplis de photos, ce qui fait passer un document de 10 Mo sous une limite de portail de 2 Mo. Choisissez Bon pour le texte, Équilibré pour les numérisations, Extrême seulement quand Équilibré reste trop lourd, et compressez l'original plutôt que de compresser deux fois. Quand même Extrême ne suffit pas, retirez des pages ou divisez le fichier au lieu de sacrifier la lisibilité.
+| Encore trop lourd après Extrême | Divisez-le avec Diviser un PDF par taille, ou supprimez des pages | Moins de pages par fichier est le seul levier qui reste quand la qualité est au plus bas |
+| Encore trop lourd après Équilibré | Relancez l'original en Extrême | Le résultat d'Extrême faisait environ le tiers de celui d'Équilibré sur nos numérisations |
+| « Votre original est conservé » | Utilisez Bon pour les PDF texte; laissez les numérisations noir et blanc telles quelles | Le texte et les numérisations 1 bit pèsent moins que n'importe quel JPEG de leurs pages |
+| Équilibré a à peine allégé une numérisation | Utilisez Extrême | La numérisation était déjà près de 150 ppp, donc Équilibré l'a redessinée à la même résolution |
+| Le texte n'est plus sélectionnable | Recompressez l'original avec Bon, ou passez le résultat dans OCR PDF | Équilibré et Extrême transforment les pages en images |
+| Les petits caractères ou une signature sont flous | Utilisez Équilibré plutôt qu'Extrême | 150 ppp garde des détails fins que 100 ppp adoucit |
+| Les champs de formulaire ont disparu | Utilisez Bon, ou remplissez et signez avant de compresser | Les niveaux avec perte reconstruisent le PDF à partir d'images des pages |
+| « Ce PDF est protégé par un mot de passe » | Ouvrez-le avec le mot de passe, enregistrez une copie sans protection, compressez-la | Un fichier chiffré ne peut pas être lu sans son mot de passe |

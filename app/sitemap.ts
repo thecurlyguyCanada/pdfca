@@ -44,8 +44,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const tools = Array.from(new Set(getAllToolSlugs()));
     const guides = getAllGuideSlugs();
 
-    // Generic last modified date for this build
-    const lastModified = new Date();
+    // Honest lastmod (playbook): tool pages use their article's `updated` date; the homepage uses the newest
+    // tool date; other pages carry the date they last changed. Never the build time, which changes every deploy.
+    const lastModified = new Date('2026-11-12T12:00:00Z');
+    const toolDates = tools.flatMap((slug) => i18n.locales.map((l) => getToolArticle(slug, l)?.meta.updated)).filter(Boolean) as string[];
+    const newest = toolDates.length ? new Date(`${toolDates.sort().slice(-1)[0]}T12:00:00Z`) : lastModified;
 
     const routes: SitemapEntry[] = [];
 
@@ -53,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     i18n.locales.forEach(locale => {
         routes.push({
             url: `${baseUrl}/${locale}`,
-            lastModified,
+            lastModified: newest,
             changeFrequency: 'daily',
             priority: 1,
             alternates: getAlternates(''),

@@ -1,0 +1,20 @@
+name: IndexNow after production deploy
+
+# Vercel reports each deployment to GitHub as a deployment status. After a successful production deploy,
+# push the pages whose sitemap lastmod changed in the last 7 days to IndexNow (Bing and the AI answer
+# engines that read Bing pick up new tools within days).
+on:
+  deployment_status:
+
+jobs:
+  indexnow:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow-submit.mjs
+        env:
+          DAYS: '7'

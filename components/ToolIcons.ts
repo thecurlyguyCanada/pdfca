@@ -1,7 +1,8 @@
 import {
     Trash2, RotateCw, FileDown, LayoutGrid, Scissors, FileSearch, Crop,
     Image, BookOpen, Smartphone, Tablet, FormInput, PenTool, Layers,
-    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck, ScanText
+    FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck, ScanText,
+    GitCompare, Camera, ImagePlus, Ruler, Columns2, ListOrdered, Stamp, KeyRound, Layers2, Shuffle, FileImage, Presentation
 } from 'lucide-react';
 
 export const TOOL_ICONS: Record<string, React.ElementType> = {
@@ -34,4 +35,18 @@ export const TOOL_ICONS: Record<string, React.ElementType> = {
     'pdf-to-csv': Table,
     'pdf-to-excel': FileSpreadsheet,
     'analyze-pdf': ShieldCheck,
+    'jpg-to-pdf': Image,
+    'pdf-to-jpg': FileImage,
+    'pdf-to-png': FileImage,
+    'pdf-to-ppt': Presentation,
+    'compare-pdf': GitCompare,
+    'scan-to-pdf': Camera,
+    'add-image-to-pdf': ImagePlus,
+    'split-pdf-by-size': Ruler,
+    'split-pdf-in-half': Columns2,
+    'add-page-numbers': ListOrdered,
+    'watermark-pdf': Stamp,
+    'protect-pdf': KeyRound,
+    'flatten-pdf': Layers2,
+    'alternate-mix-pdf': Shuffle,
 };

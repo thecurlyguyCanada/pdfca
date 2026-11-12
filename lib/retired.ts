@@ -28,9 +28,6 @@ export const RETIRED_GUIDES = new Set<string>([
     'google-classroom-student-guide',
     // guides for converters that do not exist as tools and never earned a click
     'email-to-pdf',
-    'insert-picture-in-pdf',
-    'trim-pdf',
-    'flatten-pdf',
     'avif-to-pdf',
     'ipynb-to-pdf',
 ]);
@@ -57,7 +54,7 @@ export const GUIDE_REDIRECTS: Record<string, string> = {
 /** Tools with no measurable demand in Canada and no traffic in six months → 410. Their guides go with them. */
 export const RETIRED_TOOLS = new Set<string>([
     'xrechnung-viewer', 'pdf-to-ubl', 'analyze-pdf', 'pdf-to-xml', 'xml-to-pdf', 'odt-to-pdf', 'gif-to-pdf', 'rtf-to-pdf',
-    'tif-to-pdf', 'pdf-to-svg', 'cbr-to-pdf', 'odg-to-pdf', 'make-pdf-non-editable', 'invoice-ocr', 'pdf-reader',
+    'tif-to-pdf', 'pdf-to-svg', 'cbr-to-pdf', 'odg-to-pdf', 'invoice-ocr', 'pdf-reader',
     // Second cut (Nov 2026): off-core converters a focused PDF-tools site does not need. The code-to-PDF pair
     // earned ~70 clicks in six months; the rest earned none.
     'barcode-generator', 'aspx-to-pdf', 'php-to-pdf', 'ofx-to-excel', 'pages-to-pdf', 'html-to-pdf', 'pdf-to-kindle', 'pdf-to-csv',
@@ -77,6 +74,8 @@ export const TOOL_REDIRECTS: Record<string, string> = {
     'image-to-pdf': 'jpg-to-pdf',
     'png-to-pdf': 'jpg-to-pdf',
     'pdf-to-image': 'pdf-to-jpg',
+    // Nov 2026 (playbook wave 3): the flatten intent has a real tool again.
+    'make-pdf-non-editable': 'flatten-pdf',
 };
 
 export const isToolLive = (slug: string) => !RETIRED_TOOLS.has(slug) && !(slug in TOOL_REDIRECTS);
@@ -114,6 +113,10 @@ export const GUIDE_TO_TOOL: Record<string, string> = {
     'sign-pdf': '/sign-pdf',
     'split-pdf': '/split-pdf',
     'word-to-pdf': '/word-to-pdf',
+    // Retired as thin guides in Aug 2026; each intent now has a working tool page (Nov 2026).
+    'flatten-pdf': '/flatten-pdf',
+    'insert-picture-in-pdf': '/add-image-to-pdf',
+    'trim-pdf': '/crop-pdf',
 };
 
 /** Hub pages under /guides/ that only linked to other guides → the guides index. */

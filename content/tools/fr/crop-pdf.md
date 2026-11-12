@@ -1,5 +1,5 @@
 ---
-title: "Recadrer un PDF gratuitement : marges d'une ou de toutes les pages"
+title: "Recadrer un PDF gratuitement : marges d'une ou de chaque page"
 h1: "Recadrer un PDF"
 lead: "Tracez une zone de recadrage sur la page, appliquez-la à une page ou à toutes, puis téléchargez. Le recadrage se fait dans votre navigateur, sans téléversement."
 description: "Recadrez un PDF gratuitement dans votre navigateur : tracez une zone, appliquez-la à une page ou à toutes, puis téléchargez. Aucun téléversement."

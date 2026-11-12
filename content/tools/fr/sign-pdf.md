@@ -1,5 +1,5 @@
 ---
-title: "Signer un PDF gratuitement : dessinez ou tapez, rien n'est envoyé"
+title: "Signer un PDF gratuitement : dessinez ou tapez, sans envoi"
 h1: "Signer un PDF"
 lead: "Dessinez, tapez ou téléversez votre signature, déposez-la sur la page avec vos initiales et la date du jour, puis téléchargez le PDF signé. Tout reste dans votre navigateur."
 description: "Signez un PDF gratuitement dans votre navigateur : dessinez, tapez ou téléversez une signature, ajoutez initiales et date, téléchargez en quelques secondes."

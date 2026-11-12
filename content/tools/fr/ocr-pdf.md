@@ -1,5 +1,5 @@
 ---
-title: "OCR PDF gratuit : rendre un PDF numérisé consultable, sans envoi"
+title: "OCR PDF gratuit : rendre un PDF numérisé consultable"
 h1: "OCR PDF"
 lead: "Transformez un PDF numérisé en document où l'on peut chercher, sélectionner et copier le texte, en français et en anglais. Le scan reste identique ; l'OCR se fait dans votre navigateur et le fichier n'est jamais envoyé."
 description: "Faites l'OCR d'un PDF numérisé gratuitement dans votre navigateur : le texte français et anglais devient consultable et copiable, sans envoi du fichier."

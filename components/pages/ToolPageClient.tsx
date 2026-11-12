@@ -57,6 +57,24 @@ interface ToolPageClientProps {
   lang: Language;
 }
 
+interface CompressOutcome {
+  level: 'good' | 'balanced' | 'extreme';
+  before: number;
+  after: number;
+  keptOriginal: boolean;
+}
+
+/** File size for the compress result, e.g. "4.2 MB" / « 4,2 Mo » (1 MB = 1,048,576 bytes, as browsers and OSes show it). */
+const formatCompressSize = (bytes: number, lang: Language): string => {
+  const fr = lang === 'fr';
+  const units = fr ? ['octets', 'Ko', 'Mo', 'Go'] : ['bytes', 'KB', 'MB', 'GB'];
+  let i = 0;
+  let v = bytes;
+  while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+  const digits = i === 0 ? 0 : v < 10 ? 1 : 0;
+  return `${v.toLocaleString(fr ? 'fr-CA' : 'en-CA', { maximumFractionDigits: digits, minimumFractionDigits: digits })}${fr ? '\u00a0' : ' '}${units[i]}`;
+};
+
 export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [appState, setAppState] = useState<AppState>(AppState.SELECTING);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -74,6 +92,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
   const [errorKey, setErrorKey] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [compressionLevel, setCompressionLevel] = useState<'good' | 'balanced' | 'extreme'>('balanced');
+  const [compressGrayscale, setCompressGrayscale] = useState(false);
+  const [compressOutcome, setCompressOutcome] = useState<CompressOutcome | null>(null);
   const [processedSize, setProcessedSize] = useState<number | null>(null);
   const [pageRangeInput, setPageRangeInput] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -338,6 +358,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     setErrorMessage(null);
     setAppState(AppState.SELECTING);
     setPageRangeInput('');
+    setCompressOutcome(null);
   };
 
   const isMounted = useRef(true);
@@ -356,6 +377,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
     try {
       let resultBlob: Blob | Uint8Array;
       let outputName = file ? file.name : 'document.pdf';
+      let compressInfo: CompressOutcome | null = null;
 
       // Use provided blob if available (from Sign or Crop tools)
       if (processedBlobData) {
@@ -401,10 +423,25 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
             outputName = `extracted_${primaryFile.name}`;
             break;
 
-          case ToolType.COMPRESS:
-            resultBlob = await compressPdf(primaryFile, compressionLevel);
+          case ToolType.COMPRESS: {
+            const compressed = await compressPdf(primaryFile, compressionLevel, {
+              grayscale: compressionLevel !== 'good' && compressGrayscale,
+              onProgress: ({ page, total }) => {
+                if (isMounted.current) {
+                  setProgressText(String(t.compressProgress || 'Compressing page {page} of {total}…').replace('{page}', String(page)).replace('{total}', String(total)));
+                }
+              },
+            });
+            compressInfo = { level: compressionLevel, before: primaryFile.size, after: compressed.byteLength, keptOriginal: compressed.byteLength >= primaryFile.size };
+            if (compressInfo.keptOriginal) {
+              // Not smaller: keep the original, download nothing, and say so.
+              if (isMounted.current) setCompressOutcome(compressInfo);
+              return;
+            }
+            resultBlob = compressed;
             outputName = `compressed_${primaryFile.name}`;
             break;
+          }
 
           case ToolType.FLATTEN:
             resultBlob = await flattenPdf(primaryFile);
@@ -595,7 +632,11 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        setShowSuccess(true);
+        if (compressInfo) {
+          setCompressOutcome(compressInfo);
+        } else {
+          setShowSuccess(true);
+        }
       }
 
     } catch (error) {
@@ -603,7 +644,13 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         console.error('Action failed:', error);
       }
       if (isMounted.current) {
-        if (error instanceof Error) {
+        if (toolConfig.tool === ToolType.COMPRESS) {
+          // Plain-language, translated messages instead of library errors
+          const raw = error instanceof Error ? `${error.name} ${error.message}` : String(error);
+          setErrorMessage(/encrypt|password/i.test(raw)
+            ? (t.compressErrorEncrypted || 'This PDF is password-protected. Open it with its password, save a copy without protection, and compress that copy.')
+            : (t.compressErrorDamaged || 'This file could not be read as a PDF. It may be damaged or not a real PDF.'));
+        } else if (error instanceof Error) {
           setErrorMessage(error.message);
         }
         setErrorKey('errorGeneric');
@@ -649,6 +696,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
         handleRangeInputChange={handleRangeInputChange}
         compressionLevel={compressionLevel}
         setCompressionLevel={setCompressionLevel}
+        compressGrayscale={compressGrayscale}
+        setCompressGrayscale={setCompressGrayscale}
         kindleMode={kindleMode}
         setKindleMode={setKindleMode}
         kindleScreenSize={kindleScreenSize}
@@ -668,7 +717,7 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
       {errorKey && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-fade-in">
-            <div className="text-red-500 mb-4 font-bold text-lg">Error</div>
+            <div className="text-red-500 mb-4 font-bold text-lg">{t.error || 'Error'}</div>
             <p className="text-gray-600 mb-6">{errorMessage || t[errorKey] || 'An error occurred while processing your file.'}</p>
             <button
               onClick={() => { setErrorKey(null); setErrorMessage(null); }}
@@ -687,6 +736,76 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
           message={t.successTitle || "Success!"}
           subMessage={t.successMessage || "Your file became 100% awesome."}
         />
+      )}
+
+      {/* Compress result: before -> after, or why the original was kept */}
+      {compressOutcome && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-labelledby="compress-result-title">
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl animate-fade-in" data-compress-result={compressOutcome.keptOriginal ? 'kept' : 'smaller'}>
+            <h2 id="compress-result-title" className="text-2xl font-black text-gray-900 mb-3">
+              {compressOutcome.keptOriginal
+                ? (t.compressKeptTitle || 'Your original is kept')
+                : String(t.compressResultTitle || '{percent}% smaller').replace('{percent}', String(Math.min(99, Math.max(1, Math.round((1 - compressOutcome.after / compressOutcome.before) * 100)))))}
+            </h2>
+            <div className="flex items-center gap-3 mb-4 text-sm" data-before={compressOutcome.before} data-after={compressOutcome.after}>
+              <div className="flex-1 rounded-xl bg-gray-50 p-3">
+                <div className="text-xs text-gray-500">{t.compressBefore || 'Before'}</div>
+                <div className="font-bold text-gray-900">{formatCompressSize(compressOutcome.before, lang)}</div>
+              </div>
+              <span aria-hidden="true" className="text-gray-400">→</span>
+              <div className={`flex-1 rounded-xl p-3 ${compressOutcome.keptOriginal ? 'bg-amber-50' : 'bg-green-50'}`}>
+                <div className="text-xs text-gray-500">{t.compressAfter || 'After'}</div>
+                <div className="font-bold text-gray-900">{formatCompressSize(compressOutcome.after, lang)}</div>
+              </div>
+            </div>
+            <p className="text-gray-600 text-sm mb-4">
+              {compressOutcome.keptOriginal
+                ? (compressOutcome.level === 'good'
+                  ? t.compressKeptGood
+                  : String(t.compressKeptLossy || '').replace('{after}', formatCompressSize(compressOutcome.after, lang)))
+                : t.compressResultBody}
+            </p>
+            {!compressOutcome.keptOriginal && (
+              <p className="text-gray-600 text-sm mb-4">
+                {compressOutcome.level === 'extreme' ? t.compressStillTooBigExtreme : t.compressStillTooBig}{' '}
+                <a href={`/${lang}/split-pdf-by-size`} className="font-bold text-canada-red underline">{t.compressSplitBySize || 'Split PDF by Size'}</a>
+              </p>
+            )}
+            <div className="flex flex-col gap-2">
+              {compressOutcome.keptOriginal ? (
+                <button
+                  type="button"
+                  onClick={() => { setCompressionLevel(compressOutcome.level === 'good' ? 'balanced' : 'good'); setCompressOutcome(null); }}
+                  className="w-full bg-canada-red text-white font-bold py-3 rounded-xl hover:bg-canada-darkRed transition-colors"
+                >
+                  {compressOutcome.level === 'good' ? (t.compressTryBalanced || 'Try Balanced') : (t.compressTryGood || 'Try Good')}
+                </button>
+              ) : (
+                <>
+                  {downloadUrl && (
+                    <a href={downloadUrl} download={downloadName} className="w-full text-center bg-canada-red text-white font-bold py-3 rounded-xl hover:bg-canada-darkRed transition-colors">
+                      {t.compressDownloadAgain || 'Download again'}
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setCompressOutcome(null)}
+                    className="w-full border-2 border-gray-200 text-gray-900 font-bold py-3 rounded-xl hover:border-gray-300 transition-colors"
+                  >
+                    {t.compressTryAnotherLevel || 'Try another level'}
+                  </button>
+                </>
+              )}
+              <button
+                type="button"
+                onClick={() => { setCompressOutcome(null); onSoftReset(); }}
+                className="w-full text-gray-600 font-bold py-3 rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                {t.compressAnotherFile || 'Compress another file'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Loading Overlay */}

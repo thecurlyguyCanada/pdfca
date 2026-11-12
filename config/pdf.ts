@@ -6,8 +6,8 @@
 export const PDF_CONFIG = {
   // PDF.js Worker and Resources
   WORKER: {
-    // CDN for matching worker version (4.10.38)
-    PATH: 'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs',
+    // Self-hosted (scripts/copy-vendor.mjs); see config/vendor.ts
+    PATH: '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs',
   },
 
   RESOURCES: {

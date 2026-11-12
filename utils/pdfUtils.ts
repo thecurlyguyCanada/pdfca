@@ -1,5 +1,5 @@
 import { PDF_CONFIG, getHeadingFontSize, getLineHeight } from '../config/pdf';
-import { getCompressionScale, getCompressionQuality } from '../config/compression';
+import { getCompressionSettings, MAX_RENDER_PIXELS } from '../config/compression';
 import type { CompressionLevel } from '../config/compression';
 import { InvoiceData } from './types';
 import { parseInvoiceText } from './invoiceParsers';
@@ -1731,78 +1731,95 @@ export const cropPdfPages = async (
 
 
 
-// Compress PDF: Multi-level compression
-export const compressPdf = async (file: File, level: 'good' | 'balanced' | 'extreme'): Promise<Uint8Array> => {
-  const { PDFDocument } = await getPdfLib();
-  const pdfjs = await getPdfJs();
-  await initPdfWorker();
+export interface CompressPdfOptions {
+  /** Balanced/Extreme only: convert each rendered page to grayscale before JPEG encoding. */
+  grayscale?: boolean;
+  /** Called after each page is rendered (Balanced/Extreme only). */
+  onProgress?: (progress: { page: number; total: number }) => void;
+}
 
+// Compress PDF: three distinct levels (see config/compression.ts).
+// Returns the new bytes; the caller compares the size with the original and keeps the
+// original when the result is not smaller (lossy levels can inflate text-only PDFs).
+export const compressPdf = async (
+  file: File,
+  level: CompressionLevel,
+  options: CompressPdfOptions = {}
+): Promise<Uint8Array> => {
+  const { PDFDocument, PDFName } = await getPdfLib();
   const arrayBuffer = await file.arrayBuffer();
+  const settings = getCompressionSettings(level);
 
-  // Level 1: "Good" - Metadata stripping and stream compression (Lossless-ish)
-  if (level === 'good') {
-    const doc = await PDFDocument.load(arrayBuffer);
-    // Remove metadata
+  // Good: lossless. Re-pack objects into compressed object streams and clear metadata.
+  if (settings.mode === 'lossless') {
+    const doc = await PDFDocument.load(arrayBuffer, { updateMetadata: false });
     doc.setTitle('');
     doc.setAuthor('');
     doc.setSubject('');
     doc.setKeywords([]);
     doc.setProducer('');
     doc.setCreator('');
-
-    // Attempt to remove obscure metadata if possible (pdf-lib limited here, but we do what we can)
-    // The main saving comes from useObjectStreams: true
+    // XMP metadata stream (duplicates the info fields, often several KB)
+    doc.catalog.delete(PDFName.of('Metadata'));
     return await doc.save({ useObjectStreams: true });
   }
 
-  // Level 2 & 3: Re-rendering (Lossy)
-  const loadingTask = pdfjs.getDocument({
+  // Balanced / Extreme: render every page with pdf.js and store it as one JPEG.
+  const pdfjs = await getPdfJs();
+  await initPdfWorker();
+  const pdf = await pdfjs.getDocument({
     data: new Uint8Array(arrayBuffer),
     cMapUrl: PDF_CONFIG.RESOURCES.CMAPS_PATH,
     cMapPacked: true,
     standardFontDataUrl: PDF_CONFIG.RESOURCES.STANDARD_FONTS_PATH,
-  });
-  const pdf = await loadingTask.promise;
+  }).promise;
   const newPdfDoc = await PDFDocument.create();
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d', { willReadFrequently: !!options.grayscale });
+  if (!context) throw new Error('Canvas is not available in this browser.');
 
-  // Settings based on level
-  const scale = getCompressionScale(level as CompressionLevel); // 1.0 = ~72-96 DPI, 1.5 = ~108-144 DPI
-  const quality = getCompressionQuality(level as CompressionLevel);
+  try {
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const base = page.getViewport({ scale: 1 }); // PDF points, rotation applied
+      let scale = settings.dpi / 72;
+      const pixels = base.width * base.height * scale * scale;
+      if (pixels > MAX_RENDER_PIXELS) scale *= Math.sqrt(MAX_RENDER_PIXELS / pixels);
+      const viewport = page.getViewport({ scale });
 
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale });
+      canvas.width = Math.max(1, Math.round(viewport.width));
+      canvas.height = Math.max(1, Math.round(viewport.height));
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: context, viewport }).promise;
 
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (!context) continue;
+      if (options.grayscale) {
+        const img = context.getImageData(0, 0, canvas.width, canvas.height);
+        const d = img.data;
+        for (let p = 0; p < d.length; p += 4) {
+          // ITU-R BT.601 luma, integer approximation
+          const y = (d[p] * 77 + d[p + 1] * 150 + d[p + 2] * 29) >> 8;
+          d[p] = d[p + 1] = d[p + 2] = y;
+        }
+        context.putImageData(img, 0, 0);
+      }
 
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+      const blob = await new Promise<Blob>((resolve, reject) =>
+        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error(`Could not encode page ${i}.`))), 'image/jpeg', settings.quality)
+      );
+      const image = await newPdfDoc.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+      const newPage = newPdfDoc.addPage([base.width, base.height]);
+      newPage.drawImage(image, { x: 0, y: 0, width: base.width, height: base.height });
+      page.cleanup();
 
-    await page.render({ canvasContext: context, viewport }).promise;
-
-    // Yield to avoid freezing
-    await new Promise(resolve => setTimeout(resolve, 0));
-
-    // Compress content to JPEG
-    const imageUri = canvas.toDataURL('image/jpeg', quality);
-    const image = await newPdfDoc.embedJpg(imageUri);
-
-    // Cleanup
+      options.onProgress?.({ page: i, total: pdf.numPages });
+      // Yield so the tab stays responsive
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+  } finally {
     canvas.width = 0;
     canvas.height = 0;
-
-    // Add page matching original dimensions (scaling the image)
-    const originalViewport = page.getViewport({ scale: 1.0 });
-    const newPage = newPdfDoc.addPage([originalViewport.width, originalViewport.height]);
-
-    newPage.drawImage(image, {
-      x: 0,
-      y: 0,
-      width: originalViewport.width,
-      height: originalViewport.height,
-    });
+    pdf.destroy();
   }
 
   addPdfMetadata(newPdfDoc, 'Compressed PDF');
@@ -2194,7 +2211,8 @@ export const extractInvoiceData = async (file: File): Promise<InvoiceData> => {
       const Tesseract = await import('tesseract.js');
 
       // Use createWorker for better lifecycle control
-      const worker = await Tesseract.createWorker('eng');
+      const { TESSERACT_WORKER, TESSERACT_CORE, TESSDATA } = await import('../config/vendor');
+      const worker = await Tesseract.createWorker('eng', 1, { workerPath: TESSERACT_WORKER, corePath: TESSERACT_CORE, langPath: TESSDATA, workerBlobURL: false });
 
       try {
         const ret = await worker.recognize(imageBlob);
@@ -3426,7 +3444,9 @@ export const ocrPdf = async (
 
   const Tesseract = await import('tesseract.js');
   const langs = uiLang === 'fr' ? ['fra', 'eng'] : ['eng', 'fra'];
-  const worker = await Tesseract.createWorker(langs);
+  const { TESSERACT_WORKER, TESSERACT_CORE, TESSDATA } = await import('../config/vendor');
+  // Self-hosted worker, wasm core and language data: no request leaves this site (see scripts/copy-vendor.mjs).
+  const worker = await Tesseract.createWorker(langs, 1, { workerPath: TESSERACT_WORKER, corePath: TESSERACT_CORE, langPath: TESSDATA, workerBlobURL: false });
   let ocrPages = 0;
 
   try {

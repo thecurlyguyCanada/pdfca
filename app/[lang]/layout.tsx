@@ -184,21 +184,13 @@ export default async function RootLayout({
                 {/* Bing SEO: Content language declaration */}
                 <meta httpEquiv="content-language" content={lang === 'fr' ? 'fr-CA' : (lang === 'pt' ? 'pt-BR' : 'en-CA')} />
 
-                {/* Search Engine Verification */}
-                <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
-                <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-
                 {/* RSS and JSON Feed autodiscovery */}
                 <link rel="alternate" type="application/rss+xml" title="pdfcanada.ca - PDF Guides RSS" href="https://www.pdfcanada.ca/feed.xml" />
                 <link rel="alternate" type="application/feed+json" title="pdfcanada.ca - PDF Guides JSON" href="https://www.pdfcanada.ca/feed.json" />
 
-                {/* Google AdSense */}
+                {/* Google AdSense: account ownership tag only. The ad script is off until traffic justifies ads, and
+                    then only below the tool — ads above a tool slow it down and cost trust (see README "Ads"). */}
                 <meta name="google-adsense-account" content="ca-pub-2963693328827195" />
-                <script
-                    async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2963693328827195"
-                    crossOrigin="anonymous"
-                />
             </head>
             <body className={`${inter.className} antialiased`} suppressHydrationWarning>
                 <ErrorBoundary>

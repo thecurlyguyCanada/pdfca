@@ -43,7 +43,7 @@ export function PdfViewer({ pdfUrl, title, lang }: PdfViewerProps) {
 
                 // Set worker
                 if (!pdfjs.GlobalWorkerOptions.workerSrc) {
-                    pdfjs.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs';
+                    pdfjs.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs';
                 }
 
                 const loadingTask = pdfjs.getDocument(pdfUrl);
