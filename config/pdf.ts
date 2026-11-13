@@ -1,3 +1,4 @@
+import { PDFJS_WORKER } from './vendor';
 /**
  * PDF Processing Configuration
  * Constants for PDF processing, rendering, and manipulation
@@ -7,7 +8,7 @@ export const PDF_CONFIG = {
   // PDF.js Worker and Resources
   WORKER: {
     // Self-hosted (scripts/copy-vendor.mjs); see config/vendor.ts
-    PATH: '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs',
+    PATH: PDFJS_WORKER,
   },
 
   RESOURCES: {

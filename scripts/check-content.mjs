@@ -17,6 +17,8 @@ const block = (name, endName) => retired.slice(retired.indexOf(`export const ${n
 const retiredTools = new Set([...block('RETIRED_TOOLS', 'TOOL_REDIRECTS').matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1]));
 const redirectedTools = new Set([...block('TOOL_REDIRECTS', 'isToolLive').matchAll(/'([a-z0-9-]+)': '/g)].map((m) => m[1]));
 const liveTools = [...new Set([...toolConfig.matchAll(/slug: '([a-z0-9-]+)'/g)].map((m) => m[1]))].filter((s) => !retiredTools.has(s) && !redirectedTools.has(s));
+const RETIRED_PATHS = new Set([...block('RETIRED_PATHS', 'NOINDEX_PAGES').matchAll(/'([a-z0-9/-]+)'/g)].map((m) => m[1]));
+const STATIC_PAGES = new Set(['about', 'contact', 'privacy', 'terms', 'security', 'accessibility', 'guides', 'tools/remove-pdf-text']);
 const liveGuides = ['acsm-to-pdf', 'edit-xfa-pdf', 'change-pdf-viewer-mac'];
 const BANNED = [/unlimited file size/i, /no file size limit/i, /military[- ]grade/i, /HIPAA[- ]compliant/i, /PIPEDA[- ]compliant/i, /AI[- ]powered/i, /guarantee/i, /100% accurate/i, /fastest in the world/i, /#1 /i];
 
@@ -62,12 +64,18 @@ for (const lang of LANGS) {
         if (!/^\|\s*(Problem|Problème)/m.test(body)) fail(id, 'no troubleshooting table (header starting "| Problem" / "| Problème")');
         if (h2.filter((h) => /\?$/.test(h.trim())).length < Math.ceil(h2.length / 2)) fail(id, 'fewer than half the H2s are questions');
         if (!/^\|/m.test(body)) fail(id, 'no table in body');
-        for (const [, href] of body.matchAll(/\]\((\/[^)]+)\)/g)) {
-            const mm = href.match(/^\/(en|fr)\/(?:guides\/)?([a-z0-9-]+)\/?$/);
-            if (!mm) { if (!/^\/(en|fr)(\/(about|guides|tools\/remove-pdf-text|security|pricing|howto))?\/?$/.test(href)) fail(id, `link not a live page: ${href}`); continue; }
-            const [, l, s] = mm; const isGuide = href.includes('/guides/');
-            if (l !== lang) fail(id, `link to other language: ${href}`);
-            if (isGuide ? !liveGuides.includes(s) : !liveTools.includes(s)) fail(id, `link to retired/unknown page: ${href}`);
+        // Order matters: retired pages first, then live static pages, then tools and guides.
+        for (const [, rawHref] of body.matchAll(/\]\((\/[^)]+)\)/g)) {
+            const href = rawHref.replace(/#.*$/, '');
+            const lm = href.match(/^\/(en|fr)(?=\/|$)/);
+            if (!lm) { fail(id, `link without a language prefix: ${rawHref}`); continue; }
+            if (lm[1] !== lang) fail(id, `link to other language: ${rawHref}`);
+            const rest = href.slice(3).replace(/^\/|\/$/g, '');
+            if (RETIRED_PATHS.has(rest)) { fail(id, `link to a retired page: ${rawHref}`); continue; }
+            if (rest === '' || STATIC_PAGES.has(rest)) continue;
+            const mm = rest.match(/^(guides\/)?([a-z0-9-]+)$/);
+            if (!mm) { fail(id, `link not a live page: ${rawHref}`); continue; }
+            if (mm[1] ? !liveGuides.includes(mm[2]) : !liveTools.includes(mm[2])) fail(id, `link to retired/unknown page: ${rawHref}`);
         }
         for (const re of BANNED) if (re.test(body) || re.test(JSON.stringify(meta))) fail(id, `banned claim ${re}`);
         if (/\/pt\/|portugu/i.test(body)) fail(id, 'mentions Portuguese');

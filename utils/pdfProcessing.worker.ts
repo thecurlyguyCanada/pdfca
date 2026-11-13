@@ -1,3 +1,4 @@
+import { PDFJS_WORKER } from '../config/vendor';
 import * as pdfjs from 'pdfjs-dist';
 // xlsx import removed as it is not used in the worker
 
@@ -5,7 +6,7 @@ import * as pdfjs from 'pdfjs-dist';
 // In a web worker, we might need to point to the external CDN script directly or bundle it.
 // For simplicity in this environment, we'll try the CDN approach which worked in the main thread.
 if (typeof self !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs-4.10.38/pdf.worker.min.mjs';
+    pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
 }
 
 interface TextItem {

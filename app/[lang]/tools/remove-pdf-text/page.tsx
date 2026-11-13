@@ -135,7 +135,6 @@ export default async function RemovePdfTextPage({ params }: { params: Promise<{ 
                     <Breadcrumb
                         lang={currentLang}
                         items={[
-                            { name: currentLang === 'en' ? 'Tools' : (currentLang === 'pt' ? 'Ferramentas' : 'Outils'), path: `/tools` },
                             { name: currentLang === 'en' ? 'Remove Text' : (currentLang === 'pt' ? 'Remover Texto' : 'Supprimer Texte') }
                         ]}
                     />

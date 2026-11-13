@@ -121,6 +121,7 @@ const en = {
   compressStillTooBigExtreme: "Still too big? Split it into parts under your limit:",
   compressErrorEncrypted: "This PDF is password-protected. Open it with its password, save a copy without protection (in Chrome: Print, then Save as PDF), and compress that copy.",
   compressErrorDamaged: "This file could not be read as a PDF. It may be damaged or not a real PDF.",
+  compressErrorMemory: "Your device ran out of memory compressing this file. Close other tabs and try again, use Extreme, or split the PDF into smaller parts first.",
 
   // Landing Page Sections
   landingPage: {
@@ -1510,6 +1511,7 @@ export const translations: Record<Language, TranslationStructure> = {
     compressStillTooBigExtreme: "Encore trop lourd? Divisez-le en parties sous votre limite :",
     compressErrorEncrypted: "Ce PDF est protégé par un mot de passe. Ouvrez-le avec son mot de passe, enregistrez une copie sans protection (dans Chrome : Imprimer, puis Enregistrer au format PDF) et compressez cette copie.",
     compressErrorDamaged: "Ce fichier n'a pas pu être lu comme un PDF. Il est peut-être endommagé ou ce n'est pas un vrai PDF.",
+    compressErrorMemory: "Votre appareil a manqué de mémoire pour compresser ce fichier. Fermez d'autres onglets et réessayez, choisissez Extrême, ou divisez d'abord le PDF en parties plus petites.",
 
     // Landing Page Sections
     landingPage: {
@@ -2814,6 +2816,7 @@ export const translations: Record<Language, TranslationStructure> = {
     compressStillTooBigExtreme: "Still too big? Split it into parts under your limit:",
     compressErrorEncrypted: "This PDF is password-protected. Open it with its password, save a copy without protection (in Chrome: Print, then Save as PDF), and compress that copy.",
     compressErrorDamaged: "This file could not be read as a PDF. It may be damaged or not a real PDF.",
+    compressErrorMemory: "Your device ran out of memory compressing this file. Close other tabs and try again, use Extreme, or split the PDF into smaller parts first.",
 
     // Landing Page Sections
     landingPage: {

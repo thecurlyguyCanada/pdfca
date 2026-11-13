@@ -121,7 +121,7 @@ const getGuideContent = (lang: Language) => ({
                             </div>
                         </div>
                         <p className="text-sm italic">
-                            👉 Looking for a quick way to flatten standard PDFs? Try our <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">PDF Flattening Tool</Link>.
+                            👉 Looking for a quick way to flatten standard PDFs? Try our <Link href={`/${lang}/flatten-pdf`} className="text-canada-red hover:underline font-bold">PDF Flattening Tool</Link>.
                         </p>
                     </>
                 )
@@ -292,7 +292,7 @@ const getGuideContent = (lang: Language) => ({
                             </div>
                         </div>
                         <p className="text-sm italic text-gray-700 dark:text-gray-300">
-                            👉 Vous cherchez un moyen rapide d'aplatir des PDF standards ? Essayez notre <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">outil d'aplatissement PDF</Link>.
+                            👉 Vous cherchez un moyen rapide d'aplatir des PDF standards ? Essayez notre <Link href={`/${lang}/flatten-pdf`} className="text-canada-red hover:underline font-bold">outil d'aplatissement PDF</Link>.
                         </p>
                     </>
                 )
@@ -450,7 +450,7 @@ const getGuideContent = (lang: Language) => ({
                             </div>
                         </div>
                         <p className="text-sm italic text-gray-700 dark:text-gray-300">
-                            👉 Procurando uma maneira rápida de achatar PDFs padrão? Tente nossa <Link href={`/${lang}/make-pdf-non-editable`} className="text-canada-red hover:underline font-bold">Ferramenta de Achatamento de PDF</Link>.
+                            👉 Procurando uma maneira rápida de achatar PDFs padrão? Tente nossa <Link href={`/${lang}/flatten-pdf`} className="text-canada-red hover:underline font-bold">Ferramenta de Achatamento de PDF</Link>.
                         </p>
                     </>
                 )
@@ -576,7 +576,7 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
             <SEO
                 title={t.seo.title}
                 description={t.seo.desc}
-                canonicalPath="/guides/edit-xfa-pdf"
+                canonicalPath={`/${lang}/guides/edit-xfa-pdf`}
                 faqs={t.faq}
                 lang={lang}
                 datePublished="2024-04-01"
@@ -588,9 +588,9 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                     steps: qa.steps
                 }}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
-                    { name: lang === 'fr' ? 'Éditer PDF XFA' : (lang === 'pt' ? 'Editar PDF XFA' : 'Edit XFA PDF'), path: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : (lang === 'pt' ? '/pt/guides/edit-xfa-pdf' : '/guides/edit-xfa-pdf') }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), path: `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), path: lang === 'fr' ? '/fr/guides' : '/en/guides' },
+                    { name: lang === 'fr' ? 'Éditer PDF XFA' : (lang === 'pt' ? 'Editar PDF XFA' : 'Edit XFA PDF'), path: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : '/en/guides/edit-xfa-pdf' }
                 ]}
             />
             <PageLayout
@@ -598,9 +598,9 @@ export const EditXfaPdfGuide: React.FC<GuideProps> = ({ lang }) => {
                 subtitle={t.subtitle}
                 icon={<Printer size={32} />}
                 breadcrumbs={[
-                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: lang === 'en' ? '/' : `/${lang}` },
-                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides/ultimate-pdf-guide' : (lang === 'pt' ? '/pt/guides/ultimate-pdf-guide' : '/guides/ultimate-pdf-guide') },
-                    { name: lang === 'fr' ? 'Éditer PDF XFA' : (lang === 'pt' ? 'Editar PDF XFA' : 'Edit XFA PDF'), href: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : (lang === 'pt' ? '/pt/guides/edit-xfa-pdf' : '/guides/edit-xfa-pdf') }
+                    { name: lang === 'fr' ? 'Accueil' : (lang === 'pt' ? 'Início' : 'Home'), href: `/${lang}` },
+                    { name: lang === 'fr' ? 'Guides' : (lang === 'pt' ? 'Guias' : 'Guides'), href: lang === 'fr' ? '/fr/guides' : '/en/guides' },
+                    { name: lang === 'fr' ? 'Éditer PDF XFA' : (lang === 'pt' ? 'Editar PDF XFA' : 'Edit XFA PDF'), href: lang === 'fr' ? '/fr/guides/edit-xfa-pdf' : '/en/guides/edit-xfa-pdf' }
                 ]}
             >
                 <div className="w-full space-y-8 sm:space-y-12 md:space-y-16 text-gray-700 dark:text-gray-300">

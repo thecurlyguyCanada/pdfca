@@ -9,7 +9,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { GitCompare, Download, Hash, CalendarDays, Ban, Info } from 'lucide-react';
-import { Dropzone, Panel, ErrorBox, PrimaryButton, SecondaryButton, formatBytes, downloadBlob, baseName, yieldToBrowser, openPdf, readErrorMessage, ui } from './shared';
+import { Dropzone, Panel, ErrorBox, PrimaryButton, SecondaryButton, formatBytes, downloadBlob, baseName, yieldToBrowser, openPdf, readErrorMessage, ui, UserFacingError } from './shared';
 import type { Lang } from './shared';
 
 const STR = {
@@ -655,6 +655,8 @@ export default function ComparePdf({ lang }: { lang: Lang }) {
 
     const isPdf = (f: File) => /\.pdf$/i.test(f.name) || f.type === 'application/pdf';
     const pick = useCallback((which: 'a' | 'b') => (files: File[]) => {
+        // A new file cancels any compare still running, so its result can't land under the new names.
+        runId.current++; setBusy(false); setProgress('');
         setError(''); setScanned([]); setResult(null);
         const pdfs = files.filter(isPdf);
         if (!pdfs.length) { setError(t.notPdf); return; }
@@ -668,13 +670,13 @@ export default function ComparePdf({ lang }: { lang: Lang }) {
         setBusy(true); setError(''); setScanned([]); setResult(null);
         try {
             const read = (f: File) => extractText(f, (p, n) => { if (id === runId.current) setProgress(t.reading(f.name, p, n)); })
-                .catch((e) => { throw new Error(`${f.name}${lang === 'fr' ? ' : ' : ': '}${readErrorMessage(e, lang)}`); });
+                .catch((e) => { throw new UserFacingError(`${f.name}${lang === 'fr' ? ' : ' : ': '}${readErrorMessage(e, lang)}`); });
             const A = await read(fileA);
             const B = await read(fileB);
             const sc: string[] = [];
             if (A.tokens.length < A.numPages * 3) sc.push(A.name);
             if (B.tokens.length < B.numPages * 3) sc.push(B.name);
-            if (sc.length) { setScanned(sc); return; }
+            if (sc.length) { if (id === runId.current) setScanned(sc); return; }
             setProgress(t.comparing);
             await yieldToBrowser();
             const r = await compareDocs(A, B);

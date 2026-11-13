@@ -29,6 +29,8 @@ export const RETIRED_GUIDES = new Set<string>([
     // guides for converters that do not exist as tools and never earned a click
     'email-to-pdf',
     'avif-to-pdf',
+    // listed in guideMetadata but never had a page (its tool was cut); kept out of the guides index
+    'phishing-pdf-guide',
     'ipynb-to-pdf',
 ]);
 
@@ -117,6 +119,7 @@ export const GUIDE_TO_TOOL: Record<string, string> = {
     'flatten-pdf': '/flatten-pdf',
     'insert-picture-in-pdf': '/add-image-to-pdf',
     'trim-pdf': '/crop-pdf',
+    'make-pdf-non-editable': '/flatten-pdf',
 };
 
 /** Hub pages under /guides/ that only linked to other guides → the guides index. */

@@ -15,8 +15,8 @@ export type Lang = 'en' | 'fr';
 export const asLang = (l: string): Lang => (l === 'fr' ? 'fr' : 'en');
 
 const UI = {
-    en: { drop: 'Drop your PDF here', drops: 'Drop your PDFs here', browse: 'or click to choose a file', browses: 'or click to choose files', download: 'Download', again: 'Start over', encrypted: 'This PDF is password-protected. Remove the password first, then try again.', damaged: 'This file could not be read as a PDF. It may be damaged or not a PDF.' },
-    fr: { drop: 'Déposez votre PDF ici', drops: 'Déposez vos PDF ici', browse: 'ou cliquez pour choisir un fichier', browses: 'ou cliquez pour choisir des fichiers', download: 'Télécharger', again: 'Recommencer', encrypted: 'Ce PDF est protégé par un mot de passe. Retirez d’abord le mot de passe, puis réessayez.', damaged: 'Ce fichier n’a pas pu être lu comme un PDF. Il est peut-être endommagé.' },
+    en: { drop: 'Drop your PDF here', drops: 'Drop your PDFs here', browse: 'or click to choose a file', browses: 'or click to choose files', download: 'Download', again: 'Start over', encrypted: 'This PDF is password-protected. Remove the password first, then try again.', damaged: 'This file could not be read as a PDF. It may be damaged or not a PDF.', failed: 'Something went wrong while processing this file. Try again, or try a different file.' },
+    fr: { drop: 'Déposez votre PDF ici', drops: 'Déposez vos PDF ici', browse: 'ou cliquez pour choisir un fichier', browses: 'ou cliquez pour choisir des fichiers', download: 'Télécharger', again: 'Recommencer', encrypted: 'Ce PDF est protégé par un mot de passe. Retirez d’abord le mot de passe, puis réessayez.', damaged: 'Ce fichier n’a pas pu être lu comme un PDF. Il est peut-être endommagé.', failed: 'Un problème est survenu pendant le traitement de ce fichier. Réessayez ou essayez un autre fichier.' },
 };
 export const ui = (lang: Lang) => UI[lang];
 
@@ -82,13 +82,13 @@ export function SecondaryButton({ children, ...props }: React.ButtonHTMLAttribut
 }
 
 /** A finished file: name, size and a Download button (never auto-downloads, so the user sees the result first). */
-export function ResultCard({ lang, blob, name, note, onReset }: { lang: Lang; blob: Blob; name: string; note?: ReactNode; onReset?: () => void }) {
+export function ResultCard({ lang, blob, name, note, onReset, base = 1024 }: { lang: Lang; blob: Blob; name: string; note?: ReactNode; onReset?: () => void; base?: 1000 | 1024 }) {
     const t = ui(lang);
     return (
         <div className="mt-6 rounded-2xl border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-900/20 p-4 md:p-5 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div className="min-w-0">
                 <p className="font-bold text-gray-900 dark:text-gray-100 truncate">{name}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{formatBytes(blob.size, lang)}{note ? <> · {note}</> : null}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{formatBytes(blob.size, lang, base)}{note ? <> · {note}</> : null}</p>
             </div>
             <div className="flex flex-wrap gap-2 sm:shrink-0">
                 <PrimaryButton onClick={() => downloadBlob(blob, name)}><Download className="h-4 w-4" aria-hidden="true" /> {t.download}</PrimaryButton>
@@ -98,11 +98,13 @@ export function ResultCard({ lang, blob, name, note, onReset }: { lang: Lang; bl
     );
 }
 
-export function formatBytes(bytes: number, lang: Lang = 'en'): string {
-    const unit = lang === 'fr' ? { kb: 'Ko', mb: 'Mo' } : { kb: 'KB', mb: 'MB' };
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} ${unit.kb}`;
-    const mb = (bytes / (1024 * 1024)).toFixed(bytes < 10 * 1024 * 1024 ? 2 : 1);
+/** Human file size. `base` 1024 (default) matches what operating systems show; Split by Size passes 1000 so the
+ *  sizes it prints use the same MB as its limit (1 MB = 1,000,000 bytes, the stricter reading of upload limits). */
+export function formatBytes(bytes: number, lang: Lang = 'en', base: 1000 | 1024 = 1024): string {
+    const unit = lang === 'fr' ? { b: 'o', kb: 'Ko', mb: 'Mo' } : { b: 'B', kb: 'KB', mb: 'MB' };
+    if (bytes < base) return `${bytes} ${unit.b}`;
+    if (bytes < base * base) return `${Math.round(bytes / base)} ${unit.kb}`;
+    const mb = (bytes / (base * base)).toFixed(bytes < 10 * base * base ? 2 : 1);
     return `${lang === 'fr' ? mb.replace('.', ',') : mb} ${unit.mb}`;
 }
 
@@ -182,11 +184,16 @@ export async function loadPdfLib(data: ArrayBuffer | Uint8Array) {
     return doc;
 }
 
+/** An error whose message is already written for the user, in their language. */
+export class UserFacingError extends Error {}
+
 export function readErrorMessage(e: unknown, lang: Lang): string {
     const t = ui(lang);
+    if (e instanceof UserFacingError) return e.message;
     if (e instanceof PdfReadError) return e.kind === 'encrypted' ? t.encrypted : t.damaged;
     const name = (e as { name?: string })?.name;
     if (name === 'PasswordException') return t.encrypted;
     if (name === 'InvalidPDFException') return t.damaged;
-    return e instanceof Error && e.message ? e.message : t.damaged;
+    // Never show a library's internal (English) message; it means nothing to the user and isn't translated.
+    return e == null ? t.damaged : t.failed;
 }

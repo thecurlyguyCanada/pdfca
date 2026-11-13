@@ -77,6 +77,7 @@ const FLATTENABLE = new Set(['Widget', 'Text', 'FreeText', 'Line', 'Square', 'Ci
 const IMAGE_DPI = 150;
 const JPEG_QUALITY = 0.85;
 const MAX_SIDE_PX = 6000;
+const MAX_RENDER_PIXELS = 12_000_000;
 
 type Info = { pages: number; fields: number; annots: number };
 type Done = { blob: Blob; name: string; mode: Mode; fields: number; annots: number; pages: number; failed: string[]; uncertain: string[]; kept: number; links: number };
@@ -333,23 +334,29 @@ export default function FlattenPdf({ lang }: { lang: Lang }) {
                 const { PDFDocument } = await import('pdf-lib');
                 const out = await PDFDocument.create();
                 const n = pdf.numPages;
-                for (let i = 1; i <= n; i++) {
-                    setProgress(t.page(i, n));
-                    await yieldToBrowser();
-                    const page = await pdf.getPage(i);
-                    const vp = page.getViewport({ scale: 1 }); // displayed size in points (crop box, /Rotate applied)
-                    let scale = IMAGE_DPI / 72;
-                    const longest = Math.max(vp.width, vp.height) * scale;
-                    if (longest > MAX_SIDE_PX) scale *= MAX_SIDE_PX / longest;
-                    const canvas = await renderPage(pdf, i, scale);
-                    const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/jpeg', JPEG_QUALITY));
-                    canvas.width = 0; canvas.height = 0;
-                    if (!blob) throw new Error('jpeg');
-                    const img = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
-                    const np = out.addPage([vp.width, vp.height]);
-                    np.drawImage(img, { x: 0, y: 0, width: vp.width, height: vp.height });
+                try {
+                    for (let i = 1; i <= n; i++) {
+                        setProgress(t.page(i, n));
+                        await yieldToBrowser();
+                        const page = await pdf.getPage(i);
+                        const vp = page.getViewport({ scale: 1 }); // displayed size in points (crop box, /Rotate applied)
+                        let scale = IMAGE_DPI / 72;
+                        const longest = Math.max(vp.width, vp.height) * scale;
+                        if (longest > MAX_SIDE_PX) scale *= MAX_SIDE_PX / longest;
+                        // Also cap total pixels: mobile Safari refuses canvases over ~16.7 MP.
+                        const pixels = vp.width * vp.height * scale * scale;
+                        if (pixels > MAX_RENDER_PIXELS) scale *= Math.sqrt(MAX_RENDER_PIXELS / pixels);
+                        const canvas = await renderPage(pdf, i, scale);
+                        const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/jpeg', JPEG_QUALITY));
+                        canvas.width = 0; canvas.height = 0;
+                        if (!blob) throw new Error('jpeg');
+                        const img = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+                        const np = out.addPage([vp.width, vp.height]);
+                        np.drawImage(img, { x: 0, y: 0, width: vp.width, height: vp.height });
+                    }
+                } finally {
+                    await pdf.destroy();
                 }
-                await pdf.destroy();
                 setProgress(t.saving); await yieldToBrowser();
                 const saved = await out.save();
                 setResult({ blob: pdfBlob(saved), name, mode, fields: info?.fields ?? 0, annots: info?.annots ?? 0, pages: n, failed: [], uncertain: [], kept: 0, links: 0 });

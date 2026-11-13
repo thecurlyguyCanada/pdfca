@@ -22,7 +22,7 @@ export const TermsPage: React.FC<PageProps> = ({ lang }) => {
             <SEO
                 title={t.seo.termsTitle}
                 description={t.seo.termsDesc}
-                canonicalPath="/terms"
+                canonicalPath={`/${lang}/terms`}
                 lang={lang}
                 schema={termsSchema}
                 breadcrumbs={[
