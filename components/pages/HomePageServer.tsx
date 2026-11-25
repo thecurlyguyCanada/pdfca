@@ -22,6 +22,17 @@ const STR = {
         badge: 'Built for Canadians, by Canadians',
         h1: 'Free PDF Tools: Compress, Merge, Split, OCR — Nothing Uploaded',
         lead: 'Every tool runs inside your browser. Your file never leaves your device, there is no account, and nothing is stamped on the result.',
+        answerLabel: 'In short',
+        answer: 'PDF Canada (pdfcanada.ca) is a free, bilingual PDF toolbox made in Canada. Every tool works inside your browser tab, so your files are never uploaded to a server, and every page exists in French at /fr. Beyond the everyday tools, it covers Canadian jobs: shrinking files for IRCC uploads, OCR that reads French, bank OFX downloads to Excel and government XFA forms.',
+        canadaTitle: 'Canadian jobs',
+        canadaLead: 'The pages people in Canada look for most:',
+        canada: [
+            { href: '/ofx-to-excel', label: 'OFX to Excel or CSV', note: 'Desjardins, Tangerine and other bank downloads' },
+            { href: '/guides/edit-xfa-pdf', label: 'XFA form cannot be edited', note: 'IRCC and government PDF forms that say “Please wait…”' },
+            { href: '/compress-pdf', label: 'Compress a PDF for IRCC', note: 'Get scans under the upload limit' },
+            { href: '/split-pdf-by-size', label: 'Split a PDF by size', note: 'Parts that each fit a portal or email limit' },
+            { href: '/ocr-pdf', label: 'OCR a French or English scan', note: 'Searchable, copyable text, accents included' },
+        ],
         chips: ['Processed on your device', 'No sign-up, no watermark', 'English and French'],
         hubTitle: 'Every PDF tool, grouped by job',
         hubLead: 'Pick the job. Each tool page lists its real limits, the step people most often get wrong, and what to do when the result isn’t what you expected.',
@@ -41,6 +52,17 @@ const STR = {
         badge: 'Conçu au Canada, pour les Canadiens',
         h1: 'Outils PDF gratuits : compresser, fusionner, diviser, OCR — sans envoi',
         lead: 'Chaque outil fonctionne dans votre navigateur. Votre fichier ne quitte jamais votre appareil, sans compte, et rien n’est ajouté au résultat.',
+        answerLabel: 'En bref',
+        answer: 'PDF Canada (pdfcanada.ca) est une trousse d’outils PDF gratuite et bilingue, conçue au Canada. Chaque outil fonctionne dans l’onglet de votre navigateur : vos fichiers ne sont jamais envoyés à un serveur, et chaque page existe en français. Au-delà des outils courants, le site couvre des besoins canadiens : réduire un fichier pour IRCC, OCR qui lit le français, fichiers OFX bancaires vers Excel et formulaires gouvernementaux XFA.',
+        canadaTitle: 'Besoins canadiens',
+        canadaLead: 'Les pages les plus recherchées au Canada :',
+        canada: [
+            { href: '/ofx-to-excel', label: 'Convertir OFX en Excel', note: 'Fichiers de Desjardins, Tangerine et autres banques' },
+            { href: '/guides/edit-xfa-pdf', label: 'Formulaire XFA impossible à modifier', note: 'Formulaires d’IRCC qui affichent « Please wait… »' },
+            { href: '/compress-pdf', label: 'Compresser un PDF pour IRCC', note: 'Passer sous la limite de téléversement' },
+            { href: '/split-pdf-by-size', label: 'Diviser un PDF par taille', note: 'Des parties qui respectent la limite d’un portail ou d’un courriel' },
+            { href: '/ocr-pdf', label: 'OCR d’un PDF en français', note: 'Texte consultable et copiable, accents compris' },
+        ],
         chips: ['Traité sur votre appareil', 'Sans inscription ni filigrane', 'En français et en anglais'],
         hubTitle: 'Tous les outils PDF, classés par tâche',
         hubLead: 'Choisissez la tâche. Chaque page d’outil indique ses limites réelles, l’étape où l’on se trompe le plus souvent et quoi faire si le résultat ne convient pas.',
@@ -80,6 +102,10 @@ export function HomePageServer({ lang }: Props) {
                         </div>
                         <h1 className="hero-title text-3xl sm:text-6xl font-black tracking-tight leading-[1.05] text-gray-900 mb-5 max-w-5xl mx-auto">{s.h1}</h1>
                         <p className="hero-desc text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto font-medium leading-relaxed mb-6">{s.lead}</p>
+                        <div className="max-w-3xl mx-auto mb-8 rounded-3xl border border-canada-red/20 bg-canada-red/5 p-5 sm:p-6 text-left">
+                            <p className="text-xs font-bold uppercase tracking-widest text-canada-red mb-2">{s.answerLabel}</p>
+                            <p className="text-base sm:text-lg text-gray-900 leading-relaxed">{s.answer}</p>
+                        </div>
                         <div className="hidden sm:flex flex-wrap justify-center gap-2 mb-8">
                             {[Shield, CloudOff, Laptop].map((Icon, i) => (
                                 <span key={i} className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-gray-100 rounded-2xl text-gray-700 text-sm font-semibold shadow-sm">
@@ -100,6 +126,23 @@ export function HomePageServer({ lang }: Props) {
                                     </Link>
                                 );
                             })}
+                        </div>
+                    </section>
+
+                    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6" aria-labelledby="canada">
+                        <div className="rounded-3xl border border-gray-200 bg-white/90 p-6 sm:p-8">
+                            <h2 id="canada" className="text-2xl font-bold text-gray-900 mb-1 flex items-center gap-2"><MapleLeaf className="w-5 h-5" /> {s.canadaTitle}</h2>
+                            <p className="text-gray-600 mb-5">{s.canadaLead}</p>
+                            <ul className="grid gap-3 sm:grid-cols-2">
+                                {s.canada.map((c) => (
+                                    <li key={c.href}>
+                                        <Link href={`/${l}${c.href}`} className="group block h-full p-4 rounded-2xl border border-gray-100 hover:border-canada-red transition-colors">
+                                            <span className="block font-bold text-gray-900 group-hover:text-canada-red">{c.label}</span>
+                                            <span className="block text-sm text-gray-600">{c.note}</span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </section>
 

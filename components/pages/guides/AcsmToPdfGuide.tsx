@@ -29,7 +29,7 @@ const getLocalContent = (lang: string) => ({
                 content: (
                     <div className="space-y-4">
                         <p>An <strong>ACSM (Adobe Content Server Message)</strong> file is a tiny file that manages the download of your eBook. It tells a program authorized by Adobe (like Adobe Digital Editions) which book to download and ensures you have the rights to read it.</p>
-                        <p>You cannot "convert" it directly with a generic online tool because it requires your personal Adobe ID to unlock the content.</p>
+                        <p>You cannot “convert” it directly with a generic online tool because it requires your personal Adobe ID to unlock the content.</p>
                     </div>
                 )
             },
@@ -41,7 +41,7 @@ const getLocalContent = (lang: string) => ({
                         <p>To turn your ACSM file into a real PDF, follow these official steps:</p>
                         <ol className="list-decimal pl-5 space-y-4">
                             <li>
-                                <strong>Install Adobe Digital Editions (ADE):</strong> Download and install the free ADE software from Adobe's website.
+                                <strong>Install Adobe Digital Editions (ADE):</strong> Download and install the free ADE software from Adobe’s website.
                             </li>
                             <li>
                                 <strong>Authorize Your Computer:</strong> Open ADE, go to <em>Help &gt; Authorize Computer</em>, and sign in with your Adobe ID. This links the book to you.
@@ -122,7 +122,7 @@ const getLocalContent = (lang: string) => ({
                 content: (
                     <div className="space-y-4">
                         <p>Un fichier <strong>ACSM (Adobe Content Server Message)</strong> est un petit fichier qui gère le téléchargement de votre eBook. Il indique à un programme autorisé par Adobe (comme Adobe Digital Editions) quel livre télécharger et vérifie que vous avez le droit de le lire.</p>
-                        <p>Vous ne pouvez pas le "convertir" directement avec un outil en ligne générique car il nécessite votre identifiant Adobe personnel pour déverrouiller le contenu.</p>
+                        <p>Vous ne pouvez pas le “convertir” directement avec un outil en ligne générique car il nécessite votre identifiant Adobe personnel pour déverrouiller le contenu.</p>
                     </div>
                 )
             },
@@ -134,13 +134,13 @@ const getLocalContent = (lang: string) => ({
                         <p>Pour transformer votre fichier ACSM en un vrai PDF, suivez ces étapes officielles :</p>
                         <ol className="list-decimal pl-5 space-y-4">
                             <li>
-                                <strong>Installez Adobe Digital Editions (ADE) :</strong> Téléchargez et installez le logiciel gratuit ADE depuis le site d'Adobe.
+                                <strong>Installez Adobe Digital Editions (ADE) :</strong> Téléchargez et installez le logiciel gratuit ADE depuis le site d’Adobe.
                             </li>
                             <li>
-                                <strong>Autorisez votre ordinateur :</strong> Ouvrez ADE, allez dans <em>Aide &gt; Autoriser l'ordinateur</em>, et connectez-vous avec votre identifiant Adobe.
+                                <strong>Autorisez votre ordinateur :</strong> Ouvrez ADE, allez dans <em>Aide &gt; Autoriser l’ordinateur</em>, et connectez-vous avec votre identifiant Adobe.
                             </li>
                             <li>
-                                <strong>Ouvrez le fichier ACSM :</strong> Double-cliquez sur votre fichier .acsm. Il devrait s'ouvrir automatiquement dans ADE.
+                                <strong>Ouvrez le fichier ACSM :</strong> Double-cliquez sur votre fichier .acsm. Il devrait s’ouvrir automatiquement dans ADE.
                             </li>
                             <li>
                                 <strong>Téléchargement terminé :</strong> ADE vérifiera votre licence et téléchargera le véritable eBook PDF (ou EPUB).
@@ -164,7 +164,7 @@ const getLocalContent = (lang: string) => ({
                         <h4 className="flex items-center gap-2 font-bold text-yellow-800 dark:text-yellow-200 mb-2">
                             <Unlock size={20} /> À propos de la Gestion des Droits Numériques
                         </h4>
-                        <p>Le PDF ou l'EPUB téléchargé par Adobe Digital Editions reste en général protégé par DRM : il ne s'ouvre que dans un logiciel autorisé avec le même identifiant Adobe. Au Canada, la Loi sur le droit d'auteur interdit de contourner une mesure technique de protection comme ce DRM (article 41.1), même pour un livre acheté; ce guide ne traite donc pas des outils de suppression. Lisez le livre dans Adobe Digital Editions ou dans une autre application de lecture compatible avec le DRM d'Adobe et autorisée avec votre identifiant; si vous voulez un fichier sans restriction, demandez une édition sans DRM au vendeur.</p>
+                        <p>Le PDF ou l’EPUB téléchargé par Adobe Digital Editions reste en général protégé par DRM : il ne s’ouvre que dans un logiciel autorisé avec le même identifiant Adobe. Au Canada, la Loi sur le droit d’auteur interdit de contourner une mesure technique de protection comme ce DRM (article 41.1), même pour un livre acheté; ce guide ne traite donc pas des outils de suppression. Lisez le livre dans Adobe Digital Editions ou dans une autre application de lecture compatible avec le DRM d’Adobe et autorisée avec votre identifiant; si vous voulez un fichier sans restriction, demandez une édition sans DRM au vendeur.</p>
                     </div>
                 )
             }

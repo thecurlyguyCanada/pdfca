@@ -39,7 +39,7 @@ export const AboutUsPage: React.FC<PageProps> = ({ lang }) => {
         "mainEntity": getAuthorSchema(),
         "name": t.seo.aboutTitle,
         "description": t.seo.aboutDesc,
-        "url": `https://pdfcanada.ca/${lang}/about`,
+        "url": `https://www.pdfcanada.ca/${lang}/about`,
         "inLanguage": lang === 'fr' ? 'fr-CA' : 'en-CA',
         "publisher": getAuthorSchema()
     };

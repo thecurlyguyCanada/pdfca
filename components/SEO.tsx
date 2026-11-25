@@ -89,6 +89,7 @@ export function SEO({
     "@type": "Organization",
     "@id": `${URLS.DOMAIN}/#organization`,
     "name": ORGANIZATION.name,
+    "alternateName": "pdfcanada.ca",
     "url": URLS.DOMAIN,
     "logo": {
       "@type": "ImageObject",
@@ -112,6 +113,7 @@ export function SEO({
     "@type": "WebSite",
     "@id": `${URLS.DOMAIN}/#website`,
     "name": ORGANIZATION.name,
+    "alternateName": "pdfcanada.ca",
     "url": URLS.DOMAIN,
     "description": t.seo.homeDesc,
     "publisher": { "@id": `${URLS.DOMAIN}/#organization` },
@@ -123,7 +125,7 @@ export function SEO({
     // Enhanced Organization Schema for Entity Knowledge
     const enhancedOrgSchema = {
       ...organizationSchema,
-      "knowsAbout": ["PDF processing", "Document Security", "Optical Character Recognition", "Data Privacy"],
+      "knowsAbout": ["PDF processing", "Optical Character Recognition", "XFA forms", "OFX bank statement files", "French-language PDF tools"],
       "areaServed": {
         "@type": "Country",
         "name": "Canada"

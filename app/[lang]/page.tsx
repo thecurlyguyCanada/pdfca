@@ -21,12 +21,12 @@ export function generateStaticParams() {
 
 const metadata: Record<string, { title: string; description: string }> = {
     en: {
-        title: 'Free PDF Tools Canada: Compress, Merge, OCR — No Upload',
-        description: 'Free PDF tools that run in your browser, in English and French: compress for IRCC, merge, split, OCR, sign, convert. No upload, no sign-up, no watermark.',
+        title: 'PDF Canada: Free PDF Tools in English and French, No Upload',
+        description: 'Free Canadian PDF tools in English and French that run in your browser: compress for IRCC, merge, OCR, sign, OFX to Excel. No upload, no sign-up, no watermark.',
     },
     fr: {
-        title: 'Outils PDF gratuits : compresser, fusionner, OCR — sans envoi',
-        description: 'Outils PDF gratuits dans votre navigateur : compresser pour IRCC, fusionner, diviser, OCR, signer, convertir. Sans envoi, sans inscription, sans filigrane.',
+        title: 'PDF Canada : outils PDF gratuits en français, sans envoi',
+        description: 'Outils PDF canadiens gratuits, en français et en anglais, dans votre navigateur : compresser pour IRCC, fusionner, OCR, signer, OFX en Excel. Sans envoi ni inscription.',
     },
     pt: {
         title: 'Ferramentas PDF Gratuitas Canadá | Serviço Online Seguro Sem Upload',

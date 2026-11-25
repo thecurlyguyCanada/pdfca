@@ -52,7 +52,6 @@ export function constructMetadata({
             'PDF Canada',
             'free PDF tools',
             'secure PDF processing',
-            'PIPEDA compliant',
         ],
         alternates: {
             canonical: fullUrl,

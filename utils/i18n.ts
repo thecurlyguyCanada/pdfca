@@ -170,8 +170,8 @@ const en = {
 
   // SEO General
   seo: {
-    homeTitle: "Free PDF Tools Canada | Online & Secure No-Upload Service | pdfcanada.ca",
-    homeDesc: `The Polite Canadian PDF Tools. 100% free & secure in ${CURRENT_YEAR}. Merge, compress, and convert PDFs directly in your browser. No uploads—your files never leave your device.`,
+    homeTitle: "PDF Canada: Free PDF Tools in English and French, No Upload",
+    homeDesc: "PDF Canada (pdfcanada.ca) is a free, bilingual PDF toolbox made in Canada. Every tool runs in your browser, so files are never uploaded: compress for IRCC, merge, OCR, sign, OFX to Excel.",
     homeFaq: [
       {
         q: "Is pdfcanada.ca really free?",
@@ -1559,8 +1559,8 @@ export const translations: Record<Language, TranslationStructure> = {
     },
 
     seo: {
-      homeTitle: "Outils PDF Gratuits Canada | Service Sécurisé Sans Téléchargement | pdfcanada.ca",
-      homeDesc: "Outils PDF canadiens polis. 100% gratuit et sécurisé en " + CURRENT_YEAR + ". Fusionnez, compressez et convertissez sans téléchargement—vos fichiers ne quittent jamais votre appareil.",
+      homeTitle: "PDF Canada : outils PDF gratuits en français, sans envoi",
+      homeDesc: "PDF Canada (pdfcanada.ca) offre des outils PDF gratuits et bilingues, conçus au Canada. Tout se fait dans votre navigateur, sans envoi : compresser pour IRCC, fusionner, OCR, signer, OFX en Excel.",
       homeFaq: [
         {
           q: "Est-ce vraiment gratuit ?",
