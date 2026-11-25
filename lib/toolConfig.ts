@@ -1024,21 +1024,21 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     i18nKey: 'phpToPdf',
     tool: ToolType.PHP_TO_PDF,
     title: {
-      en: 'PHP to PDF - Free & Secure Code to PDF Converter | pdfcanada.ca',
-      fr: 'PHP en PDF - Documentation de Code Sécurisée | pdfcanada.ca',
-      pt: 'PHP para PDF - Documentação de Código Segura | pdfcanada.ca'
+      en: 'PHP to PDF: Open a .php or .aspx Download as a PDF | pdfcanada.ca',
+      fr: 'PHP en PDF : ouvrir un fichier .php ou .aspx téléchargé | pdfcanada.ca',
+      pt: 'PHP para PDF | pdfcanada.ca'
     },
     description: {
-      en: 'PHP to PDF - Convert PHP source code into PDF documentation instantly. 100% private, local-first processing ensures your code stays secure. Try it now for free.',
-      fr: 'PHP vers PDF - Convertissez votre code source PHP en PDF. Traitement 100% local : vos fichiers ne quittent jamais votre appareil. Gratuit et automatique.',
-      pt: 'PHP para PDF - Converta seu código fonte PHP para formato PDF. Processamento 100% local: seus arquivos nunca saem do seu dispositivo. Grátis e seguro.'
+      en: 'Statement or bill saved as .php or .aspx? It is usually a PDF with the wrong name. Drop it here to get the .pdf back, or print real PHP code to PDF. Free.',
+      fr: 'Relevé ou facture enregistré en .php ou .aspx? C’est souvent un PDF mal nommé. Déposez-le ici pour récupérer le .pdf, ou imprimez du code PHP en PDF.',
+      pt: 'Arquivo .php ou .aspx baixado? Geralmente é um PDF com o nome errado.'
     },
     keywords: {
-      en: ['php to pdf', 'convert php', 'code to pdf', 'php source to pdf'],
-      fr: ['php en pdf', 'code php en pdf', 'imprimer code php'],
-      pt: ['php para pdf', 'imprimir código php']
+      en: ['php to pdf', 'convert php to pdf', 'php to pdf converter', 'open php file as pdf', 'aspx to pdf', 'downloaded file is php instead of pdf'],
+      fr: ['php en pdf', 'convertir php en pdf', 'ouvrir fichier php', 'aspx en pdf', 'fichier php au lieu de pdf'],
+      pt: ['php para pdf']
     },
-    accept: '.php,text/x-php,application/x-php,text/plain'
+    accept: '.php,.aspx,.asp,.ashx,.jsp,.cgi,.do,.txt,text/x-php,application/x-php,text/plain,application/octet-stream'
   },
   {
     slug: 'odt-to-pdf',

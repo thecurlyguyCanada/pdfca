@@ -532,7 +532,8 @@ export function ToolPageClient({ toolConfig, lang }: ToolPageClientProps) {
 
           case ToolType.PHP_TO_PDF:
             resultBlob = await convertPhpToPdf(primaryFile);
-            outputName = primaryFile.name.replace(/\.(php|txt)$/i, '.pdf');
+            // statement.php, GetDocument.aspx, download (no extension) → .pdf
+            outputName = /\.[a-z0-9]{1,5}$/i.test(primaryFile.name) ? primaryFile.name.replace(/\.[a-z0-9]{1,5}$/i, '.pdf') : `${primaryFile.name}.pdf`;
             break;
 
           case ToolType.PHISHING_DETECTOR:

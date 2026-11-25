@@ -24,7 +24,7 @@ const BANNED = [/unlimited file size/i, /no file size limit/i, /military[- ]grad
 
 // Specific small jobs (playbook: "split in half, add page numbers can run 500–800") get a shorter range than the
 // head-term tools; pdfcanada's floor stays higher because its pages carry Canadian specifics.
-const SMALL = new Set(['split-pdf-in-half', 'alternate-mix-pdf', 'add-page-numbers', 'watermark-pdf', 'protect-pdf', 'flatten-pdf', 'split-pdf-by-size', 'add-image-to-pdf']);
+const SMALL = new Set(['split-pdf-in-half', 'alternate-mix-pdf', 'add-page-numbers', 'watermark-pdf', 'protect-pdf', 'flatten-pdf', 'split-pdf-by-size', 'add-image-to-pdf', 'php-to-pdf']);
 const groups = fs.readFileSync('lib/toolGroups.ts', 'utf8');
 const hubSlugs = new Set([...groups.slice(0, groups.indexOf('export const hubName')).matchAll(/slug: '([a-z0-9-]+)'/g)].map((m) => m[1]));
 const relatedBlock = groups.slice(groups.indexOf('export const RELATED'));

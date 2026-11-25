@@ -26,6 +26,7 @@ export const TOOL_GROUPS: ToolGroup[] = [
         name: { en: 'Canadian bank files', fr: 'Fichiers bancaires canadiens' },
         tools: [
             { slug: 'ofx-to-excel', name: { en: 'OFX to Excel', fr: 'Convertir OFX en Excel' }, short: { en: 'Open a Desjardins, Tangerine or other bank OFX/QFX download in Excel or CSV', fr: 'Ouvrir un fichier OFX/QFX de Desjardins, Tangerine ou autre banque dans Excel ou en CSV' } },
+            { slug: 'php-to-pdf', name: { en: 'PHP to PDF', fr: 'PHP en PDF' }, short: { en: 'Statement or bill saved as .php or .aspx? Get the PDF back', fr: 'Relevé ou facture enregistré en .php ou .aspx? Récupérez le PDF' } },
         ],
     },
     {
@@ -128,6 +129,7 @@ export const RELATED: Record<string, string[]> = {
     'pdf-to-word': ['ocr-pdf', 'word-to-pdf', 'pdf-to-excel'],
     'pdf-to-excel': ['ocr-pdf', 'pdf-to-word', 'excel-to-pdf', 'ofx-to-excel'],
     'ofx-to-excel': ['pdf-to-excel', 'excel-to-pdf', 'protect-pdf'],
+    'php-to-pdf': ['merge-pdf', 'compress-pdf', 'pdf-to-excel', 'ofx-to-excel'],
     'pdf-to-jpg': ['pdf-to-png', 'jpg-to-pdf', 'extract-pdf-pages'],
     'pdf-to-png': ['pdf-to-jpg', 'crop-pdf', 'jpg-to-pdf'],
     'pdf-to-ppt': ['pdf-to-jpg', 'pdf-to-word', 'compress-pdf'],
