@@ -35,6 +35,7 @@ export const TOOL_ICONS: Record<string, React.ElementType> = {
     'pdf-to-csv': Table,
     'pdf-to-excel': FileSpreadsheet,
     'ofx-to-excel': Table,
+    'php-to-pdf': FileCode,
     'analyze-pdf': ShieldCheck,
     'jpg-to-pdf': Image,
     'pdf-to-jpg': FileImage,

@@ -51,6 +51,7 @@ export const GUIDE_REDIRECTS: Record<string, string> = {
     'jpeg-to-pdf': 'jpg-to-pdf',
     'pdf-to-jpeg': 'pdf-to-jpg',
     'pdf-whiteout': 'remove-pdf-text',
+    'aspx-to-pdf': 'php-to-pdf',
 };
 
 /** Tools with no measurable demand in Canada and no traffic in six months → 410. Their guides go with them. */
@@ -62,7 +63,10 @@ export const RETIRED_TOOLS = new Set<string>([
     // ofx-to-excel was cut here too and restored on 25 Nov 2026: /fr/ofx-to-excel was the best non-brand page in
     // Search Console (4 clicks, 39 impressions, 10% CTR, position 9.6, Aug 24–Nov 23) and Canadian bank exports
     // (Desjardins, Tangerine) are its job. It now has a full article in both languages.
-    'barcode-generator', 'aspx-to-pdf', 'php-to-pdf', 'pages-to-pdf', 'html-to-pdf', 'pdf-to-kindle', 'pdf-to-csv',
+    'barcode-generator', 'pages-to-pdf', 'html-to-pdf', 'pdf-to-kindle', 'pdf-to-csv',
+    // php-to-pdf came back on 25 Nov 2026 as one page for "my download saved as .php/.aspx": in 16 months of
+    // Search Console it was the best non-Quran page after ACSM (/en/guides/php-to-pdf 173 clicks, 5,249 impressions,
+    // position 13; the aspx pair ~33 clicks). aspx-to-pdf redirects to it (TOOL_REDIRECTS, GUIDE_REDIRECTS).
     // Verified broken while writing the guides (Nov 2026): unlock-pdf ignores the password and writes files that
     // stay encrypted; ppt-to-pdf dumps text runs and stretches images instead of rendering slides. A page that
     // fails on every real file is worse than no page. Bring them back when the tools work.
@@ -81,6 +85,8 @@ export const TOOL_REDIRECTS: Record<string, string> = {
     'pdf-to-image': 'pdf-to-jpg',
     // Nov 2026 (playbook wave 3): the flatten intent has a real tool again.
     'make-pdf-non-editable': 'flatten-pdf',
+    // One page for the "download saved as .php / .aspx" job.
+    'aspx-to-pdf': 'php-to-pdf',
 };
 
 export const isToolLive = (slug: string) => !RETIRED_TOOLS.has(slug) && !(slug in TOOL_REDIRECTS);
@@ -123,6 +129,7 @@ export const GUIDE_TO_TOOL: Record<string, string> = {
     'insert-picture-in-pdf': '/add-image-to-pdf',
     'trim-pdf': '/crop-pdf',
     'make-pdf-non-editable': '/flatten-pdf',
+    'php-to-pdf': '/php-to-pdf',
 };
 
 /** Hub pages under /guides/ that only linked to other guides → the guides index. */

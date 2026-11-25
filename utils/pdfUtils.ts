@@ -2646,15 +2646,21 @@ export const convertGifToPdf = async (file: File): Promise<Uint8Array> => {
 // Generic code to PDF converter
 const convertCodeToPdf = async (file: File, title: string): Promise<Uint8Array> => {
   const { PDFDocument, StandardFonts, rgb } = await getPdfLib();
-  const text = await file.text();
-
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Courier);
+  // Courier is a WinAnsi font: expand tabs, drop control characters and replace anything it cannot encode,
+  // otherwise drawText throws on the first emoji, CJK character or tab in the file.
+  const encodable = (ch: string) => { try { font.encodeText(ch); return true; } catch { return false; } };
+  const text = (await file.text())
+    .replace(/\t/g, '    ')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/[^\n\r\x20-\x7E]/g, (ch) => (encodable(ch) ? ch : '?'));
   const fontSize = 10;
   const lineHeight = 12;
   const margin = 50;
 
-  const page = doc.addPage();
+  const LETTER: [number, number] = [612, 792]; // North American Letter, 8.5 × 11 in
+  const page = doc.addPage(LETTER);
   const { width, height } = page.getSize();
   const maxLineWidth = width - (margin * 2);
 
@@ -2663,7 +2669,7 @@ const convertCodeToPdf = async (file: File, title: string): Promise<Uint8Array> 
   let currentPage = page;
 
   const addNewPage = () => {
-    currentPage = doc.addPage();
+    currentPage = doc.addPage(LETTER);
     currentY = height - margin;
   };
 
@@ -2700,13 +2706,32 @@ const convertCodeToPdf = async (file: File, title: string): Promise<Uint8Array> 
   return await doc.save();
 };
 
-export const convertAspxToPdf = async (file: File): Promise<Uint8Array> => {
-  return convertCodeToPdf(file, 'ASPX to PDF Conversion');
+/**
+ * A bank statement, bill or form downloaded from a .php/.aspx link is often a real PDF that the browser saved
+ * under the script's name (statement.php, GetDocument.aspx). PDF readers accept the header anywhere in the first
+ * 1,024 bytes, so look there: if it is found, the file is returned byte for byte from the header on, which only
+ * changes the name. Anything else is treated as source code and printed as text.
+ */
+export const findPdfHeader = (bytes: Uint8Array): number => {
+  const max = Math.min(bytes.length - 5, 1024);
+  for (let i = 0; i <= max; i++) {
+    if (bytes[i] === 0x25 && bytes[i + 1] === 0x50 && bytes[i + 2] === 0x44 && bytes[i + 3] === 0x46 && bytes[i + 4] === 0x2d) return i;
+  }
+  return -1;
 };
 
-export const convertPhpToPdf = async (file: File): Promise<Uint8Array> => {
-  return convertCodeToPdf(file, 'PHP to PDF Conversion');
+export type ScriptFileResult = { bytes: Uint8Array; kind: 'pdf-inside' | 'source-code' };
+
+export const convertScriptFileToPdf = async (file: File): Promise<ScriptFileResult> => {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const at = findPdfHeader(bytes);
+  if (at >= 0) return { bytes: at === 0 ? bytes : bytes.slice(at), kind: 'pdf-inside' };
+  return { bytes: await convertCodeToPdf(file, 'Source code printed to PDF'), kind: 'source-code' };
 };
+
+export const convertAspxToPdf = async (file: File): Promise<Uint8Array> => (await convertScriptFileToPdf(file)).bytes;
+
+export const convertPhpToPdf = async (file: File): Promise<Uint8Array> => (await convertScriptFileToPdf(file)).bytes;
 
 // JPG/JPEG to PDF conversion
 export const convertJpgToPdf = async (file: File): Promise<Uint8Array> => {
