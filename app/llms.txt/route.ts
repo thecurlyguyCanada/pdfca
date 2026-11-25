@@ -10,7 +10,7 @@ export function GET() {
     const lines = [
         '# pdfcanada.ca',
         '',
-        '> Free PDF tools for Canadians, in English and French, that run entirely in the browser. Files are processed locally with pdf-lib, pdf.js and Tesseract and are never uploaded to a server. No account, no watermark. The practical size limit is the device\'s memory.',
+        '> PDF Canada: free PDF tools for Canadians, in French and English, that run entirely in the browser. Files are processed locally with pdf-lib, pdf.js and Tesseract and are never uploaded to a server. No account, no watermark. The practical size limit is the device\'s memory.',
         '',
     ];
     for (const g of TOOL_GROUPS) {
@@ -20,6 +20,7 @@ export function GET() {
         for (const t of tools) lines.push(`- [${t.name.en}](${SITE}/en/${t.slug}): ${t.short.en}. French: ${SITE}/fr/${t.slug}`);
         lines.push('');
     }
+    lines.push('## Guides', '', `- [XFA form cannot be edited](${SITE}/en/guides/edit-xfa-pdf): why IRCC and other government XFA forms show "Please wait…" and how to open them in Adobe Reader. French: ${SITE}/fr/guides/edit-xfa-pdf`, `- [ACSM to PDF](${SITE}/en/guides/acsm-to-pdf): opening an .acsm e-book ticket in Adobe Digital Editions. French: ${SITE}/fr/guides/acsm-to-pdf`, '');
     lines.push('## About', '', `- [About](${SITE}/en/about): who builds the site and how pages are written.`, `- [Security](${SITE}/en/security): how files are handled and how to verify nothing is uploaded.`, `- [Privacy](${SITE}/en/privacy)`, '');
     return new Response(lines.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }

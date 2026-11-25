@@ -30,7 +30,8 @@ export function middleware(request: NextRequest) {
     const guide = pathname.match(/^\/(\w\w)\/guides\/([a-z0-9-]+)\/?$/);
     if (guide) {
         const [, lang, slug] = guide;
-        if (RETIRED_GUIDES.has(slug)) return gone();
+        // A retired tool's guide goes with it (e.g. /en/guides/pdf-to-ubl answered 404; 410 says it is gone for good).
+        if (RETIRED_GUIDES.has(slug) || RETIRED_TOOLS.has(slug)) return gone();
         const folded = GUIDE_TO_TOOL[GUIDE_REDIRECTS[slug] || slug];
         const target = folded ? `/${lang}${folded}` : GUIDE_REDIRECTS[slug] ? `/${lang}/guides/${GUIDE_REDIRECTS[slug]}` : HUB_GUIDES.has(slug) ? `/${lang}/guides` : null;
         if (target) {

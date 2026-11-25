@@ -6,6 +6,12 @@ import { getToolArticle } from '@/lib/toolArticles';
 
 const baseUrl = 'https://www.pdfcanada.ca';
 
+// Guides whose content changed after the global date below; everything else keeps that date (honest lastmod).
+const GUIDE_UPDATED: Record<string, string> = {
+    'edit-xfa-pdf': '2026-11-25',
+    'acsm-to-pdf': '2026-11-25',
+};
+
 // Static pages that should be in sitemap
 const staticPages = ['about', 'contact', 'privacy', 'terms', 'security', 'accessibility', 'tools/remove-pdf-text'];
 
@@ -110,7 +116,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         i18n.locales.forEach(locale => {
             routes.push({
                 url: `${baseUrl}/${locale}/guides/${slug}`,
-                lastModified,
+                lastModified: GUIDE_UPDATED[slug] ? new Date(`${GUIDE_UPDATED[slug]}T12:00:00Z`) : lastModified,
                 changeFrequency,
                 priority,
                 alternates: getAlternates(`/guides/${slug}`),

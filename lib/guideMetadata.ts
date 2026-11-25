@@ -191,10 +191,10 @@ export const ALL_GUIDES: GuideMetadata[] = [
     },
     {
         slug: 'edit-xfa-pdf',
-        titleEn: 'Edit XFA PDF Guide - Manage Complex Forms | pdfcanada.ca',
-        titleFr: 'Guide Éditer XFA PDF - Formulaires Complexes | pdfcanada.ca',
-        descEn: 'Edit XFA PDF Guide - Learn how to handle and modify advanced XFA forms. 100% private, local-first processing ensures your files stay safe. Read more.',
-        descFr: 'Guide Éditer XFA PDF - Apprenez à gérer les formulaires XFA avancés. Traitement 100% local pour garantir la sécurité totale. En savoir plus.',
+        titleEn: 'XFA Form Cannot Be Edited? Open and Fill IRCC PDF Forms',
+        titleFr: 'Formulaire XFA impossible à modifier : ouvrir un formulaire IRCC',
+        descEn: 'XFA form shows “Please wait…” or cannot be edited in Acrobat? Open IRCC and other government forms in free Adobe Reader, not a browser, Preview or phone.',
+        descFr: 'Formulaire XFA qui affiche « Please wait… » ou impossible à modifier? Ouvrez les formulaires d’IRCC dans Adobe Reader (gratuit), pas dans un navigateur.',
         category: 'Advanced',
         icon: '⚙️'
     },
@@ -343,10 +343,10 @@ export const ALL_GUIDES: GuideMetadata[] = [
     },
     {
         slug: 'acsm-to-pdf',
-        titleEn: 'ACSM to PDF - Convert Adobe License Files | pdfcanada.ca',
-        titleFr: 'ACSM en PDF - Guide de Conversion Licence | pdfcanada.ca',
-        descEn: 'ACSM to PDF - Learn how to convert .acsm library files into readable PDF documents. 100% private, local-first processing ensures safety. Start converting today.',
-        descFr: 'ACSM en PDF - Apprenez à transformer vos fichiers .acsm en documents PDF. Traitement 100% local pour garantir la sécurité des données. Commencez aujourd\'hui.',
+        titleEn: 'ACSM to PDF: Open the eBook in Adobe Digital Editions (Free)',
+        titleFr: 'ACSM en PDF : ouvrir le livre avec Adobe Digital Editions',
+        descEn: 'An .acsm file is a download ticket, not the book. Open it in free Adobe Digital Editions with your Adobe ID to get the PDF or EPUB. No converter can do it.',
+        descFr: 'Un fichier .acsm est un bon de téléchargement, pas le livre. Ouvrez-le dans Adobe Digital Editions (gratuit) pour obtenir le PDF ou l’EPUB. Aucun convertisseur ne le peut.',
         category: 'Conversion',
         icon: '🔑'
     },

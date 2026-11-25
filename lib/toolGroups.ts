@@ -22,6 +22,13 @@ export interface ToolGroup {
 
 export const TOOL_GROUPS: ToolGroup[] = [
     {
+        id: 'bank',
+        name: { en: 'Canadian bank files', fr: 'Fichiers bancaires canadiens' },
+        tools: [
+            { slug: 'ofx-to-excel', name: { en: 'OFX to Excel', fr: 'Convertir OFX en Excel' }, short: { en: 'Open a Desjardins, Tangerine or other bank OFX/QFX download in Excel or CSV', fr: 'Ouvrir un fichier OFX/QFX de Desjardins, Tangerine ou autre banque dans Excel ou en CSV' } },
+        ],
+    },
+    {
         id: 'optimize',
         name: { en: 'Optimize and secure', fr: 'Optimiser et sécuriser' },
         tools: [
@@ -119,7 +126,8 @@ export const RELATED: Record<string, string[]> = {
     'extract-pdf-pages': ['split-pdf', 'delete-pdf-pages', 'merge-pdf'],
     'rotate-pdf': ['organize-pdf', 'crop-pdf', 'scan-to-pdf'],
     'pdf-to-word': ['ocr-pdf', 'word-to-pdf', 'pdf-to-excel'],
-    'pdf-to-excel': ['ocr-pdf', 'pdf-to-word', 'excel-to-pdf'],
+    'pdf-to-excel': ['ocr-pdf', 'pdf-to-word', 'excel-to-pdf', 'ofx-to-excel'],
+    'ofx-to-excel': ['pdf-to-excel', 'excel-to-pdf', 'protect-pdf'],
     'pdf-to-jpg': ['pdf-to-png', 'jpg-to-pdf', 'extract-pdf-pages'],
     'pdf-to-png': ['pdf-to-jpg', 'crop-pdf', 'jpg-to-pdf'],
     'pdf-to-ppt': ['pdf-to-jpg', 'pdf-to-word', 'compress-pdf'],
