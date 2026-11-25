@@ -24,6 +24,7 @@ const TOOLS: Record<string, ComponentType<ToolProps>> = {
     'protect-pdf': dynamic(() => import('./ProtectPdf'), { loading: Loading }),
     'flatten-pdf': dynamic(() => import('./FlattenPdf'), { loading: Loading }),
     'alternate-mix-pdf': dynamic(() => import('./AlternateMix'), { loading: Loading }),
+    'fill-pdf-form': dynamic(() => import('./FillPdfForm'), { loading: Loading }),
 };
 
 export const STANDALONE_SLUGS = Object.keys(TOOLS);

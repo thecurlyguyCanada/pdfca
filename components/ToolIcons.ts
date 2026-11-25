@@ -2,7 +2,7 @@ import {
     Trash2, RotateCw, FileDown, LayoutGrid, Scissors, FileSearch, Crop,
     Image, BookOpen, Smartphone, Tablet, FormInput, PenTool, Layers,
     FileText, FileCode, Lock, Ghost, Eye, Barcode, Table, FileSpreadsheet, ShieldCheck, ScanText,
-    GitCompare, Camera, ImagePlus, Ruler, Columns2, ListOrdered, Stamp, KeyRound, Layers2, Shuffle, FileImage, Presentation
+    GitCompare, Camera, ImagePlus, Ruler, Columns2, ListOrdered, Stamp, KeyRound, Layers2, Shuffle, FileImage, Presentation, PenLine
 } from 'lucide-react';
 
 export const TOOL_ICONS: Record<string, React.ElementType> = {
@@ -50,5 +50,6 @@ export const TOOL_ICONS: Record<string, React.ElementType> = {
     'watermark-pdf': Stamp,
     'protect-pdf': KeyRound,
     'flatten-pdf': Layers2,
+    'fill-pdf-form': PenLine,
     'alternate-mix-pdf': Shuffle,
 };
