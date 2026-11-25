@@ -1436,29 +1436,31 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: 'Converter OFX para Excel - Extrato Bancário Grátis | pdfcanada.ca'
     },
     description: {
-      en: 'OFX to Excel - Securely convert OFX bank statements to Excel (XLSX). 100% private, local-first processing ensures your banking data stays safe. Try it now for free.',
-      fr: 'OFX vers Excel - Convertissez vos relevés bancaires OFX en Excel. Traitement 100% local : vos données ne quittent jamais votre appareil. Gratuit et sécurisé.',
+      en: 'Convert an OFX or QFX bank download (Desjardins, Tangerine and other Canadian banks) to Excel, CSV, QBO or QIF in your browser. Free, nothing uploaded.',
+      fr: 'Convertissez un fichier OFX ou QFX de votre banque (Desjardins, Tangerine…) en Excel, CSV, QBO ou QIF dans votre navigateur. Gratuit, sans envoi.',
       pt: 'OFX para Excel - Converta seus extratos bancários OFX para o formato Excel. Processamento 100% local: seus dados nunca saem do seu dispositivo. Grátis e seguro.'
     },
     keywords: {
-      en: ['ofx to excel', 'ofx converter', 'convert ofx file', 'ofx to csv', 'open ofx file', 'bank statement converter'],
-      fr: ['ofx en excel', 'convertisseur ofx', 'fichier ofx', 'relevé bancaire excel'],
+      en: ['ofx to excel', 'ofx to csv', 'qfx to excel', 'open ofx file in excel', 'desjardins ofx', 'tangerine qfx'],
+      fr: ['convertir ofx en excel', 'ofx en excel', 'ofx en csv', 'ouvrir fichier ofx', 'desjardins ofx excel', 'relevé bancaire excel'],
       pt: ['ofx para excel', 'converter ofx', 'abrir arquivo ofx', 'ofx para csv', 'extrato bancário excel', 'conversor ofx online', 'como abrir ofx no excel']
     },
     featureList: {
       en: [
         'Preview transactions before export',
-        'Multi-account OFX support',
+        'OFX 1.x (SGML), OFX 2.x (XML) and QFX files',
+        'Multi-account files: pick the account to export',
         'Export to Excel, CSV, QBO, QIF',
-        'Smart date normalization',
+        'Real Excel dates and numeric amounts',
         'Balance & statistics dashboard',
         '100% client-side processing'
       ],
       fr: [
         'Prévisualisez les transactions',
-        'Support multi-comptes OFX',
+        'Fichiers OFX 1.x (SGML), OFX 2.x (XML) et QFX',
+        'Fichiers multi-comptes : choisissez le compte à exporter',
         'Export Excel, CSV, QBO, QIF',
-        'Normalisation des dates',
+        'Vraies dates Excel et montants numériques',
         'Tableau de bord statistiques',
         'Traitement 100% local'
       ],
@@ -1471,7 +1473,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
         'Processamento 100% local'
       ]
     },
-    accept: '.ofx,.qfx,application/x-ofx'
+    accept: '.ofx,.qfx,.qbo,application/x-ofx'
   },
   {
     slug: 'xml-to-pdf',

@@ -34,6 +34,7 @@ export const TOOL_ICONS: Record<string, React.ElementType> = {
     'barcode-generator': Barcode,
     'pdf-to-csv': Table,
     'pdf-to-excel': FileSpreadsheet,
+    'ofx-to-excel': Table,
     'analyze-pdf': ShieldCheck,
     'jpg-to-pdf': Image,
     'pdf-to-jpg': FileImage,

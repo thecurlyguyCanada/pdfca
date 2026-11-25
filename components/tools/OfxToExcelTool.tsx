@@ -21,6 +21,7 @@ import {
     transactionsToCSV,
     transactionsToQBO,
     transactionsToQIF,
+    readOFXFile,
     OFXData,
     OFXAccount,
     OFXTransaction
@@ -59,6 +60,8 @@ const translations = {
         debit: 'Debit',
         newFile: 'New File',
         downloadAll: 'Download',
+        notOfx: 'This file is not an OFX/QFX statement (no <OFX> block). If your bank gave you a CSV, open it directly in Excel.',
+        noAccounts: 'The file is OFX but contains no bank or credit card account (no STMTRS or CCSTMTRS block).',
     },
     fr: {
         title: 'OFX vers Excel',
@@ -87,6 +90,8 @@ const translations = {
         debit: 'Débit',
         newFile: 'Nouveau Fichier',
         downloadAll: 'Télécharger',
+        notOfx: 'Ce fichier n’est pas un relevé OFX/QFX (aucun bloc <OFX>). Si votre banque vous a remis un CSV, ouvrez-le directement dans Excel.',
+        noAccounts: 'Le fichier est en OFX mais ne contient aucun compte bancaire ni carte de crédit (aucun bloc STMTRS ou CCSTMTRS).',
     },
     pt: {
         title: 'OFX para Excel',
@@ -115,6 +120,8 @@ const translations = {
         debit: 'Débito',
         newFile: 'Novo Arquivo',
         downloadAll: 'Baixar',
+        notOfx: 'Este arquivo não é um extrato OFX/QFX.',
+        noAccounts: 'Nenhuma conta encontrada no arquivo OFX.',
     },
 };
 
@@ -147,23 +154,26 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
         triggerHaptic('light');
 
         try {
-            const content = await file.text();
+            const content = await readOFXFile(file);
+            if (!/<OFX>/i.test(content)) {
+                throw new Error(t.notOfx);
+            }
             const data = parseOFX(content);
 
             if (data.accounts.length === 0) {
-                throw new Error('No accounts found in OFX file');
+                throw new Error(t.noAccounts);
             }
 
             setOfxData(data);
             setSelectedAccountIdx(0);
             triggerHaptic('success');
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to parse OFX file');
+            setError(err instanceof Error ? err.message : t.notOfx);
             triggerHaptic('error');
         } finally {
             setIsProcessing(false);
         }
-    }, []);
+    }, [t]);
 
     const handleDrop = useCallback((e: React.DragEvent) => {
         e.preventDefault();
@@ -182,7 +192,8 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
 
         switch (format) {
             case 'csv':
-                content = transactionsToCSV(selectedAccount.transactions);
+                // BOM so Excel opens accented payee names (é, è, ç) correctly when the CSV is double-clicked.
+                content = '\uFEFF' + transactionsToCSV(selectedAccount.transactions);
                 mimeType = 'text/csv';
                 extension = 'csv';
                 break;
@@ -192,7 +203,7 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
                 extension = 'qbo';
                 break;
             case 'qif':
-                content = transactionsToQIF(selectedAccount.transactions);
+                content = transactionsToQIF(selectedAccount.transactions, selectedAccount.accountType === 'CREDITCARD' ? 'CCard' : 'Bank');
                 mimeType = 'application/qif';
                 extension = 'qif';
                 break;
@@ -205,23 +216,27 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
 
                 // Add header row
                 worksheet.columns = [
-                    { header: 'Date', key: 'date', width: 12 },
+                    { header: 'Date', key: 'date', width: 12, style: { numFmt: 'yyyy-mm-dd' } },
                     { header: 'Description', key: 'name', width: 40 },
                     { header: 'Memo', key: 'memo', width: 30 },
-                    { header: 'Amount', key: 'amount', width: 15 },
-                    { header: 'Type', key: 'type', width: 10 }
+                    { header: 'Amount', key: 'amount', width: 15, style: { numFmt: '#,##0.00;-#,##0.00' } },
+                    { header: 'Type', key: 'type', width: 10 },
+                    { header: 'Reference', key: 'ref', width: 24 }
                 ];
 
-                // Add data rows
+                // Add data rows: dates as real Excel dates (sortable, filterable by month), amounts as numbers.
                 selectedAccount.transactions.forEach(trn => {
+                    const iso = /^\d{4}-\d{2}-\d{2}$/.test(trn.date) ? new Date(`${trn.date}T00:00:00Z`) : null;
                     worksheet.addRow({
-                        date: trn.date,
+                        date: iso && !Number.isNaN(iso.getTime()) ? iso : trn.date,
                         name: trn.name,
                         memo: trn.memo || '',
                         amount: trn.amount,
-                        type: trn.type
+                        type: trn.type,
+                        ref: trn.fitId
                     });
                 });
+                worksheet.views = [{ state: 'frozen', ySplit: 1 }];
 
                 // Style header row
                 worksheet.getRow(1).font = { bold: true };
@@ -237,7 +252,7 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = fileName.replace(/\.(ofx|qfx)$/i, `.${extension}`);
+        a.download = `${fileName.replace(/\.[^.]+$/, '') || 'transactions'}.${extension}`;
         a.click();
         URL.revokeObjectURL(url);
     }, [selectedAccount, fileName]);
@@ -255,11 +270,11 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
     // Upload State
     if (!ofxData && !isProcessing) {
         return (
-            <div className="min-h-[80vh] flex flex-col items-center justify-start p-4 md:p-8">
+            <div className="min-h-[50vh] flex flex-col items-center justify-start p-4 md:p-8">
                 <div className="text-center mb-6 md:mb-8">
-                    <h1 className="text-2xl md:text-4xl font-black text-gray-900 dark:text-white mb-2">
+                    <h2 className="text-2xl md:text-4xl font-black text-gray-900 dark:text-white mb-2">
                         {t.title}
-                    </h1>
+                    </h2>
                     <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
                         {t.subtitle}
                     </p>
@@ -293,7 +308,7 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
                         <input
                             ref={fileInputRef}
                             type="file"
-                            accept=".ofx,.qfx"
+                            accept=".ofx,.qfx,.qbo"
                             className="hidden"
                             onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
                         />
@@ -380,6 +395,12 @@ export const OfxToExcelTool: React.FC<OfxToExcelToolProps> = ({ lang = 'pt' }) =
                             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95"
                         >
                             {t.exportQBO}
+                        </button>
+                        <button
+                            onClick={() => handleExport('qif')}
+                            className="bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800 px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95"
+                        >
+                            {t.exportQIF}
                         </button>
                         <button
                             onClick={reset}

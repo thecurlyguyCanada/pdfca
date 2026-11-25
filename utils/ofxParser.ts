@@ -52,7 +52,49 @@ function parseOFXDate(dateStr: string): string {
 function extractSGMLValue(content: string, tag: string): string {
     const regex = new RegExp(`<${tag}>([^<\\n\\r]*)`, 'i');
     const match = content.match(regex);
-    return match ? match[1].trim() : '';
+    return match ? decodeEntities(match[1].trim()) : '';
+}
+
+/** OFX text fields may carry XML/SGML entities (e.g. "A&amp;W", "Caisse Desjardins &#233;"). */
+function decodeEntities(value: string): string {
+    if (!value.includes('&')) return value;
+    return value
+        .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+        .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCharCode(parseInt(n, 16)))
+        .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+        .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');
+}
+
+/**
+ * OFX amounts. The specification allows either a period or a comma as the decimal mark, and French-language
+ * exports sometimes use the comma ("-45,67"); parseFloat would silently read that as -45.
+ */
+export function parseOFXAmount(raw: string): number {
+    const s = raw.replace(/\s/g, '');
+    if (!s) return 0;
+    let normalized: string;
+    if (s.includes(',') && s.includes('.')) {
+        // "1.234,56" (comma decimal) vs "1,234.56" (comma thousands): the last mark is the decimal one.
+        normalized = s.lastIndexOf(',') > s.lastIndexOf('.') ? s.replace(/\./g, '').replace(',', '.') : s.replace(/,/g, '');
+    } else {
+        normalized = s.replace(',', '.');
+    }
+    const n = parseFloat(normalized);
+    return Number.isFinite(n) ? n : 0;
+}
+
+/**
+ * Read an .ofx/.qfx file as text. OFX 1.x headers usually declare CHARSET:1252 (Windows Latin-1) and some banks
+ * write UTF-8 under that header anyway, so the bytes decide: valid UTF-8 is read as UTF-8, anything else as
+ * Windows-1252. Reading a 1252 file as UTF-8 would turn "Épicerie" or "Hydro-Québec" into replacement characters.
+ */
+export async function readOFXFile(file: Blob): Promise<string> {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    try {
+        return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    } catch {
+        return new TextDecoder('windows-1252').decode(bytes);
+    }
 }
 
 /**
@@ -61,7 +103,7 @@ function extractSGMLValue(content: string, tag: string): string {
 function extractXMLValue(content: string, tag: string): string {
     const regex = new RegExp(`<${tag}>([^<]*)</${tag}>`, 'i');
     const match = content.match(regex);
-    return match ? match[1].trim() : '';
+    return match ? decodeEntities(match[1].trim()) : '';
 }
 
 /**
@@ -78,7 +120,7 @@ function parseTransaction(block: string, isXML: boolean): OFXTransaction {
     const extract = isXML ? extractXMLValue : extractSGMLValue;
 
     const trnType = extract(block, 'TRNTYPE').toUpperCase();
-    const amount = parseFloat(extract(block, 'TRNAMT')) || 0;
+    const amount = parseOFXAmount(extract(block, 'TRNAMT'));
 
     let type: 'CREDIT' | 'DEBIT' | 'OTHER' = 'OTHER';
     if (trnType === 'CREDIT' || trnType === 'DEP' || trnType === 'INT' || amount > 0) {
@@ -128,7 +170,7 @@ function parseAccountStatement(block: string, isXML: boolean, type: 'bank' | 'cr
 
     // Extract balance
     const balanceStr = extract(block, 'BALAMT');
-    const balance = balanceStr ? parseFloat(balanceStr) : undefined;
+    const balance = balanceStr ? parseOFXAmount(balanceStr) : undefined;
     const balanceDate = parseOFXDate(extract(block, 'DTASOF'));
 
     // Extract transactions
@@ -237,6 +279,17 @@ export function transactionsToCSV(transactions: OFXTransaction[]): string {
 export function transactionsToQBO(account: OFXAccount): string {
     const now = new Date();
     const dateStr = now.toISOString().replace(/[-:T]/g, '').substring(0, 14);
+    // The header promises USASCII, so accents are folded (é → e) and anything else non-ASCII dropped.
+    const esc = (v: string) => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\x20-\x7E]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const isCard = account.accountType === 'CREDITCARD';
+    // Credit card statements use their own OFX aggregates (CCSTMTRS / CCACCTFROM); writing them as a bank
+    // statement with ACCTTYPE CREDITCARD produces a file QuickBooks rejects.
+    const msgs = isCard ? 'CREDITCARDMSGSRSV1' : 'BANKMSGSRSV1';
+    const trnrs = isCard ? 'CCSTMTTRNRS' : 'STMTTRNRS';
+    const stmtrs = isCard ? 'CCSTMTRS' : 'STMTRS';
+    const acctFrom = isCard
+        ? `<CCACCTFROM>\n<ACCTID>${esc(account.accountId)}\n</CCACCTFROM>`
+        : `<BANKACCTFROM>\n<BANKID>${esc(account.bankId || '000000000')}\n<ACCTID>${esc(account.accountId)}\n<ACCTTYPE>${account.accountType === 'OTHER' ? 'CHECKING' : account.accountType}\n</BANKACCTFROM>`;
 
     let qbo = `OFXHEADER:100
 DATA:OFXSGML
@@ -256,17 +309,13 @@ NEWFILEUID:NONE
 <LANGUAGE>ENG
 </SONRS>
 </SIGNONMSGSRSV1>
-<BANKMSGSRSV1>
-<STMTTRNRS>
+<${msgs}>
+<${trnrs}>
 <TRNUID>1
 <STATUS><CODE>0<SEVERITY>INFO</STATUS>
-<STMTRS>
+<${stmtrs}>
 <CURDEF>${account.currency}
-<BANKACCTFROM>
-<BANKID>${account.bankId || '000000000'}
-<ACCTID>${account.accountId}
-<ACCTTYPE>${account.accountType}
-</BANKACCTFROM>
+${acctFrom}
 <BANKTRANLIST>
 <DTSTART>${account.transactions[0]?.date?.replace(/-/g, '') || dateStr}
 <DTEND>${account.transactions[account.transactions.length - 1]?.date?.replace(/-/g, '') || dateStr}
@@ -277,18 +326,18 @@ NEWFILEUID:NONE
 <TRNTYPE>${t.type}
 <DTPOSTED>${t.date.replace(/-/g, '')}
 <TRNAMT>${t.amount.toFixed(2)}
-<FITID>${t.fitId}
-<NAME>${t.name}
-${t.memo ? `<MEMO>${t.memo}` : ''}
+<FITID>${esc(t.fitId)}
+<NAME>${esc(t.name).slice(0, 32)}
+${t.memo ? `<MEMO>${esc(t.memo)}` : ''}
 </STMTTRN>
 `;
     }
 
     qbo += `</BANKTRANLIST>
 ${account.balance !== undefined ? `<LEDGERBAL><BALAMT>${account.balance.toFixed(2)}<DTASOF>${account.balanceDate?.replace(/-/g, '') || dateStr}</LEDGERBAL>` : ''}
-</STMTRS>
-</STMTTRNRS>
-</BANKMSGSRSV1>
+</${stmtrs}>
+</${trnrs}>
+</${msgs}>
 </OFX>`;
 
     return qbo;
