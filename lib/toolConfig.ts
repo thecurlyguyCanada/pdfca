@@ -1987,6 +1987,32 @@ export const TOOL_CONFIGS: ToolConfig[] = [
     relatedSlugs: ['flatten-pdf', 'watermark-pdf', 'sign-pdf']
   },
   {
+    slug: 'fill-pdf-form',
+    tool: ToolType.FILL_PDF_FORM,
+    title: {
+      en: 'Fill PDF Form - Online, Free, Nothing Uploaded | pdfcanada.ca',
+      fr: 'Remplir un formulaire PDF - En ligne, gratuit | pdfcanada.ca',
+      pt: 'Fill PDF Form - Online, Free | pdfcanada.ca'
+    },
+    description: {
+      en: 'Fill in the fields of a fillable PDF form in your browser: text, checkboxes, radio buttons and lists, French accents included. Save or flatten. Nothing uploaded.',
+      fr: 'Remplissez les champs d’un formulaire PDF dans votre navigateur : texte, cases, boutons radio et listes, accents compris. Enregistrez ou aplatissez, sans envoi.',
+      pt: 'Fill in the fields of a fillable PDF form in your browser. Nothing uploaded.'
+    },
+    keywords: {
+      en: ['fill pdf online', 'fill pdf form online free', 'pdf form filler online free', 'fill in pdf form', 'fillable pdf', 'type on fillable pdf'],
+      fr: ['remplir un formulaire pdf', 'remplir pdf en ligne gratuit', 'remplir formulaire pdf en ligne', 'formulaire pdf remplissable', 'compléter un pdf'],
+      pt: ['fill pdf online']
+    },
+    featureList: {
+      en: ['Text, multiline, checkbox, radio, dropdown and list fields', 'Page thumbnail with the active field outlined', 'French accents drawn correctly', 'Read-only and maximum-length fields respected', 'Optional flattening', 'XFA forms detected and explained', '100% client-side processing'],
+      fr: ['Champs texte, multiligne, cases, boutons radio, listes déroulantes et listes', 'Miniature de la page avec le champ actif encadré', 'Accents français dessinés correctement', 'Champs en lecture seule et longueur maximale respectés', 'Aplatissement facultatif', 'Formulaires XFA détectés et expliqués', 'Traitement 100 % local'],
+      pt: ['Text, checkbox, radio, dropdown and list fields', '100% client-side processing']
+    },
+    accept: '.pdf,application/pdf',
+    relatedSlugs: ['flatten-pdf', 'sign-pdf', 'make-pdf-fillable', 'protect-pdf']
+  },
+  {
     slug: 'flatten-pdf',
     tool: ToolType.FLATTEN_PDF,
     title: {
@@ -2005,7 +2031,7 @@ export const TOOL_CONFIGS: ToolConfig[] = [
       pt: ['flatten PDF', 'flatten PDF form', 'make PDF non editable', 'flatten PDF annotations', 'lock PDF form fields']
     },
     accept: '.pdf,application/pdf',
-    relatedSlugs: ['protect-pdf', 'sign-pdf', 'make-pdf-fillable', 'compress-pdf']
+    relatedSlugs: ['fill-pdf-form', 'protect-pdf', 'sign-pdf', 'make-pdf-fillable']
   },
   {
     slug: 'alternate-mix-pdf',

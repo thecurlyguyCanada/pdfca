@@ -81,6 +81,7 @@ export const TOOL_GROUPS: ToolGroup[] = [
         id: 'edit-sign',
         name: { en: 'Edit and sign', fr: 'Modifier et signer' },
         tools: [
+            { slug: 'fill-pdf-form', name: { en: 'Fill PDF Form', fr: 'Remplir un formulaire PDF' }, short: { en: 'Type into the fields of a fillable PDF and save it', fr: 'Taper dans les champs d’un PDF remplissable et l’enregistrer' } },
             { slug: 'sign-pdf', name: { en: 'Sign PDF', fr: 'Signer un PDF' }, short: { en: 'Draw or type a signature and place it', fr: 'Dessiner ou taper une signature et la placer' } },
             { slug: 'add-image-to-pdf', name: { en: 'Add Image to PDF', fr: 'Ajouter une image à un PDF' }, short: { en: 'Place a logo, stamp or photo on a page', fr: 'Placer un logo, un tampon ou une photo' } },
             { slug: 'add-page-numbers', name: { en: 'Add Page Numbers', fr: 'Numéroter les pages' }, short: { en: 'Number every page in the format you choose', fr: 'Numéroter chaque page dans le format choisi' } },
@@ -115,7 +116,7 @@ export const groupOf = (slug: string) => TOOL_GROUPS.find((g) => g.tools.some((t
 export const RELATED: Record<string, string[]> = {
     'compress-pdf': ['split-pdf-by-size', 'ocr-pdf', 'merge-pdf', 'split-pdf'],
     'protect-pdf': ['flatten-pdf', 'watermark-pdf', 'sign-pdf'],
-    'flatten-pdf': ['protect-pdf', 'sign-pdf', 'make-pdf-fillable', 'compress-pdf'],
+    'flatten-pdf': ['fill-pdf-form', 'protect-pdf', 'sign-pdf', 'make-pdf-fillable'],
     'compare-pdf': ['ocr-pdf', 'pdf-to-word', 'merge-pdf'],
     'merge-pdf': ['split-pdf', 'compress-pdf', 'organize-pdf', 'alternate-mix-pdf'],
     'split-pdf': ['split-pdf-by-size', 'extract-pdf-pages', 'merge-pdf', 'split-pdf-in-half'],
@@ -139,12 +140,13 @@ export const RELATED: Record<string, string[]> = {
     'excel-to-pdf': ['pdf-to-excel', 'merge-pdf', 'compress-pdf'],
     'heic-to-pdf': ['jpg-to-pdf', 'scan-to-pdf', 'compress-pdf'],
     'epub-to-pdf': ['pdf-to-epub', 'compress-pdf', 'split-pdf'],
-    'sign-pdf': ['flatten-pdf', 'add-image-to-pdf', 'make-pdf-fillable'],
+    'sign-pdf': ['fill-pdf-form', 'flatten-pdf', 'add-image-to-pdf', 'make-pdf-fillable'],
     'add-image-to-pdf': ['sign-pdf', 'watermark-pdf', 'jpg-to-pdf'],
     'add-page-numbers': ['merge-pdf', 'watermark-pdf', 'organize-pdf'],
     'watermark-pdf': ['protect-pdf', 'flatten-pdf', 'add-page-numbers'],
     'crop-pdf': ['rotate-pdf', 'split-pdf-in-half', 'pdf-to-png'],
-    'make-pdf-fillable': ['sign-pdf', 'flatten-pdf', 'protect-pdf'],
+    'make-pdf-fillable': ['fill-pdf-form', 'sign-pdf', 'flatten-pdf', 'protect-pdf'],
+    'fill-pdf-form': ['flatten-pdf', 'sign-pdf', 'make-pdf-fillable', 'protect-pdf'],
     'scan-to-pdf': ['ocr-pdf', 'compress-pdf', 'jpg-to-pdf', 'alternate-mix-pdf'],
     'ocr-pdf': ['scan-to-pdf', 'pdf-to-word', 'compare-pdf', 'compress-pdf'],
 };
